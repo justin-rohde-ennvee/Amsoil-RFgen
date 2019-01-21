@@ -1,0 +1,12 @@
+﻿<Record FileDesc="Warehouse Director" FileVersion="5.0.8.0" Desc="Warehouse Director" Heading="[Warehouse Director]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FWDIT0100" Desc="1-Put Away" Options="-Pgm=P4113 -Vers=ZJDE0001 -WMType=1 -WMSts=320" />
+<MenuItem Id="FWDIT0100" Desc="2-Replenishment" Options="-Pgm=P4113 -Vers=ZJDE0001 -WMType=3 -WMSts=320" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FWDQJ0100" Desc="9-Warehouse Jobs Inquiry" Options="-StsFr=320 -StsTo=321" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Misc --" />
+<MenuItem Id="FWDWC0100" Desc="Z-Warehouse Director Console (testing only)" Options="-StsFr=320 -StsTo=321" />
+<MenuItem Id="FWDSE0100" Desc="0-Warehouse Director Setup" />
+</Record>

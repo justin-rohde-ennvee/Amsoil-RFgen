@@ -1,0 +1,13 @@
+﻿<Record FileDesc="License Plate (Setup &amp; Adv.)" FileVersion="5.0.8.0" Desc="License Plate (Setup &amp; Adv.)" Heading="[License Plating]">
+<MenuItem Id="-" Desc="-- Setup --" />
+<MenuItem Id="FLPCE0100" Desc="1-Create Entity" />
+<MenuItem Id="FLPEM0100" Desc="2-Assign Entity" />
+<MenuItem Id="FLPCM0100" Desc="3-Create Type Code" />
+<MenuItem Id="-" Desc="-- Advanced  --" />
+<MenuItem Id="FLPSO0100" Desc="4-Load Management Workbench" Options="-Pgm=P4205 -Vers =ZJDE0001 -SalesOrderUDC=55  /RF -Transfer=N  -PgmIT=P4113 -VersIT=ZJDE0001" />
+<MenuItem Id="FLPPC0100" Desc="5-Pick to Load" Options="-Pgm=P4205 -Vers=AMS0001 -PgmIT=P4113 -VersIT=ZJDE0001 -RunP4205Y/N=N" />
+<MenuItem Id="FLPQI0100" Desc="6-LP - Inquiry" />
+<MenuItem Id="FLPSC0100" Desc="7-Ship Load" Options="-Pgm=P4205 -Vers=ZJDE0001" />
+<MenuItem Id="FLPTQ0100" Desc="8-Transfer Item" />
+<MenuItem Id="FLPIR0100" Desc="9-Item Reclass" Options="-Pgm=P4116 -Vers=ZJDE0001  -PgmIT=P4113 -VersIT=ZJDE0001" />
+</Record>

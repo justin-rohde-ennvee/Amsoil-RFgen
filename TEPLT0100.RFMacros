@@ -1,0 +1,329 @@
+﻿<Record FileDesc="EPM - Location Transfer" FileVersion="5.0.8.0" Desc="EPM - Location Transfer">
+<Param Name="tmNUMB" Location="10,4" Size="26" Value="   10823" />
+<Param Name="tmFLOC" Location="20,5" Size="12" Value="L2" />
+<Param Name="tmTLOC" Location="37,5" Size="12" Value="L1" />
+<Param Name="tmQTY" Location="54,9" Size="11" Value="1" />
+<Param Name="tmRMK" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: EPM - LOCATION TRANSFER
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings   = False
+Private Const cTNId             = "TEPLT0100"
+
+Private Function Transaction(ByRef tmNUMB As Variant, ByRef tmFLOC As Variant, ByRef tmTLOC As Variant, ByRef tmQTY As Variant, ByRef tmRMK As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim sERC        As String
+  Dim sEQST       As String
+  Dim sFLOC       As String
+  Dim sTLOC       As String
+  Dim sNNBR       As String
+  Dim sEFTB       As String
+  Dim sTRNN       As String
+  Dim sSUB        As String
+  Dim sOBJ        As String
+  Dim sSQL        As String
+  Dim sMCU        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  Dim emGetLocalComputerId    As New EmbeddedProc
+  Dim emX0010GetNextNumber    As New EmbeddedProc
+  Dim emGetErrorMessage       As New EmbeddedProc
+  Dim emF1204Update           As New EmbeddedProc
+  Dim emGetAuditInfo          As New EmbeddedProc
+  Dim emF1204Insert           As New EmbeddedProc
+  Dim emNothing               As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  sFLOC = FixRight(tmFLOC,12," ")
+  sTLOC = FixRight(tmTLOC,12," ")
+
+  '--------------------'
+  ' GetLocalComputerId '
+  '--------------------'
+  emGetLocalComputerId.Name       = "GetLocalComputerId"
+  emGetLocalComputerId.LogMode = LogNever
+  emGetLocalComputerId.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetLocalComputerId.Name, "", emGetLocalComputerId)
+  '
+  If Not emGetLocalComputerId.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetLocalComputerId.Name, "", emGetLocalComputerId, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name = "GetAuditInfo"
+  '
+  emGetAuditInfo.Param("UserName")           = " "
+  emGetAuditInfo.Param("Date")               = " "
+  emGetAuditInfo.Param("Time")               = " "
+  emGetAuditInfo.Param("Workstation_UserId") = " "
+  emGetAuditInfo.Param("MachineKey")         = " "
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+  '
+  If Not emGetAuditInfo.Execute Then
+    sErrDesc = "GetAuditInfo"
+    tmERRTEXT = sErrDesc
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  ' Get required data from F1204
+  sSQL = "select FMERC, FMEQST, FMNNBR, FMEFTB, FMTRNN, FMSUB, FMOBJ from F1204 where FMNUMB = '%tmNUMB' and FMAL = 'C'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F1204", Replace(sSQL, "'", "`"))
+  '
+  If Len(sRows) = 0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F1204", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  Else
+    sERC  = DB.Extract(sCols,sRows,1,"FMERC")
+    sEQST = DB.Extract(sCols,sRows,1,"FMEQST")
+    sNNBR = DB.Extract(sCols,sRows,1,"FMNNBR")
+    sEFTB = DB.Extract(sCols,sRows,1,"FMEFTB")
+    sTRNN = DB.Extract(sCols,sRows,1,"FMTRNN")
+    If sEFTB <> "0" Then
+      sEFTB = ConvJDEtoDate(sEFTB)
+    End If
+    sSUB = DB.Extract(sCols,sRows,1,"FMSUB")
+    sOBJ = DB.Extract(sCols,sRows,1,"FMOBJ")
+    sMCU = DB.Extract(sCols,sRows,1,"FMMCU")
+    sMCU = FixRight(sMCU,12," ")
+  End If
+
+  '-------------'
+  ' F1204Update '
+  '-------------'
+  'From Location
+  emF1204Update.Name = "F1204Update"
+
+  emF1204Update.Param("NextNumberValue")          = sNNBR
+  emF1204Update.Param("LocationHistOrSched")      = "H"
+  emF1204Update.Param("DateBeginningEffective")   = sEFTB
+  emF1204Update.Param("ProgramId")                = "EP12115"
+  emF1204Update.Param("AssetItemNumber")          = tmNUMB
+  emF1204Update.Param("CostCenterLocation")       = sFLOC
+  emF1204Update.Param("DateEnding")               = emGetAuditInfo.Param("Date")
+  emF1204Update.Param("DtLastChanged")            = emGetAuditInfo.Param("Date")
+  emF1204Update.Param("UserId")                   = emGetAuditInfo.Param("UserName")
+  emF1204Update.Param("WorkStationId")            = emGetAuditInfo.Param("Workstation_UserId")
+  emF1204Update.Param("TransferNumber")           = sTRNN
+  emF1204Update.Param("EquipmentRateCode")        = sERC
+  emF1204Update.Param("Quantity")                 = tmQTY
+  emF1204Update.Param("EquipmentStatus")          = sEQST
+  emF1204Update.Param("TransferActionCode")       = "1"
+  emF1204Update.Param("TimeLastUpdated")          = emGetAuditInfo.Param("Time")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1204Update.Name, "", emF1204Update)
+  '
+  If Not emF1204Update.Execute Then
+    sErrDesc = "F1204Update"
+    tmERRTEXT = sErrDesc
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1204Update.Name, "", emF1204Update, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "12"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 3
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+  '
+  If Not emX0010GetNextNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  sNNBR  = emX0010GetNextNumber.Param("NextNumber001")    ' Next Number Value
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "12"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 4
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+  '
+  If Not emX0010GetNextNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  sTRNN  = emX0010GetNextNumber.Param("NextNumber001")    ' Transfer Number
+
+  '-------------'
+  ' F1204Insert '
+  '-------------'
+  'To Location
+  emF1204Insert.Name = "F1204Insert"
+
+  emF1204Insert.Param("AssetItemNumber")          = tmNUMB
+  emF1204Insert.Param("LocationHistOrSched")      = "C"
+  emF1204Insert.Param("CostCenterLocation")       = sTLOC
+  emF1204Insert.Param("DateBeginningEffective")   = emGetAuditInfo.Param("Date")
+  emF1204Insert.Param("ProgramId")                = "EP12115"
+  emF1204Insert.Param("TransferNumber")           = sTRNN
+  emF1204Insert.Param("EquipmentRateCode")        = sERC
+  emF1204Insert.Param("Quantity")                 = tmQTY
+  emF1204Insert.Param("EquipmentStatus")          = sEQST
+  emF1204Insert.Param("NextNumberValue")          = sNNBR
+  emF1204Insert.Param("CostCenter")               = sMCU
+  emF1204Insert.Param("ObjectAccount")            = sOBJ
+  emF1204Insert.Param("Subsidiary")               = sSUB
+  emF1204Insert.Param("TimeStampEnding")          = emGetAuditInfo.Param("Time")
+  emF1204Insert.Param("TransferActionCode")       = "1"
+  emF1204Insert.Param("NameRemark")               = tmRMK
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1204Insert.Name, "", emF1204Insert)
+  '
+  If Not emF1204Insert.Execute Then
+    sErrDesc = "F1204Insert"
+    tmERRTEXT = sErrDesc
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1204Insert.Name, "", emF1204Insert, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emGetErrorMessage.Name       = "GetErrorMessageGlossaryText"
+    emGetErrorMessage.LogMode = LogNever
+    emGetErrorMessage.DebugLog   = cJDELogPath
+    emGetErrorMessage.Param("ErrorMessageID") = tmERRID
+    emGetErrorMessage.Execute
+    tmERRTEXT = tmERRID & "  " & emGetErrorMessage.Param("GlossaryText_500Chars")
+  End If
+  '
+  Set emGetLocalComputerId    = Nothing
+  Set emX0010GetNextNumber    = Nothing
+  Set emGetErrorMessage       = Nothing
+  Set emF1204Update           = Nothing
+  Set emGetAuditInfo          = Nothing
+  Set emF1204Insert           = Nothing
+  Set emNothing               = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim sNum    As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HEPLT0100")
+  SM.WaitForHost(10)
+
+  SM.SendTextAlt 10, 4, tmNUMB, 26
+  SM.SendKey KeyEnter
+  '
+  SM.SendKey KeyF4                           ' Split Screen
+  SM.SendTextAlt 20, 5, tmFLOC, 12
+  SM.SendTextAlt 37, 5, tmTLOC, 12
+  SM.SendTextAlt 2, 9, "2"
+  SM.SendTextAlt 54, 9, tmQTY, 11
+
+  If gsJDEVers = "A9.2" Then
+    SM.SendTextAlt 17, 13, tmRMK, 30
+  Else
+    SM.SendTextAlt 54,10, tmRMK, 25
+  End If
+
+  SM.SendKey KeyEnter
+  '
+  SM.GetText(53,2,27,sNum,True)
+  '
+  If sNum = "" Then GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+  
+End Function
+</Code>

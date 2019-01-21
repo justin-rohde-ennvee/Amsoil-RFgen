@@ -1,0 +1,206 @@
+﻿<Record FileDesc="WD - Warehouse Jobs Inquiry" FileVersion="5.0.8.0" Desc="WD - Warehouse Jobs Inquiry" Group="WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtAccept&vm;cmdExec&vm;ChkPut&vm;ChkPick&vm;ChkRepl" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="3" Name="cmdExec" />
+<SchemaParam Linked="0" Attr="4" Name="ChkPut" />
+<SchemaParam Linked="0" Attr="5" Name="ChkPick" />
+<SchemaParam Linked="0" Attr="6" Name="ChkRepl" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="119" Height="22" AnchorRight="57" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="0" Height="22" AnchorRight="208" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdExec" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Execute" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="111" Height="22" AnchorRight="81" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkPut" Attr="4" Check="1" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="66" Width="103" Height="22" AnchorRight="105" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Put Conf(1):" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="66" Width="15" Height="15" AnchorRight="81" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkPick" Attr="5" Check="1" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="88" Width="111" Height="22" AnchorRight="105" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pick Conf(2):" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="88" Width="15" Height="15" AnchorRight="81" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkRepl" Attr="6" Check="1" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="110" Width="119" Height="22" AnchorRight="105" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Repl. Conf(3):" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="110" Width="15" Height="15" AnchorRight="81" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[WAREHOUSE JOBS INQUIRY]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 400                               |
+' -------------------------------------------------------------------------------
+'
+' PURCHASE ORDERS: RECEIPTS BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+'
+Private msStatusF  '  F4611.R2PSTB
+Private msStatusT  '  F4611.R2PSTB
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If Left(RFPrompt(App.PromptNo). FieldId, 3) <> "txt" Then Exit Sub
+  RFPrompt(App.PromptNo).BorderStyle = DisplayStandard
+  RFPrompt(App.PromptNo).BackColor1 = vbWhite
+  RFPrompt(App.PromptNo).ForeColor = vbBlack
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  msStatusF = App.GetValue("StsFr")
+  msStatusT = App.GetValue("StsTo")
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  If Left(RFPrompt(App.PromptNo). FieldId, 3) <> "txt" Then Exit Sub
+  RFPrompt(App.PromptNo).BorderStyle = DisplayTransparent
+  RFPrompt(App.PromptNo).BackColor1 = 1
+  RFPrompt(App.PromptNo).ForeColor = vbYellow
+
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("Company", "")
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub ChkRepl_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetFocus("ChkPut",True)
+
+End Sub
+
+Private Sub cmdExec_Click()
+  On Error Resume Next
+  '
+  Dim oList     As New SearchList
+  Dim iDecTQTY  As Integer
+  Dim sSql      As String
+  Dim sList     As String
+  Dim sTyfl1    As String
+  Dim sTyfl2    As String
+  Dim styfl3    As String
+  '
+  sTyfl1 = " "
+  sTyfl2 = " "
+  sTyfl2 = " "
+  '
+  If ChkPut.Checked  = True Then sTyfl1 = "1"
+  If ChkPick.Checked = True Then sTyfl2 = "2"
+  If ChkRepl.Checked = True Then styfl3 = "3"
+  '
+  sSql = "select R2TYFL, R2LITM, R2FLOT, R2FLOC, R2TLOC, R2DOCO, R2DCTO, R2TQTY, R2UOM1 from  WDJOBS " & _
+         " where R2MCU = '%tmMCU' and R2PSTB between '" & msStatusF & "' and '" & msStatusT & "'" & _
+         " And R2TYFL in('" & sTyfl1 & "','" & sTyfl2 & "','" & styfl3 & "') " & _
+         " order by R2TYFL, R2LITM, R2FLOC, R2TLOC"
+  '
+  Call GetDecimals("TQTY", iDecTQTY)
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "T",          1, CenterLeft, True)
+  oList.SetColumn(2, "Item",  giLenItem, CenterLeft, True)
+  oList.SetColumn(3, "Lot",   giLenLOTN, CenterLeft, True)
+  oList.SetColumn(4, "From",  giLenLOCN, CenterLeft,False)
+  oList.SetColumn(5, "To  ",  giLenLOCN, CenterLeft,False)
+  oList.SetColumn(6, "Doco",         8, CenterRight, True)
+  oList.SetColumn(7, "Type",         2, CenterLeft, True)
+  oList.SetColumn(8, "Qty.",   giLenQTY, CenterRight, True, iDecTQTY)
+  oList.SetColumn(9, "UOM",          2, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  oList.ShowList
+  '
+End Sub
+</Code>

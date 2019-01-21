@@ -1,0 +1,17 @@
+﻿<Record FileDesc="Advanced Warehousing" FileVersion="5.0.8.0" Desc="Advanced Warehousing" Heading="[Adv Warehousing]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FWHPI0100" Desc="1-Put Away by Item" Options="-Pgm=P4617 -Vers=ZJDE0001" />
+<MenuItem Id="FWHPP0100" Desc="2-Put Away by PO" Options="-Pgm=P4617 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="FWHCI0100" Desc="3-Pick Confirm by Item" Options="-Pgm=P4617 -Vers=ZJDE0002" />
+<MenuItem Id="FWHCS0100" Desc="4-Pick Confirm by SO" Options="-Pgm=P4617 -Vers=ZJDE0002" />
+<MenuItem Id="FWHCS0101" Desc="5-Pick Confirm by Pick No" Options="-Pgm=P4617 -Vers=ZJDE0002" />
+<MenuItem Id="FWHCS0102" Desc="6- Pick Confirm by Task / Trip" Options="-Pgm=P4617 -Vers=ZJDE0002" />
+<MenuItem Id="-" />
+<MenuItem Id="FWHRI0100" Desc="7-Replenishment by Item" Options="-Pgm=P4617 -Vers=ZJDE0003" />
+<MenuItem Id="FWHMR0100" Desc="8-Manual Replenishment" Options="-Pgm=P46100 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FWHQJ0100" Desc="9-Warehouse Jobs Inquiry" Options="-StsFr=340 -StsTo=340" />
+<MenuItem Id="-" />
+</Record>

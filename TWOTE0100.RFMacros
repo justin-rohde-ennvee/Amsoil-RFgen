@@ -1,0 +1,365 @@
+﻿<Record FileDesc="WO - Time Entry" FileVersion="5.0.8.0" Desc="WO - Time Entry">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmOPSQ" />
+<Param Name="tmEMPL" />
+<Param Name="tmSTART" />
+<Param Name="tmEND" />
+<Param Name="tmDOCTYPE" />
+<Param Name="tmSHFT" />
+<Param Name="tmHRTP" />
+<Param Name="tmWODT" />
+<Param Name="tmUSER" />
+<Param Name="tmZVERSION" />
+<Param Name="tmQTY" />
+<Param Name="tmSCRAP" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - TIME ENTRY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TWOTE0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmOPSQ As Variant, ByRef tmEMPL As Variant, ByRef tmSTART As Variant, ByRef tmEND As Variant, ByRef tmDOCTYPE As Variant, ByRef tmSHFT As Variant, ByRef tmHRTP As Variant, ByRef tmWODT As Variant, ByRef tmUSER As Variant, ByRef tmZVERSION As Variant, ByRef tmQTY As Variant, ByRef tmSCRAP As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sTNDate     As String
+  Dim nBatchNo    As Currency
+  Dim nJobNo      As Currency
+  Dim nHours      As Currency
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sStatus     As String
+  Dim sLITM       As String
+  Dim sITM        As String
+  Dim sUOM        As String
+  Dim sDTStart    As String
+  Dim sDTEnd      As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  Dim emGetLocalComputerId    As New EmbeddedProc
+  Dim emF31122BeginDoc        As New EmbeddedProc
+  Dim emF31122EditLine        As New EmbeddedProc
+  Dim emF31122EditDoc         As New EmbeddedProc
+  Dim emF31122EndDoc          As New EmbeddedProc
+  Dim emError                 As New EmbeddedProc
+  Dim emNothing               As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  ' calculate Hours
+  If tmSTART < tmEND Then
+    sDTStart = Format(tmWODT,"MM") & "/" & Format(tmWODT,"DD") & "/" & Format(tmWODT,"YYYY") & " " & Format(tmSTART,"0#:##") & ":00"
+    sDTEnd   = Format(tmWODT,"MM") & "/" & Format(tmWODT,"DD") & "/" & Format(tmWODT,"YYYY") & " " & Format(tmEND,"0#:##") & ":00"
+  Else
+    sDTStart = Format(tmWODT,"MM") & "/" & Format(tmWODT,"DD") & "/" & Format(tmWODT,"YYYY") & " " & Format(tmSTART,"0#:##") & ":00"
+    sDTEnd   = DateAdd("D",1,Format(tmWODT,"MM") & "/" & Format(tmWODT,"DD") & "/" & Format(tmWODT,"YYYY")) & " " & Format(tmEND,"0#:##") & ":00"
+  End If
+
+  nHours = CCur(DateDiff("N",sDTStart, sDTEnd) / 60)
+
+  ' Get default information for this item
+  sSQL = "select WASRST,WALITM,WAITM,WAUOM from  F4801" & _
+         " where WADOCO = " & tmDOCO & " and WADCTO = '" & tmDCTO & "' and WAMCU = '" & tmMCU & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4801", Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4801", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sStatus = DB.Extract(sCols,sRows,1,"WASRST")
+  sLITM   = DB.Extract(sCols,sRows,1,"WALITM")
+  sITM    = DB.Extract(sCols,sRows,1,"WAITM")
+  sUOM    = DB.Extract(sCols,sRows,1,"WAUOM")
+
+  '--------------------'
+  ' GetLocalComputerId '
+  '--------------------'
+  emGetLocalComputerId.Name       = "GetLocalComputerId"
+  emGetLocalComputerId.LogMode = LogNever
+  emGetLocalComputerId.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetLocalComputerId.Name, "", emGetLocalComputerId)
+
+  If Not emGetLocalComputerId.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetLocalComputerId.Name, "", emGetLocalComputerId, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '----------------'
+  ' F31122BeginDoc '
+  '----------------'
+  emF31122BeginDoc.Name       = "F31122BeginDoc"
+  emF31122BeginDoc.LogMode = LogNever
+  emF31122BeginDoc.DebugLog   = cJDELogPath
+  '
+  emF31122BeginDoc.Param("ProcessEdits")        = 1
+  emF31122BeginDoc.Param("CreateCache")         = "1"
+  emF31122BeginDoc.Param("ComputerID")          = emGetLocalComputerId.Param("MachineKey")
+  emF31122BeginDoc.Param("LineActionCode")      = "1"
+  emF31122BeginDoc.Param("Version")             = tmZVERSION
+  emF31122BeginDoc.Param("BranchPlant")         = tmMCU
+  emF31122BeginDoc.Param("WOStatusCode")        = sStatus
+  emF31122BeginDoc.Param("ShortItem")           = sITM
+  emF31122BeginDoc.Param("EmployeeNumber")      = tmEMPL
+  emF31122BeginDoc.Param("WorkDate")            = sTNDate
+  emF31122BeginDoc.Param("OrderType")           = tmDCTO
+  emF31122BeginDoc.Param("OrderNumber")         = tmDOCO
+  emF31122BeginDoc.Param("PrimaryItemNumber")   = sITM
+  emF31122BeginDoc.Param("DocumentType")        = tmDOCTYPE
+  emF31122BeginDoc.Param("EmployeeRateFlag")    = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF31122BeginDoc.Name, "", emF31122BeginDoc)
+
+  If Not emF31122BeginDoc.Execute Then
+    tmERRID = emF31122BeginDoc.Param("ErrorMessageID")
+    sErrDesc = "F31122BeginDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF31122BeginDoc.Name, "", emF31122BeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  nBatchNo = Val(emF31122BeginDoc.Param("BatchNumber"))
+  '
+  If (nBatchNo = 0) Then
+    sErrDesc = "F31122BeginDoc - Function did not return a batch number"
+    GoTo ExitE1
+  End If
+
+  '----------------'
+  ' F31122EditLine '
+  '----------------'
+  emF31122EditLine.Name       = "F31122EditLine"
+  emF31122EditLine.LogMode = LogNever
+  emF31122EditLine.DebugLog   = cJDELogPath
+  '
+  emF31122EditLine.Param("UniqueKeyID")           = 0
+  emF31122EditLine.Param("OrderNumber")           = tmDOCO
+  emF31122EditLine.Param("OperationSequence")     = tmOPSQ
+  emF31122EditLine.Param("EmployeeNumber")        = tmEMPL
+  emF31122EditLine.Param("WorkDate")              = Format(tmWODT,"MM/DD/YYYY")
+  emF31122EditLine.Param("TypeOfHours")           = tmHRTP
+  emF31122EditLine.Param("QuantityGeneric")       = tmQTY
+  emF31122EditLine.Param("QuantityCompleted")     = 0
+  emF31122EditLine.Param("QuantityScrapped")      = 0
+  emF31122EditLine.Param("Hours")                 = nHours
+  emF31122EditLine.Param("EmployeeRate")          = "0"
+  emF31122EditLine.Param("EquipmentRate")         = "0"
+  emF31122EditLine.Param("OrderType")             = tmDCTO
+  emF31122EditLine.Param("ShortItem")             = sITM
+  emF31122EditLine.Param("BeginTime")             = tmSTART
+  emF31122EditLine.Param("EndTime")               = tmEND
+  emF31122EditLine.Param("WOStatusCode")          = sStatus
+  emF31122EditLine.Param("BranchPlant")           = tmMCU
+  emF31122EditLine.Param("2ndItemNumber")         = sLITM
+  emF31122EditLine.Param("F4801UnitOfMeasure")    = sUOM
+  emF31122EditLine.Param("BatchNumber")           = nBatchNo
+  emF31122EditLine.Param("ComputerID")            = emGetLocalComputerId.Param("MachineKey")
+  emF31122EditLine.Param("UserID")                = tmUSER
+  emF31122EditLine.Param("DateUpdated")           = sTNDate
+  emF31122EditLine.Param("ProcessEdits")          = emF31122BeginDoc.Param("ProcessEdits")
+  emF31122EditLine.Param("LineActionCode")        = emF31122BeginDoc.Param("LineActionCode")
+  emF31122EditLine.Param("WriteFlag")             = "1"
+  emF31122EditLine.Param("Version")               = tmZVERSION
+  emF31122EditLine.Param("F4801UnitOfMeasure")    = " "
+  emF31122EditLine.Param("nCacheRowNumber")       = "1"
+  emF31122EditLine.Param("DocumentType")          = tmDOCTYPE
+  emF31122EditLine.Param("ReasonCode")            = ""
+  emF31122EditLine.Param("OperationStatusCode")   = " "
+  emF31122EditLine.Param("QtyAtOperationFlag")    = " "
+  emF31122EditLine.Param("OldOperationNumber")    = tmOPSQ
+  emF31122EditLine.Param("ShiftCode")             = tmSHFT
+  'emF31122EditLine.Param("QuantityGeneric")      = tmQTY
+  'emF31122EditLine.Param("QuantityScrapped")     = tmSCRAP
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF31122EditLine.Name, "", emF31122EditLine)
+
+  If Not emF31122EditLine.Execute Then
+    tmERRID = emF31122EditLine.Param("ErrorMessageID")
+    sErrDesc = "F31122EditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF31122EditLine.Name, "", emF31122EditLine, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------'
+  ' F31122EditDoc '
+  '---------------'
+  emF31122EditDoc.Name       = "F31122EditDoc"
+  emF31122EditDoc.LogMode = LogNever
+  emF31122EditDoc.DebugLog   = cJDELogPath
+  '
+  emF31122EditDoc.Param("BatchNumber")    = nBatchNo
+  emF31122EditDoc.Param("ComputerID")     = emGetLocalComputerId.Param("MachineKey")
+  emF31122EditDoc.Param("UserID")         = tmUSER
+  emF31122EditDoc.Param("TimeOfDay")      = emF31122EditLine.Param("TimeOfDay")
+  emF31122EditDoc.Param("DateUpdated")    = emF31122EditLine.Param("DateUpdated")
+  emF31122EditDoc.Param("ProgramID")      = emF31122EditLine.Param("ProgramID")
+  emF31122EditDoc.Param("Version")        = ""  'tmZVERSION
+  emF31122EditDoc.Param("ProcessEdits")   = "1"
+  emF31122EditDoc.Param("nRowCounter")    = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF31122EditDoc.Name, "", emF31122EditDoc)
+
+  If Not emF31122EditDoc.Execute Then
+    tmERRID = emF31122EditDoc.Param("ErrorMessageID")
+    sErrDesc = "F31122EditDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF31122EditDoc.Name, "", emF31122EditDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------'
+  ' F31122EndDoc '
+  '--------------'
+  emF31122EndDoc.Name       = "F31122EndDoc"
+  emF31122EndDoc.LogMode = LogNever
+  emF31122EndDoc.DebugLog   = cJDELogPath
+  '
+  emF31122EndDoc.Param("ProgramID")     = emF31122EditDoc.Param("ProgramID")
+  emF31122EndDoc.Param("Version")       = tmZVERSION
+  emF31122EndDoc.Param("BatchNumber")   = nBatchNo
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF31122EndDoc.Name, "", emF31122EndDoc)
+
+  If Not emF31122EndDoc.Execute Then
+    sErrDesc = "F31122EndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF31122EndDoc.Name, "", emF31122EndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emGetLocalComputerId    = Nothing
+  Set emF31122BeginDoc        = Nothing
+  Set emF31122EditLine        = Nothing
+  Set emF31122EditDoc         = Nothing
+  Set emF31122EndDoc          = Nothing
+  Set emError                 = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim sText   As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  tmSTART = tmSTART & "00"
+  tmEND   = tmEND   & "00"
+  sTNDate = Format(Date, "mmddyy") ' no '/'
+  '
+  SM.GoToScreen("HWOTE0100")
+  SM.SendTextAlt 24, 4, "A",      1
+  SM.SendTextAlt 70, 2, sTNDate,  8
+  SM.SendTextAlt 24, 5, tmDOCO,   8
+  '
+  If gsJDEVers = "A9.2" Then
+    SM.SendTextAlt 4,  10, tmEMPL,  8
+    SM.SendTextAlt 13, 10, tmOPSQ,  6
+    SM.SendTextAlt 20, 10, tmHRTP,  1
+    SM.SendTextAlt 22, 10, tmSTART, 8
+    SM.SendTextAlt 31, 10, tmEND,   8
+  Else
+    SM.SendTextAlt 3,  10, tmEMPL,  8
+    SM.SendTextAlt 12, 10, tmOPSQ,  6
+    SM.SendTextAlt 19, 10, tmHRTP,  1
+    SM.SendTextAlt 21, 10, tmSTART, 8
+    SM.SendTextAlt 30, 10, tmEND,   8
+  End If
+
+  SM.SendKey KeyEnter
+
+  ' Error checking
+  SM.GetText(53,2,27,sText,True)
+  '
+  If sText <> "" Then Call GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  SM.WaitForHost 10
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

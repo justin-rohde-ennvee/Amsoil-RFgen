@@ -1,0 +1,18 @@
+﻿<Record FileDesc="Manufacturing" FileVersion="5.0.8.0" Desc="Manufacturing" Heading="[Manufacturing]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FWOSB0100" Desc="1-Super Backflush" Options="-Pgm=P31123 -Vers=RFG0001" />
+<MenuItem Id="FWORC0100" Desc="2-Rate Completions" Options="-Pgm=P31123 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="FWOCI0100" Desc="3-Component Issue" Options="-Pgm=P31113 -Vers=ZJDE0001" />
+<MenuItem Id="FWOCS0100" Desc="4-Component Scrap" Options="-Pgm=P31116 -Vers=ZJDE0001" />
+<MenuItem Id="FWOTE0100" Desc="5-Time Entry" Options="-Pgm=P311221 -Vers=ZJDE0001" />
+<MenuItem Id="FWOTE0200" Desc="6-WO - Time Entry Start/Stop" Options="-Pgm=P311221 -Vers=ZJDE0001" />
+<MenuItem Id="FWOTE0300" Desc="7-WO - Time Entry Start/Stop (multipl.WO)" Options="-Pgm=P311221 -Vers=ZJDE0001 -Timer=30" />
+<MenuItem Id="FWOOC0100" Desc="8-Completions - Partial" Options="-Pgm=P31114 -Vers=ZJDE0001" />
+<MenuItem Id="FWOOC0100" Desc="9-Completions - Full" Options="-Pgm=P31114 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FWOQO0100" Desc="a-Open WO's by Item" Options="-StsFr=20 -StsTo=95" />
+<MenuItem Id="FWOQI0100" Desc="b-WO Status by Item" Options="-StsFr=20 -StsTo=95" />
+<MenuItem Id="-" />
+</Record>

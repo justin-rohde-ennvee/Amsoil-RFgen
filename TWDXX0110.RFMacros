@@ -1,0 +1,35 @@
+﻿<Record FileDesc="WD - Warehouse Director Timed Event" FileVersion="5.0.8.0" Desc="WD - Warehouse Director Timed Event" MacroType="2" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WAREHOUSE DIRECTOR - TIMED EVENT
+'
+' NOTES:
+
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction() As Boolean
+  On Error Resume Next
+
+
+  Dim emTWDXX0100 As New EmbeddedProc
+  '
+  emTWDXX0100.Name = "TWDXX0100"
+  emTWDXX0100.DataSource = ""
+  '
+  '
+  If Not emTWDXX0100.Execute Then
+    '
+  End If
+  '
+  Transaction = True
+  
+End Function
+</Code>

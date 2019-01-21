@@ -1,0 +1,4 @@
+﻿<Record FileDesc="Line Process Auto" FileVersion="5.0.8.0" Desc="Line Process Auto" Heading="[Quart And Multiline]">
+<MenuItem Id="-" Desc="-- Work Order Auto Completion --" />
+<MenuItem Id="FLPTC0100_AMS" Desc="1. Line Processing" Options="-Pgm=P31114 -Vers=RGN0001" />
+</Record>

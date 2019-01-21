@@ -1,0 +1,68 @@
+﻿<Record FileDesc="F00095 Remove Reservation" FileVersion="5.0.8.0" Desc="F00095 Remove Reservation">
+<Param Name="tmUser" />
+<Param Name="tmObj" />
+<Param Name="tmGenKey" />
+<Param Name="tmAppl" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: F00095 REMOVE RESERVATION
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings   = False
+
+Private Function Transaction(ByRef tmUser As Variant, ByRef tmObj As Variant, ByRef tmGenKey As Variant, ByRef tmAppl As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sErrDesc    As String
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog("F00095RemoveReservation", "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    Exit Function
+  End If
+
+  '-----------------'
+  ' F00095RemoveRes '
+  '-----------------'
+  Dim emF00095RemoveRes   As New EmbeddedProc
+  '
+  emF00095RemoveRes.Name = "F00095RemoveReservation"
+  '
+  emF00095RemoveRes.Param("UserId")         = tmUser
+  emF00095RemoveRes.Param("NameObject")     = tmObj
+  emF00095RemoveRes.Param("GenericKey")     = tmGenKey
+  emF00095RemoveRes.Param("Application")    = tmAppl
+  '
+  emF00095RemoveRes.Execute
+  '
+  If Not emF00095RemoveRes.Execute Then
+    sErrDesc = "emF00095RemoveRes" & " " & tmObj & " " & tmUser  & " " & tmGenKey & " " & tmAppl
+    ERP.RollbackTrans
+    Exit Function
+  End If
+  '
+  ERP.CommitTrans
+  
+  Transaction = True
+
+End Function
+</Code>

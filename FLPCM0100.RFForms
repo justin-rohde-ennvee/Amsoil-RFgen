@@ -1,0 +1,671 @@
+﻿<Record FileDesc="LP - Create Type" FileVersion="5.0.8.0" Desc="LP - Create Type" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtCO&vm;txtTRAI&vm;txtDESC&vm;lblDimesion&vm;txtUOM&vm;txtGDEP&vm;txtDUOM&vm;txtGWID&vm;txtGHET&vm;lblVolume&vm;lblCalcVol&vm;txtWEI&vm;txtWEIUOM&vm;txtLOCN&vm;txtAccept&vm;BtnLoad">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtTRAI" />
+<SchemaParam Linked="0" Attr="3" Name="txtDESC" />
+<SchemaParam Linked="0" Attr="4" Name="lblDimesion" />
+<SchemaParam Linked="0" Attr="5" Name="txtUOM" />
+<SchemaParam Linked="0" Attr="6" Name="txtGDEP" />
+<SchemaParam Linked="0" Attr="7" Name="txtDUOM" />
+<SchemaParam Linked="0" Attr="8" Name="txtGWID" />
+<SchemaParam Linked="0" Attr="9" Name="txtGHET" />
+<SchemaParam Linked="0" Attr="10" Name="lblVolume" />
+<SchemaParam Linked="0" Attr="11" Name="lblCalcVol" />
+<SchemaParam Linked="0" Attr="12" Name="txtWEI" />
+<SchemaParam Linked="0" Attr="13" Name="txtWEIUOM" />
+<SchemaParam Linked="0" Attr="14" Name="txtLOCN" />
+<SchemaParam Linked="0" Attr="15" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="16" Name="BtnLoad" />
+</Schema>
+<Displays>
+<Display Name="GUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtCO" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="63" Height="22" AnchorRight="177" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Entity:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="22" Width="95" Height="22" AnchorRight="89" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTRAI" Attr="2" KeyField="1" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="63" Height="22" AnchorRight="177" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Code  :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="44" Width="71" Height="22" AnchorRight="113" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDESC" Attr="3" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="103" Height="22" AnchorRight="137" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Description:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="239" Height="22" AnchorRight="1" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDimesion" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="239" Height="22" AnchorRight="1" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-------- Dimensions ---------" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUOM" Attr="5" Defaults=";o" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="132" Width="0" Height="22" AnchorRight="216" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="184" Top="198" Width="55" Height="22" AnchorRight="1" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtGDEP" Attr="6" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="63" Height="22" AnchorRight="177" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="111" Height="22" AnchorRight="57" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDUOM" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="240" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="184" Top="132" Width="55" Height="22" AnchorRight="1" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtGWID" Attr="8" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="55" Height="22" AnchorRight="177" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Width:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="154" Width="111" Height="22" AnchorRight="57" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtGHET" Attr="9" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="63" Height="22" AnchorRight="177" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Height:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="176" Width="111" Height="22" AnchorRight="57" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblVolume" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="63" Height="22" AnchorRight="177" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Volume:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCalcVol" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="198" Width="87" Height="22" AnchorRight="81" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblCalcVol" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWEI" Attr="12" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="71" Height="22" AnchorRight="169" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Max Wgh:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="220" Width="111" Height="22" AnchorRight="57" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWEIUOM" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="220" Width="0" Height="22" AnchorRight="144" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="184" Top="220" Width="55" Height="22" AnchorRight="1" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOCN" Attr="14" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="63" Height="22" AnchorRight="177" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn  :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="242" Width="183" Height="22" AnchorRight="1" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="15" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="BtnLoad" Attr="16">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Load Defaults" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="264" Width="119" Height="22" AnchorRight="1" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Create Type]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: CREATE TYPE CODE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+Option Explicit
+
+Private Const cTNId = "FLPCM0100"
+
+Private gsLPSource As String
+Private mbNewRec   As Boolean
+Private mnCube     As Currency
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim i As Integer
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  For i = 1 To 10
+    RFPrompt(i).BackColor1 = cFieldDefaultBC
+    RFPrompt(i).ForeColor = cFieldDefaultFC
+  Next i
+  '
+  lblCalcVol.Caption = ""
+  txtAccept.Visible = False
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  '
+  Call CalcVolume
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim nErrNo As Single
+  Dim sSQL   As String
+  Dim sDate As String
+  Dim sTime As String
+  Dim sUser As String
+  Dim sCube As String
+  '
+  sDate = Format(Date,"YYYYMMDD")
+  sTime = Format(Time,"HHMMSS")
+  sUser = App.User
+  '
+  sCube = Replace(CStr(mnCube),",",".")
+  '
+  If mbNewRec Then
+    sSQL = "insert into  LP008" & _
+           "           (LTCO,    LTTRAI,    LTDSC1,      LTUOM,   LTGDEP,  LTGWID,  LTGHET,  LTWEIG,   LTWUOM,        LTCUBE,       LTLOCN,      LTUSER,         LTDATE,           LTTIME)" & _
+           " values ('%txtCO','%txtTRAI', '%txtDESC', '%txtUOM', %tmGDEP, %tmGWID, %tmGHET, '%tmWEI', '%txtWEIUOM'," &  sCube & ",'%tmLOCN', '" & sUser & "','" & sDate & "','" & sTime & "')"
+  Else
+    sSQL = "update  LP008" & _
+           " set LTDSC1 = '%txtDESC'" & _
+           " , LTUOM = '%txtUOM'" & _
+           " , LTGDEP = %tmGDEP" & _
+           " , LTGWID = %tmGWID" & _
+           " , LTGHET = %tmGHET" & _
+           " , LTWEIG = %tmWEI" & _
+           " , LTWUOM = '%txtWEIUOM'" & _
+           " , LTCUBE =  " & sCube & " " & _
+           " , LTLOCN = '%tmLOCN'" & _
+           " , LTUSER = '" & sUser & "'" & _
+           " , LTDATE = '" & sDate & "'" & _
+           " , LTTIME = '" & sTime & "'" & _
+          " where LTCO = '%txtCO' and LTTRAI = '%txtTRAI'"
+  End If
+  '
+  nErrNo = DB.Execute(sSQL)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "LP008", Replace(sSQL, "'", "`"))          				   
+  '
+  If (nErrNo<>0) Then
+    App.MsgBox GetMsg(45) & vbCrLf & SysErr.Description
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "LP008", Replace(sSQL, "'", "`"))          
+    Cancel = True
+  End If
+  '
+  lblCalcVol.Caption = ""
+  mbNewRec = False
+End Sub
+
+Private Sub txtCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox(GetMsg(25))
+    Exit Sub
+  End If
+  '
+  Rsp = FixRight(Rsp, 5, "0")
+  sSQL = "select * from  LP002" & _
+         " where ENCO = '" & Rsp & "'"
+  DB.Execute sSQL, sCols, sRows
+  '
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(28)
+    Exit Sub
+  End If
+
+  ' Get branch plant
+  sSQL = "select EBMCU from LP005" & _
+         " where EBCO = '" & Rsp & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) > 0 Then
+    App.SetValue("tmMCU", DB.Extract(sCols, sRows, 1, "EBMCU"))
+  End If
+  '
+  App.SetValue("tmCO", Rsp)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim oList As New SearchList
+  '
+  sSQL = "select ENCO, ENDSC1 from  LP002" & _
+         " order by ENCO"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Entity", 6, CenterLeft, True)
+  oList.SetColumn(2, "Desc",  20, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  '
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtTRAI_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  ' Get default UOM for Cube
+  sSQL = "select ENDUOM, ENUOM, ENWEI from LP002 where ENCO = '%txtCO' "
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Len(sRows) > 0 Then
+    txtDUOM.Text   = DB.Extract(sCols,sRows,1,"ENDUOM")
+    txtUOM.Text    = DB.Extract(sCols,sRows,1,"ENUOM")
+    txtWEIUOM.Text = DB.Extract(sCols,sRows,1,"ENWEI")
+  End If
+End Sub
+
+Private Sub txtTRAI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sMCU     As String
+  Dim sLocnJDE As String
+  Dim sLocn    As String
+  '
+  Rsp = UCase(Left(Trim(Rsp),2))
+  '
+  If (Len(Rsp)=0) Then
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  sSQL = "select * from LP008 where LTTRAI = '" & Rsp & "'"
+  DB.Execute sSQL, sCols, sRows
+  '
+  mbNewRec = (Len(sRows)=0)
+  '
+  If Len(sRows) > 0 Then
+    txtDESC.Text = Trim(DB.Extract(sCols, sRows, 1, "LTDSC1"))
+    txtUOM.Text  = Trim(DB.Extract(sCols, sRows, 1, "LTUOM"))
+    txtGDEP.Text = Trim(DB.Extract(sCols, sRows, 1, "LTGDEP"))
+    txtGWID.Text = Trim(DB.Extract(sCols, sRows, 1, "LTGWID"))
+    txtGHET.Text = Trim(DB.Extract(sCols, sRows, 1, "LTGHET"))
+    txtWEI.Text = Format(Trim(DB.Extract(sCols, sRows, 1, "LTWEIG")), "###,###.00")
+    lblCalcVol.Caption = Format(DB.Extract(sCols, sRows, 1, "LTCUBE"), "###,###.00")
+    '
+    sMCU = App.GetValue("tmMCU")
+    sLocn = DB.Extract(sCols, sRows, 1, "LTLOCN")
+    If Not Validate_Locn(sLocn,sMCU, sLocnJDE) Then Exit Sub
+    txtLOCN.Text = sLocn
+  End If
+  '
+  Call CalcVolume
+End Sub
+
+Private Sub txtTRAI_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim oList As New SearchList
+  '
+  sSQL = "select LTTRAI, LTDSC1 from  LP008" & _
+         " order by LTTRAI"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Trai",  4, CenterLeft, True)
+  oList.SetColumn(2, "Desc", 20, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  '
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtGDEP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  Cancel = False
+  App.SetValue("tmGDEP", Replace(CStr(Rsp),",", "."))
+End Sub
+
+Private Sub txtGWID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  Cancel = False
+  App.SetValue("tmGWID", Replace(CStr(Rsp),",", "."))
+End Sub
+
+Private Sub txtGHET_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  Cancel = False
+  App.SetValue("tmGHET", Replace(CStr(Rsp),",", "."))
+End Sub
+
+Private Sub txtWEI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox(GetMsg(125))
+    Exit Sub
+  End If
+  '
+  Cancel = False
+  App.SetValue("tmWEI", CCur(Rsp))
+End Sub
+
+Private Sub txtLOCN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLOCN", "")
+End Sub
+
+Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sLocn As String
+  '
+  App.SetValue("tmLOCN", " ")
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  sMCU = App.GetValue("tmMCU")
+  If Not Validate_Locn(Rsp, sMCU, sLocn) Then Exit Sub
+  '
+  App.SetValue("tmLOCN", sLocn)
+
+  Cancel = False
+End Sub
+
+Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_F4100(Rsp," ", App.GetValue("tmMCU")) Then Cancel = True
+End Sub
+
+Private Sub BtnLoad_Click()
+  On Error Resume Next
+  '
+  Dim nErrNo  As Single
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sDate   As String
+  Dim sTime   As String
+  Dim sUser   As String
+  Dim sCube   As String
+  Dim sGDEP   As String
+  Dim sGWID   As String
+  Dim sGHET   As String
+  Dim sWEIG   As String
+  Dim nQty    As Currency
+  Dim sVUOM   As String
+  Dim sWUOM   As String
+  Dim sDUOM   As String
+  '
+  Dim iCnt       As Integer
+  Dim vArray(25) As String
+  Dim vArray2    As Variant
+  '
+  vArray(01) = "2D;20 Dry Freight Container;228;92,125;93,625;;IN;48600;LB"
+  vArray(02) = "2F;20 Flat Rack Container;234;89;81,75;;IN;39160;LB"
+  vArray(03) = "2S;20 Ft. Sea Van;236;94;96;;IN;34000;LB"
+  vArray(04) = "2O;20 Open Top Container;233;92,125;92,625;;IN;39299;LB"
+  vArray(05) = "2R;20 Reefer ContaINre;214;88,06;87,25;;IN;38118;LB"
+  vArray(06) = "4C;40 Collapsable Flat Rack;479;96;78,1875;;IN;57280;LB"
+  vArray(07) = "4D;40 Dry Freight Container;468,375;92,375;93,625;;IN;60350;LB"
+  vArray(08) = "4F;40 Flat Rack Container;475;96;81,75;;IN;55600;LB"
+  vArray(09) = "4H;40 Ft. H.C. Sea Van;474;92;110;;IN;45005;LB"
+  vArray(10) = "4S;40 Ft. Sea Van;476;94;98;;IN;60000;LB"
+  vArray(11) = "4T;40 Ft. Trailer;480;98;110;;IN;45000;LB"
+  vArray(12) = "4O;40 Open Top Container;474,125;92,75;89,4375;;IN;57120;LB"
+  vArray(13) = "4R;40 Reefer Container;477,25;88,0625;86,25;;IN;57120;LB"
+  vArray(14) = "45;45 Ft. H.C. Sea Van;533;92;106;;IN;45000;LB"
+  vArray(15) = "5B;50 Ft Boxcar;606;114;138;;IN;99000;LB"
+  vArray(16) = "5R;50 Ft. Rail Car;600;108;124;;IN;75000;LB"
+  vArray(17) = "53;53 Ft. Dry Van;636;98;110;;IN;45000;LB"
+  vArray(18) = "57;57 Ft. Dry Van;677;98;110;;IN;45000;LB"
+  vArray(19) = "6B;60 ft Box Car;727;114;138;;IN;150000;LB"
+  vArray(20) = "6R;60 Ft. Rail Car;720;108;124;;IN;75000;LB"
+  vArray(21) = "RW;Rail Wagon;625;110;140;;IN;99999;LB"
+  vArray(22) = "RS;STD Rail (tuck);726;114;138;;IN;1500000;LB"
+  vArray(23) = "RC;Std Rail Car;726;114;138;;IN;150000;LB"
+  vArray(24) = "P;Pallet Standard;;;;;;;"
+  vArray(25) = "L;Load Standard;;;;;;;"
+  '
+  ' Get default UOM for Cube
+  sSQL = "select ENDUOM, ENUOM, ENWEI from LP002 where ENCO = '%txtCO' "
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Len(sRows) > 0 Then
+    sVUOM = Trim(DB.Extract(sCols,sRows,1,"ENUOM"))
+    sWUOM = Trim(DB.Extract(sCols,sRows,1,"ENWEI"))
+    sDUOM = Trim(DB.Extract(sCols,sRows,1,"ENDUOM"))
+  End If
+  '
+  sDate = Format(Date,"YYYYMMDD")
+  sTime = Format(Time,"HHMMSS")
+  sUser = App.User
+  '
+  For iCnt = 1 To UBound(vArray)
+    vArray2 = Split(vArray(iCnt),";")
+    App.SetValue("txtTRAI", Trim(vArray2(0)))
+    App.SetValue("txtDESC", vArray2(1))
+    Screen.Refresh
+
+    If sDUOM <> Trim(UCase(vArray2(6))) Then
+      nQty  = CCur(Replace(CStr(vArray2(2)),",","."))
+              ConvStdUOM(nQty, vArray2(6), sDUOM)
+              mnCube = nQty
+      sGDEP = Replace(CStr(nQty),",",".")
+      nQty  = CCur(Replace(CStr(vArray2(3)),",","."))
+              ConvStdUOM(nQty, vArray2(6), sDUOM)
+              mnCube = mnCube * nQty
+      sGWID = Replace(CStr(nQty),",",".")
+      nQty  = CCur(Replace(CStr(vArray2(4)),",","."))
+              ConvStdUOM(nQty, vArray2(6), sDUOM)
+              mnCube = mnCube * nQty
+      sGHET = Replace(CStr(nQty),",",".")
+     Else
+      sGDEP = Replace(CStr(vArray2(2)),",",".")
+      sGWID = Replace(CStr(vArray2(3)),",",".")
+      sGHET = Replace(CStr(vArray2(4)),",",".")
+      mnCube = CCur(vArray2(2)) * CCur(vArray2(3)) * CCur(vArray2(4))
+    End If
+    '
+    sCube = Replace(CStr(mnCube),",",".")
+
+    If sWUOM <> Trim(UCase(vArray2(8))) Then
+      nQty  = CCur(vArray2(7))
+              ConvStdUOM(nQty, vArray2(8), sVUOM)
+      sWEIG = Replace(CStr(nQty),",",".")
+    Else
+      sWEIG = Replace(CStr(vArray2(7)),",",".")
+    End If
+    '
+    If Len(Trim(App.GetValue("txtDESC"))) > 0 Then
+      sSQL = "insert into  LP008" & _
+             "           (LTCO,    LTTRAI,    LTDSC1,        LTUOM,          LTGDEP,          LTGWID,          LTGHET,          LTWEIG,         LTWUOM,         LTCUBE,          LTUSER,         LTDATE,           LTTIME)" & _
+             " values ('%txtCO','%txtTRAI', '%txtDESC', '" & sVUOM & "', '" & sGDEP & "', '" & sGWID & "', '" & sGHET & "', '" & sWEIG & "', '" & sWUOM & "'," &  sCube & ", '" & sUser & "','" & sDate & "','" & sTime & "')"
+      '
+      nErrNo = DB.Execute(sSQL)
+      App.SetValue("txtDESC", "")
+
+      If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "LP008", Replace(sSQL, "'", "`"))
+      '
+      If (nErrNo<>0) Then
+        App.MsgBox GetMsg(45) & vbCrLf & SysErr.Description
+        If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "LP008", Replace(sSQL, "'", "`"))
+      End If
+    End If
+  Next iCnt
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+
+Private Sub CalcVolume()
+  On Error Resume Next
+  '
+  Dim nD As Currency
+  Dim nW As Currency
+  Dim nH As Currency
+  Dim nV As Currency
+  '
+  nD = Val(App.GetValue("tmGDEP"))
+  nW = Val(App.GetValue("tmGWID"))
+  nH = Val(App.GetValue("tmGHET"))
+  '
+  nV = nD * nW * nH
+  '
+  If nV = 0 Then
+    lblCalcVol.Caption = ""
+  Else
+    lblCalcVol.Caption = CStr(nV) & " " & App.GetValue("txtUOM")
+  End If
+
+  mnCube = nV
+End Sub
+</Code>

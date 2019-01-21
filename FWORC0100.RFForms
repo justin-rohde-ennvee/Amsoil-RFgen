@@ -1,0 +1,889 @@
+﻿<Record FileDesc="WO - Rate Completions" FileVersion="5.0.8.0" Desc="WO - Rate Completions" Group="WO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtEMPL&vm;txtShift&vm;txtLITM&vm;lblItemDesc&vm;lblWOQty&vm;lblOperQty&vm;txtLOTN&vm;txtLOCN&vm;txtQTY&vm;txtSCRAP&vm;txtAccept" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtEMPL" />
+<SchemaParam Linked="0" Attr="3" Name="txtShift" />
+<SchemaParam Linked="0" Attr="4" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="5" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="6" Name="lblWOQty" />
+<SchemaParam Linked="0" Attr="7" Name="lblOperQty" />
+<SchemaParam Linked="0" Attr="8" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="9" Name="txtLOCN" />
+<SchemaParam Linked="0" Attr="10" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="11" Name="txtSCRAP" />
+<SchemaParam Linked="0" Attr="12" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="111" Height="22" AnchorRight="81" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEMPL" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="55" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Empl#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="95" Height="22" AnchorRight="97" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtShift" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="44" Width="55" Height="22" AnchorRight="41" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Shift:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="39" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="4" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="55" Height="22" AnchorRight="185" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="183" Height="22" AnchorRight="9" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="95" Height="22" AnchorRight="97" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblWOQty" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="71" Height="22" AnchorRight="121" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblWOQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblOperQty" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="132" Width="87" Height="22" AnchorRight="105" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="47" Height="22" AnchorRight="185" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="183" Height="22" AnchorRight="9" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOCN" Attr="9" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="47" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="176" Width="183" Height="22" AnchorRight="9" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="10" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="39" Height="22" AnchorRight="185" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="87" Height="22" AnchorRight="105" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSCRAP" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="55" Height="22" AnchorRight="185" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Scrap:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="220" Width="87" Height="22" AnchorRight="105" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[WO - Rate Completions]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' WORK ORDERS: RATE COMPLETIONS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId     = "FWORC0100"
+Private Const cStatusF  = 40
+Private msPgm           As String
+Private msZVERSION      As String
+Private msZHOURSQTYS    As String
+Private msZCOMPLETIONS  As String
+Private msZISSUES       As String
+Private mnEmployeeNo    As Currency
+Private msShift         As String
+Private mnStatusT       As Currency
+Private mbSerialized    As Boolean
+Private mnMaxQty        As Currency
+Private msPriLOCN       As String
+Private msPriLOTN       As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  Dim sHeader As String
+  '
+  ' Initialize special controls
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblWOQty.Caption = ""
+  lblWOQty.Label.BackColor1 = cFieldDefaultBC
+  lblWOQty.Label.ForeColor = cFieldDefaultFC
+  '
+  lblOperQty.Caption = ""
+  lblOperQty.Label.BackColor1 = cFieldDefaultBC
+  lblOperQty.Label.ForeColor = cFieldDefaultFC
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  txtAccept.Visible = False
+
+  msZVERSION = App.GetValue("Vers")
+  msPgm = App.GetValue("Pgm")
+  '
+  mnStatusT = CCur(GetProcOpt(msPgm,msZVERSION,"3;2"))
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msZHOURSQTYS    = GetProcOpt(msPgm,msZVERSION,"4;2")
+
+  If Len(msZHOURSQTYS) = 0 Then
+    msZHOURSQTYS="ZJDE0001"
+    'App.MsgBox(GetMsg(140) & msZVERSION)
+    'App.ExitForm
+    'Exit Sub
+  End If
+
+  msZISSUES       = GetProcOpt(msPgm,msZVERSION,"4;3")
+
+  If Len(msZISSUES) = 0 Then
+     msZISSUES="ZJDE0001"
+    'App.MsgBox(GetMsg(142) & msZVERSION)
+    'App.ExitForm
+    'Exit Sub
+  End If
+
+  msZCOMPLETIONS  = GetProcOpt(msPgm,msZVERSION,"4;4")
+
+  If Len(msZCOMPLETIONS) = 0 Then
+     msZCOMPLETIONS="ZJDE0001"
+    'App.MsgBox(GetMsg(141) & msZVERSION)
+    'App.ExitForm
+    'Exit Sub
+  End If
+
+  mnEmployeeNo = CCur(GetProcOpt(msPgm,msZVERSION,"1;4"))
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If mnEmployeeNo > 0 Then txtEMPL.Text = mnEmployeeNo
+
+  msShift = GetProcOpt(msPgm,msZVERSION,"1;5",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If Len(msShift) > 0 Then txtShift.Text = msShift
+  '
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim nQty    As Long
+  Dim nScrap  As Long
+  Dim emProc  As New EmbeddedProc
+  '
+  ' Always verify that required fields have been entered
+  nQty          = Val(App.GetValue("tmQTY"))
+  nScrap        = Val(App.GetValue("tmSCRAP"))
+  '
+  If ((nQty + nScrap) = 0) Then
+    App.MsgBox GetMsg(171)
+    Cancel = True
+    App.SetFocus "txtQTY"
+    Exit Sub
+  End If
+  '
+  emProc.Name                    = "TWOSB0100"
+  emProc.DataSource              = gsDataSource
+  emProc.Param("tmCO")           = App.GetValue("tmCO")
+  emProc.Param("tmMCU")          = App.GetValue("tmMCU")
+  emProc.Param("tmDOCO")         = App.GetValue("tmDOCO")
+  emProc.Param("tmDCTO")         = App.GetValue("tmDCTO")
+  emProc.Param("tmLITM")         = App.GetValue("tmLITM")
+  emProc.Param("tmLOTN")         = App.GetValue("tmLOTN")
+  emProc.Param("tmXPDT")         = ""
+  emProc.Param("tmLOCN")         = App.GetValue("tmLOCN")
+  emProc.Param("tmQTY")          = App.GetValue("tmQTY")
+  emProc.Param("tmSCRAP")        = App.GetValue("tmSCRAP")
+  emProc.Param("tmUOM")          = App.GetValue("tmUOM")
+  emProc.Param("tmOPSQ")         = App.GetValue("tmOPSQ")
+  emProc.Param("tmEMPL")         = App.GetValue("tmEMPL")
+  emProc.Param("tmPROCCODE")     = "R"
+  emProc.Param("tmUSER")         = App.User
+  emProc.Param("tmZVERSION")     = msZVERSION
+  emProc.Param("tmZHOURSQTYS")   = msZHOURSQTYS
+  emProc.Param("tmZCOMPLETIONS") = msZCOMPLETIONS
+  emProc.Param("tmZISSUES")      = msZISSUES
+  emProc.Param("tmSHIFT")        = App.GetValue("tmShift")
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)     
+
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & SysErr.Description
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)     
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+
+  ' Offline inventory
+  If gbOfflineEnabled Then
+    If Not WriteOI(App.GetValue("tmCO"),App.GetValue("tmMCU"),App.GetValue("tmLITM"),App.GetValue("tmITM"),"",App.GetValue("tmUOM"),CStr(App.GetValue("tmQTY")),App.GetValue("tmDOCO"),App.GetValue("tmDCTO"),0,emProc.QueueName,emProc.QueueSeqNo, App.GetValue("tmLOCN"),App.GetValue("tmLOTN"),App.GetValue("tmLOTS")) Then
+      App.MsgBox(GetMsg(31))
+    End If
+  End If
+  '
+  lblItemDesc.Caption = ""
+  lblWOQty.Caption = ""
+  lblOperQty.Caption = ""
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  mnMaxQty = 0
+  mbSerialized = False
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+  '
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany  As String
+  Dim sMCU      As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+
+  If (Cancel = True) Then Exit Sub
+  '
+  App.SetValue("tmCO",  sCompany)
+  App.SetValue("tmMCU", sMCU)
+
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+    Cancel = Not Search_BranchPlant(Rsp)
+
+End Sub
+
+Private Sub txtEMPL_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmEMPL", "")
+
+End Sub
+
+Private Sub txtEMPL_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  sSQL = "select count(*) from  F0101" & _
+         " where ABAN8 = " & Val(Rsp)
+
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+  '
+  sSQL = "select count(*) from  F00191" & _
+         " where CESY = '31' and CERT = 'ER' And CEKY = '  " & FixRight(Rsp, 8, "0") & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(24)
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmEMPL", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtEMPL_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F0101_Employee(Rsp, sMCU)
+End Sub
+
+Private Sub txtLITM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmITM",  "")
+  App.SetValue("tmUOM",  "")
+  App.SetValue("tmDOCO", "")
+  App.SetValue("tmDCTO", "")
+  App.SetValue("tmOPSQ", "")
+  '
+  lblItemDesc.Caption = ""
+  lblWOQty.Caption    = ""
+  lblOperQty.Caption  = ""
+  '
+  txtLOTN.Visible  = False
+  txtLOTN.Required = False
+
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim i         As Integer
+  Dim iCnt      As Integer
+  Dim nType     As Long
+  Dim nWoStatus As Long
+  Dim nQty      As Currency
+  Dim nOper     As Currency
+  Dim sDesc     As String
+  Dim sSQL      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sTrnDate  As String
+  Dim sValue    As String
+  Dim sUomCols  As String
+  Dim sUomRows  As String
+  Dim sUomItem  As String
+  Dim sUomOper  As String
+  Dim bHasLots  As Boolean
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  ' Description
+  sSQL = "select IMITM, IMDSC1, IMUOM1 from  F4101" & _
+         " where IMLITM = '" & Rsp & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(63))
+    Exit Sub
+  End If
+  '
+  sDesc = DB.Extract(sCols, sRows, 1, "IMDSC1")
+  App.SetValue("tmLITM", Rsp)
+  App.SetValue("tmITM", DB.Extract(sCols, sRows, 1, "IMITM"))
+  '
+  ' Validate item within branch plant
+  sSQL = "select IBSRCE,IBSLD from  F4102" & _
+         " where IBITM = %tmITM and IBMCU = '%tmMCU'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(64))
+    Exit Sub
+  End If
+  '
+  ' Lot Control?
+  nType = Val(DB.Extract(sCols,sRows,1,"IBSRCE"))
+  bHasLots  = (nType<>0)
+  mbSerialized = (nType = 7)
+  '
+  ' Find Primary Location
+  sSQL = "select LILOCN,LILOTN from  F41021" & _
+         " where LIPBIN = 'P' and LIITM = %tmITM and LIMCU = '%tmMCU'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(160)
+    Exit Sub
+  End If
+  '
+  msPriLOCN = DB.Extract(sCols,sRows,1,"LILOCN")
+  msPriLOTN = DB.Extract(sCols,sRows,1,"LILOTN")
+  '
+  ' find WO to complete
+  sTrnDate = ConvDatetoJDE(CStr(Date))
+  '***sTrnDate = Format(Now,"mm/dd/yyyy")
+
+  sSQL = "select WADOCO,WAUORG-WASOQS-WASOCN as QTY,WAUOM from  F4801" & _
+         " where WALITM = '%tmLITM' and WADCTO = 'SC' and WASRST >= '" & cStatusF & "' and WASRST <= '" & mnStatusT & "'" & _
+         " and WAMCU = '%tmMCU' and WASTRT <= " & sTrnDate & " and WADRQJ >= " & sTrnDate
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(184)
+    Exit Sub
+  End If
+  '
+  nQty = ConvDecimalsFromSQL("UORG", DB.Extract(sCols,sRows,1,"QTY"))
+  '
+  App.SetValue("tmDOCO", DB.Extract(sCols,sRows,1,"WADOCO"))
+  App.SetValue("tmDCTO", "SC")
+  App.SetValue("tmUOM",  DB.Extract(sCols,sRows,1,"WAUOM"))
+  '
+  ' Gather routing information for all operations
+  sSQL = "select WLUOM, WLOPSQ, WLBFPF, WLQMTO" & _
+         " from  F3112" & _
+         " where WLDOCO = %tmDOCO and WLDCTO = '%tmDCTO' order by WLOPSQ desc"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(137)
+    Exit Sub
+  End If
+  '
+  ' check if this is a Backflush operation
+  sValue = Trim(DB.Extract(sCols,sRows,1,"WLBFPF"))
+  '
+  If (sValue = "0") Then
+    App.MsgBox GetMsg(144)
+    Exit Sub
+  End If
+  '
+  ' Verify that UOM conversions exist for all operations with header UOM
+  sUomItem = App.GetValue("tmUOM")
+
+  iCnt = DB.Count(sRows)
+  '
+  For i = 1 To iCnt
+    sUomOper = DB.Extract(sCols, sRows, i, "WLUOM")
+    If (sUomOper <> sUomItem) Then
+      sSQL = "select count(*) from  F41003 where UCUM = '%tmUOM' and UCRUM = '" & sUomOper & "'"
+      DB.Execute(sSQL,sUomCols,sUomRows)
+      If (Val(sUomRows) = 0) Then
+        App.MsgBox GetMsg(224) & DB.Extract(sCols, sRows, i, "WLOPSQ")
+        Exit Sub
+      End If
+    End If
+  Next i
+  '
+  nOper = ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols,sRows,1,"WLOPSQ"))
+  App.SetValue("tmOPSQ", FormatDecimals("OPSQ", nOper))
+  '
+  lblItemDesc.Caption = sDesc
+  lblWOQty.Caption    = "Open: " & nQty & "  " & sUomItem
+  lblOperQty.Caption  = "Oper: " & FormatDecimals("OPSQ", nOper) & "  Qty@: " & mnMaxQty
+  '
+  txtLOTN.Visible  = bHasLots
+  txtLOTN.Required = bHasLots
+  '
+  If Not bHasLots Then
+     App.SetValue("tmLOTN", "")
+  End If
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F4801_LITM_LIST(Rsp, Rsp, sMCU, "SC", cStatusF, mnStatusT)
+End Sub
+
+Private Sub txtLOTN_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If Not txtLOTN.Required Then Exit Sub
+  '
+  If (Len(Rsp)=0) Then Rsp = msPriLOTN
+
+End Sub
+
+Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+   App.SetValue("tmLOTN", "")
+
+End Sub
+
+Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  App.SetValue("tmLOTN", Rsp)
+  '
+  Cancel=False
+
+End Sub
+
+Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  Dim sITM As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  '
+  Cancel = Not Search_F41021_LOTN(Rsp, "", sMCU, sITM)
+
+End Sub
+
+Private Sub txtLOCN_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = msPriLOCN
+
+End Sub
+
+Private Sub txtLOCN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLOCN", "")
+
+End Sub
+
+Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sLocn As String
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  sMCU = App.GetValue("tmMCU")
+
+  If Not Validate_Locn(Rsp, sMCU, sLocn) Then Exit Sub
+  '
+  sSQL = "select LIPQOH from  F41021" & _
+         " where LILOCN = '" & sLocn & "' and LIMCU = '%tmMCU' and LIITM = %tmITM"
+
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(74))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmLOCN", sLocn)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sITM  As String
+  Dim sLOTN As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  sLOTN = App.GetValue("tmLOTN")
+  '
+  Cancel = Not Search_F41021(Rsp, "", sMCU, sITM, sLOTN)
+End Sub
+
+Private Sub txtQTY_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQTY", "")
+
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+  '
+  If (nQty <> 0) Then
+    ' Serialized Item?
+    nQty = Abs(Val(Rsp))
+    If (mbSerialized And nQty <> 1) Then
+      App.MsgBox(GetMsg(178))
+      Exit Sub
+    End If
+    ' Negative?
+    nQty = Val(Rsp)
+    If (nQty < 0) Then
+      App.MsgBox(GetMsg(167))
+      Exit Sub
+    End If
+    ' Adjustment exceeds order quantity?
+    'If (nQty > mnMaxQty) Then
+    '  App.MsgBox(GetMsg(170))
+    '  Exit Sub
+    'End If
+  End If
+  '
+  App.SetValue("tmQTY",Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtSCRAP_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmSCRAP", "")
+
+End Sub
+
+Private Sub txtSCRAP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty   As Currency
+  Dim nScrap As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  nQty = Val(App.GetValue("tmQTY"))
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nScrap = Val(Rsp)
+  '
+  If (nScrap <> 0) Then
+    ' Serialized Item?
+    nScrap = Abs(Val(Rsp))
+    If (mbSerialized And nScrap <> 1) Then
+      App.MsgBox(GetMsg(178))
+      Exit Sub
+    End If
+    ' Negative?
+    nScrap = Val(Rsp)
+    If (nScrap < 0) Then
+      App.MsgBox(GetMsg(167))
+      Exit Sub
+    End If
+    ' Adjustment exceeds order quantity?
+    'If ((nQty+nScrap) > mnMaxQty) Then
+    '  App.MsgBox(GetMsg(170))
+    '  Exit Sub
+    'End If
+  End If
+  '
+  App.SetValue("tmSCRAP",Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+
+Private Sub txtShift_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmShift", "")
+
+End Sub
+
+Private Sub txtShift_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 1, " "), 10, " ")
+
+  If gsJDEVers = "A9.2" Then
+    If Not Validate_UDC(Rsp, "07", "SH", sDRDL01, sDRDL02) Then Exit Sub
+  Else
+    If Not Validate_UDC(Rsp, "06", "SH", sDRDL01, sDRDL02) Then Exit Sub
+  End If
+  '
+  App.SetValue("tmShift", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtShift_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If gsJDEVers = "A9.2" Then
+    Cancel = Not Search_UDC(Rsp, "07", "SH")
+  Else
+    Cancel = Not Search_UDC(Rsp, "06", "SH")
+  End If
+
+End Sub
+</Code>

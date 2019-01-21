@@ -1,0 +1,3007 @@
+﻿<Record FileDesc="User Module: LP.bas" FileVersion="5.0.8.0" Desc="User Module: LP.bas" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' MODULES: LP.BAS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+'
+Private msTNID  As String
+'
+' Data Structure LP Header F55101 (LP101)
+'
+Public Type LP101Data
+  sLMLPID    As String    ' LP ID             nchar(20)   primary Key(unique)
+  '
+  sLMMCU     As String    ' LP Plant          nchar(12)
+  sLMDSC1    As String    ' Description       nchar(40)
+  sLMTYPE    As String    ' LP Type           nchar(2)
+  sLMTRAI    As String    ' Trailer Id        nchar(2)
+  sLMLOCN    As String    ' Location          nchar(20)
+  sLMRDOCO   As String    ' related Doc       nchar(8)
+  sLMRDCTO   As String    ' related Typ       nchar(2)
+  sLMRNXTR   As String    ' Order Sts.        nchar(3)
+  sLMPSTB    As String    ' Status            nchar(3)
+  sLMPALP    As String    ' Parent LP         nchar(20)
+  nLMSHAN    As Long      ' Ship To #         float
+  sLMMMCU    As String    ' Plant rec.        nchar(12)
+  sLMALPH    As String    ' Name              nchar(30)
+  sLMROUT    As String    ' Route             nchar(3)
+  sLMSTOP    As String    ' Stop              nchar(3)
+  sLMZONE    As String    ' Zone              nchar(3)
+  sLMCNID    As String    ' ContainerId       nchar(20)
+  nLMCARS    As Long      ' Carrier #         float
+  sLMPDAT    As String    ' Pick Date         nchar(20)
+  sLMRLNU    As String    ' Loading Dock      nchar(10)
+  sLMIR01    As String    ' Del.Instruction   nchar(30)
+  sLMIR02    As String    ' Del.Instruction   nchar(30)
+  sLMIR03    As String    ' Spec Instruction  nchar(30)
+  sLMIR04    As String    ' Spec Instruction  nchar(30)
+  sLMVUOM    As String    ' UOM Volume        nchar(2)
+  nLMCUBE    As Currency  ' Volume            float
+  sLMWUOM    As String    ' UOM Weight        nchar(2)
+  nLMWEIG    As Currency  ' Weight            float
+  sLMPATH    As String    ' Server Path       nchar(300)
+  sLMVR01    As String    ' Remark            nchar(25)
+  sLMVR02    As String    ' Remark            nchar(25)
+  nLMSGBT    As Long      ' Batch Sequence WM float
+  sLMPRIO    As String    ' Priority          nchar(1)
+  nLMURAT    As Currency  ' User reserved     float
+  sLMURRF    As String    ' User reserved     nchar(30)
+  sLMUSER    As String    ' User (Audit)      nchar(10)
+  sLMDATE    As String    ' Date (Audit)      nchar(10)
+  sLMTIME    As String    ' Time (Audit)      nchar(10)
+End Type
+'
+' Data Structure LP Details LP102
+'
+Public Type LP102Data
+  sLDLPID    As String    ' LP ID             nchar(20)   primary Key(unique)
+  nLDLNID    As Currency  ' LP Line ID        float       primary Key(unique)
+  '
+  sLDLITM    As String    ' Item Number       nchar(25)
+  nLDSOQS    As Currency  ' Qty.              float
+  nLDUORG    As Currency  ' Qty. ordered      float
+  sLDUOM     As String    ' UOM Qty.          nchar(2)
+  sLDLOTN    As String    ' Lot Ser. Number   nchar(30)
+  sLDLOTS    As String    ' Lot Status        nchar(1)
+  sLDRDOCO   As String    ' related Doc       nchar(8)
+  sLDRDCTO   As String    ' related Typ       nchar(2)
+  sLDRLNID   As Currency  ' related Line Id   float
+  sLDRNXTR   As String    ' Order Sts.        nchar(3)
+  sLDPSTB    As String    ' Status            nchar(3)
+  sLDSPLIT   As String    ' Spit line #       nchar(20)
+  nLDUKID    As Long      ' Unique Key Id     nchar(20)
+  sLDLPSN    As String    ' Pick slip #       nchar(30)
+  sLDLOT2    As String    ' Lot # 2           nchar(30)
+  sLDVUOM    As String    ' UOM Volume        nchar(2)
+  nLDCUBE    As Currency  ' Volume            float
+  sLDWUOM    As String    ' UOM Weight        nchar(2)
+  nLDWEIG    As Currency  ' Weight            float
+  sLDLOT1    As String    ' Lot 1 CoO         nchar(30)
+  sLDXPDT    As String    ' Lot Exp.date      nchar(10)
+  sLDLOTG    As String    ' Lot Grade         nchar(3)
+  sLDPRIO    As String    ' Priority          nchar(1)
+  sLDVRMK    As String    ' Remark            nchar(30)
+  sLDVR01    As String    ' Remark            nchar(25)
+  nLDTEMP    As Currency  ' Temp at Receive   float
+  nLDAA      As Currency  ' User reserved     float
+  nLDAA1     As Currency  ' User reserved     float
+  nLDAA2     As Currency  ' User reserved     float
+  nLDAA3     As Currency  ' User reserved     float
+  nLDURAT    As Currency  ' User reserved     float
+  sLDURRF    As String    ' User reserved     nchar(30)
+  sLDUSER    As String    ' User (Audit)      nchar(10)
+  sLDDATE    As String    ' Date (Audit)      nchar(10)
+  sLDTIME    As String    ' Time (Audit)      nchar(10)
+End Type
+'
+' Data Structure LP Operations
+'
+Public Type LPOper
+  sLPID     As String    ' LP ID Child
+  sPalp     As String    ' LP ID Parent
+  sFMCU     As String    ' from Location
+  sTMCU     As String    ' to Location
+  sFLOCN    As String    ' from Location
+  sTLOCN    As String    ' to Location
+  nQty      As Currency  ' Operation Qty.
+  bIsPlate  As Boolean   ' Is LP
+  bDetach   As Boolean   ' Detach from LP
+End Type
+
+'
+' Initialize the data structure variables for LP101 table
+'
+Public Sub LP101_Reset(ByRef uLP101 As LP101Data)
+  On Error Resume Next
+  '
+  uLP101.sLMLPID  =   ""
+  uLP101.sLMMCU   =   App.GetValue("tmMCU")
+  uLP101.sLMDSC1  =   ""
+  uLP101.sLMTYPE  =   ""
+  uLP101.sLMTRAI  =   ""
+  uLP101.sLMLOCN  =   ""
+  uLP101.sLMRDOCO =   ""
+  uLP101.sLMRDCTO =   ""
+  uLP101.sLMRNXTR =   ""
+  uLP101.sLMPSTB  =   ""
+  uLP101.sLMPALP  =   ""
+  uLP101.nLMSHAN  =   0
+  uLP101.sLMMMCU  =   ""
+  uLP101.sLMALPH  =   ""
+  uLP101.sLMROUT  =   ""
+  uLP101.sLMSTOP  =   ""
+  uLP101.sLMZONe  =   ""
+  uLP101.sLMCNID  =   ""
+  uLP101.nLMCARS  =   0
+  uLP101.sLMRLNU  =   ""
+  uLP101.sLMPDAT  =   ""
+  uLP101.sLMIR01  =   ""
+  uLP101.sLMIR02  =   ""
+  uLP101.sLMIR03  =   ""
+  uLP101.sLMIR04  =   ""
+  uLP101.sLMVUOM  =   ""
+  uLP101.nLMCUBE  =   0
+  uLP101.sLMWUOM  =   ""
+  uLP101.nLMWEIG  =   0
+  uLP101.sLMPATH  =   ""
+  uLP101.sLMVR01  =   ""
+  uLP101.sLMVR02  =   ""
+  uLP101.nLMSGBT  =   0
+  uLP101.sLMPRIO  =   ""
+  uLP101.nLMURAT  =   0
+  uLP101.sLMURRF  =   ""
+  uLP101.sLMUSER  =   App.User
+  uLP101.sLMDATE  =   Format(Date,"YYYYMMDD")
+  uLP101.sLMTIME  =   Format(Time,"HHMMSS")
+
+End Sub
+'
+' Initialize the data structure variables for LP102 table
+'
+Public Sub LP102_Reset(ByRef uLP102 As LP102Data)
+  On Error Resume Next
+  '
+  uLP102.sLDLPID =  ""
+  uLP102.nLDLNID =  0
+  uLP102.sLDLITM =  ""
+  uLP102.nLDSOQS =  0
+  uLP102.nLDUORG =  0
+  uLP102.sLDUOM  =  ""
+  uLP102.sLDLOTN =  ""
+  uLP102.sLDRDOCO = ""
+  uLP102.sLDRDCTO = ""
+  uLP102.sLDRLNID = 0
+  uLP102.sLDRNXTR = ""
+  uLP102.sLDPSTB =  ""
+  uLP102.sLDSPLIT = ""
+  uLP102.nLDUKID  = 0
+  uLP102.sLDLOT2  = ""
+  uLP102.sLDVUOM  = ""
+  uLP102.nLDCUBE =  0
+  uLP102.sLDWUOM  = ""
+  uLP102.nLDWEIG  = 0
+  uLP102.sLDLOT1  = ""
+  uLP102.sLDXPDT  = ""
+  uLP102.sLDLOTG  = ""
+  uLP102.sLDPRIO  = ""
+  uLP102.sLDVRMK  = ""
+  uLP102.sLDVR01  = ""
+  uLP102.nLDTEMP  = 0
+  uLP102.nLDAA    = 0
+  uLP102.nLDAA1   = 0
+  uLP102.nLDAA2   = 0
+  uLP102.nLDAA3   = 0
+  uLP102.nLDURAT  = 0
+  uLP102.sLDURRF  = ""
+  uLP102.sLDLPSN  = ""
+  '
+  uLP102.sLdUSER  = App.User
+  uLP102.sLdDATE  = Format(Date,"YYYYMMDD")
+  uLP102.sLdTIME  = Format(Time,"HHMMSS")
+  '
+End Sub
+
+' Add, Modify, Inquiry data in LP101 table
+
+Public Function X_LP101(ByRef sAction As String, ByRef uLP101 As LP101Data) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  '
+  Dim sPfx      As String
+  Dim sLPID     As String
+  Dim nErrNo    As Long
+  Dim nCtr      As Long
+
+  Dim nCCube    As Currency
+  Dim nCWeig    As Currency
+  Dim nPCube    As Currency
+  Dim nPWeig    As Currency
+  Dim sPCube    As Currency
+  Dim sPWeig    As Currency
+  Dim iOK       As Integer
+  Dim sEntity   As String
+  Dim sLOCN     As String
+  Dim sLocnJDE  As String
+  Dim sText     As String
+  Dim i         As Integer
+  '
+  Dim emLP101 As New EmbeddedProc
+  '
+  msTNID   = "X_LP101"
+  sAction = Trim(UCase(sAction))
+  X_LP101 = False
+  emLP101.Name = "LP101"
+  '
+  If cFormatJDE And sAction <> "I" Then
+    sLOCN = uLP101.slmlocn
+    If Validate_Locn(sLOCN, App.GetValue("tmMCU"), sLocnJDE, False) Then
+      uLP101.sLMLOCN = sLocnJDE
+    End If
+  End If
+  '
+  If Trim(App.GetValue("tmENTITY")) = "" Then
+    If LP_ValidateEntity(App.GetValue("tmMCU"), sEntity) Then
+      App.SetValue("tmEntity", sEntity)
+    Else
+      GoTo OnError
+    End If
+  End If
+  '
+  ' Validate pre printed label format
+  If gbLPPrePrnt Then
+    '
+    sText = gsLPLead
+    For i = 1 To giLenLP
+      sText = sText & "x"
+    Next
+    '
+    If Len(Trim(gsLPLead)) > 0 And Left(Trim(uLP101.sLMLPID), Len(Trim(gsLPLead))) <> Trim(gsLPLead) Then
+      LP_MsgBox(GetMsg(274)) & vbCrLf & sText
+      GoTo OnError
+    End If
+    '
+    If giLenLP > 0 Then
+      If Len(Trim(uLP101.sLMLPID)) <> giLenLP Then
+        LP_MsgBox(GetMsg(274)) & vbCrLf & sText
+        GoTo OnError
+      End If
+    End If
+
+    If sAction = "A" Then sAction = "P"
+  End If
+
+  '*********************************************************************************
+  '*   'Generate LP # and Add new record
+  '*********************************************************************************
+  '
+  If sAction = "A" Then
+    '
+    ' Get Next LP Number
+    '
+    '
+    If (Trim(uLP101.sLMLPID) = "") Then
+      sSql = "select ENUPFX,ENNNUM from LP002 where ENCO = '%tmENTITY'"
+      nErrNo = DB.Execute(sSql, sCols, sRows)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP002", Replace(sSql, "'", "`"))
+
+      If nErrNo<>0 Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP002", Replace(sSql, "'", "`"))
+        GoTo OnError
+      End If
+      '
+      sPfx = Trim(DB.Extract(sCols,sRows,1,"ENUPFX"))
+      If sPfx = "*" Then sPfx = Trim(App.GetValue("tmMCU"))
+
+      nCtr = Val(DB.Extract(sCols,sRows,1,"ENNNUM"))
+      sLPID = sPfx & FixRight(nCtr, (giLenLP - Len(sPfx)), "0")
+      uLP101.sLMLPID = sLPID
+
+      nCtr = nCtr + 1
+      '
+      sSql = "update  LP002" & _
+             " set ENNNUM = " & nCtr & _
+             " where ENCO = '%tmENTITY'"
+      nErrNo = DB.Execute(sSql)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP002", Replace(sSql, "'", "`"))
+
+      If nErrNo<>0 Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP002", Replace(sSql, "'", "`"))
+        GoTo OnError
+      End If
+    End If
+    '
+    ' update Parent with new weight / volume
+    '
+    If Len(uLP101.sLMPALP) > 0 Then
+      nCCube = uLP101.nLMCUBE
+      nCWeig = uLP101.nLMWEIG
+      '
+      ' get weight / volume from old parent
+      '
+      sSql = "select LMWEIG, LMCUBE from  F55101" & _
+             " where LMLPID = '" & uLP101.sLMPALP & "' "
+      nErrNo = DB.Execute sSql, sCols, sRows
+       '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+
+      If nErrNo<>0 Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+        GoTo OnError
+      End If
+       '
+      If (Len(sRows)=0) Then
+        LP_MsgBox(GetMsg(104) & ": " & uLP101.sLMPALP)
+        GoTo OnError
+      End If
+      '
+      nPCube = CCur(DB.Extract(sCols,sRows,1,"LMCUBE"))
+      nPWeig = CCur(DB.Extract(sCols,sRows,1,"LMWEIG"))
+
+      sPCube = nPCube + nCCube
+      sPWeig = nPWeig + nCWeig
+
+      sSql = " update F55101 set LMCUBE = '" & sPCube & "', LMWEIG = '" & sPWeig & "' " & _
+             " where LMLPID = '" & uLP101.sLMPALP & "' "
+      nErrNo = DB.Execute(sSql)
+      '
+      If nErrNo <> 0 Then GoTo OnError
+    End If  ' update Parent with new weight / volume
+    '
+    ' populate data structure LP101
+    '
+'    emLP101.Param("LMLPID")   = uLP101.sLMLPID
+'    emLP101.Param("LMMCU")    = uLP101.sLMMCU
+'    emLP101.Param("LMDSC1")   = uLP101.sLMDSC1
+'    emLP101.Param("LMTYPE")   = uLP101.sLMTYPE
+'    emLP101.Param("LMTRAI")   = uLP101.sLMTRAI
+'    emLP101.Param("LMLOCN")   = uLP101.sLMLOCN
+'    emLP101.Param("LMRDOCO")  = uLP101.sLMRDOCO
+'    emLP101.Param("LMRDCTO")  = uLP101.sLMRDCTO
+'    emLP101.Param("LMRNXTR")  = uLP101.sLMRNXTR
+'    emLP101.Param("LMPSTB")   = uLP101.sLMPSTB
+'    emLP101.Param("LMPALP")   = uLP101.sLMPALP
+'    emLP101.Param("LMSHAN")   = uLP101.nLMSHAN
+'    emLP101.Param("LMMMCU")   = uLP101.sLMMMCU
+'    emLP101.Param("LMALPH")   = uLP101.sLMALPH
+'    emLP101.Param("LMROUT")   = uLP101.sLMROUT
+'    emLP101.Param("LMSTOP")   = uLP101.sLMSTOP
+'    emLP101.Param("LMZON")    = uLP101.sLMZONE
+'    emLP101.Param("LMCARS")   = uLP101.nLMCARS
+'    emLP101.Param("LMRLNU")   = uLP101.sLMRLNU
+'    emLP101.Param("LMPDAT")   = uLP101.sLMPDAT
+'    emLP101.Param("LMIR01")   = uLP101.sLMIR01
+'    emLP101.Param("LMIR02")   = uLP101.sLMIR02
+'    emLP101.Param("LMIR03")   = uLP101.sLMIR03
+'    emLP101.Param("LMIR04")   = uLP101.sLMIR04
+'    emLP101.Param("LMVUOM")   = uLP101.sLMVUOM
+'    emLP101.Param("LMCUBE")   = uLP101.nLMCUBE
+'    emLP101.Param("LMWUOM")   = uLP101.sLMWUOM
+'    emLP101.Param("LMWEIG")   = uLP101.nLMWEIG
+'    emLP101.Param("LMPATH")   = uLP101.sLMPATH
+'    emLP101.Param("LMURAT")   = uLP101.nLMURAT
+'    emLP101.Param("LMURRF")   = uLP101.sLMURRF
+'    emLP101.Param("LMUSER")   = App.User
+'    emLP101.Param("LMDATE")   = Format(Date,"YYYYMMDD")
+'    emLP101.Param("LMTIME")   = Format(Time,"HHMMSS")
+'    '
+'    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101","" ,emLP101, App.User)
+'
+'    If Not emLP101.ExecuteMethod("insert") Then
+'      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", "" ,emLP101, App.User)
+'      GoTo OnError
+'    End If
+'
+'    Call PrintLabels("LP", 1, "", 0, "", "", uLP101.sLMLPID)
+'
+'  End If
+'
+
+    sSql = "INSERT INTO F55101" & _
+           " (LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRNXTR,LMPSTB,LMPALP,LMSHAN," & _
+           " LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT,LMRLNU,LMIR01,LMIR02,LMIR03,LMIR04," & _
+           " LMVUOM,LMCUBE,LMWUOM,LMWEIG,LMPATH,LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF,LMUSER,LMDATE,LMTIME)" & _
+           " VALUES('" & uLP101.sLMLPID  & "'," & _
+                   "'" & uLP101.sLMMCU   & "'," & _
+                   "'" & uLP101.sLMDSC1  & "'," & _
+                   "'" & uLP101.sLMTYPE  & "'," & _
+                   "'" & uLP101.sLMTRAI  & "'," & _
+                   "'" & uLP101.sLMLOCN  & "'," & _
+                   "'" & uLP101.sLMRDOCO & "'," & _
+                   "'" & uLP101.sLMRDCTO & "'," & _
+                   "'" & uLP101.sLMRNXTR & "'," & _
+                   "'" & uLP101.sLMPSTB  & "'," & _
+                   "'" & uLP101.sLMPALP  & "'," & _
+                         uLP101.nLMSHAN  & ","       & _
+                   "'" & uLP101.sLMMMCU  & "'," & _
+                   "'" & uLP101.sLMALPH  & "'," & _
+                   "'" & uLP101.sLMROUT  & "'," & _
+                   "'" & uLP101.sLMSTOP  & "'," & _
+                   "'" & uLP101.sLMZONE  & "'," & _
+                   "'" & uLP101.sLMCNID  & "'," & _
+                         uLP101.nLMCARS  & ","  & _
+                   "'" & uLP101.sLMPDAT  & "'," & _
+                   "'" & uLP101.sLMRLNU  & "'," & _
+                   "'" & uLP101.sLMIR01  & "'," & _
+                   "'" & uLP101.sLMIR02  & "'," & _
+                   "'" & uLP101.sLMIR03  & "'," & _
+                   "'" & uLP101.sLMIR04  & "'," & _
+                   "'" & uLP101.sLMVUOM  & "'," & _
+                         uLP101.nLMCUBE  & ","        & _
+                   "'" & uLP101.sLMWUOM  & "'," & _
+                         uLP101.nLMWEIG  & ","  & _
+                   "'" & uLP101.sLMPATH  & "'," & _
+                   "'" & uLP101.sLMVR01  & "'," & _
+                   "'" & uLP101.sLMVR02  & "'," & _
+                         uLP101.nLMSGBT  & ","  & _
+                   "'" & uLP101.sLMPRIO  & "'," & _
+                         uLP101.nLMURAT  & ","  & _
+                   "'" & uLP101.sLMURRF  & "'," & _
+                   "'" & App.User  & "'," & _
+                   "'" & Format(Date,"YYYYMMDD") & "'," & _
+                   "'" & Format(Time,"hhmmss")  & "')"
+
+    nErrNo = DB.Execute(sSql)
+    Call LP101Hist(uLP101)
+
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "F55101", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "F55101", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+
+'    Call PrintLabels("LP", 1, "", 0, "", "", App.GetValue("LMLPID"))
+
+  End If
+  '
+  '*********************************************************************************
+  '*   'Add new record for a pre printed label
+  '*********************************************************************************
+  '
+  If sAction = "P" Then
+    '
+    ' populate data structure LP101
+    '
+'    emLP101.Param("LMLPID")   = uLP101.sLMLPID
+'    emLP101.Param("LMMCU")    = uLP101.sLMMCU
+'    emLP101.Param("LMDSC1")   = uLP101.sLMDSC1
+'    emLP101.Param("LMTYPE")   = uLP101.sLMTYPE
+'    emLP101.Param("LMTRAI")   = uLP101.sLMTRAI
+'    emLP101.Param("LMLOCN")   = uLP101.sLMLOCN
+'    emLP101.Param("LMRDOCO")  = uLP101.sLMRDOCO
+'    emLP101.Param("LMRDCTO")  = uLP101.sLMRDCTO
+'    emLP101.Param("LMRNXTR")  = uLP101.sLMRNXTR
+'    emLP101.Param("LMPSTB")   = uLP101.sLMPSTB
+'    emLP101.Param("LMPALP")   = uLP101.sLMPALP
+'    emLP101.Param("LMSHAN")   = uLP101.nLMSHAN
+'    emLP101.Param("LMMMCU")   = uLP101.sLMMMCU
+'    emLP101.Param("LMALPH")   = uLP101.sLMALPH
+'    emLP101.Param("LMROUT")   = uLP101.sLMROUT
+'    emLP101.Param("LMSTOP")   = uLP101.sLMSTOP
+'    emLP101.Param("LMZON")    = uLP101.sLMZONE
+'    emLP101.Param("LMCARS")   = uLP101.nLMCARS
+'    emLP101.Param("LMRLNU")   = uLP101.sLMRLNU
+'    emLP101.Param("LMPDAT")   = uLP101.sLMPDAT
+'    emLP101.Param("LMIR01")   = uLP101.sLMIR01
+'    emLP101.Param("LMIR02")   = uLP101.sLMIR02
+'    emLP101.Param("LMIR03")   = uLP101.sLMIR03
+'    emLP101.Param("LMIR04")   = uLP101.sLMIR04
+'    emLP101.Param("LMVUOM")   = uLP101.sLMVUOM
+'    emLP101.Param("LMCUBE")   = uLP101.nLMCUBE
+'    emLP101.Param("LMWUOM")   = uLP101.sLMWUOM
+'    emLP101.Param("LMWEIG")   = uLP101.nLMWEIG
+'    emLP101.Param("LMPATH")   = uLP101.sLMPATH
+'    emLP101.Param("LMURAT")   = uLP101.nLMURAT
+'    emLP101.Param("LMURRF")   = uLP101.sLMURRF
+'    emLP101.Param("LMUSER")   = App.User
+'    emLP101.Param("LMDATE")   = Format(Date,"YYYYMMDD")
+'    emLP101.Param("LMTIME")   = Format(Time,"HHMMSS")
+'    '
+'    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101","" ,emLP101, App.User)
+'
+'    If Not emLP101.ExecuteMethod("insert") Then
+'      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", "" ,emLP101, App.User)
+'      GoTo OnError
+'    End If
+
+    '
+    sSql = "INSERT INTO F55101" & _
+           " (LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRNXTR,LMPSTB,LMPALP,LMSHAN," & _
+           " LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT,LMRLNU,LMIR01,LMIR02,LMIR03,LMIR04," & _
+           " LMVUOM,LMCUBE,LMWUOM,LMWEIG,LMPATH,LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF,LMUSER,LMDATE,LMTIME)" & _
+           " VALUES('" & uLP101.sLMLPID  & "'," & _
+                   "'" & uLP101.sLMMCU   & "'," & _
+                   "'" & uLP101.sLMDSC1  & "'," & _
+                   "'" & uLP101.sLMTYPE  & "'," & _
+                   "'" & uLP101.sLMTRAI  & "'," & _
+                   "'" & uLP101.sLMLOCN  & "'," & _
+                   "'" & uLP101.sLMRDOCO & "'," & _
+                   "'" & uLP101.sLMRDCTO & "'," & _
+                   "'" & uLP101.sLMRNXTR & "'," & _
+                   "'" & uLP101.sLMPSTB  & "'," & _
+                   "'" & uLP101.sLMPALP  & "'," & _
+                         uLP101.nLMSHAN  & ","       & _
+                   "'" & uLP101.sLMMMCU  & "'," & _
+                   "'" & uLP101.sLMALPH  & "'," & _
+                   "'" & uLP101.sLMROUT  & "'," & _
+                   "'" & uLP101.sLMSTOP  & "'," & _
+                   "'" & uLP101.sLMZONE  & "'," & _
+                   "'" & uLP101.sLMCNID  & "'," & _
+                         uLP101.nLMCARS  & ","  & _
+                   "'" & uLP101.sLMPDAT  & "'," & _
+                   "'" & uLP101.sLMRLNU  & "'," & _
+                   "'" & uLP101.sLMIR01  & "'," & _
+                   "'" & uLP101.sLMIR02  & "'," & _
+                   "'" & uLP101.sLMIR03  & "'," & _
+                   "'" & uLP101.sLMIR04  & "'," & _
+                   "'" & uLP101.sLMVUOM  & "'," & _
+                         uLP101.nLMCUBE  & ","        & _
+                   "'" & uLP101.sLMWUOM  & "'," & _
+                         uLP101.nLMWEIG  & ","  & _
+                   "'" & uLP101.sLMPATH  & "'," & _
+                   "'" & uLP101.sLMVR01  & "'," & _
+                   "'" & uLP101.sLMVR02  & "'," & _
+                         uLP101.nLMSGBT  & ","  & _
+                   "'" & uLP101.sLMPRIO  & "'," & _
+                         uLP101.nLMURAT  & ","  & _
+                   "'" & uLP101.sLMURRF  & "'," & _
+                   "'" & App.User  & "'," & _
+                   "'" & Format(Date,"YYYYMMDD") & "'," & _
+                   "'" & Format(Time,"hhmmss")  & "')"
+
+    nErrNo = DB.Execute(sSql)
+    Call LP101Hist(uLP101)
+
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "F55101", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "F55101", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If    '
+  End If
+  '
+  '*********************************************************************************
+  '*   'change existing record
+  '*********************************************************************************
+  '
+  If sAction = "C" Then
+
+    sSql = "update  F55101" & _
+           " set LMDSC1 = '" & uLP101.sLMDSC1 & "',  " & _
+           " LMTYPE     = '" & uLP101.sLMTYPE & "',  " & _
+           " LMLTYI     = '" & uLP101.sLMTRAI & "',  " & _
+           " LMLOCN     = '" & uLP101.sLMLOCN & "',  " & _
+           " LMRDOCO    = '" & uLP101.sLMRDOCO & "', " & _
+           " LMRDCTO    = '" & uLP101.sLMRDCTO & "', " & _
+           " LMRNXTR    = '" & uLP101.sLMRNXTR & "', " & _
+           " LMPSTB     = '" & uLP101.sLMPSTB & "',  " & _
+           " LMPALP     = '" & uLP101.sLMPALP & "',  " & _
+           " LMSHAN     =  " & uLP101.nLMSHAN & ",   " & _
+           " LMMCU      = '" & uLP101.sLMMCU  & "',  " & _
+           " LMMMCU     = '" & uLP101.sLMMMCU & "',  " & _
+           " LMALPH     = '" & uLP101.sLMALPH & "',  " & _
+           " LMROUT     = '" & uLP101.sLMROUT & "',  " & _
+           " LMSTOP     = '" & uLP101.sLMSTOP & "',  " & _
+           " LMZON      = '" & uLP101.sLMZONE & "',  " & _
+           " LMCNID     = '" & uLP101.sLMCNID & "',  " & _
+           " LMCARS     =  " & uLP101.nLMCARS & ",   " & _
+           " LMRLNU     = '" & uLP101.sLMRLNU & "',  " & _
+           " LMPDAT     = '" & uLP101.sLMPDAT & "',  " & _
+           " LMIR01     = '" & uLP101.sLMIR01 & "',  " & _
+           " LMIR02     = '" & uLP101.sLMIR02 & "',  " & _
+           " LMIR03     = '" & uLP101.sLMIR03 & "',  " & _
+           " LMIR04     = '" & uLP101.sLMIR04 & "',  " & _
+           " LMVUOM     = '" & uLP101.sLMVUOM & "',  " & _
+           " LMCUBE     =  " & uLP101.nLMCUBE & ",   " & _
+           " LMWUOM     = '" & uLP101.sLMWUOM & "',  " & _
+           " LMWEIG     =  " & uLP101.nLMWEIG & ",   " & _
+           " LMPATH     = '" & uLP101.sLMPATH & "',  " & _
+           " LMVR01     = '" & uLP101.sLMVR01 & "',  " & _
+           " LMVR02     = '" & uLP101.sLMVR02 & "',  " & _
+           " LMSGBT     =  " & uLP101.nLMSGBT & ",   " & _
+           " LMPRIO     = '" & uLP101.sLMPRIO & "',  " & _
+           " LMURAT     =  " & uLP101.nLMURAT & ",   " & _
+           " LMURRF     = '" & uLP101.sLMURRF & "',  " & _
+           " LMUSER = '" & App.User & "', LMDATE = '" & Format(Date,"YYYYMMDD") & "', LMTIME = '" & Format(Time,"hhmmss") & "' " & _
+           " where LMLPID = '" & uLP101.sLMLPID & "' "
+    '
+    nErrNo = DB.Execute(sSql)
+
+    Call LP101Hist(uLP101)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+  End If
+  '
+  '*********************************************************************************
+  '*   'Inquire existing record
+  '*********************************************************************************
+  '
+  If sAction = "I" Then
+    sSql = "Select * from F55101 where LMLPID = '" & uLP101.sLMLPID & "' "
+    nErrNo = DB.Execute(sSql,sCols,sRows)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+    '
+    If Len(sRows) > 0 Then
+      uLP101.sLMDSC1 =   Trim(DB.Extract(sCols,sRows,1,"LMDSC1"))
+      uLP101.sLMTYPE =   Trim(DB.Extract(sCols,sRows,1,"LMTYPE"))
+      uLP101.sLMTRAI =   Trim(DB.Extract(sCols,sRows,1,"LMLTY1"))
+      uLP101.sLMMCU  =   DB.Extract(sCols,sRows,1,"LMMCU")
+      '
+      uLP101.sLMLOCN =   DB.Extract(sCols,sRows,1,"LMLOCN")
+      If cFormatJDE Then
+        sLOCN = DB.Extract(sCols,sRows,1,"LMLOCN")
+        If Validate_Locn(sLOCN, uLP101.sLMMCU, sLocnJDE, False) Then
+          uLP101.sLMLOCN =  sLOCN
+        End If
+      End If
+      '
+      uLP101.sLMTYPE  =       DB.Extract(sCols,sRows,1,"LMTYPE")
+      uLP101.sLMTRAI  =       DB.Extract(sCols,sRows,1,"LMLTY1")
+      uLP101.sLMRDOCO =       DB.Extract(sCols,sRows,1,"LMRDOCO")
+      uLP101.sLMRDCTO =       DB.Extract(sCols,sRows,1,"LMRDCTO")
+      uLP101.sLMRNXTR =  Trim(DB.Extract(sCols,sRows,1,"LMRNXTR"))
+      uLP101.sLMPSTB =   Trim(DB.Extract(sCols,sRows,1,"LMPSTB"))
+      uLP101.sLMPALP =   Trim(DB.Extract(sCols,sRows,1,"LMPALP"))
+      uLP101.nLMSHAN =        DB.Extract(sCols,sRows,1,"LMSHAN")
+      uLP101.sLMMMCU =        DB.Extract(sCols,sRows,1,"LMMMCU")
+      uLP101.sLMALPH =   Trim(DB.Extract(sCols,sRows,1,"LMALPH"))
+      uLP101.sLMROUT =   Trim(DB.Extract(sCols,sRows,1,"LMROUT"))
+      uLP101.sLMSTOP =   Trim(DB.Extract(sCols,sRows,1,"LMSTOP"))
+      uLP101.sLMZONe =   Trim(DB.Extract(sCols,sRows,1,"LMZON"))
+      uLP101.sLMCNID =   Trim(DB.Extract(sCols,sRows,1,"LMCNID"))
+      uLP101.nLMCARS =        DB.Extract(sCols,sRows,1,"LMCARS")
+      uLP101.sLMRLNU =   Trim(DB.Extract(sCols,sRows,1,"LMPDAT"))
+      uLP101.sLMPDAT =   Trim(DB.Extract(sCols,sRows,1,"LMRLNU"))
+      uLP101.sLMIR01 =   Trim(DB.Extract(sCols,sRows,1,"LMIR01"))
+      uLP101.sLMIR02 =   Trim(DB.Extract(sCols,sRows,1,"LMIR02"))
+      uLP101.sLMIR03 =   Trim(DB.Extract(sCols,sRows,1,"LMIR03"))
+      uLP101.sLMIR04 =   Trim(DB.Extract(sCols,sRows,1,"LMIR04"))
+      uLP101.sLMVUOM =        DB.Extract(sCols,sRows,1,"LMVUOM")
+      uLP101.nLMCUBE =        DB.Extract(sCols,sRows,1,"LMCUBE")
+      uLP101.sLMWUOM =        DB.Extract(sCols,sRows,1,"LMWUOM")
+      uLP101.nLMWEIG =        DB.Extract(sCols,sRows,1,"LMWEIG")
+      uLP101.sLMPATH =   Trim(DB.Extract(sCols,sRows,1,"LMPATH"))
+      uLP101.sLMVR01 =   Trim(DB.Extract(sCols,sRows,1,"LMVR01"))
+      uLP101.sLMVR02 =   Trim(DB.Extract(sCols,sRows,1,"LMVR02"))
+      uLP101.nLMSGBT =        DB.Extract(sCols,sRows,1,"LMSGBT")
+      uLP101.sLMPRIO =   Trim(DB.Extract(sCols,sRows,1,"LMPRIO"))
+      uLP101.nLMURAT =        DB.Extract(sCols,sRows,1,"LMURAT")
+      uLP101.sLMURRF =   Trim(DB.Extract(sCols,sRows,1,"LMURRF"))
+      uLP101.sLMUSER =        DB.Extract(sCols,sRows,1,"LMUSER")
+      uLP101.sLMDATE =        DB.Extract(sCols,sRows,1,"LMDATE")
+      uLP101.sLMTIME =        DB.Extract(sCols,sRows,1,"LMTIME")
+      '
+    Else
+      GoTo OnError
+    End If
+  End If
+  '
+  X_LP101 = True
+  Exit Function
+  '
+OnError:
+  'LP_MsgBox GetMsg(45) & vbCrLf & SysErr.Description
+  X_LP101 = False
+  '
+  sAction = ""
+End Function
+
+'
+' Add, Modify, Inquiry data in LP102 table
+'
+Public Function X_LP102(ByRef sAction As String, ByRef uLP102 As LP102Data) As Boolean
+    On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sXPDT   As String
+  Dim nLPLnid As Long
+  Dim nErrNo  As Long
+  Dim nCtr    As Long
+  Dim nRLNID  As Currency
+  Dim nQty    As Currency
+  Dim nSOQS   As Currency
+  Dim emLP102 As New EmbeddedProc
+  '
+  msTNID   = "X_LP102"
+  sAction = Trim(UCase(sAction))
+  X_LP102 = False
+  emLP102.Name = "LP102"
+  '
+  If cFormatJDE Then
+    If uLP102.sLDRLNID < 999.999 Then uLP102.sLDRLNID = ConvDecimalsToSQL("LNID",uLP102.sLDRLNID)
+    nQty   = ConvDecimalsToSQL("UORG",uLP102.nLDUORG)
+    nSOQS  = ConvDecimalsToSQL("SOQS",uLP102.nLDSOQS)
+    If Len(Trim(uLP102.sLDXPDT)) > 0 Then
+      sXPDT  = ConvDatetoJDE(uLP102.sLDXPDT)
+    End If
+  End If
+  '
+  If Trim(uLP102.sLDLOTS) = "*" Then uLP102.sLDLOTS = ""
+  '
+  msTNID   = "X_LP102"
+  sAction = Trim(UCase(sAction))
+  X_LP102 = False
+  '
+  '*********************************************************************************
+  '*   'Add new record
+  '*********************************************************************************
+  '
+  If sAction = "A" Then
+    '
+    ' Get next Line Number from LP
+    '
+    sSql = "select LDLNID from  F55102" & _
+           " where LDLPID = '" & uLP102.sLDLPID & "' order by LDLNID DESC"
+    nErrNo = DB.Execute(sSql, sCols, sRows)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+
+    If (nErrNo<>0) Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+    '
+    nLPLnid = Val(sRows)+1
+
+'    emLP102.Param("LDLPID")     =     uLP102.sLDLPID
+'    emLP102.Param("LDLNID")     =     nLPLnid
+'    emLP102.Param("LDLITM")     =     uLP102.sLDLITM
+'    emLP102.Param("LDSOQS")     =     uLP102.nLDSOQS
+'    emLP102.Param("LDUORG")     =     uLP102.nLDUORG
+'    emLP102.Param("LDUOM")      =     uLP102.sLDUOM
+'    emLP102.Param("LDLOTN")     =     uLP102.sLDLOTN
+'    emLP102.Param("LDLOTS")     =     uLP102.sLDLOTS
+'    emLP102.Param("LDRDOCO")    =     uLP102.sLDRDOCO
+'    emLP102.Param("LDRDCTO")    =     uLP102.sLDRDCTO
+'    emLP102.Param("LDRLLN")    =     uLP102.sLDRLNID
+'    emLP102.Param("LDRNXTR")    =     uLP102.sLDRNXTR
+'    emLP102.Param("LDPSTB")     =     uLP102.sLDPSTB
+'    emLP102.Param("LDSPLIT")    =     uLP102.sLDSPLIT
+'    emLP102.Param("LDUKID")     =     uLP102.sLDUKID
+'    emLP102.Param("LDLPSN")     =     uLP102.sLDLPSN
+'    emLP102.Param("LDLOT2")     =     uLP102.sLDLOT2
+'    emLP102.Param("LDVUOM")     =     uLP102.sLDVUOM
+'    emLP102.Param("LDCUBE")     =     uLP102.nLDCUBE
+'    emLP102.Param("LDWUOM")     =     uLP102.sLDWUOM
+'    emLP102.Param("LDWEIG")     =     uLP102.nLDWEIG
+'    emLP102.Param("LDURAT")     =     uLP102.nLDURAT
+'    emLP102.Param("LDURRF")     =     uLP102.sLDURRF
+'    emLP102.Param("LDUSER")     =     uLP102.sLDUSER
+'    emLP102.Param("LDDATE")     =     uLP102.sLDDATE
+'    emLP102.Param("LDTIME")     =     uLP102.sLDTIME
+'    '
+'    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102","" ,emLP102, App.User)
+'
+'    If Not emLP102.ExecuteMethod("insert") Then
+'      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", "" ,emLP102, App.User)
+'      GoTo OnError
+'    End If
+'
+'  End If
+
+    uLP102.nLDLNID = nLPLnid
+
+    If Trim(uLP102.sLDUSER) = "" Then
+      uLP102.sLDUSER = App.User
+    End If
+
+    sSql = "INSERT INTO F55102" & _
+           "(LDLPID,LDLNID,LDLITM,LDSOQS,LDUORG,LDUOM,LDLOTN,LDLOTS,LDRDOCO,LDRDCTO,LDRLLN,LDRNXTR,LDPSTB," & _
+           " LDSPLIT,LDUKID,LDLPSN,LDLOT2,LDVUOM,LDCUBE,LDWUOM,LDWEIG,LDLOT1,LDXPDT,LDLOTG,LDPRIO,LDVRMK,LDVR01," & _
+           " LDTEMP,LDAA,LDAA1,LDAA2,LDAA3,LDURAT,LDURRF,LDUSER,LDDATE,LDTIME)" & _
+           " VALUES('" & Trim(uLP102.sLDLPID)  & "'," & _
+                         nLPLnid         & ","  & _
+                   "'" & Trim(uLP102.sLDLITM)  & "'," & _
+                         uLP102.nLDSOQS  & ","  & _
+                         uLP102.nLDUORG  & ","  & _
+                   "'" & Trim(uLP102.sLDUOM)   & "'," & _
+                   "'" & Trim(uLP102.sLDLOTN)  & "'," & _
+                   "'" & Trim(uLP102.sLDLOTS)  & "'," & _
+                   "'" & Trim(uLP102.sLDRDOCO) & "'," & _
+                   "'" & Trim(uLP102.sLDRDCTO) & "'," & _
+                         Trim(uLP102.sLDRLNID) & ","  & _
+                   "'" & Trim(uLP102.sLDRNXTR) & "'," & _
+                   "'" & Trim(uLP102.sLDPSTB)  & "'," & _
+                   "'" & Trim(uLP102.sLDSPLIT) & "'," & _
+                   " " & uLP102.nLDUKID  & " ," & _
+                   "'" & Trim(uLP102.sLDLPSN)  & "'," & _
+                   "'" & Trim(uLP102.sLDLOT2)  & "'," & _
+                   "'" & Trim(uLP102.sLDVUOM)  & "'," & _
+                         uLP102.nLDCUBE  & ","  & _
+                   "'" & Trim(uLP102.sLDWUOM)  & "'," & _
+                         uLP102.nLDWEIG  & ","  & _
+                   "'" & Trim(uLP102.sLDLOT1)  & "'," & _
+                   "'" & Trim(uLP102.sLDXPDT)  & "'," & _
+                   "'" & Trim(uLP102.sLDLOTG)  & "'," & _
+                   "'" & Trim(uLP102.sLDPRIO)  & "'," & _
+                   "'" & Trim(uLP102.sLDVRMK)  & "'," & _
+                   "'" & Trim(uLP102.sLDVR01)  & "'," & _
+                         uLP102.nLDTEMP  & ","  & _
+                         uLP102.nLDAA    & ","  & _
+                         uLP102.nLDAA1   & ","  & _
+                         uLP102.nLDAA2   & ","  & _
+                         uLP102.nLDAA3   & ","  & _
+                         uLP102.nLDURAT  & ","  & _
+                   "'" & Trim(uLP102.sLDURRF)  & "'," & _
+                   "'" & App.User  & "'," & _
+                   "'" & Format(Date,"YYYYMMDD") & "'," & _
+                   "'" & Format(Time,"hhmmss")  & "')"
+
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+
+    nErrNo = DB.Execute(sSql)
+
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+
+    Call LP102Hist(uLP102)
+    '
+  End If
+
+  '*********************************************************************************
+  '*   'change existing record
+  '*********************************************************************************
+  '
+  If sAction = "C" Then
+    If Trim(uLP102.sLDUSER) = "" Then
+      uLP102.sLDUSER = App.User
+    End If
+'    Call LP102Hist(uLP102)
+    '
+'           " LDSOQS     = "  & nSOQS            & ", " & _
+'           " LDUORG     = "  & nQty             & ", " & _
+    sSql = "update  F55102 set" & _
+           " LDLITM     = '" & uLP102.sLDLITM   & "'," & _
+           " LDSOQS     = "  & uLP102.nLDSOQS   & ", " & _
+           " LDUORG     = "  & uLP102.nLDUORG   & ", " & _
+           " LDUOM      = '" & uLP102.sLDUOM    & "'," & _
+           " LDLOTN     = '" & uLP102.sLDLOTN   & "'," & _
+           " LDRDOCO    = '" & uLP102.sLDRDOCO  & "'," & _
+           " LDRDCTO    = '" & uLP102.sLDRDCTO  & "'," & _
+           " LDRLLN     = '" & uLP102.sLDRLNID  & "'," & _
+           " LDRNXTR    = '" & uLP102.sLDRNXTR  & "'," & _
+           " LDPSTB     = '" & uLP102.sLDPSTB   & "'," & _
+           " LDSPLIT    = '" & uLP102.sLDSPLIT  & "'," & _
+           " LDUKID     =  " & uLP102.nLDUKID   & " ," & _
+           " LDLPSN     = '" & uLP102.sLDLPSN   & "'," & _
+           " LDLOT2     = '" & uLP102.sLDLOT2   & "'," & _
+           " LDVUOM     = '" & uLP102.sLDVUOM   & "'," & _
+           " LDCUBE     =  " & uLP102.nLDCUBE   & " ," & _
+           " LDWUOM     = '" & uLP102.sLDWUOM   & "'," & _
+           " LDWEIG     =  " & uLP102.nLDWEIG   & " ," & _
+           " LDLOT1     = '" & uLP102.sLDLOT1   & "'," & _
+           " LDXPDT     = '" & uLP102.sLDXPDT   & "'," & _
+           " LDLOTG     = '" & uLP102.sLDLOTG   & "'," & _
+           " LDPRIO     = '" & uLP102.sLDPRIO   & "'," & _
+           " LDVRMK     = '" & uLP102.sLDVRMK   & "'," & _
+           " LDVR01     = '" & uLP102.sLDVR01   & "'," & _
+           " LDTEMP     =  " & uLP102.nLDTEMP   & " ," & _
+           " LDAA       =  " & uLP102.nLDAA     & " ," & _
+           " LDAA1      =  " & uLP102.nLDAA1    & " ," & _
+           " LDAA2      =  " & uLP102.nLDAA2    & " ," & _
+           " LDAA3      =  " & uLP102.nLDAA3    & " ," & _
+           " LDURAT     =  " & uLP102.nLDURAT   & " ," & _
+           " LDURRF     = '" & uLP102.sLDURRF   & "'," & _
+           " LDUSER     = '" & App.User         & "'," & _
+           " LDDATE     = '" & Format(Date,"YYYYMMDD") & "'," & _
+           " LDTIME     = '" & Format(Time,"hhmmss") & "' " & _
+           " where LDLPID = '" & uLP102.sLDLPID & "' and LDLNID = " & uLP102.nLDLNID
+    nErrNo = DB.Execute(sSql)
+
+
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+    Call LP102Hist(uLP102)
+    '
+    If uLP102.nLDUORG = 0 Then
+      '
+'      Call LP102Hist(uLP102)
+      '
+      sSql = "delete from F55102 where LDLPID = '" & uLP102.sLDLPID & "' and LDLNID = " & uLP102.nLDLNID
+      '
+      nErrNo = DB.Execute(sSql)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+
+      If nErrNo <> 0 Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+        GoTo OnError
+      End If
+    End If
+  End If
+  '
+  '*********************************************************************************
+  '*   'Inquire existing record
+  '*********************************************************************************
+  '
+  If sAction = "I" Then
+    sSql = "Select * from F55102 where LDLPID = '" & uLP102.sLDLPID & "' "
+
+    If  uLP102.nLDLNID > 0 Then
+      sSql = sSql & " and LDLNID = " & uLP102.nLDLNID
+    End If
+    '
+    nErrNo = DB.Execute(sSql,sCols,sRows)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+    '
+    If Len(sRows) > 0 Then
+      uLP102.sLDLPID  =  Trim(DB.Extract(sCols,sRows,1,"LDLPID"))
+      uLP102.nLDLNID  =       DB.Extract(sCols,sRows,1,"LDLNID")
+      uLP102.sLDLITM  =  Trim(DB.Extract(sCols,sRows,1,"LDLITM"))
+      uLP102.nLDSOQS  =       DB.Extract(sCols,sRows,1,"LDSOQS")
+      uLP102.nLDUORG  =       DB.Extract(sCols,sRows,1,"LDUORG")
+      uLP102.sLDUOM   =  Trim(DB.Extract(sCols,sRows,1,"LDUOM"))
+      uLP102.sLDLOTN  =  Trim(DB.Extract(sCols,sRows,1,"LDLOTN"))
+      uLP102.sLDRDOCO =  Trim(DB.Extract(sCols,sRows,1,"LDRDOCO"))
+      uLP102.sLDRDCTO =  Trim(DB.Extract(sCols,sRows,1,"LDRDCTO"))
+      uLP102.sLDRLNID =  Trim(DB.Extract(sCols,sRows,1,"LDRLLN"))
+      uLP102.sLDRNXTR =  Trim(DB.Extract(sCols,sRows,1,"LDRNXTR"))
+      uLP102.sLDPSTB  =  Trim(DB.Extract(sCols,sRows,1,"LDPSTB"))
+      uLP102.sLDSPLIT =  Trim(DB.Extract(sCols,sRows,1,"LDSPLIT"))
+      uLP102.nLDUKID  =       DB.Extract(sCols,sRows,1,"LDUKID")
+      uLP102.sLDLOT2  =  Trim(DB.Extract(sCols,sRows,1,"LDLOT2"))
+      uLP102.sLDVUOM  =  Trim(DB.Extract(sCols,sRows,1,"LDVUOM"))
+      uLP102.nLDCUBE  =       DB.Extract(sCols,sRows,1,"LDCUBE")
+      uLP102.sLDWUOM  =  Trim(DB.Extract(sCols,sRows,1,"LDWUOM"))
+      uLP102.nLDWEIG  =       DB.Extract(sCols,sRows,1,"LDWEIG")
+      uLP102.sLDLOT1  =  Trim(DB.Extract(sCols,sRows,1,"LDLOT1"))
+      uLP102.sLDXPDT  =  Trim(DB.Extract(sCols,sRows,1,"LDXPDT"))
+      uLP102.sLDLOTG  =  Trim(DB.Extract(sCols,sRows,1,"LDLOTG"))
+      uLP102.sLDPRIO  =  Trim(DB.Extract(sCols,sRows,1,"LDPRIO"))
+      uLP102.sLDVRMK  =  Trim(DB.Extract(sCols,sRows,1,"LDVRMK"))
+      uLP102.sLDVR01  =  Trim(DB.Extract(sCols,sRows,1,"LDVR01"))
+      uLP102.nLDTEMP  =       DB.Extract(sCols,sRows,1,"LDTEMP")
+      uLP102.nLDAA    =       DB.Extract(sCols,sRows,1,"LDAA")
+      uLP102.nLDAA1   =       DB.Extract(sCols,sRows,1,"LDAA1")
+      uLP102.nLDAA2   =       DB.Extract(sCols,sRows,1,"LDAA2")
+      uLP102.nLDAA3   =       DB.Extract(sCols,sRows,1,"LDAA3")
+      uLP102.nLDURAT  =       DB.Extract(sCols,sRows,1,"LDURAT")
+      uLP102.sLDURRF  =  Trim(DB.Extract(sCols,sRows,1,"LDURRF"))
+      uLP102.sLDUSER  =  Trim(DB.Extract(sCols,sRows,1,"LDUSER"))
+      uLP102.sLDDATE  =  Trim(DB.Extract(sCols,sRows,1,"LDDATE"))
+      uLP102.sLDTIME  =  Trim(DB.Extract(sCols,sRows,1,"LDTIME"))
+      uLP102.sLDLPSN  =  Trim(DB.Extract(sCols,sRows,1,"LDLPSN"))
+
+      If cFormatJDE Then
+'        uLP102.sLDRLNID = ConvDecimalsFromSQL("LNID",uLP102.sLDRLNID)
+'        uLP102.nLDSOQS =  ConvDecimalsFromSQL("SOQS",uLP102.nLDSOQS)
+'        uLP102.nLDUORG =  ConvDecimalsFromSQL("UORG",uLP102.nLDUORG)
+        If Len(Trim(uLP102.sLDXPDT)) > 0 Then
+          uLP102.sLDXPDT = ConvJDEtoDate(uLP102.sLDXPDT)
+        End If
+      End If
+
+    Else
+      GoTo OnError
+    End If
+  End If
+
+
+
+  '*********************************************************************************
+  '*   'delete existing record
+  '*********************************************************************************
+  '
+  If sAction = "D" Then
+    Call X_LP102("I", uLP102)  ' get the structure
+    Call LP102Hist(uLP102)
+    '
+    If uLP102.nLDUORG > 0 Then
+      uLP102.nLDUORG = 0     ' set qty. to 0
+      Call X_LP102("C", uLP102)
+    End If
+    '
+    Call LP102Hist(uLP102)
+    '
+    sSql = "delete from F55102 where LDLPID = '" & uLP102.sLDLPID & "' and LDLNID = " & uLP102.nLDLNID
+    nErrNo = DB.Execute(sSql)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+      GoTo OnError
+    End If
+  End If
+  '
+  X_LP102 = True
+  Exit Function
+  '
+OnError:
+  LP_MsgBox GetMsg(45) & vbCrLf & SysErr.Description
+  X_LP102 = False
+  '
+  sAction = ""
+
+End Function
+
+Public Function LP101Hist(ByRef uLP101 As LP101Data)
+    On Error Resume Next
+  '
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim nErrNo As Long
+  Dim sRndString As String
+  '
+  msTNID = "LP101Hist"
+  '
+  sRndString = CStr(Rnd())
+  sRndString = Mid(sRndString,3,10)
+
+  sSql = "Insert into F55101H select " & _
+           " LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRLLN,LMRNXTR,LMPSTB,LMPALP,LMSHAN," & _
+           " LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT,LMRLNU,LMIR01,LMIR02,LMIR03,LMIR04," & _
+           " LMVUOM,LMCUBE,LMWUOM,LMWEIG,LMPATH,LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF,LMUSER,LMDATE,LMTIME, '" & _
+           Format(Now,"YYYYMMDDHHNNSS") & sRndString & "' from F55101 where LMLPID = '" & Trim(uLP101.sLMLPID) & "' "
+
+'  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "F55101H", Replace(sSql, "'", "`"))
+  nErrNo = DB.Execute(sSql)
+
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "F55101H", Replace(sSql, "'", "`"))
+  End If
+
+
+End Function
+
+Public Function LP102Hist(ByRef uLP102 As LP102Data)
+On Error Resume Next
+  '
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim nErrNo As Long
+  Dim sRndString As String
+  Dim sLNID As String
+
+  msTNID="LP102Hist"
+
+  sRndString = CStr(Rnd())
+  sRndString = Mid(sRndString,3,10)
+
+  If uLP102.nLDLNID = 0 Then
+    sLNID = "1"
+  Else
+    sLNID = Trim(CStr(uLP102.nLDLNID))
+  End If
+  '
+  sSql = "Insert into F55102H select " & _
+           " LDLPID,LDLNID,LDLITM,LDSOQS,LDUORG,LDUOM,LDLOTN,LDLOTS,LDRDOCO,LDRDCTO,LDRLLN,LDRNXTR,LDPSTB," & _
+           " LDSPLIT,LDUKID,LDLPSN,LDLOT2,LDVUOM,LDCUBE,LDWUOM,LDWEIG,LDLOT1,LDXPDT,LDLOTG,LDPRIO,LDVRMK,LDVR01," & _
+           " LDTEMP,LDAA,LDAA1,LDAA2,LDAA3,LDURAT,LDURRF,LDUSER,LDDATE,LDTIME, '" & _
+           Format(Now,"YYYYMMDDHHNNSS") & sRndString & "' from F55102 where LDLPID = '" & Trim(uLP102.sLDLPID) & "' and LDLNID = " & sLNID
+
+'  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "F55102H", Replace(sSql, "'", "`"))
+  nErrNo = DB.Execute(sSql)
+
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "F55102H", Replace(sSql, "'", "`"))
+  End If
+
+End Function
+'
+' Gets status from the RFgen Configuration screen
+'
+Public Function LP_GetStatus(ByRef sPSTB As String) As String
+  On Error Resume Next
+  '
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  '
+  Dim iCnt       As Integer
+  Dim vArray1    As Variant
+  Dim vArray2    As Variant
+  Dim sStatus    As String
+  Dim sStatusTxt As String
+  '
+  sSql = "select ENNXTR, ENDSC2 from LP002 where ENCO = '%tmENTITY'"
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Len(sRows) > 0 Then
+    '
+    sStatus     = DB.Extract(sCols,sRows,1,1)
+    sStatusTxt  = DB.Extract(sCols,sRows,1,2)
+    vArray1 = Split(sStatus,";")
+    vArray2 = Split(sStatusTxt,";")
+    '
+    For iCnt = 0 To UBound(vArray1)
+      If Trim(vArray1(iCnt)) = Trim(sPSTB) Then
+        LP_GetStatus = Trim(vArray2(iCnt))
+        Exit Function
+      End If
+    Next
+  End If
+  '
+End Function
+
+Public Function LP_CreatePlate(ByRef sLPID As String, ByVal sType As String, ByRef sDesc As String, ByRef sLOCN As String, ByRef bValidateOnly As Boolean, Optional ByRef sDOCO As String, Optional ByRef sDCTO As String, Optional ByRef sStatus As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  '
+  Dim uLP101 As LP101Data
+  '
+  LP_CreatePlate = False
+  sLPID = UCase(Trim(sLPID))
+  '
+  If sLPID = "NEW" Then sLPID = ""
+  '
+  'Initilize the parameters
+  Call LP101_Reset(uLP101)
+  '
+  If Len(App.GetValue("tmNMCU")) > 0 Then
+    uLP101.sLMMCU = App.GetValue("tmNMCU")
+  Else
+    uLP101.sLMMCU = App.GetValue("tmMCU")
+  End If
+  '
+  uLP101.sLMLPID = sLPID
+  '
+  If Len(Trim(sDesc)) > 0 Then
+    uLP101.sLMDSC1 = sDesc
+  Else
+    uLP101.sLMDSC1 =  "Crt. " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS") & " by " & App.User
+  End If
+  '
+  If Len(Trim(sDOCO)) > 0 Then
+    uLP101.sLMRDOCO = sDOCO
+    uLP101.sLMRDCTO = sDCTO
+  End If
+  '
+  If Len(Trim(sStatus)) > 0 Then
+    uLP101.sLMRNXTR = sStatus
+  End If
+  '
+  uLP101.sLMTYPE = UCase(Trim(sType))
+  '
+  If Len(Trim(sLOCN)) > 0 Then
+    uLP101.sLMLOCN = sLOCN
+  Else
+    sSql = "select LTTRAI, LTLOCN from LP008 where LTTRAI = '" & uLP101.sLMTYPE & "' "
+    DB.Execute(sSql,sCols,sRows)
+    '
+    If Len(sRows) = 0 Then
+      LP_MsgBox( GetMsg(254))
+      Exit Function
+    End If
+    '
+    uLP101.slmlocn = FormatLocnDisplay(DB.Extract(sCols,sRows,1,"LTLOCN"), App.GetValue("tmMCU") )
+  End If
+  '
+  ' Create LP
+  '
+  If Not X_LP101("A", uLP101) Then
+    LP_MsgBox GetMsg(41) & vbCrLf & SysErr.Description
+    Exit Function
+  End If
+  '
+  LP_CreatePlate = True
+  '
+  sLPID = uLP101.sLMLPID
+  sLOCN = uLP101.sLMLOCN
+
+End Function
+
+Public Function LP_ValidateEntity(ByVal sMCU As String, ByRef sEntity As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  LP_ValidateEntity = False
+  '
+  ' Verify Branch is assigned to an Entity
+  '
+  sSql = "select EBCO from  LP005" & _
+         " where EBMCU = '" & sMCU & "'"
+  DB.Execute(sSql, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    LP_MsgBox GetMsg(27)
+    Exit Function
+  End If
+  '
+  sEntity = DB.Extract(sCols,sRows,1,"EBCO")
+  '
+  sSql = "select * from  LP002 where ENCO = '" & sEntity & "'"
+  DB.Execute(sSql, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    LP_MsgBox GetMsg(28) & ": " & sEntity
+    Exit Function
+  End If
+  '
+  gbLPPrePrnt = Trim(UCase(DB.Extract(sCols,sRows,1,"ENPRE"))) = "YES"
+  gsLPLead    = Trim(UCase(DB.Extract(sCols,sRows,1,"ENLEAD")))
+  gilenlp     = Val(DB.Extract(sCols,sRows,1,"ENLEN"))
+  '
+  LP_ValidateEntity = True
+  '
+End Function
+
+Public Function Search_LP101(ByRef Rsp As String, ByRef sMCU As String, Optional ByRef sType As String, Optional ByRef sPalp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql As String
+  Dim oList As New SearchList
+
+  sSql = "Select LMLPID, LMTYPE, LMPSTB, LMDSC1 from F55101" & _
+         " where LMMCU = '%tmMCU' "
+  '
+  If Len(Trim(sType)) > 0 Then
+   sSql = sSql & " and LMTYPE = '" & sType & "' "
+  End If
+  '
+  If Len(Trim(sPalp)) > 0 Then
+   sSql = sSql & " and LMPALP = '" & sPalp & "' "
+  End If
+  '
+  sSql = sSql & "order by LMLPID"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "LPID", 11, CenterRight, True)
+  oList.SetColumn(2, "Type",  4, CenterLeft, True)
+  oList.SetColumn(3, "Sts",  03, CenterLeft, True)
+  oList.SetColumn(4, "Desc", 20, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  Rsp = oList.ShowList
+  Search_LP101 = (Len(Rsp) > 0)
+End Function
+
+Public Function Search_LP101Structure(ByRef sLPID As String, ByRef sOpt As String, ByRef sLPArray As Variant, ByRef sStatusF As String, ByRef sStatusT As String)
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sCols1  As String
+  Dim sRows1  As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sDsp    As String
+  Dim sPalp   As String
+  Dim sParent As String
+  Dim s2PALP  As String
+  Dim vArray  As Variant
+  Dim iCnt    As Long
+  Dim iCnt2   As Long
+  Dim iFnd    As Integer
+  '
+  ' get all LPs with valid data
+  '
+  sSql = "select LDLPID from F55102 where LDRNXTR between '" & sStatusF & "' and '" & sStatusT & "' group by LDLPID "
+  DB.Execute(sSql,sCols,sRows)
+  '
+  ' get highest LP level
+  '
+  For iCnt = 1 To DB.Count(sRows)
+    sLPID = Trim(DB.Extract(sCols,sRows,iCnt,"LDLPID"))
+    '
+    Do While sLPID <> ""
+      sSql = "select LMPALP from F55101 where LMLPID = '" & Trim(sLPID) & "' "
+      DB.Execute(sSql,sCols2,sRows2)
+      '
+      sLPID = Trim(DB.Extract(sCols2,sRows2,1,"LMPALP"))
+      If Len(sLPID) > 0 Then sPalp = sLPID
+    Loop
+    '
+    iFnd = Locate(sParent, sPalp, 1)
+    '
+    If iFnd = 0 Then
+      sParent = sParent & sPalp & "|"        'add parent LP
+    End If
+  Next iCnt
+  '
+  ' get Structur top / down
+  '
+  vArray = Split(sPalp,"|")
+  '
+  For iCnt = 0 To UBound(vArray)
+    sSql = "select LMLPID, LMDSC1, LMTYPE, LMLTYI, LMPDAT, LMRLNU from F55101 where LMLPID = '" & vArray(iCnt) & "' "
+    DB.Execute(sSql,sCols,sRows)
+    '
+    If Len(sRows) > 0 Then
+
+    End If
+    '
+    sSql = "select LMLPID, LMDSC1, LMTYPE, LMLTYI, LMPDAT, LMRLNU from F55101 where LMPALP = '" & vArray(iCnt) & "' "
+    DB.Execute(sSql,sCols1,sRows1)
+    '
+    If Len(sRows) > 0 Then
+
+    End If
+  Next
+End Function
+
+' PH 09/03/10
+Public Function Search_LP102(ByRef sLPID As String, Optional nLNID As Currency, Optional sLITM As String, Optional nQty As Currency, Optional sUOM As String, Optional sLOTN As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql  As String
+
+  Dim sValue As String
+  Dim iUORG As Integer
+  Dim oList As New SearchList
+
+  sSql = "select LDLNID, LDLITM, LDUORG, LDUOM, LDLOTN from F55102 where LDLPID = '" & sLPID & "'" & _
+           " order by LDLNID"
+
+  Call GetDecimals("UORG", iUORG)
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "LineID", 3,         CenterRight, True, 0)
+  oList.SetColumn(2, "Item",   giLenItem, CenterLeft, True)
+  oList.SetColumn(3, "Qty",    giLenQTY,  CenterRight, True, iUORG)
+  oList.SetColumn(4, "UOM",    3,         CenterLeft, True)
+  oList.SetColumn(5, "Lotn",   giLenLOTN, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  sValue = oList.ShowList
+  '
+  If gbDemoMode Then
+    nLNID  = LField(sValue, Chr(3), 1)
+    sLITM  = LField(sValue, Chr(3), 2)
+    nQty   = LField(sValue, Chr(3), 3)
+    sUOM   = LField(sValue, Chr(3), 4)
+    sLOTN  = LField(sValue, Chr(3), 5)
+  End If
+
+  Search_LP102 = (Len(sValue) > 0)
+  '
+
+End Function
+
+Public Function LP_MoveVolWeight(ByVal sLPID As String, ByVal sPalp As String, ByRef bDettach As Boolean, Optional ByRef nWEIG As Currency, Optional ByRef sWUOM As String, Optional ByRef nCUBE As Currency, Optional ByRef sVUOM As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+
+  Dim sPTrai As String
+  Dim sCTrai As String
+  Dim sOPalp As String
+
+  Dim sWeig  As String
+  Dim sCube  As String
+  Dim sCType As String
+  Dim sPType As String
+
+  Dim nPWeig As Currency    'Parent
+  Dim nPCube As Currency    'Parent
+  Dim nCWeig As Currency    'Child
+  Dim nCCube As Currency    'Child
+  Dim nOWeig As Currency    'old Parent
+  Dim nOCube As Currency    'old Parent
+  Dim nPTWeig As Currency
+  Dim nPTCube As Currency
+  Dim nCTWeig As Currency
+  Dim nCTCube As Currency
+  '
+  LP_MoveVolWeight = False
+  '
+  ' get weight / volume from child
+  '
+  sSql = "select * from  F55101" & _
+         " where LMLPID = '" & sLPID & "' "
+  DB.Execute (sSql, sCols, sRows)
+  '
+  If (Len(sRows)=0) Then
+    LP_MsgBox GetMsg(104) & ": " & sLPID
+    Exit Function
+  End If
+  '
+  sPType = Trim(DB.Extract(sCols,sRows,1,"LMTYPE"))
+  '
+  ' calculate Loads only?
+  '
+  If sPType <> "L" Then
+    LP_MoveVolWeight = True
+    Exit Function
+  End If
+  '
+  nCCube = CCur(DB.Extract(sCols,sRows,1,"LMCUBE"))
+  nCWeig = CCur(DB.Extract(sCols,sRows,1,"LMWEIG"))
+  sCTrai = Trim(DB.Extract(sCols,sRows,1,"LMLTY1"))
+  sOPalp = Trim(DB.Extract(sCols,sRows,1,"LMPALP"))
+  '
+  ' get weight / volume from old parent
+  '
+  If Trim(sOPalp) <> "" Then
+    sSql = "select * from  F55101" & _
+           " where LMLPID = '" & sOPalp & "' "
+    DB.Execute sSql, sCols, sRows
+    '
+    If (Len(sRows)=0) Then
+      LP_MsgBox GetMsg(104) & ": " & sOPalp
+      Exit Function
+    End If
+  Else
+    LP_MoveVolWeight = True
+    Exit Function
+  End If
+  '
+  nPCube = CCur(DB.Extract(sCols,sRows,1,"LMCUBE"))
+  sWUOM  = Trim(DB.Extract(sCols,sRows,1,"LMWUOM"))
+  nPWeig = CCur(DB.Extract(sCols,sRows,1,"LMWEIG"))
+  sVUOM  = Trim(DB.Extract(sCols,sRows,1,"LMVUOM"))
+  sPTrai = Trim(DB.Extract(sCols,sRows,1,"LMLTY1"))
+  '
+  ' get weight / volume from old parent
+  '
+  sSql = "select * from  F55101" & _
+         " where LMLPID = '" & sPalp & "' "
+  DB.Execute sSql, sCols, sRows
+  '
+  If Len(sRows) = 0 Then
+   nOCube = 0
+   nOWeig = 0
+  Else
+   nOCube = CCur(DB.Extract(sCols,sRows,1,"LMCUBE"))
+   nOWeig = CCur(DB.Extract(sCols,sRows,1,"LMWEIG"))
+  End If
+  '
+  If bDettach Then
+    '
+    ' calculate & update org. Parent with reduced weight / volume
+    '
+    sCube = Replace(CStr(nOCube - nCCube),",",".")
+    sWeig = Replace(CStr(nOWeig - nCWeig),",",".")
+
+    sSql = " update F55101 set LMCUBE = '" & sCube & "', LMWEIG = '" & sWeig & "'  " & _
+    "where LMLPID = '" & sOPalp & "' "
+    nErrNo = DB.Execute(sSql)
+    '
+    If nErrNo <> 0 Then
+      Exit Function
+    End If
+  Else              ' attach
+    '
+    ' get max weight / volume from Parent Trailer
+    '
+    sSql = "select LTCUBE, LTWEIG from  LP008" & _
+           " where LTTRAI= '" & sPTrai & "' and LTCO = '%tmEntity'"
+    DB.Execute sSql, sCols, sRows
+    '
+    If (Len(sRows)=0) Then
+      LP_MsgBox GetMsg(217) & ": " & sPTrai
+      Exit Function
+    End If
+    '
+    nPTCube = CCur(DB.Extract(sCols,sRows,1,"LTCUBE"))
+    nPTWeig = CCur(DB.Extract(sCols,sRows,1,"LTWEIG"))
+    ' Exit if not defined
+    If nPTCube = 0 And nPTWeig = 0 Then Exit Function
+    '
+    ' get max weight / volume from Child Trailer
+    '
+    sSql = "select LTCUBE, LTWEIG from  LP008" & _
+           " where LTTRAI= '" & sCTrai & "' and LTCO = '%tmEntity'"
+    DB.Execute sSql, sCols, sRows
+    '
+    If Len(sRows) = 0 Then
+      nCTCube = 0
+      nCTWeig = 0
+    Else
+      nCTCube = CCur(DB.Extract(sCols,sRows,1,"LTCUBE"))
+      nCTWeig = CCur(DB.Extract(sCols,sRows,1,"LTWEIG"))
+    End If
+    '
+    ' Exit if not defined
+    If nCTCube = 0 And nCTWeig = 0 Then Exit Function
+    '
+    ' calculate & update org. Parent with reduced weight / volume
+    '
+    sCube = Replace(CStr(nOCube - nCCube),",",".")
+    sWeig = Replace(CStr(nOWeig - nCWeig),",",".")
+
+    sSql = " update F55101 set LMCUBE = '" & sCube & "', LMWEIG = '" & sWeig & "'  " & _
+           "where LMLPID = '" & sOPalp & "' "
+    nErrNo = DB.Execute(sSql)
+    '
+    If nErrNo <> 0 Then
+      Exit Function
+    End If
+    '
+    ' calculate & update Parent with new weight / volume
+    '
+    If nCCube + nPCube <= nPTCube And nCWeig + nPWeig <= nPTWeig Then
+
+      sCube = Replace(CStr(nPCube + nCCube),",",".")
+      sWeig = Replace(CStr(nPWeig + nCWeig),",",".")
+
+      sSql = " update F55101 set LMCUBE = '" & sCube & "', LMWEIG = '" & sWeig & "'  " & _
+      "where LMLPID = '" & sPalp & "' "
+      nErrNo = DB.Execute(sSql)
+      '
+      If nErrNo <> 0 Then
+        Exit Function
+      End If
+    Else
+      LP_MsgBox(GetMsg(32) & vbCrLf & nCCube + nPCube & " " & sVUOM & " -> " & nCWeig + nPWeig & " " & sWUOM)
+      Exit Function
+    End If
+  End If              ' dettach / attach
+  '
+  LP_MoveVolWeight = True
+  '
+End Function
+
+Public Function LP_ReadStructure(ByVal sPalp As String, ByRef sLPArray As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sSql1   As String
+  Dim sCols1  As String
+  Dim sRows1  As String
+  Dim sSql2   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sDate   As String
+  Dim sTime   As String
+  Dim sUser   As String
+  Dim sLPID   As String
+  Dim s2PALP  As String
+  Dim sDsp    As String
+  Dim sLITM   As String
+  Dim sLOTN   As String
+  Dim sLOTS   As String
+  Dim sUOM    As String
+  Dim sQty    As String
+  Dim sFnd    As String
+  Dim nQty    As Currency
+  Dim iFnd    As Integer
+  Dim iCnt    As Long
+  Dim iCnt1   As Long
+  Dim iCnt2   As Long
+  Dim nErrNo  As Long
+  '
+  msTNID = "LP_ReadStructure"
+  LP_ReadStructure = False
+  '
+  sSql = "select * from F55101 where LMLPID = '" & Trim(sPalp) & "' "
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+  '
+  If (nErrNo<>0) Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+
+  If Len(sRows) > 0 Then
+    For iCnt = 1 To DB.Count(sRows)
+      sLPID = Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID"))
+      '
+      'get details from F55102
+      '
+      sSql1 = "select * from F55102 where LDLPID = '" & sLPID & "' order by LDLPID, LDLNID"
+      DB.Execute(sSql1,sCols1,sRows1)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql1, "'", "`"))
+
+      If (nErrNo<>0) Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql1, "'", "`"))
+        Exit Function
+      End If
+
+      For iCnt1 = 1 To DB.Count(sRows1)
+        sLITM = Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLITM"))
+        sLOTN = Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLOTN"))
+        If (sLOTN = "") Then
+          sLOTN = " "
+        End If
+        If gbOracleLP And Len(sLOTN) = 0 Then sLOTN = " "
+        sUOM  = Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUOM"))
+        sQty  = Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUORG"))
+        sLOTS = Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLOTS"))
+        If Len(sLOTS) = 0 Then sLOTS = " "
+        sFnd = sLITM & sUOM & sLOTN     ' Build Key
+        iFnd = Locate(sFnd, sLPArray)
+
+        If iFnd <> 0 Then               ' accumulate qty when same Item / Lot
+          nQty = Val(Ext(sLPArray,5,iFnd))
+          sLPArray = Rep(sLPArray,5, iFnd, CStr((nQty + Val(sQty))))
+        Else                            ' create new entry in array
+          sLPArray = Rep(sLPArray,1, -1, sFnd)
+          sLPArray = Rep(sLPArray,2, -1, sLITM)
+          sLPArray = Rep(sLPArray,3, -1, sLOTN)
+          sLPArray = Rep(sLPArray,4, -1, sUOM)
+          sLPArray = Rep(sLPArray,5, -1, sQty)
+          sLPArray = Rep(sLPArray,6, -1, sLOTS)
+        End If
+      Next iCnt1
+      '
+      ' search for childs                                                             ' get all childs
+      sSql2 = "select LMLPID from F55101 where LMPALP = '" & sPalp & "' order by LMLPID"
+
+      DB.Execute(sSql2,sCols2,sRows2)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql2, "'", "`"))
+
+      If (nErrNo<>0) Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql2, "'", "`"))
+        Exit Function
+      End If
+
+      If DB.Count(sRows2) > 0 Then
+
+      End If
+      '
+      For iCnt2 = 1 To DB.Count(sRows2)
+        s2PALP = Trim(DB.Extract(sCols2,sRows2,iCnt2,"LMLPID"))
+        LP_ReadStructure(s2PALP,sLPArray)       ' recursive call for next level
+      Next iCnt2
+    Next iCnt
+    '
+  End If
+  '
+  LP_ReadStructure = True
+  '
+End Function
+
+Public Function LP_MoveExecute(ByRef uLPoper As LPOper, ByRef uLP101 As LP101Data, ByVal bReverse As Boolean, ByRef sTranDesc As String, ByRef sLPArray As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim i           As Integer
+  Dim sLITM       As String
+  Dim sLOCN       As String
+  Dim sITM        As String
+  Dim sQty        As String
+  Dim sUOM        As String
+  Dim sLOTN       As String
+  Dim sLOTS       As String
+  Dim stmMCU      As String
+  Dim stmLOCN     As String
+  Dim stmNMCU     As String
+  Dim stmNLOCN    As String
+  Dim stmTOLOTS   As String
+  Dim sAllowHold  As String
+  Dim nOnHand     As Currency
+  Dim nAvail      As Currency
+  Dim nMaxQty     As Currency
+  Dim sHold       As String
+  Dim nErrNo      As Long
+  Dim sDate       As String
+  Dim sTime       As String
+  Dim sUser       As String
+  Dim iFnd        As Integer
+  Dim nCnt        As Integer
+  Dim sKey        As String
+  Dim nQty        As Currency
+  Dim sValCache   As String
+  '
+  Dim nType       As Long
+  Dim sLITMa      As String
+  Dim sAITM       As String
+  Dim sDSC1       As String
+  Dim bHasLots    As Boolean
+  Dim bSerialized As Boolean
+  Dim emProc      As New EmbeddedProc
+
+  Dim sPUOM       As String
+  Dim x           As Integer
+  '
+  sDate = Format(Date,"YYYYMMDD")
+  sTime = Format(Time,"HHMMSS")
+  sUser = App.User
+
+  msTNID = "LP_MoveExecute"
+  LP_MoveExecute = False
+  '
+  ' run IT only if Location and / or Plant is different
+  '
+  If FormatLocnDisplay((uLPoper.sFLOCN),uLPoper.sFMCU) = FormatLocnDisplay(uLPoper.sTLOCN,uLPoper.sFMCU) And  _
+    uLPoper.sFMCU = uLPoper.sTMCU Then
+    LP_MoveExecute = True
+    Exit Function
+  End If
+  '
+  nCnt = 0
+  sValCache = ""
+  i = 1
+  If Not bReverse Then
+      stmMCU    = uLPoper.sFMCU
+      stmLOCN   = uLPoper.sFLOCN
+      stmNMCU   = uLPoper.sTMCU
+      stmNLOCN  = uLPoper.sTLOCN
+      stmTOLOTS = sLOTS
+    Else
+      stmMCU    = uLPoper.sTMCU
+      stmLOCN   = uLPoper.sTLOCN
+      stmNMCU   = uLPoper.sFMCU
+      stmNLOCN  = uLPoper.sFLOCN
+      stmTOLOTS = sLOTS
+  End If
+  '
+  Do While Len(Ext(sLPArray,1 ,i)) > 0
+    sLITM = Ext(sLPArray,2 ,i)
+    'sLOTN = Trim(Ext(sLPArray,3 ,i))  WLG 8/14/2013
+    sLOTN = Ext(sLPArray,3 ,i)
+    sUOM  = Ext(sLPArray,4 ,i)
+    sQty  = Ext(sLPArray,5 ,i)
+    sLOTS = Trim(Ext(sLPArray,6 ,i))
+    '
+    If Not bReverse Then
+      stmMCU    = uLPoper.sFMCU
+      stmLOCN   = uLPoper.sFLOCN
+      stmNMCU   = uLPoper.sTMCU
+      stmNLOCN  = uLPoper.sTLOCN
+      stmTOLOTS = sLOTS
+    Else
+      stmMCU    = uLPoper.sTMCU
+      stmLOCN   = uLPoper.sTLOCN
+      stmNMCU   = uLPoper.sFMCU
+      stmNLOCN  = uLPoper.sFLOCN
+      stmTOLOTS = sLOTS
+    End If
+    '
+    ' check if item exists in ToMCU
+    '
+    If Not Validate_Item(stmNMCU, sLITM, sITM, sLITMa, sAITM, sDSC1, _
+                       sPUOM, nType, bHasLots, bSerialized) Then
+      Call TranLog(msTNID, "8", "Item doesnt exist in To MCU" & Trim(stmMCU) & "/" & Trim(sLITM), "",)
+      Exit Function
+    End If
+    '
+    ' check Proc.Opt.if Lots on Hold are allowed
+    '
+    sAllowHold = GetProcOpt("P4113",App.GetValue("LPITVersion"),"3;3")
+    '
+    If gbPOError Then
+      Exit Function
+    End If
+    '
+    Call GetItemQty(stmMCU,sITM,sLOTN,stmLOCN,sAllowHold,nOnHand,nAvail,sHold)
+
+    If sAllowHold = "" And sHold <> "" Then
+      LP_MsgBox(GetMsg(121))
+      Exit Function
+    End If
+    '
+    Select Case GetProcOpt("P4113",App.GetValue("LPITVersion"),"3;4")
+      Case ""   'Disallow neg.qty available
+        If nAvail < 0 Then
+          nMaxQty = 0
+        Else
+          nMaxQty = (nAvail)
+        End If
+
+      Case "1"  'Allow neg.qty available
+        nMaxQty = 99999999
+
+      Case "2"  'Disallow neg.qty on Hand
+        If nOnHand < 0 Then
+          nMaxQty = 0
+        Else
+          nMaxQty = nOnHand
+        End If
+
+    End Select
+    '
+    If gbPOError Then
+      App.ExitForm
+      Exit Function
+    End If
+    '
+    If CCur(sQty) > nMaxQty Then
+      LP_MsgBox GetMsg(102)
+      Exit Function
+    End If
+    '
+    ' run multi line macro
+    '
+    sKey = Trim(sLITM) & Trim(sLOTN) & Trim(stmLOCN)
+    '
+    iFnd = Locate(sKey, sValCache,1)
+    '
+    If (iFnd <> 0) Then     'add qty RBR 03/07/2007
+      nQty  = Val(Ext(sValCache, 6, iFnd))
+      nQty = nQty + CCur(sQty)
+      sValCache = Rep(sValCache, 6, iFnd, nQty)
+    Else
+      sLOTN = Trim(sLOTN)
+      'If gbOracleLP And Len(sLOTN) = 0 Then sLOTN = " "
+      If Len(sLOTN) = 0 Then sLOTN = " "
+
+      sLOCN = Trim(stmLOCN)
+      If gbOracleLP And Len(sLOCN) = 0 Then sLOCN = " "
+      '
+      sValCache = Rep(sValCache, 1, -1, sKey)
+      sValCache = Rep(sValCache, 2, -1, sLITM)
+      sValCache = Rep(sValCache, 3, -1, sLOTN)
+      sValCache = Rep(sValCache, 4, -1, sHold)
+      sValCache = Rep(sValCache, 5, -1, stmLOCN)
+      sValCache = Rep(sValCache, 6, -1, CCur(sQty))
+      sValCache = Rep(sValCache, 7, -1, sUOM)
+      sValCache = Rep(sValCache, 8, -1, sHold)
+      sValCache = Rep(sValCache, 9, -1, sITM)
+      '
+      nCnt = nCnt +1
+    End If
+
+    i = i +1
+  Loop
+  '
+  ' run multi line macro
+  '
+  If (Trim(sValCache) <> "") Then
+    emProc.Clear
+    emProc.Name = "TIMIT0200"
+    emProc.DataSource = gsDataSource
+    '
+    emProc.Param("tmCO")       = App.GetValue("tmCO")
+    emProc.Param("tmMCU")      = stmMCU
+    emProc.Param("tmValCache") = sValCache
+    emProc.Param("tmCnt")      = nCnt
+    emProc.Param("tmTOMCU")    = stmNMCU
+    emProc.Param("tmTOLOCN")   = stmNLOCN
+    emProc.Param("tmTOLOTS")   = stmTOLOTS
+    emProc.Param("tmDCTO")     = GetProcOpt("P4113",App.GetValue("LPITVersion"),"1;1")
+    emProc.Param("tmDRKY")     = " "
+    emProc.Param("tmTDSC")     = Trim(uLP101.sLMLPID) & " | " & sTranDesc
+    emProc.Param("tmZVERSION") = App.GetValue("LPITVersion")
+    emProc.Param("tmPGM")      = "P4113"
+    '
+    If Ext(gsLog,3) = "1" Then Call TranLog(msTNID, "3", emProc.Name, "", emProc)
+
+    If gbQueueProcessing Then
+      If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+
+      If Not emProc.Queue Then
+        LP_MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+        Exit Function
+      End If
+    Else
+      If Not emProc.Execute Then
+        LP_MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRID") & " " &  emProc.Param("tmERRTEXT")
+        If Ext(gsLog,4) = "1" Then Call TranLog(msTNID, "4", emProc.Name, "" , emProc)
+        Exit Function
+      End If
+    End If
+
+    '
+    ' offline inventory
+    '
+    If gbOfflineEnabled Then
+      For i = 1 To nCnt
+        sLITM   = Ext(sValCache, 2, i)
+        sLOTN   = Ext(sValCache, 3, i)
+        sHold   = Ext(sValCache, 4, i)
+        stmLOCN = Ext(sValCache, 5, i)
+        sQty    = Ext(sValCache, 6, i)
+        sUOM    = Ext(sValCache, 7, i)
+        sITM    = Ext(sValCache, 9, i)
+        '
+        If Not WriteOI(App.GetValue("tmCO"),stmMCU, sLITM,CSng(sITM),"",sUOM,"-" & sQty,0,"  ",0,emProc.QueueName,emProc.QueueSeqNo,stmLOCN, sLOTN,sHold) Then
+          LP_MsgBox(GetMsg(31))
+        End If
+
+        If Not WriteOI(App.GetValue("tmCO"),stmNMCU,sLITM,CSng(sITM),"",sUOM,sQty,0,      "  ",0,emProc.QueueName,emProc.QueueSeqNo,stmNLOCN,sLOTN,sHold) Then
+          LP_MsgBox(GetMsg(31))
+        End If
+      Next i
+    End If
+  End If
+  '
+  ' Update LP location
+
+  '
+  sSql = "update  F55101" & _
+         " set LMLOCN = '" & stmNLOCN & "',LMMCU = '" & uLPoper.sTMCU & "', LMUSER = '" & sUser & "', LMDATE = '" & sDate & "', LMTIME = '" & sTime & "' " _
+         & " where LMLPID = '" & uLPoper.sLPID & "'  or  LMPALP = '" & uLPoper.sLPID & "' "
+  nErrNo = DB.Execute(sSql)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+
+  If (nErrNo<>0) Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+
+  ' Create a history record for the parent.
+  Call LP101Hist(uLP101)
+
+  ' Check for children that were updated and write history records if there are any.
+
+  sSql = "select * from F55101 where LMPALP = '" & uLP101.sLMLPID & "'"
+
+  DB.Execute(sSql, sCols, sRows)
+
+  For x = 1 To DB.Count(sRows)
+    Call LP101_Reset(uLP101)
+    uLP101.sLMLPID = DB.Extract(sCols, sRows, x, "LMLPID")
+    Call LP101Hist(uLP101)
+  Next
+
+  LP_MoveExecute = True
+  '
+End Function
+
+Public Function LP_PrintLabel(ByRef sLPID As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sSql As String
+  Dim sRows As String
+  Dim sCols As String
+  Dim sUOM As String
+  Dim sKY As String
+  Dim emProc1 As New EmbeddedProc
+
+  LP_PrintLabel = False
+  '
+  sSql = "select MCDL01 from F0006 where MCMCU ='%tmMCU'"
+  DB.Execute(sSql,sCols,sRows)
+  sCompany = Trim(DB.Extract(sCols,sRows,1,"MCDL01"))
+  '
+  sKY  =  FixRight(App.GetValue("LMUOM"),10," ")
+  sSql = "select DRDL01 from F0005 where DRSY = '00' and DRRT = 'UM' and DRKY = '" & sKY & "'"
+  DB.Execute(sSql,sCols,sRows)
+  sUOM = Trim(DB.Extract(sCols,sRows,1,"DRDL01"))
+
+  '
+  emProc1.Name = "PrintLabel"
+  emProc1.DataSource = "JDE"
+  '
+  emProc1.Param("tmCO")       = sCompany
+  emProc1.Param("tmMCU")      = App.GetValue("LMMCU")
+  emProc1.Param("tmLITM")     = Trim(App.GetValue("LMLITM"))
+  emProc1.Param("tmLOTN")     = Trim(App.GetValue("LMLOT"))
+  emProc1.Param("tmDATE")     = Trim(App.GetValue("LMPD"))
+  emProc1.Param("tmTI")       = Trim(App.GetValue("LMTI"))
+  emProc1.Param("tmHI")       = Trim(App.GetValue("LMHI"))
+  emProc1.Param("tmQTY")      = Trim(App.GetValue("LMQTY"))
+  emProc1.Param("tmBARCODE")  = "001" & App.GetValue("tmMFGID") & FixRight(Trim(App.GetValue("tmMCU")),3,"0") & App.GetValue("LMPID")
+  emProc1.Param("tmBARCODE2") = "(00) 1 " & App.GetValue("tmMFGID") & " " & FixRight(Trim(App.GetValue("tmMCU")),3,"0") & App.GetValue("LMPID")
+  emProc1.Param("tmUOM")      = sUOM
+  emProc1.Param("tmPrinter")  = GetUserInfo("PRINTER")
+  emProc1.Param("tmUser")     = App.User
+  emProc1.Param("tmPID")      = App.GetValue("tmPID")
+  '
+  If Not emProc1.Queue Then
+    LP_MsgBox GetMsg(149) & vbCrLf & emProc1.Param("tmErr")
+    App.SetFocus "txtAccept"
+    Exit Function
+  End If
+  '
+  LP_PrintLabel = True
+  '
+End Function
+
+Public Function Search_LP101_DOCO(ByRef Rsp As String, ByRef sMCU As String, ByRef sPalp As String, ByRef sDCTO As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql   As String
+  Dim sValue As String
+  Dim oList  As New SearchList
+
+  sSql = "Select LMRDOCO, LMRDCTO, LMALPH from F55101 where LMPALP = '" & sPalp & "' "
+  '
+  sSql = sSql & " Order By LMRDOCO, LMRDCTO"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "Doco",  8, CenterRight, True)
+  oList.SetColumn(2, "Trai",  2, CenterLeft, True)
+  oList.SetColumn(3, "Desc", 20, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  sValue = oList.ShowList
+  '
+  Rsp     = LField(sValue, Chr(3), 1)
+  sDCTO   = LField(sValue, Chr(3), 2)
+  Search_LP101_DOCO = (Len(Rsp) > 0)
+End Function
+
+Public Function Search_LP101_DCTO(ByRef Rsp As String, ByRef sMCU As String, ByRef sPalp As String, ByRef sDOCO As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim oList As New SearchList
+
+  sSql = "Select LMRDCTO from F55101" & _
+         " where LMRDOCO = " & sDOCO & " and LMPALP = '" & sPalp & "' "
+  '
+  sSql = sSql & " Order By LMRDOCO, LMRDCTO"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(2, "Trai",  2, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  Rsp = oList.ShowList
+  '
+  Search_LP101_DCTO = (Len(Rsp) > 0)
+End Function
+
+'This function is used to Attach, Detach Items and LP
+
+Public Function LP_AttachDetach(ByRef uLPoper As LPOper, ByRef uLP102 As LP102Data) As Boolean
+  On Error Resume Next
+  '
+  Dim nErrNo      As Single
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sLnid       As String
+  Dim sLPArray    As String
+  Dim sWUOM       As String
+  Dim sVUOM       As String
+  Dim nPWeig      As Currency
+  Dim nCWeig      As Currency
+  Dim nPCube      As Currency
+  Dim nCCube      As Currency
+  Dim nLPLnid     As Currency
+  Dim nRLNID      As Currency
+  Dim emProc      As New EmbeddedProc
+  Dim sITM        As String
+  Dim sLITM       As String
+  Dim sAITM       As String
+  Dim sDSC1       As String
+  Dim sUOM        As String
+  Dim nType       As Long
+  Dim bHasLots    As Boolean
+  Dim bSerialized As Boolean
+  Dim uLP101      As LP101Data       ' create LP101 Structure
+  '
+  'Public Type LPOper
+  '  sLPID     As String    ' LP ID Child
+  '  sPALP     As String    ' LP ID Parent
+  '  sFMCU     As String    ' from Location
+  '  sTMCU     As String    ' to Location
+  '  sFLOCN    As String    ' from Location
+  '  sTLOCN    As String    ' to Location
+  '  nQty      As Currency  ' Operation Qty.
+  'End Type
+  '
+  msTNID = "LP_AttachDetach"
+  LP_AttachDetach = False
+  '
+  ' Flag LP Master with Parent LP#
+  '
+  If uLPoper.bIsPlate Then
+    '
+    ' Attach / Dettach LP parent
+   '
+    ' update weight / volume for PALP
+    If Not LP_MoveVolWeight(uLPoper.sLPID, uLPoper.sPALP, uLPoper.bIsPlate, nPWeig, sWUOM, nPCube, sVUOM) Then Exit Function
+    '
+    uLP101.sLMLPID = uLPoper.sLPID
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      LP_MsgBox(GetMsg(104))
+      Exit Function
+    End If
+
+    'If the function is called in detach mode then
+    If uLPoper.bDetach Then
+       uLP101.sLMPALP = Null
+       uLP101.sLMLOCN = uLPoper.sTLOCN
+       If Not X_LP101("C", uLP101) Then Exit Function
+    Else
+      uLP101.sLMPALP = uLPoper.sPALP
+      uLP101.sLMLOCN = uLPoper.sTLOCN
+      If Not X_LP101("C", uLP101) Then Exit Function
+    End If
+    '
+    'read the LP structure to find the hierarchy
+    If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+      LP_MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(msTNID, "2", "LP_ReadStructure", "")
+      Exit Function
+    End If
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(msTNID, "1", "LP_MoveExecute", "")
+    '
+    If Len(Trim(sLPArray)) > 0 Then
+      If Not LP_MoveExecute(uLPoper, uLP101, False , msTNID, sLPArray) Then' run BSNF IT for all LP/Items in the tree
+        LP_MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+        Call LP_MoveExecute(uLPoper, uLP101, True , msTNID, sLPArray) ' rerun BSNF IT
+        If Ext(gsLog,2) = "1" Then Call TranLog(msTNID, "2", "LP_MoveExecute", "")
+        Exit Function
+      End If
+    End If
+    '
+  Else 'If it is an Item
+    '
+    'Inquire existing LPID
+    uLP101.sLMLPID = uLPoper.sPALP
+    If Not X_LP101("I", uLP101) Then
+      LP_MsgBox(GetMsg(104))
+      Exit Function
+    End If
+    '
+    ' run IT only if Location and / or Plant is different
+    If FormatLocnDisplay((uLPoper.sFLOCN),uLPoper.sFMCU) <> FormatLocnDisplay(uLPoper.sTLOCN,uLPoper.sFMCU) And uLP102.nLDuorg <> 0 Or _
+      uLPoper.sFMCU <> uLPoper.sTMCU And uLP102.nLDuorg <> 0 Then
+      '
+      'check if item exists in ToMCU
+      If Not Validate_Item(uLPoper.sTMCU,uLP102.sLDLITM, sITM, sLITM, sAITM, sDSC1, _
+                       sUOM, nType, bHasLots, bSerialized) Then
+        Call TranLog(msTNID, "8", "Item doesnt exist in To MCU" & Trim(uLPoper.sTMCU) & " / " & Trim(uLP102.sLDLITM))
+        Exit Function
+      End If
+      '
+      emProc.Clear
+      emProc.Name                = "TIMIT0100"
+      emProc.DataSource          = gsDataSource
+      emProc.Param("tmCO")       = App.GetValue("tmCO")
+      emProc.Param("tmLITM")     = uLP102.sLDLITM
+      If Not uLPoper.bDetach Then
+        emProc.Param("tmQTY")      = uLP102.nLDUORG
+      Else
+        emProc.Param("tmQTY")      = uLPoper.nQty
+      End If
+      emProc.Param("tmUOM")      = uLP102.sLDUOM
+      emProc.Param("tmLOTN")     = uLP102.sLDLOTN
+      emProc.Param("tmDCTO")     = GetProcOpt("P4113",App.GetValue("LPITVersion"),"1;1")
+      emProc.Param("tmDRKY")     = " "
+      emProc.Param("tmMCU")      = uLPoper.sFMCU              ' From MCU
+      emProc.Param("tmLOCN")     = uLPoper.sFLOCN             ' From Location
+      emProc.Param("tmTOMCU")    = uLPoper.sTMCU              ' To MCU
+      emProc.Param("tmTOLOCN")   = uLPoper.sTLOCN             ' To Location
+      emProc.Param("tmTOLOTS")   = uLP102.sLDLOTS
+      emProc.Param("tmTDSC")     = uLP101.sLMLPID & " | " & msTNID
+      emProc.Param("tmZVERSION") = App.GetValue("LPITVersion")
+      emProc.Param("tmPGM")      = "P4113"
+      emProc.Param("tmUSER")     = App.User
+      '
+      If Ext(gsLog,3) = "1" Then Call TranLog(msTNID, "3", emProc.Name, "", emProc)
+        If gbQueueProcessing Then
+          If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+          
+          If Not emProc.Queue Then
+            LP_MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+            Exit Function
+          End If
+
+          If Len(Trim(emProc.QueueName)) = 0 Then
+            uLP102.nLDUKID =  emProc.QueueSeqNo         ' to confirm LP when successfull executed. Queue only.
+          Else
+            uLP102.nLDUKID =  emProc.QueueSeqNo  ' to confirm LP when successfull executed. Queue only.
+          End If
+        Else
+          If Not emProc.Execute Then
+            LP_MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+            If Ext(gsLog,4) = "1" Then Call TranLog(msTNID, "4", emProc.Name, "" , emProc)
+            Exit Function
+          End If
+        End If
+        '
+        ' offline inventory
+        If gbOfflineEnabled Then
+          If Not WriteOI(App.GetValue("tmCO"),emProc.Param("tmMCU") ,emProc.Param("tmLITM"),App.GetValue("tmITM"),"",emProc.Param("tmUOM"),"-" & CStr(emProc.Param("tmQTY")),0,"  ",0,emProc.QueueName,emProc.QueueSeqNo, emProc.Param("tmLOCN"),emProc.Param("tmLOTN"),emProc.Param("tmLOTS")) Then
+            LP_MsgBox(GetMsg(31))
+          End If
+          '
+          If Not WriteOI(App.GetValue("tmCO"),App.GetValue("tmNMCU"),emProc.Param("tmLITM"),App.GetValue("tmITM"),"",emProc.Param("tmUOM"),CStr(emProc.Param("tmQTY")),0,"  ",0,emProc.QueueName,emProc.QueueSeqNo, emProc.Param("tmTOLOCN"),emProc.Param("tmLOTN"),emProc.Param("tmTOLOTS")) Then
+            LP_MsgBox(GetMsg(31))
+          End If
+        End If
+      End If
+    '
+    ' attach single item to LP
+    '
+    If Not uLPoper.bDetach Then        ' attach new item
+      '
+      If Len(uLP102.sLDRNXTR) > 0 Then
+        nRLNID = ConvDecimalsToSQL("LNID", uLP102.sLDRLNID)
+      ' Consolidate with existing SO line and Lot number on the same LP?
+         sSql = "select LDLNID, LDUORG from F55102" & _
+               " where LDLPID = '" & uLP102.sLDLPID & "' and LDRDOCO = '" & uLP102.sLDRDOCO & "' and LDRDCTO = '" & uLP102.sLDRDCTO & "' and LDRLLN = '" & nRLNID & "' "
+     '
+      Else
+        ' Consolidate with existing item/lot on the same LP?
+        sSql = "select LDLNID, LDUORG from F55102" & _
+               " where LDLPID = '" & uLP102.sLDLPID & "' and LDLITM = '" & uLP102.sLDLITM & "' "
+      End If
+      '
+      If Len(Trim(uLP102.sLDLOTN)) > 0 Then
+        sSql = sSql & " and LDLOTN = '" & uLP102.sLDLOTN & "' "
+      End If
+     '
+      DB.Execute(sSql, sCols, sRows)
+      '
+      If Len(sRows) > 0 Then
+        uLP102.nLDUORG = CCur(CCur(uLPoper.nQty) + CCur(DB.Extract(sCols,sRows,1,"LDUORG")))
+        uLP102.nLDLNID = DB.Extract(sCols,sRows,1,"LDLNID")
+        uLP102.sLDUSER = App.User()
+        uLP102.sLDDATE = Format(Date, "yyyymmdd")
+        uLP102.sLDTIME = Format(Time, "hhmmss")
+
+        Call X_LP102("C", uLP102)
+      Else
+        Call X_LP102("A", uLP102)
+      End If
+      '
+    Else                        ' dettach item from plate tmRQTY is the remaining rest
+      '
+      'Inquire before updating the LP102
+      Call X_LP102("I", uLP102)
+      '
+      'update lp102 with the remaining Qty
+       uLP102.nLDUORG = uLP102.nLDUORG - uLPoper.nQty
+      '
+      Call X_LP102("C", uLP102)
+      '
+    End If
+  End If
+  '
+  LP_AttachDetach = True
+  '
+End Function
+
+Public Function LP_GetItem(ByRef sLPID As String, ByRef nLNID As Long, ByRef sLITM As String, ByRef sLOTN As String, ByRef nLQty As Currency, ByRef sUOM As String, ByRef sLOCN As String, ByRef sSN As String, ByRef bMixedLP As Boolean, Optional ByRef bBlind As Boolean) As Boolean
+  '
+  ' Get Iten from LP, if only one line do not show selection List.Data
+  '
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sDOCO   As String
+  Dim sDCTO   As String
+  Dim sDate   As String
+  Dim sTime   As String
+  Dim sUser   As String
+  Dim sValue  As String
+  Dim nErrNo  As Long
+  Dim oList   As New SearchList
+  '
+  msTNID = "LP_GetItem"
+  LP_GetItem = False
+  '
+  ' Get LP from serial number  ' and LDRLLN = 0 means not assigned to any SO/PO
+  '
+    sSql = "select LDLPID, LDLNID, LDLITM, LDLOTN, LDUORG, LDUOM, LDRDOCO, LDRDCTO, LDLPSN from F55102 " & _
+    " where LDLPSN like '%%" & sLPID & "%%' " 'and LDRLLN = 0 "
+  nErrNo = DB.Execute(sSql, sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+  '
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  If DB.Count(sRows) = 1 Then
+    sLPID = Trim(DB.Extract(sCols,sRows,1,"LDLPID"))
+    nLNID =      DB.Extract(sCols,sRows,1,"LDLNID")
+    sLITM = Trim(DB.Extract(sCols,sRows,1,"LDLITM"))
+    sLOTN = Trim(DB.Extract(sCols,sRows,1,"LDLOTN"))
+    nLQty =      DB.Extract(sCols,sRows,1,"LDUORG")
+    sUOM  = Trim(DB.Extract(sCols,sRows,1,"LDUOM"))
+    sSN   = Trim(DB.Extract(sCols,sRows,1,"LDLPSN"))
+  Else
+    '
+    ' Get LP from LPID
+    '
+    sSql = "select LDLNID, LDLITM, LDLOTN, LDUORG, LDUOM, LDRDOCO, LDRDCTO from F55102 " & _
+    " where LDLPID = '" & sLPID & "' and LDUORG > 0"
+    nErrNo = DB.Execute(sSql, sCols,sRows)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+    '
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+      Exit Function
+    End If
+    '
+    If DB.Count(sRows) = 1 Then
+      nLNID =      DB.Extract(sCols,sRows,1,"LDLNID")
+      sLITM = Trim(DB.Extract(sCols,sRows,1,"LDLITM"))
+      sLOTN = Trim(DB.Extract(sCols,sRows,1,"LDLOTN"))
+      nLQty =      DB.Extract(sCols,sRows,1,"LDUORG")
+      sUOM  = Trim(DB.Extract(sCols,sRows,1,"LDUOM"))
+      '
+      If bBlind Then
+        LP_GetItem = True
+        Exit Function
+      End If
+      '
+   Else
+      oList.MaxRows = giMaxSearchRows
+      oList.ShowEmptyList = True
+      oList.ReturnAllRows = True
+      oList.SetColumn(1, "Line",         3, CenterRight, True)
+      oList.SetColumn(2, "Item", giLenItem, CenterLeft, True)
+      oList.SetColumn(3, "Lot ", giLenLOTN, CenterLeft, True)
+      oList.SetColumn(4, "Qty ", giLenQTY,  CenterRight, True)
+      oList.SetColumn(5, "UOM ",         3, CenterLeft, True)
+      oList.SetColumn(6, "Doco",         8, CenterRight, True)
+      oList.SetColumn(7, "Dcto",         2, CenterLeft, True)
+      oList.SQL = sSql
+      '
+      sValue = oList.ShowList
+      '
+      nLNID = CLng(LField(sValue, Chr(3), 1))
+      sLITM = LField(sValue, Chr(3), 2)
+      sLOTN = LField(sValue, Chr(3), 3)
+      nLQty = LField(sValue, Chr(3), 4)
+      sUOM  = LField(sValue, Chr(3), 5)
+      sDOCO = LField(sValue, Chr(3), 6)
+      sDCTO = LField(sValue, Chr(3), 7)
+
+      If nLNID = 0 Then Exit Function  ' nothing selected
+      '
+      bMixedLP = True
+    End If
+  End If
+  '
+  sSql = "select LMLOCN from F55101 where LMLPID = '" & sLPID & "' "
+  nErrNo = DB.Execute(sSql, sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+  '
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  If Len(sRows) > 0 Then
+    sLOCN = DB.Extract(sCols, sRows, 1, "LMLOCN")
+  End If
+  '
+  LP_GetItem = True
+  '
+End Function
+
+Public Function LP_FindItem(ByRef sLPID As String, ByRef nLNID As Long, ByRef sLITM As String, ByRef sLOTN As String, ByRef nLQty As Currency, ByRef sUOM As String, ByRef sLOCN As String, ByRef bMixedLP As Boolean, Optional ByRef sDOCO As String, Optional ByRef sDCTO As String, Optional ByRef sSN As String) As Boolean
+  '
+  ' Get Iten from LP, if only one line do not show selection List.Data
+  '
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim nErrNo  As Long
+  '
+  msTNID = "LP_GetItem"
+  LP_FindItem = False
+  '
+  ' Get LP from LPID
+  '
+  sSql = "select LDLNID, LDLITM, LDLOTN, LDUORG, LDUOM, LDRDOCO, LDRDCTO from F55102 " & _
+  " where LDLPID = '" & sLPID & "' "
+  '
+  If Len(Trim(sLITM)) > 0 Then sSql = sSql & "and LDLITM = '" & sLITM & "' "
+  If Len(Trim(sLOTN)) > 0 Then sSql = sSql & "and LDLOTN = '" & sLOTN & "' "
+  '
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+  '
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  If Len(Trim(sRows)) > 0 Then
+    nLNID =      DB.Extract(sCols,sRows,1,"LDLNID")
+    sLITM = Trim(DB.Extract(sCols,sRows,1,"LDLITM"))
+    sLOTN = Trim(DB.Extract(sCols,sRows,1,"LDLOTN"))
+    nLQty =      DB.Extract(sCols,sRows,1,"LDUORG")
+    sUOM  = Trim(DB.Extract(sCols,sRows,1,"LDUOM"))
+    sDOCO =      DB.Extract(sCols,sRows,1,"LDRDOCO")
+    sDCTO = Trim(DB.Extract(sCols,sRows,1,"LDRDCTO"))
+    '
+  Else
+    Exit Function
+  End If
+  '
+  If DB.Count(sRows) > 1 Then
+    bMixedLP = True
+  End If
+  '
+  sSql = "select LMLOCN from F55101 where LMLPID = '" & sLPID & "' "
+  nErrNo = DB.Execute(sSql, sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+  '
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  If Len(sRows) > 0 Then
+    sLOCN = DB.Extract(sCols, sRows, 1, "LMLOCN")
+  End If
+  '
+  LP_FindItem = True
+  '
+End Function
+
+Public Function LP_FindSOLine(ByRef nDOCO As Long, ByRef sDCTO As String, ByRef sRLNID As Currency, ByRef sStatusF As String, ByRef sStatusT As String, ByRef sLPID As String, ByRef sLOTN As String, ByRef vLPArray As Variant, ByRef nLPQty As Currency, ByRef nSOQS As Currency) As Boolean
+  '
+  ' Find LP by SO#
+  ' provide LPID to search on one LP only
+  '
+  On Error Resume Next
+  '
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sCols1      As String
+  Dim sRows1      As String
+  Dim sLMLPID     As String
+  Dim sLITM       As String
+  Dim sUOM        As String
+  Dim sLOTS       As String
+  Dim sLOCN       As String
+  Dim nLNID       As Integer
+  Dim nErrNo      As Long
+  Dim nRLNID      As Currency
+  Dim nQty        As Currency
+  Dim iCnt        As Integer
+  '
+  msTNID = "LP_FindSOLine"
+  LP_FindSOLine = False
+  '
+  If cFormatJDE Then
+    nRLNID = ConvDecimalsToSQL("LNID", sRLNID)
+  Else
+    nRLNID = sRLNID
+  End If
+  '
+  sSql = "select LDLPID, LDLNID, LDLITM, LDLOTN, LDUORG, LDUOM, LDSOQS from F55102" & _
+  " where LDRDOCO = " & nDOCO & " and LDRDCTO = '" & sDCTO & "' and LDRLLN = " & nRLNID & " " & _
+  " and LDRNXTR between '" & sStatusF & "' and '" & sStatusT & "' "
+  '
+  If Len(Trim(sLPID)) > 0 Then sSql = sSql & " and LDLPID = '" & sLPID & "' "
+  If Len(Trim(sLOTN)) > 0 Then sSql = sSql & " and LDLOTN = '" & sLOTN & "' "
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+  '
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  For iCnt  = 1 To DB.Count(sRows)
+    '
+    sLMLPID = Trim(DB.Extract(sCols, sRows, iCnt, "LDLPID"))
+    nLNID   =      DB.Extract(sCols, sRows, iCnt, "LDLNID")
+    sLITM   = Trim(DB.Extract(sCols, sRows, iCnt, "LDLITM"))
+    sLOTN   =      DB.Extract(sCols, sRows, iCnt, "LDLOTN")
+    If gbOracleLP And Len(sLOTN) = 0 Then sLOTN = " "
+    sUOM    = Trim(DB.Extract(sCols, sRows, iCnt, "LDUOM"))
+
+    If cFormatJDE Then
+      nQty    = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, iCnt, "LDUORG"))
+    Else
+      nQty    = Trim(DB.Extract(sCols, sRows, iCnt, "LDUORG"))
+    End If
+
+    sLOTS   =      DB.Extract(sCols, sRows, iCnt, "LDLOTS")
+    If Len(sLOTS) = 0 Then sLOTS = " "
+
+    vLPArray = Rep(vLPArray,1, -1, sLMLPID)
+    vLPArray = Rep(vLPArray,2, -1, nLNID)
+    vLPArray = Rep(vLPArray,3, -1, sLITM)
+    vLPArray = Rep(vLPArray,4, -1, sLOTN)
+    vLPArray = Rep(vLPArray,5, -1, sUOM)
+    vLPArray = Rep(vLPArray,6, -1, nQty)
+    vLPArray = Rep(vLPArray,7, -1, sLOTS)
+      '
+     sSql = "select LMLOCN from F55101 where LMLPID = '" & sLMLPID & "' "
+    nErrNo = DB.Execute(sSql,sCols1,sRows1)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+    '
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+      Exit Function
+    End If
+    '
+    If Len(sRows1) > 0 Then
+      If cFormatJDE Then
+        sLOCN = FormatLocnDisplay(DB.Extract(sCols1, sRows1, 1, "LMLOCN"), App.GetValue("tmMCU"))
+      Else
+        sLOCN = DB.Extract(sCols1, sRows1, 1, "LMLOCN")
+      End If
+    End If
+    vLPArray = Rep(vLPArray,8, -1, sLOCN)
+    '
+    nLPQty = nLPQty + nQty
+
+  Next iCnt
+'
+  sSql = "select SDSOQS from F4211" & _
+  " where SDDOCO = " & nDOCO & " and SDDCTO = '" & sDCTO & "' and SDLNID = " & nRLNID & " " & _
+  " and LDRNXTR between '" & sStatusF & "' and '" & sStatusT & "' "
+  '
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+  '
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  nSOQS = ConvDecimalsFromSQL("SOQS", DB.Extract(sCols, sRows, 1, "SDSOQS"))
+
+  '
+  LP_FindSOLine = Len(Trim(vLPArray)) > 0
+  '
+End Function
+
+Public Function LP_AttachToParent(ByRef ValidateOnly As Boolean, ByRef sLPID As String, ByRef sPalp As String) As Boolean
+  '
+  ' Check if already attached else attach to Parent LP
+  '
+  On Error Resume Next
+  '
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sOwner      As String
+  Dim sChildType  As String
+  Dim sParentType As String
+  Dim nErrNo      As Long
+  Dim nChildCube  As Currency
+  Dim nParentCube As Currency
+  '
+  Dim uLP101C     As LP101Data      ' Child
+  Dim uLP101P     As LP101Data      ' Parent
+  '
+  LP_AttachToParent = False
+  '
+  ' get Child
+  '
+  uLP101C.sLMLPID = sLPID
+  uLP101C.sLMMCU  = App.GetValue("tmMCU")
+  If Not X_LP101("I",uLP101C)  Then
+    LP_MsgBox(GetMsg(104))
+    Exit Function
+  End If
+  '
+  sOwner = uLP101C.sLMPALP
+  sChildType = uLP101C.sLMTYPE
+  '
+  If (Len(sOwner)>0) Then                 ' already attached to other parent
+    LP_MsgBox(GetMsg(13) & sOwner)
+    Exit Function
+  End If
+  '
+  ' get Parent
+  '
+  uLP101P.sLMLPID = sPalp
+  uLP101P.sLMMCU  = App.GetValue("tmMCU")
+  If Not X_LP101("I",uLP101P)  Then
+    LP_MsgBox(GetMsg(104))
+    Exit Function
+  End If
+ '
+  sParentType = uLP101P.sLMTYPE
+  '
+'  If sParentType =  "L" Then Exit Function  ' do not calculate Loads
+  '
+  ' get Cube from Child LP
+  '
+  sSql = "select LTCUBE from LP008 where LTCO = '%tmEntity' and LTTRAI = '" & sChildType & "' "
+  DB.Execute(sSql, sCols, sRows)
+  nChildCube = DB.Extract(sCols,sRows,1,1)
+
+  ' get Cube from Parent LP
+  sSql = "select LTCUBE from LP008 where LTCO = '%tmEntity' and LTTRAI = '" & sParentType & "' "
+  DB.Execute(sSql, sCols, sRows)
+  nParentCube = DB.Extract(sCols,sRows,1,1)
+
+  If nChildCube > nParentCube Then
+    LP_MsgBox GetMsg(145)
+    Exit Function
+  End If
+  '
+  If ValidateOnly Then Exit Function
+  '
+  Call LP101Hist(uLP101C)
+  '
+  uLP101C.sLMPALP = sPalp
+  uLP101C.sLMLOCN = App.GetValue("tmNLOCN")
+  uLP101C.sLMMCU  = App.GetValue("tmNMCU")
+  '
+  If Not X_LP101("C",uLP101C) Then
+    Exit Function
+  End If
+  '
+  LP_AttachToParent = True
+  '
+End Function
+
+'Read LP structure for ship confirm
+
+Public Function LP_ShipReadStruct(ByVal sPalp As String, ByRef sLPArray As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sSql1   As String
+  Dim sCols1  As String
+  Dim sRows1  As String
+  Dim sSql2   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sDate   As String
+  Dim sTime   As String
+  Dim sUser   As String
+  Dim sLPID   As String
+  Dim s2PALP  As String
+  Dim sLOCN   As String
+  Dim nCARS   As Long
+  Dim iCnt    As Long
+  Dim iCnt1   As Long
+  Dim iCnt2   As Long
+  Dim nErrNo  As Long
+  '
+  msTNID = "LP_ShipReadStruct"
+  '
+  LP_ShipReadStruct = False
+  '
+  sSql = "select * from F55101 where LMLPID = '" & sPalp & "' "
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+  '
+  If (nErrNo<>0) Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+
+  If Len(sRows) > 0 Then
+    For iCnt = 1 To DB.Count(sRows)
+      sLPID = Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID"))
+      sLOCN = Trim(DB.Extract(sCols,sRows,iCnt,"LMLOCN"))
+      sLOCN = FormatLocnDisplay(sLOCN, App.GetValue("tmMCU"))
+      nCARS = Val(DB.Extract(sCols,sRows,iCnt,"LMCARS"))
+      '
+      'get details from F55102
+      '
+      sSql1 = "select * from F55102 where LDLPID = '" & sLPID & "' order by LDRDOCO, LDRLLN"
+      DB.Execute(sSql1,sCols1,sRows1)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql1, "'", "`"))
+
+      If (nErrNo<>0) Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql1, "'", "`"))
+        Exit Function
+      End If
+
+      For iCnt1 = 1 To DB.Count(sRows1)
+        sLPArray = Rep(sLPArray,01, -1, sLPID)
+        sLPArray = Rep(sLPArray,02, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDRDOCO")))
+        sLPArray = Rep(sLPArray,03, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDRDCTO")))
+        sLPArray = Rep(sLPArray,04, -1, ConvDecimalsFromSQL("LNID", DB.Extract(sCols1, sRows1, iCnt1, "LDRLLN")))
+        sLPArray = Rep(sLPArray,05, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLITM")))
+        sLPArray = Rep(sLPArray,06, -1, DB.Extract(sCols1, sRows1, iCnt1, "LDLOTN"))
+        sLPArray = Rep(sLPArray,07, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUOM")))
+        sLPArray = Rep(sLPArray,08, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUORG")))
+        sLPArray = Rep(sLPArray,09, -1, sLOCN)
+        sLPArray = Rep(sLPArray,10, -1, nCARS)
+        sLPArray = Rep(sLPArray,11, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDRNXTR")))
+        sLPArray = Rep(sLPArray,12, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLNID")))
+      Next iCnt1
+
+      ' search for childs                                                                                  ' get all childs
+      sSql2 = "select LMLPID from F55101 where LMPALP = '" & sPalp & "' order by LMLPID"
+
+      nErrNo = DB.Execute(sSql2,sCols2,sRows2)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql2, "'", "`"))
+
+      If (nErrNo<>0) Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql2, "'", "`"))
+        Exit Function
+      End If
+
+      If DB.Count(sRows2) > 0 Then
+
+      End If
+
+      For iCnt2 = 1 To DB.Count(sRows2)
+        s2PALP = Trim(DB.Extract(sCols2,sRows2,iCnt2,"LMLPID"))
+        LP_ShipReadStruct(s2PALP,sLPArray)       ' recursive call for next level
+      Next iCnt2
+    Next iCnt
+  End If
+  '
+  LP_ShipReadStruct = True
+  '
+End Function
+
+  ' Detach all pallets from a load and removes all items directly attached to the Load
+  '
+  Public Function LP_DetachAllItems(ByVal sPalp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim nErrNo As Long
+  Dim iCnt   As Long
+  '
+  Dim uLP101 As LP101Data
+  Dim uLP102 As LP102Data
+  '
+  ' Destroy all items attached direct to the Load
+  '
+  msTNID = "LP_DetachAllItems"
+  '
+  sSql = "select LDLNID, LDUORG from F55102 where LDLPID = '" & sPalp & "'"
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+  '
+  If (nErrNo<>0) Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  uLP102.sLDLPID = sPalp
+  '
+  For iCnt = 1 To DB.Count(sRows)
+    uLP102.nLDLNID = DB.Extract(sCols,sRows,iCnt,"LDLNID")
+    Call X_LP102("D", uLP102)
+  Next iCnt
+  '
+  ' Detach all Pallets from Load
+  '
+  sSql = "select LMLPID from F55101 where LMPALP = '" & sPalp & "'"
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql, "'", "`"))
+  '
+  If (nErrNo<>0) Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+   '
+  For iCnt = 1 To DB.Count(sRows)
+    uLP101.sLMLPID = DB.Extract(sCols,sRows,iCnt,"LMLPID")
+    Call X_LP101("I", uLP101)
+
+    uLP101.sLMPALP = ""
+    Call X_LP101("C", uLP101)
+  Next iCnt
+  '
+  LP_DetachAllItems = True
+  '
+End Function
+
+'Read Load structure
+Public Function Search_LP101Structure2(ByVal sPalp As String, ByRef sLPArray As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sSql1   As String
+  Dim sCols1  As String
+  Dim sRows1  As String
+  Dim sSql2   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sDate   As String
+  Dim sTime   As String
+  Dim sUser   As String
+  Dim sLPID   As String
+  Dim s2PALP  As String
+  Dim sLOCN   As String
+  Dim nCARS   As Long
+  Dim iCnt    As Long
+  Dim iCnt1   As Long
+  Dim iCnt2   As Long
+  Dim nErrNo  As Long
+  '
+  msTNID = "LP_ShipReadStruct"
+  Search_LP101Structure2 = False
+  '
+  sSql = "select * from F55101 where LMLPID = '" & sPalp & "' "
+  nErrNo = DB.Execute(sSql,sCols,sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql, "'", "`"))
+  '
+  If (nErrNo<>0) Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+
+  If Len(sRows) > 0 Then
+    For iCnt = 1 To DB.Count(sRows)
+      sLPID = Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID"))
+      sLOCN = Trim(DB.Extract(sCols,sRows,iCnt,"LMLOCN"))
+      sLOCN = FormatLocnDisplay(sLOCN, App.GetValue("tmMCU"))
+      nCARS = Val(DB.Extract(sCols,sRows,iCnt,"LMCARS"))
+      '
+      'get details from F55102
+      '
+      sSql1 = "select * from F55102 where LDLPID = '" & sLPID & "' order by LDRDOCO, LDRLLN"
+      DB.Execute(sSql1,sCols1,sRows1)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP102", Replace(sSql1, "'", "`"))
+
+      If (nErrNo<>0) Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP102", Replace(sSql1, "'", "`"))
+        Exit Function
+      End If
+
+      For iCnt1 = 1 To DB.Count(sRows1)
+        sLPArray = Rep(sLPArray,01, -1, sLPID)
+        sLPArray = Rep(sLPArray,02, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDRDOCO")))
+        sLPArray = Rep(sLPArray,03, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDRDCTO")))
+        sLPArray = Rep(sLPArray,04, -1, ConvDecimalsFromSQL("LNID", DB.Extract(sCols1, sRows1, iCnt1, "LDRLLN")))
+        sLPArray = Rep(sLPArray,05, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLITM")))
+        sLPArray = Rep(sLPArray,06, -1, DB.Extract(sCols1, sRows1, iCnt1, "LDLOTN"))
+        sLPArray = Rep(sLPArray,07, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUOM")))
+        sLPArray = Rep(sLPArray,08, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUORG")))
+        sLPArray = Rep(sLPArray,09, -1, sLOCN)
+        sLPArray = Rep(sLPArray,10, -1, nCARS)
+        sLPArray = Rep(sLPArray,11, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDRNXTR")))
+        sLPArray = Rep(sLPArray,12, -1, Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLNID")))
+      Next iCnt1
+
+      ' search for childs                                                                                  ' get all childs
+      sSql2 = "select LMLPID from F55101 where LMPALP = '" & sPalp & "' order by LMLPID"
+
+      nErrNo = DB.Execute(sSql2,sCols2,sRows2)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP101", Replace(sSql2, "'", "`"))
+
+      If (nErrNo<>0) Then
+        If Ext(gsLog,6) = "1" Then Call TranLog(msTNID, "6", "LP101", Replace(sSql2, "'", "`"))
+        Exit Function
+      End If
+
+      If DB.Count(sRows2) > 0 Then
+
+      End If
+
+      For iCnt2 = 1 To DB.Count(sRows2)
+        s2PALP = Trim(DB.Extract(sCols2,sRows2,iCnt2,"LMLPID"))
+        LP_ShipReadStruct(s2PALP,sLPArray)       ' recursive call for next level
+      Next iCnt2
+    Next iCnt
+  End If
+  '
+  Search_LP101Structure2 = True
+  '
+End Function
+
+  ' Validate LP exists
+  '
+  Public Function LP_Validate(ByVal sLPID As String, ByRef sError As String, ByRef bExists As Boolean) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sText  As String
+  Dim sEnti  As String
+  Dim i      As Integer
+  '
+  msTNID = "LP_Validate"
+  LP_Validate = False
+  '
+  If Trim(App.GetValue("tmENTITY")) = "" Then
+    If LP_ValidateEntity(App.GetValue("tmMCU"), sEnti) Then
+      App.SetValue("tmEntity", sEnti)
+    Else
+      Exit Function
+    End If
+  End If
+  '
+  ' Validate pre printed label format
+  '
+  If gbLPPrePrnt Then
+    '
+    sText = gsLPLead
+    For i = 1 To giLenLP
+      sText = sText & "x"
+    Next
+    '
+    If Len(Trim(gsLPLead)) > 0 And Left(Trim(sLPID), Len(Trim(gsLPLead))) <> Trim(gsLPLead) Then
+      sError = GetMsg(274) & vbCrLf & sText
+      Exit Function
+    End If
+    '
+    If giLenLP > 0 Then
+      If Len(Trim(sLPID)) <> giLenLP Then
+        sError = GetMsg(274) & vbCrLf & sText
+        Exit Function
+      End If
+    End If
+  End If
+  '
+  ' Validate LP101 exists
+  '
+  bExists = True
+  sSql = "select count(*) from F55101 where LMLPID = '" & sLPID & "' "
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Val(sRows) = 0 Then
+    bExists = False
+    Exit Function
+  End If
+  '
+  LP_Validate = True
+  '
+End Function
+
+
+  ' LP.bas error messages
+  '
+  Public Function LP_MsgBox(ByVal sMsg As String) As Boolean
+  On Error Resume Next
+  '
+  If Not gbLPSilent Then
+    App.MsgBox(sMsg)
+  Else
+    App.LogError("LP.bas",sMsg)
+    Call TranLog(msTNID, "LP.bas", sMsg)
+  End If
+
+End Function
+</Code>

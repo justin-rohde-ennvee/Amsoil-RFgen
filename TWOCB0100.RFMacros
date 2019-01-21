@@ -1,0 +1,297 @@
+﻿<Record FileDesc="WO - CoBy Completion" FileVersion="5.0.8.0" Desc="WO - CoBy Completion">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmOPSQ" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmSCRAP" />
+<Param Name="tmUOM" />
+<Param Name="tmSTRX" />
+<Param Name="tmDRQJ" />
+<Param Name="tmCOBY" />
+<Param Name="tmSOQS" />
+<Param Name="tmSOCN" />
+<Param Name="tmBSEQ" />
+<Param Name="tmUKID" />
+<Param Name="tmDRKY" />
+<Param Name="tmDRKYDESC" />
+<Param Name="tmUSER" />
+<Param Name="tmZVERSION" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - CO-BY COMPLETIONS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TWOCB0100"
+Private Const cPGM            = "P31114"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmOPSQ As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmSCRAP As Variant, ByRef tmUOM As Variant, ByRef tmSTRX As Variant, ByRef tmDRQJ As Variant, ByRef tmCOBY As Variant, ByRef tmSOQS As Variant, ByRef tmSOCN As Variant, ByRef tmBSEQ As Variant, ByRef tmUKID As Variant, ByRef tmDRKY As Variant, ByRef tmDRKYDESC As Variant, ByRef tmUSER As Variant, ByRef tmZVERSION As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim nBatchNo    As Currency
+  Dim nJobNo      As Currency
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sITM        As String
+  Dim sAITM       As String
+  Dim sKEYID      As String
+  Dim sLINEID     As String
+  Dim sKUORG      As String
+  Dim sKTRQT      As String
+  Dim sSTATUS     As String
+  Dim sORDDATE    As String
+  Dim sREQDATE    As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  Dim emGetAuditInfo                  As New EmbeddedProc
+  Dim emGetInternalNextNumber         As New EmbeddedProc
+  Dim emCacheCoByProductCompletion    As New EmbeddedProc
+  Dim emCo_ByCompletionsBeginDoc      As New EmbeddedProc
+  Dim emCo_ByCompletionsEditLine      As New EmbeddedProc
+  Dim emCo_ByCompletionsEndDoc        As New EmbeddedProc
+  Dim emError                         As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+  '
+  tmPGM = cPGM
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+    '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+    '
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo)
+    GoTo ExitE1
+  End If
+
+  ' Get default information for this item
+  sSQL = "select IBITM, IBAITM, IBGLPT from  F4102" & _
+         " where IBLITM = '" & tmLITM & "' and IBMCU = '" & tmMCU & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4102", Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4102", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sITM  = DB.Extract(sCols,sRows,1,"IBITM")
+  sAITM = DB.Extract(sCols,sRows,1,"IBAITM")
+    '
+  '-----------------------'
+  ' GetInternalNextNumber '
+  '-----------------------'
+  emGetInternalNextNumber.Name       = "GetInternalNextNumber"
+  emGetInternalNextNumber.DataSource = "JDE"
+
+  emGetInternalNextNumber.Execute
+
+  nJobNo = emGetInternalNextNumber.Param("JobnumberA")
+
+  '----------------------------'
+  ' CacheCoByProductCompletion '
+  '----------------------------'
+  emCacheCoByProductCompletion.Name       = "CacheCoByProductCompletion"
+  emCacheCoByProductCompletion.LogMode = LogNever
+  emCacheCoByProductCompletion.DebugLog   = cJDELogPath
+
+  emCacheCoByProductCompletion.Param("CacheActionCode")           = "7"
+  emCacheCoByProductCompletion.Param("NumberKeys")                = "3"
+  emCacheCoByProductCompletion.Param("SuppressErrorMessage")      = " "
+  emCacheCoByProductCompletion.Param("ErrorMessageID")            = " "
+  emCacheCoByProductCompletion.Param("CacheCursor")               = 0
+  emCacheCoByProductCompletion.Param("JobNumber")                 = nJobNo
+  emCacheCoByProductCompletion.Param("SequenceNumber")            = tmBSEQ
+  emCacheCoByProductCompletion.Param("RecordNumber")              = tmUKID
+  emCacheCoByProductCompletion.Param("ShortItemNumber")           = sITM
+  emCacheCoByProductCompletion.Param("BranchComponent")           = tmMCU
+  emCacheCoByProductCompletion.Param("Location")                  = tmLOCN
+  emCacheCoByProductCompletion.Param("LotSN")                     = " "
+  emCacheCoByProductCompletion.Param("MaterialStatusCode")        = " "
+  emCacheCoByProductCompletion.Param("LotStatusCode")             = " "
+  emCacheCoByProductCompletion.Param("LotGrade")                  = " "
+  emCacheCoByProductCompletion.Param("LotPotency")                = 0
+  emCacheCoByProductCompletion.Param("QuantityOrdered")           = " "
+  emCacheCoByProductCompletion.Param("QuantityCompleted")         = tmSOQS
+  emCacheCoByProductCompletion.Param("QuantityScrapped")          = tmSOCN
+  emCacheCoByProductCompletion.Param("UnitOfMeasureAsInput")      = tmUOM
+  emCacheCoByProductCompletion.Param("CompletionDate")            = tmSTRX
+  emCacheCoByProductCompletion.Param("RequestedDate")             = tmDRQJ
+  emCacheCoByProductCompletion.Param("OperationSequence")         = tmOPSQ
+  emCacheCoByProductCompletion.Param("TransactionQuantity")       = " "
+  emCacheCoByProductCompletion.Param("QuantityScrapVairance")     = " "
+  emCacheCoByProductCompletion.Param("UnitOfMeasure")             = " "
+  emCacheCoByProductCompletion.Param("CoByProduct")               = tmCOBY
+  emCacheCoByProductCompletion.Param("ResourcePercent")           = " "
+  emCacheCoByProductCompletion.Param("ReasonCode")                = " "
+  emCacheCoByProductCompletion.Param("ActionCode")                = "I"
+  emCacheCoByProductCompletion.Param("MemoLot1")                  = " "
+  emCacheCoByProductCompletion.Param("MemoLot2")                  = " "
+  emCacheCoByProductCompletion.Param("LocationFileFormat")        = " "
+  emCacheCoByProductCompletion.Param("LotExpirationDate")         = " "
+  emCacheCoByProductCompletion.Param("SecondaryUnitOfMeasure")    = " "
+  emCacheCoByProductCompletion.Param("SecondaryCompletedQty")     = " "
+  emCacheCoByProductCompletion.Param("SecCompletedToDate")        = " "
+  emCacheCoByProductCompletion.Param("DualUnitOfMeasureItem")     = " "
+  emCacheCoByProductCompletion.Param("LotEffectiveDate")          = " "
+  emCacheCoByProductCompletion.Param("SellByDate")                = " "
+  emCacheCoByProductCompletion.Param("BestBeforeDate")            = " "
+  emCacheCoByProductCompletion.Param("BasedOnDate")               = " "
+  emCacheCoByProductCompletion.Param("UserLotDate1")              = " "
+  emCacheCoByProductCompletion.Param("UserLotDate2")              = " "
+  emCacheCoByProductCompletion.Param("UserLotDate3")              = " "
+  emCacheCoByProductCompletion.Param("UserLotDate4")              = " "
+  emCacheCoByProductCompletion.Param("UserLotDate5")              = " "
+  '
+  If Not emCacheCoByProductCompletion.Execute Then
+    sErrDesc = "CacheCoByProductCompletion"
+    'If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emCacheCoByProductCompletion.Name, "", emCacheCoByProductCompletion)
+    GoTo ExitE1
+  End If
+
+  '--------------------------'
+  ' Co_ByCompletionsBeginDoc '
+  '--------------------------'
+  emCo_ByCompletionsBeginDoc.Name       = "Co_ByCompletionsBeginDoc"
+  emCo_ByCompletionsBeginDoc.DataSource = "JDE"
+  '
+  emCo_ByCompletionsBeginDoc.Param("JobnumberA_JOBS")               = emCacheCoByProductCompletion.Param("JobNumber")
+  emCo_ByCompletionsBeginDoc.Param("SuppressErrorMessages_EV01")    = "1"
+  emCo_ByCompletionsBeginDoc.Param("ErrorCode_ERRC")                = " "
+  emCo_ByCompletionsBeginDoc.Param("ErrorMessageID_DTAI")           = " "
+  emCo_ByCompletionsBeginDoc.Param("ComputerID_CTID")               = emGetAuditInfo.Param("Workstation_UserId")
+  emCo_ByCompletionsBeginDoc.Param("ProgramId_PID")                 = " "
+  emCo_ByCompletionsBeginDoc.Param("Version_VERS")                  = " "
+  emCo_ByCompletionsBeginDoc.Param("DocumentOrderInvoiceE_DOCO")    = tmDOCO
+  '
+  If Not emCo_ByCompletionsBeginDoc.Execute Then
+      sErrDesc = "BeginDoc Error"
+      'If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emCo_ByCompletionsBeginDoc.Name, "", emCo_ByCompletionsBeginDoc)
+      GoTo ExitE1
+  End If
+
+  '--------------------------'
+  ' Co_ByCompletionsEditLine '
+  '--------------------------'
+  emCo_ByCompletionsEditLine.Name       = "Co_ByCompletionsEditLine"
+  emCo_ByCompletionsEditLine.DataSource = "JDE"
+  '
+  emCo_ByCompletionsEditLine.Param("JobNumber_JOBS")                = emCacheCoByProductCompletion.Param("JobNumber")
+  emCo_ByCompletionsEditLine.Param("ComputerID_CTID")               = emGetAuditInfo.Param("Workstation_UserId")
+  emCo_ByCompletionsEditLine.Param("SuppressErrorMessages_EV01")    = " "
+  emCo_ByCompletionsEditLine.Param("ErrorCode_ERRC")                = " "
+  emCo_ByCompletionsEditLine.Param("ErrorMessageID_DTAI")           = " "
+  emCo_ByCompletionsEditLine.Param("ExpirationDate_MMEJ")           = " "
+  emCo_ByCompletionsEditLine.Param("CalledFromSuperBackflush")      = " "
+  '
+  If Not emCo_ByCompletionsEditLine.Execute Then
+      sErrDesc = "EditLine"
+      'If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emCo_ByCompletionsEditLine.Name, "", emCo_ByCompletionsEditLine)
+      GoTo ExitE1
+  End If
+
+  emCo_ByCompletionsEditLine.Execute
+
+  '------------------------'
+  ' Co_ByCompletionsEndDoc '
+  '------------------------'
+  emCo_ByCompletionsEndDoc.Name       = "Co_ByCompletionsEndDoc"
+  emCo_ByCompletionsEndDoc.DataSource = "JDE"
+  '
+  emCo_ByCompletionsEndDoc.Param("JobNumber_JOBS")                = emCacheCoByProductCompletion.Param("JobNumber")
+  emCo_ByCompletionsEndDoc.Param("ComputerID_CTID")               = emGetAuditInfo.Param("Workstation_UserId")
+  emCo_ByCompletionsEndDoc.Param("SuppressErrorMessages_EV01")    = "1"
+  emCo_ByCompletionsEndDoc.Param("ErrorCode_ERRC")                = " "
+  emCo_ByCompletionsEndDoc.Param("ErrorMessageID_DTAI")           = " "
+  emCo_ByCompletionsEndDoc.Param("LastCoProductLineNo_CPNB")      = " "
+  emCo_ByCompletionsEndDoc.Param("LastByProductLineNo_CPNB")      = " "
+  '
+  If Not emCo_ByCompletionsEndDoc.Execute Then
+      sErrDesc = "EndDoc"
+      'If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emCo_ByCompletionsEndDoc.Name, "", emCo_ByCompletionsEndDoc)
+      GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emGetAuditInfo                = Nothing
+  Set emCo_ByCompletionsBeginDoc    = Nothing
+  Set emCo_ByCompletionsEndDoc      = Nothing
+  Set emError                       = Nothing
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+
+End Function
+</Code>

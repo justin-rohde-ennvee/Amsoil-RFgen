@@ -1,0 +1,538 @@
+﻿<Record FileDesc="WO - Print Pick Slip" FileVersion="5.0.8.0" Desc="WO - Print Pick Slip" Group="WO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDOCO&vm;txtDCTO&vm;txtAccept" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="4" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="73" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="47" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption=" WO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="103" Height="22" AnchorRight="89" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="3" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="44" Width="47" Height="22" AnchorRight="41" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="39" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="151" Height="22" AnchorRight="89" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[WO - Pick Slip]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2007 The DataMAX Software Group, Inc., All Rights Reserved.|
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: WO Print Pick Slip
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+
+Option Explicit
+
+Private Const cPgm          = "P4113"
+
+Private Const cTRANDESC     = "RFGen WO Pick Slip"
+Private Const cForceLOTN    = False    ' True = force User to confirm same Lot Number
+Private Const cForceLOCN    = False    ' True = force User to confirm same Location
+Private Const cTNId         = "FWOPS0100"
+
+Private msVersion    As String    ' Inv. Transfer
+Private msStatusF   As String     ' Status SDNXTR
+Private msStatusT   As String     ' Status SDNXTR
+Private msStatusLP  As String     ' Status LP after Pick Confirm in Case the Proc.Option is set to blanks
+Private msITDocType As String     ' DocType for Inv.Transfer
+Private mbRelInv    As Boolean    ' True = relieve OnHand inventory
+Private mbAddFr     As Boolean    ' True = allow to add Freight Line
+Private msPickLocn  As String     ' PH 09/08/08
+Private mnQtyVarPct As Currency   ' PH 09/09/08 - quantity variance tolerance percentage
+Private mnQtyOpen   As Currency
+Private mnLPQty     As Currency   ' PH 09/30/08
+
+Private mnMaxQty     As Currency
+Private mnTotLPQty   As Currency
+Private mnMaxQoH     As Currency
+Private gsLPSource   As String
+Private msHardLOCN   As String
+Private msHardLOTN   As String
+Private msFrmLP      As String
+Private mnFrmLNID    As Long
+Private mbSerialized As Boolean
+Private mbIsPlate    As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  Dim sFieldId As String
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+  '
+  sFieldId = RFPrompt(iCN).FieldId
+  '
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sHeader As String
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu for Inv.Transfer
+  msVersion = App.GetValue("Vers")
+
+  ' get DocType from Proc.Opt. for Inv. Transfer
+  msITDocType = GetProcOpt("P4113",msVersion,"1;1", sHeader)
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msStatusF = "30"
+  msStatusT = "89"
+
+  '
+  ' User printer defined?
+  If Len(Trim(GetUserInfo("WINDOWSPRINTER"))) = 0 Then
+    App.MsgBox GetMsg(265)
+    App.ExitForm
+  End If
+
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLOCN As String
+  Dim sLITM As String
+  Dim sITM  As String
+  Dim sUOM  As String
+  Dim sUOM1 As String
+  Dim sLOTN As String
+  Dim nQTY     As Currency
+  Dim nPickQty As Currency
+  Dim nUORG As Currency
+  Dim sPkArray As String
+  Dim iCnt  As Integer
+  Dim iCnt2 As Integer
+  Dim iCnt3 As Integer
+  Dim iFind As Integer
+  Dim sColsLP As String
+  Dim sRowsLP As String
+  Dim sKey    As String
+  Dim sCols2 As String
+  Dim sRows2 As String
+  Dim bSuccess As Boolean
+  Dim sLPID As String
+  Dim nCPNT As Currency
+  Dim sDRKY As String
+  Dim dOK    As Double
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  Dim sPrint    As String
+  Dim sValCache As String
+  
+  '
+  ' Print report header
+  '
+  ' select printer and setup page
+'  Printer.Activate(GetUserInfo("WINDOWSPRINTER"))
+'  Printer.PageWidth = 196
+'  Printer.FontName = "Courier New"
+'  Printer.Orientation = 2
+'  '
+'  ' Print headings
+'  Printer.FontSize = 12
+'  Printer.Print("Report Title: WO Pick Slip")
+'  Printer.Print("Plant ID    : " & FixRight(App.GetValue("tmMCU"), 12, " "))
+'  Printer.Print("Work Order  : " & FixRight(App.GetValue("tmDOCO") & " " & App.GetValue("tmDCTO"), 12, " "))
+'  Printer.Print("Report Date : " & FixRight(Format(Date, "mm/dd/yyyy"), 12, " "))
+'  Printer.Print(" ")
+'  '
+''  Printer.FontSize = 9
+'  Printer.FontBold = True
+'  Printer.Print(FixLeft("Item Number",15," ") & " " & _
+'         FixRight("Qty Open",15," ") & " " & _
+'         FixLeft("Lot Number",15," ") & " " & _
+'         FixLeft("Location",10," ") & " " & _
+'         FixRight("Qty O/H",15," ") & " " & _
+'         FixLeft("Qty Picked",15," "))
+'  Printer.FontBold = False
+'  Printer.Print(" ")
+
+  App.SetValue("tmTITLE1", "Report Title: WO Pick Slip")
+  App.SetValue("tmTITLE2", "Plant ID    : " & FixLeft(App.GetValue("tmMCU"), 12, " "))
+  App.SetValue("tmTITLE3", "Work Order  : " & FixLeft(App.GetValue("tmDOCO") & " " & App.GetValue("tmDCTO"), 12, " "))
+  App.SetValue("tmTITLE4", "Report Date : " & FixLeft(Format(Date, "mm/dd/yyyy"), 12, " "))
+  App.SetValue("tmTITLE5", "Printed By  : " & FixLeft(App.User, 15, " ") & String(10, " ") & "Checked By: " & String(15, "_"))
+  '
+  App.SetValue("tmHEADING", FixLeft("Item Number",15," ") & " " & _
+                          FixRight("Qty Open",15," ") & " " & _
+                          FixLeft("Lot Number",15," ") & " " & _
+                          FixLeft("Location",10," ") & " " & _
+                          FixRight("Qty O/H",15," ") & " " & _
+                          FixLeft("Qty Picked",15," "))
+
+  '
+  ' Read all items on the parts List.Data
+  sSQL = "select WMCPIL, WMCPIT, WMUM, sum(WMUORG) as WMUORG from F3111" & _
+         " where WMDOCO = %tmDOCO" & _
+         " group by WMCPIL, WMCPIT, WMUM" & _
+         " order by WMCPIL, WMCPIT, WMUM"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox(GetMsg(259))
+    Exit Sub
+  End If
+
+  For iCnt = 1 To DB.Count(sRows)
+
+    sLITM = Trim(DB.Extract(sCols, sRows, iCnt, "WMCPIL"))
+    sITM  = Trim(DB.Extract(sCols, sRows, iCnt, "WMCPIT"))
+    nUORG = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, iCnt, "WMUORG"))
+    sUOM  = Trim(DB.Extract(sCols, sRows, iCnt, "WMUM"))
+    If sUOM <> "EA" Then ConvUOM(sITM, nUORG, "KG", sUOM)
+
+    '
+    ' Already picked complete?
+    sSQL = "select sum(LDUORG) from F55102" & _
+           " where LDRDOCO = '%tmDOCO' and LDRDCTO = '%tmDCTO' and LDLITM = '" & sLITM & "'"
+    DB.Execute(sSQL, sColsLP, sRowsLP)
+
+    mnTotLPQty = Val(sRowsLP)
+    mnQtyOpen   = Round((nUORG - mnTotLPQty), 3)
+
+    If mnQtyOpen > 0 Then
+
+      '
+      ' Get pick suggestions
+      sSQL = "select LILOTN, LILOCN, IMUOM1, SUM(LIPQOH) as QTY from F41021 inner join F4101" & _
+             " on LIITM = IMITM" & _
+             " where LIMCU = '%tmMCU' and IMLITM = '" & sLITM & "' and LILOTN <> ''" & _
+             " and (LILOTS = '' or LILOTS = ' ') and LILOCN between '1000' and '6000'" & _
+             " group by LILOTN, LILOCN, IMUOM1 order by LILOTN, LILOCN, IMUOM1"
+      DB.Execute(sSQL, sCols2, sRows2)
+
+      For iCnt2 = 1 To DB.Count(sRows2)
+
+        nQTY  = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols2, sRows2, iCnt2, "QTY"))
+
+        If nQTY > 0 Then
+          sLOCN = Trim(DB.Extract(sCols2, sRows2, iCnt2, "LILOCN"))
+          If gbOracleJDE And Len(Trim(sLOCN)) = 0 Then sLOCN = " "
+
+          sLOTN = Trim(DB.Extract(sCols2, sRows2, iCnt2, "LILOTN"))
+          If gbOracleJDE And Len(Trim(sLOTN)) = 0 Then sLOTN = " "
+          
+
+          '
+          ' LP exists in the location selected?
+          sSQL = "select count(*) from F55102 inner join F55101 on LDLPID = LMLPID" & _
+                 " where LDLITM = '" & sLITM & "' and LDLOTN = '" & sLOTN & "' and LMLOCN = '" & sLOCN & "'"
+          DB.Execute(sSQL, sColsLP, sRowsLP)
+
+          If Val(sRowsLP) > 0 Then
+
+
+            ' Convert quantity to primary to KG
+            sUOM1 = sUOM
+
+            If sUOM <> "EA" Then
+              ConvUOM(sITM, nQTY, "KG", sUOM)
+              sUOM1 = "KG"
+            End If
+
+            ConvUOM(sITM, nUORG, "KG", sUOM)
+            '
+            ' Print detail line
+            '
+            sPrint =          FixLeft(sLITM, 15," ") & " "
+            sPrint = sPrint & FixRight(mnQtyOpen & " KG", 15, " ") & " "
+            sPrint = sPrint & FixLeft(sLOTN, 15," ") & " "
+            sPrint = sPrint & FixLeft(sLOCN, 10," ") & " "
+            sPrint = sPrint & FixRight(Round(nQTY,3) & " KG",  15," ") & " "
+            sPrint = sPrint & "_______________"
+
+'            Printer.Print(sPrint)
+'            Printer.Print(" ")
+            sValCache = Rep(sValCache, iCnt, -1, sPrint)
+
+            bSuccess = True
+
+          End If
+
+        End If
+
+      Next iCnt2
+    End If
+
+    If Not bSuccess Then
+      sPrint =          FixLeft(sLITM, 15," ") & " "
+      sPrint = sPrint & FixRight(mnQtyOpen & " KG", 15, " ") & " "
+      sPrint = sPrint & FixLeft(" ", 15," ") & " "
+      sPrint = sPrint & FixLeft(" ", 10," ") & " "
+      sPrint = sPrint & FixRight(0 & " KG",  15," ") & " "
+'      Printer.Print(sPrint)
+'      Printer.Print(" ")
+      sValCache = Rep(sValCache, iCnt, -1, sPrint)
+    End If
+
+    bSuccess = False
+
+  Next iCnt
+
+  '
+  ' Close the print file
+'  Printer.EndDoc
+
+  Call PrintLabels("REPORT001", 1, "", 0, "", "", "", GetUserInfo("WINDOWSPRINTER"), "", "", iCnt, sValCache)
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",    "")
+  App.SetValue("tmMCU",   "")
+  App.SetValue("tmNMCU", "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",    sCompany)
+  App.SetValue("tmMCU",   sMCU)
+  App.SetValue("tmNMCU", sMCU)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtDOCO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDOCO", "")
+End Sub
+
+Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim iFind As Integer      ' PH 09/18/08
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  ' PH 09/18/08 - remove WO from scan
+  Rsp = UCase(Rsp)
+
+  iFind = InStr(Rsp, "WO")
+
+  If iFind > 0 Then
+    If Mid(Rsp, iFind-1, 1) = " " Then
+      Rsp = Mid(Rsp, 1, iFind - 2)
+    Else
+      Rsp = Mid(Rsp, 1, iFind - 1)
+    End If
+  End If
+  ' PH 09/18/08
+  '
+  sSQL = "select DISTINCT WADOCO, WADCTO from F4801" & _
+         " where WADOCO = " & Rsp & " and WASRST between '" & msStatusF & "' and '" & msStatusT & "' and WAMCU = '%tmMCU' " & _
+         " order by WADOCO, WADCTO "
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(228)
+    Exit Sub
+  End If
+  '
+  ' If Ordernumber is unique default DocType
+  '
+  If (DB.Count(sRows) = 1) Then
+    txtDCTO.Text = DB.Extract(sCols,sRows,1,"WADCTO")
+  End If
+  '
+  App.SetValue("tmDOCO", Rsp)
+  App.SetValue("tmRDOCO", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sDocType As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F4801_DOCO(Rsp, sMCU, msStatusF, msStatusT, sDocType)
+  If Not Cancel Then txtDCTO.Text = sDocType
+End Sub
+
+Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDCTO", "")
+End Sub
+
+
+Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sHold As String
+  Dim iCnt  As Integer      ' PH 09/30/08
+  Dim iFind As Integer      ' PH 09/30/08
+  Dim sKey  As String       ' PH 09/30/08
+  
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = UCase(Rsp)
+  '
+  sSQL = "select WALITM, WAUORG, WADL01 from  F4801" & _
+         " where WADCTO = '" & Rsp & "' and WADOCO = %tmDOCO and WAMCU = '%tmMCU'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(251)
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmDCTO", Rsp)
+  App.SetValue("tmRDCTO", Rsp)
+  '
+  Cancel = False
+  
+End Sub
+
+Private Sub txtDCTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  Dim vDoco As Variant
+  '
+  sMCU = App.GetValue("tmMCU")
+  vDoco = App.GetValue("tmDOCO")
+  '
+  Cancel = Not Search_F4801_DCTO(Rsp, sMCU, msStatusF, msStatusT, vDoco)
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+</Code>

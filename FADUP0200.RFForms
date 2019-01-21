@@ -1,0 +1,333 @@
+﻿<Record FileDesc="ADM - Import User Profiles" FileVersion="5.0.8.0" Desc="ADM - Import User Profiles" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtPath&vm;lbxProfile&vm;cmdImport&vm;lblMessage&vm;txtHidden">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtPath" />
+<SchemaParam Linked="0" Attr="2" Name="lbxProfile" />
+<SchemaParam Linked="0" Attr="3" Name="cmdImport" />
+<SchemaParam Linked="0" Attr="4" Name="lblMessage" />
+<SchemaParam Linked="0" Attr="5" Name="txtHidden" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtPath" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="24" Width="167" Height="24" AnchorRight="334" AnchorBottom="502" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Input Directory:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="48" Width="627" Height="24" AnchorRight="-126" AnchorBottom="478" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxProfile" Attr="2" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="96" Width="87" Height="24" AnchorRight="414" AnchorBottom="430" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Profile:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="1" Left="10" Top="119" Width="627" Height="336" AnchorRight="-126" AnchorBottom="95" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdImport" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Import to File" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="1" Left="10" Top="528" Width="187" Height="48" AnchorRight="314" AnchorBottom="-26" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblMessage" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="576" Width="107" Height="24" AnchorRight="394" AnchorBottom="-50" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblMessage" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="506" Width="79" Height="22" AnchorRight="264" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="txtHidden" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="280" Top="506" Width="87" Height="22" AnchorRight="144" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="511" FormHeight="550" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="12" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000000" Caption="                    [ Import User Profiles ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="12" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000000" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                                |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATION: IMPORT USER PROFILES
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Public msID          As String
+Public msDescription As String
+Public msPassword    As String
+Public msMenu        As String
+Public mvProperty    As Variant
+Public mvValue       As Variant
+Public msOutput      As String
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Call SetDisplay()
+  lblMessage.Caption = ""
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BackColor1 = &H80FFFF&
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BackColor1 = &HFFFFFF&
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub cmdImport_Click()
+  On Error Resume Next
+
+  Dim sSQL     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim vArray1  As Variant
+  Dim vArrayP  As Variant
+  Dim vArrayV  As Variant
+  Dim iLblMax  As Integer
+  Dim iCnt     As Integer
+  Dim iCnt2    As Integer
+  Dim iRcd     As Integer
+  Dim sId      As String
+  Dim sName    As String
+  Dim sMenu    As String
+  Dim sPwd     As String
+  Dim sProp    As String
+  Dim sValue   As String
+  Dim sUser    As String
+  Dim sUPMD    As String
+  Dim sUPMT    As String
+  Dim bPwdUpd  As Boolean
+  Dim iDays    As Integer
+  Dim vArray   As Variant
+  '
+  vArray    = Split(SYS.GetProperty("Config", "Env"), "|")
+  iDays     = CInt(vArray(5))                                    ' days password expires
+  '
+  iLblMax   = lbxProfile.List.Count                   ' max lines
+  For iCnt  = 1 To iLblMax
+    '
+    lbxProfile.List.Index = iCnt
+    '
+    If Left(lbxProfile.Text,1) = "1" Then
+      vArray1 = Split(lbxProfile.Text,"|")
+      '
+      sId   = Trim(vArray1(1))
+      sName = Trim(vArray1(2))
+      sMenu = Trim(vArray1(3))
+      '
+      bPwdUpd = False
+      sProp = ""
+      '
+      If Len(vArray1(4)) > 0 Then
+        vArrayP = Split(vArray1(4),"^")
+        vArrayV = Split(vArray1(5),"^")
+        iRcd    = UBound(vArrayP)
+        '
+        For iCnt2 = 0 To iRcd
+          sProp = sProp & Trim(UCase(vArrayP(iCnt2))) & "=" & Trim(vArrayV(iCnt2)) & "|"
+          If Trim(UCase(vArrayP(iCnt2))) = "PWDUPD" Then bPwdUpd = True
+        Next
+        '
+        sProp = Left(sProp, Len(sProp) -1)
+      End If
+      '
+      If Not bPwdUpd Then
+        If Len(Trim(sProp)) > 0 Then sProp = sProp & "|"
+        sProp = sProp & "PWDUPD" & "=" & CStr(DateAdd("d", CDbl(iDays),Date))
+      End If
+      '
+      sPwd  = Trim(vArray1(6))
+      sPwd  = PWDEncrypt(sPwd)
+      '
+      sUser = Trim(UCase(App.User))
+      sUPMD = Format(Date, "YYYYMMDD")
+      sUPMT = Format(Time, "HHNNSS")
+      '
+      sSQL = "select * from RFUP001 where RFUID = '" & sId & "' "
+      DB.Execute(sSQL,sCols,sRows)
+      '
+      If Len(sRows) > 0 Then
+
+        sSQL = "update RFUP001 set " &  "RFALPH = "  &  "'" & sName     & "', " & _
+                                        "RFPWD = "   &  "'" & sPwd      & "', " & _
+                                        "RFSTAT = "  &  "'" & "A"       & "', " & _
+                                        "RFMNU = "   &  "'" & sMenu     & "', " & _
+                                        "RFPROP = "  &  "'" & sProp     & "', " & _
+                                        "RFUSER = "  &  "'" & sUser     & "', " & _
+                                        "RFUPMD = "  &  "'" & sUPMD     & "', " & _
+                                        "RFUPMT = "  &  "'" & sUPMT     & "'  " & _
+               "where RFUID = '" & sId & "'; "
+      Else
+        sSQL = "insert into RFUP001 values(" &  "'" & sId         & "', " & _
+                                                "'" & sName       & "', " & _
+                                                "'" & sPwd        & "', " & _
+                                                "'" & "A"         & "', " & _
+                                                "'" & sMenu       & "', " & _
+                                                "'" & sProp       & "', " & _
+                                                "'" & sUser       & "', " & _
+                                                "'" & sUPMD       & "', " & _
+                                                "'" & sUPMT       & "');"
+      End If
+      '
+      DB.Execute(sSQL)
+      '
+    End If
+  Next iCnt
+  '
+  lbxProfile.List.Clear
+  App.SetFocus("txtPath")
+End Sub
+
+Private Sub lbxProfile_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iLbCurr As Integer
+
+  iLbCurr = lbxProfile.List.Index                 ' current line
+
+  If Left(Rsp,1)  = "1" Then
+    Mid$(Rsp,1,1) = " "
+  Else
+    Mid$(Rsp,1,1) = "1"
+  End If
+
+  lbxProfile.List.RemoveItem iLbCurr                  ' remove line
+  lbxProfile.List.InsertItem Rsp, Rsp,iLbCurr            ' replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+  lbxProfile.List.Index = iLbCurr
+  '
+  Cancel = True
+End Sub
+
+Private Sub txtPath_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim cn        As ADODB.Connection
+  Dim rs        As ADODB.Recordset
+  Dim strPath   As String
+  Dim sDsp      As String
+  Dim sVal      As String
+  Dim sProperty As String
+  Dim sValues   As String
+  Dim iRcd      As Integer
+  Dim iCnt      As Integer
+  Dim szData()  As Byte
+  Dim sRecord   As String
+  '
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+
+  strPath = Rsp
+
+  'Create a new ADO Connection to .mdb
+  'using the Microsoft Access and Jet OLE DB
+  'providers.
+  Set cn = New ADODB.Connection
+  '
+  With cn
+    .Provider = "Microsoft.Access.OLEDB.10.0"
+    .Properties("Data Provider").Value = "Microsoft.Jet.OLEDB.4.0"
+    .Properties("Data Source").Value = strPath
+    .Open
+  End With
+
+  If Err.Number <> 0 Then
+    Set cn = New ADODB.Connection
+    With cn
+      .Provider = "Microsoft.Jet.OLEDB.4.0"
+      .Properties("Data Source").Value = strPath
+      .Open
+    End With
+  End If
+
+  'Create a new ADO Recordset by using a server-side
+  'keyset cursor and optimistic locking.
+  Set rs = New ADODB.Recordset
+  '
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFUsers order by Id"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+
+  lbxProfile.List.Clear
+  '
+  sDsp = "O|" & FixLeft("UserID",10," ") & "|" & FixLeft("Name",30," ") & "|" & FixLeft("Menu",10," ") & "|" & "Data"
+  lbxProfile.Caption = sDsp
+  iRcd = rs.RecordCount
+  '
+  For iCnt = 1 To iRcd
+    '
+    'Obtain data from last field for password, menu, and properties.
+    szData = rs.Fields(2).GetChunk(999999)
+
+    If Len(szData) = 0 Then
+      szData = rs.Fields(2)
+    End If
+
+    If (szData(1) = 0) Then
+      sRecord = CStr(szData)
+    Else
+      sRecord = StrConv(szData, vbUnicode)
+    End If
+    '
+    sProperty = Ext(sRecord,8)
+    sValues   = Ext(sRecord,9)
+    sProperty = Replace(sProperty,Chr(2),"^")
+    sValues   = Replace(sValues,Chr(2),"^")
+    '
+    sDsp = "1|" & FixLeft(rs.Fields(0).Value,10," ") & "|" & FixLeft(rs.Fields(1).Value,30," ") & "|" & FixLeft(Ext(sRecord,3),10," ") _
+           & "|" & sProperty & "|" & sValues & "|" & Ext(sRecord,2)
+    lbxProfile.List.AddItem(sDsp, sDsp)
+    '
+    rs.MoveNext
+  Next
+  '
+  lbxProfile.List.AddItem("", ".......end of data")
+  '
+  cn.Close
+  rs.Close
+  cn = Nothing
+  rs = Nothing
+  '
+  Cancel = False
+End Sub
+</Code>

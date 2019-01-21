@@ -1,0 +1,901 @@
+﻿<Record FileDesc="ADM - Maintain User Profiles" FileVersion="5.0.8.0" Desc="ADM - Maintain User Profiles" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtUID&vm;txtALPH&vm;txtPWD&vm;txtMNU&vm;chkSTAT&vm;lbxPROP&vm;txtPROP&vm;txtValue&vm;cmdUpAdd&vm;lblUpAdd&vm;lblUPMDMT&vm;lblFKey&vm;lblMode&vm;lblMessage">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtUID" />
+<SchemaParam Linked="0" Attr="2" Name="txtALPH" />
+<SchemaParam Linked="0" Attr="3" Name="txtPWD" />
+<SchemaParam Linked="0" Attr="4" Name="txtMNU" />
+<SchemaParam Linked="0" Attr="5" Name="chkSTAT" />
+<SchemaParam Linked="0" Attr="6" Name="lbxPROP" />
+<SchemaParam Linked="0" Attr="7" Name="txtPROP" />
+<SchemaParam Linked="0" Attr="8" Name="txtValue" />
+<SchemaParam Linked="0" Attr="9" Name="cmdUpAdd" />
+<SchemaParam Linked="0" Attr="10" Name="lblUpAdd" />
+<SchemaParam Linked="0" Attr="11" Name="lblUPMDMT" />
+<SchemaParam Linked="0" Attr="12" Name="lblFKey" />
+<SchemaParam Linked="0" Attr="13" Name="lblMode" />
+<SchemaParam Linked="0" Attr="14" Name="lblMessage" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtUID" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="48" Width="127" Height="24" AnchorRight="232" AnchorBottom="500" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="    User ID:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="48" Width="107" Height="24" AnchorRight="102" AnchorBottom="500" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtALPH" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="96" Width="127" Height="24" AnchorRight="232" AnchorBottom="452" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="       Name:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="96" Width="297" Height="24" AnchorRight="-88" AnchorBottom="452" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPWD" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="144" Width="127" Height="24" AnchorRight="232" AnchorBottom="404" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   Password:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="144" Width="197" Height="24" AnchorRight="12" AnchorBottom="404" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMNU" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="192" Width="127" Height="24" AnchorRight="232" AnchorBottom="356" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="       Menu:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="192" Width="197" Height="24" AnchorRight="12" AnchorBottom="356" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkSTAT" Attr="5" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="239" Width="127" Height="24" AnchorRight="232" AnchorBottom="309" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="     Active:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="239" Width="37" Height="37" AnchorRight="172" AnchorBottom="309" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxPROP" Attr="6" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="288" Width="127" Height="24" AnchorRight="232" AnchorBottom="260" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption=" Properties:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="1" Left="150" Top="288" Width="297" Height="96" AnchorRight="-88" AnchorBottom="188" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPROP" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="407" Width="97" Height="24" AnchorRight="112" AnchorBottom="141" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Property:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="431" Width="137" Height="24" AnchorRight="72" AnchorBottom="117" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtValue" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="320" Top="407" Width="67" Height="24" AnchorRight="-28" AnchorBottom="141" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Value:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="320" Top="431" Width="127" Height="24" AnchorRight="-88" AnchorBottom="117" BackColor1="FFFFFF" BackColor2="FFFFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdUpAdd" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="cmdUpAdd" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="528" Width="297" Height="24" AnchorRight="-88" AnchorBottom="20" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblUpAdd" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="506" Width="71" Height="22" AnchorRight="168" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="Updated:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblUPMDMT" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="184" Top="506" Width="79" Height="22" AnchorRight="96" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblUPMDMT" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFKey" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="280" Top="600" Width="77" Height="24" AnchorRight="2" AnchorBottom="-52" BackColor1="000001" BackColor2="000001" ForeColor="FFFFFF" Caption="lblFKey" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblMode" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="600" Width="77" Height="24" AnchorRight="132" AnchorBottom="-52" BackColor1="00FFFF" BackColor2="00FFFF" ForeColor="000000" Caption="lblMode" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblMessage" Attr="14">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="150" Top="479" Width="107" Height="24" AnchorRight="102" AnchorBottom="69" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblMessage" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="359" FormHeight="572" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="12" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000000" Caption="       [ Maintain RFgen User Profiles ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="12" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000000" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATION: MAINTAIN USER PROFILES
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+'********************************************************
+'* LOCAL DECLARATIONS                                   *
+'********************************************************
+Private msUID        As String
+Private msALPH       As String
+Private msPWD        As String
+Private msSTAT       As String
+Private msMNU        As String
+Private mvPROPS      As Variant
+Private msUSER       As String
+Private msUPMD       As String
+Private msUPMT       As String
+Private msProp       As String
+Private msValue      As String
+Private msMode       As String
+Private mbRecLock    As Boolean
+Private mbPropDelete As Boolean
+Public  mvMENUS()    As Variant
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Call SetDisplay()
+
+  Dim sSQL  As String
+  Dim sRows As String
+  Dim sCols As String
+  Dim iRecs As Integer
+
+  sSQL = "select * from rfup001"
+  DB.Execute(sSQL, sCols, sRows)
+  iRecs = DB.Count(sRows)
+
+  If iRecs > 0 Then
+    msMode = "EDIT"
+    lblMessage.Caption = ""
+  Else
+    msMode = "ADD"
+    chkSTAT.Checked = True
+    lblMessage.Caption = "0 records exist; create a record."
+  End If
+
+  mbRecLock = False
+  mbPropDelete = False
+
+  Call UpAdd
+  Call GetMenus
+
+  lblUpAdd.Caption = ""
+  lblUPMDMT.Caption = ""
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BackColor1 = &H80FFFF&
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BackColor1 = &HFFFFFF&
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+
+  Select Case Fkey
+    Case 2
+      'Toggle between modes
+      If msMode = "ADD" Then
+        msMode = "EDIT"
+        lblMessage.Caption = ""
+        Call DBGetInfo(msUID)
+      Else
+        msMode = "ADD"
+        'Clear all prompts except properties (lbxPROP) and menu (txtMNU).
+        txtUID.Text = ""
+        txtALPH.Text = ""
+        txtPWD.Text = ""
+        chkSTAT.Checked = True
+        txtPROP.Text = ""
+        txtValue.Text = ""
+        lblMessage.Caption = ""
+        lblUpAdd.Caption = ""
+        lblUPMDMT.Caption = ""
+      End If
+      '
+      Call UpAdd
+      App.SetFocus("txtUID")
+      '
+    Case 9
+      If App.PromptNo = 8 Then
+        mbPropDelete = True
+        Call txtValue_OnEnter("", 0, "")
+        mbPropDelete = False
+     End If
+  End Select
+End Sub
+
+Private Sub txtUID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+
+  sSQL = "select RFUID, RFALPH from RFUP001 order by RFUID"
+  Rsp = DB.MakeList(sSQL, False, True)
+End Sub
+
+Private Sub txtUID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Cancel = True
+  txtUID.Text  = UCase(Trim(Rsp))
+
+  If Len(Rsp)>0 Then                                      'If the entry is not blank, search database
+    msUID = Rsp
+    '
+    Select Case msMode
+      Case "EDIT"
+        Call DBGetInfo(msUID)
+        '
+        If DBGetInfo(msUID) = True Then                   'Prevents the addition of a new user in edit mode
+          Cancel = False
+        End If
+        '
+      Case "ADD"
+        sSQL = "select * from RFUP001 where RFUID = " & "'" & msUID & "'"
+        DB.Execute(sSQL, sCols, sRows)
+        '
+        If DB.Count(sRows)>0 Then
+          lblMessage.Caption = "This User ID already exists."
+        Else
+          lblMessage.Caption = ""
+          Cancel = False
+        End If
+        '
+    End Select
+  End If
+End Sub
+
+Private Sub txtMNU_LostFocus()
+  On Error Resume Next
+  '
+  lblMessage.Caption = ""
+End Sub
+
+Private Sub txtMNU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMenus    As String
+  Dim sList     As String
+  Dim iRcd      As Integer
+  Dim iCnt      As Integer
+  Dim vArray    As Variant
+  Dim sMenuID   As String
+  Dim sMenuDesc As String
+
+  iRcd = UBound(mvMENUS) - 1
+
+  For iCnt = 0 To iRcd
+    vArray = Split(mvMENUS(iCnt), "|")                'IT              |Information Technology                       '
+    sMenuID = vArray(0)                               'IT              '
+    sMenuDesc = vArray(1)                             'Information Technology                       '
+    '
+    If InStr(1, sMenuID, "#") = 0 Then                'Only List.Data those menus which do not contain "#" in their Menu ID
+      App.MakeList(sMenus, sMenuID, sMenuID & sMenuDesc, _
+                 "MENU ID........DESCRIPTION..................................")
+    End If
+  Next iCnt
+
+  sList = App.ShowList(sMenus)
+  Rsp = Trim(sList)
+End Sub
+
+Private Sub txtMNU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRcd        As Integer
+  Dim iCnt        As Integer
+  Dim vArray      As Variant
+  Dim sMenuID     As String
+
+  Cancel = True
+  Rsp = Trim((Rsp))
+  iRcd = UBound(mvMENUS) - 1
+
+  For iCnt = 0 To iRcd
+    vArray  = Split(mvMENUS(iCnt), "|")               'ADM            |Administration                               '
+    sMenuID = Trim(UCase(vArray(0)))                  'ADM'
+
+    If UCase(Rsp) = sMenuID Then
+      Cancel = False
+      Exit For
+    End If
+  Next iCnt
+
+  If Cancel = True Then
+    lblMessage.Caption = "Invalid entry: select an existing Menu."
+  Else
+    Rsp = Trim(vArray(0)) 'Sets RSP to be what was matched in the List.Data; prevents entries like jDe, dEEP, EtC, eTc, Etc, ETc, eTC
+    lblMessage.Caption = ""
+  End If
+End Sub
+
+Private Sub lbxPROP_Click()
+  On Error Resume Next
+
+  App.SetFocus("lbxPROP")
+End Sub
+
+Private Sub lbxPROP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim vArray As Variant
+  Dim sProp  As String
+  Dim sValue As String
+
+  vArray = Split(Rsp,"|")
+
+  sProp   = Trim(vArray(0)) & ";O"
+  sValue  = Trim(vArray(1)) & ";O"
+
+  txtProp.Defaults = sProp
+  txtValue.Defaults = sValue
+End Sub
+
+Private Sub txtPROP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim iPropCnt    As Integer
+  Dim i           As Integer
+  Dim sEntry      As String
+  Dim vArray      As Variant
+  Dim bMatch      As Boolean
+  Dim sProp       As String
+  Dim sValue      As String
+
+  Cancel = True
+  bMatch = False
+
+  'Check lbxPROP to ensure that Property does not already exist.
+  'If it exists, load the property value into txtValue.
+  'If it does not exist, accept the value for Rsp and move to the next field, txtValue.
+  If Len(Rsp) > 0 Then
+    iPropCnt = lbxPROP.List.Count      'Counts the total number of properties in lbxPROP
+
+    For i = 1 To iPropCnt                         'Loops through lbxProp see if a match exists.
+      lbxProp.List.Index = i           'Each entry (index) in lbxProp is checked.
+      sEntry = CStr(lbxProp.Text)     'Sets each entry(index) into a string variable.
+      vArray = Split(sEntry, "|")                 'HIGH          |Y             '
+      sProp   = Trim(vArray(0))                   'HIGH'
+      sValue  = Trim(vArray(1))                   'Y'
+
+      If sProp = UCase(Trim(Rsp)) Then            'A match is found
+        txtPROP.Text = sProp          'txtPROP is populated
+        App.SetFocus("txtValue")
+        txtValue.Text = sValue        'txtValue is populated
+        bMatch = True
+        Exit For                                  'The loop is exited if a match was found.
+      End If
+    Next i                                        'The loop continues if a match was not found.
+
+    If bMatch = False Then                        'A new property is being added
+      txtPROP.Text = UCase(Trim(Rsp))
+      App.SetFocus("txtValue")
+      txtValue.Text = ""              'Ready for a new value for the new property
+    End If
+
+    msProp = UCase(Trim(Rsp))
+    Cancel = False
+  End If
+End Sub
+
+Private Sub txtValue_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  lblMessage.Caption = "Press F9 to delete property."
+End Sub
+
+Private Sub txtValue_LostFocus()
+  On Error Resume Next
+
+  Select Case msMode
+    Case "EDIT"
+      lblUpAdd.Caption = "Updated:"
+    Case "ADD"
+      lblUpAdd.Caption = ""
+  End Select
+
+  lblMessage.Caption = ""
+End Sub
+
+Private Sub txtValue_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim iPropCnt    As Integer
+  Dim i           As Integer
+  Dim sEntry      As String
+  Dim vArray      As Variant
+  Dim bMatch      As Boolean
+  Dim sProp       As String
+  Dim sValue      As String
+
+  msValue = UCase(Trim(Rsp))
+  bMatch = False
+
+  'Check lbxPROP to ensure that Property does not already exist.
+  'If it exists, overwrite the old value with the new value in lbxProp.
+  'If it does not exist, add the new Property and Value set to lbxProp.
+  iPropCnt = lbxPROP.List.Count                          'Counts the total number of properties in lbxPROP.
+
+  For i = 1 To iPropCnt                                           'Loops through lbxProp see if a match exists.
+    lbxProp.List.Index = i                             'Each entry (index) in lbxProp is checked.
+    sEntry = CStr(lbxProp.Text)                       'Sets each entry(index) into a string variable.
+    vArray = Split(sEntry, "|")                                   'HIGH          |Y             '
+    sProp   = Trim(vArray(0))                                     'HIGH'
+    sValue  = Trim(vArray(1))                                     'Y'
+    '
+    If sProp = msProp Then                                        'A match is found
+      bMatch = True
+      lbxProp.List.RemoveItem(i)                           'The item must first be removed before being re-added.
+      '
+      If mbPropDelete = False Then                                'If msPropDelete = False, add the new/changed entry.
+        msProp = FixLeft(msProp, 14)                              'HIGH          '
+        msValue = FixLeft(msValue, 14)                            'N             '
+        lbxPROP.List.InsertItem(msProp & "|" & msValue,,i)    'HIGH          |N             '   ' todo - upgrade: 'InsertLocn' is now first parameter
+      End If
+      '
+      Exit For                                                    'The loop is exited if a match was found.
+    End If
+  Next i                                                          'The loop continues if a match was not found.
+  '
+  If bMatch = False And mbPropDelete = False Then                 'No match found and F9 was not pressed to delete; a new property is being added.
+    msProp   = FixLeft(msProp, 14)                                'HIGH          '
+    msValue = FixLeft(msValue, 14)                                'Y             '
+    lbxPROP.List.AddItem(msProp & "|" & msValue)           'HIGH          |Y             '
+  End If
+  '
+  Cancel = False
+
+  'Refresh form data
+  txtPROP.Text = ""
+  txtValue.Text = ""
+  App.SetFocus("txtPROP")
+End Sub
+
+Private Sub cmdUpAdd_Click()
+  On Error Resume Next
+  '
+  Dim iPropCnt      As Integer
+  Dim i             As Integer
+  Dim sEntry        As String
+  Dim sEntry2       As String
+  Dim vArray        As Variant
+  Dim sProp         As String
+  Dim sValue        As String
+  '
+  'Reset module variables
+  msUID   = ""
+  msALPH  = ""
+  msPWD   = ""
+  msMNU   = ""
+  msSTAT  = ""
+  mvPROPS = ""
+  msUSER  = ""
+  msUPMD  = ""
+  msUPMT  = ""
+
+  'UID
+  If txtUID.Text <> "" Then
+    msUID = UCase(Trim(CStr(txtUID.Text)))
+  End If
+
+  'ALPH
+  If txtALPH.Text <> "" Then
+    msALPH = Trim(CStr(txtALPH.Text))
+  End If
+
+  'PWD
+  If txtPWD.Text <> "" Then
+    msPWD = Trim(CStr(txtPWD.Text))
+    msPWD = PWDEncrypt(msPWD)
+  End If
+
+  'STAT
+  If chkSTAT.Checked = True Then
+    msSTAT = "A"
+  Else
+    msSTAT = "I"
+  End If
+
+  'MNU
+  If txtMNU.Text <> "" Then
+    msMNU = Trim(CStr(txtMNU.Text))
+  End If
+
+  'PROP
+  iPropCnt = lbxPROP.List.Count
+  '
+  For i = 1 To iPropCnt
+    lbxPROP.List.Index = (i)
+    sEntry = lbxPROP.Text
+    vArray = Split(sEntry, "|")
+    sProp = Trim(vArray(0))
+    sValue = Trim(vArray(1))
+    '
+    If i = iPropCnt Then
+      sEntry2 = sProp & " = " & sValue
+    Else
+      sEntry2 = sProp & " = " & sValue & "|"
+    End If
+    '
+    mvPROPS = mvPROPS & sEntry2
+  Next i
+
+  'USER
+  msUSER = Trim(UCase(App.User))
+
+  'UPMD
+  msUPMD = Format(Date, "YYYYMMDD")
+
+  'UPMT
+  msUPMT = Format(Time, "HHNNSS")
+
+  If msUID <> "" And msALPH <> "" Then
+    Select Case msMode
+      Case "ADD"
+        Call WriteToDB
+        '
+        txtUID.Text = ""
+        txtALPH.Text = ""
+        txtPWD.Text = ""
+        txtMNU.Text = ""
+        chkSTAT.Checked = True
+        lblUpAdd.Caption = "Added:"
+        lblUpMDMT.Caption = FormatDate(msUPMD) & " at " & FormatTime(msUPMT) & " by " & msUSER
+        '
+        App.SetFocus("txtUID")
+      Case "EDIT"
+        If mbRecLock = False Then       'Record is Active (A)
+          Call WriteToDB
+          '
+          lblUpAdd.Caption = "Updated:"
+          lblUpMDMT.Caption = FormatDate(msUPMD) & " at " & FormatTime(msUPMT) & " by " & msUSER
+          '
+          Call DBGetInfo(msUID)
+        Else                            'Record is Inactive (I)
+          lblMessage.Caption = "Cannot update Inactive record."
+        End If
+    End Select
+  End If
+End Sub
+
+Public Function DBGetInfo(ByRef sUID) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim vArrayZ     As Variant
+  Dim vArrayY     As Variant
+  Dim iPropCnt    As Integer
+  Dim i           As Integer
+  Dim sProp       As String
+  Dim sValue      As String
+
+  DBGetInfo = False
+  'Issue SQL statement to obtain a record.
+  sSQL = "select * from RFUP001 where RFUID = '" & msUID & "';"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) > 0 Then
+    DBGetInfo = True
+  End If
+
+  'Extract fields from record and place into variables.
+  msALPH  = Trim(DB.Extract(sCols, sRows, 1, 2))
+  msPWD   = PWDDecrypt(Trim(DB.Extract(sCols, sRows, 1, 3)))
+  msSTAT  = Trim(DB.Extract(sCols, sRows, 1, 4))
+  msMNU   = Trim(DB.Extract(sCols, sRows, 1, 5))
+  mvPROPS = Trim(DB.Extract(sCols, sRows, 1, 6))
+  msUSER  = Trim(DB.Extract(sCols, sRows, 1, 7))
+  msUPMD  = FormatDate(Trim(DB.Extract(sCols, sRows, 1, 8)))
+  msUPMT  = FormatTime(Trim(DB.Extract(sCols, sRows, 1, 9)))
+
+  'Display obtained values on form.
+  txtUID.Text  = msUID
+  txtALPH.Text = msALPH
+  txtPWD.Text  = msPWD
+  txtMNU.Text  = msMNU
+
+  If msSTAT = "A" Then
+    mbRecLock = False
+    chkSTAT.Checked = True
+  Else
+    mbRecLock = True
+    chkSTAT.Checked = False
+  End If
+
+  If msMode = "EDIT" And msUPMD <> "" And msUPMT <> "" And msUSER <> "" Then
+    lblUpAdd.Caption = "Updated:"
+    lblUPMDMT.Caption = msUPMD & " at " & msUPMT & " by " & msUSER
+  End If
+
+  lbxPROP.List.Clear
+
+  vArrayZ = Split(mvPROPS, "|")                             'Takes properties from RFUP001 as HIGH = Y|LOW = N, and splits properties by the "|"
+  iPropCnt = UBound(vArrayZ)                                'Counts the total number of properties in a record
+
+  For i = 0 To iPropCnt
+    vArrayY = Split(vArrayZ(i), "=")                        'Further splits the properties at the "=" into a Property and its Value
+    sProp   = FixLeft(Trim(vArrayY(0)), 14)                 'HIGH          '
+    sValue  = FixLeft(Trim(vArrayY(1)), 14)                 'Y             '
+    lbxPROP.List.AddItem(sProp & "|" & sValue)       'HIGH          |Y             '
+  Next i
+End Function
+
+Public Sub UpAdd
+  On Error Resume Next
+
+  Select Case msMode
+    Case "EDIT"
+      lblFKey.Caption = "F2> Create New User Profile"
+      lblMode.Caption = " EDIT "
+      cmdUpAdd.Caption = "Update User Profile"
+    Case "ADD"
+      lblFKey.Caption = "F2> Edit Existing User Profile"
+      lblMode.Caption = " ADD "
+      cmdUpAdd.Caption = "Add User Profile"
+  End Select
+End Sub
+
+Public Sub WriteToDB
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  '
+  Select Case msMode
+    Case "EDIT"
+      sSQL = "update RFUP001 set " &  "RFALPH = "  &  "'" & msALPH  & "', " & _
+                                      "RFPWD = "   &  "'" & msPWD   & "', " & _
+                                      "RFSTAT = "  &  "'" & msSTAT  & "', " & _
+                                      "RFMNU = "   &  "'" & msMNU   & "', " & _
+                                      "RFPROP = "  &  "'" & mvPROPS & "', " & _
+                                      "RFUSER = "  &  "'" & msUSER  & "', " & _
+                                      "RFUPMD = "  &  "'" & msUPMD  & "', " & _
+                                      "RFUPMT = "  &  "'" & msUPMT  & "'  " & _
+             "where RFUID = '" & msUID & "'; "
+    Case "ADD"
+      sSQL = "insert into RFUP001 values(" &  "'" & msUID   & "', " & _
+                                              "'" & msALPH  & "', " & _
+                                              "'" & msPWD   & "', " & _
+                                              "'" & msSTAT  & "', " & _
+                                              "'" & msMNU   & "', " & _
+                                              "'" & mvPROPS & "', " & _
+                                              "'" & msUSER  & "', " & _
+                                              "'" & msUPMD  & "', " & _
+                                              "'" & msUPMT  & "');"
+  End Select
+  '
+  DB.Execute(sSQL)
+End Sub
+
+Public Function FormatDate(ByRef strUPMD As String) As String
+  On Error Resume Next
+
+  'Formats date from YYYYMMDD to MM/DD/YYY
+
+  Dim strDay   As String
+  Dim strMonth As String
+  Dim strYear  As String
+
+  strYear   = Mid(strUPMD, 1, 4)
+  strMonth  = Mid(strUPMD, 5, 2)
+  strDay    = Mid(strUPMD, 7, 2)
+
+  FormatDate = strMonth & "/" & strDay & "/" & strYear
+End Function
+
+Public Function FormatTime(ByRef strUPMT As String) As String
+  On Error Resume Next
+  '
+  Dim strSecond   As String
+  Dim strMinute   As String
+  Dim strHour     As String
+
+  'Formats Time from HHMMSS To HH:MM:SS
+
+  strHour   = Mid(strUPMT, 1, 2)
+  strMinute = Mid(strUPMT, 3, 2)
+  strSecond = Mid(strUPMT, 5, 2)
+
+  FormatTime = strHour & ":" & strMinute & ":" & strSecond
+End Function
+
+'********************************************************
+'* FIND MASTER DATABASE IN SYSTEM REGISTRY CODE BLOCKS  *
+'********************************************************
+
+Public Sub GetMenus()
+  On Error Resume Next
+  '
+  Dim vValue  As Variant
+  Dim vArray  As Variant
+  Dim cn      As ADODB.Connection
+  Dim rs      As ADODB.Recordset
+  Dim strPath As String
+  Dim sDsp    As String
+  Dim sId     As String
+  Dim sName   As String
+  Dim sRecord As String
+  Dim iCnt    As Integer
+  Dim iRcd    As Integer
+
+  'Update the path below to point to the master
+  vArray = Split(SYS.GetProperty("Config", "Env"), "|")
+  '
+  ' get path to local RFgen.mdb -> Target
+  '
+  QueryValue ("SOFTWARE\DataMAXSG\RFGen" & vArray(7) , "Source", vValue)
+  If vArray(7) <> "41" Then vValue = Left(vValue, Len(vValue) /2)
+  strPath = CStr(vValue)
+
+  'Create a new ADO Connection to .mdb
+  'using the Microsoft Access and Jet OLE DB
+  'providers.
+  Set cn = New ADODB.Connection
+
+  With cn
+    .Provider = "Microsoft.Access.OLEDB.10.0"
+    .Properties("Data Provider").Value = "Microsoft.Jet.OLEDB.4.0"
+    .Properties("Data Source").Value = strPath
+    .Open
+  End With
+
+  If Err.Number <> 0 Then
+    Set cn = New ADODB.Connection
+    With cn
+      .Provider = "Microsoft.Jet.OLEDB.4.0"
+      .Properties("Data Source").Value = strPath
+      .Open
+    End With
+  End If  
+
+  'Create a new ADO Recordset by using a server-side
+  'keyset cursor and optimistic locking.
+  Set rs = New ADODB.Recordset
+
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFMenus order by ID"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+
+  iRcd = rs.RecordCount
+  ReDim mvMENUS(iRcd)
+
+  For iCnt = 0 To iRcd
+    sId = FixLeft(rs.Fields(0).Value,15," ")
+    sDsp = sId & "|"
+    sName = FixLeft(rs.Fields(1).Value,45," ")
+    sDsp = sDsp & sName
+    mvMENUS(iCnt) = sDsp
+    rs.MoveNext
+  Next iCnt
+  '
+  rs.Close
+  rs=Nothing
+  cn.Close
+  cn=Nothing
+
+End Sub
+
+Private Sub QueryValue(ByRef sKeyName As String, ByRef sValueName As String, ByRef vValue As Variant)
+  On Error Resume Next
+  '
+  Dim hKey    As Long         'handle of opened key
+  Dim lRetVal As Long         'result of the API functions
+
+  lRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, sKeyName, 0, KEY_QUERY_VALUE, hKey)
+  lRetVal = QueryValueEx(hKey, sValueName, vValue)
+  RegCloseKey (hKey)
+End Sub
+
+Function QueryValueEx(ByVal lhKey As Long, ByVal szValueName As String, ByRef vValue As Variant) As Long
+  On Error GoTo QueryValueExError
+  '
+  Dim cch    As Long
+  Dim lrc    As Long
+  Dim lType  As Long
+  Dim lValue As Long
+  Dim sValue As String
+
+  ' Determine the size and type of data to be read
+  lrc = RegQueryValueExNULL(lhKey, szValueName, 0&, lType, 0&, cch)
+  '
+  If lrc <> ERROR_NONE Then
+    Error 5
+  End If
+
+  Select Case lType
+    ' For strings
+    Case REG_SZ:
+      sValue = String(cch, 0)
+      lrc = RegQueryValueExString(lhKey, szValueName, 0&, lType, sValue, cch)
+      '
+      If lrc = ERROR_NONE Then
+        vValue = Left$(sValue, cch-1)
+      Else
+        vValue = Empty
+      End If
+      '
+    ' For DWORDS
+    Case REG_DWORD:
+      lrc = RegQueryValueExLong(lhKey, szValueName, 0&, lType, lValue, cch)
+      '
+      If lrc = ERROR_NONE Then
+        vValue = lValue
+      End If
+    Case Else
+      'all other data types not supported
+      lrc = -1
+  End Select
+
+QueryValueExExit:
+  QueryValueEx = lrc
+  Exit Function
+
+QueryValueExError:
+  Resume QueryValueExExit
+
+End Function
+</Code>

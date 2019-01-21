@@ -1,0 +1,1663 @@
+﻿<Record FileDesc="WO - Time Entry Start/Stop" FileVersion="5.0.8.0" Desc="WO - Time Entry Start/Stop" Group="WO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtWODT&vm;txtEMPL&vm;lstWO&vm;txtDOCO&vm;txtDCTO&vm;lblFKey&vm;lblWO&vm;txtAction&vm;txtSHIFT&vm;txtHRTYPE&vm;lblItem&vm;lblItemDesc&vm;txtOPSQ&vm;lblOPSQ&vm;lblWOQTY&vm;txtSTIME&vm;txtEndDate&vm;txtETIME&vm;txtQty&vm;lblUOM&vm;txtScrap&vm;txtCompl">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtWODT" />
+<SchemaParam Linked="0" Attr="3" Name="txtEMPL" />
+<SchemaParam Linked="0" Attr="4" Name="lstWO" />
+<SchemaParam Linked="0" Attr="5" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="6" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="7" Name="lblFKey" />
+<SchemaParam Linked="0" Attr="8" Name="lblWO" />
+<SchemaParam Linked="0" Attr="9" Name="txtAction" />
+<SchemaParam Linked="0" Attr="10" Name="txtSHIFT" />
+<SchemaParam Linked="0" Attr="11" Name="txtHRTYPE" />
+<SchemaParam Linked="0" Attr="12" Name="lblItem" />
+<SchemaParam Linked="0" Attr="13" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="14" Name="txtOPSQ" />
+<SchemaParam Linked="0" Attr="15" Name="lblOPSQ" />
+<SchemaParam Linked="0" Attr="16" Name="lblWOQTY" />
+<SchemaParam Linked="0" Attr="17" Name="txtSTIME" />
+<SchemaParam Linked="0" Attr="18" Name="txtEndDate" />
+<SchemaParam Linked="0" Attr="19" Name="txtETIME" />
+<SchemaParam Linked="0" Attr="20" Name="txtQty" />
+<SchemaParam Linked="0" Attr="21" Name="lblUOM" />
+<SchemaParam Linked="0" Attr="22" Name="txtScrap" />
+<SchemaParam Linked="0" Attr="23" Name="txtCompl" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="2">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="672" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="111" Height="22" AnchorRight="568" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWODT" Attr="2" Defaults="@DATE" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="55" Height="22" AnchorRight="672" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="111" Height="22" AnchorRight="568" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEMPL" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="55" Height="22" AnchorRight="672" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Empl#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="111" Height="22" AnchorRight="568" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstWO" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="127" Height="22" AnchorRight="600" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="WO in progress:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="110" Width="727" Height="176" AnchorRight="0" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="5" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="55" Height="22" AnchorRight="672" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="WO#..:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="286" Width="111" Height="22" AnchorRight="568" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="6" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="286" Width="47" Height="22" AnchorRight="520" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="208" Top="286" Width="39" Height="22" AnchorRight="480" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFKey" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="191" Height="22" AnchorRight="536" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="F2 - Execute Time Entry" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblWO" Attr="8">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="47" Height="22" AnchorRight="680" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblWO" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAction" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="0" Height="22" AnchorRight="727" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="247" Height="22" AnchorRight="480" AnchorBottom="264" BackColor1="0000FF" BackColor2="0000FF" ForeColor="FFFFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSHIFT" Attr="10" Defaults="1" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="55" Height="22" AnchorRight="672" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Shift:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="66" Width="55" Height="22" AnchorRight="616" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHRTYPE" Attr="11" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="66" Width="55" Height="22" AnchorRight="552" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="66" Width="55" Height="22" AnchorRight="496" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItem" Attr="12">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="63" Height="22" AnchorRight="664" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItem" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="13">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="95" Height="22" AnchorRight="632" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtOPSQ" Attr="14" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="55" Height="22" AnchorRight="672" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Oper#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="132" Width="87" Height="22" AnchorRight="584" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblOPSQ" Attr="15">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="132" Width="63" Height="22" AnchorRight="512" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOPSQ" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblWOQTY" Attr="16">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="71" Height="22" AnchorRight="656" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblWOQTY" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSTIME" Attr="17" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="55" Height="22" AnchorRight="672" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Start:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="176" Width="87" Height="22" AnchorRight="584" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEndDate" Attr="18" Defaults="@DATE" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="55" Height="22" AnchorRight="672" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="EndDt:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="198" Width="87" Height="22" AnchorRight="584" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtETIME" Attr="19" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="63" Height="22" AnchorRight="664" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="End...:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="220" Width="87" Height="22" AnchorRight="584" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQty" Attr="20" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="63" Height="22" AnchorRight="664" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty...:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="242" Width="87" Height="22" AnchorRight="584" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblUOM" Attr="21">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="242" Width="55" Height="22" AnchorRight="520" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblUOM" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtScrap" Attr="22" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="63" Height="22" AnchorRight="664" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Scrap.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="264" Width="87" Height="22" AnchorRight="584" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtCompl" Attr="23" Defaults="@DATE" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="63" Height="22" AnchorRight="664" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Compl.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="286" Width="87" Height="22" AnchorRight="584" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="727" FormHeight="330" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[WO - Time Entry]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' WORK ORDERS: TIME ENTRY START/STOP
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId     = "FWOTE0300"
+Private Const cUse24Hrs = True
+Private Const cStatusF  = 40
+'                          123456789012345678901234567890
+Private Const cStart    = "      Start Work Order       "
+Private Const cStop     = "      Stop Work Order        "
+Private msPgm           As String
+Private msZJDEMAIN      As String
+Private msDOCTYPE       As String
+Private mnStatusT       As Currency
+Private mnMaxQty        As Currency
+Private bNewWO          As Boolean
+Private msStartTime     As String
+Private msStopTime      As String
+Private mbAdmin         As Boolean
+Private mnTimer         As Integer
+Private msIdle          As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If iCN <> 8 Then
+    RFPrompt(iCN).BorderStyle = DisplayStandard
+    RFPrompt(iCN).BackColor1 = cFieldFocusBC
+    RFPrompt(iCN).ForeColor = cFieldFocusFC
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If iCN <> 8 Then
+    RFPrompt(iCN).BorderStyle = DisplayTransparent
+    RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+    RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  End If
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  Dim sHeader As String
+
+  ' Initialize the RFGen recordset with extra fields
+  App.SetValue("tmMCU",    "")
+  App.SetValue("tmCO",     "")
+  App.SetValue("tmCSMT",   "")
+  App.SetValue("tmEMPL",   "")
+  App.SetValue("tmSHIFT",  "")
+  App.SetValue("tmDOCO",   "")
+  App.SetValue("tmDCTO",   "")
+  App.SetValue("tmOPSQ",   "")
+  App.SetValue("tmHRTYPE", "")
+  App.SetValue("tmSTIME",  "")
+  App.SetValue("tmETIME",  "")
+  '
+  ' Initialize special controls
+  lblItem.Caption     = ""
+  lblItem.Label.BackColor1 = cFieldDefaultBC
+  lblItem.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblUOM.Caption = ""
+  lblUOM.Label.BackColor1 = cFieldDefaultBC
+  lblUOM.Label.ForeColor = cFieldDefaultFC
+  '
+  lblOPSQ.Caption = ""
+  lblOPSQ.Label.BackColor1 = cFieldDefaultBC
+  lblOPSQ.Label.ForeColor = cFieldDefaultFC
+  '
+  lblWOQty.Caption = ""
+  lblWOQty.Label.BackColor1 = cFieldDefaultBC
+  lblWOQty.Label.ForeColor = cFieldDefaultFC
+  '
+  msZJDEMAIN = App.GetValue("Vers")
+  msPgm = App.GetValue("Pgm")
+  '
+  mnStatusT = CCur(GetProcOpt(msPgm,msZJDEMAIN,"3;1"))
+  ' INS RBR 02/22/2012
+  If mnStatusT = 0 Then mnStatusT = CCur(GetProcOpt(msPgm,msZJDEMAIN,"0;7"))
+  'mnStatusT = CCur(GetProcOpt(msPgm,msZJDEMAIN,"0;7"))
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msDOCTYPE = GetProcOpt(msPgm,msZJDEMAIN,"2;1",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+  '
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+  '
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  '
+  mbAdmin = Trim(UCase(GetUserInfo("TEAdmin"))) = "Y"
+  '
+  mnTimer = CInt(App.GetValue("Timer"))
+  App.TimerInterval = 120000               ' in milliseconds
+  '
+  If Not mbAdmin Then
+    txtWODT.DisplayOnly       = True
+    txtEndDate.DisplayOnly    = True
+    txtETIME.DisplayOnly      = True
+    txtSTIME.DisplayOnly      = True
+  End If
+  '
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  If Fkey = 2 Then
+  '
+    Screen.Print 0, iRow, "Processing...", False, True, True
+    '
+    ExecTM
+    '
+    Screen.Print 0, iRow, "             ", False, True, True
+    App.SetFocus(1)
+  End If
+
+End Sub
+
+Private Sub Form_OnTimer()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If iCN = 5 Then
+    If DateDiff("s",msIdle,Now) > mnTimer Then
+      msIdle = ""
+      lstWO.List.Clear
+      lstWO.List.InsertItem "",". . form reset by timeout!" & " " & Format(Time,"hh:nn:ss")   ' todo - upgrade: 'InsertLocn' is now first parameter
+      txtEmpl.Text = ""
+      txtDOCO.Text = ""
+      txtDCTO.Text = ""
+      App.SetFocus("txtEMPL")
+    End If
+  End If
+  '
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sUser    As String
+  Dim nErrNo   As Long
+  Dim sOPSQ    As String
+  '
+'  Dim emProc As New EmbeddedProc
+'  '
+'  ' Write workfile if new, else delete and run macro
+'  If bNewWO Then
+'    sUser = App.User
+'    sOPSQ = Replace(App.GetValue("tmOPSQ"),",", "")
+'    sOPSQ = Replace(sOPSQ,".","")
+'    sOPSQ = CStr(ConvDecimalsFromSQL("OPSQ", sOPSQ))
+'    sOPSQ = Replace(sOPSQ,",",".")
+'    sSQL = "insert into RF31122 Values('%tmMCU', %tmDOCO, '%tmDCTO', " & ConvDecimalsToSQL("OPSQ",App.GetValue("tmOPSQ")) & ", '%tmSHIFT', '%tmHRTYPE', %tmEMPL, '%tmSTime', '" & sUser & "' )"
+'  Else
+'    emProc.Name                  = "TWOTE0100"
+'    emProc.DataSource            = gsDataSource
+'    emProc.Param("tmCO")         = App.GetValue("tmCO")
+'    emProc.Param("tmMCU")        = App.GetValue("tmMCU")
+'    emProc.Param("tmDOCO")       = App.GetValue("tmDOCO")
+'    emProc.Param("tmDCTO")       = App.GetValue("tmDCTO")
+'    emProc.Param("tmOPSQ")       = App.GetValue("tmOPSQ")
+'    emProc.Param("tmEMPL")       = App.GetValue("tmEMPL")
+'    emProc.Param("tmSTART")      = App.GetValue("tmSTIME")
+'    emProc.Param("tmEND")        = App.GetValue("tmETIME")
+'    emProc.Param("tmDOCTYPE")    = msDOCTYPE
+'    emProc.Param("tmSHFT")       = App.GetValue("tmSHIFT")
+'    emProc.Param("tmHRTP")       = App.GetValue("tmHRTYPE")
+'    emProc.Param("tmWODT")       = App.GetValue("tmWODT")
+'    emProc.Param("tmUSER")       = App.User
+'    emProc.Param("tmQTY")        = App.GetValue("tmQty")
+'    emProc.Param("tmSCRAP")      = App.GetValue("tmScrap")
+'    emProc.Param("tmZVERSION")   = msZJDEMAIN
+'    emProc.Param("tmPGM")        = msPgm
+'    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+'    If gbQueueProcessing Then
+'      If Not emProc.Queue Then
+'        App.MsgBox GetMsg(222) & SysErr.Description
+'        Cancel = True
+'        App.SetFocus "txtAccept"
+'        Exit Sub
+'      End If
+'    Else
+'      If Not emProc.Execute Then
+'        App.MsgBox GetMsg(221) & Trim(emProc.Param("tmERRTEXT"))
+'        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+'        Cancel = True
+'        App.SetFocus "txtAccept"
+'        Exit Sub
+'      End If
+'    End If
+'    sSQL = "delete from RF31122 where WTMMCU = '%tmMCU' and WTDOCO = %tmDOCO and WTDCTO = '%tmDCTO' and WTAN8 = %tmEMPL "
+'  End If
+'
+'  nErrNo = DB.Execute(sSQL)
+'
+'  If nErrNo <> 0 Then
+'    App.MsgBox GetMsg(242)
+'  End If
+'
+  bNewWO = False
+
+  lblItem.Caption     = ""
+  lblItemDesc.Caption = ""
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  'App.SetOption ShowHorizontalScrollBar, False   ' todo - upgrade: App.SetOption removed
+  App.TimerEnabled = False
+
+End Sub
+
+Private Sub txtCompl_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim I       As Integer
+  Dim nLine   As Integer
+  Dim vArray  As Variant
+
+  Dim emProc  As New EmbeddedProc
+  '
+  Dim iLblMax As Integer
+  Dim sVal    As String
+  Dim sData   As String
+  '
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  If Rsp = "C" Or Rsp = "P" Then
+    '
+    iLblMax = lstWO.List.Count                                           'max line
+    '
+    For I = 1 To iLblMax
+      lstWO.List.Index = I
+      sVal = lstWO.Text                                                 'get current value
+      If Len(Trim(sVal)) > 0 Then
+        vArray = Split(sVal,"|")
+        If vArray(0) = "S" Then
+          If Trim(vArray(1)) = Trim(App.GetValue("tmDOCO")) Then      'And vArray(2) = App.GetValue("tmDCTO") Then
+            Mid$(sVal,1,1) = Rsp
+            sVal = sVal & "|"
+            sVal = sVal & FixRight(Format(App.GetValue("tmQty"),"#,##0.00"),8," ") & "|"
+            sVal = sVal & FixRight(Format(App.GetValue("tmScrap"),"#,##0.00"),8," ") & "|"
+            sVal = sVal &        App.GetValue("tmETime") & "|"
+            lstWO.List.RemoveItem I                  'remove line
+            lstWO.List.InsertItem sVal, sVal,I          'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+          End If
+        End If
+      End If
+    Next I
+    '
+    Cancel = False
+  End If
+  '
+  txtQty.Text   = ""
+  txtScrap.Text = ""
+  txtCompl.Text = ""
+  txtDOCO.Text  = ""
+  App.SetFocus("txtDOCO")
+  Screen.Refresh
+
+End Sub
+
+Private Sub txtDOCO_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.TimerEnabled = True
+
+End Sub
+
+Private Sub txtDOCO_LostFocus()
+  On Error Resume Next
+  '
+  App.TimerEnabled = False
+
+End Sub
+
+Private Sub txtEndDate_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If mbAdmin Then
+    AllowChange = True
+  Else
+    AllowChange = False
+  End If
+
+End Sub
+
+Private Sub txtETIME_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  On Error Resume Next
+  '
+  If Len(Trim(msStopTime)) = 0 Then
+  '
+    If cUse24Hrs Then
+      Rsp = Format(Now, "hh:mm")
+    Else
+      Rsp = Format(Now, "hh:mm AM/PM")
+    End If
+  Else
+    If cUse24Hrs Then
+      Rsp = Format(msStopTime, "hh:mm")
+    Else
+      Rsp = Format(msStopTime, "hh:mm AM/PM")
+    End If
+  End If
+  '
+  If mbAdmin Then
+    AllowChange = True
+  Else
+    AllowChange = False
+  End If
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU",  "")
+  App.SetValue("tmCO",   "")
+  App.SetValue("tmCSMT", "")
+
+  Call Clear_DependentFields
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  ' Get cost method for this branch plant
+  sSql = "select CICSMT from  F41001" & _
+         " where CIMCU = '" &  sMCU & "'"
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows)=0) Then
+    App.MsgBox GetMsg(10)
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  App.SetValue("tmCSMT", DB.Extract(sCols,sRows,1,"CICSMT"))
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtEMPL_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmEMPL",  "")
+  App.SetValue("tmSHIFT", "")
+
+End Sub
+
+Private Sub txtEMPL_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sShift As String
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  sSql = "select count(*) from  F0101" & _
+         " where ABAN8 = " & Val(Rsp)
+
+  DB.Execute(sSql, sCols, sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+  '
+  sSql = "select ABAN8,ABAC29 from F0101" & _
+         " where ABAN8 = " & Rsp & " and (ABAT1 = 'L' or ABAT1 = 'E')"
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+  '
+  sShift = DB.Extract(sCols,sRows,1,"ABAC29")
+  '
+  App.SetValue("tmEMPL",  Rsp)
+  App.SetValue("tmSHIFT", sShift)
+
+  Cancel = False
+  '
+  Call BuildList
+
+End Sub
+
+Private Sub txtEMPL_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU   As String
+  Dim sList  As String
+  Dim sValue As String
+  Dim sDsp   As String
+  Dim sHead  As String
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim iCnt   As Integer
+  Dim iRcd   As Integer
+  '
+  sMCU = App.GetValue("tmMCU")
+  If Not mbAdmin Then
+    Cancel = Not Search_F0101_Employee(Rsp, sMCU)
+  Else
+      sHead = FixLeft("Empl.#",8," ") & "|"
+      sHead = sHead & FixRight("Order",8," ") & "|"
+      sHead = sHead & FixLeft("Ty",2," ") & "|"
+      sHead = sHead & FixLeft("Start",16," ") & "|"
+      sHead = sHead & FixLeft("OpSeq",5," ") & "|"
+      sHead = sHead & FixLeft("S",1," ") & "|"
+      sHead = sHead & FixLeft("T",1," ")
+    sSql = "select wtan8, wtdoco, wtdcto, wtopsq, wtupmj, wtshft, wtttyr from RF31122 where WTMMCU = '%tmMCU' order by WTAN8, WTDOCO"
+    DB.Execute(sSql,sCols,sRows)
+    '
+    iRcd = DB.Count(sRows)
+    '
+    For iCnt = 1 To iRcd
+      sDsp = FixRight(DB.Extract(sCols,sRows,iCnt,"WTAN8"),8," ") & "|"
+      sDsp = sDsp & FixRight(DB.Extract(sCols, sRows, iCnt, "WTDOCO"),8," ") & "|"
+      sDsp = sDsp & FixLeft(DB.Extract(sCols, sRows, iCnt, "WTDCTO"),2," ") & "|"
+      sDsp = sDsp & Trim(DB.Extract(sCols, sRows, iCnt, "WTUPMJ")) & "|"
+      sDsp = sDsp & Format(ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols,sRows,iCnt,"WTOPSQ")),"#00.00") & "|"
+      sDsp = sDsp & FixLeft(DB.Extract(sCols, sRows, iCnt, "WTSHFT"),1," ") & "|"
+      sDsp = sDsp & FixLeft(DB.Extract(sCols, sRows, iCnt, "WTTTYR"),1," ")
+      App.MakeList(sList,sDsp,sDsp,sHead)
+    Next
+    sValue = App.ShowList(sList,True)
+    Rsp = LField(sValue,"|",1)
+
+    Cancel = Trim(Rsp) = ""
+  End If
+  '
+End Sub
+
+Private Sub txtDOCO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDOCO", "")
+
+  Call Clear_DependentFields
+
+End Sub
+
+Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Rsp = Trim(UCase(Rsp))
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  sSql = "select WADCTO from  F4801" & _
+         " where WADOCO = " & Rsp & " and WAMCU='%tmMCU'"
+
+  DB.Execute(sSql, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(228))
+    Exit Sub
+  End If
+  '
+  ' If Order Number is unique then default DocType
+  If (DB.Count(sRows) = 1) Then
+    txtDCTO.Text = DB.Extract(sCols, sRows, 1, "WADCTO")
+  End If
+  '
+  App.SetValue("tmDOCO", Rsp)
+  'If Not Validate_WorkOrder Then Exit Sub
+  Cancel = False
+End Sub
+
+Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sDocType  As String
+  Dim sMCU      As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F4801_DOCO(Rsp, sMCU, cStatusF, mnStatusT, sDocType)
+  If Not Cancel Then txtDCTO.Text = sDocType
+End Sub
+
+Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDCTO",  "")
+
+  Call Clear_DependentFields
+
+End Sub
+
+Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sTime As String
+  Dim sDate As String
+  Dim nDOCO As Long
+  Dim sDCTO As String
+  Dim vRsp  As Variant
+  Dim iRcd  As Integer
+  '
+  Cancel = True
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  App.SetValue("tmDCTO", Rsp)
+  If Not Validate_WorkOrder Then Exit Sub
+  '
+  sSql = "select WTOPSQ, WTSHFT, WTTTYR, WTUPMJ from RF31122 " & _
+         "where WTDOCO = %tmDOCO and WTDCTO = '%tmDCTO' and WTAN8 = %tmEMPL and WTMMCU = '%tmMCU' "
+
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(Trim(sRows)) = 0 Then      'record does not exist -> create new start time entry
+    '
+    ' check if records already exists in workfile
+    '
+    sSql = "select WTDOCO, WTDCTO from RF31122 where WTAN8 = %tmEMPL and WTMMCU = '%tmMCU' "
+   DB.Execute(sSql,sCols,sRows)
+    '
+    iRcd = DB.Count(sRows)
+    If iRcd > 0 Then
+      vRsp = App.MsgBox(Replace(GetMsg(243),":","") & "other orders. "  & vbCrLf & "Continue?",vbYesNo,1)
+      If vRsp = vbNo Then
+        App.SetFocus("txtDOCO")
+        Exit Sub
+      End If
+    End If
+    '
+    txtOPSQ.DisplayOnly   = False
+    txtSHIFT.DisplayOnly  = False
+    txtHRTYPE.DisplayOnly = False
+    txtSTIME.DisplayOnly  = False
+    txtETIME.Visible      = False
+    txtETIME.Required     = False
+    txtQty.Visible        = False
+    txtQty.Required       = False
+    lblUOM.Visible        = False
+    txtScrap.Visible      = False
+    txtCompl.Visible      = False
+    txtEndDate.Visible    = False
+    txtAction.Text = cStart
+    txtAction.BackColor1 = vbGreen
+    bNewWO = True
+  Else                        'record exists -> populate fields
+    txtOPSQ.Text   = Format(ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols,sRows,1,"WTOPSQ")),"#00.00")
+    txtOPSQ.DisplayOnly  = True
+    txtSHIFT.Text  = DB.Extract(sCols,sRows,1,2)
+    txtSHIFT.DisplayOnly  = True
+    txtHRTYPE.Text = DB.Extract(sCols,sRows,1,3)
+    txtHRTYPE.DisplayOnly = True
+    txtSTIME.Text  = Right(Trim(DB.Extract(sCols,sRows,1,4)),5)
+    txtSTIME.DisplayOnly  = True
+    txtETIME.Visible      = True
+    txtETIME.Required     = True
+    txtQty.Visible        = True
+    txtQty.Required       = True
+    lblUOM.Visible        = True
+    txtScrap.Visible      = True
+    txtCompl.Visible      = True
+    txtEndDate.Visible    = True
+    txtAction.Text = cStop
+    txtAction.BackColor1 = vbRed
+    '
+    If DB.Extract(sCols,sRows,1,3) = "2" Then   ' maschine setup
+      txtQty.Visible        = False
+      txtQty.Required       = False
+      lblUOM.Visible        = False
+      txtScrap.Visible      = False
+      txtCompl.Defaults     = "P"
+      txtCompl.DisplayOnly  = True
+    Else
+      txtQty.Visible        = True
+      txtQty.Required       = True
+      lblUOM.Visible        = True
+      txtScrap.Visible      = True
+      txtCompl.Visible      = True
+    End If
+    bNewWO = False
+  End If
+  '
+  If Not mbAdmin Then
+    txtEndDate.DisplayOnly    = True
+    txtETIME.DisplayOnly      = True
+    txtSTIME.DisplayOnly      = True
+  End If
+  '
+  Cancel = False
+  lblWO.Caption = App.GetValue("tmDOCO") & " " & App.GetValue("tmDCTO")
+  Screen.Refresh
+  'App.SetFocus("txtAction")
+  '
+End Sub
+
+Private Sub txtDCTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim vDoco As Variant
+  '
+  sMCU = App.GetValue("tmMCU")
+  Cancel = Not Search_F4801_DCTO(Rsp, sMCU, cStatusF, mnStatusT, vDoco)
+End Sub
+
+Private Sub txtOPSQ_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmOPSQ", "")
+
+End Sub
+
+Private Sub txtOPSQ_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nOper As Currency
+  Dim sMCU  As String
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  nOper = ConvDecimalsToSQL("OPSQ", Rsp)
+  Rsp = FormatDecimals("OPSQ", Rsp)
+  '
+  ' Gather routing information for all operations
+  sSql = "select WLMCU, WLOPSQ, WLDSC1, WLUORG, WLUOM from  F3112" & _
+         " where WLDOCO = %tmDOCO and WLDCTO = '%tmDCTO' and WLOPSQ = " & nOper & _
+         " order by WLOPSQ"
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(81)
+    Exit Sub
+  End If
+  '
+  lblOPSQ.Caption = Trim(DB.Extract(sCols,sRows,1,"WLDSC1"))
+  lblWOQty.Caption = "Open: " & ConvDecimalsFromSQL("UORG", DB.Extract(sCols,sRows,1,"WLUORG")) & " " & Trim(DB.Extract(sCols,sRows,1,"WLUOM"))
+  '
+  ' Check to see if work center rates are set up for this branch plant/cost method/work center
+  sMCU = DB.Extract(sCols,sRows,1,"WLMCU")
+  '
+  sSql = "select count(*) from  F30008" & _
+         " where IWMCU = '" & sMCU & "' and IWLEDG = '%tmCSMT'"
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(241)
+    Exit Sub
+  End If
+  '
+  ' get qty from current record
+  mnMaxQty = 0
+
+  sSql = "select sum(WTSOQS), WTUOM from F31122 where WTDOCO = %tmDOCO and WTDCTO = '%tmDCTO' and WTTYR = '4' and WTOPSQ = " & nOper & _
+         " Group by WTOPSQ, WTUOM Order by WTOPSQ DESC"
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(sRows) > 0 Then
+    mnMaxQty = ConvDecimalsFromSQL("SOQS", DB.Extract(sCols,sRows,1,1) * -1)
+    lblUOM.Caption = CStr(mnMaxQty) & " " & DB.Extract(sCols,sRows,1,2)
+  End If
+  '
+  ' get qty from privious record
+  sSql = "select sum(WTSOQS), WTUOM from F31122 where WTDOCO = %tmDOCO and WTDCTO = '%tmDCTO' and WTTYR = '4' and WTOPSQ < " & nOper & _
+         " Group by WTOPSQ, WTUOM Order by WTOPSQ DESC"
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(sRows) > 0 Then
+    mnMaxQty = mnMaxQty + ConvDecimalsFromSQL("SOQS", DB.Extract(sCols,sRows,1,1))
+    lblUOM.Caption = CStr(mnMaxQty) & " " & DB.Extract(sCols,sRows,1,2)
+  Else
+    mnMaxQty = 999999
+    lblUOM.Caption = ""
+  End If
+  '
+  App.SetValue("tmOPSQ", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtOPSQ_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sDOCO As String
+  Dim sDCTO As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  sDOCO = App.GetValue("tmDOCO")
+  sDCTO = App.GetValue("tmDCTO")
+  '
+  Cancel = Not Search_F3112(Rsp, sMCU, sDOCO, sDCTO)
+End Sub
+
+Private Sub txtQty_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQTY",0)
+
+End Sub
+
+Private Sub txtQty_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel=True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+'  If Val(Rsp) > mnMaxQty Then
+'    App.MsgBox GetMsg(244)
+'    Exit Sub
+'  End If
+  '
+  If Val(Rsp) >= mnMaxQty Then
+    txtCompl.Defaults = "C;O"
+  Else
+    txtCompl.Defaults = "P;O"
+  End If
+  '
+  nQty = Val(Rsp)
+  '
+  App.SetValue("tmQTY",Val(Rsp))
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtScrap_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel=True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+'  If Val(Rsp) > mnMaxQty Then
+'    App.MsgBox GetMsg(244)
+'    Exit Sub
+'  End If
+  '
+  nQty = Val(Rsp)
+  '
+  App.SetValue("tmScrap",Val(Rsp))
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtSHIFT_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmSHIFT", "")
+
+End Sub
+
+Private Sub txtSHIFT_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = FixRight(FixRight(Trim(UCase(Rsp)), 3, " "), 10, " ")
+
+  If gsJDEVers = "A9.2" Then
+    If Not Validate_UDC(Rsp, "07", "SH", sDRDL01, sDRDL02) Then Exit Sub
+  Else
+    If Not Validate_UDC(Rsp, "06", "SH", sDRDL01, sDRDL02) Then Exit Sub
+  End If
+  '
+  App.SetValue("tmSHIFT", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtSHIFT_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If gsJDEVers = "A9.2" Then
+    Cancel = Not Search_UDC(Rsp, "07", "SH")
+  Else
+    Cancel = Not Search_UDC(Rsp, "06", "SH")
+  End If
+
+End Sub
+
+Private Sub txtHRTYPE_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmHRTYPE", "")
+
+End Sub
+
+Private Sub txtHRTYPE_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = FixRight(FixRight(Trim(UCase(Rsp)), 3, " "), 10, " ")
+
+  If Not Validate_UDC(Rsp, "31", "TY", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmHRTYPE", Rsp)
+  '
+  Cancel = False
+  '
+End Sub
+
+Private Sub txtHRTYPE_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_UDC(Rsp, "31", "TY")
+End Sub
+
+Private Sub txtSTIME_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If bNewWO Then
+    If Len(Trim(msStartTime)) = 0 Then
+    '
+      If cUse24Hrs Then
+        Rsp = Format(Now, "hh:mm")
+      Else
+        Rsp = Format(Now, "hh:mm AM/PM")
+      End If
+    Else
+      If cUse24Hrs Then
+        Rsp = Format(msStartTime, "hh:mm")
+      Else
+        Rsp = Format(msStartTime, "hh:mm AM/PM")
+      End If
+    End If
+    '
+    If mbAdmin Then
+      AllowChange = True
+    Else
+      AllowChange = False
+    End If
+    '
+  End If
+End Sub
+
+Private Sub txtSTIME_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmSTIME", "")
+
+End Sub
+
+Private Sub txtSTIME_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sUser    As String
+  Dim nErrNo   As Long
+  Dim sOPSQ    As String
+  Dim sTime    As String
+  '
+  If (Len(Rsp)=0) Then
+    Rsp = Format(Time,"HH:NN")
+    Exit Sub
+  End If
+
+  Cancel = True
+  '
+  Rsp = Replace(Rsp, ".", "")
+  Rsp = Replace(Rsp, "-", "")
+  Rsp = Replace(Rsp, ":", "")
+  Rsp = Replace(Rsp, "+", "")
+  '
+  If IsNumeric(Rsp) = False Then
+    App.MsgBox GetMsg(85)
+    Exit Sub
+  End If
+  '
+  If Val(Rsp) < 0 Or Val(Rsp) > 240000 Then
+    App.MsgBox GetMsg(85)
+    Exit Sub
+  End If
+  '
+  Rsp = FixLeft(Rsp,4,"0")
+  Rsp = Format(Rsp,"##:##")
+  '
+  If cUse24Hrs Then
+    Rsp = Format(CStr(Rsp), "hh:mm")
+  Else
+    Rsp = Format(CStr(Rsp), "hh:mm AM/PM")
+  End If
+  App.SetValue("tmSTIME", Rsp)
+  '
+  Cancel = False
+  If bNewWO Then
+    '
+    '  Stop prior WO
+    '
+    Call ExecStop(Format(Date,"MM/DD/YYYY") & " " & Rsp)
+    '
+    sUser = App.User
+    sOPSQ = Replace(App.GetValue("tmOPSQ"),",", "")
+    sOPSQ = Replace(sOPSQ,".","")
+    sOPSQ = CStr(ConvDecimalsFromSQL("OPSQ", sOPSQ))
+    sOPSQ = Replace(sOPSQ,",",".")
+    '
+    sTime = Format(Date,"MM/DD/YYYY")
+    sTime = sTime & " " & App.GetValue("tmSTime")
+    '
+    sSql = "insert into RF31122 Values('%tmMCU', %tmDOCO, '%tmDCTO', " & ConvDecimalsToSQL("OPSQ",App.GetValue("tmOPSQ")) & ", '%tmSHIFT', '%tmHRTYPE', %tmEMPL, '" & sTime & "', '" & sUser & "' )"
+
+    nErrNo = DB.Execute(sSql)
+    If nErrNo <> 0 Then
+      App.MsgBox GetMsg(242)
+    End If
+    '
+    msStartTime = Rsp
+    msStopTime  = ""
+    txtDOCO.Text = ""
+    txtDCTO.Text = ""
+    App.SetFocus(1)
+  End If
+
+End Sub
+
+Private Sub txtSTIME_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Rsp = Format(Time,"hhmm")
+
+End Sub
+
+Private Sub txtETIME_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmETIME", "")
+
+End Sub
+
+Private Sub txtETIME_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then
+    Rsp = Format(Time,"HH:NN")
+    Exit Sub
+  End If
+
+  Cancel = True
+  '
+  Rsp = Replace(Rsp, ".", "")
+  Rsp = Replace(Rsp, "-", "")
+  Rsp = Replace(Rsp, ":", "")
+  Rsp = Replace(Rsp, "+", "")
+  '
+  If IsNumeric(Rsp) = False Then
+    App.MsgBox GetMsg(85)
+    Exit Sub
+  End If
+  '
+  If Val(Rsp) < 0 Or Val(Rsp) > 2400 Then
+    App.MsgBox GetMsg(85)
+    Exit Sub
+  End If
+  '
+  Rsp = FixRight(Rsp,4,"0")
+  Rsp = Format(Rsp,"##:##")
+  '
+  If cUse24Hrs Then
+    Rsp = Format(CStr(Rsp), "hh:mm")
+  Else
+    Rsp = Format(CStr(Rsp), "hh:mm AM/PM")
+  End If
+  '
+  Cancel = False
+  msStartTime = ""
+  msStopTime  = Rsp
+  App.SetValue("tmETIME", Rsp)
+  App.SetValue("tmEDate", txtEndDate.Text)
+
+End Sub
+
+Private Sub txtETIME_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Rsp = Format(Time,"hhmm")
+
+End Sub
+
+Private Sub Clear_DependentFields
+  On Error Resume Next
+  '
+  lblItem.Caption     = ""
+  lblItemDesc.Caption = ""
+
+End Sub
+
+Private Function Validate_WorkOrder As Boolean
+  On Error Resume Next
+  '
+  Dim nWoStatus As Long
+  Dim sMCU      As String
+  Dim sDOCO     As String
+  Dim sDCTO     As String
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  sDOCO = App.GetValue("tmDOCO")
+  sDCTO = App.GetValue("tmDCTO")
+  '
+  If (Len(sMCU)=0 Or Len(sDOCO)=0 Or Len(sDCTO)=0) Then
+    Call Clear_DependentFields
+    Validate_WorkOrder = True
+    Exit Function
+  End If
+  '
+  Validate_WorkOrder = False
+  '
+  sSql="select WASRST,WALITM,WADL01 from  F4801" & _
+       " where WADOCO = " & sDOCO & " and WADCTO = '" & sDCTO & "' and WAMCU='" & sMCU & "'"
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(226)
+    Exit Function
+  End If
+  '
+  ' Check Work Order Status
+  nWoStatus = Val(Trim(DB.Extract(sCols, sRows, 1, "WASRST")))
+  '
+  If (nWoStatus > mnStatusT) Then
+    App.MsgBox GetMsg(230)
+    Exit Function
+  End If
+  '
+  If (nWoStatus < cStatusF) Then
+    App.MsgBox GetMsg(231)
+    Exit Function
+  End If
+  '
+  lblItem.Caption     = DB.Extract(sCols, sRows, 1, "WALITM")
+  lblItemDesc.Caption = DB.Extract(sCols, sRows, 1, "WADL01")
+  '
+  Validate_WorkOrder = True
+
+End Function
+
+Private Sub txtWODT_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sExpDt As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = Trim(Rsp)
+  sExpDt = CStr(CDate(Rsp))
+  '
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+  '
+  Rsp = sExpDt
+
+  App.SetValue("tmWODT", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Function BuildList As Boolean
+  On Error Resume Next
+  '
+  Dim iCnt      As Integer
+  Dim iRcd      As Integer
+  Dim nWoStatus As Long
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sDsp      As String
+  '
+  sSql = "select * from RF31122 where WTAN8 = %tmEMPL Order By WTDOCO, WTDCTO"
+  '
+  DB.Execute(sSql,sCols,sRows)
+  '
+  lstWO.List.Clear
+  iRcd= DB.Count(sRows)
+  '
+  For iCnt = 1 To iRcd
+    sDsp = "S"  & "|" & FixRight(DB.Extract(sCols, sRows, iCnt, "WTDOCO"),8," ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols, sRows, iCnt, "WTDCTO"),2," ") & "|"
+    sDsp = sDsp & Trim(DB.Extract(sCols, sRows, iCnt, "WTUPMJ")) & "|"
+    sDsp = sDsp & Format(ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols,sRows,iCnt,"WTOPSQ")),"#00.00") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols, sRows, iCnt, "WTSHFT"),1," ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols, sRows, iCnt, "WTTTYR"),1," ")
+    lstWO.List.AddItem(sDsp, sDsp)
+  Next iCnt
+  '
+  lstWO.List.InsertItem("", ".......end of data   " & Format(Now, "MM/DD/YY hh:nn:ss"))   ' todo - upgrade: 'InsertLocn' is now first parameter
+  '
+End Function
+
+Private Function ExecTM As Boolean
+  On Error Resume Next
+  '
+  Dim iCnt    As Integer
+  Dim iRcd    As Integer
+  Dim nLine   As Integer
+  Dim vArray  As Variant
+  Dim nDiff   As Long
+
+  Dim emProc  As New EmbeddedProc
+  '
+  Dim iLblMax As Integer
+  Dim sSql    As String
+  Dim sVal    As String
+  Dim sData   As String
+  Dim sSDate  As String
+  Dim sEDate  As String
+  Dim sStart  As String
+
+  ExecTM = False
+
+  iLblMax = lstWO.List.Count                                           'max line
+  iRcd = iLblMax -1
+  '
+  For iCnt = 1 To iLblMax
+    lstWO.List.Index = iCnt
+    sVal = lstWO.Text                                                 'get current value
+    If Len(Trim(sVal)) > 0 Then
+      vArray = Split(sVal,"|")
+      '
+      If iRcd > 1 And vArray(0) <> "S" Then                                               'calculate time per wo
+        sSDate = vArray(3) & ":00"
+        sEDate = App.GetValue("tmEDate") & " " & vArray(9) & ":00"
+        nDiff = DateDiff("s",sSDate, sEDate)
+        nDiff = nDiff / iRcd
+        sStart = CStr(DateAdd("s",-nDiff,sEDate))
+        '
+        If cUse24Hrs Then
+          sStart = Format(sStart,"MM/DD/YYYY hh:nn:ss")
+        Else
+          sStart = Format(sStart,"MM/DD/YYYY hh:nn:ss AM/PM")
+        End If
+
+        Exit For
+      End If
+    End If
+  Next iCnt
+  '
+  For iCnt = 1 To iLblMax
+    lstWO.List.Index = iCnt
+    sVal = lstWO.Text                                                 'get current value
+    If Len(Trim(sVal)) > 0 Then
+      vArray = Split(sVal,"|")
+      '
+      If vArray(0) <> "S" Then
+        'emProc.Name                  = "TWOTE0100"
+        emProc.Name                  = "TBTWOTE0500"
+        emProc.DataSource            = gsDataSource
+        emProc.Param("tmCO")         = App.GetValue("tmCO")
+        emProc.Param("tmMCU")        = App.GetValue("tmMCU")
+        emProc.Param("tmDOCO")       = vArray(1)
+        emProc.Param("tmDCTO")       = vArray(2)
+        emProc.Param("tmOPSQ")       = vArray(4)
+        emProc.Param("tmEMPL")       = App.GetValue("tmEMPL")
+        If iRcd > 1 Then
+          emProc.Param("tmSTART")    = Format(sStart,"hh:nn")
+        Else
+          emProc.Param("tmSTART")    = Format(vArray(3),"hh:nn")
+        End If
+        emProc.Param("tmEND")        = Format(sEDate,"hh:nn")
+        emProc.Param("tmDOCTYPE")    = msDOCTYPE
+        emProc.Param("tmSHFT")       = vArray(5)
+        emProc.Param("tmHRTP")       = vArray(6)
+        emProc.Param("tmWODT")       = App.GetValue("tmWODT")
+        emProc.Param("tmUSER")       = App.User
+        emProc.Param("tmQTY")        = vArray(7)
+        emProc.Param("tmSCRAP")      = vArray(8)
+        '
+        If vArray(0) = "P" Then                             ' partial
+          emProc.Param("tmZVERSION")   = msZJDEMAIN
+        Else                                                ' complete
+          emProc.Param("tmZVERSION")   = msZJDEMAIN
+        End If
+        '
+        emProc.Param("tmPGM")        = msPgm
+        If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+        If gbQueueProcessing Then
+          If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+          
+          If Not emProc.Queue Then
+            App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+            App.SetFocus "txtAccept"
+            Exit Function
+          End If
+        Else
+          If Not emProc.Execute Then
+            App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+            If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+            App.SetFocus "txtAccept"
+            Exit Function
+          End If
+        End If
+        '
+        ' Offline inventory
+        If gbOfflineEnabled Then
+          If Not WriteOI(App.GetValue("tmCO"),App.GetValue("tmMCU"),vArray(2),App.GetValue("tmITM"),"",vArray(4),"-" & CStr(vArray(3)),App.GetValue("tmDOCO"),App.GetValue("tmDCTO"),vArray(6),emProc.QueueName,emProc.QueueSeqNo, vArray(1),vArray(5)," ") Then
+            App.MsgBox(GetMsg(31))
+          End If
+        End If
+      End If
+      '
+      If vArray(0) = "S" Then
+        If Len(sEDate) > 0 Then
+          sSql = "update RF31122 set WTUPMJ = '" & Format(sEDate,"MM/DD/YYYY hh:nn") & "' where " & _
+                 " WTDOCO = " & vArray(1) & " and WTDCTO = '" & vArray(2) & "' and WTAN8 = %tmEMPL and WTMMCU = '%tmMCU' "
+        End If
+      Else
+        sSql = "delete from RF31122 where " & _
+               " WTDOCO = " & vArray(1) & " and WTDCTO = '" & vArray(2) & "' and WTAN8 = %tmEMPL and WTMMCU = '%tmMCU' "
+      End If
+      DB.Execute(sSql)
+    End If
+  Next iCnt
+
+  ExecTM = True
+
+End Function
+
+Private Function ExecStop(sTime As String) As Boolean
+  On Error Resume Next
+  '
+  Dim iCnt    As Integer
+  Dim iRcd    As Integer
+  Dim nLine   As Integer
+  Dim vArray  As Variant
+  Dim nDiff   As Long
+
+  Dim emProc  As New EmbeddedProc
+  '
+  Dim iLblMax As Integer
+  Dim sSql    As String
+  Dim sVal    As String
+  Dim sData   As String
+  Dim sSDate  As String
+  Dim sEDate  As String
+  Dim sStart  As String
+
+  ExecStop = False
+
+  iLblMax = lstWO.List.Count                                           'max line
+  iRcd = iLblMax -1
+  '
+  For iCnt = 1 To iLblMax
+    lstWO.List.Index = iCnt
+    sVal = lstWO.Text                                                 'get current value
+    If Len(Trim(sVal)) > 0 Then
+      vArray = Split(sVal,"|")
+      '
+      If Trim(vArray(3)) <> sTime Then                                                   ' only if start time is different
+        'emProc.Name                  = "TWOTE0100"
+        emProc.Name                  = "TBTWOTE0500"
+        emProc.DataSource            = gsDataSource
+        emProc.Param("tmCO")         = App.GetValue("tmCO")
+        emProc.Param("tmMCU")        = App.GetValue("tmMCU")
+        emProc.Param("tmDOCO")       = vArray(1)
+        emProc.Param("tmDCTO")       = vArray(2)
+        emProc.Param("tmOPSQ")       = vArray(4)
+        emProc.Param("tmEMPL")       = App.GetValue("tmEMPL")
+        emProc.Param("tmSTART")      = Format(vArray(3),"hh:nn")
+        emProc.Param("tmEND")        = Format(sTime,"hh:nn")
+        emProc.Param("tmDOCTYPE")    = msDOCTYPE
+        emProc.Param("tmSHFT")       = vArray(5)
+        emProc.Param("tmHRTP")       = vArray(6)
+        emProc.Param("tmWODT")       = App.GetValue("tmWODT")
+        emProc.Param("tmUSER")       = App.User
+        emProc.Param("tmQTY")        = vArray(7)
+        emProc.Param("tmSCRAP")      = vArray(8)
+        '
+        If vArray(0) = "P" Then                             ' partial
+          emProc.Param("tmZVERSION")   = msZJDEMAIN
+        Else                                                ' complete
+          emProc.Param("tmZVERSION")   = msZJDEMAIN
+        End If
+        '
+        emProc.Param("tmPGM")        = msPgm
+        If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+        If gbQueueProcessing Then
+          If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+          
+          If Not emProc.Queue Then
+            App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+            App.SetFocus "txtAccept"
+            Exit Function
+          End If
+        Else
+          If Not emProc.Execute Then
+            App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+            If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+            App.SetFocus "txtAccept"
+            Exit Function
+          End If
+        End If
+        '
+        ' Offline inventory
+        If gbOfflineEnabled Then
+          If Not WriteOI(App.GetValue("tmCO"),App.GetValue("tmMCU"),vArray(2),App.GetValue("tmITM"),"",vArray(4),"-" & CStr(vArray(3)),App.GetValue("tmDOCO"),App.GetValue("tmDCTO"),vArray(6),emProc.QueueName,emProc.QueueSeqNo, vArray(1),vArray(5)," ") Then
+            App.MsgBox(GetMsg(31))
+          End If
+        End If
+        '
+        sSql = "update RF31122 set WTUPMJ = '" & Format(sTime,"MM/DD/YYYY hh:nn") & "' where " & _
+               " WTDOCO = " & vArray(1) & " and WTDCTO = '" & vArray(2) & "' and WTAN8 = %tmEMPL and WTMMCU = '%tmMCU' "
+        DB.Execute(sSql)
+      End If
+    End If
+  Next iCnt
+
+  ExecStop = True
+
+End Function
+</Code>

@@ -1,0 +1,8 @@
+﻿<Record FileDesc="Demo PoD" FileVersion="5.0.8.0" Desc="Demo PoD" Heading="Proof of Delivery">
+<MenuItem Id="FPOLR0100" Desc="PO Receive" Options="-Pgm=P4312 -Vers=ZJDE0001 -UDC=55/CO -UniqueLotY/N =Y" />
+<MenuItem Id="FIMIT0100" Desc="Put Away" Options="-Pgm=P4113 -Vers=ZJDE0001 -From=REC -To=None" />
+<MenuItem Id="-" Desc="-" />
+<MenuItem Id="SO" Desc="Outbound" />
+<MenuItem Id="-" Desc="-" />
+<MenuItem Id="JDE" Desc="RFGen JD Edwards Transaction Suites" />
+</Record>

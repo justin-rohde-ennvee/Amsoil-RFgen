@@ -1,0 +1,202 @@
+﻿<Record FileDesc="WO - Work Order Create (Ferraz)" FileVersion="5.0.8.0" Desc="WO - Work Order Create (Ferraz)" Depends="JDE.bas">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmFORDATE" />
+<Param Name="tmSTSNEXT" />
+<Param Name="tmEMPL" />
+<Param Name="tmZVERSION" />
+<Param Name="tmRelatedOrder" />
+<Param Name="tmRelatedOrTy" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmDOCO" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - WORK ORDER CREATE (FERRAZ)
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TWOCW0200"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmFORDATE As Variant, ByRef tmSTSNEXT As Variant, ByRef tmEMPL As Variant, ByRef tmZVERSION As Variant, ByRef tmRelatedOrder As Variant, ByRef tmRelatedOrTy As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmDOCO As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim nBatchNo    As Currency
+  Dim nJobNo      As Currency
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim bSuccess    As Boolean
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim nITM        As Long
+
+  Dim emF4801BeginDocument    As New EmbeddedProc
+  Dim emF4801EditLine         As New EmbeddedProc
+  Dim emF4801EndDocument      As New EmbeddedProc
+  Dim emError                 As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------------'
+  ' F4801BeginDocument '
+  '--------------------'
+  emF4801BeginDocument.Name       = "F4801BeginDocument"
+  emF4801BeginDocument.LogMode = LogNever
+  emF4801BeginDocument.DebugLog   = cJDELogPath
+  '
+  emF4801BeginDocument.Param("InteractiveBatchFlag")    = "I"
+  emF4801BeginDocument.Param("SuppressErrorMessages")   = "1"
+  emF4801BeginDocument.Param("ProcessEdits")            = "1"
+  emF4801BeginDocument.Param("ProcessModule")           = "MFG"
+  emF4801BeginDocument.Param("ProgramID")               = "EP48013"
+  emF4801BeginDocument.Param("VersionID")               = tmZVERSION
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4801BeginDocument.Name, "", emF4801BeginDocument)
+
+  If Not emF4801BeginDocument.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4801BeginDocument.Name, "", emF4801BeginDocument, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  nJobNo = Val(emF4801BeginDocument.Param("JobNumber"))
+  '
+  If (nJobNo = 0) Then
+    sErrDesc = "F4801BeginDocument(JobNumber)"
+    GoTo ExitMe
+  End If
+
+  '---------------'
+  ' F4801EditLine '
+  '---------------'
+  emF4801EditLine.Name       = "F4801EditLine"
+  emF4801EditLine.LogMode = LogNever
+  emF4801EditLine.DebugLog   = cJDELogPath
+  '
+  emF4801EditLine.Param("JobNumber")                  = nJobNo
+  emF4801EditLine.Param("ActionCode")                 = "1"
+  emF4801EditLine.Param("ProcessEdits")               = "1"
+  emF4801EditLine.Param("ErrorCode")                  = "1"
+  emF4801EditLine.Param("ProcessModule")              = "MFG"
+  emF4801EditLine.Param("SuppressErrorMessages")      = "1"
+  emF4801EditLine.Param("ProcessToolEditing")         = "0"
+  emF4801EditLine.Param("OrderType")                  = tmDCTO
+  emF4801EditLine.Param("WOType")                     = " "
+  emF4801EditLine.Param("BranchPlant")                = tmMCU
+  emF4801EditLine.Param("WOStatus")                   = tmSTSNEXT
+  emF4801EditLine.Param("PlannedCompletionDate")      = Format(tmFORDATE, "mm/dd/yyyy")
+  emF4801EditLine.Param("OrderDate")                  = sTNDate
+  emF4801EditLine.Param("StartDate")                  = sTNDate
+  emF4801EditLine.Param("RequestedDate")              = Format(tmFORDATE, "mm/dd/yyyy")
+  emF4801EditLine.Param("QtyOrdered")                 = tmQTY
+  emF4801EditLine.Param("UnitOfMeasure")              = tmUOM
+  emF4801EditLine.Param("TypeOfBill")                 = "M"
+  emF4801EditLine.Param("TypeOfRouting")              = "M"
+  emF4801EditLine.Param("FreezeCode")                 = "N"
+  emF4801EditLine.Param("ItemNumberUnknownFormat")    = tmLITM
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4801EditLine.Name, "", emF4801EditLine)
+  '
+  If Not emF4801EditLine.Execute Then
+    tmERRID = emF4801EditLine.Param("ErrorMessageID")
+    sErrDesc = "F4801EditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4801EditLine.Name, "", emF4801EditLine, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '------------------'
+  ' F4801EndDocument '
+  '------------------'
+  emF4801EndDocument.Name       = "F4801EndDocument"
+  emF4801EndDocument.LogMode = LogNever
+  emF4801EndDocument.DebugLog   = cJDELogPath
+  '
+  emF4801EndDocument.Param("JobNumber")               = nJobNo
+  emF4801EndDocument.Param("SuppressErrorMessages")   = "1"
+  emF4801EndDocument.Param("WorkFileLineNumber")      = 1
+  emF4801EndDocument.Param("ProcessEdits")            = "1"
+  emF4801EndDocument.Param("ProcessModule")           = "MFG"
+  emF4801EndDocument.Param("ActionCode")              = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4801EndDocument.Name, "", emF4801EndDocument)
+
+  If Not emF4801EndDocument.Execute Then
+    tmERRID = emF4801EndDocument.Param("ErrorMessageID")
+    sErrDesc = "F4801EndDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4801EndDocument.Name, "", emF4801EndDocument, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  tmDOCO = emF4801EndDocument.Param("OrderNumber")
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitMe:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emF4801BeginDocument    = Nothing
+  Set emF4801EditLine         = Nothing
+  Set emF4801EndDocument      = Nothing
+  Set emError                 = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+    'Not required
+    'sSQL = "update F4801" & _
+    '       " set WARORN = " & tmRelatedOrder & ", WARCTO = '" & tmRelatedOrTy & "'"
+    'DB.Execute(sSQL)
+  End If
+  '
+  Transaction = bSuccess
+
+End Function
+</Code>

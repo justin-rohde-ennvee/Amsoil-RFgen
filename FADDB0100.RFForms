@@ -1,0 +1,722 @@
+﻿<Record FileDesc="ADM - Sync. Rfgen DB" FileVersion="5.0.8.0" Desc="ADM - Sync. Rfgen DB" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame1&vm;chkForms&vm;chkMacros&vm;chkFiles&vm;chkHosts&vm;chkGlobal&vm;Frame2&vm;chkUsers&vm;chkMenus&vm;lblTarget&vm;lblSource&vm;Label3&vm;Label4&vm;txtSource&vm;btnDone&vm;lblForms&vm;lblMacros&vm;lblFiles&vm;lblHosts&vm;lblGlobal&vm;lblUsers&vm;lblMenus&vm;btnSource&vm;txtLoop&vm;Label12&vm;txtHidden&vm;btnRun&vm;lblProc&vm;btnConnect">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Frame1" />
+<SchemaParam Linked="0" Attr="2" Name="chkForms" />
+<SchemaParam Linked="0" Attr="3" Name="chkMacros" />
+<SchemaParam Linked="0" Attr="4" Name="chkFiles" />
+<SchemaParam Linked="0" Attr="5" Name="chkHosts" />
+<SchemaParam Linked="0" Attr="6" Name="chkGlobal" />
+<SchemaParam Linked="0" Attr="7" Name="Frame2" />
+<SchemaParam Linked="0" Attr="8" Name="chkUsers" />
+<SchemaParam Linked="0" Attr="9" Name="chkMenus" />
+<SchemaParam Linked="0" Attr="10" Name="lblTarget" />
+<SchemaParam Linked="0" Attr="11" Name="lblSource" />
+<SchemaParam Linked="0" Attr="12" Name="Label3" />
+<SchemaParam Linked="0" Attr="13" Name="Label4" />
+<SchemaParam Linked="0" Attr="14" Name="txtSource" />
+<SchemaParam Linked="0" Attr="15" Name="btnDone" />
+<SchemaParam Linked="0" Attr="16" Name="lblForms" />
+<SchemaParam Linked="0" Attr="17" Name="lblMacros" />
+<SchemaParam Linked="0" Attr="18" Name="lblFiles" />
+<SchemaParam Linked="0" Attr="19" Name="lblHosts" />
+<SchemaParam Linked="0" Attr="20" Name="lblGlobal" />
+<SchemaParam Linked="0" Attr="21" Name="lblUsers" />
+<SchemaParam Linked="0" Attr="22" Name="lblMenus" />
+<SchemaParam Linked="0" Attr="23" Name="btnSource" />
+<SchemaParam Linked="0" Attr="24" Name="txtLoop" />
+<SchemaParam Linked="0" Attr="25" Name="Label12" />
+<SchemaParam Linked="0" Attr="26" Name="txtHidden" />
+<SchemaParam Linked="0" Attr="27" Name="btnRun" />
+<SchemaParam Linked="0" Attr="28" Name="lblProc" />
+<SchemaParam Linked="0" Attr="29" Name="btnConnect" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="12" FieldId="Frame1" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Programming  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="22" Width="327" Height="154" AnchorRight="48" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkForms" Attr="2" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="47" Height="22" AnchorRight="320" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Forms" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="44" Width="31" Height="31" AnchorRight="224" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkMacros" Attr="3" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="55" Height="22" AnchorRight="312" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Macros" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="66" Width="31" Height="31" AnchorRight="224" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkFiles" Attr="4" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="103" Height="22" AnchorRight="264" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="File Schemas" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="88" Width="31" Height="31" AnchorRight="224" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkHosts" Attr="5" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="119" Height="22" AnchorRight="248" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="SM Hostscreens" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="110" Width="31" Height="31" AnchorRight="224" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkGlobal" Attr="6" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="63" Height="22" AnchorRight="304" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Modules" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="132" Width="31" Height="31" AnchorRight="224" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame2" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  User / Menus  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="327" Height="88" AnchorRight="48" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkUsers" Attr="8" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="198" Width="47" Height="22" AnchorRight="320" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Users" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="198" Width="31" Height="31" AnchorRight="224" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkMenus" Attr="9" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="47" Height="22" AnchorRight="320" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Menus" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="31" Height="31" AnchorRight="224" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTarget" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="286" Width="79" Height="22" AnchorRight="248" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTarget" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSource" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="264" Width="79" Height="22" AnchorRight="248" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSource" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label3" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="47" Height="22" AnchorRight="328" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="From:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label4" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="47" Height="22" AnchorRight="328" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To..:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSource" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="207" Height="22" AnchorRight="168" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Path to Source RFgen.mdb:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="327" Height="44" AnchorRight="48" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDone" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Save Settings" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="484" Width="143" Height="22" AnchorRight="64" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblForms" Attr="16">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="44" Width="71" Height="22" AnchorRight="144" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblForms" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblMacros" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="66" Width="79" Height="22" AnchorRight="136" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblMacros" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFiles" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="88" Width="71" Height="22" AnchorRight="144" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblFiles" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblHosts" Attr="19">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="110" Width="71" Height="22" AnchorRight="144" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblHosts" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblGlobal" Attr="20">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="132" Width="79" Height="22" AnchorRight="136" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblGlobal" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblUsers" Attr="21">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="198" Width="71" Height="22" AnchorRight="144" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblUsers" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblMenus" Attr="22">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="220" Width="71" Height="22" AnchorRight="144" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblMenus" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnSource" Attr="23">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Change Source" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="167" Height="22" AnchorRight="208" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLoop" Attr="24" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="396" Width="175" Height="22" AnchorRight="200" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Run every xx minutes:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="396" Width="39" Height="22" AnchorRight="160" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label12" Attr="25">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="224" Top="396" Width="151" Height="22" AnchorRight="0" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="( 0 = don't run. )" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden" Attr="26" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="0" Height="22" AnchorRight="375" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="0" Height="22" AnchorRight="375" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnRun" Attr="27">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Run Now" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="528" Width="311" Height="22" AnchorRight="64" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblProc" Attr="28">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="550" Width="215" Height="22" AnchorRight="160" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Processing................" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnConnect" Attr="29">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Connect " ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="440" Width="311" Height="22" AnchorRight="64" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="375" FormHeight="572" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000001" Caption="[ Maintain RFgen Auto Update ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATIVE: SYNC RFGEN DATABASE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Public Const REG_SZ As Long = 1
+Public Const REG_DWORD As Long = 4
+
+Public Const HKEY_CLASSES_ROOT = &H80000000
+Public Const HKEY_CURRENT_USER = &H80000001
+Public Const HKEY_LOCAL_MACHINE = &H80000002
+Public Const HKEY_USERS = &H80000003
+
+Public Const ERROR_NONE = 0
+Public Const ERROR_BADDB = 1
+Public Const ERROR_BADKEY = 2
+Public Const ERROR_CANTOPEN = 3
+Public Const ERROR_CANTREAD = 4
+Public Const ERROR_CANTWRITE = 5
+Public Const ERROR_OUTOFMEMORY = 6
+Public Const ERROR_ARENA_TRASHED = 7
+Public Const ERROR_ACCESS_DENIED = 8
+Public Const ERROR_INVALID_PARAMETERS = 87
+Public Const ERROR_NO_MORE_ITEMS = 259
+
+Public Const KEY_QUERY_VALUE = &H1
+Public Const KEY_SET_VALUE = &H2
+Public Const KEY_ALL_ACCESS = &H3F
+
+Public Const REG_OPTION_NON_VOLATILE = 0
+
+Private msChk      As String
+Private bConnect   As Boolean
+Private mvSource   As Variant
+Private mvTarget   As Variant
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim vArray As Variant
+  '
+  lblForms.Caption  = ""
+  lblMacros.Caption = ""
+  lblFiles.Caption  = ""
+  lblHosts.Caption  = ""
+  lblGlobal.Caption = ""
+  lblUsers.Caption  = ""
+  lblMenus.Caption  = ""
+  lblProc.Visible   = False
+  '
+  Call SetChkBoxes()
+  bConnect = False
+  vArray = Split(SYS.GetProperty("Config", "Env"), "|")
+  '
+  ' get path to local RFgen.mdb -> Target
+  '
+  QueryValue ("SOFTWARE\DataMAXSG\RFGen" & vArray(7) , "Source", mvTarget)
+  mvTarget = Left(mvTarget, Len(mvTarget) /2)
+  '
+  lblTarget.Caption = mvTarget
+  lblTarget.Label.ForeColor = vbRed
+  Screen.Refresh
+  '
+  ' get path to central RFgen.mdb -> Source
+  '
+  txtSource.Visible = False
+  '
+  If Len(SYS.GetProperty("Sync","Source")) = 0 Then
+    txtSource.Visible = True
+    App.SetFocus("txtSource")
+    Exit Sub
+  Else
+    mvSource = Trim(SYS.GetProperty("Sync","Source"))
+    lblSource.Caption = mvSource
+    lblSource.Label.ForeColor = vbRed
+  End If
+
+  Screen.Refresh
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  If Fkey = 2 Then
+    txtSource.Visible = True
+    App.SetFocus("txtSource")
+  End If
+End Sub
+
+Private Sub btnConnect_Click()
+  On Error Resume Next
+  '
+  Dim bCancel As Boolean
+  '
+  lblProc.Visible = True
+  Screen.Refresh
+  Call Init(bCancel)
+  '
+  lblProc.Visible = False
+  Screen.Refresh
+End Sub
+
+Private Sub btnDone_Click()
+  On Error Resume Next
+  '
+  Call GetChkBoxes()
+End Sub
+
+Private Sub btnRun_Click()
+  On Error Resume Next
+  '
+  Dim bCancel As Boolean
+  '
+  If Not bConnect Then Call Init(bCancel)
+  If bCancel Then Exit Sub
+  '
+  Call GetChkBoxes()
+  lblProc.Visible = True
+  Screen.Refresh
+  '
+  Call ExecSyncRFgenMDB()
+  lblProc.Visible = False
+  Screen.Refresh
+End Sub
+
+Private Sub btnSource_Click()
+  On Error Resume Next
+  '
+  txtSource.Visible = True
+  App.SetFocus("txtSource")
+End Sub
+
+Private Sub txtSource_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Cancel = True
+  If Len(Trim(Rsp)) = 0 Then Exit Sub
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  SYS.SetProperty("Sync","Source",Rsp)
+  Call Form_Load()
+  App.SetFocus("Frame1")
+End Sub
+
+Public Sub Init (ByRef bCancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sData     As String
+  Dim nSize     As Single
+  Dim nPos      As Single
+  Dim nPos1     As Single
+  Dim zChar(1)  As Byte
+  Dim zData()   As Byte
+  Dim szData()  As Byte
+  '
+  ' get path to central RFgen.mdb -> Source
+  '
+  '
+  If Not GetData(mvSource, "Source", sData) Then
+    lblSource.Label.ForeColor = vbRed
+    bCancel = True
+  Else
+    lblSource.Label.ForeColor = vbGreen
+  End If
+
+  Screen.Refresh
+  '
+  ' get path to local RFgen.mdb -> Target
+  '
+  '
+  If Not GetData(mvTarget, "Target", sData) Then
+    lblTarget.Label.ForeColor = vbRed
+    bCancel = True
+  Else
+    lblTarget.Label.ForeColor = vbGreen
+  End If
+
+  Screen.Refresh
+  '
+  bConnect = True
+End Sub
+
+Private Sub SetChkBoxes()
+  On Error Resume Next
+  '
+  msChk = Trim(SYS.GetProperty("Sync", "Boxes"))
+  '
+  chkForms.Checked  = (Ext(msChk,1) = "1")
+  chkMacros.Checked = (Ext(msChk,2) = "1")
+  chkFiles.Checked  = (Ext(msChk,3) = "1")
+  chkHosts.Checked  = (Ext(msChk,4) = "1")
+  chkGlobal.Checked = (Ext(msChk,5) = "1")
+  chkUsers.Checked  = (Ext(msChk,6) = "1")
+  chkMenus.Checked  = (Ext(msChk,7) = "1")
+  '
+  txtLoop.Text = CStr(Val(Ext(msChk,8)))
+End Sub
+
+Private Sub GetChkBoxes()
+  On Error Resume Next
+  '
+  Dim sChk As String
+  '
+  msChk = ""
+  '
+  msChk = Rep(msChk, 1, -1, CStr(Abs(CInt(chkForms.Checked))))
+  msChk = Rep(msChk, 2, -1, CStr(Abs(CInt(chkMacros.Checked))))
+  msChk = Rep(msChk, 3, -1, CStr(Abs(CInt(chkFiles.Checked))))
+  msChk = Rep(msChk, 4, -1, CStr(Abs(CInt(chkHosts.Checked))))
+  msChk = Rep(msChk, 5, -1, CStr(Abs(CInt(chkGlobal.Checked))))
+  msChk = Rep(msChk, 6, -1, CStr(Abs(CInt(chkUsers.Checked))))
+  msChk = Rep(msChk, 7, -1, CStr(Abs(CInt(chkMenus.Checked))))
+  '
+  msChk = Rep(msChk, 8, -1, CStr(Val(txtLoop.Text)))
+  '
+  SYS.SetProperty("Sync", "Boxes", msChk)
+  App.MsgBox("Data saved!")
+
+  App.SetFocus("Frame1")
+End Sub
+'
+Private Function GetData(ByRef sPath As String, ByRef sTable As String, ByRef sData As String) As Boolean
+  On Error Resume Next
+  '
+  Dim cn As ADODB.Connection
+  Dim rs As ADODB.Recordset
+  '
+  Dim szData() As Byte
+  '
+  GetData = False
+  '
+  'Create a new ADO Connection to .mdb
+  'using the Microsoft Access and Jet OLE DB
+  'providers.
+  Set cn = New ADODB.Connection
+  '
+  With cn
+    .Provider = "Microsoft.Access.OLEDB.10.0"
+    .Properties("Data Provider").Value = "Microsoft.Jet.OLEDB.4.0"
+    .Properties("Data Source").Value = sPath
+    .Open
+  End With
+  '
+  If cn = "" Then
+    App.LogError("FADDB0100", Err.Description & " / " & sPath)
+    Exit Function
+  End If
+
+  'Create a new ADO Recordset by using a server-side
+  'keyset cursor and optimistic locking.
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFForms"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If rs = Nothing Then Exit Function
+  '
+  If sTable = "Source" Then
+    lblForms.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblForms.Caption = lblForms.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFMacros"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If sTable = "Source" Then
+    lblMacros.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblMacros.Caption = lblMacros.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFFiles"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If sTable = "Source" Then
+    lblFiles.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblFiles.Caption = lblFiles.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFScreens"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If sTable = "Source" Then
+    lblHosts.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblHosts.Caption = lblHosts.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFModules"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If sTable = "Source" Then
+    lblGlobal.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblGlobal.Caption = lblGlobal.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFUsers"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If sTable = "Source" Then
+    lblUsers.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblUsers.Caption = lblUsers.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  Set rs = New ADODB.Recordset
+  With rs
+    .ActiveConnection = cn
+    .Source = "SELECT * FROM RFMenus"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+  '
+  If sTable = "Source" Then
+    lblMenus.Caption = FixRight(CStr(rs.RecordCount),4," ")
+  Else
+    lblMenus.Caption = lblMenus.Caption & " / " & _
+             FixRight(CStr(rs.RecordCount),4," ") & " records"
+  End If
+  '
+  rs.Close
+  Screen.Refresh
+  '
+  GetData = True
+  cn.Close
+  rs.Close
+  '
+  cn = Nothing
+  rs = Nothing
+End Function
+'
+Private Sub QueryValue(ByRef sKeyName As String, ByRef sValueName As String, ByRef vValue As Variant)
+  On Error Resume Next
+  '
+  Dim lRetVal As Long         'result of the API functions
+  Dim hKey    As Long         'handle of opened key
+
+  lRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, sKeyName, 0, KEY_QUERY_VALUE, hKey)
+  lRetVal = QueryValueEx(hKey, sValueName, vValue)
+  RegCloseKey (hKey)
+End Sub
+
+Function QueryValueEx(ByVal lhKey As Long, ByVal szValueName As String, ByRef vValue As Variant) As Long
+  On Error GoTo QueryValueExError
+  '
+  Dim cch As Long
+  Dim lrc As Long
+  Dim lType As Long
+  Dim lValue As Long
+  Dim sValue As String
+  '
+  ' Determine the size and type of data to be read
+  lrc = RegQueryValueExNULL(lhKey, szValueName, 0&, lType, 0&, cch)
+  If lrc <> ERROR_NONE Then Error 5
+
+  Select Case lType
+    ' For strings
+  Case REG_SZ:
+    sValue = String(cch, 0)
+    lrc = RegQueryValueExString(lhKey, szValueName, 0&, lType, sValue, cch)
+    '
+    If lrc = ERROR_NONE Then
+      vValue = Left$(sValue, cch-1)
+    Else
+      vValue = Empty
+    End If
+    '
+    ' For DWORDS
+   Case REG_DWORD:
+     lrc = RegQueryValueExLong(lhKey, szValueName, 0&, lType, lValue, cch)
+     If lrc = ERROR_NONE Then vValue = lValue
+   Case Else
+     'all other data types not supported
+     lrc = -1
+   End Select
+
+QueryValueExExit:
+   QueryValueEx = lrc
+   Exit Function
+
+QueryValueExError:
+   Resume QueryValueExExit
+End Function
+</Code>

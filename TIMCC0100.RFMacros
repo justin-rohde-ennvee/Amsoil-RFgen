@@ -1,0 +1,366 @@
+﻿<Record FileDesc="IM - Cycle Count" FileVersion="5.0.8.0" Desc="IM - Cycle Count">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmCYNO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmDSC1" />
+<Param Name="tmMODE" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: IM - CYCLE COUNT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TIMCC0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmCYNO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmDSC1 As Variant, ByRef tmMODE As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sTNDate     As String
+  Dim nTQCT       As Currency
+  Dim nJobNo      As Currency
+  Dim sErrID      As String
+  Dim sErrDesc    As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sSRP1       As String
+  Dim sSRP2       As String
+  Dim sSRP3       As String
+  Dim sSRP4       As String
+  Dim sSRP5       As String
+  Dim sGLPT       As String
+  Dim sITM        As String
+  Dim sAITM       As String
+
+  Dim emX0010GetNextNumber      As New EmbeddedProc
+  Dim emGetCycleCountHeader     As New EmbeddedProc
+  Dim emF4141EditLine           As New EmbeddedProc
+  Dim emF4141EndDoc             As New EmbeddedProc
+  Dim emPostF4141EndDoc         As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  ' Get default information for this item
+  sSQL = "select IBITM, IBAITM, IBSRP1, IBSRP2, IBSRP3, IBSRP4, IBSRP5, IBGLPT from  F4102" & _
+         " where IBLITM = '" & tmLITM & "' and IBMCU = '" & tmMCU & "'"
+  '
+  DB.Execute(sSQL,sCols,sRows)
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    GoTo ExitE1
+  End If
+  '
+  sSRP1 = DB.Extract(sCols,sRows,1,"IBSRP1")
+  sSRP2 = DB.Extract(sCols,sRows,1,"IBSRP2")
+  sSRP3 = DB.Extract(sCols,sRows,1,"IBSRP3")
+  sSRP4 = DB.Extract(sCols,sRows,1,"IBSRP4")
+  sSRP5 = DB.Extract(sCols,sRows,1,"IBSRP5")
+  sGLPT = DB.Extract(sCols,sRows,1,"IBGLPT")
+  sITM  = DB.Extract(sCols,sRows,1,"IBITM")
+  sAITM = DB.Extract(sCols,sRows,1,"IBAITM")
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "00"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 4
+  emX0010GetNextNumber.Param("CompanyKey")              = tmCO
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+  '
+  If Not emX0010GetNextNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  nJobNo = Val(emX0010GetNextNumber.Param("NextNumber001"))
+
+  If (nJobNo = 0) Then
+    App.LogError "X0010GetNextNumber", "Function did not return a valid number"
+    GoTo ExitE1
+  End If
+
+  '---------------------'
+  ' GetCycleCountHeader '
+  '---------------------'
+  emGetCycleCountHeader.Name       = "GetCycleCountHeader"
+  emGetCycleCountHeader.LogMode = LogNever
+  emGetCycleCountHeader.DebugLog   = cJDELogPath
+  '
+  emGetCycleCountHeader.Param("CycleCountNumber")         = tmCYNO
+  emGetCycleCountHeader.Param("CycleCountDescription")    = tmDSC1
+  emGetCycleCountHeader.Param("CycleStatus")              = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetCycleCountHeader.Name, "", emGetCycleCountHeader)
+  '
+  If Not emGetCycleCountHeader.Execute Then
+    sErrDesc = "GetCycleCountHeader"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetCycleCountHeader.Name, "", emGetCycleCountHeader, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------'
+  ' F4141EditLine '
+  '---------------'
+  emF4141EditLine.Name       = "F4141EditLine"
+  emF4141EditLine.LogMode = LogNever
+  emF4141EditLine.DebugLog   = cJDELogPath
+  '
+  emF4141EditLine.Param("BranchPlant")                    = tmMCU
+  emF4141EditLine.Param("ItemNoUnknownFormat")            = tmLITM
+  emF4141EditLine.Param("EV01UpAddMode")                  = tmMODE
+  emF4141EditLine.Param("IdentifierShortItem")            = sITM
+  emF4141EditLine.Param("TFLAStandardUOMConversion")      = " "
+  emF4141EditLine.Param("Identifier2ndItem")              = tmLITM
+  emF4141EditLine.Param("Identifier3rdItem")              = sAITM
+  emF4141EditLine.Param("UOMPrimaryUOM")                  = tmUOM
+  emF4141EditLine.Param("CLEVInventoryCostLevel")         = "2"
+  emF4141EditLine.Param("SRCELayerCSourceLotProcessTy")   = " "
+  emF4141EditLine.Param("GLPTGlCategoryClassCode")        = sGLPT
+  emF4141EditLine.Param("LOTNLot")                        = tmLOTN
+  If tmMODE = " " Then 'add Mode
+    emF4141EditLine.Param("LOCNE1LocationE1")             = FormatLocnDisplay(tmLOCN,tmMCU)
+  End If
+  emF4141EditLine.Param("LOCNFileFormatLocation")         = tmLOCN
+  emF4141EditLine.Param("UOMUnitOfMeasureAsInput")        = tmUOM
+  emF4141EditLine.Param("CNTConvertedQuantity")           = 0
+  emF4141EditLine.Param("TotalPriQtyCounted")             = tmQTY
+  emF4141EditLine.Param("QuantityInput")                  = tmQTY
+  emF4141EditLine.Param("CYNOCycleCountNumber")           = tmCYNO
+  emF4141EditLine.Param("ULOTAllowDuplicateLots")         = "1"
+  emF4141EditLine.Param("LNIDGCLineNumber")               = 0
+  emF4141EditLine.Param("LNIDFCLineNumber_2")             = 0
+  emF4141EditLine.Param("JOBSJobnumberA")                 = nJobNo
+  emF4141EditLine.Param("CYNOFCCycleCountNumber_2")       = tmCYNO
+  emF4141EditLine.Param("InitalProcesses")                = "0"
+  emF4141EditLine.Param("TransactionAction")              = ""
+  emF4141EditLine.Param("ProgramId")                      = "EP4141"
+  emF4141EditLine.Param("SalesReportingCode1")            = sSRP1
+  emF4141EditLine.Param("SalesReportingCode2")            = sSRP2
+  emF4141EditLine.Param("SalesReportingCode3")            = sSRP3
+  emF4141EditLine.Param("SalesReportingCode4")            = sSRP4
+  emF4141EditLine.Param("SalesReportingCode5")            = sSRP5
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4141EditLine.Name, "", emF4141EditLine)
+  '
+  If Not emF4141EditLine.Execute Then
+    sErrDesc = "F4141EditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4141EditLine.Name, "", emF4141EditLine)
+    GoTo ExitE1
+  End If
+
+  '-------------'
+  ' F4141EndDoc '
+  '-------------'
+  emF4141EndDoc.Name       = "F4141EndDoc"
+  emF4141EndDoc.LogMode = LogNever
+  emF4141EndDoc.DebugLog   = cJDELogPath
+  '
+  emF4141EndDoc.Param("CYNOCycleCountNumber")     = tmCYNO
+  emF4141EndDoc.Param("CYCSCycleStatus")          = emGetCycleCountHeader.Param("CycleStatus")
+  emF4141EndDoc.Param("ITMIdentifierShortItem")   = sITM
+  emF4141EndDoc.Param("MCUBranchPlant")           = tmMCU
+  emF4141EndDoc.Param("LOCNLocation")             = tmLOCN
+  emF4141EndDoc.Param("LULotNumber")              = tmLOTN
+  emF4141EndDoc.Param("CLEVCostLevel")            = "2"
+  emF4141EndDoc.Param("Identifier2ndItem")        = tmLITM
+  emF4141EndDoc.Param("Identifier3rdItem")        = sAITM
+  emF4141EndDoc.Param("SRP1SalesCode1")           = sSRP1
+  emF4141EndDoc.Param("SRP2SalesCode2")           = sSRP2
+  emF4141EndDoc.Param("SRP3SalesCode3")           = sSRP3
+  emF4141EndDoc.Param("SRP4SalesCode4")           = sSRP4
+  emF4141EndDoc.Param("SRP5SalesCode5")           = sSRP5
+  emF4141EndDoc.Param("EV01UpdateQtyFlag_2")      = "2"       '1 = Total Amount, 2 = Total Qty Counted, 3 = Update both Qty, 4 = Update Total Qty Counted and Total Amount
+  emF4141EndDoc.Param("PIDProgramId")             = "EP4141"
+  emF4141EndDoc.Param("CNTBCountedBy")            = tmUSER
+  emF4141EndDoc.Param("CNTJDateCounted")          = sTNDate
+  emF4141EndDoc.Param("CCCDCycleCountCode")       = "1"
+  emF4141EndDoc.Param("TACTTotalPriQtyCounted")   = tmQTY
+  emF4141EndDoc.Param("EV01VoidGetItemCost")      = 1
+  emF4141EndDoc.Param("UNCSUnitCost")             = emF4141EditLine.Param("UNCSAmountUnitCost")
+  emF4141EndDoc.Param("JOBSJobnumber")            = nJobNo
+  emF4141EndDoc.Param("GLPTGlCategory")           = sGLPT
+  emF4141EndDoc.Param("TransactionAction")        = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4141EndDoc.Name, "", emF4141EndDoc)
+  '
+  If Not emF4141EndDoc.Execute Then
+    sErrDesc = "F4141EndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4141EndDoc.Name, "", emF4141EndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' PostF4141EndDoc '
+  '-----------------'
+  emPostF4141EndDoc.Name       = "F4141PostEndDoc"
+  emPostF4141EndDoc.LogMode = LogNever
+  emPostF4141EndDoc.DebugLog   = cJDELogPath
+  '
+  emPostF4141EndDoc.Param("ProgramId")                = "EP4141"
+  emPostF4141EndDoc.Param("CycleCountNumber")         = tmCYNO
+  emPostF4141EndDoc.Param("JobnumberA")               = nJobNo
+  emPostF4141EndDoc.Param("ComputerID")               = ""
+  emPostF4141EndDoc.Param("GenLngLotNotDuplicated")   = emF4141EditLine.Param("GENLNGDupLotCache")
+  emPostF4141EndDoc.Param("UniqueLots")               = emF4141EditLine.Param("ULOTAllowDuplicateLots")
+  emPostF4141EndDoc.Param("InitialProcesses")         = 0
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emPostF4141EndDoc.Name, "", emPostF4141EndDoc)
+  '
+  If Not emPostF4141EndDoc.Execute Then
+    sErrDesc = "F4141PostEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emPostF4141EndDoc.Name, "", emPostF4141EndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  Set emX0010GetNextNumber    = Nothing
+  Set emGetCycleCountHeader   = Nothing
+  Set emF4141EditLine         = Nothing
+  Set emF4141EndDoc           = Nothing
+  Set emPostF4141EndDoc       = Nothing
+  '
+  tmERRTEXT = sErrDesc
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+  Exit Function
+  '
+World:
+  Dim bOK       As Boolean
+  Dim iLine     As Integer
+  Dim iAttrib   As Integer
+  Dim sLITM     As String
+  Dim sLOCN     As String
+  Dim sLOTN     As String
+  Dim sAste     As String ' Asterisk
+  Dim sJDELOCN  As String
+  '
+  sTNDate = Format(Date, "mmddyy") ' no '/'
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  Validate_Locn(tmLOCN, tmMCU, sJDELOCN)
+  '
+  SM.GoToScreen("HIMCC0100")
+  SM.SendTextAlt 69, 1, tmMCU,     12
+  SM.SendTextAlt 69, 2, tmUSER,    10
+  SM.SendTextAlt 69, 3, sTNDate,   8
+  SM.SendTextAlt 69, 4, "*",       1
+  SM.SendTextAlt 23, 5, "I",       1
+  SM.SendTextAlt 23, 6, tmCYNO,    8
+  SM.SendKey KeyEnter
+  '
+  SM.SendTextAlt 23, 7, tmLITM, 26
+  SM.SendKey KeyEnter
+  '
+  'Search for Item / Location / Lot
+  bOK = False
+
+  While bOK = False
+    For iLine = 10 To 21
+      SM.GetText(02,iLine,25,sLITM,True)        ' get ItemNumber
+      If sLITM <> Trim(tmLITM) Then Exit While
+      If gsJDEVers = "A9.2" Then
+        SM.GetText(29, iLine, 20, sLOCN,True)   ' get Location (WorldSoft A9.2)
+      Else
+        SM.GetText(29,iLine,25,sLOCN,True)      ' get Location
+      End If
+      If sLOCN = Trim(tmLOCN) Then
+      If gsJDEVers = "A9.2" Then
+        SM.GetText(50, iLine, 12, sLOTN, True)  ' get Lot Number (WorldSoft A9.2)
+      Else
+        SM.GetText(50,iLine,25,sLOTN,True)      ' get Lot Number
+      End If
+        If sLOTN = Trim(tmLOTN) Then
+          SM.GetText(80,iLine,1,sAste, True)    ' get * for already processed
+          iAttrib = SM.GetAttribute(80,iLine)
+          If iAttrib = 32 Then sAste = " "
+          If sAste = " " Then
+            SM.SendTextAlt 63, iLine, tmQTY, 11
+            SM.SendTextAlt 75, iLine, tmUOM, 2
+            SM.SendTextAlt 78, iLine, "1",   1
+            SM.SendTextAlt 23, 5, "C", 1
+            SM.SendKey KeyEnter
+            bOK = True
+          End If
+        End If
+      End If
+    Next iLine
+    SM.SendKey(KeyPageDown)
+  Wend
+  '
+  If bOK = False Then
+    tmERRID = "9999"
+    tmERRTEXT = "No valid entry found for CycleCount"
+  Else
+    bSuccess = True
+  End If
+  '
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+  
+End Function
+</Code>

@@ -1,0 +1,1238 @@
+﻿<Record FileDesc="VoCollect Selection" FileVersion="5.0.8.0" Desc="VoCollect Selection" Group="VoCollect" LinkTo="Vocollect Tasks" LinkType="5" LinkMode="0" PromptList="prTaskLUTRegionPermissionsForWorkType&vm;prTaskLUTPickingRegion&vm;prTaskLUTRequestWork&vm;prTaskLUTGetAssignment&vm;prTaskLUTGetPicks&vm;prTaskLUTContainer&vm;prTaskLUTContainerReview&vm;prTaskLUTPrint&vm;prTaskLUTValidLots&vm;prTaskLUTSendLot&vm;prTaskODRPicked&vm;prTaskODRUpdateStatus&vm;prTaskLUTPassAssignment&vm;prTaskLUTStopAssignment&vm;prTaskLUTVerifyReplenishment&vm;prTaskLUTGetDeliveryLocation&vm;prTaskLUTPicked&vm;prTaskLUTUpdateStatus">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="prTaskLUTRegionPermissionsForWorkType" />
+<SchemaParam Linked="0" Attr="2" Name="prTaskLUTPickingRegion" />
+<SchemaParam Linked="0" Attr="3" Name="prTaskLUTRequestWork" />
+<SchemaParam Linked="0" Attr="4" Name="prTaskLUTGetAssignment" />
+<SchemaParam Linked="0" Attr="5" Name="prTaskLUTGetPicks" />
+<SchemaParam Linked="0" Attr="6" Name="prTaskLUTContainer" />
+<SchemaParam Linked="0" Attr="7" Name="prTaskLUTContainerReview" />
+<SchemaParam Linked="0" Attr="8" Name="prTaskLUTPrint" />
+<SchemaParam Linked="0" Attr="9" Name="prTaskLUTValidLots" />
+<SchemaParam Linked="0" Attr="10" Name="prTaskLUTSendLot" />
+<SchemaParam Linked="0" Attr="11" Name="prTaskODRPicked" />
+<SchemaParam Linked="0" Attr="12" Name="prTaskODRUpdateStatus" />
+<SchemaParam Linked="0" Attr="13" Name="prTaskLUTPassAssignment" />
+<SchemaParam Linked="0" Attr="14" Name="prTaskLUTStopAssignment" />
+<SchemaParam Linked="0" Attr="15" Name="prTaskLUTVerifyReplenishment" />
+<SchemaParam Linked="0" Attr="16" Name="prTaskLUTGetDeliveryLocation" />
+<SchemaParam Linked="0" Attr="17" Name="prTaskLUTPicked" />
+<SchemaParam Linked="0" Attr="18" Name="prTaskLUTUpdateStatus" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="17" FieldId="prTaskLUTRegionPermissionsForWorkType" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="303" Height="22" AnchorRight="0" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTRegionPermissionsForWorkType" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTPickingRegion" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="183" Height="22" AnchorRight="120" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTPickingRegion" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTRequestWork" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="167" Height="22" AnchorRight="136" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTRequestWork" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTGetAssignment" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="183" Height="22" AnchorRight="120" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTGetAssignment" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTGetPicks" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="143" Height="22" AnchorRight="160" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTGetPicks" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTContainer" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="151" Height="22" AnchorRight="152" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTContainer" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTContainerReview" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="199" Height="22" AnchorRight="104" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTContainerReview" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTPrint" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="119" Height="22" AnchorRight="184" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTPrint" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTValidLots" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="151" Height="22" AnchorRight="152" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTValidLots" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTSendLot" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="135" Height="22" AnchorRight="168" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTSendLot" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskODRPicked" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="127" Height="22" AnchorRight="176" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskODRPicked" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskODRUpdateStatus" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="175" Height="22" AnchorRight="128" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskODRUpdateStatus" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTPassAssignment" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="191" Height="22" AnchorRight="112" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTPassAssignment" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTStopAssignment" Attr="14">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="191" Height="22" AnchorRight="112" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTStopAssignment" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTVerifyReplenishment" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="330" Width="231" Height="22" AnchorRight="72" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTVerifyReplenishment" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTGetDeliveryLocation" Attr="16">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="352" Width="231" Height="22" AnchorRight="72" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTGetDeliveryLocation" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTPicked" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="374" Width="127" Height="22" AnchorRight="176" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTPicked" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTUpdateStatus" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="396" Width="175" Height="22" AnchorRight="128" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTUpdateStatus" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="303" FormHeight="418" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Vocollect Picking]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+
+'
+'Step 1: Provide Zones     prTaskLUTRegionPermissionsForWorkType
+'Step 2: Get Zone          prTaskLUTPickingRegion
+'Step 3: Get Roue /Stop
+'
+'RBR 08/06/2008
+'add datarange to LUTPicked and DeConsolidation
+'
+'RBR 09/03/2009
+'add ADO Record set, update to RFgen 3.2.1.19
+'
+'RBR 01/25/2010
+'Change source to F4211
+
+Option Explicit
+'
+Private Const cTNId             = "VPick4211"
+Private Const cPgm              = "P4205"
+Private Const cVersion          = "RFGPICK"
+Private Const bTest             = False           ' true -> stops code execution on each Vocollect event
+Private Const bLog              = True            ' true -> logs all transaction to a .csv file
+Private Const cPath             = "C:\Temp\"      ' path to store .csv file
+Private Const cDaysneg          = 9999            ' SO requested date has to be in the date range from actual date to minus xxx days
+Private Const cDayspos          = 9999            ' SO requested date has to be in the date range from actual date to plus xxx days
+Private Const cQueueName        = "Voice"
+Private Const mbQueueProcessing = True
+Private Const cDBSource         = "JDEDB"
+Private Const cLenWrkId         = 6               ' define the lenght of the spocken Work Id if not auto assign
+'
+Private msFatalError  As String
+Private msStatusF     As String
+Private msStatusT     As String
+Private msPgm         As String
+Private msVersion     As String
+Private msLstEve      As String
+Private msUser        As String
+Private msErrSts      As String
+Private msPDDJneg     As String
+Private msPDDJpos     As String
+Private msJOBN        As String
+Private msRegionName  As String
+Private msKCOO        As String
+Private msMCU         As String
+Private msQueuename   As String
+Private mnDOCO        As Long
+Private msDCTO        As String
+Private mnLNID        As Currency
+
+Private msWrkId       As String
+Private msZone        As String
+Private msRegion      As String
+Private mbAutoAssign  As Boolean
+
+Private mbOvrLocn     As Boolean
+Private mbRelInv      As Boolean
+
+Private msToday       As String
+
+Private msDevice      As String
+Private msText        As String
+Private miTCnt        As Integer
+Private msArray()     As String
+
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sUserList As String
+  Dim sUsrLst   As String
+  Dim iCnt       As Integer
+  If bTest Then Stop  'Form_Load
+  '
+  msPgm       = cPgm
+  msVersion   = cVersion
+  msUser      = App.User
+
+'  Stop
+'
+  ' Get Status From from Proc.Opt. and Header
+  msStatusF = GetProcOpt(msPgm,msVersion,"1;1")
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Get Status To from Proc.Opt. and Header
+  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msMCU = GetDefaultMCU()
+  If Len(Trim(msMCU)) = 0 Then msMCU = "30"
+  msMCU = FixRight(msMCU,12," ")
+  '
+  ' calculate requested pick date
+  '
+  msPDDJneg = ConvDatetoJDE(CStr(DateAdd("d",(cDaysneg * -1),Date)))
+  msPDDJpos = ConvDatetoJDE(CStr(DateAdd("d",(cDayspos),Date)))
+  '
+  msToday = ConvDatetoJDE(CStr(Date))
+  '
+  ' Get a List.Data of all logged in users
+  '
+  sUserList = SYS.UserList(True)
+  iCnt = 1
+  '
+  Do While Len(Ext(sUserList,1,iCnt)) > 0
+    '
+    sUsrLst = Ext(sUserList,2,iCnt)
+
+    If Trim(UCase(Left(sUsrLst,9))) = Trim(UCase(App.User)) Then
+      msDevice = Ext(sUserList, 1, iCnt)        'get unique device Id
+      Exit Do
+    End If
+    '
+    iCnt = iCnt + 1
+  Loop
+
+  If bLog Then Open cPath & Format(Time,"hhnnss") & ".csv" For Output As #1
+  If bLog Then Open cPath & "SQL_" & Format(Time,"hhnnss") & ".csv" For Output As #2
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  '
+  Dim sWrkId    As String
+  '
+  ' Write "Pay for Performance"
+  '
+  sSql = "insert into F58PFP (PFUSER,         PFURCD,    PFURRF,       PFUPMJ,                        PFTDAY,                          PFPID,       PFJOBN)" _
+              & " values('" & App.User & "','E',       '%tmWrkId'," & Format(Date,"YYMMDD") & ",'" & Format(Time,"hhnnss") & "', '" & cTNId & "', '%tmJOBN')
+  '
+  DB.Execute(sSql)
+  '
+  sWrkId = msWrkId
+  '
+  ' End prior job first
+  '
+  If Len(sWrkId) > 0 Then
+    '
+    ' unlock current records
+    '
+    sSql = "delete from F00095 where A1GENKEY = '" & Trim(msMCU) &  Trim(msWrkId) & "' "
+    '
+    DB.Execute(sSql)
+
+    If bLog Then Print #2, msUser & "," & Date & "," & Time & "," & sSql
+    '
+  End If
+  '
+  If bLog Then Close #1
+  If bLog Then Close #2
+  '
+
+End Sub
+
+Private Sub prTaskLUTRegionPermissionsForWorkType_OnVoCollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  '
+  ' Step 1      Provide a List.Data of valid zones
+  '
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim iCnt      As Integer
+  Dim iRcd      As Integer
+  '
+  Dim sDRDL01   As String
+  Dim sDRDL02   As String
+  Dim sFirst    As String
+  '
+
+  msJOBN = Trim(rsIn.Param("SerialNumber"))
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  ' check if auto assigment is selected from menu
+  mbAutoAssign = False
+  If Trim(rsIn.Param("SelectedWorkType")) = "4" Then mbAutoAssign = True
+  '
+  sFirst = "1"
+  '
+  If bTest Then Stop  ' Step 1
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTRegionPermissionsForWorkType", "rsIn","1")
+  '
+  ' Check if Form_Load event caused issues
+  '
+  If Len(msFatalError) > 0 Then
+    rsOut.Param("ErrorCode")    = 98
+    rsOut.Param("Message")      = "Setup Error! " & msFatalError
+    If bTest Then
+      Call VTranLog(rsOut,1,"prTaskLUTRegionPermissionsForWorkType", "rsOut",sFirst)
+      sFirst = ""
+    End If
+    msFatalError = ""
+    Exit Sub
+  End If
+  '
+  '
+  sSql = "select DRKY, DRDL01 from F0005 where DRSY = '40'" & _
+         " and DRRT = 'ZN' order by DRKY "
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError(cTNId,"Setup Error! No Data in UDC 40/ZN")
+    rsOut.Param("ErrorCode")  = 98
+    rsOut.Param("Message")    = "Setup Error! No Data in UDC 40 ZN. See system Administrator"
+    '
+    App.LogError(cTNId, GetMsg(222) & vbCrLf & "Setup Error! No Data in UDC 40 ZN. See system Administrator")
+    '
+    If bTest Then
+      Call VTranLog(rsOut,1,"prTaskLUTRegionPermissionsForWorkType", "rsOut",sFirst)
+      sFirst = ""
+    End If
+
+  Else
+    iRcd = DB.Count(sRows)
+    For iCnt = 1 To iRcd
+      rsOut.Param("RegionNumber",iCnt) = iCnt
+      rsOut.Param("RegionName",iCnt)   = Trim(DB.Extract(sCols,sRows,iCnt,"DRDL01"))
+      rsOut.Param("ErrorCode",iCnt)    = 0
+      rsOut.Param("Message",iCnt)      = ""
+      '
+      If bLog Then
+        Call VTranLog(rsOut,1,"prTaskLUTRegionPermissionsForWorkType", "rsOut",sFirst)
+        sFirst = ""
+      End If
+      '
+   Next
+  End If
+  '
+End Sub
+
+Private Sub prTaskLUTPickingRegion_OnVoCollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  '
+  ' Step 2      select zone and set parameters
+  '
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim Rsp       As String
+  Dim Cancel        As Boolean
+  Dim iCnt      As Integer
+  '
+  Dim sDRDL01   As String
+  Dim sDRDL02   As String
+  '
+  If bTest Then Stop 'Step 2
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTPickingRegion", "rsIn","1")
+  '
+  '
+  msJOBN = Trim(rsIn.Param("SerialNumber"))
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  iCnt = CInt(rsIn.Param("RegionNumber"))
+  msRegion = rsIn.Param("RegionNumber")
+  '
+  sSql = "select DRKY, DRDL01, DRDL02 from F0005 where DRSY = '40'" & _
+         " and DRRT = 'ZN' order by DRKY "
+  '
+  DB.Execute(sSql,sCols,sRows)
+  '
+  sDRDL01 = Trim(DB.Extract(sCols,sRows,iCnt,2))
+  sDRDL02 = Trim(DB.Extract(sCols,sRows,iCnt,3))
+
+  msZone = Trim(DB.Extract(sCols,sRows,iCnt,1))
+  msRegionName = sDRDL01
+  '
+  rsOut.Param("RegionNumber")                 = rsIn.Param("RegionNumber")
+  rsOut.Param("RegionName")                   = sDRDL02
+  rsOut.Param("AssignmentType")               = 1               ' 1/2 1=normal 2=chase
+
+  If mbAutoAssign Then
+    rsOut.Param("AutoAssign")                 = 1               ' 0/1 0=request work by WorkId 1=auto assignment
+  Else
+    rsOut.Param("AutoAssign")                 = 0               ' 0/1 0=request work by WorkId 1=auto assignment
+  End If
+
+  rsOut.Param("NumberAllowed")                = 1               ' Number of assignment allowed
+  rsOut.Param("SkipAisle")                    = 0               ' 0/1 Skip Aisle allowed
+  rsOut.Param("SkipSlot")                     = 1               ' 0/1 Skip Slot allowed
+  rsOut.Param("RepickSkips")                  = 1               ' 0/1 allow going back to skipped picks
+  rsOut.Param("PrintLabels")                  = 0               ' 0/1/2 Print container label 0=never 1=at new container 2- at closing container
+  rsOut.Param("PrintChase")                   = 0               ' 0/1 Print Chase labels
+  rsOut.Param("PickPrompt")                   = 1               ' 0/1/2 0=prompt Locn & Qty 1=suppress qty.=1 2=Multiple prompts for location (waits for confirm) & qty.
+  rsOut.Param("SignoffAllowed")               = "1"             ' 0/1 allow siognoff while picking
+  rsOut.Param("ContainerType")                = "0"             ' 0/1 pick to container
+  rsOut.Param("DeliverAtClose")               = "0"             ' 0/1 delivery info at container closing
+  rsOut.Param("PassAssignment")               = "1"             ' 0/1 allow passing assignment
+  rsOut.Param("Delivery")                     = "2"             ' 0/1/2 device prompts for delivery location 0=prompt only 1=prompt & confirm 2=none
+  rsOut.Param("QuantityVerification")         = "1"             ' 0/1 operator confirms qty.
+  rsOut.Param("WorkIdLength")                 =  cLenWrkId      ' -1/number -1=allows unlimited lenght number=fixed lenght of Work Id
+  rsOut.Param("GoBackForShorts")              = "1"             ' 0/1 allow short pick 1=loops back for short picks 2=go back for repl.items
+  rsOut.Param("AllowReversePicking")          = "0"             ' 0/1 allow revers picking
+  rsOut.Param("UseLUT")                       = "2"             ' 0/1/2 0=ODR 1=LUT with buffer 2=LUT only
+  rsOut.Param("CurrentPreAisle")              = ""              ' XXX - number of chars. (see GetPicks)
+  rsOut.Param("CurrentAisle")                 = "XXX"           ' XXX - number of chars. (see GetPicks)
+  rsOut.Param("CurrentPostAisle")             = ""              ' XXX - number of chars. (see GetPicks)
+  rsOut.Param("CurrentSlot")                  = "XXX"           ' XXX - number of chars. (see GetPicks)
+  rsOut.Param("PrintMultipleLabels")          = "0"             ' 0/1 Pre create Container and Labels(re labeld) (see Container Type)
+  rsOut.Param("PromptForContainerId")         = "0"             ' 0/1 0=do not propmpt 1= prompt
+  rsOut.Param("AllowMultipleOpenContainers")  = "0"             ' 0/1 0= no prompt 1= prompt
+  rsOut.Param("ContainerValidationLength")    = 0               ' number of chars for containerId
+  rsOut.Param("ErrorCode")                    = 0               '
+  rsOut.Param("Message")                      = ""              '
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTPickingRegion", "rsOut","1")
+  '
+End Sub
+
+Private Sub prTaskLUTRequestWork_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  '
+  ' Step 3      Check for pick requests available
+  '
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  '
+  If bTest Then Stop ' Step 3
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTRequestWork", "rsIn","1")
+  '
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  msWrkId  = rsIn.Param("WorkId")
+
+  '
+  rsOut.Param("WorkId")     = msWrkId
+  rsOut.Param("ErrorCode")  = 0
+  rsOut.Param("Message")    = ""
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTRequestWork", "rsOut","1")
+
+End Sub
+
+Private Sub prTaskLUTGetAssignment_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  '
+  ' Step 4      Get Assignment
+  '
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sCols2    As String
+  Dim sRows2    As String
+  '
+  Dim sWrkId    As String
+  Dim bCancel   As Boolean
+  Dim sJobn     As String
+  Dim sMsg      As String
+  Dim sDOCO     As String
+  Dim sDCTO     As String
+  Dim iCnt      As Integer
+  Dim iRcd      As Integer
+  '
+  Dim sUser   As String
+  Dim nTime   As String
+  Dim nDate   As String
+  Dim nUKID   As Currency
+
+  '
+  If bTest Then Stop 'Step 4
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTGetAssignment", "rsIn","1")
+  '
+  sJobn = Trim(rsIn.Param("SerialNumber"))
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  '**********************************
+  ' Auto Assignment
+  '**********************************
+  '
+  If mbAutoAssign Then
+    '
+    ' Check 4211 for next open lines
+    '
+'    sSQL = "select distinct SDDOCO from F4211 " _
+'       & " where SDMCU = '" & msMCU & "' and SDZON = '" & msZone & "' " _
+'       & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' " _
+'       & " and SDDRQJ between " & msPDDJneg & " and " & msPDDJpos & " order by SDLOCN"
+    sSql = "select distinct SDDOCO from F4211 " _
+       & " where SDMCU = '" & msMCU & "' " _
+       & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' " _
+       & " and SDDRQJ between " & msPDDJneg & " and " & msPDDJpos & " order by SDLOCN"
+    '
+    DB.Execute(sSql,sCols,sRows)
+      '
+      ' check if already in use
+      '
+      For iCnt = 1 To iRcd
+        sDOCO = FixRight(Trim(DB.Extract(sCols,sRows,iCnt,"SDDOCO")),cLenWrkId,"0")
+        '
+        If sWrkId <> sDOCO Then
+          sWrkId = sDOCO
+          sSql = "select A1USER from F00095 where A1GENKEY = '" & Trim(msMCU) & Trim(msZone) & sDOCO & "' "
+          '
+          DB.Execute(sSql,sCols2,sRows2)
+
+          If bLog Then Print #2, msUser & "," & Date & "," & Time & "," & sSql & "," & DB.Count(sRows2) & " records returned"
+          '
+          ' either not locked or by the same user (picking up after crash)
+          '
+          If Len(sRows2) = 0 Or Trim(DB.Extract(sCols2,sRows2,1,1)) = Trim(App.User) Then
+             msWrkId = sDOCO
+             Exit For
+          End If
+
+        End If
+      Next iCnt
+    '
+  Else
+    '
+    ' Check 4211 for assigned Sales Order
+    '
+    sSql = "select SDDOCO, SDDCTO from F4211 " _
+       & " where SDMCU = '" & msMCU & "' and SDZON = '" & msZone & "' and SDDOCO = " & msWrkId & " " _
+       & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' " _
+       & " and SDDRQJ between " & msPDDJneg & " and " & msPDDJpos & " order by SDLOCN"
+    '
+    DB.Execute(sSql,sCols,sRows)
+      '
+      ' check if already in use
+      '
+    mnDOCO = CLng(DB.Extract(sCols,sRows,1,"SDDOCO"))
+    msDCTO = Trim(DB.Extract(sCols,sRows,1,"SDDCTO"))
+    '
+    '**********************************
+    ' Manual Assignment
+    '**********************************
+    '
+    ' either not locked or by the same user (picking up after crash)
+    '
+    sSql = "select A1USER from F00095 where A1GENKEY = '" & Trim(msMCU) & Trim(msZone) & Trim(msWrkId) & "' "
+    DB.Execute(sSql,sCols,sRows)
+
+    If bLog Then Print #2, msUser & "," & Date & "," & Time & "," & sSql & "," & iRcd & " records returned"
+    '
+    If (Len(sRows) > 0) Then
+      If Trim(DB.Extract(sCols2,sRows2,1,1)) <> Trim(App.User) Then
+        rsOut.Param("ID")                     = msWrkId
+        rsOut.Param("IsChase")                = "0"
+        rsOut.Param("AsssignID")              = msWrkId
+        rsOut.Param("AssignIDDesc")           = ""
+        rsOut.Param("Position")               = "1"
+        rsOut.Param("GoalTime")               = 0
+        rsOut.Param("Route")                  = ""
+        rsOut.Param("ActiveTargetContainer")  = 00      'Requested, do not change
+        rsOut.Param("PassAssignment")         = 0       'Requested, do not change
+        rsOut.Param("SummaryPrompt")          = 0       ' 0 Default task prompt, 1 no prompt, 2 override prompt
+        rsOut.Param("OverridePrompt")         = ""
+        rsOut.Param("ErrorCode")              = 2
+        rsOut.Param("Message")                = "Work ID is assigned to user " & Trim(DB.Extract(sCols,sRows,1,1)) & ". Select another work ID."
+        '
+        Exit Sub
+      End If
+    End If
+    '
+  End If
+   '
+  '
+  ' Start new job
+  '
+  sSql = "insert into F58PFP (PFUSER,         PFURCD,    PFURRF,       PFUPMJ,                        PFTDAY,                          PFPID,           PFJOBN)" _
+                & " values('" & App.User & "','E',       '%tmWrkId'," & msToday & ",'" & Format(Time,"hhnnss") & "', '" & cTNId & "', '" & sJobn & "')
+  DB.Execute(sSql)
+  '
+  If bLog Then Print #2, msUser & "," & Date & "," & Time & "," & miTCnt & " records returned"
+  '
+  Call Consolidation(bCancel)
+  '
+  If miTCnt > 0 Then
+  '
+    rsOut.Param("ID")                     = msWrkId
+    rsOut.Param("IsChase")                = "0"
+    rsOut.Param("AsssignID")              = msWrkId
+    rsOut.Param("AssignIDDesc")           = ""
+    rsOut.Param("Position")               = "1"
+    rsOut.Param("GoalTime")               = 0
+    rsOut.Param("Route")                  = ""
+    rsOut.Param("ActiveTargetContainer")  = 00      'Requested, do not change
+    rsOut.Param("PassAssignment")         = 0       'Requested, do not change
+    rsOut.Param("SummaryPrompt")          = 2       ' 0 Default task prompt, 1 no prompt, 2 override prompt
+    rsOut.Param("OverridePrompt")         = "Picklist "  & msWrkId & " has " & CStr(miTCnt) & " remaining lines to pick, Say ready."
+
+    rsOut.Param("ErrorCode")              = 0
+    rsOut.Param("Message")                = ""
+    '
+    ' lock record in F00095
+    '
+    sUser = Trim(UCase(App.User))
+    nDate = ConvDatetoJDE(CStr(Date))
+    nTime = Format(Time,"hhmmss")
+    sSql = "INSERT INTO  F00095 VALUES ('F4211','" & Trim(msMCU) & Trim(msZone) & Trim(msWrkId) & "','" & sUser & "','VPick'," & nDate & "," & nTime & ",'RFgen')"
+    DB.Execute(sSql)
+    '
+  Else
+
+    If mbAutoAssign Then
+      sMsg = "No assignments available for Zone " & msRegionName & ". "
+    Else
+      sMsg = "No assignments available for Zone " & msRegionName & ". Order number " & msWrkId & "."
+    End If
+
+    rsOut.Param("ErrorCode")              = 2
+    rsOut.Param("Message")                = sMsg
+  End If
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTGetAssignment", "rsOut","1")
+  '
+End Sub
+
+Private Sub prTaskLUTGetPicks_OnVoCollect(ByRef rsIn As DataRecord,ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  Dim sAisl   As String
+  Dim sShelf  As String
+  Dim sBin    As String
+  Dim vArray  As Variant
+  Dim iCnt    As Integer
+  '
+  ' Step 5      Get Picks
+  '
+  '
+  Debug.Print "start send Vocollect " & ";" & CStr(Timer)
+  '
+  For iCnt = 0 To miTCnt
+    '
+    vArray = Split(msArray(iCnt,6),".")
+    sAisl  = Trim(vArray(0))
+    sShelf = Trim(vArray(1))
+    sBin   = Trim(vArray(2))
+    '
+    rsOut.Param("Status",iCnt)              = "N"
+    rsOut.Param("BaseItem",iCnt)            = "0"
+    rsOut.Param("Sequence",iCnt)            = iCnt
+    rsOut.Param("LocationId",iCnt)          = msArray(iCnt,6)
+    rsOut.Param("Region",iCnt)              = "0"   'required "0"
+    rsOut.Param("PreAisleDirection",iCnt)   = "go to Aisle " & FixLeft(sAisl,3," ")  '""
+    rsOut.Param("Aisle",iCnt)               = ""    'FixLeft(sAisl,1," ") & FixLeft(sShelf,1," ") & FixLeft(sBin,1," ")
+    rsOut.Param("PostAisleDirection",iCnt)  = ""
+    rsOut.Param("Slot",iCnt)                = sShelf & " " & sBin
+    rsOut.Param("QuantityToPick",iCnt)      = msArray(iCnt,7)
+    rsOut.Param("UOM",iCnt)                 = " " 'msArray(iCnt,6)
+    rsOut.Param("ItemNumber",iCnt)          = msArray(iCnt,4)
+    rsOut.Param("VariableWeight",iCnt)      = 0
+    rsOut.Param("VariableWeightMin",iCnt)   = 0
+    rsOut.Param("VariableWeightMax",iCnt)   = 0
+    rsOut.Param("QuantityPicked",iCnt)      = "000"
+    rsOut.Param("CheckDigits",iCnt)         = msArray(iCnt,15)   'Right(msArray(iCnt,4),2)
+    rsOut.Param("ScanProductId",iCnt)       = ""
+    rsOut.Param("SpokenProductId",iCnt)     = ""
+    rsOut.Param("Description",iCnt)         = msArray(iCnt,12)
+    rsOut.Param("Size",iCnt)                = ""
+    rsOut.Param("UPC",iCnt)                 = ""
+    rsOut.Param("AssignmentId",iCnt)        = msWrkId
+    rsOut.Param("AssignmentIdDesc",iCnt)    = ""
+    rsOut.Param("DelLocation",iCnt)         = ""
+    rsOut.Param("CombFlag",iCnt)            = 0
+    rsOut.Param("Store",iCnt)               = ""
+    rsOut.Param("Case",iCnt)                = ""
+    rsOut.Param("LblCheckDigit",iCnt)       = ""
+    rsOut.Param("TargetCont",iCnt)          = 0
+    '                                                 Item requires lot?
+    If Len(Trim(msArray(iCnt,5))) > 0 Then
+      rsOut.Param("CaptureLot",iCnt)          = 1
+      rsOut.Param("LotText",iCnt)             = "lot code?"
+    Else
+      rsOut.Param("CaptureLot",iCnt)          = 0
+      rsOut.Param("LotText",iCnt)             = ""
+    End If
+    '
+    rsOut.Param("PickMsg",iCnt)             = ""
+    rsOut.Param("VerifyLocn",iCnt)          = 0
+    rsOut.Param("CycleCount",iCnt)          = 0
+    rsOut.Param("CaptSerial",iCnt)          = 0
+    rsOut.Param("ItemDesc",iCnt)            = 0  '1 Issue!!!
+    rsOut.Param("ErrorCode",iCnt)           = 0
+    rsOut.Param("ErrMsg",iCnt)              = ""
+    '
+  Next
+  '
+  msQueuename = vRFQBalance("","IN", CLng(iCnt))
+  '
+  If bLog Then Debug.Print "stopSend" & " " & CStr(Timer)
+  If bLog Then Debug.Print "Stop Update" & " " & CStr(Timer)
+  '
+  Debug.Print "done send Vocollect " & ";" & CStr(Timer) & ";" & CStr(iCnt)
+
+End Sub
+
+Private Sub prTaskLUTPicked_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  ' Step 6      LUT Get Pickconfirmation
+  '
+  Dim iRcd      As Integer
+  Dim nPQty     As Currency
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  If bTest Then Stop 'Step 6  Get Pickconfirmation
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTPicked", "rsIn","1")
+  '
+  iRcd = CInt(rsIn.Param("Sequence"))           ' Pick Sequence retuned from VoCollect
+  nPQty = CCur(rsIn.Param("QuantityPicked"))    ' Qty, picked
+  '
+  Call ExecuteTM(iRcd, nPQty)       'Run P4205
+  '
+  rsOut.Param("ErrorCode")  = 0
+  rsOut.Param("ErrorCode", "Message")  = ""
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTPicked", "rsOut","1")
+
+End Sub
+
+Private Sub prTaskLUTSendLot_OnVocollect(ByVal rsIn As DataRecord, ByVal rsOut As DataRecord)
+  On Error Resume Next
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  rsOut.Param("ErrorCode") = 0
+  rsOut.Param("Message")   = ""
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTSendLot", "rsOut","1")
+
+End Sub
+
+Private Sub prTaskLUTStopAssignment_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  '
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+
+  rsOut.Param("ErrorCode") = 0
+  rsOut.Param("Message")   = ""
+
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTGetAssignment", "rsOut","1")
+
+  ' Unlock pick records
+
+' sSQL = "update F584611 set R2TREX = '' where R2MCU = '" & msMCU & "' and R2KZON = '" & msZone & "' " _
+'   & " and R2ROUT = '" & msROUT & "' and R2STOP = '" & msSTOP & "' " _
+'   & " and R2TYFL = '" & msTYFL & "' and R2TREX = '" & msUser & "'"
+'
+'  DB.Execute(sSQL)
+
+  If bLog Then Print #2, msUser & "," & Date & "," & Time & "," & sSql
+
+End Sub
+
+Private Sub prTaskODRPicked_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  ' Step 6      LUT Get Pickconfirmation
+  '
+  Dim iRcd      As Integer
+  Dim nPQty     As Currency
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  If bTest Then Stop 'Step 6  Get Pickconfirmation
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTPicked", "rsIn","1")
+  '
+  iRcd = CInt(rsIn.Param("Sequence"))           ' Pick Sequence retuned from VoCollect
+  nPQty = CCur(rsIn.Param("QuantityPicked"))    ' Qty, picked
+  '
+  Call ExecuteTM(iRcd, nPQty)       'Run P4205
+  '
+  rsOut.Param("ErrorCode")  = 0
+  rsOut.Param("ErrorCode", "Message")  = ""
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTPicked", "rsOut","1")
+  '
+End Sub
+
+Private Sub prTaskLUTUpdateStatus_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+
+  If bTest Then Stop  'LUTUpdate
+
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  '
+  Call VTranLog(rsIn,1,"prTaskLUTUpdateStatus", "rsIn","1")
+  '
+  rsOut.Param("ErrorCode")  = 0
+  rsOut.Param("Message")  = ""
+  '
+  Call VTranLog(rsOut,1,"prTaskLUTUpdateStatus", "rsOut","1")
+
+End Sub
+
+
+Private Sub prTaskODRUpdateStatus_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+
+  If bTest Then Stop  'ODRUpdate
+
+  '
+  ' check if user changed -> sign off
+  '
+  If rsIn.Param("Operator") <> App.User Then
+    rsOut.Param("ErrorCode")   = 98
+    rsOut.Param("Message")     = "User has Changed. System will log you off!"
+    Exit Sub
+  End If
+  '
+  '
+  Call VTranLog(rsIn,1,"prTaskODRUpdateStatus", "rsIn","1")
+
+  rsOut.Param("ErrCode")  = 0
+  rsOut.Param("Message")  = ""
+  '
+  Call VTranLog(rsOut,1,"prTaskODRUpdateStatus", "rsOut","1")
+
+End Sub
+
+
+Public Sub Consolidation(ByRef bCancel As Boolean)
+  '
+  On Error Resume Next
+  '
+  Dim sSql      As String
+  Dim sKey      As String
+  Dim sF4211    As String
+  Dim sDSC1     As String
+  Dim iCnt      As Integer
+  Dim iCnt2     As Integer
+  Dim iRcd      As Integer
+  Dim iFnd      As Integer
+  Dim iRcdCnt   As Integer
+  Dim bFound    As Boolean
+  Dim nQty      As Currency
+  Dim nQty2     As Currency
+  Dim nQtyTot   As Currency
+  Dim nSOBK     As Currency
+  Dim nSOCN     As Currency
+  Dim nLNID     As Currency
+
+  Dim oRs       As New ADODB.Recordset
+  '
+  bCancel = False
+  '                 0       1     2         3      4      5       6       7       8        9      10      11      12      13      14      15
+  sSql = "select SDKCOO, SDDOCO, SDDCTO, SDLNID, SDLITM, SDLOTN, SDLOCN, SDSOQS, SDUOM, SDLNTY, SDCARS, SDSHAN, SDDSC1, SDSOBK, SDSOCN, LMLVER from F4211 " _
+       & " left join F4100 on SDMCU = LMMCU and SDLOCN = LMLOCN" _
+       & " where SDMCU = '" & msMCU & "' and SDDOCO = " & mnDOCO & " " _
+       & " and SDDCTO = '" & msDCTO & "' and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' " _
+       & " order by SDLOCN"
+  '
+  Set oRs = DB.OpenResultset(sSql)
+  '
+  miTCnt = 0
+  iRcdCnt = oRs.RecordCount
+  ReDim msArray(0 To iRcdCnt, 0 To 15) As String
+  '
+  oRs.MoveFirst
+  '
+  For iCnt = 1 To iRcdCnt
+    '
+    If bTest Then Stop 'Consolidation (make sure there is only 1 line per Item, Lot and Location
+    '
+    ' build unique key
+    '                  LITM                        LOTN                        LOCN
+    sKey =  Trim(oRs.Fields(4).Value) & Trim(oRs.Fields(5).Value) & Trim(oRs.Fields(6).Value)
+    '
+    bFound = False
+    '
+    nLNID    = ConvDecimalsFromSQL("LNID", oRs.Fields( 3).Value)
+    nQty     = ConvDecimalsFromSQL("SOQS", oRs.Fields( 7).Value)
+    nSOBK    = ConvDecimalsFromSQL("SOBK", oRs.Fields(13).Value)
+    nSOCN    = ConvDecimalsFromSQL("SOCN", oRs.Fields(14).Value)
+
+    For iFnd = 0 To miTCnt                                        'search for same Item / Lot / Location
+      '
+      If msArray(iFnd,13) = sKey And miTCnt > 0 Then              'accumulate open Qty.
+        nQty2 = CCur(msArray(iFnd,7))
+        nQtyTot = oRs.Fields(7).Value + nQty2
+        msArray(iFnd,7) = CStr(nQtyTot)
+
+    '                                        Company                           Document                          Doc.Type
+    '                                         LITM                              LOTN                              LOCN                          Line Id             BackOrder           Canceled
+        sF4211 = msArray(iFnd,14) & Trim(oRs.Fields(0).Value) & ":" & Trim(oRs.Fields(1).Value) & ":" & Trim(oRs.Fields(2).Value) & ":" & _
+                                     Trim(oRs.Fields(3).Value) & ":" & Trim(oRs.Fields(4).Value) & ":" & Trim(oRs.Fields(5).Value) & ":" & CStr(nLNID) & ":" & CStr(nSOBK) & ":" & CStr(nSOCN) & "|"
+        msArray(iFnd,14) = sF4211
+        bFound = True
+        Exit For
+      End If
+      '
+    Next iFnd
+    '
+    If Not bFound Then
+      '
+      miTCnt = miTCnt +1
+      msArray(miTCnt, 0)    = oRs.Fields( 0).Value                                         ' Company
+      msArray(miTCnt, 1)    = oRs.Fields( 1).Value                                         ' Document
+      msArray(miTCnt, 2)    = oRs.Fields( 2).Value                                         ' Doc.Type
+      msArray(miTCnt, 3)    = oRs.Fields( 3).Value                                         ' Lind Id
+      msArray(miTCnt, 4)    = Trim(oRs.Fields( 4).Value)                                   ' Item
+      msArray(miTCnt, 5)    = oRs.Fields( 5).Value                                         ' Lot
+      msArray(miTCnt, 6)    = FormatLocnDisplay(oRs.Fields( 6).Value, msMCU)               ' Location
+      msArray(miTCnt, 7)    = oRs.Fields( 7).Value                                         ' Quantity
+      msArray(miTCnt, 8)    = oRs.Fields( 8).Value                                         ' UOM
+      msArray(miTCnt, 9)    = oRs.Fields( 9).Value                                         ' Line Type
+      msArray(miTCnt,10)    = oRs.Fields(10).Value                                         ' Carrier
+      msArray(miTCnt,11)    = oRs.Fields(11).Value                                         ' Ship To
+      sDSC1                 = oRs.Fields(12).Value                                         ' Discription
+      sDSC1                 = Replace(sDSC1, ",", " ")                                     ' clean description
+      sDSC1                 = Replace(sDSC1, "'", " ")
+      sDSC1                 = Replace(sDSC1, """", " ")
+      msArray(miTCnt,12)    = sDSC1
+      msArray(miTCnt,13)    = sKey
+    '                                   Company                           Document                         Doc.Type
+    '                                    LITM                               LOTN                              LOCN                        Line Id             BackOrder           Canceled
+      msArray(miTCnt,14)    = Trim(oRs.Fields(0).Value) & ":" & Trim(oRs.Fields(1).Value) & ":" & Trim(oRs.Fields(2).Value) & ":" & _
+                               Trim(oRs.Fields(3).Value) & ":" & Trim(oRs.Fields(4).Value) & ":" & Trim(oRs.Fields(5).Value) & ":" & CStr(nLNID) & ":" & CStr(nSOBK) & ":" & CStr(nSOCN) & "|"
+      msArray(miTCnt,15)    = Trim(oRs.Fields(15).Value)                                   ' Location Check
+      '
+    End If
+    '
+    oRs.MoveNext
+  Next iCnt
+  '
+  oRs.Close
+  If bLog Then Debug.Print "Stop Update" & " " & CStr(Timer)
+  '
+End Sub
+
+Public Sub VTranLog(ByVal rRcd As DataRecord, ByRef iCount As Integer, ByRef sEvent As String, ByRef sInOut As String, ByRef sFirst As String)
+  On Error Resume Next
+  '
+  Dim sText As String
+  Dim nCnt  As Integer
+  Dim nRcd  As Integer
+  '
+  If Not bLog Then Exit Sub     ' logging switched off
+  '
+  nRcd = rRcd.ParamCount
+  '
+  ' capture field names
+  '
+  If msLstEve <> Trim(sEvent) & sInOut Then
+    Print #1,""
+    If sFirst = "1" Then
+      sText = sEvent & ";" & sInOut & ","
+      For nCnt = 1 To nRcd
+        sText = sText & Trim(rRcd.ParamName(nCnt)) & ","
+      Next nCnt
+      Print #1,sText
+    End If
+    msLstEve = Trim(sEvent) & sInOut
+  End If
+  '
+  ' capture data
+  '
+  sText = sEvent & ";" & sInOut & ","
+  For nCnt = 1 To nRcd
+    sText = sText & CStr(Trim(rRcd.Param(nCnt,iCount))) & ","
+  Next nCnt
+  '
+  Print #1,sText
+  '
+End Sub
+
+Public Function ExecuteTM(ByRef iRcd As Integer, ByRef nPQty As Currency)
+  On Error Resume Next
+  '
+  Dim sKey      As String
+  Dim nSGBT     As Long
+  Dim nSGSQ     As Currency
+  Dim vArray    As Variant
+  Dim vR2Seq    As Variant
+  Dim iCnt      As Integer
+  Dim nOQty     As Currency
+  Dim nSQty     As Currency
+  Dim sKCOO     As String
+  Dim nDOCO     As Long
+  Dim sDCTO     As String
+  Dim sLITM     As String
+  Dim sLOTN     As String
+  Dim sLOCN     As String
+  Dim nLNID     As Currency
+  Dim nSOBK     As Currency
+  Dim nSOCN     As Currency
+  '
+  Dim emProc As New EmbeddedProc
+  '
+  sKey = msArray(iRcd,14)                        ' get all lines
+  vArray = Split(sKey,"|")
+  '
+  For iCnt = 1 To UBound(vArray)
+    '
+    vR2Seq = Split(vArray(iCnt),":")
+    sKCOO = vR2Seq(0)
+    nDOCO = vR2Seq(1)
+    sDCTO = vR2Seq(2)
+    sLITM = vR2Seq(3)
+    sLOTN = vR2Seq(4)
+    sLOCN = vR2Seq(5)
+    nLNID = vR2Seq(6)
+    nSOBK = vR2Seq(7)
+    nSOCN = vR2Seq(8)
+    nSQty = vR2Seq(9)
+    '
+    If nPQty >= nSQty Then
+      nPQty = nPQty - nSQty
+      nOQty = nSQty
+    Else
+      nOQty = nPQty
+      nPQty = 0
+    End If
+    '
+    If nSOBK <> 0 Then
+      nSOBK = nSOBK - nSQty
+    End If
+    '
+    emProc.Name                = "TSOSC0100"
+    emProc.DataSource          = gsDataSource
+    emProc.QueueName           = msQueuename
+    '
+    emProc.Param("tmCO")       = msArray(iRcd, 0)
+    emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+    emProc.Param("tmDOCO")     = msArray(iRcd, 1)
+    emProc.Param("tmDCTO")     = msArray(iRcd, 2)
+    emProc.Param("tmLITM")     = msArray(iRcd, 4)
+    emProc.Param("tmLOTN")     = msArray(iRcd, 5)
+    emProc.Param("tmLOCN")     = msArray(iRcd, 6)
+    emProc.Param("tmQTY")      = nOQty
+    emProc.Param("tmQTYBO")    = nSOBK
+    emProc.Param("tmQTYCA")    = nSOCN
+    emProc.Param("tmUOM")      = msArray(iRcd, 8)
+    emProc.Param("tmLNID")     = msArray(iRcd, 3)
+    emProc.Param("tmSHIPTO")   = msArray(iRcd,11)
+    emProc.Param("tmCARRIER")  = msArray(iRcd,10)
+    emProc.Param("tmLNTY")     = msArray(iRcd, 9)
+    emProc.Param("tmUSER")     = App.User
+    emProc.Param("tmZVERSION") = msVersion
+    emProc.Param("tmPGM")      = msPgm
+
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+    If mbQueueProcessing Then
+      If Not emProc.Queue Then
+        Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      End If
+    Else
+      If Not emProc.Execute Then
+        emProc.Queue
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      End If
+    End If
+    '
+  ' Offline inventory
+    If gbOfflineEnabled And mbRelInv Then
+      If Not WriteOI(msArray(iRcd, 0),App.GetValue("tmMCU"),msArray(iRcd, 4),App.GetValue("tmITM"),"",msArray(iRcd, 8),"-" & CStr(nOQty),CLng(msArray(iRcd, 1)),msArray(iRcd, 2),CSng(msArray(iRcd, 3)),emProc.QueueName,emProc.QueueSeqNo, _
+                      msArray(iRcd, 6),msArray(iRcd, 5)," ") Then
+        App.MsgBox(GetMsg(31))
+      End If
+    End If
+    '
+  Next
+  '
+End Function
+'
+Public Function vRFQBalance(ByRef sQName  As String, ByRef sInOut As String, ByRef nCnt As Long) As String
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  '
+  If nCnt = 0 Then nCnt = 1
+  '
+  If Trim(UCase(sInOut)) = "IN" Then
+    sSql = "select QName from RFQBAL order by Counter"
+    DB.Execute(sSql,sCols,sRows)
+    '
+    sQName = DB.Extract(sCols,sRows,1,1)
+    '
+    sSql = "update RFQBAL set Counter = (Counter + " & nCnt & ") where QName = '" & sQName & "' "
+    DB.Execute(sSql)
+    vRFQBalance = sQName
+
+  Else
+    '
+    sSql = "update RFQBAL set Counter = (Counter -1) where QName = '" & sQName & "' "
+    DB.Execute(sSql)
+
+  End If
+
+End Function
+</Code>

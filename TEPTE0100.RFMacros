@@ -1,0 +1,106 @@
+﻿<Record FileDesc="EPM - Time Entry" FileVersion="5.0.8.0" Desc="EPM - Time Entry">
+<Param Name="tmMCU" Location="46,4" Size="12" Value="200" />
+<Param Name="tmDGL" Location="72,5" Size="8" Value="030306" />
+<Param Name="tmASII" Location="2,8" Size="26" Value="23042" />
+<Param Name="tmERC" Location="29,8" Size="2" />
+<Param Name="tmU" Location="32,8" Size="8" Value="8" />
+<Param Name="tmSUB" Location="41,8" Size="8" />
+<Param Name="tmANI" Location="51,9" Size="29" Value="200.2030" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmEXR" Location="9,9" Size="28" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: EPM - TIME ENTRY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction(ByRef tmMCU As Variant, ByRef tmDGL As Variant, ByRef tmASII As Variant, ByRef tmERC As Variant, ByRef tmU As Variant, ByRef tmSUB As Variant, ByRef tmANI As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmEXR As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sErrID      As String
+  Dim sErrText    As String
+  Dim bBatch      As Boolean
+  Dim sText       As String
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  If Not gbIsE1 Then GoTo World
+
+  Exit Function
+
+'-------'
+' Exits '
+'-------'
+World:
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  SM.GetText(3, 9, 5, sText, True)
+  If sText = "" Then SM.SendKey KeyF4
+  '
+  SM.GoToScreen("HEPTE0100")
+  SM.SendTextAlt 9,  4, "A"
+  SM.SendTextAlt 46, 4, tmMCU, 12
+  SM.SendTextAlt 72, 5, tmDGL, 8               'Date Worked
+  SM.SendTextAlt 2,  8, tmASII, 26             'Item Number
+  SM.SendTextAlt 32, 8, tmU, 8                 'Hours
+  SM.SendTextAlt 41, 8, tmSUB, 8               'Cost Code
+  SM.SendTextAlt 29, 8, tmERC, 2               'Rate Code
+  SM.SendTextAlt 9,  9, tmEXR, 28              'Explanation
+  SM.SendTextAlt 51, 9, tmANI, 29              'Account Number
+LoopErr:
+  SM.SendKey KeyEnter
+  SM.WaitForHost 10
+
+  'bErr = False
+  SM.GetText(68,1,8,sText,True)
+  bBatch = Len(sText) > 0  ' BatchNumber when processed
+  '
+  ' Error Handling
+  If bBatch = False Then
+    GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+    If Len(sErrID) = 0 Then GoTo LoopErr
+  End If
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  If bSuccess Then SM.SendKey KeyEnter       ' one extra Enter
+  '
+  SM.SendKey KeyEnter
+
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+  '
+  SM.CommitTrans
+
+  Transaction = bSuccess
+  
+End Function
+</Code>

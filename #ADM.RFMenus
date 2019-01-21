@@ -1,0 +1,20 @@
+﻿<Record FileDesc="Administration" FileVersion="5.0.8.0" Desc="Administration" Heading="[ADMIN]">
+<MenuItem Id="-" Desc="-- Initial File Setup --" />
+<MenuItem Id="FADCT0100" Desc="ADM - Create RFgen Worktables" />
+<MenuItem Id="FADLG0110" Desc="ADM - RFgen Configuration" />
+<MenuItem Id="FADUP0100" Desc="ADM - Maintain User Profiles" />
+<MenuItem Id="FADUP0200" Desc="ADM - Import User Profiles" />
+<MenuItem Id="FADUP0300" Desc="ADM - Export User Menus to CSV" />
+<MenuItem Id="-" Desc="-- Others --" />
+<MenuItem Id="FADPO010" Desc="ADM - Maintain Proc. Options" />
+<MenuItem Id="FADPO010_W" Desc="ADM - Maintain Proc. Options - World" />
+<MenuItem Id="FADRL010" Desc="ADM - Record Lock Maintenance" />
+<MenuItem Id="-" Desc="-" />
+<MenuItem Id="FADEX0100" Desc="ADM - Example User Message if Queue failed" />
+<MenuItem Id="FADTM0100" Desc="ADM - View - Maintain queued TM" />
+<MenuItem Id="FADTM0110" Desc="ADM - Maintain Queued TM (Dynamic View)" Options="-RefInt=30000" />
+<MenuItem Id="FADDB0100" Desc="ADM - Sync. Rfgen DB" />
+<MenuItem Id="-" Desc="-" />
+<MenuItem Id="FIMIT0101" Desc="IM - Performance Test Inv.Transfer" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FSYDP0100" Desc="SYS - Set Up Fiscal Date Pattern" />
+</Record>

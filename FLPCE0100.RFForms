@@ -1,0 +1,551 @@
+﻿<Record FileDesc="LP - Create Entity" FileVersion="5.0.8.0" Desc="LP - Create Entity" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame1&vm;Frame2&vm;Frame3&vm;txtCO&vm;txtDESC&vm;txtMFGID&vm;txtLead&vm;txtUPFX&vm;lblUPFX&vm;txtNNUM&vm;txtLen&vm;txtDUOM&vm;txtUOM&vm;txtWEI&vm;txtNXTR&vm;txtDSC2&vm;txtAccept&vm;btnChk&vm;lblPre">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Frame1" />
+<SchemaParam Linked="0" Attr="2" Name="Frame2" />
+<SchemaParam Linked="0" Attr="3" Name="Frame3" />
+<SchemaParam Linked="0" Attr="4" Name="txtCO" />
+<SchemaParam Linked="0" Attr="5" Name="txtDESC" />
+<SchemaParam Linked="0" Attr="6" Name="txtMFGID" />
+<SchemaParam Linked="0" Attr="7" Name="txtLead" />
+<SchemaParam Linked="0" Attr="8" Name="txtUPFX" />
+<SchemaParam Linked="0" Attr="9" Name="lblUPFX" />
+<SchemaParam Linked="0" Attr="10" Name="txtNNUM" />
+<SchemaParam Linked="0" Attr="11" Name="txtLen" />
+<SchemaParam Linked="0" Attr="12" Name="txtDUOM" />
+<SchemaParam Linked="0" Attr="13" Name="txtUOM" />
+<SchemaParam Linked="0" Attr="14" Name="txtWEI" />
+<SchemaParam Linked="0" Attr="15" Name="txtNXTR" />
+<SchemaParam Linked="0" Attr="16" Name="txtDSC2" />
+<SchemaParam Linked="0" Attr="17" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="18" Name="btnChk" />
+<SchemaParam Linked="0" Attr="19" Name="lblPre" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="12" FieldId="Frame1" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Label Setup  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="279" Height="198" AnchorRight="0" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame2" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  LMW Setup  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="279" Height="132" AnchorRight="0" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame3" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  LP Status  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="462" Width="279" Height="154" AnchorRight="0" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtCO" Attr="4" KeyField="1" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="22" Width="119" Height="22" AnchorRight="152" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Entity.......:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="22" Width="103" Height="22" AnchorRight="48" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDESC" Attr="5" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="119" Height="22" AnchorRight="152" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Description..:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="8" Top="66" Width="231" Height="44" AnchorRight="40" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMFGID" Attr="6" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="110" Width="111" Height="22" AnchorRight="152" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="MfgID.......:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="110" Width="87" Height="22" AnchorRight="64" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLead" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="111" Height="22" AnchorRight="152" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Leading Char:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="198" Width="87" Height="22" AnchorRight="64" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUPFX" Attr="8" Defaults=";o" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="242" Width="111" Height="22" AnchorRight="152" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Code Prefix.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="242" Width="31" Height="22" AnchorRight="120" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblUPFX" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="242" Width="103" Height="22" AnchorRight="8" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="&quot;*&quot; -&gt; Plant" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNNUM" Attr="10" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="264" Width="111" Height="22" AnchorRight="152" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Next Number.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="264" Width="87" Height="22" AnchorRight="64" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLen" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="286" Width="111" Height="22" AnchorRight="152" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length......:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="286" Width="87" Height="22" AnchorRight="64" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDUOM" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="374" Width="119" Height="22" AnchorRight="152" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Dimens.UOM...:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="374" Width="87" Height="22" AnchorRight="64" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUOM" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="396" Width="119" Height="22" AnchorRight="152" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Vol.UOM......:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="396" Width="87" Height="22" AnchorRight="64" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWEI" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="418" Width="119" Height="22" AnchorRight="152" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Weight.UOM...:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="418" Width="87" Height="22" AnchorRight="64" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNXTR" Attr="15" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="484" Width="183" Height="22" AnchorRight="88" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Status (sep. with &quot;;&quot;)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="506" Width="207" Height="22" AnchorRight="64" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDSC2" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="528" Width="151" Height="22" AnchorRight="120" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Status Description" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="8" Top="550" Width="207" Height="44" AnchorRight="64" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="17" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="616" Width="151" Height="22" AnchorRight="120" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="279" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnChk" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Btn" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="176" Width="47" Height="22" AnchorRight="104" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPre" Attr="19">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="176" Width="111" Height="22" AnchorRight="152" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pre Printed.:" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="279" FormHeight="638" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Create Entity]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: CREATE ENTITY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+Option Explicit
+
+Private Const cTNId = "FLPCE0100"
+'
+Private gsLPSource As String
+Private mbNewRec   As Boolean
+Private mbPre      As Boolean
+
+Private Sub btnChk_Click()
+  On Error Resume Next
+  '
+  If mbPre Then
+    btnChk.Caption  = "No"
+    mbPre = False
+    txtLEAD.Visible = False
+    txtUPFX.Visible = True
+    lblUPFX.Visible = True
+    txtNNUM.Visible = True
+
+  Else
+    btnChk.Caption  = "Yes"
+    mbPre = True
+    txtLEAD.Visible = True
+    txtUPFX.Visible = False
+    lblUPFX.Visible = False
+    txtNNUM.Visible = False
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  Dim i As Integer
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  For i = 1 To 5
+    RFPrompt(i).BackColor1 = cFieldDefaultBC
+    RFPrompt(i).ForeColor = cFieldDefaultFC
+  Next i
+  '
+  txtAccept.Visible = False
+  btnChk.Caption  = ""
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim nErrNo As Single
+  Dim sSQL   As String
+  Dim sDate  As String
+  Dim sTime  As String
+  Dim sUser  As String
+  '
+  sDate = Format(Date,"YYYYMMDD")
+  sTime = Format(Time,"HHMMSS")
+  sUser = App.User
+  '
+  If mbNewRec Then
+    sSQL = "insert into  LP002" & _
+           " (ENCO, ENDSC1, ENUPFX, ENNNUM, ENMFGID, ENDUOM, ENUOM, ENWEI, ENPRE, ENLEAD, ENLEN, ENNXTR, ENDSC2, ENUSER, ENDATE, ENTIME)" & _
+           " values ('%txtCO', '%txtDESC', '%txtUPFX', %txtNNUM, %txtMFGID, '%txtDUOM','%txtUOM', '%txtWei', '" & btnChk.Caption & "', '%txtLead', " & Val(txtLen.Text) & ", '%txtNXTR', '%txtDSC2', '" & sUser & "','" & sDate & "','" & sTime & "')"
+  Else
+    sSQL = "update  LP002" & _
+           " set ENDSC1 = '%txtDESC'" & _
+           " , ENUPFX   = '%txtUPFX'" & _
+           " , ENNNUM   = %txtNNUM"   & _
+           " , ENMFGID  = %txtMFGID"  & _
+           " , ENDUOM   = '%txtDUOM'" & _
+           " , ENUOM    = '%txtUOM'"  & _
+           " , ENWEI    = '%txtWei'"  & _
+           " , ENPRE    = '" & btnChk.Caption & "'"  & _
+           " , ENLEAD   = '%txtLead'" & _
+           " , ENLEN    =  " & Val(txtLen.Text) & " "  & _
+           " , ENNXTR   = '%txtNXTR'" & _
+           " , ENDSC2   = '%txtDSC2'" & _
+           " , ENUSER   = '" & sUser & "'" & _
+           " , ENDATE   = '" & sDate & "'" & _
+           " , ENTIME   = '" & sTime & "'" & _
+           " where ENCO = '%txtCO'"
+  End If
+  '
+  nErrNo = DB.Execute(sSQL)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "LP002", Replace(sSQL, "'", "`"))          				   
+  '
+  If (nErrNo<>0) Then
+    App.MsgBox GetMsg(45) & vbCrLf & SysErr.Description
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "LP002", Replace(sSQL, "'", "`"))          
+    Cancel = True
+  End If
+  '
+  mbNewRec = False
+End Sub
+
+Private Sub txtCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+  '
+  If (Len(Rsp)=0) Then
+    Exit Sub
+  End If
+  '
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox(GetMsg(25))
+    Exit Sub
+  End If
+  '
+  Rsp = FixRight(Rsp, 5, "0")
+  sSQL = "select * from  LP002" & _
+         " where ENCO = '" & Rsp & "'"
+  DB.Execute sSQL, sCols, sRows
+  '
+  mbNewRec = (Len(sRows)=0)
+  '
+
+  txtDESC.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENDSC1"))
+  txtMFGID.Text = Trim(DB.Extract(sCols, sRows, 1, "ENMFGID"))
+
+  If Trim(DB.Extract(sCols, sRows, 1, "ENPRE")) = "Yes" Then
+    btnChk.Caption  = "Yes"
+    mbPre = True
+    txtLEAD.Visible = True
+    txtUPFX.Visible = False
+    lblUPFX.Visible = False
+    txtNNUM.Visible = False
+
+  Else
+    btnChk.Caption  = "No"
+    mbPre = False
+    txtLEAD.Visible = False
+    txtUPFX.Visible = True
+    lblUPFX.Visible = True
+    txtNNUM.Visible = True
+  End If
+
+  txtUPFX.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENUPFX"))
+  txtNNUM.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENNNUM"))
+  txtUOM.Text   = Trim(DB.Extract(sCols, sRows, 1, "ENUOM"))
+  txtDUOM.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENDUOM"))
+  txtWei.Text   = Trim(DB.Extract(sCols, sRows, 1, "ENWEI"))
+  txtLead.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENLEAD"))
+  txtLen.Text   = Trim(DB.Extract(sCols, sRows, 1, "ENLEN"))
+  txtNXTR.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENNXTR"))
+  txtDSC2.Text  = Trim(DB.Extract(sCols, sRows, 1, "ENDSC2"))
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim oList As New SearchList
+  '
+  sSQL = "select ENCO, ENDSC1 from  LP002" & _
+         " order by ENCO"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Entity", 6, CenterLeft, True)
+  oList.SetColumn(2, "Desc",  20, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  '
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtWEI_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "00", "UM") Then Cancel = True
+End Sub
+
+Private Sub txtUPFX_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = UCase(Trim(Rsp))
+End Sub
+
+Private Sub txtNNUM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+  '
+  If (nQty <= 0) Then
+    App.MsgBox GetMsg(179)
+    Exit Sub
+  End If
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMFGID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMFGID", "")
+End Sub
+
+Private Sub txtMFGID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Rsp = Trim(UCase(Rsp))
+  Rsp = Left(Rsp,10)
+End Sub
+
+Private Sub txtDUOM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDUOM", "")
+End Sub
+
+Private Sub txtDUOM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 2, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "00", "UM", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmDUOM", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtDUOM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "00", "UM") Then Cancel = True
+End Sub
+
+Private Sub txtUOM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmUOM", "")
+End Sub
+
+Private Sub txtUOM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 2, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "00", "UM", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmUOM", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtUOM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "00", "UM") Then Cancel = True
+End Sub
+
+Private Sub txtWEI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 2, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "00", "UM", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  Rsp = Format(Rsp, "###,###")
+  App.SetValue("tmWEI", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+</Code>

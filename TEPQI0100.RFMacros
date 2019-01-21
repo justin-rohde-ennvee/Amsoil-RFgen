@@ -1,0 +1,78 @@
+﻿<Record FileDesc="EPM - Equipment Inquiry" FileVersion="5.0.8.0" Desc="EPM - Equipment Inquiry">
+<Param Name="tmNUMB" Location="23,4" Size="8" Value="10823X" />
+<Param Name="tmAPID" Location="23,5" Size="12" Value="08.001" />
+<Param Name="tmDL01" Location="51,4" Size="30" Value="Exhaust Fan, 500hp" />
+<Param Name="tmDL02" Location="51,5" Size="30" Value="12 Foot S/S Blades" />
+<Param Name="tmCO" Location="23,9" Size="5" Value="  200" />
+<Param Name="tmMCU" Location="23,10" Size="12" Value="         M38" />
+<Param Name="tmAMCU" Location="23,11" Size="12" Value="         200" />
+<Param Name="tmAOBJ" Location="36,11" Size="6" Value="2030" />
+<Param Name="tmDAJ" Location="23,12" Size="10" Value="02/02/1993" />
+<Param Name="tmLOC" Location="23,14" Size="12" Value="          L2" />
+<Param Name="tmRNK" Location="23,21" Size="30" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: EPM - EQUIPMENT INQUIRY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction(ByRef tmNUMB As Variant, ByRef tmAPID As Variant, ByRef tmDL01 As Variant, ByRef tmDL02 As Variant, ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmAMCU As Variant, ByRef tmAOBJ As Variant, ByRef tmDAJ As Variant, ByRef tmLOC As Variant, ByRef tmRNK As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  SM.GoToScreen("HEPQI0100")
+  SM.SendTextAlt 23, 3, "I"
+  SM.SendTextAlt 23, 4, tmNUMB, 8
+  SM.SendKey KeyEnter
+  '
+  If SM.WaitForCursor(23,3,5) Then
+    SM.GetText 23, 5,  12, tmAPID, True
+    SM.GetText 51, 4,  30, tmDL01, True
+    SM.GetText 51, 5,  30, tmDL02, True
+    SM.GetText 23, 9,  5,  tmCO,   True
+    SM.GetText 23, 10, 12, tmMCU,  True
+    SM.GetText 23, 11, 12, tmAMCU, True
+    SM.GetText 36, 11, 6,  tmAOBJ, True
+    SM.GetText 23, 12, 10, tmDAJ,  True
+    SM.GetText 23, 21, 30, tmRNK,  True
+    SM.GetText 23, 14, 12, tmLOC,  True
+  Else
+    GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+  End If
+  '  '
+  tmERRID = sErrID
+  tmERRTEXT = Trim(sErrText)
+
+  '-------'
+  ' Exits '
+  '-------'
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  Transaction = (tmERRID = "")
+
+End Function
+</Code>

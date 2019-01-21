@@ -1,0 +1,227 @@
+﻿<Record FileDesc="Vocollect Core Task Support" FileVersion="5.0.8.0" Desc="Vocollect Core Task Support" Group="VoCollect" LinkTo="Login Request" LinkType="6" LinkMode="0" PromptList="Label1&vm;prTaskLUTCoreConfiguration&vm;prTaskLUTCoreBreakTypes&vm;prTaskLUTCoreSignOn&vm;prTaskLUTCoreSignOff&vm;prTaskLUTCoreValidVehicleTypes&vm;prTaskLUTCoreSendVehicleIDs&vm;prTaskLUTCoreSafetyCheck&vm;prTaskLUTCoreValidFunctions&vm;prTaskODRCoreSendBreakInfo">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Label1" />
+<SchemaParam Linked="0" Attr="2" Name="prTaskLUTCoreConfiguration" />
+<SchemaParam Linked="0" Attr="3" Name="prTaskLUTCoreBreakTypes" />
+<SchemaParam Linked="0" Attr="4" Name="prTaskLUTCoreSignOn" />
+<SchemaParam Linked="0" Attr="5" Name="prTaskLUTCoreSignOff" />
+<SchemaParam Linked="0" Attr="6" Name="prTaskLUTCoreValidVehicleTypes" />
+<SchemaParam Linked="0" Attr="7" Name="prTaskLUTCoreSendVehicleIDs" />
+<SchemaParam Linked="0" Attr="8" Name="prTaskLUTCoreSafetyCheck" />
+<SchemaParam Linked="0" Attr="9" Name="prTaskLUTCoreValidFunctions" />
+<SchemaParam Linked="0" Attr="10" Name="prTaskODRCoreSendBreakInfo" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="0" Width="320" Height="352" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="Label1" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="143" Height="22" AnchorRight="104" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen Version 3.2" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="22" AnchorRight="247" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreConfiguration" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="215" Height="22" AnchorRight="32" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreConfiguration" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreBreakTypes" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="191" Height="22" AnchorRight="56" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreBreakTypes" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreSignOn" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="159" Height="22" AnchorRight="88" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreSignOn" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreSignOff" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="167" Height="22" AnchorRight="80" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreSignOff" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreValidVehicleTypes" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="247" Height="22" AnchorRight="0" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreValidVehicleTypes" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreSendVehicleIDs" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="223" Height="22" AnchorRight="24" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreSendVehicleIDs" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreSafetyCheck" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="199" Height="22" AnchorRight="48" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreSafetyCheck" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskLUTCoreValidFunctions" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="223" Height="22" AnchorRight="24" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskLUTCoreValidFunctions" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="17" FieldId="prTaskODRCoreSendBreakInfo" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="215" Height="22" AnchorRight="32" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="prTaskODRCoreSendBreakInfo" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="247" FormHeight="352" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Const cTNId = "Vocollect"
+
+Private Sub prTaskLUTCoreBreakTypes_OnVoCollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  rsOut.Param("BreakType", 1)   = "1"
+  rsOut.Param("BreakDesc", 1)   = "Lunch"
+  rsOut.Param("ErrorCode", 1)      = 0
+  rsOut.Param("Message", 1)        = ""
+  '
+  rsOut.Param("BreakType", 2)   = "2"
+  rsOut.Param("BreakDesc", 2)   = "Smoke"
+  rsOut.Param("ErrorCode", 2)      = 0
+  rsOut.Param("Message", 2)        = ""
+End Sub
+
+Private Sub prTaskLUTCoreConfiguration_OnVoCollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  rsOut.Param("CustomerName")   = "RF Gen Software"
+  rsOut.Param("Operator")       = App.User
+  rsOut.Param("ConfirmPassword") = 0
+  rsOut.Param("ErrorCode")      = 0
+  rsOut.Param("Message")        = ""
+End Sub
+
+Private Sub prTaskLUTCoreSafetyCheck_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  rsOut.Param("ErrorCode")      = 0
+  rsOut.Param("Message")        = ""
+
+End Sub
+
+Private Sub prTaskLUTCoreSendVehicleIDs_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  rsOut.Param("ErrorCode")       = 0
+  rsOut.Param("Message")         = ""
+
+End Sub
+
+Private Sub prTaskLUTCoreSignOff_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  '
+  rsOut.Param("ErrorCode")        = 0
+  rsOut.Param("Message")          = ""
+
+End Sub
+
+Private Sub prTaskLUTCoreSignOn_OnVoCollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  Call SetEnvironment
+  '
+  rsOut.Param("Interleave")      = "0"
+  rsOut.Param("ErrorCode")       = 0
+  rsOut.Param("Message")          = ""
+  '
+End Sub
+
+Private Sub prTaskLUTCoreValidFunctions_OnVocollect(ByVal rsIn As DataRecord, ByVal rsOut As DataRecord)
+  On Error Resume Next
+
+  rsOut.Param("FunctionNumber") = 1
+  rsOut.Param("FunctionName") = "Put Away"
+
+  rsOut.AddNew
+
+  rsOut.Param("FunctionNumber") = 2
+  rsOut.Param("FunctionName") = "Replenishment"
+
+  rsOut.AddNew
+
+  rsOut.Param("FunctionNumber") = 3
+  rsOut.Param("FunctionName") = "Normal Assignment"
+
+  rsOut.AddNew
+
+  rsOut.Param("FunctionNumber") = 4
+  rsOut.Param("FunctionName") = "Chase Assignment"
+
+
+End Sub
+
+
+Private Sub prTaskLUTCoreValidVehicleTypes_OnVoCollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  rsOut.Param("CaptureId")        = "0"
+  rsOut.Param("ErrorCode")        = 0
+  rsOut.Param("Message")          = ""
+
+End Sub
+
+Private Sub prTaskODRCoreSendBreakInfo_OnVocollect(ByRef rsIn As DataRecord, ByRef rsOut As DataRecord)
+  On Error Resume Next
+  '
+  Dim sSql       As String
+  Dim sStartEnd  As String
+  Dim sBreak     As String
+  Dim sJobn      As String
+  Dim sUser      As String
+  '
+  rsIn.Param("DateTime")
+  sJobn = Trim(rsIn.Param("SerialNumber"))
+  sUser = Trim(rsIn.Param("Operator"))
+
+  rsIn.Param("BreakType")
+  If rsIn.Param("StartEndFlag") = "0" Then
+    sStartEnd = "B"
+  Else
+    sStartEnd = "E"
+  End If
+  '
+  sBreak = Trim(rsIn.Param("BreakDescription"))
+  '
+  sSql = "insert into F58PFP (PFUSER,         PFURCD,              PFURRF,          PFUPMJ,                        PFTDAY,                          PFPID,           PFJOBN)" _
+            & " values('" & sUser & "',  '" & sStartEnd & "', '" & sBreak & "', " & Format(Date,"YYMMDD") & ",'" & Format(Time,"hhnnss") & "', '" & cTNId & "', '" & sJobn & "')
+  '
+  DB.Execute(sSql)
+  '
+  '
+  rsOut.Param("Confirm")        = " "
+
+End Sub
+</Code>

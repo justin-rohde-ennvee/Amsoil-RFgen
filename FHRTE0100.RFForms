@@ -1,0 +1,1313 @@
+﻿<Record FileDesc="HR - Time Entry (Single Line)" FileVersion="5.0.8.0" Desc="HR - Time Entry (Single Line)" Group="HR" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtAN8&vm;lblALPH&vm;txtDWK&vm;lblDWK&vm;txtPDBA&vm;lblPDBA&vm;txtPHRW&vm;txtSBL&vm;lblSBLT&vm;txtEQWO&vm;lblEQWO&vm;txtEQCG&vm;lblEQCG&vm;txtQOBJ&vm;txtANI&vm;txtAccept&vm;cmdEnter&vm;cmdClear&vm;cmdExit&vm;lbxRecords" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtAN8" />
+<SchemaParam Linked="0" Attr="2" Name="lblALPH" />
+<SchemaParam Linked="0" Attr="3" Name="txtDWK" />
+<SchemaParam Linked="0" Attr="4" Name="lblDWK" />
+<SchemaParam Linked="0" Attr="5" Name="txtPDBA" />
+<SchemaParam Linked="0" Attr="6" Name="lblPDBA" />
+<SchemaParam Linked="0" Attr="7" Name="txtPHRW" />
+<SchemaParam Linked="0" Attr="8" Name="txtSBL" />
+<SchemaParam Linked="0" Attr="9" Name="lblSBLT" />
+<SchemaParam Linked="0" Attr="10" Name="txtEQWO" />
+<SchemaParam Linked="0" Attr="11" Name="lblEQWO" />
+<SchemaParam Linked="0" Attr="12" Name="txtEQCG" />
+<SchemaParam Linked="0" Attr="13" Name="lblEQCG" />
+<SchemaParam Linked="0" Attr="14" Name="txtQOBJ" />
+<SchemaParam Linked="0" Attr="15" Name="txtANI" />
+<SchemaParam Linked="0" Attr="16" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="17" Name="cmdEnter" />
+<SchemaParam Linked="0" Attr="18" Name="cmdClear" />
+<SchemaParam Linked="0" Attr="19" Name="cmdExit" />
+<SchemaParam Linked="0" Attr="20" Name="lbxRecords" />
+</Schema>
+<Displays>
+<Display Name="Mobile_GUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+<Display Name="Kiosk_GUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtAN8" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="71" Height="22" AnchorRight="169" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Badge# :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="103" Height="22" AnchorRight="65" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="48" Width="107" Height="24" AnchorRight="762" AnchorBottom="742" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  Badge# :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="48" Width="127" Height="24" AnchorRight="622" AnchorBottom="742" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblALPH" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="63" Height="22" AnchorRight="177" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblALPH" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="290" Top="48" Width="77" Height="24" AnchorRight="512" AnchorBottom="742" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblALPH" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDWK" Attr="3" Defaults="@LAST;O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="71" Height="22" AnchorRight="169" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date   :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="87" Height="22" AnchorRight="81" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="96" Width="107" Height="24" AnchorRight="762" AnchorBottom="694" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="    Date :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="96" Width="107" Height="24" AnchorRight="642" AnchorBottom="694" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDWK" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="66" Width="55" Height="22" AnchorRight="25" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblDWK" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="290" Top="96" Width="67" Height="24" AnchorRight="522" AnchorBottom="694" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblDWK" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPDBA" Attr="5" Defaults="@LAST;O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="71" Height="22" AnchorRight="169" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pay Typ:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="88" Width="55" Height="22" AnchorRight="113" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="144" Width="107" Height="24" AnchorRight="762" AnchorBottom="646" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pay Type :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="144" Width="67" Height="24" AnchorRight="682" AnchorBottom="646" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPDBA" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="88" Width="63" Height="22" AnchorRight="49" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblPDBA" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="290" Top="144" Width="77" Height="24" AnchorRight="512" AnchorBottom="646" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblPDBA" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPHRW" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="71" Height="22" AnchorRight="169" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Hours  :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="110" Width="79" Height="22" AnchorRight="89" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="192" Width="107" Height="24" AnchorRight="762" AnchorBottom="598" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   Hours :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="192" Width="97" Height="24" AnchorRight="652" AnchorBottom="598" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSBL" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="71" Height="22" AnchorRight="169" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="W/O#   :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="87" Height="22" AnchorRight="81" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="239" Width="107" Height="24" AnchorRight="762" AnchorBottom="551" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="    W/O# :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="239" Width="107" Height="24" AnchorRight="642" AnchorBottom="551" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSBLT" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="132" Width="63" Height="22" AnchorRight="17" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblSBLT" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="290" Top="239" Width="77" Height="24" AnchorRight="512" AnchorBottom="551" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblSBLT" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEQWO" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="71" Height="22" AnchorRight="169" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Eq Wrk :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="154" Width="95" Height="22" AnchorRight="73" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="288" Width="117" Height="24" AnchorRight="762" AnchorBottom="502" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  Eqp Wrk :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="288" Width="117" Height="24" AnchorRight="632" AnchorBottom="502" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEQWO" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="154" Width="63" Height="22" AnchorRight="9" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblEQWO" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="290" Top="288" Width="77" Height="24" AnchorRight="512" AnchorBottom="502" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblEQWO" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEQCG" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="71" Height="22" AnchorRight="169" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Eq Usd :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="176" Width="95" Height="22" AnchorRight="73" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="336" Width="117" Height="24" AnchorRight="762" AnchorBottom="454" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  Eqp Usd :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="336" Width="117" Height="24" AnchorRight="632" AnchorBottom="454" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEQCG" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="176" Width="63" Height="22" AnchorRight="9" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblEQCG" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="290" Top="336" Width="77" Height="24" AnchorRight="512" AnchorBottom="454" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblEQCG" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQOBJ" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="71" Height="22" AnchorRight="169" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Eq Obj :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="198" Width="87" Height="22" AnchorRight="81" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="0" Top="384" Width="117" Height="24" AnchorRight="762" AnchorBottom="406" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  Eqp Obj :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="384" Width="107" Height="24" AnchorRight="642" AnchorBottom="406" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtANI" Attr="15" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="71" Height="22" AnchorRight="169" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Account:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="220" Width="167" Height="22" AnchorRight="1" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="431" Width="107" Height="24" AnchorRight="762" AnchorBottom="359" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption=" Account :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="130" Top="431" Width="207" Height="24" AnchorRight="542" AnchorBottom="359" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="199" Height="22" AnchorRight="41" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="FFFFFF" Caption="Press Enter to continue." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="264" Width="0" Height="22" AnchorRight="176" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="792" Width="191" Height="22" AnchorRight="688" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Press Enter to continue" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="264" Width="0" Height="22" AnchorRight="815" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdEnter" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Btn" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="352" Width="47" Height="22" AnchorRight="185" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" Caption="Enter" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="2" MultiLine="1" Left="930" Top="48" Width="167" Height="48" AnchorRight="-218" AnchorBottom="718" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdClear" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Btn" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="352" Width="47" Height="22" AnchorRight="129" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" Caption="Clear" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="2" MultiLine="1" Left="930" Top="119" Width="167" Height="48" AnchorRight="-218" AnchorBottom="647" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdExit" Attr="19">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Btn" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="352" Width="47" Height="22" AnchorRight="81" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" Caption="Exit" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="2" MultiLine="1" Left="930" Top="192" Width="167" Height="48" AnchorRight="-218" AnchorBottom="574" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxRecords" Attr="20" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="396" Width="63" Height="22" AnchorRight="177" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="396" Width="103" Height="22" AnchorRight="73" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="440" Width="143" Height="22" AnchorRight="728" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Previous Entries:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="8" Top="462" Width="871" Height="242" AnchorRight="0" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="418" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000001" Caption="    | KIOSK TIME ENTRY |" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000001" />
+</Layout>
+<Layout Visible="1" FormWidth="879" FormHeight="814" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="12" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000001" Caption="                                        | KIOSK TIME ENTRY |" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="12" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                              |
+' -------------------------------------------------------------------------------
+'
+' HUMAN RESOURCES/PAYROLL - TIME ENTRY (SINGLE LINE)
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTRANDESC     = "RFgen Time Entry"
+Private Const cTNId         = "FHRTE0100"
+Private msPgm               As String
+Private msVersion           As String
+Private msEDBT              As String
+Private msDate              As String
+Private mnEDTN              As Integer
+Private msCO                As String
+Private msMCU               As String
+Private mbShowANI           As Boolean
+Private msDisplay           As String
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  '----------------------
+  'Configure Display Type
+  '----------------------
+  Call SetDisplay()
+
+  If GetUserInfo("KioskYN") = "N" Then
+    msDisplay = "MOBILE"
+  Else
+    msDisplay = "KIOSK"
+  End If
+
+  Select Case msDisplay
+    Case "MOBILE"
+      App.SetDisplay("Mobile_GUI")
+      lblEQWO.Visible = False
+      lblEQCG.Visible = False
+      cmdEnter.Visible = False
+      cmdClear.Visible = False
+      cmdExit.Visible = False
+      lbxRecords.Visible = False
+      'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+    Case  "KIOSK"
+      App.SetDisplay("Kiosk_GUI")
+      txtAccept.Visible = False
+      lbxRecords.Caption = "Previous Entries:"
+      lbxRecords.List.Clear
+  End Select
+
+  '-----------------------
+  'Initialize form objects
+  '-----------------------
+  lblALPH.Caption = ""
+  lblDWK.Caption = ""
+  lblPDBA.Caption = ""
+  lblSBLT.Caption = ""
+  lblEQWO.Caption = ""
+  lblEQCG.Caption = ""
+  txtAccept.Caption = ""
+
+  lblALPH.Label.BackColor1 = cFieldDefaultBC
+  lblDWK.Label.BackColor1 = cFieldDefaultBC
+  lblPDBA.Label.BackColor1 = cFieldDefaultBC
+  lblSBLT.Label.BackColor1 = cFieldDefaultBC
+  lblEQWO.Label.BackColor1 = cFieldDefaultBC
+  lblEQCG.Label.BackColor1 = cFieldDefaultBC
+
+  txtANI.Visible = False
+  txtQOBJ.Visible = False
+
+  txtDWK.Defaults = Format(Date, "MM/DD/YYYY") & ";O"
+
+  '-------------------------
+  'Initialize form variables
+  '-------------------------
+  App.SetValue("tmUSER", "")
+  App.SetValue("tmEDTN", "")
+  App.SetValue("tmEDLN", "")
+  App.SetValue("tmEDBT", "")
+  App.SetValue("tmDATE", "")
+  App.SetValue("tmTNId", "")
+  App.SetValue("tmAN8", "")
+  App.SetValue("tmDWK", "")
+  App.SetValue("tmPDBA", "")
+  App.SetValue("tmPHRW", "")
+  App.SetValue("tmSBL", "")
+  App.SetValue("tmSBLT", "")
+  App.SetValue("tmANI", "")
+  App.SetValue("tmEQWO", "")
+  App.SetValue("tmEQCG", "")
+  App.SetValue("tmQOBJ", "")
+  App.SetValue("tmANI", "")
+
+  mbShowANI = False
+
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+  msEDBT = Format(Date,"YYYYMMDD") & Format(Time,"HHNNSS")
+  mnEDTN = 100
+  msDate = ConvDatetoJDE(CStr(Date))
+
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Select Case msDisplay
+    Case "MOBILE"
+      Call Update()
+    Case "KIOSK"
+      'Do nothing
+  End Select
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+
+    Select Case msDisplay
+    Case "MOBILE"
+      'App.SetOption ShowHorizontalScrollBar, False   ' todo - upgrade: App.SetOption removed
+    Case "KIOSK"
+      'Do nothing
+  End Select
+
+End Sub
+
+Private Sub txtAN8_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmAN8", "")
+  lblALPH.Caption = ""
+
+End Sub
+
+Private Sub txtAN8_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sEmp  As String
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  'F06116 - Employee Master is used to obtain Employee Name, Home Company, and Home Business Unit.
+  'Note: This table is the best table to use when correlated an employee ID with company and business unit information.
+  '      This table contains YAHMCO (home company), YAHMCU (home business unit), And YAMCU (business unit).
+  '      This table does not contain a field for YACO (company).  Therefore, YAHMCO and YAHMCU are used in the query
+  sSql = "select YAALPH, YAHMCO, YAHMCU from  F060116 where YAAN8 = " & Val(Rsp)
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+
+  sEmp = Trim(DB.Extract(sCols,sRows,1,1))
+  msCO = DB.Extract(sCols,sRows,1,2)
+  msMCU = DB.Extract(sCols,sRows,1,3)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+
+  lblALPH.Caption = sEmp
+
+  App.SetValue("tmAN8", Val(Rsp))
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtDWK_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmDWK", "")
+  App.SetValue("tmHoursoF", 0)
+  lblDWK.Caption = ""
+  lbxRecords.List.Clear
+  lbxRecords.Caption = "Previous Entries:"
+
+End Sub
+
+Private Sub txtDWK_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sExpDt  As String
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim nHours  As Currency
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  If InStr(1,Rsp,"/") = 0 Then
+    Rsp = Format(Rsp, "##/##/####")
+  End If
+
+  sExpDt = CStr(CDate(Rsp))
+
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+
+  sExpDt = ConvDatetoJDE(sExpDt)
+  App.SetValue("tmDWK", sExpDt)
+
+  sSql = "select sum(VLPHRW) from F06116Z1 where VLAN8 = %tmAN8 and VLEDTC = 'A' and VLDWK = %tmDWK"
+
+  DB.Execute (sSql,sCols,sRows)
+
+  nHours = ConvDecimalsFromSQL("PHRW",sRows)
+
+  If nHours <> 0 Then
+    App.SetValue("tmHoursoF", nHours)
+  Else
+    App.SetValue("tmHoursoF", 0)
+  End If
+
+  Select Case msDisplay
+    Case "MOBILE"
+      lblDWK.Caption = Format(Rsp,"ddd")
+    Case "KIOSK"
+      lblDWK.Caption = Format(Rsp,"dddddd")
+      Call KioskList()
+  End Select
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtDWK_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Press F2 to view details."
+
+End Sub
+
+Private Sub txtDWK_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+
+End Sub
+
+Private Sub txtDWK_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+
+  Select Case msDisplay
+    Case "MOBILE"
+      If Fkey = 2 Then
+        Call MobileList()
+      End If
+    Case  "KIOSK"
+      'Do Nothing
+  End Select
+
+End Sub
+
+Private Sub txtPDBA_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmPDBA", "")
+  lblPDBA.Caption = ""
+
+End Sub
+
+Private Sub txtPDBA_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  sSql = "select YCEXA from F069116 where YCPDBA = " & Rsp
+  DB.Execute(sSql,sCols,sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(266)
+    Exit Sub
+  End If
+
+  lblPDBA.Caption = Trim(DB.Extract(sCols,sRows,1,1))
+
+  App.SetValue("tmPDBA", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtPDBA_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSql   As String
+  Dim sWhere As String
+  Dim oList  As New SearchList
+
+  sSql = "select YCPDBA, YCEXA from F069116 where YCDISO = 'P' order by YCPDBA"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Type",        05, CenterLeft, True)
+  oList.SetColumn(2, "Description", 15, CenterLeft, True)
+  oList.SQL = sSql
+
+  Rsp = oList.ShowList
+
+  Cancel = (Len(Rsp) = 0)
+
+End Sub
+
+Private Sub txtPHRW_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmPHRW", "")
+
+End Sub
+
+Private Sub txtPHRW_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  If IsNumeric(Rsp) = False Then
+    App.MsgBox GetMsg(85)
+    Exit Sub
+  End If
+
+  If (App.GetValue("tmHoursoF") + CCur(Rsp)) > 24 Then
+    App.MsgBox GetMsg(260)
+    Exit Sub
+  End If
+
+  Rsp = Format(Rsp,"##.00")
+  App.SetValue("tmPHRW", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtSBL_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmSBL", "")
+  App.SetValue("tmSBLT", "")
+  App.SetValue("tmANI", "")
+
+  lblSBLT.Caption = ""
+
+  mbShowANI = False
+  txtANI.Visible = False
+
+End Sub
+
+Private Sub txtSBL_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+  Dim sSql As String
+
+  sSql = "SELECT wadoco AS ""Work Order"", wadcto AS ""W/O Type"", wadl01 as ""W/O Description"" FROM F4801 WHERE " & _
+          "wamcu = "   & "'" & msMCU & "'" & _
+          " ORDER BY wadoco"
+
+  sList = DB.MakeList(sSql)
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtSBL_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sWO   As String
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+
+  App.SetValue("tmSBL", "")
+
+  'Blank Entry --LEAVE SUB
+  If (Len(Rsp)=0) Then
+    lblSBLT.Caption = ""
+    mbShowANI = True
+    txtANI.Visible = True
+    Exit Sub
+  End If
+
+  'Non-Blank Entry
+  Cancel = True
+
+  sSql = "select * from F4801 where wadoco = " & Rsp
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox("Work order does not exist or is invalid.")
+    lblSBLT.Caption = ""
+    mbShowANI = True
+    txtANI.Visible = True
+    Exit Sub
+  End If
+
+  Select Case msDisplay
+    Case "MOBILE"
+      lblSBLT.Caption = Trim(DB.Extract(sCols, sRows, 1, 1))
+    Case "KIOSK"
+      lblSBLT.Caption = Trim(DB.Extract(sCols, sRows, 1, 1)) & ": "& Trim(DB.Extract(sCols, sRows, 1, 11))
+  End Select
+
+  App.SetValue("tmSBL", Rsp)
+  App.SetValue("tmSBLT", "W")
+
+  sWO = "\" & Rsp & "."
+  App.SetValue("tmANI", sWO)
+
+  mbShowANI = False
+  txtANI.Visible = False
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtEQWO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  lblEQWO.Caption = ""
+
+  App.SetValue("tmEQWO", "")
+
+End Sub
+
+Private Sub txtEQWO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+
+  sList = DB.MakeList("select FANUMB as Asset_ID, Left(FADL01, 15) as Description, FAMCU as MCU, FALOC as Locn from F1201 ORDER BY FANUMB")
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtEQWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  App.SetValue("tmEQWO", " ")
+
+  If Len(Rsp) = 0 Then Exit Sub
+
+  Cancel=True
+
+  ' Validate it
+  sSql = "select * from F1201 where FANUMB = " & Rsp
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(50))
+    Exit Sub
+  End If
+
+  lblEQWO.Caption = Trim(DB.Extract(sCols, sRows, 1, 13))
+  App.SetValue("tmEQWO", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtEQCG_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmEQCG", "")
+
+  lblEQCG.Caption = ""
+
+  txtQOBJ.Visible = False
+
+End Sub
+
+Private Sub txtEQCG_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+
+  sList = DB.MakeList("select FANUMB as Asset_ID, Left(FADL01, 15) as Description, FAMCU as MCU, FALOC as Locn from F1201 ORDER BY FANUMB")
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtEQCG_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  App.SetValue("tmEQCG", "")
+
+  If Len(Rsp) = 0 Then
+    txtQOBJ.Visible = False
+    If mbShowANI = True Then
+      txtANI.Visible = True
+      App.SetFocus("txtANI")
+   Else
+      txtANI.Visible = False
+      App.SetFocus("txtAccept")
+    End If
+    Exit Sub
+  End If
+
+  Cancel=True
+
+  sSql = "select * from F1201 where FANUMB = " & Rsp
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(50))
+    Exit Sub
+  End If
+
+  lblEQCG.Caption = Trim(DB.Extract(sCols, sRows, 1, 13))
+  App.SetValue("tmEQCG", Rsp)
+  txtQOBJ.Visible = True
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtQOBJ_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmQOBJ", "")
+
+End Sub
+
+Private Sub txtQOBJ_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+  Dim sSql As String
+
+  sSql = "SELECT DISTINCT(gmobj) AS ""Equip Object Acct"" FROM F0901 WHERE " & _
+          "gmco = "   & "'" & msCO & "'" & " AND " & _
+          "gmmcu = "  & "'" & msMCU & "'" & _
+          " ORDER BY gmobj"
+
+  sList = DB.MakeList(sSql)
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtQOBJ_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  App.SetValue("tmQOBJ", "")
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  sSql = "SELECT gmobj FROM F0901 WHERE " & _
+          "gmco = "   & "'" & msCO & "'" & " AND " & _
+          "gmmcu = "  & "'" & msMCU & "'" & " AND " & _
+          "gmobj = " & Rsp
+
+  DB.Execute(sSql,sCols,sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(80)
+    Exit Sub
+  End If
+
+  txtQOBJ.Text = Trim(DB.Extract(sCols,sRows,1,1))
+
+  App.SetValue("tmQOBJ", Rsp)
+
+  Cancel = False
+
+  If mbShowANI = True Then
+    txtANI.Visible = True
+    App.SetFocus("txtANI")
+  Else
+    txtANI.Visible = False
+    App.SetFocus("txtAccept")
+  End If
+
+End Sub
+
+Private Sub txtANI_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  If mbShowANI = True Then
+    txtANI.Visible = True
+  Else
+    txtANI.Visible = False
+  End If
+
+  App.SetValue("tmANI", "")
+
+End Sub
+
+Private Sub txtANI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sBU As String
+  Dim sOBJ As String
+  Dim sSUB As String
+  Dim sAni() As String
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+
+  If Len(Rsp) > 0 Then
+    sAni = Split(Rsp, ".", 3)
+    sBU = FixRight(sAni(0),12, " ")
+    sOBJ = sAni(1)
+    sSUB = sAni(2)
+    sSql = "select * from F0901 where gmmcu = " & "'" & sBU & "'" & _
+           " and gmobj = " & "'" & sOBJ & "'" & _
+           " and gmsub = " & "'" & sSUB & "'"
+    DB.Execute(sSql, sCols, sRows)
+    If (Len(sRows) = 0) Then
+      App.MsgBox GetMsg(49)
+      App.SetFocus("txtANI")
+      Exit Sub
+    End If
+  End If
+
+  If Len(Rsp) = 0 Then
+    App.SetValue("tmANI", "")
+    Exit Sub
+  End If
+
+  App.SetValue("tmANI", Rsp)
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Press Enter to continue."
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+
+End Sub
+
+Private Sub txtAccept_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Press Enter to continue."
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim iRow As Integer
+
+  iRow = txtAccept.Label.Top
+
+End Sub
+
+Private Sub cmdEnter_Click()
+  On Error Resume Next
+  Dim sAN8 As String
+
+  Select Case msDisplay
+  Case "MOBILE"
+    'Do nothing
+  Case  "KIOSK"
+    If App.GetValue("tmAN8") = ""     Or _
+       App.GetValue("tmDWK") = ""     Or _
+       App.GetValue("tmPDBA") = ""    Or _
+       App.GetValue("tmDWK") = ""     Or _
+       App.GetValue("tmPHRW") = ""    Or _
+       (App.GetValue("tmeqcg") <> "" And App.GetValue("tmqobj") = "")   Then
+      'Do not proceed with update since required fields are not complete
+    Else
+      sAN8 = App.GetValue("tmAN8")
+      Call Update()
+      txtAN8.Text = sAN8
+      App.SetValue("tmAN8", sAN8)
+      Call KioskList()
+      App.SetFocus("txtAN8")
+      sAN8 = ""
+    End If
+  End Select
+
+End Sub
+
+Private Sub cmdClear_Click()
+  On Error Resume Next
+
+    Select Case msDisplay
+    Case "MOBILE"
+      'Do nothing
+    Case  "KIOSK"
+      txtAN8.Text = ""
+      txtDWK.Text = ""
+      txtPDBA.Text = ""
+      txtPHRW.Text = ""
+      txtSBL.Text = ""
+      txtEQWO.Text = ""
+      txtEQCG.Text = ""
+      txtQOBJ.Text = ""
+      lblALPH.Caption = ""
+      lblDWK.Caption = ""
+      lblPDBA.Caption = ""
+      lblSBLT.Caption = ""
+      lblEQWO.Caption = ""
+      lblEQCG.Caption = ""
+      lbxRecords.List.Clear
+      lbxRecords.Caption = "Previous Entries:"
+      App.SetFocus("txtAN8")
+      App.SetValue("tmEDBT", "")
+      App.SetValue("tmAN8",  "")
+      App.SetValue("tmDWK",  "")
+      App.SetValue("tmPDBA", "")
+      App.SetValue("tmPHRW", "")
+      App.SetValue("tmANI",  "")
+      App.SetValue("tmEQWO", "")
+      App.SetValue("tmEQCG", "")
+      App.SetValue("tmQOBJ",  "")
+      App.SetValue("tmSBL",  "")
+      App.SetValue("tmSBLT",  "")
+    End Select
+
+End Sub
+
+Private Sub cmdExit_Click()
+  On Error Resume Next
+
+    Select Case msDisplay
+    Case "MOBILE"
+      'Do nothing
+    Case  "KIOSK"
+      App.ExitForm
+    End Select
+
+End Sub
+
+Public Sub Update()
+  On Error Resume Next
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+  Dim sDate As String
+  Dim nHours As Currency
+
+  txtDWK.Defaults = Nothing
+
+  App.SetValue("tmUSER", Trim(UCase(App.User)))
+  App.SetValue("tmEDTN", mnEDTN)                      ' EDI Counter
+  App.SetValue("tmEDLN", 0)                           ' EDI Line Number
+  App.SetValue("tmEDBT", msEDBT)
+  App.SetValue("tmDATE", msDate)
+  App.SetValue("tmTNId",  cTNId)
+
+  App.SetValue("tmUPMT", Format(Time,"HHNNSS"))
+  nHours = ConvDecimalsToSQL("PHRW",App.GetValue("tmPHRW"))
+
+
+  sSql = "insert into F06116Z1 (VLEDUS,   VLEDSQ, VLEDTN,   VLEDLN,  VLEDDT,  VLEDDL, VLEDSP, VLSSFL, VLEDTC, VLICU,  VLEDBT,   VLANI,    VLEQWO,   VLEQCG,    VLQOBJ,    VLAN8,  VLSBL,    VLSBLT,    VLPHRW,         VLPDBA,  VLDWK,    VLUSER,    VLUPMJ,    VLPID,     VLUPMT) " & _
+         " Values(              '%tmUSER',0,      '%tmEDTN', %tmEDLN, %tmDATE,'0'   , '0',    '0',    'A',    '0',    '%tmEDBT','%tmANI', '%tmEQWO','%tmEQCG', '%tmQOBJ', %tmAN8, '%tmSBL', '%tmSBLT', " & nHours & ", %tmPDBA, '%tmDWK', '%tmUSER', '%tmDATE', '%tmTNId', %tmUPMT)"
+
+  nErrNo = DB.Execute(sSql)
+
+  mnEDTN = mnEDTN +1 ' add counter
+
+  txtAN8.Text = ""
+  txtDWK.Text = ""
+  txtPDBA.Text = ""
+  txtPHRW.Text = ""
+  txtANI.Text  = ""
+  txtEQWO.Text = ""
+  txtEQCG.Text = ""
+  txtQOBJ.Text = ""
+  txtSBL.Text = ""
+
+  Call Form_Load()
+
+End Sub
+
+Public Sub MobileList()
+  On Error Resume Next
+
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sValue As String
+  Dim sList  As String
+  Dim sDate  As String
+  Dim nHours As Currency
+  Dim iCnt   As Integer
+  Dim sAni   As String
+  Dim sTitle As String
+
+  sTitle = "Date        Type    Hours   Account               Eqp Wrkd    Eqp Used    Object   User ID      Trans Date"
+  '         ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9----+----A----+----B----+----C--
+  '         03/20/2009|    1|    0.00|  6100.1341           | 123       | 123       | 1341   | DEEP       |  03/20/20099
+
+  sSql = "select VLDWK, VLPDBA, VLPHRW, VLANI, VLEQWO, VLEQCG, VLQOBJ, VLEDUS, VLEDDT from F06116Z1 " & _
+         "where VLAN8 = %tmAN8 And VLEDSP = '0' and VLSSFL = '0' order by VLDWK, VLPDBA, VLPHRW"
+
+  DB.Execute(sSql,sCols,sRows)
+
+  nHours = 0
+
+  If Len(sRows) > 0 Then
+    For iCnt = 1 To DB.Count(sRows)
+      sValue = ""
+      If iCnt = 1 Then
+        sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1))
+      End If
+      If sDate <> ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1)) Then
+        App.MakeList(sList, "", ".........................")
+        App.MakeList(sList, "", "Total " & sDate & "   " & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),6," "))
+        App.MakeList(sList, "", "-------------------------")
+        nHours = 0
+      End If
+      sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1))
+      '(01) DWK
+      sValue = sValue & sDate & "|"
+      '(02) PDBA
+      sValue = sValue & FixRight(DB.Extract(sCols,sRows,iCnt,2),4," ") & "|   "
+      '(03) PHRW
+      sValue = sValue & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",DB.Extract(sCols,sRows,iCnt,3))),"##.00"),6," ") & "|  "
+      '(04) ANI
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,4),20," ") & "| "
+      '(05) EQWO
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,5),10," ") & "| "
+      '(06) EQCG
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,6),10," ") & "| "
+      '(07) QOBJ
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,7),7," ") & "| "
+      '(08) VLEDUS
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,8),11," ") & "| "
+      '(09) VLEDDT
+      sValue = sValue & FixRight(ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,9)),10," ")
+      nHours = nHours + CCur(DB.Extract(sCols,sRows,iCnt,3))
+      App.MakeList(sList, sValue, Replace(sValue,"|", " "), sTitle)
+    Next iCnt
+  End If
+
+  App.MakeList(sList, "", ".........................")
+  App.MakeList(sList, "", "Total " & sDate & "   " & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),6," "))
+  App.MakeList(sList, "", "-------------------------")
+
+Showagain:
+  sValue = App.ShowList(sList, True)
+
+  If Len(sValue) > 0 Then
+    txtDWK.Text      = Trim(LField(sValue, "|", 1))
+    txtPDBA.Text     = Trim(LField(sValue, "|", 2))
+    txtPHRW.Defaults = Trim(LField(sValue, "|", 3) & ";O")
+    sAni = LField(sValue, "|", 4)
+    If Left(Trim(sAni),1) = "\" Then
+      txtSBL.Defaults    = Replace(Replace(Trim(sAni),"\", ""), ".", "") & ";O"
+    Else
+      txtANI.Defaults    = Trim(sAni) & ";O"
+    End If
+    txtEQWO.Defaults    = Trim(LField(sValue, "|", 5)) & ";O"
+    txtEQCG.Defaults    = Trim(LField(sValue, "|", 6)) & ";O"
+    txtQOBJ.Defaults    = Trim(LField(sValue, "|", 7)) & ";O"
+  Else
+    Exit Sub
+  End If
+
+End Sub
+
+Public Sub KioskList()
+  On Error Resume Next
+
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sValue As String
+  Dim sList  As String
+  Dim sDate  As String
+  Dim nHours As Currency
+  Dim iCnt   As Integer
+  Dim sAni   As String
+  Dim sTitle As String
+
+  sTitle = "Date        Type    Hours   Account               Eqp Wrkd    Eqp Used    Object   User ID      Trans Date"
+  '         ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9----+----A----+----B----+----C--
+  '         03/20/2009|    1|    0.00|  6100.1341           | 123       | 123       | 1341   | DEEP       |  03/20/20099
+
+  sSql = "select VLDWK, VLPDBA, VLPHRW, VLANI, VLEQWO, VLEQCG, VLQOBJ, VLEDUS, VLEDDT from F06116Z1 " & _
+         "where VLAN8 = %tmAN8 And VLEDSP = '0' and VLSSFL = '0' order by VLDWK, VLPDBA, VLPHRW"
+  DB.Execute(sSql,sCols,sRows)
+
+  nHours = 0
+
+  If Len(sRows) > 0 Then
+    lbxRecords.List.Clear
+    lbxRecords.Caption = sTitle
+    For iCnt = 1 To DB.Count(sRows)
+      sValue = ""
+      If iCnt = 1 Then
+        sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1))
+      End If
+      If sDate <> ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1)) Then
+        lbxRecords.List.AddItem "", "........................."
+        lbxRecords.List.AddItem "", "Total " & sDate & "   " & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),6," ")
+        lbxRecords.List.AddItem "", "-------------------------"
+        nHours = 0
+      End If
+      sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1))
+      '(01) DWK
+      sValue = sValue & sDate & "|"
+      '(02) PDBA
+      sValue = sValue & FixRight(DB.Extract(sCols,sRows,iCnt,2),4," ") & "|   "
+      '(03) PHRW
+      sValue = sValue & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",DB.Extract(sCols,sRows,iCnt,3))),"##.00"),6," ") & "|  "
+      '(04) ANI
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,4),20," ") & "| "
+      '(05) EQWO
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,5),10," ") & "| "
+      '(06) EQCG
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,6),10," ") & "| "
+      '(07) QOBJ
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,7),7," ") & "| "
+      '(08) VLEDUS
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,8),11," ") & "| "
+      '(09) VLEDDT
+      sValue = sValue & FixRight(ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,9)),10," ")
+      nHours = nHours + CCur(DB.Extract(sCols,sRows,iCnt,3))
+      lbxRecords.List.AddItem sValue, Replace(sValue,"|", " ")
+    Next iCnt
+  End If
+
+  lbxRecords.List.AddItem "", "........................."
+  lbxRecords.List.AddItem "", "Total " & sDate & "   " & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),6," ")
+  lbxRecords.List.AddItem "", "-------------------------"
+
+End Sub
+
+Private Sub lbxRecords_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSelRec   As String
+  Dim sAni      As String
+
+  sSelRec = Rsp
+
+  If Len(sSelRec) > 0 Then
+    txtDWK.Text      = Trim(LField(sSelRec, "|", 1))
+    txtPDBA.Text     = Trim(LField(sSelRec, "|", 2))
+    txtPHRW.Defaults = Trim(LField(sSelRec, "|", 3) & ";O")
+    sAni = LField(sSelRec, "|", 4)
+    If Left(Trim(sAni),1) = "\" Then
+      txtSBL.Defaults    = Replace(Replace(Trim(sAni),"\", ""), ".", "") & ";O"
+    Else
+      txtANI.Defaults    = Trim(sAni) & ";O"
+    End If
+    txtEQWO.Defaults    = Trim(LField(sSelRec, "|", 5)) & ";O"
+    txtEQCG.Defaults    = Trim(LField(sSelRec, "|", 6)) & ";O"
+    txtQOBJ.Defaults    = Trim(LField(sSelRec, "|", 7)) & ";O"
+    App.SetFocus("txtDWK")
+  Else
+    Exit Sub
+  End If
+
+End Sub
+</Code>

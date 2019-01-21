@@ -1,0 +1,210 @@
+﻿<Record FileDesc="Win32 Base Module" FileVersion="5.0.8.0" Desc="Win32 Base Module" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' Win32.bas
+'
+'
+
+Option Explicit
+Global gbProcessing           As Boolean
+Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal sFromUOM As String, ByVal sToUOM As String) As Boolean
+  On Error Resume Next
+  '
+  Dim nFact As Double
+  Dim sStdUOM As String
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  '
+  ' Convert directly?
+  '
+  sSql = "Select 1,UMCONV as CFact from F41002 " & _
+         " where UMITM = " & sITM & " And UMRUM = '" & sToUOM & "' and UMUM = '" & sFromUOM & "' "
+'         " union all " & _
+'         " select 2,UCCONV as CFact from F41003 " & _
+'         " where UCRUM = '" & sFromUOM & "' and UCUM = '" & sToUOM & "' " & _
+'         " Order by 1"
+  '
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) <> 0) Then
+    nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
+    nQty = (nQty * nFact)
+    GoTo UOMDone
+  Else
+    sSql = "Select 1,UMCONV as CFact from F41002 " & _
+           " where UMITM = " & sITM & " And UMRUM = '" & sFromUOM & "' and UMUM = '" & sToUOM & "' "
+'           " union all " & _
+'           " select 2,UCCONV as CFact from F41003 " & _
+'           " where UCRUM = '" & sToUOM & "' and UCUM = '" & sFromUOM & "' " & _
+'           " Order by 1"
+    DB.Execute(sSql,sCols,sRows)
+
+    If (Len(sRows) <> 0) Then
+      nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
+      nQty = (nQty / nFact)
+      GoTo UOMDone
+    End If
+  End If
+  '
+  ' Retrive base UOM
+  '
+  sSql = "select IMUOM1 from  F4101 where IMITM = " & sITM
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(67))
+    Exit Function
+  End If
+  '
+  sStdUOM = DB.Extract(sCols, sRows, 1, "IMUOM1")
+  '
+  ' Convert to primary?
+  '
+  If (sFromUOM <> sStdUOM) Then
+    sSql = "Select 1,UMCONV as CFact from  F41002" & _
+           " where UMITM = " & sITM & " And UMUM = '" & sFromUOM & "' and UMRUM = '" & sStdUOM & "' " & _
+           " union all " & _
+           " select 2,UCCONV as CFact from  F41003" & _
+           " where UCUM = '" & sFromUOM & "' and UCRUM = '" & sStdUOM & "' " & _
+           " Order by 1"
+    DB.Execute(sSql,sCols,sRows)
+    '
+    If (Len(sRows) <> 0) Then
+      nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
+      nQty = (nQty * nFact)
+    Else
+      sSql = "Select 1,UMCONV as CFact from  F41002" & _
+             " where UMITM = " & sITM & " And UMRUM = '" & sFromUOM & "' and UMUM = '" & sStdUOM & "' " & _
+             " union all " & _
+             " select 2,UCCONV as CFact from  F41003" & _
+             " where UCRUM = '" & sFromUOM & "' and UCUM = '" & sStdUOM & "' " & _
+             " Order by 1"
+      DB.Execute(sSql,sCols,sRows)
+
+      If (Len(sRows) = 0) Then
+        App.MsgBox GetMsg(220) & sFromUOM & " -> " & sStdUOM
+        Exit Function
+      End If
+      '
+      nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
+      nQty = (nQty / nFact)
+    End If
+  End If
+  '
+  ' Convert to requested?
+  '
+  If (sToUOM <> sStdUOM) Then
+    sSql = "Select 1,UMCONV as CFact from  F41002" & _
+           " where UMITM = " & sITM & " And UMUM = '" & sStdUOM & "' and UMRUM = '" & sToUOM & "' "
+'           " union all " & _
+'           " select 2,UCCONV as CFact from  F41003" & _
+'           " where UCUM = '" & sStdUOM & "' and UCRUM = '" & sToUOM & "' " & _
+'           " Order by 1"
+    DB.Execute(sSql,sCols,sRows)
+    '
+    If (Len(sRows) <> 0) Then
+      nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
+      nQty = (nQty * nFact)
+    Else
+      sSql = "Select 1,UMCONV as CFact from  F41002" & _
+             " where UMITM = " & sITM & " And UMRUM = '" & sStdUOM & "' and UMUM = '" & sToUOM & "' "
+'             " union all " & _
+'             " select 2,UCCONV as CFact from  F41003" & _
+'             " where UCRUM = '" & sStdUOM & "' and UCUM = '" & sToUOM & "' " & _
+'             " Order by 1"
+      DB.Execute(sSql,sCols,sRows)
+
+      If (Len(sRows) = 0) Then
+        App.MsgBox GetMsg(220) & sStdUOM & " -> " & sToUOM
+        Exit Function
+      End If
+      '
+      nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
+      nQty = (nQty / nFact)
+    End If
+  End If
+  '
+UOMDone:
+  ConvUOMAMS = True
+End Function
+
+Public Function PrintCaseLabel(ByVal nPrinterNumber As Integer, _
+                                 ByVal sLabelFormatName As String, _
+                                 ByVal sLPID As String, _
+                                 ByVal sLITM As String, _
+                                 ByVal sLOTN As String, _
+                                 ByVal nLabelQty As Integer, _
+                                 ByVal sAPI As String) As Boolean
+
+  Dim sDateTime As String 'Timestamp
+  Dim sFile     As String 'Output file path
+
+  PrintCaseLabel = False
+
+  'Get timestamp
+  sDateTime = Trim(Format(Time, "hhnnss"))
+
+  'Create output file in printing directory (filename is unique by item and time)
+  sFile = "C:\Program Files (x86)\Loftware Labeling\WDDrop\CartonLabel" & Trim(sLITM) & sLPID & sDateTime & ".pas"
+
+  'Write label info to file
+  Open sFile For Output As #1
+
+  Print #1, "*Format," & sLabelFormatName & ".lwl"
+  Print #1, "*JOBNAME,CaseLabel" & Trim(sLITM) & sDateTime
+  Print #1, "*QUANTITY," & nLabelQty
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+  Print #1, "LPID," & UCase(sLPID)
+  Print #1, "LPID2," & UCase(sLPID)
+  Print #1, "Item," & sLITM
+  Print #1, "Item2," & sLITM
+  Print #1, "Batch," & sLOTN
+  Print #1, "Batch2," & sLOTN
+  Print #1, "API," & sAPI
+  Print #1, "API2," & sAPI
+  Print #1, "*PRINTLABEL"
+
+  Close #1
+
+  PrintCaseLabel = True
+
+End Function
+
+Public Function PrintPalletLabel(ByVal nPrinterNumber As Integer, _
+                                 ByVal sLabelFormatName As String, _
+                                 ByVal sLPID As String, _
+                                 ByVal nLabelQty As Integer) As Boolean
+
+  Dim sDateTime As String 'Timestamp
+  Dim sFile     As String 'Output file path
+
+  PrintPalletLabel = False
+
+  'Get timestamp
+  sDateTime = Trim(Format(Time, "hhnnss"))
+
+  'Create output file in printing directory (filename is unique by item and time)
+  sFile = "C:\Program Files (x86)\Loftware Labeling\WDDrop\PalletLabel" & sLPID & sDateTime & ".pas"
+
+  'Write label info to file
+  Open sFile For Output As #1
+
+  Print #1, "*Format," & sLabelFormatName & ".lwl"
+  Print #1, "*JOBNAME,PalletLabel" & Trim(sLPID) & sDateTime
+  Print #1, "*QUANTITY," & nLabelQty
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+  Print #1, "LPID," & sLPID
+  Print #1, "*PRINTLABEL"
+
+  Close #1
+
+  PrintPalletLabel = True
+
+End Function
+</Code>

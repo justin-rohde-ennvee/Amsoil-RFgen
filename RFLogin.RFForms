@@ -1,0 +1,567 @@
+﻿<Record FileDesc="RFGen - User Login" FileVersion="5.0.8.0" Desc="RFGen - User Login" Group="RFGEN" LinkTo="Login Request" LinkType="6" LinkMode="0" PromptList="imgLogo&vm;User&vm;Password&vm;lbltxtEnv&vm;lblEnv&vm;lblPwd&vm;txtNewPwd&vm;txtConfPwd&vm;lbltxtVers&vm;lblVers" ImageList="RFLogin">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="imgLogo" />
+<SchemaParam Linked="0" Attr="2" Name="User" />
+<SchemaParam Linked="0" Attr="3" Name="Password" />
+<SchemaParam Linked="0" Attr="4" Name="lbltxtEnv" />
+<SchemaParam Linked="0" Attr="5" Name="lblEnv" />
+<SchemaParam Linked="0" Attr="6" Name="lblPwd" />
+<SchemaParam Linked="0" Attr="7" Name="txtNewPwd" />
+<SchemaParam Linked="0" Attr="8" Name="txtConfPwd" />
+<SchemaParam Linked="0" Attr="9" Name="lbltxtVers" />
+<SchemaParam Linked="0" Attr="10" Name="lblVers" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="6" FieldId="imgLogo" Attr="1" ImageId="RFLogin" Style="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="0" Height="22" AnchorRight="247" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="0" Width="247" Height="330" AnchorRight="0" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000000" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="User" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="55" Height="22" AnchorRight="144" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Login:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="154" Width="87" Height="22" AnchorRight="40" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="Password" Attr="3" KeyField="0" MaskInput="1" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="176" Width="79" Height="22" AnchorRight="144" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Password:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="176" Width="87" Height="22" AnchorRight="40" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lbltxtEnv" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="88" Width="79" Height="22" AnchorRight="152" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Connect.:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEnv" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="96" Top="88" Width="95" Height="22" AnchorRight="56" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Environment" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPwd" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="167" Height="22" AnchorRight="48" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="F2 - Change Password" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNewPwd" Attr="7" KeyField="0" MaskInput="1" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="220" Width="87" Height="22" AnchorRight="136" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="New Passw." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="87" Height="22" AnchorRight="40" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtConfPwd" Attr="8" KeyField="0" MaskInput="1" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="242" Width="87" Height="22" AnchorRight="136" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Conf Passw" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="242" Width="87" Height="22" AnchorRight="40" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lbltxtVers" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="66" Width="79" Height="22" AnchorRight="152" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="JDE Vers:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblVers" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="96" Top="66" Width="63" Height="22" AnchorRight="88" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Version" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="247" FormHeight="330" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="6" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' RFGEN LOGIN FORM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+'
+Private msUID   As String
+Private msPWD   As String
+Private msPWD1  As String
+Private msNPWD  As String
+Private msCPWD  As String
+'
+Private msUser  As String
+Private msName  As String
+Private msPWDP  As String
+Private msMenu  As String
+Private msStat  As String
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim i As Integer
+  Dim sType As String
+  Dim emTAS400SignOn As New EmbeddedProc
+
+  Call SetDisplay()
+  '
+  ' Get Sourcename from RFGen ERP Connection
+  lblEnv.Caption = SYS.ConnectionProperty("JDE", dcServer)
+  '
+  gbPOError = False
+  '
+  ' get dbsource for LP files
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+
+  'INS RBR 12/06/2006
+  gsLog = Trim(SYS.GetProperty("Log", "Boxes"))
+  '
+  gsEnv = ""  ' force reset
+  '
+  Call SetEnvironment
+  '
+  ' Get JDE Version
+  If Left(gsJDEVers,1) = "A" Then
+    lblVers.Caption = "World " & gsJDEVers
+  Else
+    lblVers.Caption = "E1 " & gsJDEVers
+  End If
+  '
+  gbCustUser = False
+  App.SetValue("CustSignon", "No")       'make in visible in PA
+  '
+  If  Left(SYS.GetProperty("Profiles", "Custom"),1) = "1" Then
+    App.SetValue("CustSignon", "Yes")       'make in visible in PA
+    gbCustUser = True
+  End If
+  '
+  '
+  ' Signoff For Named Users
+  '
+  If gbNamedUser And Len(Trim(gsPassword)) > 0 And Not gbIsE1 Then
+    '
+    emTAS400SignOn.Name = "TAS400SignOn"
+    emTAS400SignOn.DataSource = "JDE"
+    '
+    emTAS400SignOn.Param("tmUser") = "SignOff"
+    emTAS400SignOn.Param("tmPassword") = ""
+    '
+    emTAS400SignOn.Execute
+
+  End If
+  '
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  If Fkey = 2 And giPwdExp > 0 And gbNamedUser = False Then
+    '
+    txtNewPwd.Visible = True
+    txtNewPwd.Required = True
+    '
+    txtConfPwd.Visible = True
+    txtConfPwd.Required = True
+    '
+    Screen.Refresh
+    '
+    App.SetFocus("Password")
+    '
+  End If
+  '
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If gbCustUser Then
+    App.User = msUID
+    App.CallMenu(msMenu)
+  End If
+
+  Screen.Clear
+
+End Sub
+
+Private Sub User_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Password.Visible    = True
+  '
+  txtNewPwd.Visible   = False
+  txtNewPwd.Required  = False
+  '
+  txtConfPwd.Visible  = False
+  txtConfPwd.Required = False
+  '
+  lblPwd.Visible      = False
+  '
+End Sub
+
+Private Sub User_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Cancel = True
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  msUID = Trim(UCase(Rsp))
+  '
+  If  msUID = "ADM" Then
+    App.SetValue("CustSignon", "No")       'make in visible in PA
+    gbCustUser = False
+  End If
+
+  If  gbCustUser And msUID <> "ADM" Then
+    gbCustUser = True
+    App.SetValue("CustSignon", "Yes")       'make in visible in PA
+    GetUserProfile(msUID, msName, msPWDP, msMenu, msStat, gsUserProp)
+    '
+    If Len(Trim(msName)) = 0 Then
+      App.MsgBox("Error! User ID Invalid!")
+      Exit Sub
+    End If
+    '
+    If Trim(msStat) <> "A" Then
+      App.MsgBox("Error! User Profile inactiv!")
+      Exit Sub
+    End If
+  '
+  End If
+  '
+  Cancel = False
+  '
+End Sub
+
+Private Sub Password_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim lPwd As Long
+  '
+  Call LoadLanguage(msUID)
+  '
+  If giPwdExp > 0  Then
+    lblPwd.Visible = True
+  End If
+  '
+  lPwd = DateDiff("d",Date, GetUserInfo("PWDUPD"))
+  '
+  If lPwd < 2 And msUID <> "ADM" Then
+    App.MsgBox ("Your password has expired!")
+
+    txtNewPwd.Visible = True
+    txtNewPwd.Required = True
+    '
+    txtConfPwd.Visible = True
+    txtConfPwd.Required = True
+    '
+  End If
+  '
+  If  lPwd < 4 And lPwd > 0 Then
+    Screen.Print(0,13,"Your password expires in " & CStr(lPwd) & " days!")
+  End If
+
+End Sub
+
+Private Sub Password_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim bLogin As Boolean
+  Dim vArray As Variant
+  Dim iCnt   As Integer
+  Dim sText  As String
+  '
+  Cancel = True
+  Rsp = Trim(Rsp)
+  msPWD = Rsp
+  '
+  If Not gbNamedUser Then
+    If gbCustUser And msUID <> "ADM" Then
+      If msPWD <> msPWDP Then
+        App.MsgBox("Invalid Password! Reenter!")
+        Cancel = True
+        msPWD = ""
+        Exit Sub
+      End If
+    End If
+    '
+  Else      'named user
+    '
+    If Trim(UCase(msUID)) <> "ADM" Then
+      If gbIsE1 Then    ' E1
+        bLogin = ERP.LogOn("JDE", msUID, msPWD)
+        If Not bLogin Then
+          App.MsgBox GetMsg(117)
+          ERP.LogOff("JDE")
+          msPWD     = ""
+          Rsp       = ""
+          Password.Text = ""
+          Exit Sub
+        End If
+      Else              ' World
+
+        Dim emTAS400SignOn As New EmbeddedProc
+        '
+        emTAS400SignOn.Name = "TAS400SignOn"
+        emTAS400SignOn.DataSource = "JDE"
+        '
+        emTAS400SignOn.Param("tmUser") = msUID
+        emTAS400SignOn.Param("tmPassword") = msPWD
+        '
+        If Not emTAS400SignOn.Execute Then
+            App.MsgBox emTAS400SignOn.Param("tmErrText")
+          msPWD     = ""
+          Rsp       = ""
+          Password.Text = ""
+          Exit Sub
+        End If
+        '
+      End If
+    End If
+  End If
+  '
+  msPWD = ""
+  msPWD1 = Rsp
+
+  If gbNamedUser Then
+    gsPassword = Rsp  ' save in global to pass over to Transaction macro
+    Rsp = ""          ' set Password to blank, so you dont have to maintain it twice in JDE and RFgen
+  End If
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtConfPwd_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim bOK As Boolean
+  '
+  If Len(Trim(Rsp)) = 0 Then Exit Sub
+  '
+  bOK = True
+  msCPWD = Rsp
+
+  If Trim(msNPWD) <> Trim(msCPWD) Then
+    App.MsgBox("New password and confirmed password are not the same! Re enter!")
+    bOK = False
+  End If
+
+  If Len(msPWD) > 0 And Trim(msPWD) = Trim(msCPWD) Then
+    App.MsgBox("New and old password are the same! Re enter!")
+    bOK = False
+  End If
+
+  If Not bOK Then
+    txtNewPwd.Text  = ""
+    txtConfPwd.Text = ""
+    msNPWD = ""
+    msCPWD = ""
+    App.SetFocus("txtNewPwd")
+  Else
+    If gbNamedUser Then            ' Update JDE when named users
+      If gbIsE1 Then               ' OneWorld
+        Dim emProc1 As New EmbeddedProc
+        emProc1.Name                  = "AlterPassword"
+        emProc1.DataSource            = "JDE"
+        emProc1.Param("User")         = UCase(Trim(msUID))
+        emProc1.Param("OldPwd")       = UCase(Trim(msPWD1))
+        emProc1.Param("NewPwd")       = UCase(Trim(msNPWD))
+        emProc1.Param("NewPwdVerify") = UCase(Trim(msCPWD))
+        If Not emProc1.Execute Then
+          App.MsgBox("Password update failed!")
+          App.SetFocus("User")
+          Exit Sub
+        End If
+        Call SetUserPwdUpd()
+        App.ExitForm
+      Else                        ' World
+
+        If SetWorldPwd() Then  ' Change RFgen Password
+          App.ExitForm
+        Else
+          txtNewPwd.Visible = False
+          txtNewPwd.Required = False
+          txtNewPwd.Text     = ""
+          txtConfPwd.Visible = False
+          txtConfPwd.Required = False
+          txtConfPwd.Text     = ""
+          Password.Text       = ""
+          Password.Visible    = True
+          App.MsgBox("Password update failed!")
+          App.SetFocus("User")
+          Screen.Refresh
+        End If
+      End If
+    Else                            ' not named users -- RFgen password change only
+      If SetUserPwdUpd() Then
+        App.ExitForm
+      Else
+        txtNewPwd.Visible = False
+        txtNewPwd.Required = False
+        txtNewPwd.Text     = ""
+        txtConfPwd.Visible = False
+        txtConfPwd.Required = False
+        txtConfPwd.Text     = ""
+        Password.Text       = ""
+        Password.Visible    = True
+        App.MsgBox("Password update failed!")
+        App.SetFocus("User")
+        Screen.Refresh
+      End If
+    End If
+  End If
+  '
+End Sub
+
+Private Sub txtNewPwd_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+  msNPWD = Rsp
+  '
+  If Len(Trim(Rsp)) < giPwdLen Then
+    App.MsgBox("Password lenght of " & CStr(giPwdLen) & " required! Re-enter!")
+    Cancel = True
+  End If
+End Sub
+'
+' set new user password expiration
+Public Function SetUserPwdUpd() As Boolean
+  On Error Resume Next
+  '
+  Dim iFnd  As Integer
+  Dim iCnt  As Integer
+  Dim iRcd  As Integer
+  Dim nErrNo As Long
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sProp As String
+  Dim sDate As String
+  '
+  sDate = Format(DateAdd("d",giPwdExp,Date), "MM/DD/YYYY")
+  '
+  If gbCustUser Then
+    '
+    iFnd = Locate("PWDUPD", gsUserProp, 1)
+    gsUserProp = Rep(gsUserProp,2,iFnd, sDate)
+    '
+    iCnt = DCount(Ext(gsUserProp,1),Chr(2))
+    SetUserPwdUpd = True
+    '
+    For iRcd = 1 To iCnt
+      sProp = sProp & Ext(gsUserProp, 1, iRcd) & "="
+      sProp = sProp & Ext(gsUserProp, 2, iRcd) & "|"
+    Next
+
+    sProp = Left(sProp, (Len(sProp)-1))
+
+    msCPWD = PWDEncrypt(msCPWD)
+    '
+    sSql = "Update RFUP001 set RFPROP = '" & sProp & "', RFPWD = '" & msCPWD & "' where RFUID = '" & msUID & "' "
+    nErrNo = DB.Execute(sSql)
+    If nErrNo <> 0 Then SetUserPwdUpd = False
+    '
+  Else
+    '
+    If App.ChangeUserPassword(msPWD1, msCPWD) Then  ' Change RFgen Password
+      App.MsgBox("New password successfully updated!")
+      App.UserProperty("PwdUpd") =  sDate ' update RFgen user profile
+      App.ExitForm
+    End If
+    '
+  End If
+
+End Function
+
+
+' Set World password
+Public Function SetWorldPwd() As Boolean
+  On Error Resume Next
+
+  Dim sText    As String
+  Dim sDate    As String
+  Dim bLogin   As Boolean
+  '
+  sDate = Format(DateAdd("d",giPwdExp,Date), "MM/DD/YYYY")
+
+  ' Log current connection OFF
+  SM.GetText(3, 1, 5, sText, True)
+  If sText = gsSMMain Then
+    SM.SendKey KeyF3
+    SM.SendKey KeyF3
+    SM.SendTextAlt 7, 19, ".."
+    SM.SendKey KeyEnter
+    SM.WaitForHost(10)
+  End If
+
+  SM.ResetConnection
+
+  ' Logon as RFGEN
+  SM.SendTextAlt 53, 6, cChgPwdUserID
+  SM.SendKey KeyTab
+  SM.SendTextAlt 53, 7, cChgPwdUserPW
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.WaitForHost(10)
+  bLogin = SM.WaitForScreen("Base", 5)
+
+  If Not bLogin Then
+    App.MsgBox GetMsg(117)
+    SM.ResetConnection
+    App.MsgBox("Password Change Failed!")
+    Exit Function
+  End If
+
+  sText = "CHGUSRPRF USRPRF(" & msUID & ") STATUS(*ENABLED) PASSWORD(" & msCPWD & ")"
+
+  SM.SendTextAlt 7, 19, gsSMMain               ' Goto SM Main Menu
+  SM.SendKey KeyEnter
+  SM.WaitForHost(10)
+
+  SM.SendTextAlt 7, 19, sText
+  SM.SendKey KeyEnter
+  SM.WaitForHost(10)
+
+  SetWorldPwd = SM.WaitForText("User profile " & msUID & " changed.", 10, 2, 24)      ' Wait for a response
+
+  SM.SendTextAlt 7, 19, ".."                  ' log off
+  SM.SendKey KeyEnter
+  SM.WaitForHost(10)
+
+  If SetWorldPwd Then App.UserProperty("PwdUpd") =  sDate ' update RFgen user profile
+
+End Function
+</Code>

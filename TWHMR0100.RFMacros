@@ -1,0 +1,231 @@
+﻿<Record FileDesc="WH - Manual Replenishment" FileVersion="5.0.8.0" Desc="WH - Manual Replenishment">
+<Param Name="tmMCU" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmFLOCN" />
+<Param Name="tmTLOCN" />
+<Param Name="tmZVERSION" />
+<Param Name="tmUser" />
+<Param Name="tmTREX" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WH - MANUAL REPLENISHMENT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private msResKey    As String
+Private Const cTNId           = "TWHMR0100"
+
+Private Function Transaction(ByRef tmMCU As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmFLOCN As Variant, ByRef tmTLOCN As Variant, ByRef tmZVERSION As Variant, ByRef tmUser As Variant, ByRef tmTREX As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sGLDate     As String
+  Dim sLocnJDE    As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  Dim bAbort      As Boolean
+  Dim bLogin      As Boolean
+  Dim bOK         As Integer
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim nITM        As Currency
+  Dim sLNTY       As String
+
+  Dim emF4600UpdateRequest                As New EmbeddedProc
+  Dim emGetErrorText                      As New EmbeddedProc
+  Dim emCalculateAndEditPutAwayQuantity   As New EmbeddedProc
+  Dim emWarehouseSubsystemProcessor       As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  ' Get item master information
+  sSQL = "select IMITM, IMLNTY from F4101" & _
+         " where IMLITM = '" & tmLITM & "'"
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", "F4101", Replace(sSQL, "'", "`"))
+  '
+  If Len(SysErr.Description) <> 0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4101", Replace(sSQL, "'", "`"))
+  End If
+  '
+  nITM  = DB.Extract(sCols, sRows, 1, "IMITM")
+  sLNTY = Trim(DB.Extract(sCols, sRows, 1, "IMLNTY"))
+
+  '---------------------------------'
+  ' CalculateAndEditPutAwayQuantity '
+  '---------------------------------'
+  emCalculateAndEditPutAwayQuantity.Name = "CalculateAndEditPutAwayQuantity"
+  '
+  emCalculateAndEditPutAwayQuantity.Param("OriginCode")                     = "TR"
+  emCalculateAndEditPutAwayQuantity.Param("F4602FROMRecordPtr")             = 0
+  emCalculateAndEditPutAwayQuantity.Param("BranchPlant")                    = tmMCU
+  emCalculateAndEditPutAwayQuantity.Param("ShortItemNumber")                = nITM
+  emCalculateAndEditPutAwayQuantity.Param("TOLocation")                     = tmTLOCN
+  emCalculateAndEditPutAwayQuantity.Param("TOLot")                          = " "
+  emCalculateAndEditPutAwayQuantity.Param("TOLocationDetailSequence")       = 0
+  emCalculateAndEditPutAwayQuantity.Param("InstructionUM")                  = tmUOM
+  emCalculateAndEditPutAwayQuantity.Param("LocationDimensionUM")            = "  "
+  emCalculateAndEditPutAwayQuantity.Param("LocationVolumeUM")               = "  "
+  emCalculateAndEditPutAwayQuantity.Param("LocationWeightUM")               = "  "
+  emCalculateAndEditPutAwayQuantity.Param("RequestQuantity")                = tmQTY
+  emCalculateAndEditPutAwayQuantity.Param("RequestLocationTaxCode")         = "  "
+  emCalculateAndEditPutAwayQuantity.Param("MaximumReplenishment")           = "N"
+  emCalculateAndEditPutAwayQuantity.Param("CalculateMaximumQuantityOnly")   = " "
+  emCalculateAndEditPutAwayQuantity.Param("SingleLocationValidation")       = " "
+  emCalculateAndEditPutAwayQuantity.Param("ItemDimensionGroup")             = "      "
+  emCalculateAndEditPutAwayQuantity.Param("EditMinimumUtilization")         = " "
+  emCalculateAndEditPutAwayQuantity.Param("StagingLocation")                = "N"
+  emCalculateAndEditPutAwayQuantity.Param("MinimumPutawayPercent")          = 0
+  emCalculateAndEditPutAwayQuantity.Param("MaximumItems")                   = 0
+  emCalculateAndEditPutAwayQuantity.Param("MixDatesLotsLocation")           = "Y"
+  emCalculateAndEditPutAwayQuantity.Param("MixContainers")                  = "Y"
+  emCalculateAndEditPutAwayQuantity.Param("AllowedContainerCode")           = "     "
+  emCalculateAndEditPutAwayQuantity.Param("LocationDimensionGrp")           = ""  '"3P90"
+  emCalculateAndEditPutAwayQuantity.Param("AllowPutawayYN")                 = "N"
+  emCalculateAndEditPutAwayQuantity.Param("MixItems")                       = " "
+  emCalculateAndEditPutAwayQuantity.Param("MixDatesLotsItem")               = " "
+  emCalculateAndEditPutAwayQuantity.Param("SplitLinesPutaway")              = " "
+  emCalculateAndEditPutAwayQuantity.Param("AllowRotation")                  = " "
+  emCalculateAndEditPutAwayQuantity.Param("PutawayQuantity")                = 0
+  emCalculateAndEditPutAwayQuantity.Param("ErrorMessageID")                 = " "
+  emCalculateAndEditPutAwayQuantity.Param("ReplenishmentRequest")           = "1"
+  emCalculateAndEditPutAwayQuantity.Param("QuantityOnCommit")               = 0
+  emCalculateAndEditPutAwayQuantity.Param("TotalPutQTYAvaialble")           = 0
+  emCalculateAndEditPutAwayQuantity.Param("MaximumQuantityP1")              = 0
+  emCalculateAndEditPutAwayQuantity.Param("F4100MixItemLotFlag")            = " "
+  emCalculateAndEditPutAwayQuantity.Param("TopOffYN")                       = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emCalculateAndEditPutAwayQuantity.Name, "", emCalculateAndEditPutAwayQuantity)
+
+  If Not emCalculateAndEditPutAwayQuantity.Execute Then
+    sErrText = "CalculateAndEditPutAwayQuantity"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emCalculateAndEditPutAwayQuantity.Name, "", emCalculateAndEditPutAwayQuantity, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' F4600UpdateRequest '
+  '--------------------'
+  emF4600UpdateRequest.Name = "F4600UpdateRequest"
+  '
+  emF4600UpdateRequest.Param("SubSystemCode")             = "46"
+  emF4600UpdateRequest.Param("TypeFixedLocation")         = "3"
+  emF4600UpdateRequest.Param("CodeOrigin")                = "TR"
+  emF4600UpdateRequest.Param("OrderType")                 = "IQ"
+  emF4600UpdateRequest.Param("CostCenter")                = tmMCU
+  emF4600UpdateRequest.Param("IdentifierShortItem")       = nITM
+  emF4600UpdateRequest.Param("Identifier2ndItem")         = tmLITM
+  emF4600UpdateRequest.Param("Identifier3rdItem")         = tmLITM
+  emF4600UpdateRequest.Param("OverrideRequest")           = "Y"
+  emF4600UpdateRequest.Param("MergeYN")                   = "N"
+  emF4600UpdateRequest.Param("QuantityRequestedIn")       = tmQTY
+  emF4600UpdateRequest.Param("UnitOfMeasureAsInput")      = tmUOM
+  emF4600UpdateRequest.Param("LocationFrom")              = tmFLOCN
+  emF4600UpdateRequest.Param("LocationTo")                = tmTLOCN
+  emF4600UpdateRequest.Param("LineType")                  = sLNTY
+  emF4600UpdateRequest.Param("ExplanationTransaction")    = tmTREX
+  emF4600UpdateRequest.Param("ProgramId")                 = tmPGM
+  emF4600UpdateRequest.Param("CacheType")                 = "0"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4600UpdateRequest.Name, "", emF4600UpdateRequest)
+
+  If Not emF4600UpdateRequest.Execute Then
+    sErrText = "F4600UpdateRequest"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4600UpdateRequest.Name, "", emF4600UpdateRequest, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------------------'
+  ' WarehouseSubsystemProcessor '
+  '-----------------------------'
+  emWarehouseSubsystemProcessor.Name = "WarehouseSubsystemProcessor"
+  '
+  emWarehouseSubsystemProcessor.Param("BatchNumberRequests")    = emF4600UpdateRequest.Param("BatchNumberRequests")
+  emWarehouseSubsystemProcessor.Param("Version")                = tmZVERSION
+  emWarehouseSubsystemProcessor.Param("SubsystemQue")           = "2"
+  emWarehouseSubsystemProcessor.Param("SuppressErrorMessage")   = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emWarehouseSubsystemProcessor.Name, "", emWarehouseSubsystemProcessor)
+
+  If Not emWarehouseSubsystemProcessor.Execute Then
+    sErrText = "WarehouseSubsystemProcessor"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emWarehouseSubsystemProcessor.Name, "", emWarehouseSubsystemProcessor, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emGetErrorText.Name       = "GetErrorMessageGlossaryText"
+    emGetErrorText.LogMode = LogNever
+    emGetErrorText.DebugLog   = cJDELogPath
+    emGetErrorText.Param("ErrorMessageID")    = tmERRID
+    emGetErrorText.Execute
+    tmERRTEXT = tmERRID & "  " & emGetErrorText.Param("GlossaryText_500Chars")
+  End If
+  '
+  Set emF4600UpdateRequest    = Nothing
+  Set emGetErrorText          = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  If bAbort Then TM.AbortTrans
+
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  bSuccess = True
+  '
+ExitWorld:
+  Transaction = bSuccess
+  
+End Function
+</Code>

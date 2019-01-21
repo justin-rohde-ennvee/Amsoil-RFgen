@@ -1,0 +1,9 @@
+﻿<Record FileDesc="EPM Tool Crib" FileVersion="5.0.8.0" Desc="EPM Tool Crib" Heading="[Equipment P/M]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FEPTC0100" Desc="1-Tool Check In/Out" Options="-SupervisorYN =N" />
+<MenuItem Id="FEPTC0100" Desc="2-Tool Transfer" Options="-SupervisorYN =Y" />
+<MenuItem Id="FEPIQ0100" Desc="3-Tool Transfer History" Options="-FANUMB =" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FEPQI0100" Desc="6-Equipment Inquiry" />
+<MenuItem Id="FEPQW0100" Desc="7-Work Order Inquiry" />
+</Record>

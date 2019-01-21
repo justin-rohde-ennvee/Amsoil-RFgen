@@ -1,0 +1,777 @@
+﻿<Record FileDesc="WO - Component Issues" FileVersion="5.0.8.0" Desc="WO - Component Issues">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmSCRAP" />
+<Param Name="tmUOM" />
+<Param Name="tmCMCU" />
+<Param Name="tmUKID" />
+<Param Name="tmOPSQ" />
+<Param Name="tmSTATUS" />
+<Param Name="tmDOCTYPE" />
+<Param Name="tmEDITACT" />
+<Param Name="tmOrgLOTN" />
+<Param Name="tmOrgLOCN" />
+<Param Name="tmOrgUORG" />
+<Param Name="tmOrgDRQJ" />
+<Param Name="tmUSER" />
+<Param Name="tmZVERSION" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 400                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - COMPONENT ISSUES
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TWOCI0100"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmSCRAP As Variant, ByRef tmUOM As Variant, ByRef tmCMCU As Variant, ByRef tmUKID As Variant, ByRef tmOPSQ As Variant, ByRef tmSTATUS As Variant, ByRef tmDOCTYPE As Variant, ByRef tmEDITACT As Variant, ByRef tmOrgLOTN As Variant, ByRef tmOrgLOCN As Variant, ByRef tmOrgUORG As Variant, ByRef tmOrgDRQJ As Variant, ByRef tmUSER As Variant, ByRef tmZVERSION As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess        As Boolean
+  Dim nBatchNo        As Currency
+  Dim nJobNo          As Currency
+  Dim nOrdQty         As Currency
+  Dim sOrdUOM         As String
+  Dim sErrDesc        As String
+  Dim sGLDate         As String
+  Dim sTNDate         As String
+  Dim sSQL            As String
+  Dim sCols           As String
+  Dim sRows           As String
+  Dim sITM            As String
+  Dim sAITM           As String
+  Dim sILDate         As String
+  Dim sUniqueId       As String
+  Dim sErrID          As String
+  Dim sErrText        As String
+  '
+  Dim emF3111WOIssuesBeginDocument         As New EmbeddedProc
+  Dim emF3111WOIssuesEditDocument          As New EmbeddedProc
+  Dim emF3111WOIssuesEditLine              As New EmbeddedProc
+  Dim emF3111WOIssuesEndDocument           As New EmbeddedProc
+  Dim emGetAuditInfo                       As New EmbeddedProc
+  Dim emF3111WOIssuesReleaseAllocatedRes   As New EmbeddedProc
+  Dim emTWOCS0100                          As New EmbeddedProc
+  Dim emError                              As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  ' Get default information for this item
+  sSQL = "select IBITM, IBAITM from  F4102" & _
+         " where IBLITM = '" & tmLITM & "' and IBMCU = '" & tmMCU & "'"
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4102", Replace(sSQL, "'", "`"))
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call didn't return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4102", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sITM  = DB.Extract(sCols,sRows,1,"IBITM")
+  sAITM = DB.Extract(sCols,sRows,1,"IBAITM")
+  '
+  ' Get default information for this WO
+  sSQL = "select WAUORG, WAUOM from  F4801" & _
+         " where WADOCO = " & tmDOCO & " and WMMCU = '" & tmMCU & "'"
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4801", Replace(sSQL, "'", "`"))
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call didn't return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4801", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sOrdUOM  = DB.Extract(sCols,sRows,1,"WAUOM")
+  nOrdQty  = DB.Extract(sCols,sRows,1,"WAUORG")
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  'Get WO PartList information for this WO
+  sSQL = "select * from  F3111 where WMDOCO=" & tmDOCO & " and WMDCTO = '" & tmDCTO & "' and WMUKID = " & tmUKID & "
+  '
+  DB.Execute(sSQL,sCols,sRows)
+
+  'Planned Issue
+  If tmEDITACT = 1 Then
+    If (Len(sRows) = 0) Then
+      App.LogError "DB.Execute", "SQL call didn't return any rows" & vbCrLf & sSQL
+      If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F3111", Replace(sSQL, "'", "`"))
+      GoTo ExitE1
+    End If
+  End If
+
+  '----------------------------'
+  ' F3111WOIssuesBeginDocument '
+  '----------------------------'
+  emF3111WOIssuesBeginDocument.Name = "F3111WOIssuesBeginDocument"
+  emF3111WOIssuesBeginDocument.LogMode = LogNever
+  emF3111WOIssuesBeginDocument.DebugLog   = cJDELogPath
+  '
+  emF3111WOIssuesBeginDocument.Param("JobNumber")               = 0
+  emF3111WOIssuesBeginDocument.Param("ActionCode")              = " "
+  emF3111WOIssuesBeginDocument.Param("SuppressErrorMessage")    = " "
+  emF3111WOIssuesBeginDocument.Param("ErrorCode")               = " "
+  emF3111WOIssuesBeginDocument.Param("ProcOptProgramId")        = "P31113"
+  emF3111WOIssuesBeginDocument.Param("ProcOptVersion")          = tmZVERSION
+  emF3111WOIssuesBeginDocument.Param("ProcessModule")           = " "
+  emF3111WOIssuesBeginDocument.Param("BeginDocEditMode")        = "1"
+  emF3111WOIssuesBeginDocument.Param("ProgramId")               = " "
+  emF3111WOIssuesBeginDocument.Param("ComputerID")              = " "
+  emF3111WOIssuesBeginDocument.Param("UserId")                  = " "
+  emF3111WOIssuesBeginDocument.Param("OrderNumber")             = tmDOCO
+  emF3111WOIssuesBeginDocument.Param("OrderType")               = tmDCTO
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesBeginDocument.Name, "", emF3111WOIssuesBeginDocument)
+  '
+  If Not emF3111WOIssuesBeginDocument.Execute Then
+    tmERRID = emF3111WOIssuesBeginDocument.Param("ErrorCode")
+    sErrDesc = "F3111WOIssuesBeginDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesBeginDocument.Name, "", emF3111WOIssuesBeginDocument, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------------------'
+  ' F3111WOIssuesEditDocument '
+  '---------------------------'
+  emF3111WOIssuesEditDocument.Name = "F3111WOIssuesEditDocument"
+  emF3111WOIssuesEditDocument.LogMode = LogNever
+  emF3111WOIssuesEditDocument.DebugLog   = cJDELogPath
+  '
+  emF3111WOIssuesEditDocument.Param("JobNumber")                        = emF3111WOIssuesBeginDocument.Param("JobNumber")
+  emF3111WOIssuesEditDocument.Param("ActionCode")                       = "1"
+  emF3111WOIssuesEditDocument.Param("SuppressErrorMessage")             = "1"
+  emF3111WOIssuesEditDocument.Param("ErrorCode")                        = ""
+  emF3111WOIssuesEditDocument.Param("EditDocEditMode")                  = ""
+  emF3111WOIssuesEditDocument.Param("OrderNumber")                      = tmDOCO
+  emF3111WOIssuesEditDocument.Param("OpSeqFromValue")                   = "."
+  emF3111WOIssuesEditDocument.Param("OpSeqThruValue")                   = "."
+  emF3111WOIssuesEditDocument.Param("SuperBackflushingLastPaypoint")    = " "
+  emF3111WOIssuesEditDocument.Param("SetIssueFlagValue")                = "1"
+  emF3111WOIssuesEditDocument.Param("IssueMaterialFor")                 = nOrdQty
+  emF3111WOIssuesEditDocument.Param("IssueMatlForUoM")                  = sOrdUOM
+  emF3111WOIssuesEditDocument.Param("CacheCursorPtr")                   = 0
+  emF3111WOIssuesEditDocument.Param("TransactionDate")                  = ""
+  emF3111WOIssuesEditDocument.Param("GLDate")                           = ""
+  emF3111WOIssuesEditDocument.Param("ApplyShrink")                      = "0"
+  emF3111WOIssuesEditDocument.Param("ApplyYield")                       = "0"
+  emF3111WOIssuesEditDocument.Param("ModeExtendorNet")                  = "0"
+  emF3111WOIssuesEditDocument.Param("CallReceiptsMBF")                  = ""
+  emF3111WOIssuesEditDocument.Param("ReceiptsF0911JobNo")               = 0
+  emF3111WOIssuesEditDocument.Param("ReceiptsF4111JobNo")               = 0
+  emF3111WOIssuesEditDocument.Param("ReceiptsBatchNumber")              = 0
+  emF3111WOIssuesEditDocument.Param("ReceiptsBatchStatus")              = ""
+  emF3111WOIssuesEditDocument.Param("AccountNumber")                    = ""
+  emF3111WOIssuesEditDocument.Param("AddressNumber")                    = 0
+  emF3111WOIssuesEditDocument.Param("POCRecordsExist")                  = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEditDocument.Name, "", emF3111WOIssuesEditDocument)
+  '
+  If Not emF3111WOIssuesEditDocument.Execute Then
+    tmERRID = emF3111WOIssuesEditDocument.Param("ErrorCode")
+    sErrDesc = "F3111WOIssuesEditDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEditDocument.Name, "", emF3111WOIssuesEditDocument, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  tmERRID = emF3111WOIssuesEditDocument.Param("ErrorCode")
+  '
+  If cFailOnWarnings And (Len(tmERRID)>0) Then
+    sErrDesc = "F3111WOIssuesEditDocument"
+    GoTo ExitE1
+  End If
+
+  '-----------------------'
+  ' F3111WOIssuesEditLine '
+  '-----------------------'
+  emF3111WOIssuesEditLine.Name = "F3111WOIssuesEditLine"
+  emF3111WOIssuesEditLine.LogMode = LogNever
+  emF3111WOIssuesEditLine.DebugLog   = cJDELogPath
+  '
+  Select Case tmEDITACT
+    Case 1  'Planned Issue
+      emF3111WOIssuesEditLine.Param("JobNumber")                  = emF3111WOIssuesBeginDocument.Param("JobNumber")
+      emF3111WOIssuesEditLine.Param("ActionCode")                 = tmEDITACT
+      emF3111WOIssuesEditLine.Param("SuppressErrorMessage")       = "1"
+      emF3111WOIssuesEditLine.Param("ErrorCode")                  = " "
+      emF3111WOIssuesEditLine.Param("EditLineEditMode")           = ""
+      emF3111WOIssuesEditLine.Param("IssueFlagYN")                = "1"
+      emF3111WOIssuesEditLine.Param("MultiLocIssueType")          = " "
+      emF3111WOIssuesEditLine.Param("OrderNumber")                = tmDOCO
+      emF3111WOIssuesEditLine.Param("PartOperationSequence")      = tmOPSQ
+      emF3111WOIssuesEditLine.Param("PartShortItemNo")            = sITM
+      emF3111WOIssuesEditLine.Param("PartBranchPlant")            = tmMCU
+      emF3111WOIssuesEditLine.Param("ParentLot")                  = ""
+      emF3111WOIssuesEditLine.Param("PartLocation")               = tmLOCN
+      emF3111WOIssuesEditLine.Param("PartLot")                    = tmLOTN
+      emF3111WOIssuesEditLine.Param("LotGrade")                   = " "
+      emF3111WOIssuesEditLine.Param("LotPotency")                 = 0
+      emF3111WOIssuesEditLine.Param("LotExpirationDate")          = ""
+      emF3111WOIssuesEditLine.Param("LotMemo1")                   = " "
+      emF3111WOIssuesEditLine.Param("LotMemo2")                   = " "
+      emF3111WOIssuesEditLine.Param("AddressNumber")              = 0
+      emF3111WOIssuesEditLine.Param("IssuesTransactionDate")      = sTNDate
+      emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = ConvDecimalsFromSQL("UORG",DB.Extract(sCols,sRows,1,"WMUORG"))
+      emF3111WOIssuesEditLine.Param("PartIssuedQuantity")         = ConvDecimalsFromSQL("TRQT",DB.Extract(sCols,sRows,1,"WMTRQT"))
+      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = 0
+      emF3111WOIssuesEditLine.Param("PartUnitOfMeasure")          = tmUOM
+      emF3111WOIssuesEditLine.Param("PartMaterialStatus")         = tmSTATUS
+      emF3111WOIssuesEditLine.Param("PartBusinessUnit")           = ""
+      emF3111WOIssuesEditLine.Param("PartProjectBusinessUnit")    = ""
+      emF3111WOIssuesEditLine.Param("PartObjectAccount")          = ""
+      emF3111WOIssuesEditLine.Param("PartSubsidiary")             = ""
+      emF3111WOIssuesEditLine.Param("PartCommittedType")          = ""
+      emF3111WOIssuesEditLine.Param("CheckEditStatus")            = "0"
+      emF3111WOIssuesEditLine.Param("AccountNumber")              = " "
+      emF3111WOIssuesEditLine.Param("PartUniqueKeyID")            = tmUKID
+      emF3111WOIssuesEditLine.Param("RecommendedIssueQty")        = tmQTY
+      emF3111WOIssuesEditLine.Param("OldOperationSeq")            = tmOPSQ
+      emF3111WOIssuesEditLine.Param("FirstPassFlag")              = "0"
+      emF3111WOIssuesEditLine.Param("GLDate")                     = ""
+      emF3111WOIssuesEditLine.Param("PayOnConsumption")           = " "
+      emF3111WOIssuesEditLine.Param("PartsListBranchPlant")       = tmCMCU
+      emF3111WOIssuesEditLine.Param("PartsListLocation")          = tmLOCN
+      emF3111WOIssuesEditLine.Param("PartsListLot")               = tmLOTN
+      emF3111WOIssuesEditLine.Param("PartsListCommittedHS")       = "H"
+      emF3111WOIssuesEditLine.Param("PartsListUoM")               = tmUOM
+      emF3111WOIssuesEditLine.Param("SecondaryUOM")               = " "
+      emF3111WOIssuesEditLine.Param("SecondaryQtyIssued")         = 0
+      emF3111WOIssuesEditLine.Param("SecondaryIssues")            = 0
+      emF3111WOIssuesEditLine.Param("ComponentNumber")            = ConvDecimalsFromSQL("CPNB",DB.Extract(sCols,sRows,1,"WMCPNB"))
+      emF3111WOIssuesEditLine.Param("LotEffectiveDate")           = ""
+      emF3111WOIssuesEditLine.Param("IssueTypeCode")              = DB.Extract(sCols, sRows, 1, "WMITC")
+      emF3111WOIssuesEditLine.Param("LocationChangedFlag")        = "0"
+      If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine)
+      If Not emF3111WOIssuesEditLine.Execute Then
+        tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+        sErrDesc = "F3111WOIssuesEditLine"
+        If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+        GoTo ExitE1
+      End If
+      tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+      If cFailOnWarnings And (Len(tmERRID) > 0) Then
+        sErrDesc = "F3111WOIssuesEditLine"
+        GoTo ExitE1
+      End If
+    Case 2  'Multi-location Issue [Step 1: Reduce org line]
+      emF3111WOIssuesEditLine.Param("JobNumber")                  = emF3111WOIssuesBeginDocument.Param("JobNumber")
+      emF3111WOIssuesEditLine.Param("ActionCode")                 = tmEDITACT
+      emF3111WOIssuesEditLine.Param("SuppressErrorMessage")       = "1"
+      emF3111WOIssuesEditLine.Param("ErrorCode")                  = " "
+      emF3111WOIssuesEditLine.Param("EditLineEditMode")           = ""
+      emF3111WOIssuesEditLine.Param("IssueFlagYN")                = "1"
+      emF3111WOIssuesEditLine.Param("MultiLocIssueType")          = "1"
+      emF3111WOIssuesEditLine.Param("OrderNumber")                = tmDOCO
+      emF3111WOIssuesEditLine.Param("PartOperationSequence")      = tmOPSQ
+      emF3111WOIssuesEditLine.Param("PartShortItemNo")            = sITM
+      emF3111WOIssuesEditLine.Param("PartBranchPlant")            = tmMCU
+      emF3111WOIssuesEditLine.Param("ParentLot")                  = ""
+      emF3111WOIssuesEditLine.Param("PartLocation")               = tmOrgLOCN
+      emF3111WOIssuesEditLine.Param("PartLot")                    = tmOrgLOTN
+      emF3111WOIssuesEditLine.Param("LotGrade")                   = " "
+      emF3111WOIssuesEditLine.Param("LotPotency")                 = 0
+      emF3111WOIssuesEditLine.Param("LotExpirationDate")          = ""
+      emF3111WOIssuesEditLine.Param("LotMemo1")                   = " "
+      emF3111WOIssuesEditLine.Param("LotMemo2")                   = " "
+      emF3111WOIssuesEditLine.Param("AddressNumber")              = 0
+      emF3111WOIssuesEditLine.Param("IssuesTransactionDate")      = sTNDate
+
+      If (tmOrgUORG - tmQTY) > 0 Then
+        emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = tmOrgUORG - tmQTY   'remaining rest
+      Else
+        emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = 0                   'close the line
+      End If
+
+      emF3111WOIssuesEditLine.Param("PartIssuedQuantity")         = 0
+      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = 0
+      emF3111WOIssuesEditLine.Param("PartUnitOfMeasure")          = tmUOM
+      emF3111WOIssuesEditLine.Param("PartMaterialStatus")         = tmSTATUS
+      emF3111WOIssuesEditLine.Param("PartBusinessUnit")           = " "
+      emF3111WOIssuesEditLine.Param("PartProjectBusinessUnit")    = " "
+      emF3111WOIssuesEditLine.Param("PartObjectAccount")          = " "
+      emF3111WOIssuesEditLine.Param("PartSubsidiary")             = " "
+      emF3111WOIssuesEditLine.Param("PartCommittedType")          = " "
+      emF3111WOIssuesEditLine.Param("CheckEditStatus")            = "0"
+      emF3111WOIssuesEditLine.Param("AccountNumber")              = " "
+      emF3111WOIssuesEditLine.Param("PartUniqueKeyID")            = tmUKID
+      emF3111WOIssuesEditLine.Param("RecommendedIssueQty")        = 0
+      emF3111WOIssuesEditLine.Param("OldOperationSeq")            = tmOPSQ
+      emF3111WOIssuesEditLine.Param("FirstPassFlag")              = "0"
+      emF3111WOIssuesEditLine.Param("GLDate")                     = ""
+      emF3111WOIssuesEditLine.Param("PayOnConsumption")           = " "
+      emF3111WOIssuesEditLine.Param("PartsListBranchPlant")       = tmCMCU
+      emF3111WOIssuesEditLine.Param("PartsListLocation")          = tmOrgLOCN
+      emF3111WOIssuesEditLine.Param("PartsListLot")               = tmOrgLOTN
+      emF3111WOIssuesEditLine.Param("PartsListCommittedHS")       = "H"
+      emF3111WOIssuesEditLine.Param("PartsListUoM")               = tmUOM
+      emF3111WOIssuesEditLine.Param("SecondaryUOM")               = " "
+      emF3111WOIssuesEditLine.Param("SecondaryQtyIssued")         = 0
+      emF3111WOIssuesEditLine.Param("SecondaryIssues")            = 0
+      emF3111WOIssuesEditLine.Param("ComponentNumber")            = ConvDecimalsFromSQL("CPNB",DB.Extract(sCols,sRows,1,"WMCPNB"))
+      emF3111WOIssuesEditLine.Param("LotEffectiveDate")           = ""
+      emF3111WOIssuesEditLine.Param("IssueTypeCode")              = DB.Extract(sCols, sRows, 1, "WMITC")
+      emF3111WOIssuesEditLine.Param("LocationChangedFlag")        = "0"
+      emF3111WOIssuesEditLine.Param("DateRequestedJulian")        = tmOrgDRQJ
+      If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine)
+      If Not emF3111WOIssuesEditLine.Execute Then
+        tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+        sErrDesc = "F3111WOIssuesEditLine"
+        If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+        GoTo ExitE1
+      End If
+      tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+      If cFailOnWarnings And (Len(tmERRID) > 0) Then
+        sErrDesc = "F3111WOIssuesEditLine"
+        GoTo ExitE1
+      End If
+      ' [Step 2: Add line]
+      emF3111WOIssuesEditLine.Param("JobNumber")                  = emF3111WOIssuesBeginDocument.Param("JobNumber")
+      emF3111WOIssuesEditLine.Param("ActionCode")                 = tmEDITACT
+      emF3111WOIssuesEditLine.Param("SuppressErrorMessage")       = "1"
+      emF3111WOIssuesEditLine.Param("ErrorCode")                  = " "
+      emF3111WOIssuesEditLine.Param("EditLineEditMode")           = ""
+      emF3111WOIssuesEditLine.Param("IssueFlagYN")                = "1"
+      emF3111WOIssuesEditLine.Param("MultiLocIssueType")          = "1"
+      emF3111WOIssuesEditLine.Param("OrderNumber")                = tmDOCO
+      emF3111WOIssuesEditLine.Param("PartOperationSequence")      = tmOPSQ
+      emF3111WOIssuesEditLine.Param("PartShortItemNo")            = sITM
+      emF3111WOIssuesEditLine.Param("PartBranchPlant")            = tmMCU
+      emF3111WOIssuesEditLine.Param("ParentLot")                  = ""
+      emF3111WOIssuesEditLine.Param("PartLocation")               = tmLOCN
+      emF3111WOIssuesEditLine.Param("PartLot")                    = tmLOTN
+      emF3111WOIssuesEditLine.Param("LotGrade")                   = " "
+      emF3111WOIssuesEditLine.Param("LotPotency")                 = 0
+      emF3111WOIssuesEditLine.Param("LotExpirationDate")          = ""
+      emF3111WOIssuesEditLine.Param("LotMemo1")                   = " "
+      emF3111WOIssuesEditLine.Param("LotMemo2")                   = " "
+      emF3111WOIssuesEditLine.Param("AddressNumber")              = 0
+      emF3111WOIssuesEditLine.Param("IssuesTransactionDate")      = sTNDate
+      emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = tmQTY
+      emF3111WOIssuesEditLine.Param("PartIssuedQuantity")         = 0
+      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = 0
+      emF3111WOIssuesEditLine.Param("PartUnitOfMeasure")          = tmUOM
+      emF3111WOIssuesEditLine.Param("PartMaterialStatus")         = " "  'tmSTATUS
+      emF3111WOIssuesEditLine.Param("PartBusinessUnit")           = ""
+      emF3111WOIssuesEditLine.Param("PartProjectBusinessUnit")    = ""
+      emF3111WOIssuesEditLine.Param("PartObjectAccount")          = ""
+      emF3111WOIssuesEditLine.Param("PartSubsidiary")             = ""
+      emF3111WOIssuesEditLine.Param("PartCommittedType")          = ""
+      emF3111WOIssuesEditLine.Param("CheckEditStatus")            = "0"
+      emF3111WOIssuesEditLine.Param("AccountNumber")              = " "
+      emF3111WOIssuesEditLine.Param("PartUniqueKeyID")            = 0  'tmUKID
+      emF3111WOIssuesEditLine.Param("RecommendedIssueQty")        = tmQTY  '0
+      emF3111WOIssuesEditLine.Param("OldOperationSeq")            = tmOPSQ
+      emF3111WOIssuesEditLine.Param("FirstPassFlag")              = "0"
+      emF3111WOIssuesEditLine.Param("GLDate")                     = ""
+      emF3111WOIssuesEditLine.Param("PayOnConsumption")           = " "
+      emF3111WOIssuesEditLine.Param("PartsListBranchPlant")       = tmCMCU
+      emF3111WOIssuesEditLine.Param("PartsListLocation")          = tmOrgLOCN
+      emF3111WOIssuesEditLine.Param("PartsListLot")               = tmOrgLOTN
+      emF3111WOIssuesEditLine.Param("PartsListCommittedHS")       = "H"
+      emF3111WOIssuesEditLine.Param("PartsListUoM")               = tmUOM
+      emF3111WOIssuesEditLine.Param("SecondaryUOM")               = " "
+      emF3111WOIssuesEditLine.Param("SecondaryQtyIssued")         = 0
+      emF3111WOIssuesEditLine.Param("SecondaryIssues")            = 0
+      emF3111WOIssuesEditLine.Param("ComponentNumber")            = 0  'ConvDecimalsFromSQL("CPNB",DB.Extract(sCols,sRows,1,"WMCPNB"))
+      emF3111WOIssuesEditLine.Param("LotEffectiveDate")           = sTNDate
+      emF3111WOIssuesEditLine.Param("IssueTypeCode")              = DB.Extract(sCols, sRows, 1, "WMITC")
+      emF3111WOIssuesEditLine.Param("LocationChangedFlag")        = "0"
+      If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine)
+      If Not emF3111WOIssuesEditLine.Execute Then
+        tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+        sErrDesc = "F3111WOIssuesEditLine"
+        If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+        GoTo ExitE1
+      End If
+      tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+      If cFailOnWarnings And (Len(tmERRID) > 0) Then
+        sErrDesc = "F3111WOIssuesEditLine"
+        GoTo ExitE1
+      End If
+  Case 3  'Unplanned Issue
+      emF3111WOIssuesEditLine.Param("JobNumber")                  = emF3111WOIssuesBeginDocument.Param("JobNumber")
+      emF3111WOIssuesEditLine.Param("ActionCode")                 = tmEDITACT
+      emF3111WOIssuesEditLine.Param("SuppressErrorMessage")       = "1"
+      emF3111WOIssuesEditLine.Param("ErrorCode")                  = " "
+      emF3111WOIssuesEditLine.Param("EditLineEditMode")           = ""
+      emF3111WOIssuesEditLine.Param("IssueFlagYN")                = "1"
+      emF3111WOIssuesEditLine.Param("MultiLocIssueType")          = " "
+      emF3111WOIssuesEditLine.Param("OrderNumber")                = tmDOCO
+      emF3111WOIssuesEditLine.Param("PartOperationSequence")      = tmOPSQ
+      emF3111WOIssuesEditLine.Param("PartShortItemNo")            = sITM
+      emF3111WOIssuesEditLine.Param("PartBranchPlant")            = tmMCU
+      emF3111WOIssuesEditLine.Param("ParentLot")                  = ""
+      emF3111WOIssuesEditLine.Param("PartLocation")               = tmLOCN
+      emF3111WOIssuesEditLine.Param("PartLot")                    = tmLOTN
+      emF3111WOIssuesEditLine.Param("LotGrade")                   = " "
+      emF3111WOIssuesEditLine.Param("LotPotency")                 = 0
+      emF3111WOIssuesEditLine.Param("LotExpirationDate")          = ""
+      emF3111WOIssuesEditLine.Param("LotMemo1")                   = " "
+      emF3111WOIssuesEditLine.Param("LotMemo2")                   = " "
+      emF3111WOIssuesEditLine.Param("AddressNumber")              = 0
+      emF3111WOIssuesEditLine.Param("IssuesTransactionDate")      = sTNDate
+      emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = ConvDecimalsFromSQL("UORG",DB.Extract(sCols,sRows,1,"WMUORG"))
+      emF3111WOIssuesEditLine.Param("PartIssuedQuantity")         = ConvDecimalsFromSQL("TRQT",DB.Extract(sCols,sRows,1,"WMTRQT"))
+      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = 0
+      emF3111WOIssuesEditLine.Param("PartUnitOfMeasure")          = tmUOM
+      emF3111WOIssuesEditLine.Param("PartMaterialStatus")         = tmSTATUS
+      emF3111WOIssuesEditLine.Param("PartBusinessUnit")           = ""
+      emF3111WOIssuesEditLine.Param("PartProjectBusinessUnit")    = ""
+      emF3111WOIssuesEditLine.Param("PartObjectAccount")          = ""
+      emF3111WOIssuesEditLine.Param("PartSubsidiary")             = ""
+      emF3111WOIssuesEditLine.Param("PartCommittedType")          = ""
+      emF3111WOIssuesEditLine.Param("CheckEditStatus")            = "0"
+      emF3111WOIssuesEditLine.Param("AccountNumber")              = " "
+      emF3111WOIssuesEditLine.Param("RecommendedIssueQty")        = tmQTY
+      emF3111WOIssuesEditLine.Param("OldOperationSeq")            = tmOPSQ
+      emF3111WOIssuesEditLine.Param("FirstPassFlag")              = "0"
+      emF3111WOIssuesEditLine.Param("GLDate")                     = ""
+      emF3111WOIssuesEditLine.Param("PayOnConsumption")           = " "
+      emF3111WOIssuesEditLine.Param("PartsListBranchPlant")       = tmCMCU
+      emF3111WOIssuesEditLine.Param("PartsListLocation")          = tmLOCN
+      emF3111WOIssuesEditLine.Param("PartsListLot")               = tmLOTN
+      emF3111WOIssuesEditLine.Param("PartsListCommittedHS")       = "H"
+      emF3111WOIssuesEditLine.Param("PartsListUoM")               = tmUOM
+      emF3111WOIssuesEditLine.Param("SecondaryUOM")               = " "
+      emF3111WOIssuesEditLine.Param("SecondaryQtyIssued")         = 0
+      emF3111WOIssuesEditLine.Param("SecondaryIssues")            = 0
+      emF3111WOIssuesEditLine.Param("ComponentNumber")            = ConvDecimalsFromSQL("CPNB",DB.Extract(sCols,sRows,1,"WMCPNB"))
+      emF3111WOIssuesEditLine.Param("LotEffectiveDate")           = ""
+      emF3111WOIssuesEditLine.Param("IssueTypeCode")              = "I"
+      emF3111WOIssuesEditLine.Param("LocationChangedFlag")        = "0"
+      If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine)
+      If Not emF3111WOIssuesEditLine.Execute Then
+        tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+        sErrDesc = "F3111WOIssuesEditLine"
+        If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEditLine.Name, "", emF3111WOIssuesEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+        GoTo ExitE1
+      End If
+      tmERRID = emF3111WOIssuesEditLine.Param("ErrorCode")
+      If cFailOnWarnings And (Len(tmERRID) > 0) Then
+        sErrDesc = "F3111WOIssuesEditLine"
+        GoTo ExitE1
+      End If
+  End Select
+
+  '---------------------------'
+  ' F3111WOIssuesEditDocument '
+  '---------------------------'
+  emF3111WOIssuesEditDocument.Name = "F3111WOIssuesEditDocument"
+  emF3111WOIssuesEditDocument.LogMode = LogNever
+  emF3111WOIssuesEditDocument.DebugLog   = cJDELogPath
+
+  emF3111WOIssuesEditDocument.Param("JobNumber")                        = emF3111WOIssuesBeginDocument.Param("JobNumber")
+  emF3111WOIssuesEditDocument.Param("ActionCode")                       = "3"
+  emF3111WOIssuesEditDocument.Param("SuppressErrorMessage")             = "1"
+  emF3111WOIssuesEditDocument.Param("ErrorCode")                        = " "
+  emF3111WOIssuesEditDocument.Param("EditDocEditMode")                  = " "
+  emF3111WOIssuesEditDocument.Param("OrderNumber")                      = tmDOCO
+  emF3111WOIssuesEditDocument.Param("OpSeqFromValue")                   = 0
+  emF3111WOIssuesEditDocument.Param("OpSeqThruValue")                   = 0
+  emF3111WOIssuesEditDocument.Param("SuperBackflushingLastPaypoint")    = " "
+  emF3111WOIssuesEditDocument.Param("SetIssueFlagValue")                = " "
+  emF3111WOIssuesEditDocument.Param("IssueMaterialFor")                 = 0
+  emF3111WOIssuesEditDocument.Param("IssueMatlForUoM")                  = " "
+  emF3111WOIssuesEditDocument.Param("CacheCursorPtr")                   = 0
+  emF3111WOIssuesEditDocument.Param("TransactionDate")                  = sTNDate
+  emF3111WOIssuesEditDocument.Param("GLDate")                           = ""
+  emF3111WOIssuesEditDocument.Param("ApplyShrink")                      = " "
+  emF3111WOIssuesEditDocument.Param("ApplyYield")                       = " "
+  emF3111WOIssuesEditDocument.Param("ModeExtendorNet")                  = " "
+  emF3111WOIssuesEditDocument.Param("CallReceiptsMBF")                  = ""
+  emF3111WOIssuesEditDocument.Param("ReceiptsF0911JobNo")               = 0
+  emF3111WOIssuesEditDocument.Param("ReceiptsF4111JobNo")               = 0
+  emF3111WOIssuesEditDocument.Param("ReceiptsBatchNumber")              = 0
+  emF3111WOIssuesEditDocument.Param("ReceiptsBatchStatus")              = ""
+  emF3111WOIssuesEditDocument.Param("AccountNumber")                    = " "
+  emF3111WOIssuesEditDocument.Param("AddressNumber")                    = 0
+  emF3111WOIssuesEditDocument.Param("POCRecordsExist")                  = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEditDocument.Name, "", emF3111WOIssuesEditDocument)
+
+  If Not emF3111WOIssuesEditDocument.Execute Then
+    tmERRID = emF3111WOIssuesEditDocument.Param("ErrorCode")
+    sErrDesc = "F3111WOIssuesEditDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEditDocument.Name, "", emF3111WOIssuesEditDocument, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  tmERRID = emF3111WOIssuesEditDocument.Param("ErrorCode")
+  '
+  If cFailOnWarnings And (Len(tmERRID)>0) Then
+    sErrDesc = "F3111WOIssuesEditDocument"
+    GoTo ExitE1
+  End If
+
+  '--------------------------'
+  ' F3111WOIssuesEndDocument '
+  '--------------------------'
+  emF3111WOIssuesEndDocument.Name = "F3111WOIssuesEndDocument"
+  emF3111WOIssuesEndDocument.LogMode = LogNever
+  emF3111WOIssuesEndDocument.DebugLog   = cJDELogPath
+  '
+  emF3111WOIssuesEndDocument.Param("JobNumber")               = emF3111WOIssuesBeginDocument.Param("JobNumber")
+  emF3111WOIssuesEndDocument.Param("EndDocActionCode")        = "1"
+  emF3111WOIssuesEndDocument.Param("SuppressErrorMessage")    = "1"
+  emF3111WOIssuesEndDocument.Param("ErrorCode")               = " "
+  emF3111WOIssuesEndDocument.Param("EndDocEditMode")          = "1"
+  emF3111WOIssuesEndDocument.Param("OrderNumber")             = tmDOCO
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesEndDocument.Name, "", emF3111WOIssuesEndDocument)
+
+  If Not emF3111WOIssuesEndDocument.Execute Then
+    sErrDesc = "F3111WOIssuesEndDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesEndDocument.Name, "", emF3111WOIssuesEndDocument, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '----------------------------------'
+  ' F3111WOIssuesReleaseAllocatedRes '
+  '----------------------------------'
+  emF3111WOIssuesReleaseAllocatedRes.Name       = "F3111WOIssuesReleaseAllocatedRes"
+  emF3111WOIssuesReleaseAllocatedRes.LogMode = LogNever
+  emF3111WOIssuesReleaseAllocatedRes.DebugLog   = cJDELogPath
+  '
+  emF3111WOIssuesReleaseAllocatedRes.Param("OrderNumber")         = tmDOCO
+  emF3111WOIssuesReleaseAllocatedRes.Param("JobNumber")           = nJobNo
+  emF3111WOIssuesReleaseAllocatedRes.Param("F4312RecordExists")   = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111WOIssuesReleaseAllocatedRes.Name, "", emF3111WOIssuesReleaseAllocatedRes)
+
+  If Not emF3111WOIssuesReleaseAllocatedRes.Execute Then
+    sErrDesc = "F3111WOIssuesReleaseAllocatedRes"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111WOIssuesReleaseAllocatedRes.Name, "", emF3111WOIssuesReleaseAllocatedRes, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  ' Process Scrap here
+  If (Val(tmSCRAP)>0) Then
+    '-----------'
+    ' TWOCS0100 '
+    '-----------'
+    emTWOCS0100.Name = "TWOCS0100"
+    emTWOCS0100.DataSource = "JDE"
+    emTWOCS0100.Param("tmCO")         = tmCO
+    emTWOCS0100.Param("tmMCU")        = tmMCU
+    emTWOCS0100.Param("tmDOCO")       = tmDOCO
+    emTWOCS0100.Param("tmDCTO")       = tmDCTO
+    emTWOCS0100.Param("tmLITM")       = tmLITM
+    emTWOCS0100.Param("tmLOTN")       = tmLOTN
+    emTWOCS0100.Param("tmLOCN")       = tmLOCN
+    emTWOCS0100.Param("tmQTY")        = tmSCRAP
+    emTWOCS0100.Param("tmUOM")        = tmUOM
+    emTWOCS0100.Param("tmCMCU")       = tmCMCU
+    emTWOCS0100.Param("tmDRKY")       = " "
+    emTWOCS0100.Param("tmDRKYDESC")   = " "
+    emTWOCS0100.Param("tmDOCTYPE")    = "IO"
+    emTWOCS0100.Param("tmUSER")       = tmUSER
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "", emTWOCS0100.Name, "", emTWOCS0100)
+    If Not emTWOCS0100.Execute Then
+      sErrDesc = "TWOCS010"
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "Macro Failed", emTWOCS0100.Name, "", emTWOCS0100, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emF3111WOIssuesBeginDocument          = Nothing
+  Set emF3111WOIssuesEditDocument           = Nothing
+  Set emF3111WOIssuesEditLine               = Nothing
+  Set emF3111WOIssuesEndDocument            = Nothing
+  Set emGetAuditInfo                        = Nothing
+  Set emF3111WOIssuesReleaseAllocatedRes    = Nothing
+  Set emTWOCS0100                           = Nothing
+  Set emError                               = Nothing
+
+  ' Set Parts Lists "Parts Material Status" field
+  If bSuccess Then
+    sILDate = ConvDatetoJDE(sTNDate)
+    sSQL = "select WMUKID from F3111 where WMCPIL = '" & tmLITM & "' and WMMCU = '" & tmMCU & "'" & _
+            " and WMDOCO = " & tmDOCO & " and WMDCTO = '" & tmDCTO & "'" & _
+            " order by WMUKID DESC"
+    DB.Execute(sSQL,sCols,sRows)
+    If (Len(sRows) <> 0) Then
+      sSQL = "update F3111 set WMMTST = '" & tmSTATUS & "' where WMCPIL = '" & tmLITM & "' and WMMCU = '" & tmMCU & "'" & _
+            " and WMDOCO = " & tmDOCO & " and WMDCTO = '" & tmDCTO & "' and WMTRDJ = '" & sILDate & "'and WMUKID = " & tmUKID & ""
+      DB.Execute(sSQL)
+      If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F3111", Replace(sSQL, "'", "`"))
+    Else
+      sErrDesc = "Issue-To Update to the Parts Lists Failed"
+      If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F3111", Replace(sSQL, "'", "`"))
+      tmERRTEXT = sErrDesc
+      bSuccess = False
+    End If
+  End If
+  '
+  If bSuccess Then
+    ERP.CommitTrans
+  End If
+  '
+  ' Offline inventory
+  If gbOfflineEnabled Then
+    If bSuccess Then
+      DeleteOI(TM.QueueName,TM.SeqNo)
+    Else
+      DeleteOI(TM.QueueName,TM.SeqNo, tmUSER, "Unable to execute " & cTNId & "; reason: " & vbCrLf & sErrDesc, Format(Date, "YYYYMMDD") & Format(Time, "HHNNSS"))
+    End If
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim sText   As String
+  Dim i       As Integer
+  Dim sOpt    As String
+  Dim sLocn   As String
+  Dim sLot    As String
+  Dim sItem   As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HWOCI0100")
+  SM.SendTextAlt 22, 3, "I", 1     '"Inquire" (I) on the Action Code.
+  SM.SendTextAlt 22, 4, tmDOCO, 8       'Document Number
+  SM.SendKey KeyEnter
+  '
+  i = 10
+
+  Do
+    i = i + 1
+    If i = 23 Then
+      i = 11
+      SM.SendKey KeyPageDown
+    End If
+    SM.GetText(2,i,1,sOpt,True)
+    If sOpt = "" Then Exit Do
+    SM.SendTextAlt 2,i," "
+  Loop
+  '
+  SM.SendKey KeyF4
+  SM.SendTextAlt 22, 3, "C", 1      '"Change" (C) on the Action Code.
+  '
+  i = 7
+  '
+  Do
+    i = i + 4
+    If i = 23 Then
+      i = 11
+      SM.SendKey KeyPageDown
+    End If
+    SM.GetText 4,i,26,sItem,True
+    SM.GetText 40,i+1, 20, sLocn,True
+    SM.GetText 66,i+1, 15, sLot,True
+  Loop Until (sItem = tmLITM And sLocn = Trim(tmLOCN) And sLot = Trim(tmLOTN)) Or sItem = ""
+  '
+  If sItem = "" Then
+    tmERRTEXT = "Item not found"
+    GoTo ExitWorld
+  End If
+  '
+  SM.SendTextAlt 2, i, "1", 1         'Process option
+  SM.SendTextAlt 67, i, tmQTY, 11       'Issue quantity
+  SM.SendTextAlt 18, i+1, tmMCU, 12       'Branch Plant
+  SM.SendTextAlt 40, i+1, tmLOCN, 20      'Location
+  SM.SendTextAlt 66, i+1, tmLOTN, 14      'Lot number
+  SM.SendKey KeyEnter
+  '
+  ' Error checking
+  SM.GetText(55,3,23,sText,True)
+  '
+  If sText = "" Then Call GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

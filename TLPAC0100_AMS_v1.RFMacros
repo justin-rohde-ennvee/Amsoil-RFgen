@@ -1,0 +1,421 @@
+﻿<Record FileDesc="LP Work Order Timed Auto Completion" FileVersion="5.0.8.0" Desc="LP Work Order Timed Auto Completion" MacroType="2" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2011 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 413                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - Automatic Completion
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+' Created 2/26/2012 - Jim Wagner, WhiteLight Group
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TLPAC0100"
+
+Private Function Transaction() As Boolean
+  Dim nQty        As Currency
+  Dim nScrap      As Currency
+  Dim sVersion    As String
+  Dim vRsp        As Variant
+  Dim emProc      As New EmbeddedProc
+  Dim sSql        As String
+  Dim sSql2       As String
+  Dim sSql3       As String
+  Dim sSqlWO      As String
+  Dim sSqlComp    As String
+  Dim sSqlItem    As String
+  Dim sSqlXREF    As String
+  Dim sSqlNN      As String
+  Dim sCols       As String
+  Dim sCols2      As String
+  Dim sColsWO     As String
+  Dim sColsComp   As String
+  Dim sColsItem   As String
+  Dim sColsXREF   As String
+  Dim sColsNN     As String
+  Dim sRows       As String
+  Dim sRows2      As String
+  Dim sRowsWO     As String
+  Dim sRowsComp   As String
+  Dim sRowsItem   As String
+  Dim sRowsXREF   As String
+  Dim sRowsNN     As String
+  Dim msVersion   As String
+  Dim msPgm       As String
+  Dim i           As Long
+  Dim nPalletMax  As Long
+  Dim sLPID       As String
+  Dim nCount      As Long
+  Dim sWCU        As String
+  Dim nUKID       As Long
+  Dim sPrimaryUOM As String
+  Dim sErrMsg     As String
+  Dim nNumRecords As Integer
+  Dim sPrefix     As String
+  Dim sProdLocn   As String
+  Dim nNextNumber As Long
+  Dim nNNLength   As Long
+
+  Dim sFile As String
+
+  Dim sCount As String
+
+  Dim nPrinterNumber As Integer
+  Dim sCaseLPID As String
+  Dim sCaseLITM As String
+  Dim sCaseLOTN As String
+
+  Dim sMfgLOTN As String
+
+  Dim uLPOper     As LPOper         ' LP Operation
+  Dim uLP101      As LP101Data       ' create LP101 Structure
+  Dim uLP102      As LP102Data       ' create LP101 Structure
+
+  Dim nCalculatedAttach   As Long
+  Dim nCompletionQuantity As Long
+  Dim sCasePrinter        As String
+  Dim sPalletPrinter      As String
+  Dim sCaseFormat         As String
+  Dim sPalletFormat       As String
+  Dim nStopwatch As Double
+
+
+
+  msPgm = "P31114"
+  msVersion = "AMS0001"
+'  App.SetValue("tmMCU", "          41")
+
+  'GET A RECORD FROM THE INTERRUPT TABLE:
+  nStopwatch = Timer
+  sSql = "select * from INTERRUPT_SQL"
+  DB.Execute(sSql, sCols, sRows)
+  nNumRecords = DB.Count(sRows)
+
+  If (nNumRecords = 0) Then
+    'Still waiting for entries - this is still a good condition.
+    Transaction = True
+    Exit Function
+  End If
+
+'  sFile = "C:\test\debug.txt"
+'  Open sFile For Append As #1
+'
+'  Print #1, "Transaction Started, " & nNumRecords
+'
+'  Close #1
+
+  For i = 1 To nNumRecords
+    nUKID = Val(DB.Extract(sCols, sRows, i, "UKID"))
+    sSql3 = "delete from INTERRUPT_SQL where UKID = " & nUKID
+    DB.Execute(sSql3)
+  Next i
+
+  For i = 1 To nNumRecords
+    'STUFF TO LOOK UP / CROSS REFERENCE FROM WORKCENTER DATABASE:
+    sWCU = FixRight(Trim(DB.Extract(sCols, sRows, i, "WCU")), 12)
+    sSql2 = "select * from WC_SQL where WCWCU = '" & sWCU & "'"
+    DB.Execute(sSql2, sCols2, sRows2)
+
+    nUKID = Val(DB.Extract(sCols, sRows, i, "UKID"))
+
+    'IS THIS LINE TURNED ON? - If not, ignore the record.
+    If (Trim(DB.Extract(sCols2,sRows2,1,"WCMODE")) <> "A") Then
+      GoTo DeleteRec:
+    End If
+
+    If (DB.Count(sRows2) = 0) Then
+      sErrMsg = "NO WCU INFO - ERROR"
+      GoTo DeleteRec:
+    End If
+
+    ' GET THE CURRENT COUNT OFF OF THE WC_SQL
+
+    sCount = DB.Extract(sCols2, sRows2, 1, "WCCNT")
+    nCount = Val(DB.Extract(sCols2, sRows2, 1, "WCCNT"))
+
+    App.SetValue("tmCO", "00002")
+    App.SetValue("tmDOCO", Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO")))
+    App.SetValue("tmDCTO", Trim(DB.Extract(sCols2, sRows2, 1, "WCDCTO")))
+
+    sSqlWO = "select * from F4801 where WADOCO = " & App.GetValue("tmDOCO") & " and WADCTO = '" & App.GetValue("tmDCTO") & "'"
+    DB.Execute(sSqlWO, sColsWO, sRowsWO)
+
+    App.SetValue("tmLITM", DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
+    App.SetValue("tmITM", DB.Extract(sColsWO, sRowsWO, 1, "WAITM"))
+    App.SetValue("tmLNID", DB.Extract(sColsWO, sRowsWO, 1, "WALNID"))
+    sMfgLOTN = Trim(DB.Extract(sCols2, sRows2, 1, "WCLOTN")) & "." & Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO"))
+    App.SetValue("tmLOTN", sMfgLOTN)
+    App.SetValue("tmTOLOTS", "")
+    App.SetValue("tmXPDT", "")
+    App.SetValue("tmLOCN", "PROD")
+
+    App.SetValue("tmSCRAP", "0")
+    App.SetValue("tmUOM", DB.Extract(sColsWO, sRowsWO, 1, "WAUOM"))
+    App.SetValue("tmDRKY","")
+    App.SetValue("tmDRKYDESC", "")
+    App.SetValue("tmUSER", DB.Extract(sCols2, sRows2, 1, "WCUSER"))
+    App.SetValue("tmLOT1", "")
+    App.SetValue("tmPALP", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOT1")))
+
+    nPalletMax = Val(Trim(DB.Extract(sCols2, sRows2, 1, "WCMAX")))
+    App.SetValue("tmQTY", nPalletMax)
+
+    sSqlXREF = "select * from F5548001 where Z5WCU = '" & sWCU & "'"
+    DB.Execute(sSqlXREF, sColsXREF, sRowsXREF)
+
+    sPrefix = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5Z55RT"))
+    If (Trim(sPrefix) = "") Then
+      sPrefix = "X"
+      sErrMsg = "PREFIX NOT IN XREF TABLE."
+    End If
+    App.SetValue("tmMCU", FixRight(Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5MCU")), 12))
+    sProdLocn = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5LOCN"))
+
+    sCasePrinter = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5Z55PDN"))
+    sPalletPrinter = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5Z55PDN1"))
+
+    sCaseFormat = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5Z55FN01"))
+    sPalletFormat = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5Z55FN02"))
+
+    App.SetValue("tmNLOCN", sProdLocn)
+
+    If (nCount = 0) And (nPalletMax <> 1) Then
+'      'GET NEXT NUMBER FOR PALLET:  (Commented out because it should use RFG BASE next numbering)
+'      sSqlNN = "select * from NN_SQL where NNPREF = 'P'"
+'      DB.Execute(sSqlNN, sColsNN, sRowsNN)
+'      nNextNumber = Val(Trim(DB.Extract(sColsNN,sRowsNN,1,"NNNUMB")))
+'      nNNLength = Val(Trim(DB.Extract(sColsNN,sRowsNN,1,"NNLENG")))
+'
+'      sLPID = FixRight(CStr(nNextNumber), nNNLength - Len("P"), "0")
+'      sLPID = "P" + sLPID
+'
+'      nNextNumber = nNextNumber + 1
+'
+'      'Always use P prefix for pallets.
+'
+'      sSql3 = "update NN_SQL set NNNUMB = " & nNextNumber & " where NNPREF = '" & "P" & "'"
+'      DB.Execute(sSql3)
+'      'END GET NEXT NUMBER
+      sLPID = "NEW"
+
+      If Not LP_CreatePlate(sLPID,"L","Started " & Format(Date, "MM/DD/YYYY") & " " & Format(Time, "hh:nn:ss"),App.GetValue("tmLOCN"),False,App.GetValue("tmDOCO"), App.GetValue("tmDCTO"),"") Then
+        sErrMsg = "ERROR"
+        GoTo DeleteRec
+      End If
+      sSql3 = "update WC_SQL set WCLOT1 = '" & Trim(sLPID) & "' where WCWCU = '" & FixRight(Trim(sWCU),12) & "'"
+
+      DB.Execute(sSql3)
+      App.SetValue("tmPALP", sLPID)
+    End If
+
+    If nPalletMax = 1 Then
+      App.SetValue("tmPALP", "")
+    End If
+
+
+'    If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+    '
+
+    Call LP101_Reset(uLP101)      ' init LP101 Structure
+    Call LP102_Reset(uLP102)      ' init LP102 Structure
+    '
+
+    'GET NEXT NUMBER:
+    sSqlNN = "select * from NN_SQL where NNPREF = '" & sPrefix & "'"
+    DB.Execute(sSqlNN, sColsNN, sRowsNN)
+    nNextNumber = Val(Trim(DB.Extract(sColsNN,sRowsNN,1,"NNNUMB")))
+    nNNLength = Val(Trim(DB.Extract(sColsNN,sRowsNN,1,"NNLENG")))
+
+    sLPID = FixRight(CStr(nNextNumber), nNNLength - Len(sPrefix), "0")
+    sLPID = sPrefix + sLPID
+
+    nNextNumber = nNextNumber + 1
+    sSql3 = "update NN_SQL set NNNUMB = " & nNextNumber & " where NNPREF = '" & sPrefix & "'"
+    DB.Execute(sSql3)
+    'END GET NEXT NUMBER
+
+    If Not LP_CreatePlate(sLPID,"P","Created " & Format(Date, "MM/DD/YYYY") & " " & Format(Time, "hh:nn:ss"),App.GetValue("tmLOCN"),False,App.GetValue("tmDOCO"), App.GetValue("tmDCTO"),"") Then
+      sErrMsg = "ERROR"
+      GoTo DeleteRec
+    End If
+    '
+    App.SetValue("tmLPID", Trim(sLPID))
+    uLP101.sLMLPID = Trim(sLPID)
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      sErrMsg = "LP INQUIRY FAILED - ERROR"
+      GoTo DeleteRec
+    Else
+      uLP101.sLMIR01 = "Y"
+      uLP101.sLMPALP = Trim(App.GetValue("tmPALP"))
+      If X_LP101("C",uLP101) Then
+      Else
+        sErrMsg = "LP CARTON UPDATE FAILED ON " & Trim(sLPID) & " - ERROR"
+        GoTo DeleteRec
+      End If
+    End If
+
+
+    'CALCULATE QUANTITY TO PUT ON LP IN PRIMARY UOM FROM PRODUCTION UOM
+    sSqlItem = "select IMUOM1 from F4101 where IMLITM = '" & App.GetValue("tmLITM") & "'"
+    DB.Execute(sSqlItem,sColsItem,sRowsItem)
+    sPrimaryUOM = Trim(DB.Extract(sColsItem, sRowsItem, 1, "IMUOM1"))
+
+    If (sPrimaryUOM <> Trim(App.GetValue("tmUOM"))) Then
+      sSqlItem = "select UMCONV/10000000 as Qty from F41002 where UMITM = " & App.GetValue("tmITM") & " and UMUM = '" & App.GetValue("tmUOM") & "' and UMRUM = '" & sPrimaryUOM & "'"
+      DB.Execute(sSqlItem,sColsItem,sRowsItem)
+      nCalculatedAttach = Val(DB.Extract(sColsItem,sRowsItem,1,"Qty"))
+    Else
+      nCalculatedAttach = 1
+    End If
+      '
+    uLP101.sLMLPID    = App.GetValue("tmLPID")    ' Parent LP
+    '
+    uLP102.sLDLPID    = uLP101.sLMLPID
+    uLP102.sLDLITM    = App.GetValue("tmLITM")
+    uLP102.nLDSOQS    = 0
+    uLP102.nLDUORG    = nCalculatedAttach
+    uLP102.sLDUOM     = sPrimaryUOM
+    uLP102.sLDLOTN    = App.GetValue("tmLOTN")
+    uLP102.sLDLOTS    = App.GetValue("tmTOLOTS")
+    uLP102.sLDRDOCO   = App.GetValue("tmDOCO")
+    uLP102.sLDRDCTO   = App.GetValue("tmDCTO")
+    uLP102.sLDLOT2    = App.GetValue("tmLOT1")
+
+    'Public Type LPOper
+    uLPOper.sLPID      = ""                        ' LP ID Child
+    uLPOper.sPALP      = App.GetValue("tmLPID")    ' LP ID Parent
+    uLPOper.sFMCU      = App.GetValue("tmMCU")     ' from Plant
+    uLPOper.sTMCU      = App.GetValue("tmMCU")     ' to Plant
+    uLPOper.sFLOCN     = App.GetValue("tmLOCN")    ' from Location
+    uLPOper.sTLOCN     = App.GetValue("tmLOCN")   ' to Location
+    uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+    uLPOper.bIsPlate   = False                     ' Plate or Item
+    uLPOper.bDetach    = False                     ' remove item
+
+    '
+    If Not LP_AttachDetach(uLPOper, uLP102) Then
+      sErrMsg = "Item Attach ERROR"
+      GoTo DeleteRec
+    End If
+
+    nPrinterNumber = Val(sCasePrinter)
+    sCaseLPID = App.GetValue("tmLPID")
+    sCaseLITM = Trim(App.GetValue("tmLITM"))
+    sCaseLOTN = Trim(App.GetValue("tmLOTN"))
+
+    PrintCaseLabel(nPrinterNumber, sCaseFormat, sCaseLPID, sCaseLITM, sCaseLOTN, 1)
+
+    'UPDATE WC_SQL COUNT AND DELETE THE INTERRUPT RECORD
+
+    nCount = nCount + 1
+    sSql3 = "update WC_SQL set WCCNT = " & nCount & " where WCWCU = '" & sWCU & "'"
+    DB.Execute(sSql3)
+    '
+'    If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+
+    If (nCount = nPalletMax) Then
+      ' DO THE COMPLETION
+      '
+'      Commented out Code to complete by Primary UOM from Pallet - WO Completion Qty not updating correctly.
+'      sSqlComp = "select UMCNV1/10000000 as CompQty from F41002 where UMITM = " & App.GetValue("tmITM") & " and UMUM = 'PL'"
+'      DB.Execute(sSqlComp, sColsComp, sRowsComp)
+'      nCompletionQuantity = Val(DB.Extract(sColsComp, sRowsComp, 1, "CompQty"))
+
+      ' Calc completion qty:
+      sSql3 = "update WC_SQL set WCCNT = 0 where WCWCU = '" & sWCU & "'"
+      DB.Execute(sSql3)
+
+      nCompletionQuantity = nPalletMax
+
+      emProc.Name       = "TWOCM0100"
+      emProc.DataSource = gsDataSource
+      '
+      emProc.Param("tmCO")       = App.GetValue("tmCO")
+      emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+      emProc.Param("tmDOCO")     = App.GetValue("tmDOCO")
+      emProc.Param("tmDCTO")     = App.GetValue("tmDCTO")
+      emProc.Param("tmLITM")     = App.GetValue("tmLITM")
+      emProc.Param("tmLOTN")     = App.GetValue("tmLOTN")
+      emProc.Param("tmXPDT")     = App.GetValue("tmXPDT")
+      emProc.Param("tmLOCN")     = App.GetValue("tmLOCN")
+      emProc.Param("tmQTY")      = nCompletionQuantity
+      emProc.Param("tmSCRAP")    = App.GetValue("tmSCRAP")
+'      emProc.Param("tmUOM")      = "EA"
+      emProc.Param("tmUOM")      = App.GetValue("tmUOM")
+      emProc.Param("tmDRKY")     = App.GetValue("tmDRKY")
+      emProc.Param("tmDRKYDESC") = App.GetValue("tmDRKYDESC")
+      emProc.Param("tmUSER")     = App.GetValue("tmUSER")
+      emProc.Param("tmZVERSION") = msVersion
+      emProc.Param("tmPGM")      = msPgm
+      '
+      If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+        If Not emProc.Execute Then
+          sErrMsg = "COMPLETION FAILED - ERROR"
+        End If
+
+      If nPalletMax <> 1 Then
+        sSql3 = "update F55101 set LMIR01 = '' where LMPALP = '" & App.GetValue("tmPALP") & "'"
+        DB.Execute(sSql3)
+      Else
+        sSql3 = "update F55101 set LMIR01 = '' where LMLPID = '" & App.GetValue("tmLPID") & "'"
+        DB.Execute(sSql3)
+      End If
+
+      ' PRINT A PALLET LABEL HERE:
+      If nPalletMax <> 1 Then
+        Dim nPalletPrinterNumber As Integer
+        nPalletPrinterNumber = Val(sPalletPrinter)
+        PrintPalletLabel(nPalletPrinterNumber, sPalletFormat, App.GetValue("tmPALP"), 1)
+      End If
+
+    End If
+    DeleteRec:
+
+'    sFile = "C:\test\debug.txt"
+'    Open sFile For Append As #1
+'
+'    Print #1, "Case Number, " & uLP102.sLDLPID
+'    Print #1, "Number Attached, " & nCalculatedAttach
+'    Print #1, "String count, " & sCount
+'    Print #1, "Count, " & nCount
+'    Print #1, "Timestamp, " & Format(Time, "mmss")
+'    Print #1, "UKID, " & nUKID
+'    Print #1, "WCU, " & sWCU
+'    Print #1, "Error?: " & sErrMsg
+'    Print #1, " "
+'
+'    Close #1
+
+
+'    sSql3 = "delete from INTERRUPT_SQL where UKID = " & nUKID
+'    DB.Execute(sSql3)
+    If (Trim(sErrMsg) <> "") Then
+      ' PRINT ERROR LABEL HERE:
+      PrintPalletLabel(nPalletPrinterNumber, sPalletFormat, sErrMsg, 1)
+    End If
+  Next i
+
+'  sFile = "C:\test\debug.txt"
+'  Open sFile For Append As #1
+'
+'  Print #1, "Transaction Ended, " & Timer - nStopwatch
+'
+'  Close #1
+
+  LPDone:
+  If (Trim(sErrMsg) = "") Then
+    Transaction = True
+  Else
+    App.LogError("Application1", "Invalid Item")
+    Transaction = False
+  End If
+
+End Function
+</Code>

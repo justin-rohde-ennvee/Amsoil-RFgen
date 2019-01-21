@@ -1,0 +1,1093 @@
+﻿<Record FileDesc="PO - Receipts Routing" FileVersion="5.0.8.0" Desc="PO - Receipts Routing" Group="PO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDOCO&vm;txtDCTO&vm;txtLITM&vm;lblItemDesc&vm;txtLOTN&vm;lblOps&vm;txtOPFM&vm;lblOperFm&vm;txtOPTO&vm;lblOperTo&vm;txtQTY&vm;txtAccept&vm;lblQty&vm;lblLine" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="4" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="5" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="6" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="7" Name="lblOps" />
+<SchemaParam Linked="0" Attr="8" Name="txtOPFM" />
+<SchemaParam Linked="0" Attr="9" Name="lblOperFm" />
+<SchemaParam Linked="0" Attr="10" Name="txtOPTO" />
+<SchemaParam Linked="0" Attr="11" Name="lblOperTo" />
+<SchemaParam Linked="0" Attr="12" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="13" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="14" Name="lblQty" />
+<SchemaParam Linked="0" Attr="15" Name="lblLine" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+<Display Name="JapaneseGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+<Display Name="Telnet" Type="0" Width="160" Height="352" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="73" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="63" Height="22" AnchorRight="177" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="事業所:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="22" Width="119" Height="22" AnchorRight="65" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="176" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="事業所" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="64" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="PO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="87" Height="22" AnchorRight="105" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="103" Height="22" AnchorRight="137" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ｵｰﾀﾞｰ :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="44" Width="87" Height="22" AnchorRight="97" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="95" Height="22" AnchorRight="136" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ｵｰﾀﾞｰ " />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="87" Height="22" AnchorRight="96" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="44" Width="47" Height="22" AnchorRight="41" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="39" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="44" Width="79" Height="22" AnchorRight="1" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ﾀｲﾌﾟ:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="44" Width="39" Height="22" AnchorRight="1" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="44" Width="79" Height="22" AnchorRight="-16" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ﾀｲﾌﾟ:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="44" Width="39" Height="22" AnchorRight="64" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="4" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="47" Height="22" AnchorRight="185" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="183" Height="22" AnchorRight="9" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="63" Height="22" AnchorRight="177" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="品目No:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="66" Width="183" Height="22" AnchorRight="1" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="55" Height="22" AnchorRight="176" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="品目No" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="183" Height="22" AnchorRight="0" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="10" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="95" Height="22" AnchorRight="97" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="10" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="95" Height="22" AnchorRight="97" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="10" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="95" Height="22" AnchorRight="136" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="6" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="47" Height="22" AnchorRight="185" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="159" Height="22" AnchorRight="33" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="87" Height="22" AnchorRight="153" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ﾛｯﾄNo :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="110" Width="159" Height="22" AnchorRight="25" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="79" Height="22" AnchorRight="152" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ﾛｯﾄNo " />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="159" Height="22" AnchorRight="24" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblOps" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="135" Height="22" AnchorRight="57" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-- Operations --" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="87" Height="22" AnchorRight="105" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-- 操作 --" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="87" Height="22" AnchorRight="144" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-- 操作 --" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtOPFM" Attr="8" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="47" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="From:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="176" Width="71" Height="22" AnchorRight="121" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="176" Width="31" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="元:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="176" Width="71" Height="22" AnchorRight="121" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="31" Height="22" AnchorRight="200" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="元:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="176" Width="71" Height="22" AnchorRight="136" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblOperFm" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="176" Width="79" Height="22" AnchorRight="41" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperFm" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="176" Width="79" Height="22" AnchorRight="41" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperFm" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="88" Top="176" Width="79" Height="22" AnchorRight="64" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperFm" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtOPTO" Attr="10" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="220" Width="31" Height="22" AnchorRight="185" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="220" Width="71" Height="22" AnchorRight="121" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="220" Width="31" Height="22" AnchorRight="185" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="先:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="220" Width="71" Height="22" AnchorRight="121" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="31" Height="22" AnchorRight="200" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="先:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="220" Width="71" Height="22" AnchorRight="136" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblOperTo" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="79" Height="22" AnchorRight="41" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperTo" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="79" Height="22" AnchorRight="41" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperTo" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="88" Top="220" Width="79" Height="22" AnchorRight="64" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblOperTo" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="242" Width="39" Height="22" AnchorRight="185" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="242" Width="87" Height="22" AnchorRight="105" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="47" Height="22" AnchorRight="185" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="数量:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="242" Width="87" Height="22" AnchorRight="105" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="47" Height="22" AnchorRight="184" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="数量:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="242" Width="87" Height="22" AnchorRight="104" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="80" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="231" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQty" Attr="14">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="55" Height="22" AnchorRight="137" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="55" Height="22" AnchorRight="137" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="198" Width="55" Height="22" AnchorRight="152" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLine" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="132" Width="63" Height="22" AnchorRight="129" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblLine" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="47" Height="22" AnchorRight="193" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Label" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="47" Height="22" AnchorRight="184" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[PO Receipt Routing]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[状況照会-入荷工程]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+<Layout Visible="1" FormWidth="231" FormHeight="352" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[状況照会-入荷工程]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                              |
+' -------------------------------------------------------------------------------
+'
+' PURCHASE ORDERS: RECEIPTS BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+'Optional filter, not supported by JDE
+Private Const cStatusF    = 200
+Private Const cStatusT    = 999
+Private Const cTNId       = "FPORR0100"
+Private msPgm             As String
+Private msVersion         As String
+Private mnMaxQty          As Currency
+Private mbSerialized      As Boolean
+Private mbAddStock        As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim sHeader As String
+  '
+  ' Initialize the RFGen recordset with extra fields
+  Call SetDisplay()
+  '
+  ' Initialize special controls
+  lblQty.Caption = ""
+  lblQty.Label.BackColor1 = cFieldDefaultBC
+  lblQty.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblOperFm.Caption = ""
+  lblOperFm.Label.BackColor1 = cFieldDefaultBC
+  lblOperFm.Label.ForeColor = cFieldDefaultFC
+  '
+  lblOperTo.Caption = ""
+  lblOperTo.Label.BackColor1 = cFieldDefaultBC
+  lblOperTo.Label.ForeColor = cFieldDefaultFC
+  '
+  lblLine.Caption = ""
+  lblLine.Label.BackColor1 = cFieldDefaultBC
+  lblLine.Label.ForeColor = cFieldDefaultFC
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  ' get Header Proc.Opt.
+  GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sVersion As String
+  Dim emProc As New EmbeddedProc
+  '
+  emProc.Name       = "TPORR0100"
+  emProc.DataSource = gsDataSource
+  '
+  emProc.Param("tmCO")       = App.GetValue("tmCO")
+  emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+  emProc.Param("tmLITM")     = App.GetValue("tmLITM")
+  emProc.Param("tmQTY")      = App.GetValue("tmQTY")
+  emProc.Param("tmUOM")      = App.GetValue("tmUOM")
+  emProc.Param("tmLOTN")     = App.GetValue("tmLOTN")
+  emProc.Param("tmDOCO")     = App.GetValue("tmDOCO")
+  emProc.Param("tmDCTO")     = App.GetValue("tmDCTO")
+  emProc.Param("tmNROU")     = App.GetValue("tmNROU")
+  emProc.Param("tmLNID")     = App.GetValue("tmLNID")
+  emProc.Param("tmNLIN")     = App.GetValue("tmNLIN")
+  emProc.Param("tmQTYFM")    = App.GetValue("tmQTYFM")
+  emProc.Param("tmOPFM")     = App.GetValue("tmOPFM")
+  emProc.Param("tmOPTO")     = App.GetValue("tmOPTO")
+  emProc.Param("tmUSER")     = App.User
+  emProc.Param("tmZP43250")  = msVersion
+  '
+  sVersion                   = GetProcOpt(msPgm,msVersion,"4;1")
+  If Len(Trim(sVersion))     = 0 Then
+    emProc.Param("tmZP4312") = "ZJDE0001"
+  Else
+    emProc.Param("tmZP4312") = sVersion
+  End If
+  '
+  sVersion                   = GetProcOpt(msPgm,msVersion,"4;3")
+  If Len(Trim(sVersion))     = 0 Then
+    emProc.Param("tmZP43214")= "ZJDE0001"
+  Else
+    emProc.Param("tmZP43214")= sVersion
+  End If
+  '
+  emProc.Param("tmPGM")      = msPgm
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)     
+
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)     
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+  '
+  'Offline inventory
+  If gbOfflineEnabled And mbAddStock Then
+    If Not WriteOI(App.GetValue("tmCO"),App.GetValue("tmMCU"),App.GetValue("tmLITM"),App.GetValue("tmITM"),"",App.GetValue("tmUOM"),CStr(App.GetValue("tmQTY")),App.GetValue("tmDOCO"),App.GetValue("tmDCTO"),0,emProc.QueueName,emProc.QueueSeqNo, App.GetValue("tmLOCN"),App.GetValue("tmLOTN"),App.GetValue("tmLOTS")) Then
+      App.MsgBox(GetMsg(31))
+    End If
+  End If
+
+  lblItemDesc.Caption = ""
+  lblOperFm.Caption = ""
+  lblOperTo.Caption = ""
+  lblQty.Caption = ""
+  lblItemDesc.Caption = ""
+  lblOperFm.Caption = ""
+  lblOperTo.Caption = ""
+  lblLine.Caption = ""
+  '
+  txtAccept.Visible = False
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  mnMaxQty = 0
+
+  mbSerialized = False
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtDOCO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDOCO", "")
+
+End Sub
+
+Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  sSQL = "select PRDCTO from  F43121" & _
+         " where PRDOCO = " & Rsp & " and PRMCU = '%tmMCU'" & _
+         " and PRNXTR between '" & cStatusF & "' and '" & cStatusT & "'" & _
+         " and PRRTGC = 'Y' group by PRDCTO"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(156))
+    Exit Sub
+  End If
+  '
+  ' If Ordernumber is unique default DocType
+  If (DB.Count(sRows) = 1) Then
+    txtDCTO.Text = DB.Extract(sCols,sRows,1,"PRDCTO")
+  End If
+  '
+  App.SetValue("tmDOCO", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sDocType As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F43121_DOCO_RR(Rsp, sMCU, cStatusF, cStatusT, sDocType)
+  If Not Cancel Then txtDCTO.Text = sDocType
+End Sub
+
+Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDCTO", "")
+
+End Sub
+
+Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = UCase(Rsp)
+  '
+  sSQL = "select count(*) from   F43121" & _
+         " where PRDCTO = '" & Rsp & "' and PRDOCO = %tmDOCO and PRMCU='%tmMCU'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(166)
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmDCTO", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtDCTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F43121_DCTO(Rsp, sMCU, cStatusF, cStatusT)
+
+End Sub
+
+Private Sub txtLITM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmUOM",  "")
+  App.SetValue("tmITM",  "")
+  App.SetValue("tmCOST", "")
+  App.SetValue("tmLNID", "")
+  '
+  lblItemDesc.Caption =  ""
+  '
+  txtLOTN.Visible = False
+  txtLOTN.Required = False
+
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nType    As Long
+  Dim nCOST    As Currency
+  Dim nLNID    As Currency
+  Dim sDesc    As String
+  Dim sSQL     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sAITM    As String
+  Dim sDSC1    As String
+  Dim sUOM     As String
+  Dim sLocn    As String
+  Dim bHasLots As Boolean
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  ' Check PO Line
+  sSQL = "select PRLNID, PRUREC, PRUOM, PRPRRC, PRLOCN from   F43121" & _
+         " where PRDOCO = %tmDOCO and PRDCTO = '%tmDCTO' and PRLITM = '" & Rsp & "'" & _
+         " and PRNXTR between '" & cStatusF & "' and '" & cStatusT & "' and PRMCU = '%tmMCU'"
+  '
+  nLNID = Val(App.GetValue("tmLNID"))
+
+  If (nLNID <> 0) Then
+    sSQL = sSQL & " and PRLNID = " & ConvDecimalsToSQL("LNID", nLNID)
+  End If
+  '
+  DB.Execute(sSQL,sCols,sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(100))
+    Exit Sub
+  End If
+  '
+  nCOST = ConvDecimalsFromSQL("PRRC", DB.Extract(sCols,sRows,1,"PRPRRC"))
+  nLNID = ConvDecimalsFromSQL("LNID", DB.Extract(sCols,sRows,1,"PRLNID"))
+  mnMaxQty = ConvDecimalsFromSQL("UREC", DB.Extract(sCols,sRows,1,"PRUREC"))
+  '
+  App.SetValue("tmCOST", nCOST)
+  App.SetValue("tmLNID", nLNID)
+  App.SetValue("tmUOM",  DB.Extract(sCols,sRows,1,"PRUOM"))
+  App.SetValue("tmLOCN", DB.Extract(sCols,sRows,1,"PRLOCN"))
+
+  ' Validate Item Master / get Item Branch
+  If Not Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, bHasLots, mbSerialized) Then Exit Sub
+
+  App.SetValue("tmITM", sITM)
+  'App.SetValue("tmUOM", sUOM) ' take UOM from PO
+  App.SetValue("tmLITM", Rsp)
+  App.SetValue("tmLOTN", "")
+  '
+  lblItemDesc.Caption = sDSC1
+  '
+  txtLOTN.Visible = bHasLots
+  txtLOTN.Required = bHasLots
+  '
+  Cancel=False
+
+End Sub
+
+Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sDOCO As String
+  Dim sLNID As String
+  Dim sNLIN As String
+  Dim sLOTN As String
+  '
+  sDOCO = App.GetValue("tmDOCO")
+  '
+  Cancel = Not Search_F43121_LITM(Rsp, "", sDOCO, cStatusF, cStatusT, sLNID, sNLIN, sLOTN)
+  If Not Cancel Then
+    App.SetValue("tmLNID", sLNID)
+    App.SetValue("tmNLIN", sNLIN)
+    If Len(Trim(sLOTN)) > 0 Then txtLOTN.Defaults = Trim(sLOTN) & ";O"
+  End If
+  '
+End Sub
+
+Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+   App.SetValue("tmLOTN", "")
+End Sub
+
+Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nLNID As Currency
+  Dim sNLIN As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  nLNID = ConvDecimalsToSQL("LNID", App.GetValue("tmLNID"))
+  sNLIN = App.GetValue("tmNLIN")
+  If Len(Trim(sNLIN)) = 0 Then sNLIN = "1"
+  '
+  sSQL = "select count(*) from  F43121" & _
+         " where PRDOCO = %tmDOCO and PRDCTO = '%tmDCTO' and PRMCU = '%tmMCU' and PRITM = %tmITM and PRLNID = " & nLNID & _
+         " and PRLOTN = '" & Rsp & "' and PRNLIN = " & sNLIN & "
+  '
+  DB.Execute(sSQL,sCols,sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(79))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmLOTN", Rsp)
+  '
+  lblLine.Caption = "Line " & App.GetValue("tmLNID") & " \ Seq.: " & App.GetValue("tmNLIN")
+  
+  Cancel=False
+
+End Sub
+
+Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sDOCO As String
+  Dim sITM  As String
+  Dim sLNID As String
+  Dim sNLIN As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  sDOCO = App.GetValue("tmDOCO")
+  sITM  = App.GetValue("tmITM")
+  '
+  Cancel = Not Search_F43121_LOTN(Rsp, sMCU, sDOCO, sITM, cStatusF, cStatusT, sLNID, sNLIN)
+  '
+  If Not Cancel Then
+    App.SetValue("tmLNID", sLNID)
+    App.SetValue("tmNLIN", sNLIN)
+  End If
+  '
+End Sub
+
+Private Sub txtOPFM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmOPFM" ,"")
+  App.SetValue("tmQTYFM", "")
+  App.SetValue("tmNLIN", "")
+  App.SetValue("OPSeqF", "")
+
+  lblOperFm.Caption = ""
+  lblQty.Caption = ""
+
+End Sub
+
+Private Sub txtOPFM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nLNID   As Currency
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  Dim sUDC    As String
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sRout   As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  nLNID = ConvDecimalsToSQL("LNID", App.GetValue("tmLNID"))
+  '
+  ' Is Numeric?
+  If (IsNumeric(Rsp)) Then
+    sSQL = "select PXOPRC from  F43092" & _
+           " where PXDOCO = %tmDOCO and PXDCTO = '%tmDCTO' and PXLNID = " & nLNID & " and PXMCU = '%tmMCU'" & _
+           " and PXOPRS = " & Rsp
+    '
+    DB.Execute(sSQL, sCols, sRows)
+    If (Len(sRows)=0) Then
+      App.MsgBox(GetMsg(238))
+      Exit Sub
+    End If
+    Rsp = Trim(DB.Extract(sCols, sRows, 1, "PXOPRC"))
+  End If
+  '
+  ' Validate code
+  '
+  sUDC = FixRight(FixLeft(Rsp, 4, " "), 10, " ")
+
+  If Not Validate_UDC(sUDC, "43", "OC", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  ' Get Data
+  '
+  sSQL = "select PXNROU, PXQTYO, PXUOM, PXNLIN from  F43092" & _
+         " inner join  F43121 on PXDOCO = PRDOCO and PXDCTO = PRDCTO and PXLNID = PRLNID and PXMCU = PRMCU" & _
+         " where PXDOCO = %tmDOCO and PXDCTO = '%tmDCTO' and PXLNID = " & nLNID & " and PXOPRC = '" & Rsp & "'" & _
+         " and PXQTYO > 0 and PXACTO = 'Y' and PXMCU = '%tmMCU' and PRMATC <= '2'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(238))
+    Exit Sub
+  End If
+  '
+  mnMaxQty = ConvDecimalsFromSQL("QTYO", DB.Extract(sCols,sRows,1,"PXQTYO"))
+  App.SetValue("tmNROU", DB.Extract(sCols,sRows,1,"PXNROU"))
+  '
+  lblOperFm.Caption = sDRDL01
+  lblQty.Caption = mnMaxQty & " " & DB.Extract(sCols,sRows,1,"PXUOM")
+  '
+  App.SetValue("tmOPFM" , Rsp)
+  App.SetValue("tmQTYFM", mnMaxQty)
+  App.SetValue("tmNLIN", DB.Extract(sCols,sRows,1,"PXNLIN"))
+  '
+  ' Get OP Seq. Number
+  sRout = DB.Extract(sCols,sRows,1,1)
+  sSQL = "select PPOPRS,PPUPIB from  F43091" & _
+         " where PPNROU = '" & sRout & "' and PPOPRC = '" & Rsp & "' "& _
+         " and PPMCU = '%tmMCU' "
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(30)
+    Exit Sub
+  End If
+
+  App.SetValue("OPSeqF", DB.Extract(sCols,sRows,1,1))
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtOPFM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sDOCO As String
+  Dim sDCTO As String
+  Dim nLNID As Currency
+  '
+  sDOCO = App.GetValue("tmDOCO")
+  sDCTO = App.GetValue("tmDCTO")
+  nLNID = ConvDecimalsToSQL("LNID", App.GetValue("tmLNID"))
+  '
+  Cancel = Not Search_F43092(Rsp, sDOCO, sDCTO, nLNID, 0,False,True)
+
+End Sub
+
+Private Sub txtOPTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmOPTO", "")
+  '
+  lblOperTo.Caption = ""
+
+End Sub
+
+Private Sub txtOPTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nLNID   As Currency
+  Dim nSeqT   As Long
+  Dim nSeqF   As Long
+  Dim i       As Integer
+  Dim sSeq    As String
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  Dim sUDC    As String
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sRout   As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  nLNID = ConvDecimalsToSQL("LNID", App.GetValue("tmLNID"))
+  '
+  ' Is Numeric?
+  If (IsNumeric(Rsp)) Then
+    sSQL = "select PXOPRC from  F43092" & _
+           " where PXDOCO = %tmDOCO and PXDCTO = '%tmDCTO' and PXLNID = " & nLNID & " and PXMCU = '%tmMCU'" & _
+           " and PXOPRS = " & Rsp
+    DB.Execute(sSQL, sCols, sRows)
+    If (Len(sRows)=0) Then
+      App.MsgBox(GetMsg(238))
+      Exit Sub
+    End If
+    Rsp = Trim(DB.Extract(sCols, sRows, 1, "PXOPRC"))
+  End If
+  '
+  sUDC = FixRight(FixLeft(Rsp, 4, " "), 10, " ")
+
+  If Not Validate_UDC(sUDC, "43", "OC", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  ' Get Data
+  sSQL = "select PXNROU, PXQTYO from  F43092" & _
+         " inner join  F43121 on PXDOCO = PRDOCO and PXDCTO = PRDCTO and PXLNID = PRLNID and PXMCU = PRMCU" & _
+         " where PXDOCO = %tmDOCO and PXDCTO = '%tmDCTO' and PXLNID = " & nLNID & " and PXOPRC = '" & Rsp & "'" & _
+         " and PXMCU = '%tmMCU' and PRMATC <= '2'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(238))
+    Exit Sub
+  End If
+  '
+  mbAddStock = False
+
+  sRout = DB.Extract(sCols,sRows,1,1)
+  sSQL = "select PPOPRS,PPUPIB from  F43091" & _
+         " where PPNROU = '" & sRout & "' and PPOPRC = '" & Rsp & "' "& _
+         " and PPMCU = '%tmMCU' "
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(30)
+    Exit Sub
+  End If
+
+  If DB.Extract(sCols,sRows,1,2) = "PQOH" Then mbAddStock = True
+
+  lblOperTo.Caption = sDRDL01
+  App.SetValue("OPSeqT", DB.Extract(sCols,sRows,1,1))
+  '
+  ' Get operation sequence number
+  sSQL = "select PPOPRS from  F43091" & _
+         " where PPNROU = '" & sRout & "' and PPMCU = '%tmMCU' "
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i = 1 To DB.Count(sRows)
+    If DB.Extract(sCols,sRows,i,1) = App.GetValue("OPSeqF") Then
+      nSeqF = i
+    End If
+    If DB.Extract(sCols,sRows,i,1) = Rsp Then
+      nSeqT = i
+    End If
+  Next i
+
+  ' check Proc. Options if operation Sequence is allowed
+  sSeq =  GetProcOpt(msPgm,msVersion,"3;1")
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If sSeq = "1" Then
+    If (nSeqT - nSeqF) <> 1 Then
+      App.MsgBox GetMsg(147)
+      Exit Sub
+    End If
+  End If
+
+  If sSeq = "2" Then
+    If nSeqT <= nSeqF Then
+      App.MsgBox GetMsg(147)
+      Exit Sub
+    End If
+  End If
+
+  App.SetValue("tmOPTO" , Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtOPTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sDOCO As String
+  Dim sDCTO As String
+  Dim nLNID As Currency
+  Dim bTop1 As Boolean
+  '
+  sDOCO = App.GetValue("tmDOCO")
+  sDCTO = App.GetValue("tmDCTO")
+  nLNID = ConvDecimalsToSQL("LNID", App.GetValue("tmLNID"))
+  '
+  bTop1 = GetProcOpt(msPgm,msVersion,"3;1") = "1"
+  Cancel = Not Search_F43092(Rsp, sDOCO, sDCTO, nLNID, App.GetValue("OPSeqF"),bTop1,False)
+End Sub
+
+Private Sub txtQTY_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQTY", "")
+
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty  As Currency
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel=True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Serialized Item?
+  nQty = Val(Rsp)
+  If (mbSerialized And nQty <> 1) Then
+    App.MsgBox(GetMsg(177))
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  If (nQty = 0) Then
+    App.MsgBox GetMsg(182)
+    Exit Sub
+  End If
+  '
+  ' Not Negative
+  If (nQty < 0) Then
+    App.MsgBox GetMsg(180)
+    Exit Sub
+  End If
+  '
+  ' Adjustment down exceeds QOH?
+  If (nQty > mnMaxQty) Then
+    App.MsgBox(GetMsg(34))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmQTY", Rsp)
+  '
+  Cancel=False
+
+End Sub
+</Code>

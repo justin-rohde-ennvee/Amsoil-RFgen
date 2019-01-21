@@ -1,0 +1,11 @@
+﻿<Record FileDesc="Receiver Main Menu" FileVersion="5.0.8.0" Desc="Receiver Main Menu" Heading="[Receiver Main Menu]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FPOLR0100" Desc="1-Receipts by Item" Options="-Pgm=P4312 -Vers=ZJDE0002 -UDC=55/CO -UniqueLotY/N =Y" />
+<MenuItem Id="FPOLR0100" Desc="2-Receipts by PO /  Line" Options="-Pgm=P4312 -Vers=ZJDE0001 -UDC=55/CO -UniqueLotY/N =Y" />
+<MenuItem Id="FPORR0100" Desc="3-Receipt Routing" Options="-Pgm=P43250 -Vers=ZJDE0001" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FPOQO0100" Desc="4-Open PO's by Item" Options="-StsFr=200 -StsTo=480" />
+<MenuItem Id="FPOQI0100" Desc="5-PO Status by Item" Options="-StsFr=200 -StsTo=480" />
+<MenuItem Id="FPOQL0100" Desc="6-PO Status by Line" Options="-StsFr=200 -StsTo=480" />
+<MenuItem Id="-" Desc="-" />
+</Record>

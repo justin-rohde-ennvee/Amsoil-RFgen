@@ -1,0 +1,1021 @@
+﻿<Record FileDesc="ADM - RFgen Configuration" FileVersion="5.0.8.0" Desc="ADM - RFgen Configuration" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame1&vm;Frame2&vm;Frame3&vm;Frame8&vm;Frame4&vm;Frame5&vm;Frame6&vm;Frame7&vm;ChkTMCalls&vm;ChkTMError&vm;ChkBSNFCalls&vm;ChkBSNFError&vm;ChkSQLCalls&vm;ChkSQLError&vm;ChkLblPrt&vm;ChkLblError&vm;ChkScan&vm;ChkNotify&vm;chkQLoadBal&vm;ChkQueuing&vm;txtMonitorTM&vm;txtMonitorTMTime&vm;txtConnect&vm;txtEmail&vm;txtCC&vm;txtMailType&vm;txtMailServ&vm;txtJDERelease&vm;btnChange&vm;ChkIsE1&vm;ChkNamedUser&vm;chkCommit&vm;txtSMMain&vm;txtSMWarning&vm;txtProcOptRel&vm;txtPwdExp&vm;txtPwdLen&vm;txtRFGRel&vm;txtJDEDB&vm;txtLPDB&vm;ChkOffline&vm;ChkTranServer&vm;txtLPSFolder&vm;txtLWLFolder&vm;txtMinSearchLen&vm;txtMaxSearchRows&vm;txtLenItem&vm;txtLenLOCN&vm;txtLenLOTN&vm;txtLenQty&vm;txtLenLP&vm;LblLastUpdate&vm;Frame9&vm;chkCustUP&vm;ChkDemoMode&vm;ChkItemFrmLot">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Frame1" />
+<SchemaParam Linked="0" Attr="2" Name="Frame2" />
+<SchemaParam Linked="0" Attr="3" Name="Frame3" />
+<SchemaParam Linked="0" Attr="4" Name="Frame8" />
+<SchemaParam Linked="0" Attr="5" Name="Frame4" />
+<SchemaParam Linked="0" Attr="6" Name="Frame5" />
+<SchemaParam Linked="0" Attr="7" Name="Frame6" />
+<SchemaParam Linked="0" Attr="8" Name="Frame7" />
+<SchemaParam Linked="0" Attr="9" Name="ChkTMCalls" />
+<SchemaParam Linked="0" Attr="10" Name="ChkTMError" />
+<SchemaParam Linked="0" Attr="11" Name="ChkBSNFCalls" />
+<SchemaParam Linked="0" Attr="12" Name="ChkBSNFError" />
+<SchemaParam Linked="0" Attr="13" Name="ChkSQLCalls" />
+<SchemaParam Linked="0" Attr="14" Name="ChkSQLError" />
+<SchemaParam Linked="0" Attr="15" Name="ChkLblPrt" />
+<SchemaParam Linked="0" Attr="16" Name="ChkLblError" />
+<SchemaParam Linked="0" Attr="17" Name="ChkScan" />
+<SchemaParam Linked="0" Attr="18" Name="ChkNotify" />
+<SchemaParam Linked="0" Attr="19" Name="chkQLoadBal" />
+<SchemaParam Linked="0" Attr="20" Name="ChkQueuing" />
+<SchemaParam Linked="0" Attr="21" Name="txtMonitorTM" />
+<SchemaParam Linked="0" Attr="22" Name="txtMonitorTMTime" />
+<SchemaParam Linked="0" Attr="23" Name="txtConnect" />
+<SchemaParam Linked="0" Attr="24" Name="txtEmail" />
+<SchemaParam Linked="0" Attr="25" Name="txtCC" />
+<SchemaParam Linked="0" Attr="26" Name="txtMailType" />
+<SchemaParam Linked="0" Attr="27" Name="txtMailServ" />
+<SchemaParam Linked="0" Attr="28" Name="txtJDERelease" />
+<SchemaParam Linked="0" Attr="29" Name="btnChange" />
+<SchemaParam Linked="0" Attr="30" Name="ChkIsE1" />
+<SchemaParam Linked="0" Attr="31" Name="ChkNamedUser" />
+<SchemaParam Linked="0" Attr="32" Name="chkCommit" />
+<SchemaParam Linked="0" Attr="33" Name="txtSMMain" />
+<SchemaParam Linked="0" Attr="34" Name="txtSMWarning" />
+<SchemaParam Linked="0" Attr="35" Name="txtProcOptRel" />
+<SchemaParam Linked="0" Attr="36" Name="txtPwdExp" />
+<SchemaParam Linked="0" Attr="37" Name="txtPwdLen" />
+<SchemaParam Linked="0" Attr="38" Name="txtRFGRel" />
+<SchemaParam Linked="0" Attr="39" Name="txtJDEDB" />
+<SchemaParam Linked="0" Attr="40" Name="txtLPDB" />
+<SchemaParam Linked="0" Attr="41" Name="ChkOffline" />
+<SchemaParam Linked="0" Attr="42" Name="ChkTranServer" />
+<SchemaParam Linked="0" Attr="43" Name="txtLPSFolder" />
+<SchemaParam Linked="0" Attr="44" Name="txtLWLFolder" />
+<SchemaParam Linked="0" Attr="45" Name="txtMinSearchLen" />
+<SchemaParam Linked="0" Attr="46" Name="txtMaxSearchRows" />
+<SchemaParam Linked="0" Attr="47" Name="txtLenItem" />
+<SchemaParam Linked="0" Attr="48" Name="txtLenLOCN" />
+<SchemaParam Linked="0" Attr="49" Name="txtLenLOTN" />
+<SchemaParam Linked="0" Attr="50" Name="txtLenQty" />
+<SchemaParam Linked="0" Attr="51" Name="txtLenLP" />
+<SchemaParam Linked="0" Attr="52" Name="LblLastUpdate" />
+<SchemaParam Linked="0" Attr="53" Name="Frame9" />
+<SchemaParam Linked="0" Attr="54" Name="chkCustUP" />
+<SchemaParam Linked="0" Attr="55" Name="ChkDemoMode" />
+<SchemaParam Linked="0" Attr="56" Name="ChkItemFrmLot" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="12" FieldId="Frame1" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Maintain Log Level  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="16" Top="22" Width="351" Height="132" AnchorRight="360" AnchorBottom="682" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame2" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Log Scanning Versus Typing  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="16" Top="154" Width="351" Height="110" AnchorRight="360" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame3" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Transaction Queuing  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="16" Top="264" Width="351" Height="264" AnchorRight="360" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame8" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Email Setup  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="8" Top="638" Width="359" Height="198" AnchorRight="360" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame4" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Environment  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="384" Top="22" Width="343" Height="330" AnchorRight="0" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame5" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Offline Inventory  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="384" Top="352" Width="343" Height="88" AnchorRight="0" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame6" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Label Printing  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="384" Top="440" Width="343" Height="132" AnchorRight="0" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame7" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Appearance  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="384" Top="572" Width="343" Height="198" AnchorRight="0" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkTMCalls" Attr="9" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="44" Width="159" Height="22" AnchorRight="528" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Log TM Macros Calls" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="31" Height="31" AnchorRight="504" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkTMError" Attr="10" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="248" Top="44" Width="55" Height="22" AnchorRight="424" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Errors" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="44" Width="31" Height="31" AnchorRight="400" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkBSNFCalls" Attr="11" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="66" Width="119" Height="22" AnchorRight="568" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Log BSNF Calls" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="66" Width="31" Height="31" AnchorRight="504" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkBSNFError" Attr="12" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="248" Top="66" Width="55" Height="22" AnchorRight="424" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Errors" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="66" Width="31" Height="31" AnchorRight="400" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkSQLCalls" Attr="13" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="88" Width="151" Height="22" AnchorRight="536" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Log SQL Statements" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="88" Width="31" Height="31" AnchorRight="504" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkSQLError" Attr="14" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="248" Top="88" Width="55" Height="22" AnchorRight="424" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Errors" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="88" Width="31" Height="31" AnchorRight="400" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkLblPrt" Attr="15" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="110" Width="135" Height="22" AnchorRight="552" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Log Print Labels" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="110" Width="31" Height="31" AnchorRight="504" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkLblError" Attr="16" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="248" Top="110" Width="55" Height="22" AnchorRight="424" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Errors" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="110" Width="31" Height="31" AnchorRight="400" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkScan" Attr="17" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="176" Width="119" Height="22" AnchorRight="568" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Force Scanning" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="176" Width="31" Height="31" AnchorRight="400" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkNotify" Attr="18" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="286" Width="207" Height="22" AnchorRight="480" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Notify User for TM Errors" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="286" Width="31" Height="31" AnchorRight="400" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkQLoadBal" Attr="19" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="330" Width="191" Height="22" AnchorRight="496" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Load Balance the Queues" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="330" Width="31" Height="31" AnchorRight="400" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkQueuing" Attr="20" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="308" Width="119" Height="22" AnchorRight="568" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Use TM Queuing" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="308" Width="31" Height="31" AnchorRight="400" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMonitorTM" Attr="21" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="352" Width="319" Height="22" AnchorRight="368" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="MonitorTM/Load Bal Queues (sep. by &quot;;&quot;)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="40" Top="374" Width="287" Height="88" AnchorRight="400" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMonitorTMTime" Attr="22" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="462" Width="159" Height="22" AnchorRight="528" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Alert after x Min.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="264" Top="462" Width="63" Height="22" AnchorRight="400" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtConnect" Attr="23" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="484" Width="199" Height="22" AnchorRight="488" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="# Connector DBMoveQueue:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="264" Top="484" Width="63" Height="22" AnchorRight="400" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEmail" Attr="24" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="660" Width="63" Height="22" AnchorRight="632" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Mail To" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="682" Width="239" Height="22" AnchorRight="456" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtCC" Attr="25" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="704" Width="23" Height="22" AnchorRight="672" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="CC" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="726" Width="239" Height="22" AnchorRight="456" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMailType" Attr="26" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="748" Width="87" Height="22" AnchorRight="608" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Email Type" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="232" Top="748" Width="39" Height="22" AnchorRight="456" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMailServ" Attr="27" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="770" Width="191" Height="22" AnchorRight="504" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Server Name (SMTP Only)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="792" Width="239" Height="22" AnchorRight="456" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtJDERelease" Attr="28" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="44" Width="95" Height="22" AnchorRight="224" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE Version" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="616" Top="44" Width="87" Height="22" AnchorRight="24" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnChange" Attr="29">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Save" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="528" Width="111" Height="22" AnchorRight="600" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkIsE1" Attr="30" Check="1" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="88" Width="231" Height="22" AnchorRight="88" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE OneWorld / Enterprise E1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="88" Width="31" Height="31" AnchorRight="24" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkNamedUser" Attr="31" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="176" Width="87" Height="22" AnchorRight="232" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Named User" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="176" Width="31" Height="31" AnchorRight="24" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkCommit" Attr="32" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="308" Width="207" Height="22" AnchorRight="112" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Use LP Commitment Control" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="308" Width="31" Height="31" AnchorRight="24" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSMMain" Attr="33" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="110" Width="79" Height="22" AnchorRight="240" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Main Menu" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="616" Top="110" Width="87" Height="22" AnchorRight="24" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSMWarning" Attr="34" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="132" Width="71" Height="22" AnchorRight="248" AnchorBottom="682" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Warnings" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="154" Width="303" Height="22" AnchorRight="16" AnchorBottom="660" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtProcOptRel" Attr="35" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="66" Width="135" Height="22" AnchorRight="184" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Proc.Opt.Release" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="616" Top="66" Width="87" Height="22" AnchorRight="24" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPwdExp" Attr="36" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="198" Width="183" Height="22" AnchorRight="136" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Days Until Passw. Exp." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="198" Width="47" Height="22" AnchorRight="24" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPwdLen" Attr="37" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="220" Width="151" Height="22" AnchorRight="168" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Passw. Min. Length" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="220" Width="47" Height="22" AnchorRight="24" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtRFGRel" Attr="38" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="242" Width="111" Height="22" AnchorRight="208" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen Release" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="242" Width="47" Height="22" AnchorRight="24" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtJDEDB" Attr="39" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="264" Width="143" Height="22" AnchorRight="176" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE Database Type" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="576" Top="264" Width="127" Height="22" AnchorRight="24" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPDB" Attr="40" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="286" Width="135" Height="22" AnchorRight="184" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP Database Type" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="576" Top="286" Width="127" Height="22" AnchorRight="24" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkOffline" Attr="41" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="374" Width="167" Height="22" AnchorRight="152" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Offline Inv. Enabled" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="374" Width="31" Height="31" AnchorRight="24" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkTranServer" Attr="42" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="396" Width="183" Height="22" AnchorRight="136" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE Transaction Server" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="396" Width="31" Height="31" AnchorRight="24" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPSFolder" Attr="43" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="462" Width="207" Height="22" AnchorRight="112" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Label Print Server Folder" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="400" Top="484" Width="303" Height="22" AnchorRight="24" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLWLFolder" Attr="44" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="506" Width="175" Height="22" AnchorRight="144" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Label Template Folder" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="400" Top="528" Width="303" Height="22" AnchorRight="24" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMinSearchLen" Attr="45" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="594" Width="151" Height="22" AnchorRight="168" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Min. Search Length" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="594" Width="47" Height="22" AnchorRight="24" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMaxSearchRows" Attr="46" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="616" Width="135" Height="22" AnchorRight="184" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Max. Search Rows" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="616" Width="47" Height="22" AnchorRight="24" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLenItem" Attr="47" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="638" Width="151" Height="22" AnchorRight="168" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length Item Number" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="638" Width="47" Height="22" AnchorRight="24" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLenLOCN" Attr="48" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="660" Width="127" Height="22" AnchorRight="192" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length Location" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="660" Width="47" Height="22" AnchorRight="24" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLenLOTN" Attr="49" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="682" Width="215" Height="22" AnchorRight="104" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length Lot / Serial Number" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="682" Width="47" Height="22" AnchorRight="24" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLenQty" Attr="50" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="704" Width="127" Height="22" AnchorRight="192" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length Quantity" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="704" Width="47" Height="22" AnchorRight="24" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLenLP" Attr="51" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="726" Width="207" Height="22" AnchorRight="112" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Length License Plate (LP)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="656" Top="726" Width="47" Height="22" AnchorRight="24" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="LblLastUpdate" Attr="52">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="550" Width="111" Height="22" AnchorRight="608" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="LblLastUpdate" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame9" Attr="53">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Custom User Profiles  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="1" Left="8" Top="572" Width="359" Height="66" AnchorRight="360" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkCustUP" Attr="54" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="594" Width="279" Height="22" AnchorRight="424" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Use Custom User Profiles (RFUP001)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="320" Top="594" Width="31" Height="31" AnchorRight="376" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkDemoMode" Attr="55" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="198" Width="207" Height="22" AnchorRight="480" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Return Values from Search" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="198" Width="31" Height="31" AnchorRight="400" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="ChkItemFrmLot" Attr="56" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="220" Width="199" Height="22" AnchorRight="488" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Scan Lot Number for Item" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="220" Width="31" Height="31" AnchorRight="400" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="727" FormHeight="836" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="                             [ RFGEN SETUP AND CONFIGURATION ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                                |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATION: RFGEN CONFIGURATION
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private msJDEDB    As String
+Private msLPDB     As String
+Private mbRFLOG    As Boolean
+Private msSource   As String
+Private msChk      As String
+Private msEmail    As String
+Private msCC       As String
+Private msMailType As String
+Private msMailServ As String
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  Call SetChkBoxes
+  '
+  txtEmail.Text    = SYS.GetProperty("Log", "EmailAddr")
+  txtCC.Text       = SYS.GetProperty("Log", "CCAddr")
+  txtMailType.Text = SYS.GetProperty("Log", "EmailType")
+  txtMailServ.Text = SYS.GetProperty("Log", "MailServer")
+  '
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, True   ' todo - upgrade: App.SetOption removed
+
+  Call GetData
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = True
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  DB.UseDataSource 0
+  '
+  'App.SetOption ShowHorizontalScrollBar, False   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, False   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub btnChange_Click()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim vArray As Variant
+  Dim vRsp   As Variant
+  Dim iCnt   As Integer
+  Dim nErrNo As Long
+
+  Call GetChkBoxes
+  '
+  SYS.SetProperty("Log", "Boxes", msChk)
+  SetChkBoxes
+  '
+  msEmail = txtEmail.Text
+  SYS.SetProperty("Log", "EmailAddr", msEmail)
+  '
+  msCC = txtCC.Text
+  SYS.SetProperty("Log", "CCAddr", msCC)
+  '
+  msMailType = txtMailType.Text
+  SYS.SetProperty("Log", "EmailType", msMailType)
+  '
+  msMailServ = txtMailServ.Text
+  SYS.SetProperty("Log", "MailServer", msMailServ)
+  '
+  Call GetScreen
+
+  ' Populate the queue load balancing table
+  If chkQLoadBal.Checked Then
+
+    vRsp = App.MsgBox("Replace current records?", vbYesNo, 2)
+
+    If vRsp = vbYes Then
+      sSQL = "delete from RFQBAL"
+      nErrNo = DB.Execute(sSQL)
+
+      If nErrNo <> 0 Then
+        App.MsgBox SysErr.Description
+        Exit Sub
+      End If
+    End If
+
+    vArray = Split(txtMonitorTM.Text, ";")
+
+    For iCnt = 0 To UBound(vArray)
+      If Len(Trim(vArray(iCnt))) > 0 Then
+        sSQL = "select count(*) from RFQBAL where QNAME = '" & vArray(iCnt) & "'"
+        nErrNo = DB.Execute(sSQL, sCols, sRows)
+
+        If nErrNo <> 0 Then
+          App.MsgBox SysErr.Description
+          Exit Sub
+        End If
+
+        If Val(sRows) = 0 Then
+          sSQL = "insert into RFQBAL values('" & vArray(iCnt) & "',0)"
+          nErrNo = DB.Execute(sSQL)
+
+          If nErrNo <> 0 Then
+            App.MsgBox SysErr.Description
+            Exit Sub
+          End If
+        End If
+      End If
+    Next
+
+  End If
+
+End Sub
+
+'Private Sub ChkIsE1_Click()
+'  On Error Resume Next
+'  '
+'  If ChkIsE1.Checked          = True Then
+'    ChkIsE1.Caption           = "JDE OneWorld / Enterprise E1"
+'    txtSMMain.DisplayOnly     = True
+'    txtSMWarning.DisplayOnly  = True
+'  Else
+'    ChkIsE1.Caption           = "JDE World A7.3, A8.1, A9.2"
+'    txtSMMain.DisplayOnly     = False
+'    txtSMWarning.DisplayOnly  = False
+'  End If
+'  '
+'  Screen.Refresh
+'End Sub
+
+Private Sub SetChkBoxes()
+  On Error Resume Next
+  '
+  msChk = Trim(SYS.GetProperty("Log", "Boxes"))
+  '
+  chkTMCalls.Checked    = (Ext(msChk,1)  = "1")
+  chkTMError.Checked    = (Ext(msChk,2)  = "1")
+  chkBSNFCalls.Checked  = (Ext(msChk,3)  = "1")
+  chkBSNFError.Checked  = (Ext(msChk,4)  = "1")
+  chkSQLCalls.Checked   = (Ext(msChk,5)  = "1")
+  chkSQLError.Checked   = (Ext(msChk,6)  = "1")
+  chkLblPrt.Checked     = (Ext(msChk,7)  = "1")
+  chkLblError.Checked   = (Ext(msChk,8)  = "1")
+  chkScan.Checked       = (Ext(msChk,9)  = "1")
+  chkNotify.Checked     = (Ext(msChk,10) = "1")
+  ChkQueuing.Checked    = (Ext(msChk,11) = "1")
+  chkCustUP.Checked     = (Ext(msChk,12) = "1")
+  chkDemoMode.Checked   = (Ext(msChk,13) = "1")
+  chkItemFrmLot.Checked = (Ext(msChk,14) = "1")
+  chkQLoadBal.Checked   = (Ext(msChk,15) = "1")
+  chkCommit.Checked     = (Ext(msChk,16) = "1")
+End Sub
+
+Private Sub GetChkBoxes()
+  On Error Resume Next
+  '
+  msChk = ""
+  '
+  msChk = Rep(msChk, 1,  -1, CStr(Abs(CInt(chkTMCalls.Checked))))
+  msChk = Rep(msChk, 2,  -1, CStr(Abs(CInt(chkTMError.Checked))))
+  msChk = Rep(msChk, 3,  -1, CStr(Abs(CInt(chkBSNFCalls.Checked))))
+  msChk = Rep(msChk, 4,  -1, CStr(Abs(CInt(chkBSNFError.Checked))))
+  msChk = Rep(msChk, 5,  -1, CStr(Abs(CInt(chkSQLCalls.Checked))))
+  msChk = Rep(msChk, 6,  -1, CStr(Abs(CInt(chkSQLError.Checked))))
+  msChk = Rep(msChk, 7,  -1, CStr(Abs(CInt(chkLblPrt.Checked))))
+  msChk = Rep(msChk, 8,  -1, CStr(Abs(CInt(chkLblError.Checked))))
+  msChk = Rep(msChk, 9,  -1, CStr(Abs(CInt(chkScan.Checked))))
+  msChk = Rep(msChk, 10, -1, CStr(Abs(CInt(chkNotify.Checked))))
+  msChk = Rep(msChk, 11, -1, CStr(Abs(CInt(chkQueuing.Checked))))
+  msChk = Rep(msChk, 12, -1, CStr(Abs(CInt(chkCustUP.Checked))))
+  msChk = Rep(msChk, 13, -1, CStr(Abs(CInt(chkDemoMode.Checked))))
+  msChk = Rep(msChk, 14, -1, CStr(Abs(CInt(chkItemFrmLot.Checked))))
+  msChk = Rep(msChk, 15, -1, CStr(Abs(CInt(chkQLoadBal.Checked))))
+  msChk = Rep(msChk, 16, -1, CStr(Abs(CInt(chkCommit.Checked))))
+End Sub
+
+Private Sub txtJDEDB_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Rsp = Trim(Rsp)
+  If Len(Rsp) = 0 Then Exit Sub
+
+  txtJDEDB.Text = msJDEDB
+
+End Sub
+
+Private Sub txtJDEDB_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim iCnt  As Integer
+  Dim sList As String
+
+  For iCnt = 1 To 5
+    If SYS.ConnectionProperty(iCnt, dcConnectMode) = "ODBC" Then App.MakeList(sList, CStr(iCnt), _
+                                                    FixLeft(SYS.ConnectionProperty(iCnt,dcSourceId),10," ") & " " & _
+                                                    SYS.ConnectionProperty(iCnt, dcDatabase),"Connector  Database")
+  Next
+
+  Rsp     = App.ShowList(sList, True)
+  msJDEDB = SYS.ConnectionProperty(Rsp, dcDatabase)
+  Rsp     = msJDEDB
+  Cancel  = Len(Trim(Rsp)) = 0
+
+End Sub
+
+Private Sub txtLPDB_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Rsp = Trim(Rsp)
+  If Len(Rsp) = 0 Then Exit Sub
+
+  txtLPDB.Text = msLPDB
+
+End Sub
+
+Private Sub txtLPDB_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim iCnt  As Integer
+  Dim sList As String
+
+  For iCnt = 1 To 5
+    If SYS.ConnectionProperty(iCnt, dcConnectMode) = "ODBC" Then App.MakeList(sList, CStr(iCnt), _
+                                                    FixLeft(SYS.ConnectionProperty(iCnt,dcSourceId),10," ") & " " & _
+                                                    SYS.ConnectionProperty(iCnt, dcDatabase),"Connector  Database")
+  Next
+
+  Rsp    = App.ShowList(sList, True)
+  msLPDB = SYS.ConnectionProperty(Rsp, dcDatabase)
+  Rsp    = msLPDB
+  Cancel = Len(Trim(Rsp)) = 0
+
+End Sub
+
+Private Sub txtMailType_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sEmailType As String
+
+  App.MakeList sEmailType, 1, "SQL Server", "Select an email Type:"
+  App.MakeList sEmailType, 2, "JDE Mail  "
+  App.MakeList sEmailType, 3, "SMTP      "
+  '
+  Rsp = App.ShowList(sEmailType)
+End Sub
+
+Public Sub GetData()
+  On Error Resume Next
+  '
+  Dim vArray As Variant
+  '
+  ' MonitorTM
+  '
+  vArray = Split(SYS.GetProperty("Config", "MonTM"), "|")
+  '
+  txtMonitorTM.Text     = vArray(0)
+  txtMonitorTMTime.Text = vArray(1)
+  txtConnect.Text       = vArray(2)
+  '
+  ' Environment
+  '
+  vArray = Split(SYS.GetProperty("Config", "Env"), "|")
+  '
+  If vArray(0) = "1" Then
+    txtJDERelease.Caption   = "OneWorld / Enterprise E1"
+    txtSMMain.Visible       = False
+    txtSMWarning.Visible    = False
+    ChkIsE1.Checked         = True
+  Else
+    txtJDERelease.Caption   = "JDE World (AS/400)"
+    txtSMMain.Visible       = True
+    txtSMWarning.Visible    = True
+    ChkIsE1.Checked         = False
+  End If
+  '
+  Screen.Refresh
+  '
+  txtSMMain.Text       = vArray(1)
+  txtSMWarning.Text    = vArray(2)
+  ChkNamedUser.Checked = (vArray(3) = "1")
+  txtProcOptRel.Text   = vArray(4)
+  txtPwdExp.Text       = vArray(5)
+  txtPwdLen.Text       = vArray(6)
+  txtRFGRel.Text       = vArray(7)
+  txtJDERelease.Text   = vArray(8)
+  txtJDEDB.Text        = vArray(9)
+  txtLPDB.Text         = vArray(10)
+  '
+  ' Offline Inventory
+  '
+  vArray = Split(SYS.GetProperty("Config", "OI"), "|")
+  '
+  ChkOffline.Checked    = (vArray(0) = "1")
+  ChkTranServer.Checked = (vArray(1) = "1")
+  '
+  ' Label Printing
+  '
+  vArray = Split(SYS.GetProperty("Config", "Label"), "|")
+  '
+  txtLPSFolder.Text     = vArray(0)
+  txtLWLFolder.Text     = vArray(1)
+  '
+  ' Appearance
+  '
+  vArray = Split(SYS.GetProperty("Config", "Appear"), "|")
+  '
+  txtMinSearchLen.Text  = vArray(0)
+  txtMaxSearchRows.Text = vArray(1)
+  txtLenItem.Text       = vArray(2)
+  txtLenLOCN.Text       = vArray(3)
+  txtLenLOTN.Text       = vArray(4)
+  txtLenQty.Text        = vArray(5)
+  txtLenLP.Text         = vArray(6)
+
+
+  '***7/10/09 DG: BEG ADD***
+  ' Custom User Profiles
+
+  vArray = Split(SYS.GetProperty("Profiles", "Custom"), "|")
+
+  '
+  ' Last updated
+  '
+  LblLastUpdate.Caption = "Last Update: " & SYS.GetProperty("Config", "LastUpd")
+End Sub
+
+Public Sub GetScreen()
+  On Error Resume Next
+  '
+  Dim sVal As String
+  '
+  ' MonitorTM
+  '
+  sVal = Trim(txtMonitorTM.Text)     & "|" & _
+         Trim(txtMonitorTMTime.Text) & "|" & _
+         Trim(txtConnect.Text)
+  '
+  SYS.SetProperty("Config", "MonTM", sVal)
+  '
+  ' Environment
+  '
+  sVal = CStr(Abs(CInt(ChkIsE1.Checked)))      & "|" & _
+         Trim(txtSMMain.Text)                  & "|" & _
+         Trim(txtSMWarning.Text)               & "|" & _
+         CStr(Abs(CInt(ChkNamedUser.Checked))) & "|" & _
+         Trim(txtProcOptRel.Text)              & "|" & _
+         Trim(txtPwdExp.Text)                  & "|" & _
+         Trim(txtPwdLen.Text)                  & "|" & _
+         Trim(txtRFGRel.Text)                  & "|" & _
+         Trim(txtJDERelease.Text)              & "|" & _
+         Trim(txtJDEDB.Text)                   & "|" & _
+         Trim(txtLPDB.Text)                    & "|"
+
+  SYS.SetProperty("Config", "Env", sVal)
+  '
+  ' Offline Inventory
+  '
+  sVal = CStr(Abs(CInt(ChkOffline.Checked)))      & "|" & _
+         CStr(Abs(CInt(ChkTranServer.Checked)))   & "|"
+  '
+  SYS.SetProperty("Config", "OI", sVal)
+  '
+  ' Label Printing & License Plate
+  '
+  sVal = Trim(txtLPSFolder.Text)               & "|" & _
+         Trim(txtLWLFolder.Text)               & "|" 
+  '
+  SYS.SetProperty("Config", "Label", sVal)
+  '
+  ' Appearance
+  '
+  sVal = Trim(txtMinSearchLen.Text)  & "|" & _
+         Trim(txtMaxSearchRows.Text) & "|" & _
+         Trim(txtLenItem.Text)       & "|" & _
+         Trim(txtLenLOCN.Text)       & "|" & _
+         Trim(txtLenLOTN.Text)       & "|" & _
+         Trim(txtLenQty.Text)        & "|" & _
+         Trim(txtLenLP.Text)         & "|"
+  '
+  SYS.SetProperty("Config", "Appear", sVal)
+  '
+  sVal = CStr(Abs(CInt(chkCustUP.Checked))) & "|"
+  '
+  SYS.SetProperty("Profiles", "Custom", sVal)
+  '
+  ' Last updated
+  '
+  SYS.SetProperty("Config", "LastUpd",  Trim(UCase(App.User)) & "  " & Format(Date,"MM/DD/YYYY") & " " & _
+            Format(Time,"hh:nn:ss") & " " & Trim(App.IpAddress))
+  LblLastUpdate.Caption  = "Last Update: " & SYS.GetProperty("Config", "LastUpd")
+End Sub
+
+Private Sub txtMonitorTM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = UCase(Trim(Rsp))
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  Cancel = True
+  '
+  If InStr(1,Rsp,";") = 0 Then
+    App.MsgBox("Add ';' between the names and at the very end!")
+    Exit Sub
+  End If
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMonitorTMTime_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim vArray  As Variant
+  Dim vArrayT As Variant
+  '
+  Rsp = UCase(Trim(Rsp))
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  Cancel = True
+  '
+  If InStr(1,Rsp,";") = 0 Then
+    App.MsgBox("Add ';' between the names and at the very end!")
+    Exit Sub
+  End If
+  '
+  vArray  = Split(txtMonitorTM.Text,";")
+  vArrayT = Split(Rsp,";")
+  '
+  If UBound(vArray) <> UBound(vArrayT) Then
+    App.MsgBox("Number of elements don't fit.")
+    Exit Sub
+  End If
+  '
+  Cancel = False
+End Sub
+
+
+Private Sub txtJDERelease_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim vArray  As Variant
+  '
+  vArray = Split(Rsp,";")
+  '
+  If Len(Trim(vArray(2))) = 0 Then
+    App.MsgBox("Please select from the search list -> F1")
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  Rsp = vArray(0)
+  '
+  If vArray(1) = "True" Then
+    ChkIsE1.Checked = True
+    txtJDERelease.Caption   = "OneWorld / Enterprise E1"
+    txtSMMain.Visible       = False
+    txtSMWarning.Visible    = False
+  Else
+    ChkIsE1.Checked = False
+    txtJDERelease.Caption   = "JDE World (AS/400)"
+    txtSMMain.Visible       = True
+    txtSMWarning.Visible    = True
+  End If
+  '
+  txtProcOptRel.Text = vArray(2)
+  '
+  Cancel = False
+  '
+End Sub
+
+Private Sub txtJDERelease_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList   As String
+  Dim sRet    As String
+  Dim vArray  As Variant
+  Dim iPrmt   As Integer
+  '
+  App.MakeList(sList,"A7.3;False;World", "World A 7.3","Select JDE Version")
+  App.MakeList(sList,"A8.1;False;World", "World A 8.1")
+  App.MakeList(sList,"A9.2;False;World", "World A 9.2")
+  App.MakeList(sList,"A9.3;False;World", "World A 9.3")
+  App.MakeList(sList,"XE;True;All",      "EnterpriseOne XE")
+  App.MakeList(sList,"8.0;True;All",     "EnterpriseOne 8.0")
+  App.MakeList(sList,"8.9;True;All",     "EnterpriseOne 8.9")
+  App.MakeList(sList,"8.10;True;All",    "EnterpriseOne 8.10")
+  App.MakeList(sList,"8.11;True;All",    "EnterpriseOne 8.11")
+  App.MakeList(sList,"8.12;True;8.12",   "EnterpriseOne 8.12")
+  App.MakeList(sList,"9.00;True;8.12",   "EnterpriseOne 9.00")
+  App.MakeList(sList,"9.10;True;8.12",   "EnterpriseOne 9.10")
+  '
+  Rsp = App.ShowList(sList,False)
+  '
+End Sub
+</Code>

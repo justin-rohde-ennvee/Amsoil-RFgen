@@ -1,0 +1,267 @@
+﻿<Record FileDesc="HR - Time Entry" FileVersion="5.0.8.0" Desc="HR - Time Entry">
+<Param Name="tmAN8" />
+<Param Name="tmDWK" />
+<Param Name="tmPDBA" />
+<Param Name="tmPHRW" />
+<Param Name="tmANI" />
+<Param Name="tmEQWO" />
+<Param Name="tmEQCG" />
+<Param Name="tmQOBJ" />
+<Param Name="tmSBL" />
+<Param Name="tmSBLT" />
+<Param Name="tmDSC" />
+<Param Name="tmPGM" />
+<Param Name="tmVERSION" />
+<Param Name="tmUSER" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: HR - TIME ENTRY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId = "THRTE0100"
+
+Private Function Transaction(ByRef tmAN8 As Variant, ByRef tmDWK As Variant, ByRef tmPDBA As Variant, ByRef tmPHRW As Variant, ByRef tmANI As Variant, ByRef tmEQWO As Variant, ByRef tmEQCG As Variant, ByRef tmQOBJ As Variant, ByRef tmSBL As Variant, ByRef tmSBLT As Variant, ByRef tmDSC As Variant, ByRef tmPGM As Variant, ByRef tmVERSION As Variant, ByRef tmUSER As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+
+  ' Debug Logging '
+  Dim LogFlag   As Boolean
+
+  LogFlag       = False
+
+  If LogFlag = True Then
+    Open "C:\THRTE0100_SQL.txt" For Append As #1
+      Print #1, Now() & " BEGIN THRTE0100"
+      Print #1, "tmAN8 = "        & tmAN8       & "|"
+      Print #1, "tmDWK = "        & tmDWK       & "|"
+      Print #1, "tmPDBA = "       & tmPDBA      & "|"
+      Print #1, "tmPHRW = "       & tmPHRW      & "|"
+      Print #1, "tmANI = "        & tmANI       & "|"
+      Print #1, "tmEQWO = "       & tmEQWO      & "|"
+      Print #1, "tmEQCG = "       & tmEQCG      & "|"
+      Print #1, "tmQOBJ = "       & tmQOBJ      & "|"
+      Print #1, "tmSBL = "        & tmSBL       & "|"
+      Print #1, "tmSBLT = "       & tmSBLT      & "|"
+      Print #1, "tmDSC = "        & tmDSC       & "|"
+      Print #1, "tmPGM = "        & tmPGM       & "|"
+      Print #1, "tmVERSION = "    & tmVERSION   & "|"
+      Print #1, "tmUSER = "       & tmUSER      & "|"
+      Print #1, vbCrLf
+    Close #1
+  End If
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sErrDesc    As String
+
+  Dim emGetAuditInfo          As New EmbeddedProc
+  Dim emF06116BeginDoc        As New EmbeddedProc
+  Dim emX0010GetNextNumber    As New EmbeddedProc
+  Dim emF06116EditLine        As New EmbeddedProc
+  Dim emF06116EndDoc          As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Transaction = False
+
+  Call SetEnvironment()
+
+  If ERP.BeginTrans = False Then
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", "", tmUSER, TM.QueueName, TM.SeqNo)
+    End If
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+
+  emGetAuditInfo.Param("UserName")              = ""
+  emGetAuditInfo.Param("Date")                  = ""
+  emGetAuditInfo.Param("Time")                  = ""
+  emGetAuditInfo.Param("Workstation_UserId")    = ""
+
+  If Ext(gsLog,3) = "1" Then
+    Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+  End If
+
+  If emGetAuditInfo.Execute = False Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    End If
+    sErrDesc = emGetAuditInfo.Name
+    GoTo ExitE1
+  End If
+
+  '----------------'
+  ' F06116BeginDoc '
+  '----------------'
+  emF06116BeginDoc.Name       = "F06116BeginDoc"
+  emF06116BeginDoc.LogMode = LogNever
+  emF06116BeginDoc.DebugLog   = cJDELogPath
+
+  emF06116BeginDoc.Param("DocAction")             = "A"
+  emF06116BeginDoc.Param("AddressNumber")         = tmAN8
+  emF06116BeginDoc.Param("ModeEmployeeNumber")    = "1"
+  emF06116BeginDoc.Param("Version")               = tmVERSION
+  emF06116BeginDoc.Param("JobNumber")             = ""
+
+  If emF06116BeginDoc.Execute = False Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", emF06116BeginDoc.Name, "", emF06116BeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    End If
+    sErrDesc = emF06116BeginDoc.Name
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+
+  emX0010GetNextNumber.Param("SystemCode")              = "06"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = "2"
+
+  If emX0010GetNextNumber.Execute = False Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUSER, TM.QueueName, TM.SeqNo)
+    End If
+    sErrDesc = emX0010GetNextNumber.Name
+    GoTo ExitE1
+  End If
+  '
+  '----------------'
+  ' F06116EditLine '
+  '----------------'
+  emF06116EditLine.Name       = "F06116EditLine"
+  emF06116EditLine.LogMode = LogNever
+  emF06116EditLine.DebugLog   = cJDELogPath
+
+  emF06116EditLine.Param("JobNumber")                 = emF06116BeginDoc.Param("JobNumber")
+  emF06116EditLine.Param("LineAction")                = "A"
+  emF06116EditLine.Param("RecordWrittenFlag")         = "0"
+  emF06116EditLine.Param("AddressNumber")             = tmAN8
+  emF06116EditLine.Param("DateWorked")                = tmDWK
+  emF06116EditLine.Param("BatchNumber")               = ""
+  emF06116EditLine.Param("ModeEmployeeNumber")        = "1"
+  emF06116EditLine.Param("ProcessingMode")            = "1"
+  emF06116EditLine.Param("RechargeCode")              = ""
+  emF06116EditLine.Param("PayDeductBenAccType")       = tmPDBA
+  emF06116EditLine.Param("HoursWorked")               = tmPHRW
+  emF06116EditLine.Param("JobCategory")               = ""
+  emF06116EditLine.Param("AcctNoInputMode")           = tmANI
+  emF06116EditLine.Param("CostCenter")                = ""
+  emF06116EditLine.Param("ObjectAccount")             = ""
+  emF06116EditLine.Param("Subledger")                 = ""
+  emF06116EditLine.Param("SubledgerType")             = tmSBLT
+  emF06116EditLine.Param("EquipmentWorkedOn")         = tmEQWO
+  emF06116EditLine.Param("CostCenterChargeout")       = ""
+  emF06116EditLine.Param("PercentOrAmountCode")       = ""
+  emF06116EditLine.Param("NameRemarkExplanation")     = ""
+  emF06116EditLine.Param("ShiftDiffCalcSequence")     = ""
+  emF06116EditLine.Param("EmployeePayStatus")         = ""
+  emF06116EditLine.Param("LaborLoadingMethod")        = ""
+  emF06116EditLine.Param("Company")                   = ""
+  emF06116EditLine.Param("AmtGrossPay")               = ""
+  emF06116EditLine.Param("SecurityIndicator")         = ""
+  emF06116EditLine.Param("ERRFlag")                   = "N"
+  emF06116EditLine.Param("MultiplierPayTypeMult")     = ""
+  emF06116EditLine.Param("HourlyRate")                = ""
+  emF06116EditLine.Param("AssetNumberInput")          = tmEQWO
+  emF06116EditLine.Param("LineNumber")                = ""
+  emF06116EditLine.Param("LockoutErrorFlag")          = "0"
+  emF06116EditLine.Param("DateUpdated")               = ""
+  emF06116EditLine.Param("UserId")                    = tmUSER
+  emF06116EditLine.Param("EquipmentObjectAccount")    = tmQOBJ
+  emF06116EditLine.Param("EquipmentIDInput")          = tmEQCG
+
+  If emF06116EditLine.Execute = False Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", emF06116BeginDoc.Name, "", emF06116BeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    End If
+    sErrDesc = emF06116BeginDoc.Name
+    GoTo ExitE1
+  End If
+
+  emF06116EditLine.Param("ErrorFlag")                   = ""
+  emF06116EditLine.Param("RecordWrittenFlag")           = ""
+  emF06116EditLine.Param("HomeCompany")                 = ""
+  emF06116EditLine.Param("HomeCostCenter")              = ""
+  emF06116EditLine.Param("JobCategory")                 = ""
+  emF06116EditLine.Param("AcctNoInputMode")             = tmANI
+  emF06116EditLine.Param("ObjectAccount")               = ""
+  emF06116EditLine.Param("EquipmentWorkedOn")           = tmEQWO
+  emF06116EditLine.Param("TaxAreaWork")                 = ""
+  emF06116EditLine.Param("RateHourlyExtendedW")         = ""
+  emF06116EditLine.Param("EmployeePayStatus")           = ""
+  emF06116EditLine.Param("RtHourly")                    = ""
+  emF06116EditLine.Param("RateHourlyExtendedW_Work")    = ""
+  emF06116EditLine.Param("RtBaseHourly")                = ""
+  emF06116EditLine.Param("HourlyRate")                  = ""
+  emF06116EditLine.Param("AccountModeGL")               = ""
+  emF06116EditLine.Param("AssetNumberInput")            = tmEQWO
+  emF06116EditLine.Param("LastLineNumber")              = ""
+  emF06116EditLine.Param("AutoSplitFlag_DailyTE")       = ""
+  emF06116EditLine.Param("NameAlpha")                   = ""
+  emF06116EditLine.Param("PayTypeDescription")          = ""
+
+  '--------------'
+  ' F06116EndDoc '
+  '--------------'
+  emF06116EndDoc.Name       = "F06116EndDoc"
+  emF06116EndDoc.LogMode = LogNever
+  emF06116EndDoc.DebugLog   = cJDELogPath
+
+  emF06116EndDoc.Param("JobNumber")     = emF06116EditLine.Param("JobNumber")
+  emF06116EndDoc.Param("ComputerID")    = emGetAuditInfo.Param("Workstation_UserId")
+  emF06116EndDoc.Param("ProgramId")     = tmPGM
+  emF06116EndDoc.Param("UserId")        = tmUSER
+
+  If emF06116EndDoc.Execute = False Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", emF06116BeginDoc.Name, "", emF06116BeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    End If
+    sErrDesc = emF06116BeginDoc.Name
+    GoTo ExitE1
+  End If
+
+  ERP.CommitTrans
+  
+  Transaction = True
+
+  Exit Function
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If Len(Trim(sErrDesc)) > 0 Then
+    tmERRTEXT = sErrDesc
+    ERP.RollbackTrans
+    Exit Function
+  End If
+
+End Function
+</Code>

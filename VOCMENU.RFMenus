@@ -1,0 +1,6 @@
+﻿<Record FileDesc="Vocollect Test Menu" FileVersion="5.0.8.0" Desc="Vocollect Test Menu">
+<MenuItem Id="VPick" Desc="1 = Put away" />
+<MenuItem Id="vFork" Desc="2 = Replenishment" />
+<MenuItem Id="vPick4211" Desc="3 = Manual Picking" />
+<MenuItem Id="vPick" Desc="4 = Auto Picking" />
+</Record>

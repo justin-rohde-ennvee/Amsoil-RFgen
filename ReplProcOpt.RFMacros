@@ -1,0 +1,126 @@
+﻿<Record FileDesc="Replicate Proc.Options" FileVersion="5.0.8.0" Desc="Replicate Proc.Options" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: REPLICATE PROCESSING OPTIONS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction() As Boolean
+  On Error Resume Next
+
+  ' This function reads all Processing Options and Updates it to RR983051 for data replication
+  ' on the Transaction Server this function needs to be called by Transaction Manager on a timer event
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sSql        As String
+  Dim sRows       As String
+  Dim sCols       As String
+  Dim sRows1      As String
+  Dim sCols1      As String
+  Dim sRows2      As String
+  Dim sCols2      As String
+  Dim sInPID      As String
+  Dim sPgm        As String
+  Dim sVers       As String
+  Dim sDst        As String
+  Dim sHea        As String
+  Dim sJPO        As String
+  Dim sDate       As String
+  Dim sTime       As String
+  Dim sUser       As String
+  Dim iCnt        As Long
+  Dim nPos        As Long
+  Dim szData()    As Byte
+  Dim oRs         As ADODB.Recordset
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  ' run every x minutes only. TM will call the routine every 60 seconds
+  iCnt = CInt(SYS.GetProperty("Timer","ReplProcOpt"))
+  '
+  If iCnt < 15 Then      'Change that value to customer need
+    SYS.SetProperty("Timer","ReplProcOpt", iCnt +1)
+    Exit Function
+  End If
+  '
+  sDate = Format(Date,"YYMMDD")
+  sTime = Format(Time,"HHNNSS")
+
+  If Len(Trim(App.User)) > 0 Then
+    sUser = App.User
+  Else
+    sUser = "RFGenTM"
+  End If
+  '
+  ' Get all by RFGen supported programs
+  sSql = "select POPID from RFPO group by POPID order by POPID"
+
+  DB.Execute(sSql,sCols,sRows)
+
+  For iCnt = 1 To DB.Count(sRows)
+    sInPID = sInPID & "'" & Trim(DB.Extract(sCols,sRows,iCnt,1)) & "',"
+  Next iCnt
+
+  ' cut last ","
+  sInPID = Left(sInPID,Len(sInPID) -1)
+  sInPID = "(" & sInPID & ")"
+  '
+  ' Get all Processing Options from JDE
+  sSql = "select VRPID, VRVERS, VRJD, VRDSTNM from F983051 where VRPID in " & sInPID
+
+  DB.Execute(sSql,sCols,sRows)
+
+  For iCnt = 1 To DB.Count(sRows)
+    sPgm  = DB.Extract(sCols,sRows,iCnt,1)
+    sVers = DB.Extract(sCols,sRows,iCnt,2)
+    sHea  = DB.Extract(sCols,sRows,iCnt,3)
+    sDst  = DB.Extract(sCols,sRows,iCnt,4)
+    'get PO Data in a ADO Recordset
+    sSql = "select VRPODATA from F983051 where VRPID = '" & sPgm & "' and VRVERS = '" & sVers & "'"
+    Set oRs = DB.OpenResultset(sSql)
+    If Not oRs.EOF Then
+      szData = oRs.Fields(0).GetChunk(999999)
+      If Len(szData) = 0 Then
+        szData = oRs.Fields(0)
+      End If
+      If (szData(1) = 0) Then
+        sJPO = CStr(szData)
+      Else
+        sJPO = StrConv(szData, vbUnicode)
+      End If
+      sJPO = Replace(sJPO, vbNullChar, "")
+      ' Truncate chunk
+      nPos = InStr(sJPO,Trim(sDst))
+      sJPO = Left(sJPO, (nPos -4))
+      sJPO = sJPO & "|"
+      ' check if ProcOptions changed
+      sSql = "select RRPODATA, RRHEADER from RR983051 where RRPID = '" & sPgm & "' and RRVERS = '" & sVers & "' "
+      DB.Execute(sSql,sCols1, sRows1)
+      If Len(sRows1) > 0  Then     'update
+        If Trim(DB.Extract(sCols1,sRows1,1,1)) <> Trim(sJPO) Or Trim(DB.Extract(sCols1,sRows1,1,2)) <> Trim(sHea) Then
+          sSql = "update RR983051 set RRPODATA = '" & sJPO & "',RRHEADER = '" & sHea & "',  RRUSER = '" & sUser & "', RRTIME = '" & sTime & "', RRDATE = '" & sDate & "' " _
+               & "where RRPID = '" & sPgm & "' and RRVERS = '" & sVers & "'"
+        End If
+      Else    'insert
+        sSql = "insert into RR983051 (RRPID, RRVERS, RRPODATA, RRHEADER, RRUSER, RRTIME, RRDATE) Values('" & sPgm & "', '" & sVers & "', '" & sJPO & "', '" & sHea & "', '" & sUser & "', '" & sTime & "', '" & sDate & "')
+      End If
+      DB.Execute(sSql)
+    End If
+  Next iCnt
+  '
+  SYS.SetProperty("Timer","ReplProcOpt", 0)
+
+End Function
+</Code>

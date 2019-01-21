@@ -1,0 +1,1401 @@
+﻿<Record FileDesc="HR - Time Entry (Mass Data)" FileVersion="5.0.8.0" Desc="HR - Time Entry (Mass Data)" Group="HR" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtANPA&vm;lblANPA&vm;txtWeek&vm;lblWeek&vm;txtAN8&vm;lblALPH&vm;txtDWK&vm;lblDWK&vm;txtPDBA&vm;lblPDBA&vm;txtPHRW&vm;txtSBL&vm;lblSBLT&vm;txtEQWO&vm;lblEQWO&vm;txtEQCG&vm;lblEQCG&vm;txtQOBJ&vm;txtANI&vm;txtAccept&vm;frmSummary&vm;btnTEBatch&vm;lblRecProc&vm;lblHrsProc&vm;lblRecords&vm;lblHours&vm;lbxData&vm;btnPrev&vm;btnNext">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtANPA" />
+<SchemaParam Linked="0" Attr="2" Name="lblANPA" />
+<SchemaParam Linked="0" Attr="3" Name="txtWeek" />
+<SchemaParam Linked="0" Attr="4" Name="lblWeek" />
+<SchemaParam Linked="0" Attr="5" Name="txtAN8" />
+<SchemaParam Linked="0" Attr="6" Name="lblALPH" />
+<SchemaParam Linked="0" Attr="7" Name="txtDWK" />
+<SchemaParam Linked="0" Attr="8" Name="lblDWK" />
+<SchemaParam Linked="0" Attr="9" Name="txtPDBA" />
+<SchemaParam Linked="0" Attr="10" Name="lblPDBA" />
+<SchemaParam Linked="0" Attr="11" Name="txtPHRW" />
+<SchemaParam Linked="0" Attr="12" Name="txtSBL" />
+<SchemaParam Linked="0" Attr="13" Name="lblSBLT" />
+<SchemaParam Linked="0" Attr="14" Name="txtEQWO" />
+<SchemaParam Linked="0" Attr="15" Name="lblEQWO" />
+<SchemaParam Linked="0" Attr="16" Name="txtEQCG" />
+<SchemaParam Linked="0" Attr="17" Name="lblEQCG" />
+<SchemaParam Linked="0" Attr="18" Name="txtQOBJ" />
+<SchemaParam Linked="0" Attr="19" Name="txtANI" />
+<SchemaParam Linked="0" Attr="20" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="21" Name="frmSummary" />
+<SchemaParam Linked="0" Attr="22" Name="btnTEBatch" />
+<SchemaParam Linked="0" Attr="23" Name="lblRecProc" />
+<SchemaParam Linked="0" Attr="24" Name="lblHrsProc" />
+<SchemaParam Linked="0" Attr="25" Name="lblRecords" />
+<SchemaParam Linked="0" Attr="26" Name="lblHours" />
+<SchemaParam Linked="0" Attr="27" Name="lbxData" />
+<SchemaParam Linked="0" Attr="28" Name="btnPrev" />
+<SchemaParam Linked="0" Attr="29" Name="btnNext" />
+</Schema>
+<Displays>
+<Display Name="PC_GUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtANPA" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="95" Height="22" AnchorRight="912" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Supervisor:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="44" Width="103" Height="22" AnchorRight="808" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblANPA" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="66" Width="63" Height="22" AnchorRight="848" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblANPA" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWeek" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="376" Top="44" Width="119" Height="22" AnchorRight="512" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Week Starting:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="496" Top="44" Width="87" Height="22" AnchorRight="424" AnchorBottom="726" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblWeek" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="496" Top="66" Width="63" Height="22" AnchorRight="448" AnchorBottom="704" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblWeek" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAN8" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="528" Width="63" Height="22" AnchorRight="928" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Badge#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="528" Width="103" Height="22" AnchorRight="824" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblALPH" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="550" Width="63" Height="22" AnchorRight="864" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblALPH" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDWK" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="248" Top="528" Width="47" Height="22" AnchorRight="712" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="528" Width="87" Height="22" AnchorRight="624" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDWK" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="550" Width="55" Height="22" AnchorRight="656" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblDWK" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPDBA" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="416" Top="528" Width="79" Height="22" AnchorRight="512" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pay Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="496" Top="528" Width="55" Height="22" AnchorRight="456" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPDBA" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="496" Top="550" Width="63" Height="22" AnchorRight="448" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblPDBA" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPHRW" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="616" Top="528" Width="55" Height="22" AnchorRight="336" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Hours:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="528" Width="79" Height="22" AnchorRight="256" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSBL" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="784" Top="528" Width="47" Height="22" AnchorRight="176" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="W/O#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="832" Top="528" Width="87" Height="22" AnchorRight="88" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSBLT" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="832" Top="550" Width="63" Height="22" AnchorRight="112" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblSBLT" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEQWO" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="594" Width="71" Height="22" AnchorRight="920" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Eqp Wrk:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="88" Top="594" Width="95" Height="22" AnchorRight="824" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEQWO" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="88" Top="616" Width="63" Height="22" AnchorRight="856" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblEQWO" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEQCG" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="594" Width="71" Height="22" AnchorRight="584" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Eqp Use:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="594" Width="95" Height="22" AnchorRight="488" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEQCG" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="616" Width="63" Height="22" AnchorRight="520" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblEQCG" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQOBJ" Attr="18" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="594" Width="71" Height="22" AnchorRight="264" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Eqp Obj:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="744" Top="594" Width="87" Height="22" AnchorRight="176" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtANI" Attr="19" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="660" Width="79" Height="22" AnchorRight="912" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Account#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="660" Width="167" Height="22" AnchorRight="744" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="20" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="416" Top="660" Width="79" Height="22" AnchorRight="512" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="txtAccept" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="664" Top="660" Width="0" Height="22" AnchorRight="343" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="frmSummary" Attr="21">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="704" Width="375" Height="88" AnchorRight="632" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnTEBatch" Attr="22">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Run TE Batch" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="16" Top="726" Width="127" Height="44" AnchorRight="864" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblRecProc" Attr="23">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="184" Top="726" Width="119" Height="22" AnchorRight="704" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Total records:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblHrsProc" Attr="24">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="748" Width="103" Height="22" AnchorRight="704" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Total hours:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblRecords" Attr="25">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="312" Top="726" Width="47" Height="22" AnchorRight="648" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="    0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblHours" Attr="26">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="748" Width="63" Height="22" AnchorRight="648" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="   0.00" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxData" Attr="27" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="0" Height="22" AnchorRight="1007" AnchorBottom="660" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="999" Height="374" AnchorRight="8" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnPrev" Attr="28">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="&lt;-Prev" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="832" Top="22" Width="87" Height="22" AnchorRight="88" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnNext" Attr="29">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Next-&gt;" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="920" Top="22" Width="87" Height="22" AnchorRight="0" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="1007" FormHeight="792" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000001" Caption="| MANAGEMENT CONSOLE |" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' HUMAN RESOURCES/PAYROLL - TIME ENTRY (MASS DATA)
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const mnStartDay    = 2        '1 = Work week starts on Monday. Su =1, Mo =2, Tu = 3, We = 4........
+Private Const cTRANDESC     = "RFgen Time Entry"
+Private Const cTNId         = "FHRTE0200"
+Private msPgm               As String
+Private msVersion           As String
+Private msEDBT              As String
+Private msDate              As String
+Private mnEDTN              As Integer
+Private msCO                As String
+Private msMCU               As String
+Private mnTotRec            As Integer
+Private mnTotHrs            As Single
+Private mbShowANI           As Boolean
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Call SetDisplay()
+
+  txtAccept.Caption = ""
+
+  ' Initialize the RFGen recordset with extra fields
+  ' Initialize special controls
+
+  lblANPA.Caption = ""
+  lblANPA.Label.BackColor1 = cFieldDefaultBC
+
+  lblWeek.Caption = ""
+  lblWeek.Label.BackColor1 = cFieldDefaultBC
+
+  lblALPH.Caption = ""
+  lblALPH.Label.BackColor1 = cFieldDefaultBC
+
+  lblDWK.Caption = ""
+  lblDWK.Label.BackColor1 = cFieldDefaultBC
+
+  lblPDBA.Caption = ""
+  lblPDBA.Label.BackColor1 = cFieldDefaultBC
+
+  lblEQWO.Caption = ""
+  lblEQWO.Label.BackColor1 = cFieldDefaultBC
+
+  lblEQCG.Caption = ""
+  lblEQCG.Label.BackColor1 = cFieldDefaultBC
+
+  lblSBLT.Caption = ""
+  lblSBLT.Label.BackColor1 = cFieldDefaultBC
+
+  txtQOBJ.Visible = False
+
+  txtANI.Visible = False
+  mbShowANI = False
+
+  'Initialization of summary controls and variables
+  lblRecProc.Visible = False
+  lblHrsProc.Visible = False
+  lblRecords.Visible = False
+  lblHours.Visible = False
+  frmSummary.Width = 19
+  mnTotRec = 0
+  mnTotHrs = 0
+
+  'Since these are optional fields, they must be set to null here.  Otherwise, being optional,
+  'the code that sets them to null in their event procedure is never encountered and this causes
+  'problems when trying to add a records for the first time after the form loads.
+  App.SetValue("tmQOBJ", "")
+  App.SetValue("tmSBL", "")
+  App.SetValue("tmSBLT", "")
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  txtDWK.Defaults = Format(Date, "MM/DD/YY") & ";O"
+
+  msEDBT = Format(Date,"YYYYMMDD") & Format(Time,"HHNNSS")
+  mnEDTN = 100
+  msDate = ConvDatetoJDE(CStr(Date))
+
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+
+End Sub
+
+Private Sub btnPrev_Click()
+  On Error Resume Next
+
+  If IsDate(txtWeek.Text) Then
+    App.SetValue("tmWeek",ConvDatetoJDE(CStr(DateAdd("d",-7,txtWeek.Text))))
+    App.SetValue("tmWeekTo", ConvDatetoJDE(CStr(DateAdd("d", 6, DateAdd("d",-7,txtWeek.Text)))))
+    lblWeek.Caption = Format(App.GetValue("tmWeek"), "dddd") & "," & " Week: " & Format(App.GetValue("tmWeek"), "ww/yyyy")
+    txtWeek.Text = DateAdd("d",-7,txtWeek.Text)
+  Else
+    lblWeek.Caption = ""
+    Exit Sub
+  End If
+
+  Call BuildList()
+
+End Sub
+
+Private Sub btnNext_Click()
+  On Error Resume Next
+
+  If IsDate(txtWeek.Text) Then
+    App.SetValue("tmWeek",ConvDatetoJDE(CStr(DateAdd("d",7,txtWeek.Text))))
+    App.SetValue("tmWeekTo", ConvDatetoJDE(CStr(DateAdd("d", 6, DateAdd("d",7,txtWeek.Text)))))
+    lblWeek.Caption = Format(App.GetValue("tmWeek"), "dddd") & "," & " Week: " & Format(App.GetValue("tmWeek"), "ww/yyyy")
+    txtWeek.Text = DateAdd("d",7,txtWeek.Text)
+  Else
+    lblWeek.Caption = ""
+    Exit Sub
+  End If
+
+  Call BuildList()
+
+End Sub
+
+Private Sub txtANPA_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nDay As Integer
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  sSql = "select YAALPH from  F060116" & _
+         " where YAAN8 = " & Val(Rsp)
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+
+  lblANPA.Caption = Trim(DB.Extract(sCols,sRows,1,1))
+
+  App.SetValue("tmANPA", Val(Rsp))
+
+  Cancel = False
+
+  nDay = CInt(Format(Date, "w"))
+
+  If nDay - mnStartDay > 0 Then
+    txtWeek.Defaults = CStr(DateAdd("d", ((nDay - mnStartDay) * -1), Date)) & ";O"
+  Else
+    txtWeek.Defaults = Format(Date, "MM/DD/YYYY") & ";O"
+  End If
+
+End Sub
+
+Private Sub txtWeek_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  lblWeek.Caption = ""
+
+End Sub
+
+Private Sub txtWeek_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If IsDate(Rsp) Then
+    App.SetValue("tmWeek",ConvDatetoJDE(Rsp))
+    App.SetValue("tmWeekTo", ConvDatetoJDE(CStr(DateAdd("d", 7, Rsp))))
+    lblWeek.Caption = Format(Rsp, "dddd") & "," & " Week: " & Format(Rsp, "ww/yyyy")
+  Else
+    lblWeek.Caption = ""
+    Cancel = True
+    Exit Sub
+  End If
+
+  Call BuildList()
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtAN8_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmAN8", "")
+  lblALPH.Caption = ""
+
+
+End Sub
+
+Private Sub txtAN8_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sEmp  As String
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  'F06116 - Employee Master is used to obtain Employee Name, Home Company, and Home Business Unit.
+  'Note: This table is the best table to use when correlated an employee ID with company and business unit information.
+  '      This table contains YAHMCO (home company), YAHMCU (home business unit), And YAMCU (business unit).
+  '      This table does not contain a field for YACO (company).  Therefore, YAHMCO and YAHMCU are used in the query
+  sSql = "select YAALPH, YAHMCO, YAHMCU from  F060116" & _
+         " where YAAN8 = " & Val(Rsp) & "and YAANPA = "  & App.GetValue("tmANPA")
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+
+  sEmp = Trim(DB.Extract(sCols,sRows,1,1))
+  msCO = DB.Extract(sCols,sRows,1,2)
+  msMCU = DB.Extract(sCols,sRows,1,3)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(59)
+    Exit Sub
+  End If
+
+  lblALPH.Caption = sEmp
+
+  App.SetValue("tmAN8", Val(Rsp))
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtDWK_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmDWK", "")
+  'lblPHRW.Caption = ""
+  App.SetValue("tmHoursoF", 0)
+  lblDWK.Caption = ""
+  txtAccept.Caption = ""
+
+End Sub
+
+Private Sub txtDWK_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sExpDt  As String
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim nHours  As Currency
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  If InStr(1,Rsp,"/") = 0 Then
+    Rsp = Format(Rsp, "##/##/##")
+  End If
+
+  sExpDt = CStr(CDate(Rsp))
+
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+
+  sExpDt = ConvDatetoJDE(sExpDt)
+  App.SetValue("tmDWK", sExpDt)
+
+  sSql = "select sum(VLPHRW) from F06116Z1 where VLAN8 = %tmAN8 and VLEDTC = 'A' and VLDWK = %tmDWK"
+  DB.Execute (sSql,sCols,sRows)
+
+  nHours = ConvDecimalsFromSQL("PHRW",sRows)
+
+  If nHours <> 0 Then
+    'lblPHRW.Caption = "Hours on file: " & CStr(nHours)
+    App.SetValue("tmHoursoF", nHours)
+  Else
+    'lblPHRW.Caption = ""
+    App.SetValue("tmHoursoF", 0)
+  End If
+
+  lblDWK.Caption = Format(Rsp,"ddd")
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtDWK_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Press F2 to view details."
+
+End Sub
+
+Private Sub txtDWK_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+
+End Sub
+
+Private Sub txtDWK_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+
+  If Fkey = 2 Then
+
+    Dim sSql   As String
+    Dim sCols  As String
+    Dim sRows  As String
+    Dim sValue As String
+    Dim sList  As String
+    Dim sDate  As String
+    Dim nHours As Currency
+    Dim iCnt   As Integer
+    Dim sANI   As String
+    Dim sTitle As String
+
+    sTitle = "Date        Type    Hours   Account               Eqp Wrkd    Eqp Used    Object   User ID       Trans Date"
+    '         ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9----+----A----+----B----+----C--
+    '         03/20/2009|    1|    0.00|  6100.1341           | 123       | 123       | 1341   | DEEP       |  03/20/20099
+
+    sSql = "select VLDWK, VLPDBA, VLPHRW, VLANI, VLEQWO, VLEQCG, VLQOBJ, VLEDUS, VLEDDT from F06116Z1 " & _
+           "where VLAN8 = %tmAN8 And VLEDSP = '0' and VLSSFL = '0' order by VLDWK, VLPDBA, VLPHRW"
+    DB.Execute(sSql,sCols,sRows)
+
+    nHours = 0
+    If Len(sRows) > 0 Then
+      For iCnt = 1 To DB.Count(sRows)
+        sValue = ""
+        If iCnt = 1 Then
+          sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1))
+        End If
+        If sDate <> ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1)) Then
+          App.MakeList(sList, "", ".........................")
+          App.MakeList(sList, "", "Total " & sDate & "   " & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),6," "))
+          App.MakeList(sList, "", "-------------------------")
+          nHours = 0
+        End If
+      sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,1))
+      '(01) DWK
+      sValue = sValue & sDate & "|"
+      '(02) PDBA
+      sValue = sValue & FixRight(DB.Extract(sCols,sRows,iCnt,2),4," ") & "|   "
+      '(03) PHRW
+      sValue = sValue & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",DB.Extract(sCols,sRows,iCnt,3))),"##.00"),6," ") & "|  "
+      '(04) ANI
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,4),20," ") & "| "
+      '(05) EQWO
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,5),10," ") & "| "
+      '(06) EQCG
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,6),10," ") & "| "
+      '(07) QOBJ
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,7),7," ") & "| "
+      '(08) VLEDUS
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,8),11," ") & "| "
+      '(09) VLEDDT
+      sValue = sValue & FixRight(ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,9)),10," ")
+      nHours = nHours + CCur(DB.Extract(sCols,sRows,iCnt,3))
+      App.MakeList(sList, sValue, Replace(sValue,"|", " "), sTitle)
+      Next iCnt
+    End If
+
+    App.MakeList(sList, "", ".........................")
+    App.MakeList(sList, "", "Total " & sDate & "   " & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),6," "))
+    App.MakeList(sList, "", "-------------------------")
+
+Showagain:
+
+    sValue = App.ShowList(sList, True)
+
+    If Len(sValue) > 0 Then
+      txtDWK.Text      = Trim(LField(sValue, "|", 1))
+      txtPDBA.Text     = Trim(LField(sValue, "|", 2))
+      txtPHRW.Defaults = Trim(LField(sValue, "|", 3) & ";O")
+      sANI = LField(sValue, "|", 4)
+      If Left(Trim(sANI),1) = "\" Then
+        txtSBL.Defaults    = Replace(Replace(Trim(sANI),"\", ""), ".", "") & ";O"
+      Else
+        txtANI.Defaults    = Trim(sANI) & ";O"
+      End If
+      txtEQWO.Defaults    = Trim(LField(sValue, "|", 5)) & ";O"
+      txtEQCG.Defaults    = Trim(LField(sValue, "|", 6)) & ";O"
+      txtQOBJ.Defaults    = Trim(LField(sValue, "|", 7)) & ";O"
+      'App.SetFocus("txtPDBA")
+    Else
+      Exit Sub
+      'GoTo Showagain
+    End If
+
+  End If
+
+End Sub
+
+Private Sub txtPDBA_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmPDBA", "")
+  lblPDBA.Caption = ""
+
+End Sub
+
+Private Sub txtPDBA_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Rsp = Trim(UCase(Rsp))
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  sSql = "select YCEXA from  F069116" & _
+         " where YCPDBA = " & Rsp
+
+  DB.Execute(sSql,sCols,sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(266)
+    Exit Sub
+  End If
+
+  lblPDBA.Caption = Trim(DB.Extract(sCols,sRows,1,1))
+
+  App.SetValue("tmPDBA", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtPDBA_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSql   As String
+  Dim sWhere As String
+  Dim oList  As New SearchList
+
+  sSql = "select YCPDBA, YCEXA from  F069116" & _
+         " where YCDISO = 'P' order by YCPDBA"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Type",        05, CenterLeft, True)
+  oList.SetColumn(2, "Description", 15, CenterLeft, True)
+  oList.SQL = sSql
+
+  Rsp = oList.ShowList
+
+  Cancel = (Len(Rsp) = 0)
+
+End Sub
+
+Private Sub txtPHRW_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmPHRW", "")
+
+End Sub
+
+Private Sub txtPHRW_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  If IsNumeric(Rsp) = False Then
+    App.MsgBox GetMsg(85)
+    Exit Sub
+  End If
+
+  If (App.GetValue("tmHoursoF") + CCur(Rsp)) > 24 Then
+    App.MsgBox GetMsg(260)
+    Exit Sub
+  End If
+
+  Rsp = Format(Rsp,"##.00")
+  App.SetValue("tmPHRW", Rsp)
+
+  Cancel = False
+
+End Sub
+Private Sub txtSBL_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmSBL", "")
+  App.SetValue("tmSBLT", "")
+  App.SetValue("tmANI", "")
+
+  lblSBLT.Visible = False
+
+  mbShowANI = False
+  txtANI.Visible = False
+
+End Sub
+
+Private Sub txtSBL_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+  Dim sSql As String
+
+  sSql = "SELECT wadoco AS ""Work Order"", wadcto AS ""W/O Type"", wadl01 as ""W/O Description"" FROM F4801 WHERE " & _
+          "wamcu = "   & "'" & msMCU & "'" & _
+          " ORDER BY wadoco"
+
+  sList = DB.MakeList(sSql)
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtSBL_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sWO   As String
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+
+  App.SetValue("tmSBL", "")
+
+  'Blank Entry --LEAVE SUB
+  If (Len(Rsp)=0) Then
+    lblSBLT.Visible = False
+    mbShowANI = True
+    txtANI.Visible = True
+    Exit Sub
+  End If
+
+  'Non-Blank Entry
+  Cancel = True
+
+  sSql = "select * from F4801 where wadoco = " & Rsp
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox("Work order does not exist or is invalid.")
+    lblSBLT.Visible = False
+    mbShowANI = True
+    txtANI.Visible = True
+    Exit Sub
+  End If
+
+  lblSBLT.Visible = True
+  lblSBLT.Caption = Trim(DB.Extract(sCols, sRows, 1, 1))
+
+  App.SetValue("tmSBL", Rsp)
+  App.SetValue("tmSBLT", "W")
+
+  sWO = "\" & Rsp & "."
+  App.SetValue("tmANI", sWO)
+
+  mbShowANI = False
+  txtANI.Visible = False
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtEQWO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmEQWO", "")
+  lblEQWO.Caption = ""
+
+End Sub
+
+Private Sub txtEQWO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+
+  sList = DB.MakeList("select FANUMB as Asset_ID, Left(FADL01, 15) as Description, FAMCU as MCU, FALOC as Locn from F1201 ORDER BY FANUMB")
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtEQWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  App.SetValue("tmEQWO", " ")
+
+  If Len(Rsp) = 0 Then Exit Sub
+
+  Cancel=True
+
+  ' Validate it
+  sSql = "select * from F1201 where FANUMB = " & Rsp
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(50))
+    Exit Sub
+  End If
+
+  App.SetValue("tmEQWO", Rsp)
+  lblEQWO.Caption = DB.Extract(sCols, sRows, 1, 13)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtEQCG_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmEQCG", "")
+
+  txtQOBJ.Visible = False
+
+  lblEQCG.Caption = ""
+
+End Sub
+
+Private Sub txtEQCG_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+
+  sList = DB.MakeList("select FANUMB as Asset_ID, Left(FADL01, 15) as Description, FAMCU as MCU, FALOC as Locn from F1201 ORDER BY FANUMB")
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtEQCG_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  App.SetValue("tmEQCG", "")
+
+  If Len(Rsp) = 0 Then
+    txtQOBJ.Visible = False
+    If mbShowANI = True Then
+      txtANI.Visible = True
+      App.SetFocus("txtANI")
+   Else
+      txtANI.Visible = False
+      txtAccept.Caption = "Press Enter to continue."
+      App.SetFocus("txtAccept")
+    End If
+    Exit Sub
+  End If
+
+  Cancel=True
+
+  sSql = "select * from F1201 where FANUMB = " & Rsp
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(50))
+    Exit Sub
+  End If
+
+  App.SetValue("tmEQCG", Rsp)
+  txtQOBJ.Visible = True
+  lblEQCG.Caption = DB.Extract(sCols, sRows, 1, 13)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtQOBJ_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmQOBJ", "")
+
+End Sub
+
+Private Sub txtQOBJ_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sList As String
+  Dim sSql As String
+
+  sSql = "SELECT DISTINCT(gmobj) AS ""Equip Object Acct"" FROM F0901 WHERE " & _
+          "gmco = "   & "'" & msCO & "'" & " AND " & _
+          "gmmcu = "  & "'" & msMCU & "'" & _
+          " ORDER BY gmobj"
+
+  sList = DB.MakeList(sSql)
+
+  Rsp = App.ShowList(sList, True)
+
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtQOBJ_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  App.SetValue("tmQOBJ", "")
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  sSql = "SELECT gmobj FROM F0901 WHERE " & _
+          "gmco = "   & "'" & msCO & "'" & " AND " & _
+          "gmmcu = "  & "'" & msMCU & "'" & " AND " & _
+          "gmobj = " & Rsp
+
+  DB.Execute(sSql,sCols,sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(80)
+    Exit Sub
+  End If
+
+  txtQOBJ.Text = Trim(DB.Extract(sCols,sRows,1,1))
+  App.SetValue("tmQOBJ", Rsp)
+
+  Cancel = False
+
+  If mbShowANI = True Then
+    txtANI.Visible = True
+    App.SetFocus("txtANI")
+  Else
+    txtANI.Visible = False
+    txtAccept.Caption = "Press Enter to continue."
+    App.SetFocus("txtAccept")
+  End If
+
+End Sub
+
+Private Sub txtANI_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  If mbShowANI = True Then
+    txtANI.Visible = True
+  Else
+    txtANI.Visible = False
+  End If
+
+  App.SetValue("tmANI", "")
+
+End Sub
+
+Private Sub txtANI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sBU     As String
+  Dim sOBJ    As String
+  Dim sSUB    As String
+  Dim sANI()  As String
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+
+  Rsp = Trim(UCase(Rsp))
+
+  If Len(Rsp) > 0 Then
+    sANI = Split(Rsp, ".", 3)
+    sBU = FixRight(sANI(0),12, " ")
+    sOBJ = sANI(1)
+    sSUB = sANI(2)
+    sSql = "select * from F0901 where gmmcu = " & "'" & sBU & "'" & _
+           " and gmobj = " & "'" & sOBJ & "'" & _
+           " and gmsub = " & "'" & sSUB & "'"
+    DB.Execute(sSql, sCols, sRows)
+    If (Len(sRows) = 0) Then
+      App.MsgBox GetMsg(49)
+      App.SetFocus("txtANI")
+      Exit Sub
+    End If
+  End If
+
+  If Len(Rsp) = 0 Then
+    App.SetValue("tmANI", "")
+    Exit Sub
+  End If
+
+  App.SetValue("tmANI", Rsp)
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Press Enter to continue."
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  txtAccept.Caption = "Processing . . ."
+
+  Call Update()
+
+End Sub
+
+Private Sub btnTEBatch_Click()
+  On Error Resume Next
+
+  Dim emProc As New EmbeddedProc
+
+  emProc.Name                = "THRTE0100"
+  emProc.DataSource          = gsDataSource
+  emProc.Param("tmDSC")      = Left(FixLeft(UCase(App.User),10," ") & cTRANDESC, 30)
+  emProc.Param("tmVERSION")  = msVersion
+  emProc.Param("tmPGM")      = msPgm
+  emProc.Param("tmUser")     = UCase(App.User)
+
+  'Ensure that Queue Processing is enabled AND we are able to queue.
+  If gbQueueProcessing = True Then  'Queue processing is enabled
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If emProc.Queue = False Then    'However, we are unable to queue
+      App.MsgBox GetMsg(222) & vbCrLf & emProc.Param("tmERRTEXT") '"Unable to queue: <reason>."
+      App.SetFocus "btnTEBatch"
+      Exit Sub
+    End If
+  Else  'Data for THRTE0100 is prepared here
+    Dim sSql1     As String
+    Dim sCols1    As String
+    Dim sRows1    As String
+    Dim sSql2     As String
+    Dim sCols2    As String
+    Dim sRows2    As String
+    Dim sSql3     As String
+    Dim sCols3    As String
+    Dim sRows3    As String
+    Dim sSql4     As String
+    Dim sCols4    As String
+    Dim sRows4    As String
+    Dim sList     As String
+    Dim iRcd      As Integer
+    Dim iCnt      As Integer
+    Dim nAN8      As Long
+    Dim sValue    As String
+    'SQL query to obtain all of the valid AN8 (employees) assigned to ANPA (supervisor)
+    sSql1 = "select YAAN8 from  F060116" & _
+           " where YAANPA = "  & App.GetValue("tmANPA") & " order by YAAN8"
+    DB.Execute(sSql1, sCols1, sRows1)
+    'Build of List.Data to be used in sSql2 query --> (4800, 4801, 4802, 4803, 4804)
+    iRcd = DB.Count(sRows1)
+    For iCnt = 1 To iRcd
+      sList = sList & CStr(DB.Extract(sCols1,sRows1,iCnt,1)) & ","
+    Next iCnt
+    If Len(sList) > 0 Then
+      sList = Left(sList, (Len(sList) - 1))
+      sList = "(" & sList & ")"
+    End If
+    sSql2 = "select VLAN8, VLDWK, VLPDBA, VLPHRW, VLANI, VLEQWO, VLEQCG, VLQOBJ, VLSBL, VLSBLT from F06116Z1 " & _
+             "where VLAN8 in " & sList & " and VLEDSP <> '1' and VLSSFL <> '1' and VLEDTC = 'A' and VLDWK between %tmWeek and %tmWeekTo order by VLAN8, VLDWK, VLPDBA, VLPHRW"
+    DB.Execute(sSql2,sCols2,sRows2)
+    If Len(sRows2) > 0 Then
+      For iCnt = 1 To DB.Count(sRows2)
+        nAN8   = DB.Extract(sCols2,sRows2,iCnt,1)
+        sSql3   = "select YAALPH from F060116 where YAAN8 = " & CStr(nAN8)
+        DB.Execute(sSql3,sCols3,sRows3)
+        emProc.Param("tmAN8")       = DB.Extract(sCols2,sRows2,iCnt,1)
+        emProc.Param("tmDWK")       = ConvJDEtoDate(DB.Extract(sCols2,sRows2,iCnt,2))
+        emProc.Param("tmPDBA")      = DB.Extract(sCols2,sRows2,iCnt,3)
+        emProc.Param("tmPHRW")      = CStr(CDec(DB.Extract(sCols2,sRows2,iCnt,4)/100))
+        emProc.Param("tmANI")       = DB.Extract(sCols2,sRows2,iCnt,5)
+        emProc.Param("tmEQWO")      = DB.Extract(sCols2,sRows2,iCnt,6)
+        emProc.Param("tmEQCG")      = DB.Extract(sCols2,sRows2,iCnt,7)
+        emProc.Param("tmQOBJ")      = DB.Extract(sCols2,sRows2,iCnt,8)
+        emProc.Param("tmSBL")       = DB.Extract(sCols2,sRows2,iCnt,9)
+        emProc.Param("tmSBLT")      = DB.Extract(sCols2,sRows2,iCnt,10)
+        sSql4 = "UPDATE F06116Z1 SET vledsp = '1', vlssfl = '1' WHERE " & _
+                "vlan8 = " & emProc.Param("tmAN8") & _
+                " AND vldwk = " & DB.Extract(sCols2,sRows2,iCnt,2) & _
+                " AND vlpdba = " & emProc.Param("tmPDBA") & _
+                " AND vlphrw = " & DB.Extract(sCols2,sRows2,iCnt,4) & _
+                " AND vlani = " & "'" & emProc.Param("tmANI") & "'" & _
+                " AND vleqwo = " & "'" & emProc.Param("tmEQWO") & "'" & _
+                " AND vlsbl = " & "'" & emProc.Param("tmSBL") & "'" & _
+                " AND vlsblt = " & "'" & emProc.Param("tmSBLT") & "'" & _
+                " AND vledsp = '0'" & _
+                " AND vlssfl = '0'"
+        If emProc.Execute = False Then  'Procedure/business function cannot execute
+          'App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")   'Unable to execute: <reason>."
+          If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+            App.SetFocus "btnTEBatch"
+        Else
+          DB.Execute(sSql4,sCols4,sRows4)
+          mnTotRec = mnTotRec + 1
+          mnTotHrs = mnTotHrs + CDec(emProc.Param("tmPHRW"))
+        End If
+      Next iCnt
+    End If
+      'Setup and display of summary controls
+      frmSummary.Width = 46
+      lblRecProc.Visible = True
+      lblHrsProc.Visible = True
+      lblRecords.Visible = True
+      lblHours.Visible = True
+      lblRecords.Caption = FixRight(Format(mnTotRec, "#0"), 5, " ")
+      lblHours.Caption = FixRight(Format(mnTotHrs, "#0.00"), 7, " ")
+  End If
+
+  If Ext(gsLog,1) = "1" Then
+    Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+  End If
+
+  Call BuildList()
+
+  App.SetFocus("txtAN8")
+
+End Sub
+
+Public Sub BuildList()
+  On Error Resume Next
+
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sList   As String
+  Dim iCnt    As Integer
+  Dim iRcd    As Integer
+  Dim sValue  As String
+  Dim sDate   As String
+  Dim nHours  As Currency
+  Dim sANI    As String
+  Dim sKey    As String
+  Dim nAN8    As Long
+
+  sSql = "select YAAN8 from  F060116" & _
+         " where YAANPA = "  & App.GetValue("tmANPA") & " order by YAAN8"
+  DB.Execute(sSql, sCols, sRows)
+
+  iRcd = DB.Count(sRows)
+
+  For iCnt = 1 To iRcd
+    sList = sList & CStr(DB.Extract(sCols,sRows,iCnt,1)) & ","
+  Next iCnt
+
+  If Len(sList) > 0 Then
+    sList = Left(sList, (Len(sList) - 1))
+    sList = "(" & sList & ")"
+    lbxData.List.Clear
+    lbxData.Caption = "    ID    Employee                   Date        Type   Hours  Account               Eqp Wrkd    Eqp Used    Object
+    '                              ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9----+----A----+----B----+----C--
+    '                              ....4800| Josephson, Michael.......| 02/25/2009|  ...1|..1.00| 6100.1341...........| 123.......| 123.......| 1341...
+
+    sSql = "select VLAN8, VLDWK, VLPDBA, VLPHRW, VLANI, VLEQWO, VLEQCG, VLQOBJ from F06116Z1 " & _
+           "where VLAN8 in " & sList & " and VLEDSP <> '1' and VLSSFL <> '1' and VLEDTC = 'A' and VLDWK between %tmWeek and %tmWeekTo order by VLAN8, VLDWK, VLPDBA, VLPHRW"
+    DB.Execute(sSql,sCols,sRows)
+    nHours = 0
+    If Len(sRows) > 0 Then
+      For iCnt = 1 To DB.Count(sRows)
+        If iCnt = 1 Then
+          sKey  = Trim(DB.Extract(sCols,sRows,iCnt,1))
+        End If
+        If sKey <> Trim(DB.Extract(sCols,sRows,iCnt,1)) Then
+          lbxData.List.AddItem "", "............................................................."
+          lbxData.List.AddItem "", "Total " & sKey & Space(36) & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),15," ")
+          lbxData.List.AddItem "", "-------------------------------------------------------------"
+          nHours = 0
+          sKey  = Trim(DB.Extract(sCols,sRows,iCnt,1))
+        End If
+      sDate  = ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,2))
+      nAN8   = DB.Extract(sCols,sRows,iCnt,1)
+      sSql   = "select YAALPH from F060116 where YAAN8 = " & CStr(nAN8)
+      DB.Execute(sSql,sCols2,sRows2)
+      '(01) AN8
+      sValue = FixRight(DB.Extract(sCols,sRows,iCnt,1),8," ") & "| "
+      '(02) AALPH
+      sValue = sValue & FixLeft(DB.Extract(sCols2,sRows2,1,1),25," ") & "| "
+      '(03) DWK
+      sValue = sValue & sDate & "| "
+      '(04) PDBA
+      sValue = sValue & FixRight(DB.Extract(sCols,sRows,iCnt,3),4," ") & "| "
+      '(05) PHRW
+      sValue = sValue & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",DB.Extract(sCols,sRows,iCnt,4))),"##.00"),6," ") & "| "
+      '(06) ANI
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,5),20," ") & "| "
+      '(07) EQWO
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,6),10," ") & "| "
+      '(08) EQCG
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,7),10," ") & "| "
+      '(09) QOBJ
+      sValue = sValue & FixLeft(DB.Extract(sCols,sRows,iCnt,8),7," ")
+      nHours = nHours + CCur(DB.Extract(sCols,sRows,iCnt,4))
+      lbxData.List.AddItem sValue, Replace(sValue,"|", " ")
+      Next iCnt
+    End If
+    lbxData.List.AddItem "", "............................................................."
+    lbxData.List.AddItem "", "Total " & sKey & Space(36) & FixRight(Format(CStr(ConvDecimalsFromSQL("PHRW",nHours)),"##.00"),15," ")
+    lbxData.List.AddItem "", "-------------------------------------------------------------"
+  End If
+
+End Sub
+
+Public Sub Update()
+  On Error Resume Next
+
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim nErrNo  As Long
+  Dim sDate   As String
+  Dim nHours  As Currency
+
+  txtDWK.Defaults = Nothing
+
+  App.SetValue("tmUSER", Trim(UCase(App.User)))
+  App.SetValue("tmEDTN", mnEDTN)                      ' EDI Counter
+  App.SetValue("tmEDLN", 0)                           ' EDI Line Number
+  App.SetValue("tmEDBT", msEDBT)
+  App.SetValue("tmDATE", msDate)
+  App.SetValue("tmTNId",  cTNId)
+  nHours = ConvDecimalsToSQL("PHRW",App.GetValue("tmPHRW"))
+  App.SetValue("tmUPMT", Format(Time,"HHNNSS"))
+
+  sSql = "insert into F06116Z1 (VLEDUS,   VLEDSQ, VLEDTN,   VLEDLN,  VLEDDT,  VLEDDL, VLEDSP, VLSSFL, VLEDTC, VLICU,  VLEDBT,   VLANI,    VLEQWO,   VLEQCG,    VLQOBJ,    VLAN8,  VLSBL,    VLSBLT,    VLPHRW,         VLPDBA,  VLDWK,    VLUSER,    VLUPMJ,    VLPID,     VLUPMT) " & _
+         " Values(              '%tmUSER',0,      '%tmEDTN', %tmEDLN, %tmDATE,'0'   , '0',    '0',    'A',    '0',    '%tmEDBT','%tmANI', '%tmEQWO','%tmEQCG', '%tmQOBJ', %tmAN8, '%tmSBL', '%tmSBLT', " & nHours & ", %tmPDBA, '%tmDWK', '%tmUSER', '%tmDATE', '%tmTNId', %tmUPMT)"
+
+  nErrNo = DB.Execute(sSql)
+
+  mnEDTN = mnEDTN +1 ' add counter
+
+  App.SetValue("tmANI",  "")
+  App.SetValue("tmEQWO", "")
+  App.SetValue("tmEQCG", "")
+
+  App.SetValue("tmQOBJ", "")
+  App.SetValue("tmSBL", "")
+  App.SetValue("tmSBLT", "")
+
+  App.SetValue("tmPHRW", "")
+  App.SetValue("tmPDBA", "")
+  App.SetValue("tmDWK",  "")
+
+  txtPDBA.Text = ""
+  txtPHRW.Text = ""
+  txtANI.Text  = ""
+  txtEQWO.Text = ""
+  txtEQCG.Text = ""
+  lblALPH.Caption = ""
+  lblDWK.Caption  = ""
+  lblPDBA.Caption = ""
+  lblEQWO.Caption = ""
+  lblEQCG.Caption = ""
+  lblSBLT.Caption = ""
+  txtQOBJ.Text = ""
+  txtSBL.Text = ""
+
+  BuildList()
+
+  txtDWK.Text = DateAdd("d",1,txtDWK.Text)
+
+  App.SetValue("tmDWK",ConvDatetoJDE(txtDWK.Text))
+
+  mbShowANI = False
+
+  txtAccept.Caption = ""
+
+  App.SetFocus("txtPDBA")
+
+End Sub
+</Code>

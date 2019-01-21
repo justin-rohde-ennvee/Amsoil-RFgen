@@ -1,0 +1,40 @@
+﻿<Record FileDesc="License Plate" FileVersion="5.0.8.0" Desc="License Plate" Heading="[License Plating]">
+<MenuItem Id="-" Desc="-- LP Management --" />
+<MenuItem Id="FLPAI0100_AMS" Desc="Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPTL0100_AMS" Desc="Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Work Order Auto Completion --" />
+<MenuItem Id="FLPTC0100_AMS" Desc="Line Processing" Options="-Pgm=P31114 -Vers=RGN0001" />
+<MenuItem Id="SQLTESTER" Desc="SQL Tester" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Work Order Manual Completion --" />
+<MenuItem Id="FLPTC0100M_AMS" Desc="Line Processing (Manual) " Options="-Pgm=P31114 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Receiving --" />
+<MenuItem Id="FPORC101_AMS" Desc="OT Receiving" Options="-Pgm=P4312 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Pick / Ship  --" />
+<MenuItem Id="FSOPC0200_AMS" Desc="ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />
+<MenuItem Id="FSOSC0100_AMS" Desc="ST Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
+<MenuItem Id="FSOPC0201_AMS" Desc="Sales Order Picking" Options="-Pgm=P4205 -Vers=RGN0003 -BOVers=RGN0004" />
+<MenuItem Id="FSOSC0101_AMS" Desc="Sales Order Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0005" />
+<MenuItem Id="FLPUP0100_AMS" Desc="Unpick" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQL0100_AMS" Desc="LP - Inquiry by Location" />
+<MenuItem Id="FLPQI0100_AMS" Desc="LP - Inquiry" />
+<MenuItem Id="FIMQI0100" Desc="Item Location Inquiry" />
+<MenuItem Id="FLPQI0300_AMS" Desc="LP - History Inquiry" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Cycle Counts --" />
+<MenuItem Id="FIMCC0100" Desc="IM - Cycle Counts (by Item)" Options="-Pgm=P41240 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="FLPLB0100_AMS" Desc="Label Reprint" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="--- System ---" />
+<MenuItem Id="FADRL010" Desc="Record Lock Maintainence" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Setup &amp; Advanced LP (non-custom setup)" />
+<MenuItem Id="LP_Adv" Desc="L -Menu 2" />
+</Record>

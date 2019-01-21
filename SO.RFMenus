@@ -1,0 +1,21 @@
+﻿<Record FileDesc="Sales Order Processing" FileVersion="5.0.8.0" Desc="Sales Order Processing" Heading="[SO Processing]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FSOPC0100" Desc="1- Pick Confirm" Options="-Pgm=P4205 -Vers=RFGPICK" />
+<MenuItem Id="FSOPC0100" Desc="2- Pack Confirm" Options="-Pgm=P4205 -Vers=RFGPACK" />
+<MenuItem Id="FSOSC0100_AMS" Desc="3- Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
+<MenuItem Id="-" Desc="-- Adv --" />
+<MenuItem Id="FSOSC0100" Desc="4- Pick Confirm (guided)" Options="-Pgm=P4205 -Vers=RFGPICK -OrderBy=sdlocn, sdlitm" />
+<MenuItem Id="FSOSC0100" Desc="5- Ship Confirm (guided)" Options="-Pgm=P4205 -Vers=RGN0001 -OrderBy=sdlnid" />
+<MenuItem Id="FSOPC0200" Desc="6- Pick Confirm (multi lines)" Options="-Pgm=P4205 -Vers=RGN0001" />
+<MenuItem Id="FSOSC0200" Desc="7- Proof of Delivery" Options="-Pgm=P4205 -Vers=RFGSHIP" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FSOQO0100" Desc="8- Open SO's by Item" Options="-StsFr=520 -StsTo=580" />
+<MenuItem Id="FSOQI0100" Desc="9- SO Status by Item" Options="-StsFr=520 -StsTo=580" />
+<MenuItem Id="FSOQL0100" Desc="0- SO Status by Line" Options="-StsFr=520 -StsTo=580" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Other --" />
+<MenuItem Id="FSOSU0100" Desc="A- Speed Status Update" Options="-Pgm=P42040 -Vers=ZJDE0001" />
+<MenuItem Id="FSOAL0100" Desc="B- Add Freight Line" Options="-Pgm=P4205 -Vers=ZJDE0001" />
+<MenuItem Id="FSOEN0100" Desc="C- SO Entry from Pricelist" Options="-Pgm=P4210 -Vers=ZJDE0001" />
+<MenuItem Id="FSOUC0100" Desc="D - Print UCC Labels" Options="-Pgm=P4205 -Vers=ZJDE0001" />
+</Record>

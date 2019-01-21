@@ -1,0 +1,61 @@
+﻿<Record FileDesc="FA-  Cycle Count" FileVersion="5.0.8.0" Desc="FA-  Cycle Count">
+<Param Name="sItem" />
+<Param Name="sUser" />
+<Param Name="sDate" />
+<Param Name="sTime" />
+<Param Name="tmErrText" />
+<Param Name="tmErrId" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: FA - CYCLE COUNT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId = "TFACC0100"
+
+Private Function Transaction(ByRef sItem As Variant, ByRef sUser As Variant, ByRef sDate As Variant, ByRef sTime As Variant, ByRef tmErrText As Variant, ByRef tmErrId As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sSQL      As String
+  Dim sUpDate   As String
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  sUpDate = Format(sDate, "YYYY.MM.DD") & " " & sTime & " " & sUser
+
+  sSQL = "update F1201 set FAEXR = '" & sUpDate & "' where FANUMB = " & sItem& " "
+
+  DB.Execute(sSQL)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", "F1201", Replace(sSQL, "'", "`"))           
+  '
+  If Len(SysErr.Description) <> 0 Then                                                                                         
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F1201", Replace(sSQL, "'", "`"))           
+    Transaction = False                                                                                                       
+    GoTo ExitE1                                                                                                               
+  End If                                                                                                                      
+
+  Transaction = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:                                                                                                                       
+
+End Function
+</Code>

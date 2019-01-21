@@ -1,0 +1,7 @@
+﻿<Record FileDesc="Inv. Management CycleCount" FileVersion="5.0.8.0" Desc="Inv. Management CycleCount" Heading="Inv. Cycle Count">
+<MenuItem Id="FIMCC0100" Desc="IM - Cycle Counts (by Item)" Options="-Pgm=P41240 -Vers=ZJDE0001" />
+<MenuItem Id="FIMCC0200" Desc="IM - Cycle Counts (by Location)" Options="-Pgm=P41240 -Vers=ZJDE0001" />
+<MenuItem Id="FIMCC0300" Desc="IM - Cycle Counts (directed by Locn)" Options="-Pgm=P41240 -Vers=ZJDE0001" />
+<MenuItem Id="-" Desc="-" />
+<MenuItem Id="FIMCC0500" Desc="IM - Cycle Counts (0 - not counted)" Options="-Pgm=P41240 -Vers=ZJDE0001 -LPYN=Y" />
+</Record>

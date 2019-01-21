@@ -1,0 +1,346 @@
+﻿<Record FileDesc="PO - Create New PO" FileVersion="5.0.8.0" Desc="PO - Create New PO">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmSUPPLIER" />
+<Param Name="tmSHIPTO" />
+<Param Name="tmFORDATE" />
+<Param Name="tmUSER" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: PO - CREATE NEW PURCHASE ORDER
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TPOCP0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmSUPPLIER As Variant, ByRef tmSHIPTO As Variant, ByRef tmFORDATE As Variant, ByRef tmUSER As Variant, ByRef tmZVERSION As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim nBatchNo    As Currency
+  Dim nOrderNo    As Currency
+  Dim sErrId      As String
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim bSuccess    As Boolean
+
+  Dim emGetAuditInfo                As New EmbeddedProc
+  Dim emGetNextOrderNumber          As New EmbeddedProc
+  Dim emF4311FSBeginDoc             As New EmbeddedProc
+  Dim emF4311EditLine               As New EmbeddedProc
+  Dim emF4311EditDoc                As New EmbeddedProc
+  Dim emF4311EndDoc                 As New EmbeddedProc
+  Dim emBatchOpenOnInitialization   As New EmbeddedProc
+  Dim emFSCloseBatch                As New EmbeddedProc
+  Dim emBatchControlProcessing      As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)      
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '---------------------------'
+  ' BatchOpenOnInitialization '
+  '---------------------------'
+  emBatchOpenOnInitialization.Name        = "BatchOpenOnInitialization"
+  emBatchOpenOnInitialization.LogMode  = LogNever
+  emBatchOpenOnInitialization.DebugLog    = cJDELogPath
+  '
+  emBatchOpenOnInitialization.Param("BatchType")    = "N"
+  emBatchOpenOnInitialization.Param("BatchDate")    = "0/0/0"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emBatchOpenOnInitialization.Name, "", emBatchOpenOnInitialization)
+
+  If Not emBatchOpenOnInitialization.Execute Then
+
+  If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emBatchOpenOnInitialization.Name, "", emBatchOpenOnInitialization, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  nBatchNo = Val(emBatchOpenOnInitialization.Param("BatchNumber"))
+  '
+  If (nBatchNo = 0) Then
+    App.LogError "BatchOpenOnInitialization", "Function did not return a valid number"
+    GoTo ExitMe
+  End If
+
+  '--------------------'
+  ' GetNextOrderNumber '
+  '--------------------'
+  emGetNextOrderNumber.Name       = "GetNextOrderNumber"
+  emGetNextOrderNumber.LogMode = LogNever
+  emGetNextOrderNumber.DebugLog   = cJDELogPath
+  '
+  emGetNextOrderNumber.Param("OrderNumber")     = 0
+  emGetNextOrderNumber.Param("OrderCompany")    = tmCO
+  emGetNextOrderNumber.Param("OrderType")       = tmDCTO
+  emGetNextOrderNumber.Param("BranchPlant")     = tmMCU
+  emGetNextOrderNumber.Param("OrderDate")       = sTNDate
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetNextOrderNumber.Name, "", emGetNextOrderNumber)
+
+  If Not emGetNextOrderNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetNextOrderNumber.Name, "", emGetNextOrderNumber, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  nOrderNo = Val(emGetNextOrderNumber.Param("OrderNumber"))
+  '
+  If (nOrderNo =0) Then
+    App.LogError "GetNextOrderNumber", "Function did not return a valid number"
+    GoTo ExitMe
+  End If
+
+  '-----------------'
+  ' F4311FSBeginDoc '
+  '-----------------'
+  emF4311FSBeginDoc.Name       = "F4311FSBeginDoc"
+  emF4311FSBeginDoc.LogMode = LogNever
+  emF4311FSBeginDoc.DebugLog   = cJDELogPath
+  '
+  emF4311FSBeginDoc.Param("JobNumber")                    = nBatchNo
+  emF4311FSBeginDoc.Param("ComputerID")                   = emGetAuditInfo.Param("Workstation_UserId")
+  emF4311FSBeginDoc.Param("HeaderActionCode")             = "A"
+  emF4311FSBeginDoc.Param("ProcessEdits")                 = "1"
+  emF4311FSBeginDoc.Param("UpdateOrWriteToWorkFile")      = "2"
+  emF4311FSBeginDoc.Param("RecordWrittenToWorkFile")      = "0"
+  emF4311FSBeginDoc.Param("OrderCOmpany")                 = tmCO
+  emF4311FSBeginDoc.Param("OrderNumber")                  = nOrderNo
+  emF4311FSBeginDoc.Param("OrderType")                    = tmDCTO
+  emF4311FSBeginDoc.Param("OrderSuffix")                  = "000"
+  emF4311FSBeginDoc.Param("BranchPlant")                  = tmMCU
+  emF4311FSBeginDoc.Param("SupplierNumber")               = tmSUPPLIER   ' 4343
+  emF4311FSBeginDoc.Param("ShipToNumber")                 = tmSHIPTO     ' 6015
+  emF4311FSBeginDoc.Param("OrderDate")                    = sTNDate
+  emF4311FSBeginDoc.Param("EvaluatedReceiptsFlag")        = "N"
+  emF4311FSBeginDoc.Param("CurrencyMode")                 = "D"
+  emF4311FSBeginDoc.Param("TransactionCurrencyCode")      = "USD"
+  emF4311FSBeginDoc.Param("OrderedPlacedBy")              = tmUSER
+  emF4311FSBeginDoc.Param("ProgramID")                    = "EP4310"
+  emF4311FSBeginDoc.Param("PurchaseOrderPrOptVersion")    = tmZVERSION   ' ZJDE0001
+  emF4311FSBeginDoc.Param("BaseCurrencyCode")             = "USD"
+  emF4311FSBeginDoc.Param("UserID")                       = tmUSER
+  emF4311FSBeginDoc.Param("InternalVariables")            = "0"
+  emF4311FSBeginDoc.Param("AIADocument")                  = "Y"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4311FSBeginDoc.Name, "", emF4311FSBeginDoc)
+
+  If Not emF4311FSBeginDoc.Execute Then
+    sErrDesc = "F4311FSBeginDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4311FSBeginDoc.Name, "", emF4311FSBeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '---------------'
+  ' F4311EditLine '
+  '---------------'
+  emF4311EditLine.Name       = "F4311EditLine"
+  emF4311EditLine.LogMode = LogNever
+  emF4311EditLine.DebugLog   = cJDELogPath
+  '
+  emF4311EditLine.Param("JobNumber")                      = nBatchNo
+  emF4311EditLine.Param("ComputerID")                     = emGetAuditInfo.Param("Workstation_UserId")
+  emF4311EditLine.Param("OrderLineNumber")                = 0
+  emF4311EditLine.Param("DetailActionCode")               = "A"
+  emF4311EditLine.Param("ProcessEdits")                   = "1"
+  emF4311EditLine.Param("UpdateOrWriteWorkFile")          = "2"
+  emF4311EditLine.Param("CurrencyProcessingFlag")         = "Z"
+  emF4311EditLine.Param("PurchaseOrderPrOptVersion")      = tmZVERSION    ' ZJDE0001
+  emF4311EditLine.Param("OrderCompany")                   = tmCO
+  emF4311EditLine.Param("OrderNumber")                    = nOrderNo
+  emF4311EditLine.Param("OrderType")                      = tmDCTO
+  emF4311EditLine.Param("OrderSuffix")                    = "000"
+  emF4311EditLine.Param("BranchPlant")                    = tmMCU
+  emF4311EditLine.Param("SupplierNumber")                 = tmSUPPLIER    ' 4343
+  emF4311EditLine.Param("RequestedDate")                  = Format(tmFORDATE, "mm/dd/yyyy")
+  emF4311EditLine.Param("TransactionDate")                = sTNDate
+  emF4311EditLine.Param("PromisedDate")                   = Format(tmFORDATE, "mm/dd/yyyy")
+  emF4311EditLine.Param("GLDate")                         = sGLDate
+  emF4311EditLine.Param("UnformattedItemNumber")          = tmLITM
+  emF4311EditLine.Param("QuantityOrdered")                = tmQTY
+  emF4311EditLine.Param("TransactionUoM")                 = tmUOM
+  emF4311EditLine.Param("PurchasingUoM")                  = tmUOM
+  emF4311EditLine.Param("DetailLineBranchPlant")          = tmMCU
+  emF4311EditLine.Param("LastStatus")                     = "220"
+  emF4311EditLine.Param("FreezeCode")                     = "N"
+  emF4311EditLine.Param("EvaluatedReceipts")              = "N"
+  emF4311EditLine.Param("CurrencyMode")                   = "D"
+  emF4311EditLine.Param("TransactionCurrencyCode")        = "USD"
+  emF4311EditLine.Param("SourceRequestingPOGeneration")   = "0"
+  emF4311EditLine.Param("ProgramID")                      = "EP4310"
+  emF4311EditLine.Param("UserID")                         = tmUSER
+  emF4311EditLine.Param("ProcessID")                      = emF4311FSBeginDoc.Param("ProcessID")
+  emF4311EditLine.Param("TransactionID")                  = emF4311FSBeginDoc.Param("TransactionID")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4311EditLine.Name, "", emF4311EditLine)
+
+  If Not emF4311EditLine.Execute Then
+    sErrDesc = "F4311EditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4311EditLine.Name, "", emF4311EditLine, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '--------------'
+  ' F4311EditDoc '
+  '--------------'
+  emF4311EditDoc.Name       = "F4311EditDoc"
+  emF4311EditDoc.LogMode = LogNever
+  emF4311EditDoc.DebugLog   = cJDELogPath
+  '
+  emF4311EditDoc.Param("OrderSuffix")               = "000"
+  emF4311EditDoc.Param("LineNumber")                = 0
+  emF4311EditDoc.Param("ComputerID")                = emGetAuditInfo.Param("Workstation_UserId")
+  emF4311EditDoc.Param("Jobnumber")                 = nBatchNo
+  emF4311EditDoc.Param("AddressNumber")             = tmSUPPLIER    ' 4343
+  emF4311EditDoc.Param("OrderType")                 = tmDCTO
+  emF4311EditDoc.Param("OrderNumber")               = nOrderNo
+  emF4311EditDoc.Param("OrderCompany")              = tmCO
+  emF4311EditDoc.Param("VersionProcOption")         = tmZVERSION    ' ZJDE0001
+  emF4311EditDoc.Param("ActionCode")                = "A"
+  emF4311EditDoc.Param("ProcessID")                 = emF4311FSBeginDoc.Param("ProcessID")
+  emF4311EditDoc.Param("TransactionID")             = emF4311FSBeginDoc.Param("TransactionID")
+  emF4311EditDoc.Param("CallingApplicationName")    = "EP4310"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4311EditDoc.Name, "", emF4311EditDoc)
+
+  If Not emF4311EditDoc.Execute Then
+    sErrDesc = "F4311EditDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4311EditDoc.Name, "", emF4311EditDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '-------------'
+  ' F4311EndDoc '
+  '-------------'
+  emF4311EndDoc.Name       = "F4311EndDoc"
+  emF4311EndDoc.LogMode = LogNever
+  emF4311EndDoc.DebugLog   = cJDELogPath
+  '
+  emF4311EndDoc.Param("ComputerID")               = emGetAuditInfo.Param("Workstation_UserId")
+  emF4311EndDoc.Param("JobNumber")                = nBatchNo
+  emF4311EndDoc.Param("CallingApplicationName")   = "EP4310"
+  emF4311EndDoc.Param("Version")                  = tmZVERSION    ' ZJDE0001
+  emF4311EndDoc.Param("UserID")                   = tmUSER
+  emF4311EndDoc.Param("UseWorkFiles")             = "2"
+  emF4311EndDoc.Param("ConsolidateLines")         = "0"
+  emF4311EndDoc.Param("ProcessID")                = emF4311FSBeginDoc.Param("ProcessID")
+  emF4311EndDoc.Param("TransactionID")            = emF4311FSBeginDoc.Param("TransactionID")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4311EndDoc.Name, "", emF4311EndDoc)
+
+  If Not emF4311EndDoc.Execute Then
+    sErrDesc = "F4311EndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4311EndDoc.Name, "", emF4311EndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '--------------'
+  ' FSCloseBatch '
+  '--------------'
+  emFSCloseBatch.Name       = "FSCloseBatch"
+  emFSCloseBatch.LogMode = LogNever
+  emFSCloseBatch.DebugLog   = cJDELogPath
+  '
+  emFSCloseBatch.Param("BatchType")     = emBatchOpenOnInitialization.Param("BatchType")
+  emFSCloseBatch.Param("BatchNumber")   = nBatchNo
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emFSCloseBatch.Name, "", emFSCloseBatch)
+
+  If Not emFSCloseBatch.Execute Then
+    sErrDesc = "FSCloseBatch"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emFSCloseBatch.Name, "", emFSCloseBatch, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '------------------------'
+  ' BatchControlProcessing '
+  '------------------------'
+  emBatchControlProcessing.Name       = "BatchControlProcessing"
+  emBatchControlProcessing.LogMode = LogNever
+  emBatchControlProcessing.DebugLog   = cJDELogPath
+  '
+  emBatchControlProcessing.Param("BatchType")     = emBatchOpenOnInitialization.Param("BatchType")
+  emBatchControlProcessing.Param("BatchNumber")   = nBatchNo
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emBatchControlProcessing.Name, "", emBatchControlProcessing)
+
+  If Not emBatchControlProcessing.Execute Then
+    sErrDesc = "BatchControlProcessing"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emBatchControlProcessing.Name, "", emBatchControlProcessing, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitMe:
+  Set emGetAuditInfo                = Nothing
+  Set emGetNextOrderNumber          = Nothing
+  Set emF4311FSBeginDoc             = Nothing
+  Set emF4311EditLine               = Nothing
+  Set emF4311EditDoc                = Nothing
+  Set emF4311EndDoc                 = Nothing
+  Set emBatchOpenOnInitialization   = Nothing
+  Set emFSCloseBatch                = Nothing
+  Set emBatchControlProcessing      = Nothing
+  '
+  tmERRTEXT = sErrDesc
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+End Function
+</Code>

@@ -1,0 +1,437 @@
+﻿<Record FileDesc="LP - Remove Zero Record" FileVersion="5.0.8.0" Desc="LP - Remove Zero Record" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;lblLPLocn&vm;lblParent&vm;lblNumUnits&vm;txtAccept" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="3" Name="lblLPDesc" />
+<SchemaParam Linked="0" Attr="4" Name="lblLPLocn" />
+<SchemaParam Linked="0" Attr="5" Name="lblParent" />
+<SchemaParam Linked="0" Attr="6" Name="lblNumUnits" />
+<SchemaParam Linked="0" Attr="7" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="151" Height="22" AnchorRight="41" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="151" Height="22" AnchorRight="41" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPDesc" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="79" Height="22" AnchorRight="113" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPLocn" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="79" Height="22" AnchorRight="113" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPLocn" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblParent" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="132" Width="79" Height="22" AnchorRight="113" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblParent" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblNumUnits" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="95" Height="22" AnchorRight="97" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblNumUnits" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="207" Height="22" AnchorRight="33" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to Remove Zeroes..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="0" Height="0" AnchorRight="240" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Remove Zero Record]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: INQUIRY LP
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'     WLG01 - KMD 9/19/2013:  Modifying script to work for AMSOIL's needs.  Removing the List.Data box, adding a prompt for status (NXTR),
+'                             removing code to alter PSTB, and include code to revise both F55101.LMRNXTR and F55102.RNXTR
+'
+'     WLG02 - KMD 9/25/2013:  Modify the script to remove zero records instead of adjust status.
+'
+Option Explicit
+
+Private mnMaxQty     As Currency
+Private gsLPSource   As String
+Private msDefLOCN    As String
+Private mbSerialized As Boolean
+Private mbIsPlate    As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  lblLPDesc.Caption = ""
+  lblLPDesc.Label.BackColor1 = cFieldDefaultBC
+  lblLPDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblLPLocn.Caption = ""
+  lblLPLocn.Label.BackColor1 = cFieldDefaultBC
+  lblLPLocn.Label.ForeColor = cFieldDefaultFC
+  '
+  lblParent.Caption = ""
+  lblParent.Label.BackColor1 = cFieldDefaultBC
+  lblParent.Label.ForeColor = cFieldDefaultFC
+  '
+  lblNumUnits.Caption = ""
+  lblNumUnits.Label.BackColor1 = cFieldDefaultBC
+  lblNumUnits.Label.ForeColor = cFieldDefaultFC
+  '
+  txtAccept.Visible = False
+
+
+ ' lblFkey.Visible = False
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Dim bCancel  As Boolean
+  '
+  If Fkey = 2 Then
+    '
+    Call LP101_Reset(uLP101)      ' init LP101 Structure
+    '
+    uLP101.sLMLPID = App.GetValue("tmLPID")
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      App.MsgBox(GetMsg(104))
+      Exit Sub
+    End If
+    '
+    uLP101.sLMPSTB = App.GetValue("tmPSTB")
+    '
+    If Not X_LP101("C",uLP101) Then Exit Sub
+    '
+
+    Screen.Refresh
+    App.SetFocus("txtLPID")
+  End If
+End Sub
+
+Private Sub ListBox1_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+'WLG01 - REMOVE THIS CODE AS SearchList BOX IS BEING REMOVED.
+'  On Error Resume Next
+'  '
+'  Dim sPSTB  As String
+'  '
+'  sPSTB = Trim(Left(Rsp,3))
+'  App.SetValue("tmPSTB", sPSTB)
+'  '
+'  lblFkey.Visible = True
+End Sub
+
+
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP102 structure
+
+  Dim sSQL      As String
+  Dim sSql2     As String
+  Dim sRows     As String
+  Dim sRows2    As String
+  Dim sCols     As String
+  Dim sCols2    As String
+  Dim x As Integer
+  Dim y As Integer
+  Dim bCancel  As Boolean
+
+'WLG01 - FIND ZERO RECORD IN F55102 TABLE
+  sSQL = "select LDLPID, LDLNID from F55102 where LDLPID = '" & Trim(App.GetValue("tmLPID")) & "' and ldlitm = ''"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) > 0 Then
+    'delete the zero records
+      sSql2 = "delete from F55102 where LDLPID = '" & Trim(App.GetValue("tmLPID")) & "' and ldlitm = ''"
+      DB.Execute(sSql2)
+  Else
+    App.MsgBox("Error: License Plate has no zero records.")
+  End If
+
+ '- TRANSACTION COMPLETE, Clear Fields
+  txtAccept.List.Clear
+  txtAccept.Visible = False
+  txtLPID.List.Clear
+
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblParent.Caption = ""
+  lblNumUnits.Caption = ""
+
+  App.SetValue("tmLPID", "")
+  '
+  App.SetFocus("txtLPID")
+
+End Sub
+
+Private Sub txtAccept_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  txtAccept.List.Clear
+  txtAccept.Visible = False
+
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblParent.Caption = ""
+  lblNumUnits.Caption = ""
+
+  txtLPID.List.Clear
+  App.SetValue("tmLPID", "")
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  Dim sEntity  As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+  '
+  LP_ValidateEntity(sMCU,sEntity)
+  '
+  App.SetValue("tmEntity",   sEntity)
+
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLPID", "")
+  App.SetValue("tmTYPE", "")
+  '
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblParent.Caption = ""
+  lblNumUnits.Caption = ""
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sOpt      As String
+  Dim uLP101    As LP101Data       ' create LP101 Structure
+  Dim sSQL      As String
+  Dim sSql2     As String
+  Dim sRows     As String
+  Dim sRows2    As String
+  Dim sCols     As String
+  Dim sCols2    As String
+  Dim sItemList As String
+  Dim nNumItems As Long
+  Dim nTotalUnits As Long
+  Dim sDirectItems  As String
+  Dim x As Integer
+  Dim y As Integer
+  Dim nPos As Long
+  Dim sFirstItem As String
+
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+
+  '
+  uLP101.sLMLPID = Rsp
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    App.MsgBox(GetMsg(104))
+    Exit Sub
+  End If
+  '
+  'WLG01 - CHECK TO DETERMINE IF LP IS LOCATED IN "TMMCU" BRANCH - OR GIVE ERROR AND EXIT
+    If Trim(uLP101.sLMMCU) <> Trim(App.GetValue("tmMCU")) Then
+      App.MsgBox("Error: License Plate is not in the Selected Branch Plant.")
+      Cancel = True
+      Exit Sub
+    End If
+
+
+  'WLG01 - CHECK TO DETERMINE IF ALL QUANTITY IN LP IS AT THE SAME STATUS (THIS IS MAINLY FOR PALLETS) - GIVE WARNING TO USER
+    'If uLP101.sLMPALP <> "" Then
+    '  App.MsgBox("Warning - LP is attached to a pallet. Consider updating status on entire pallet.")
+    'End If
+
+  'WLG01 - CALCULATE AND DISPLAY INVENTORY INFO ABOUT THE PALLET
+
+    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
+      DB.Execute(sSql2, sCols2, sRows2)
+      If (DB.Count(sRows2) > 0 ) Then
+        sDirectItems = "+ Items On LP.
+      End If
+
+      For x = 1 To DB.Count(sRows2)
+        If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+          sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+          nNumItems = nNumItems + 1
+        End If
+
+      Next x
+
+      sSQL = "select LMLPID from F55101 where LMPALP = '" & Rsp & "'"
+
+      DB.Execute(sSQL, sCols, sRows)
+      nTotalUnits = DB.Count(sRows)
+      For y = 1 To DB.Count(sRows)
+        sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
+        DB.Execute(sSql2, sCols2, sRows2)
+
+        For x = 1 To DB.Count(sRows2)
+          If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+            sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+            nNumItems = nNumItems + 1
+          End If
+        Next x
+      Next y
+
+      If nNumItems = 0 And Trim(sDirectItems) = "" Then
+        App.MsgBox("Error: License Plate has no inventory attached")
+        Cancel = True
+        Exit Sub
+
+      ElseIf nNumItems > 1 Then
+        lblLPDesc.Caption = nNumItems & " Items"
+        lblNumUnits.Caption = nTotalUnits & " Units " & sDirectItems
+
+      Else
+        nPos = InStr(sItemList, "***") - 1
+        sFirstItem = Trim(Mid(sItemList, 1, nPos))
+        'sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & Rsp & "' "
+        'DB.Execute(sSQL, sCols, sRows)
+        lblLPDesc.Caption = sFirstItem '& " " & DB.Extract(sCols,sRows,1,"LDUORG") & " " & DB.Extract(sCols,sRows,1,"LDUOM")
+        lblNumUnits.Caption = nTotalUnits & " Units " & sDirectItems
+      End If
+
+  'SET VARIABLES FOR SCREEN
+  'lblLPDesc.Caption = uLP101.sLMDSC1
+  lblLPLocn.Caption = uLP101.sLMLOCN
+  lblParent.Caption = uLP101.sLMPALP
+
+  'WLG01 - COMMENT OUT List.Data BOX CODE REFERENCE
+  'ListBox1.Clear
+  'Call BuildList(Rsp, sOpt)
+  'ListBox1.List.AddItem " ","End of data"
+  '
+  Cancel = False
+  App.SetValue("tmLPID", Rsp)
+  txtAccept.Visible = True
+
+
+End Sub
+
+Private Sub txtLPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_LP101(Rsp, App.GetValue("tmMCU"))
+End Sub
+
+Private Sub txtLPID_LostFocus()
+  On Error Resume Next
+  '
+'  lblFkey.Visible = False
+End Sub
+</Code>

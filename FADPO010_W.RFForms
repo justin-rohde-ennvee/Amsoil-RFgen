@@ -1,0 +1,822 @@
+﻿<Record FileDesc="ADM - Maintain Proc. Options -World" FileVersion="5.0.8.0" Desc="ADM - Maintain Proc. Options -World" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtRel&vm;txtPID&vm;txtVERS&vm;lbxOptions&vm;cmdNew&vm;lblVersion&vm;lblOpt&vm;txtNewPos&vm;lblvMap&vm;lblKey&vm;lblJDE&vm;cmdRefresh&vm;lblFKey&vm;lblTitel&vm;cmdSaveJDE&vm;cmdGetSaved&vm;lblSaveVal&vm;btnPrint&vm;cmdSaveToRfgen&vm;cmdLoadfrRFgen">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtRel" />
+<SchemaParam Linked="0" Attr="2" Name="txtPID" />
+<SchemaParam Linked="0" Attr="3" Name="txtVERS" />
+<SchemaParam Linked="0" Attr="4" Name="lbxOptions" />
+<SchemaParam Linked="0" Attr="5" Name="cmdNew" />
+<SchemaParam Linked="0" Attr="6" Name="lblVersion" />
+<SchemaParam Linked="0" Attr="7" Name="lblOpt" />
+<SchemaParam Linked="0" Attr="8" Name="txtNewPos" />
+<SchemaParam Linked="0" Attr="9" Name="lblvMap" />
+<SchemaParam Linked="0" Attr="10" Name="lblKey" />
+<SchemaParam Linked="0" Attr="11" Name="lblJDE" />
+<SchemaParam Linked="0" Attr="12" Name="cmdRefresh" />
+<SchemaParam Linked="0" Attr="13" Name="lblFKey" />
+<SchemaParam Linked="0" Attr="14" Name="lblTitel" />
+<SchemaParam Linked="0" Attr="15" Name="cmdSaveJDE" />
+<SchemaParam Linked="0" Attr="16" Name="cmdGetSaved" />
+<SchemaParam Linked="0" Attr="17" Name="lblSaveVal" />
+<SchemaParam Linked="0" Attr="18" Name="btnPrint" />
+<SchemaParam Linked="0" Attr="19" Name="cmdSaveToRfgen" />
+<SchemaParam Linked="0" Attr="20" Name="cmdLoadfrRFgen" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtRel" Attr="1" Defaults="All" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="71" Height="22" AnchorRight="576" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Release:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="87" Height="22" AnchorRight="496" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPID" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="63" Height="22" AnchorRight="576" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ProgId:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="44" Width="135" Height="22" AnchorRight="448" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtVERS" Attr="3" Defaults="ZJDE0001;O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="71" Height="22" AnchorRight="576" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Version:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="66" Width="135" Height="22" AnchorRight="448" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxOptions" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="0" Height="22" AnchorRight="647" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="647" Height="396" AnchorRight="0" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdNew" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Get New Values" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="512" Top="0" Width="135" Height="22" AnchorRight="0" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblVersion" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="66" Width="87" Height="22" AnchorRight="360" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblVersion" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblOpt" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="0" Top="484" Width="55" Height="22" AnchorRight="592" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="lblOpt" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNewPos" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="360" Top="506" Width="159" Height="22" AnchorRight="128" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Replace Key (X.Yy):" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="560" Top="506" Width="87" Height="22" AnchorRight="0" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblvMap" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="594" Width="63" Height="22" AnchorRight="584" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblvMap" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblKey" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="616" Width="55" Height="22" AnchorRight="592" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblKey" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblJDE" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="638" Width="55" Height="22" AnchorRight="592" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="FF00FF" Caption="lblJDE" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdRefresh" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Refresh" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="368" Top="0" Width="135" Height="22" AnchorRight="144" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFKey" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="572" Width="167" Height="22" AnchorRight="480" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="F2 - Back to Version" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTitel" Attr="14">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="44" Width="71" Height="22" AnchorRight="376" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTitel" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdSaveJDE" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Save JDE Values" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="528" Width="135" Height="22" AnchorRight="512" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdGetSaved" Attr="16">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Comp.Saved Val." ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="136" Top="528" Width="135" Height="22" AnchorRight="376" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSaveVal" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="87" Height="22" AnchorRight="560" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSaveVal" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnPrint" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Print ProcOpt." ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="224" Top="0" Width="135" Height="22" AnchorRight="288" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdSaveToRfgen" Attr="19">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Save to RFgen" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="272" Top="528" Width="135" Height="22" AnchorRight="240" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdLoadfrRFgen" Attr="20">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Load from RFgen" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="528" Width="135" Height="22" AnchorRight="104" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="647" FormHeight="660" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Maintain Proc.Options" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                                |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATION: MAINTAIN PROCESSING OPTIONS - WORLD
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private mvArray As Variant
+Private vMap   As Variant
+Private vKey   As Variant
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  lbxOptions.Visible = True
+  lblVersion.Caption = ""
+  txtNewPos.Visible = False
+  lblOpt.Caption = ""
+  lblTitel.Caption = ""
+  lblSaveVal.Caption = ""
+
+  txtRel.Text = "World"
+  App.SetValue("Release", "World")
+  App.SetFocus("txtPID")
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  If Fkey = 2 Then
+    lblOpt.Caption = ""
+    App.SetFocus("txtVers")
+  End If
+End Sub
+
+Private Sub btnPrint_Click()
+  On Error Resume Next
+  '
+  Dim vStrg As Variant
+  Dim nLstOpt As Long
+  Dim iCnt As Long
+  Dim sPrt As String
+
+  Printer.FontName = "Courier New"
+  Printer.FontSize = 10
+  Printer.FontBold = True
+
+  Printer.Activate(cRFPrt)
+
+  ' Print Header
+  vStrg = "Progr.ID.:   " & FixRight(App.GetValue("tmPID"),10," ") & "  " & lblTitel.Caption
+  Printer.Print(vStrg)
+
+  vStrg = "Version .:   " & FixRight(App.GetValue("VERS"),10," ") & "  " & lblVersion.Caption
+  Printer.Print(vStrg)
+
+  Printer.Print(" ")
+  Printer.Print("--------------------------------------------------------------------------------")
+  Printer.Print(" ")
+  Printer.FontBold = False
+
+  nLstOpt = lbxOptions.List.Count
+    '
+  ' loop lines
+  For iCnt = 1 To nLstOpt
+    lbxOptions.List.Index = iCnt
+    sPrt = (lbxOptions.Text) 'Print Details
+    '
+    If Left(sPrt,4) = "----" Then
+      Printer.Print(" ")
+      Printer.FontBold = True
+      Printer.Print sPrt
+      Printer.FontBold = False
+    Else
+      Printer.Print sPrt
+    End If
+  Next iCnt
+
+  Printer.EndDoc
+End Sub
+
+Private Sub cmdGetSaved_Click()
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sUser   As String
+  Dim sTime   As String
+  Dim sDate   As String
+  Dim sJData  As String
+  Dim i       As Integer
+  Dim iCnt    As Integer
+  Dim nLstOpt As Long
+  Dim sLstOpt As String
+  Dim vNArray As Variant
+  Dim sComp   As String
+
+  sSql = "select * from RF983051 where PVPID = '%txtPID' and " & _
+         "PVVERS = '%txtVERS' "
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox(GetMsg(187))
+    Exit Sub
+  End If
+  '
+  lblSaveVal.Caption = "Last saved by: " & DB.Extract(sCols,sRows,1,4) & _
+           " " & DB.Extract(sCols,sRows,1,6) & " " & DB.Extract(sCols,sRows,1,5)
+
+  sJData  = Trim(DB.Extract(sCols,sRows,1,3))
+  vNArray = Split(sJData,"|")
+  nLstOpt = lbxOptions.List.Count
+  '
+  ' find the difference
+  '
+  For iCnt = 0 To UBound(mvArray)
+    If mvArray(iCnt) <> vNArray(iCnt) Then
+      sComp = FixRight(iCnt,4,"0")
+
+      ' Lookup mapping table
+      For i = 0 To UBound(vMap)
+        If vMap(i) = sComp Then Exit For
+      Next i
+
+      sComp = FixRight(i +1,4,"0")
+
+      ' find the right line
+      For i = 1 To nLstOpt
+        lbxOptions.List.Index = i
+        sLstOpt = lbxOptions.Text
+
+        If Left(sLstOpt,4) = sComp Then
+          lbxOptions.List.Index = i
+          lbxOptions.List.RemoveItem i
+          sJData = CStr(vNArray(iCnt))
+          lbxOptions.List.AddItem  sLstOpt, FixLeft(sLstOpt,70," ") & " " &  _
+                                          "[" & sJData & "]", i
+          Exit For
+        End If
+      Next i
+    End If
+  Next iCnt
+
+  App.SetFocus("lbxOptions")
+End Sub
+
+Private Sub cmdLoadfrRFgen_Click()
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sPO     As String
+  Dim vArray1 As Variant
+  Dim vArray2 As Variant
+  Dim iCnt    As Long
+  Dim iRec    As Long
+  '
+  sPO = SYS.GetProperty("RFPO","RFPO")
+  lbxOptions.List.Clear
+
+  If Len(sPO) > 0 Then
+    sSql = "delete from RFPO"
+    DB.Execute(sSql)
+    vArray1 = Split(sPO,Chr(1))
+
+    For iCnt = 1 To UBound(vArray1)
+      vArray2 = Split(vArray1(iCnt -1),Chr(2))
+      sSql = "insert into RFPO VALUES('" & vArray2(0) & "','" & vArray2(1) & "','" & vArray2(2) & "','" & vArray2(3) & "','" & App.User & "','" & Format(Now(),"hh:mm:ss") & "','" & Format(Now(),"YYYYMMDD") & "')"
+      DB.Execute(sSql)
+      iRec = iRec +1
+      lbxOptions.List.AddItem " " , FixLeft(vArray2(0),10," ") & "|" & FixLeft(vArray2(1),10," ") & "  restored"
+    Next iCnt
+  End If
+
+  App.MsgBox(iRec & GetMsg(188))
+End Sub
+
+Private Sub cmdNew_Click()
+  On Error Resume Next
+  '
+  Dim i        As Integer
+  Dim iCnt     As Integer
+  Dim iChar    As Integer
+  Dim nSize    As Single
+  Dim nPos     As Single
+  Dim sSql     As String
+  Dim sChar    As String
+  Dim sData    As String
+  Dim sAData   As String
+  Dim sTData   As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sFld     As String
+  Dim sHex     As String
+  Dim zChar(1) As Byte
+  Dim zData()  As Byte
+  Dim bUseHex  As Boolean
+  Dim nLstOpt  As Long
+  Dim sLstOpt  As String
+  Dim vNArray  As Variant
+  Dim sComp    As String
+
+  sSql = "select DESVL from f98301 where DEPID = '%txtPID' and DEVERS = '%txtVERS'"
+  DB.Execute (sSql,sCols,sRows)
+
+  iCnt = DB.Count(sRows)
+
+  For i = 1 To iCnt
+    lbxOptions.List.Index = i
+    sLstOpt = lbxOptions.Text
+    lbxOptions.List.RemoveItem i
+    sData = FixLeft(Trim(DB.Extract(sCols,sRows,i,1)),1)
+
+    lbxOptions.List.AddItem  sLstOpt, FixLeft(sLstOpt,70," ") & " " &  "[" & sData & "]", i
+  Next i
+
+  lblSaveVal.Caption = ""
+  App.SetFocus("lbxOptions")
+End Sub
+
+Private Sub cmdRefresh_Click()
+  On Error Resume Next
+  '
+  Call txtVERS_OnEnter(App.GetValue("Vers"),0," ") 'rebuild the List.Data
+End Sub
+
+Private Sub cmdSaveJDE_Click()
+  On Error Resume Next
+  '
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sUser  As String
+  Dim sTime  As String
+  Dim sDate  As String
+  Dim sJData As String
+  Dim i      As Integer
+  Dim vRsp   As Variant
+
+  sUser = App.User
+  sDate = CStr(Date)
+  sTime = CStr(Time)
+
+  ' check PID and Version
+  If Trim(App.GetValue("txtPID")) = "" Or Trim(App.GetValue("txtVERS")) = "" Or UBound(mvArray) = 0 Then
+    App.MsgBox(GetMsg(163))
+    Exit Sub
+  End If
+
+  sJData = ""
+
+  For i = 0 To UBound(mvArray)
+    sJData = sJData & mvArray(i) & "|"
+  Next i
+
+  sSql = "select count(*) from RF983051 where PVPID = '%txtPID' and PVVERS = '%txtVERS' "
+  DB.Execute(sSql,sCols,sRows)
+
+  If Val(sRows) > 0 Then
+    vRsp = App.MsgBox(GetMsg(185),vbYesNo,vbNo)
+
+    If vRsp = vbYes Then
+      sSql = "update RF983051 set PVPODATA = '" & sJData & "', PVUSER = '" & sUser & "', PVTIME = '" & sTime & "', PVDATE = '" & sDate & "' " _
+      & " where PVPID = '%txtPID' and PVVERS = '%txtVERS' "
+      DB.Execute(sSql)
+      lblSaveVal.Caption = App.GetValue("txtPID") & " / " &  App.GetValue("txtVERS") & " saved to Database."
+      Exit Sub
+    End If
+  End If
+
+  sSql = "insert into RF983051 VALUES ('%txtPID','%txtVERS', '" & sJData & "', '" & sUser & "', '" & sTime & "', '" & sDate & "') "
+  DB.Execute(sSql)
+  lblSaveVal.Caption = App.GetValue("txtPID") & " / " &  App.GetValue("txtVERS") & " saved to Database."
+End Sub
+
+Private Sub cmdSaveToRfgen_Click()
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sPgm  As String
+  Dim sRel  As String
+  Dim sPO   As String
+  Dim iCnt  As Long
+  Dim iRec  As Long
+  '
+  sSql = "select * from RFPO order by POPID, PORel"
+  DB.Execute(sSql,sCols,sRows)
+
+  sPO = ""
+  lbxOptions.List.Clear
+
+  If Len(sRows) > 0 Then
+    iRec = DB.Count(sRows)
+    '
+    For iCnt = 1 To iRec
+      sPO = sPO & DB.Extract(sCols,sRows,iCnt,1) & Chr(2)
+      sPO = sPO & DB.Extract(sCols,sRows,iCnt,2) & Chr(2)
+      sPO = sPO & DB.Extract(sCols,sRows,iCnt,3) & Chr(2)
+      sPO = sPO & DB.Extract(sCols,sRows,iCnt,4) & Chr(1)
+
+      sPgm =  DB.Extract(sCols,sRows,iCnt,1)
+      sRel =  DB.Extract(sCols,sRows,iCnt,2)
+      lbxOptions.List.AddItem " " , FixLeft(sPgm,10," ") & "|" & FixLeft(sRel,10," ") & "  saved"
+    Next iCnt
+  End If
+
+  SYS.SetProperty("RFPO","RFPO",sPO)
+  App.MsgBox(iRec & " " & GetMsg(203))
+End Sub
+
+Private Sub lbxOptions_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If Left(Rsp,4) = "----" Then
+    Cancel = True
+    Exit Sub
+  End If
+
+  lblOpt.Caption = Rsp
+  lblSaveVal.Caption = ""
+  App.SetFocus("txtNewPos")
+End Sub
+
+Private Sub txtNewPos_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim i     As Integer
+  Dim nAraO As Single
+  Dim nAraN As Single
+  Dim iCnt  As Integer
+  Dim nPosF As Single
+  Dim nPosT As Single
+  Dim sPosF As String
+  Dim sPosT As String
+  Dim sPosA As String
+  Dim svMap As String
+  Dim svKey As String
+  Dim sData As String
+  Dim sSql  As String
+  Dim sFrom As String
+  '
+  If Len(Rsp) = 0 Then
+    Cancel = True
+    Exit Sub
+  End If
+
+  'from
+  nPosF  = CSng(Left(lblOpt.Caption,4)) -1
+  sPosF  = FixRight(CStr(nPosF),4,"0")
+  '
+  If nPosF > UBound(vMap) -2 Then
+    App.MsgBox(GetMsg(110))
+    lblSaveVal.Caption = ""
+    App.SetFocus("lbxOptions")
+    Exit Sub
+  End If
+
+  ' save and switch
+  vKey(nPosF) = Replace(Rsp,".",";")
+
+  lblOpt.Caption = ""
+
+  ' update mapping table
+  For i = 1 To (UBound(vMap))
+    sData = sData & vKey( i -1) & "|"
+  Next i
+
+  sSql = "update RFPO set POKey = '" & sData & "' where POPID = '%txtPID' and POREL = '%Release' "
+  DB.Execute(sSql)
+
+  Call txtVERS_OnEnter(App.GetValue("Vers"),0," ") 'rebuild the List.Data
+  lblSaveVal.Caption = ""
+  App.SetFocus("lbxOptions")
+End Sub
+
+Private Sub txtPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblTitel.Caption = ""
+End Sub
+
+Private Sub txtPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sRows As String
+  Dim sCols As String
+  '
+  Rsp = Trim(UCase(Rsp))
+  sSql = "SELECT SIMID, SIMD FROM F9801 WHERE  SIMID = '" & Rsp & "' "
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox(GetMsg(164))
+    Cancel = True
+    Exit Sub
+  End If
+
+  lblTitel.Caption = DB.Extract(sCols,sRows,1,2)
+  Rsp = UCase(Rsp)
+  '
+  If Len(Rsp) = 0 Then
+    Cancel = True
+    Exit Sub
+  End If
+
+  lblSaveVal.Caption = ""
+  App.SetValue("tmPID", Rsp)
+End Sub
+
+Private Sub txtPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim vRsp   As Variant
+  Dim sSql   As String
+  Dim sValue As String
+  Dim sLike  As String
+  Dim oList  As New SearchList
+  '
+  Rsp = Trim(UCase(Rsp))
+  vRsp = App.MsgBox(GetMsg(211),,,"[All] [OnFile]")
+  '
+  If vRsp = "All" Then
+    If Len(Rsp) < 3 Then
+      App.MsgBox(GetMsg(218))
+      Cancel = True
+      Exit Sub
+    End If
+
+    sLike = " and SIMID Like '" & Rsp & "%%' "
+    sSql = "SELECT  SIMID, SIMD   FROM F9801  where SIFUNC = 'RPG' " & sLike
+
+    oList.MaxRows = 1000
+    oList.ShowEmptyList = True
+    oList.ReturnAllRows = False
+    oList.SetColumn(1, "Pgm", 10, CenterLeft, True)
+    oList.SetColumn(2, "Name",30, CenterLeft, True)
+    '
+    oList.SQL = sSql
+    Rsp = oList.ShowList
+  Else
+    sSql = "SELECT  POPID, POREL , SIMD   FROM RFPO inner join F9860  on POPID = SIOBNM order by POPID "
+
+    oList.MaxRows = 1000
+    oList.ShowEmptyList = True
+    oList.ReturnAllRows = True
+    oList.SetColumn(1, "Pgm"    ,10, CenterLeft, True)
+    oList.SetColumn(2, "Release",5 , CenterLeft, True)
+    oList.SetColumn(3, "Name"   ,30, CenterLeft, True)
+    oList.SQL = sSql
+    '
+    oList.SQL = sSql
+    sValue = oList.ShowList
+    '
+    Rsp = LField(sValue, Chr(3), 1)
+
+    txtRel.Text = LField(sValue, Chr(3), 2)
+    App.SetValue("Release", LField(sValue, Chr(3), 2))
+    Screen.Refresh
+  End If
+  '
+  Cancel = (Len(Rsp) = 0)
+
+End Sub
+
+Private Sub txtRel_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = Trim(Rsp)
+
+  App.SetValue("Release", Rsp)
+End Sub
+
+Private Sub txtVERS_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblVersion.Caption = ""
+End Sub
+
+Private Sub txtVERS_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim i      As Integer
+  Dim iCnt   As Integer
+  Dim iChar  As Integer
+  Dim nSize  As Single
+  Dim nPos   As Single
+  Dim sSql   As String
+  Dim sChar  As String
+  Dim sKey   As String
+  Dim sData  As String
+  Dim sAData As String
+  Dim sTXT   As String
+  Dim sJDE   As String
+  Dim sJCols As String
+  Dim sJRows As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sFld   As String
+  Dim sPOTP  As String
+  Dim sDesc  As String
+  Dim vTXT   As Variant
+  Dim vJDE   As Variant
+  Dim sUser  As String
+  Dim sTime  As String
+  Dim sDate  As String
+
+  sUser = App.User
+  sDate = CStr(Date)
+  sTime = CStr(Time)
+
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  ' Get Header only
+  sSql = "select DEVERS, DETXT1 from F98301 where DEPID = '" & txtPID.Text & "' and DEVERS = '" & Rsp & "' and DETY = 'R' "
+  DB.Execute (sSql,sCols,sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox(GetMsg(225))
+    Exit Sub
+  End If
+  '
+  App.SetValue("Vers",Trim(Rsp))
+  lblVersion.Caption = DB.Extract(sCols,sRows,1,2)
+
+  ' get all Values from AS400
+  '
+  sSql = "select DEOPT#,DESVL,DETXT1 from f98301 where DEPID = '%txtPID' and DEVERS = '" & Rsp & "'  and DETY = 'O' "
+  DB.Execute (sSql,sJCols,sJRows)
+  iCnt = DB.Count(sJRows)
+
+  ' extract from recordset, fix left
+  For i = 1 To iCnt
+    sJDE = sJDE & FixLeft(DB.Extract(sJCols,sJRows,i,2),4," ") & "|"
+    sTXT = sTXT & FixLeft(DB.Extract(sJCols,sJRows,i,3),50," ") & "|"
+  Next i
+
+  lblJDE.Caption = sJDE
+  mvArray = sJDE
+  '
+  ' get RFgen mapping table
+  '
+  sSql = "select * from RFPO where POPID = '%txtPID'  and POREL = 'World' "
+  DB.Execute (sSql,sCols,sRows)
+
+  If Len(sRows) = 0 Then  ' new mapping
+    For i = 1 To iCnt
+      sData = sData & FixRight(DB.Extract(sJCols,sJRows,i,1),4,"0") & "|"
+      sKey  = sKey  & "0" & ";" & DB.Extract(sJCols,sJRows,i,1) & "|"
+    Next i
+
+    sSql = "insert into RFPO VALUES ('%txtPID', 'World', '" & sData & "', '" & sKey & "' , '" & sUser & "', '" & sTime & "', '" & sDate & "') "
+    DB.Execute (sSql)
+  Else  ' mapping already exists
+    sData = Trim(DB.Extract(sCols,sRows,1,3))
+    sKey  = Trim(DB.Extract(sCols,sRows,1,4))
+  End If
+
+  vJDE = Split(sJDE,"|")
+  vMap = Split(sData,"|")
+  vKey = Split(sKey,"|")
+  vTXT = Split(sTXT,"|")
+
+  lblvMap.Caption = sData
+  lblKey.Caption  = sKey
+  lblJDE.Caption  = sJDE
+
+  ' get PO data
+  '
+  lbxOptions.List.Clear
+
+  For iCnt = 1 To UBound(vTXT)
+    sDesc  = FixRight(CStr(iCnt),4,"0") & "  " & FixLeft(vKey(iCnt -1),5, " ") & vTXT(iCnt -1) & "[" & vJDE(iCnt -1) & "]
+    lbxOptions.List.AddItem sDesc, sDesc
+  Next iCnt
+
+  lblSaveVal.Caption = ""
+  Cancel = False
+End Sub
+
+Private Sub txtVERS_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sList As String
+  Dim vRsp  As Variant
+  '
+  vRsp = App.MsgBox(GetMsg(211),,,"[All] [OnFile]")
+  '
+  If vRsp = "All" Then
+    sSql = "select DISTINCT DEVERS from F98301 where DEPID = '%txtPID' "
+  Else
+    sSql = "select PVVERS from RF983051 where PVPID = '%txtPID' order by PVVERS "
+  End If
+  '
+  sList = DB.MakeList(sSql)
+  Rsp = App.ShowList(sList)
+  '
+  Cancel = (Len(Rsp)=0)
+End Sub
+</Code>

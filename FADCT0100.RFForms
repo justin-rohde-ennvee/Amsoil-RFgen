@@ -1,0 +1,1941 @@
+﻿<Record FileDesc="ADM - Create RFgen Worktables" FileVersion="5.0.8.0" Desc="ADM - Create RFgen Worktables" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtConnection&vm;lblConnector&vm;cmdCreate&vm;lstTables&vm;chkPO&vm;lblSep2&vm;chkLog&vm;chkOffline&vm;chkLP&vm;chkWM&vm;chkQLoadBal&vm;chkWOTime&vm;chkTxn&vm;lblSep1&vm;chkPFP&vm;lblProgress&vm;chkRFUP">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtConnection" />
+<SchemaParam Linked="0" Attr="2" Name="lblConnector" />
+<SchemaParam Linked="0" Attr="3" Name="cmdCreate" />
+<SchemaParam Linked="0" Attr="4" Name="lstTables" />
+<SchemaParam Linked="0" Attr="5" Name="chkPO" />
+<SchemaParam Linked="0" Attr="6" Name="lblSep2" />
+<SchemaParam Linked="0" Attr="7" Name="chkLog" />
+<SchemaParam Linked="0" Attr="8" Name="chkOffline" />
+<SchemaParam Linked="0" Attr="9" Name="chkLP" />
+<SchemaParam Linked="0" Attr="10" Name="chkWM" />
+<SchemaParam Linked="0" Attr="11" Name="chkQLoadBal" />
+<SchemaParam Linked="0" Attr="12" Name="chkWOTime" />
+<SchemaParam Linked="0" Attr="13" Name="chkTxn" />
+<SchemaParam Linked="0" Attr="14" Name="lblSep1" />
+<SchemaParam Linked="0" Attr="15" Name="chkPFP" />
+<SchemaParam Linked="0" Attr="16" Name="lblProgress" />
+<SchemaParam Linked="0" Attr="17" Name="chkRFUP" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtConnection" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="111" Height="22" AnchorRight="464" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="DB Connector:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="22" Width="39" Height="22" AnchorRight="408" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblConnector" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="22" Width="103" Height="22" AnchorRight="304" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblConnector" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdCreate" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Create Tables" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="594" Width="135" Height="22" AnchorRight="392" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstTables" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="288" Top="22" Width="119" Height="22" AnchorRight="168" AnchorBottom="594" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Table overview" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="10" FontStyle="0" MultiLine="1" Left="288" Top="44" Width="287" Height="594" AnchorRight="0" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPO" Attr="5" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="66" Width="143" Height="22" AnchorRight="400" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Proc. Opt. tables" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="31" Height="31" AnchorRight="544" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSep2" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="0" Top="132" Width="255" Height="22" AnchorRight="320" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="---------- Optional -----------" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkLog" Attr="7" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="154" Width="151" Height="22" AnchorRight="392" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen Log Files   " />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="31" Height="31" AnchorRight="544" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkOffline" Attr="8" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="223" Height="22" AnchorRight="320" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Offline Inventory tables   " />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="31" Height="31" AnchorRight="544" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkLP" Attr="9" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="264" Width="175" Height="22" AnchorRight="368" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="License Plate tables " />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="31" Height="31" AnchorRight="544" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkWM" Attr="10" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="418" Width="151" Height="22" AnchorRight="392" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Warehouse Director" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="418" Width="31" Height="31" AnchorRight="544" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkQLoadBal" Attr="11" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="374" Width="167" Height="22" AnchorRight="376" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Queue Load Balancing" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="374" Width="31" Height="31" AnchorRight="544" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkWOTime" Attr="12" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="462" Width="199" Height="22" AnchorRight="344" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="WO Time Entry Start/Stop" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="462" Width="31" Height="31" AnchorRight="544" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkTxn" Attr="13" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="220" Width="191" Height="22" AnchorRight="352" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Is this the Txn server?" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="31" Height="31" AnchorRight="544" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSep1" Attr="14">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="0" Top="44" Width="255" Height="22" AnchorRight="320" AnchorBottom="572" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="---------- Required -----------" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPFP" Attr="15" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="506" Width="223" Height="22" AnchorRight="320" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pay For Performance (Voice)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="31" Height="31" AnchorRight="544" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblProgress" Attr="16">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="616" Width="95" Height="22" AnchorRight="480" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblProgress" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkRFUP" Attr="17" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="550" Width="159" Height="22" AnchorRight="384" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen User Profiles" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="550" Width="31" Height="31" AnchorRight="544" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="575" FormHeight="638" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="                        [ CREATE RFGEN JDE WORK TABLES ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2011 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 416                                |
+' -------------------------------------------------------------------------------
+'
+
+
+Option Explicit
+
+Public miSource    As Integer
+
+Private msDBType   As String
+Private msList     As String
+'
+Private mbRFPO     As Boolean
+Private mbRFWM     As Boolean
+Private mbRF983051 As Boolean
+Private mbRR983051 As Boolean
+Private mbRFTRAN   As Boolean
+'
+Private mbOI001    As Boolean
+Private mbOI098    As Boolean
+Private mbOI099    As Boolean
+'
+Private mbLP002    As Boolean
+Private mbLP005    As Boolean
+Private mbLP008    As Boolean
+Private mbLP101    As Boolean
+Private mbLP102    As Boolean
+Private mbLP11H    As Boolean
+Private mbLP12H    As Boolean
+'
+Private mbRFLOG    As Boolean
+Private mbRF31122  As Boolean
+Private mbPFP      As Boolean
+'
+Private mbRFUP001  As Boolean
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim iCnt As Integer
+  '
+  Call SetDisplay()
+  '
+  For iCnt = 1 To 5
+    If SYS.ConnectionProperty(iCnt, dcConnectMode) = "ODBC" Then App.MakeList(msList, CStr(iCnt), _
+                                                    FixLeft(SYS.ConnectionProperty(iCnt,dcSourceId),10," ") & " " & _
+                                                    SYS.ConnectionProperty(iCnt, dcDatabase),"Connector  Database")
+  Next
+  '
+  lblConnector.Caption = ""
+  lblProgress.Caption = ""
+  lstTables.List.Clear
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  DB.UseDataSource(0)
+End Sub
+
+Private Sub cmdCreate_Click()
+  On Error Resume Next
+  '
+  Screen.Print 36, 25, "Processing...", False, True, True
+  '
+  DB.UseDataSource(miSource)
+
+  lstTables.List.Clear
+  '
+  If chkPO.Checked       Then Call CreatePO
+  If chkLog.Checked      Then Call CreateLogTables
+  If chkOffline.Checked  Then Call CreateOffline
+  If chkLP.Checked       Then Call CreateLP
+  If chkQLoadBal.Checked Then Call CreateQLoadBal
+  If chkWM.Checked       Then Call CreateWD
+  If chkWOTime.Checked   Then Call CreateWO
+  If chkPFP.Checked      Then Call CreatePFP
+  If chkRFUP.Checked     Then Call CreateRFUP
+
+  Screen.Print 36, 25, "            ", False, True, True
+
+  lstTables.List.Clear
+
+  Call ValidatePO
+  Call ValidateLogTables
+  Call ValidateOITables
+  Call ValidateLPTables
+  Call ValidateQLoadBal
+  Call ValidateWMTables
+  Call ValidateWOTables
+  Call ValidatePFP
+  Call ValidateRFUP
+End Sub
+
+Public Sub CreatePO
+  On Error Resume Next
+  '
+  Dim sSQL    As String
+  Dim sChar   As String
+  Dim sVChar  As String
+  Dim sNumber As String
+  Dim sFloat  As String
+  '
+  Select Case msDBType
+    Case "SQL Server"
+      sChar   = "NCHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "FLOAT"
+      sVChar  = "NVARCHAR"
+      '
+    Case "DB2"
+      sChar   = "CHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "NUMERIC(15,4)"
+      sVChar  = "CHAR"
+      '
+    Case "Oracle"
+      sChar   = "CHAR"
+      sNumber = "NUMBER"
+      sVChar  = "VARCHAR2"
+      sFloat  = "NUMBER"
+      '
+    Case "Access"
+      sChar   = "CHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "FLOAT"
+  End Select
+  '
+  ' Assure that RFPO exists
+  '
+  If Not mbRFPO Then
+'    DB.Execute "drop table RFPOL1"
+'    DB.Execute "drop table RFPO"
+    DoEvents
+    '
+    'Needs to qualify proper Database to create the Schema in.
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.RFPO (" _
+         & "POPID  %char%(10) NOT NULL, " _
+         & "POREL  %char%(10) NOT NULL, " _
+         & "POSEQ  %vchar%(999),        " _
+         & "POKEY  %vchar%(999),        " _
+         & "POUSER %char%(10),          " _
+         & "POTIME %char%(12),          " _
+         & "PODATE %char%(10))"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%vchar%", sVChar)
+    If sVChar = "MEMO" Then sSQL = Replace(sSQL, "(999)", "")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX JDE_DEVELOPMENT.TESTDTA.RFPOL1 ON JDE_DEVELOPMENT.TESTDTA.RFPO (POPID, POREL)"
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  ' Assure that RF983051 exists
+  '
+  If Not mbRF983051 Then
+'    DB.Execute "drop table RF983051L1"
+'    DB.Execute "drop table RF983051"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.RF983051 (" _
+         & "PVPID    %char%(10),   " _
+         & "PVVERS   %char%(10),   " _
+         & "PVPODATA %vchar%(999), " _
+         & "PVUSER   %char%(10),   " _
+         & "PVTIME   %char%(12),   " _
+         & "PVDATE   %char%(10))"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%vchar%", sVChar)
+    If sVChar = "MEMO" Then sSQL = Replace(sSQL, "(999)", "")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX JDE_DEVELOPMENT.TESTDTA.RF983051L1 ON JDE_DEVELOPMENT.TESTDTA.RF983051 (PVPID, PVVERS)"
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  ' Assure that RR983051 exists  '  INS RBR 09/05/2006
+  '
+  If Not mbRR983051 Then
+'    DB.Execute "drop table RR983051L1"
+'    DB.Execute "drop table RR983051"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.RR983051 (" _
+         & "RRPID    %char%(10),   " _
+         & "RRVERS   %char%(10),   " _
+         & "RRPODATA %vchar%(999), " _
+         & "RRHEADER %vchar%(50),  " _
+         & "RRUSER   %char%(10),   " _
+         & "RRTIME   %char%(12),   " _
+         & "RRDATE   %char%(10))"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%vchar%", sVChar)
+    If sVChar = "MEMO" Then sSQL = Replace(sSQL, "(999)", "")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX JDE_DEVELOPMENT.TESTDTA.RR983051L1 ON JDE_DEVELOPMENT.TESTDTA.RR983051 (RRPID, RRVERS)"
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  ' Assure that RFTran exists
+  '
+  If Not mbRFTRAN Then
+'    DB.Execute "drop table RFTranL1"
+'    DB.Execute "drop table RFTran"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.RFTran (" _
+         & "RITRAN   %char%(10),    " _
+         & "RIIDX    %char%(10),    " _
+         & "RIDESC   %char%(30),    " _
+         & "RIURCD   %char%(02),    " _
+         & "RIURRF   %char%(15),    " _
+         & "RIURAB   %number%(15,0)," _
+         & "RIURAT   %number%(15,0)," _
+         & "RIUSER   %char%(12),    " _
+         & "RIUPD    %char%(12),    " _
+         & "RIUKID   %float%)"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%vchar%", sVChar)
+    sSQL = Replace(sSQL, "%float%", sFloat)
+    sSQL = Replace(sSQL, "%number%", sNumber)
+    '
+    If sVChar = "MEMO" Then sSQL = Replace(sSQL, "(999)", "")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX JDE_DEVELOPMENT.TESTDTA.RITRANL1 ON JDE_DEVELOPMENT.TESTDTA.RITRAN (RIUKID)"
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX JDE_DEVELOPMENT.TESTDTA.RITRANL2 ON JDE_DEVELOPMENT.TESTDTA.RITRAN (RITRAN, RIIDX, RIDESC)"
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  Call ValidatePO
+  '
+  If mbRFPO Then Call PopulateRFPO
+  SYS.SetProperty("LP", "Source", miSource)
+End Sub
+
+Private Sub CreateQLoadBal()
+  On Error Resume Next
+
+  Dim sSQL    As String
+  Dim sChar   As String
+  Dim sVChar  As String
+  Dim sNumber As String
+  Dim sFloat  As String
+  '
+  Select Case msDBType
+    Case "SQL Server"
+      sChar   = "NCHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "FLOAT"
+      sVChar  = "NVARCHAR"
+      '
+    Case "DB2"
+      sChar   = "CHAR"
+     sNumber = "NUMERIC"
+      sFloat  = "NUMERIC(15,4)"
+      sVChar  = "CHAR"
+      '
+    Case "Oracle"
+      sChar   = "CHAR"
+      sNumber = "NUMBER"
+      sVChar  = "NVARCHAR"
+      sFloat  = "NUMBER"
+      '
+    Case "Access"
+      sChar   = "CHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "FLOAT"
+  End Select
+  '
+  ' Assure that RFQBAL exists
+  '
+  DB.Execute "drop table RFQBALL1"
+  DB.Execute "drop table RFQBAL"
+  DoEvents
+  '
+  sSQL = "create table RFQBAL (" _
+       & "QNAME  %char%(10) NOT NULL, " _
+       & "COUNTER  %number%(15,0))
+  '
+  sSQL = Replace(sSQL, "%char%", sChar)
+  sSQL = Replace(sSQL, "%vchar%", sVChar)
+  sSQL = Replace(sSQL, "%float%", sFloat)
+  sSQL = Replace(sSQL, "%number%", sNumber)
+  If sVChar = "MEMO" Then sSQL = Replace(sSQL, "(999)", "")
+  '
+  DB.Execute sSQL
+  DoEvents
+  '
+  sSQL = "CREATE INDEX RFQBALL1 ON RFQBAL (COUNTER)"
+  '
+  DB.Execute sSQL
+  DoEvents
+  '
+End Sub
+
+Public Sub CreateWO
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sChar    As String
+  Dim sVChar   As String
+  Dim sPriKey1 As String
+  Dim sPriKey2 As String
+  Dim sNumber  As String
+  Dim sFloat   As String
+  '
+  Select Case msDBType
+  Case "SQL Server"
+    sChar  = "NCHAR"
+    sVChar = "NVARCHAR"
+    sFloat = "FLOAT"
+  Case "DB2"
+    sChar  = "VARCHAR"
+    sVChar = "VARCHAR"
+    sFloat = "FLOAT"
+  Case "Oracle"
+    sChar  = "CHAR"
+    sVChar = "VARCHAR2"
+    sFloat = "FLOAT"
+  Case "Access"
+    sChar  = "CHAR"
+    sVChar = "MEMO"
+    sFloat = "FLOAT"
+  End Select
+  '
+  ' Assure that file exists
+  '
+  If Not mbRF31122 Then
+'    DB.Execute "drop table RF31122L1"
+'    DB.Execute "drop table RF31122"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.RF31122 (" _
+         & "WTMMCU  %char%(12) NOT NULL, " _
+         & "WTDOCO  %float%,             " _
+         & "WTDCTO  %char%(2),           " _
+         & "WTOPSQ  %float%,             " _
+         & "WTSHFT  %char%(1),           " _
+         & "WTTTYR  %char%(1),           " _
+         & "WTAN8   %float%,             " _
+         & "WTUPMJ  %char%(20),          " _
+         & "WTUSER  %char%(10))"
+    '
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%float%",   sFloat)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    sSQL = Replace(sSQL, "%key%",     "RFUKID")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX RF31122L1 ON RF31122 (WTMMCU, WTDOCO, WTDCTO, WTAN8)"
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  Call ValidateWOTables
+End Sub
+
+Public Sub CreateWD
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sChar    As String
+  Dim sVChar   As String
+  Dim sPriKey1 As String
+  Dim sPriKey2 As String
+  Dim sNumber  As String
+  Dim sFloat   As String
+  '
+  Select Case msDBType
+    Case "SQL Server"
+      sChar   = "NCHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "FLOAT"
+      sVChar  = "NVARCHAR"
+      '
+    Case "DB2"
+      sChar   = "CHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "NUMERIC(15,4)"
+      sVChar  = "CHAR"
+      '
+    Case "Oracle"
+      sChar   = "CHAR"
+      sNumber = "NUMBER"
+      sVChar  = "VARCHAR2"
+      sFloat  = "NUMBER"
+      '
+    Case "Access"
+      sChar   = "CHAR"
+      sNumber = "NUMERIC"
+      sFloat  = "FLOAT"
+  End Select
+  '
+  ' Assure that file exists
+  '
+  If Not mbRFWM Then
+'    DB.Execute "drop table WDJOBS"
+'    DB.Execute "drop table WDNN"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.WDJOBS (" _
+        & "R2TYFL %char%(1) , " _
+        & "R2SGBT %float% NOT NULL, " _
+        & "R2SGSQ %float% NOT NULL, " _
+        & "R2PTSK %float% , " _
+        & "R2TRIP %float% , " _
+        & "R2PSTB %char%(3) , " _
+        & "R2PRITY %char%(2) , " _
+        & "R2MCU  %char%(12) , " _
+        & "R2ITM  %float% , " _
+        & "R2LITM %char%(25) , " _
+        & "R2UOM1 %char%(2) , " _
+        & "R2TQTY %float% , " _
+        & "R2FLOC %char%(20) , " _
+        & "R2FLOT %char%(30) , " _
+        & "R2LOTS %float% , " _
+        & "R2TLOC %char%(20) , " _
+        & "R2TLOT %char%(30) , " _
+        & "R2DSC1 %char%(30) , " _
+        & "R2DSC2 %char%(30) , " _
+        & "R2DOCO %float% , " _
+        & "R2DCTO %char%(2) , " _
+        & "R2LNID %float% , " _
+        & "R2NLIN %float% , " _
+        & "R2RCDJ %number%(18,0) , " _
+        & "R2TRDJ %number%(18,0) , " _
+        & "R2DRQJ %number%(18,0) , " _
+        & "R2PZON %char%(6) , " _
+        & "R2KZON %char%(6) , " _
+        & "R2ZONR %char%(6) , " _
+        & "R2LPID %char%(25) , " _
+        & "R2URCD %char%(2) , " _
+        & "R2URDT %number%(18,0) , " _
+        & "R2URAT %float% , " _
+        & "R2URAB %float% , " _
+        & "R2URRF %char%(15) , " _
+        & "R2USER %char%(10) , " _
+        & "R2PID  %char%(10) , " _
+        & "R2UPMJ %number%(18,0) , " _
+        & "R2TDAY %float%    )"
+
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%float%",   sFloat)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX WDJOBS_PK ON WDJOBS (R2SGBT, R2SGSQ)"
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+     sSQL = "create table JDE_DEVELOPMENT.TESTDTA.WDNN (" _
+        & "R2SGBT %float% NOT NULL)
+    '
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%float%",   sFloat)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    '
+    DB.Execute sSQL
+    '
+    sSQL = "CREATE INDEX WDNN_PK ON WDNN (R2SGBT)"
+    '
+    DB.Execute sSQL
+
+ End If
+  '
+  Call ValidateWMTables
+End Sub
+
+Public Sub CreatePFP
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sChar    As String
+  Dim sVChar   As String
+  Dim sPriKey1 As String
+  Dim sPriKey2 As String
+  Dim sNumber  As String
+  Dim sFloat   As String
+  '
+  Select Case msDBType
+  Case "SQL Server"
+    sChar  = "NCHAR"
+    sVChar = "NVARCHAR"
+    sFloat = "FLOAT"
+  Case "DB2"
+    sChar  = "VARCHAR"
+    sVChar = "VARCHAR"
+    sFloat = "FLOAT"
+  Case "Oracle"
+    sChar  = "CHAR"
+    sVChar = "VARCHAR2"
+    sFloat = "FLOAT"
+  Case "Access"
+    sChar  = "CHAR"
+    sVChar = "MEMO"
+    sFloat = "FLOAT"
+  End Select
+  '
+  ' Assure that file exists
+  '
+  If Not mbPFP Then
+    DB.Execute "drop table F58PFP"
+    DoEvents
+    '
+    sSQL = "create table F58PFP (" _
+         & "PFUSER  %char%(10) NOT NULL, " _
+         & "PFURCD  %char%(2),           " _
+         & "PFURDT  %float%,             " _
+         & "PFURAT  %float%,             " _
+         & "PFURAB  %float%,             " _
+         & "PFURRF  %char%(15),          " _
+         & "PFPID   %char%(10),          " _
+         & "PFJOBN  %char%(10),          " _
+         & "PFUPMJ  %float%,             " _
+         & "PFTDAY  %float%)"
+    '
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%float%",   sFloat)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    sSQL = Replace(sSQL, "%key%",     "RFUKID")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX F58PFPL1 ON F58PFP (PFUSER, PFUPMJ, PFTDAY)"
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  Call ValidateWOTables
+End Sub
+
+Private Sub CreateLogTables()
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sChar    As String
+  Dim sPriKey1 As String
+  Dim sPriKey2 As String
+  Dim sNumber  As String
+  Dim sFloat   As String
+  '
+  Select Case msDBType
+    Case "SQL Server"
+      sChar    = "NCHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+    Case "DB2"
+      sChar    = "VARCHAR"
+      sPriKey2 = ", PRIMARY KEY (%key%)"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+    Case "Oracle"
+      sChar    = "CHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMBER"
+      sFloat   = "NUMBER"
+    Case "Access"
+      sChar    = "CHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+  End Select
+  '
+  ' Assure that RFLOG exists
+  '
+  If Not mbRFLOG Then
+'    DB.Execute "drop table RFLOGL1"
+'    DB.Execute "drop table RFLOG"
+    DoEvents
+    '
+    sSQL = "create table JDE_PRODUCTION.PRODDTA.RFLOG (" & _
+            "RFTRID  %char%(30),  " & _
+            "RFERR   %char%(30),  " & _
+            "RFDL01  %char%(30),  " & _
+            "RFDATA  %char%(3000)," & _
+            "RFJOBN  %char%(15),  " & _
+            "RFUSER  %char%(10),  " & _
+            "RFDATE  %char%(14),  " & _
+            "RFQUEUE %char%(10),  " & _
+            "RFQSEQ  %char%(10),  " & _
+            "RFUKID  %float% %prikey1%)"
+    '
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%float%",   sFloat)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    sSQL = Replace(sSQL, "%key%",     "RFUKID")
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+'  DoEvents
+'  ' Generate Indexes
+'  DB.Execute "create index RFLOGL1 ON RFLOG (RFUKID)"
+End Sub
+
+Private Sub ValidatePO()
+  On Error Resume Next
+  '
+  Dim nErrNo As Currency
+  Dim sSQL As String
+  '
+  ' Check RFPO
+  '
+  sSQL = "select POPID,POREL,POSEQ,POKEY,POUSER,POTIME,PODATE from RFPO"
+  nErrNo = DB.Execute(sSQL)
+  '
+  mbRFPO = (nErrNo=0)
+  If Not mbRFPO Then
+    lstTables.List.AddItem 0,"Table RFPO      - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RFPO      - verified"
+  End If
+  '
+  ' Check RF983051
+  '
+  sSQL = "select PVPID,PVVERS,PVPODATA,PVUSER,PVTIME,PVDATE from RF983051"
+  nErrNo = DB.Execute(sSQL)
+  '
+  mbRF983051 = (nErrNo=0)
+  If Not mbRF983051 Then
+    lstTables.List.AddItem 0,"Table RF983051  - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RF983051  - verified"
+  End If
+  '
+  ' Check RR983051  ' INS RBR 09/05/2006
+  '
+  sSQL = "select RRPID,RRVERS,RRPODATA,RRHEADER,RRUSER,RRTIME,RRDATE from RR983051"
+  nErrNo = DB.Execute(sSQL)
+  '
+  mbRR983051 = (nErrNo=0)
+  If Not mbRR983051 Then
+    lstTables.List.AddItem 0,"Table RR983051  - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RR983051  - verified"
+  End If
+  '
+  ' Check RFTRAN  ' INS RBR 07/27/2009
+  '
+  sSQL = "select RITRAN,RIIDX,RIDESC,RIURCD,RIURRF,RIURAB,RIURAT,RIUSER,RIUPD,RIUKID from RFTRAN"
+  nErrNo = DB.Execute(sSQL)
+  '
+  mbRFTRAN = (nErrNo=0)
+  If Not mbRFTRAN Then
+    lstTables.List.AddItem 0,"Table RFTRAN    - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RFTRAN    - verified"
+  End If
+
+lstTables.List.AddItem 0,"---------------------------"
+End Sub
+
+Private Sub PopulateRFPO()
+  On Error Resume Next
+  '
+  Dim i As Long
+  Dim iCnt As Long
+  Dim sPO As String
+  Dim sSQL As String
+  Dim sCols() As String
+  Dim sRows() As String
+  '
+  sPO = SYS.GetProperty("RFPO","RFPO")
+
+  If (Len(sPO) > 0) Then
+    sSQL = "delete from RFPO"
+    DB.Execute sSQL
+    DoEvents
+    '
+    sRows = Split(sPO, Chr(1))
+    '
+    iCnt = UBound(sRows)
+    '
+    For i=0 To iCnt
+      sCols = Split(sRows(i),Chr(2))
+      sSQL = "insert into RFPO VALUES('" & sCols(0) & "','" & _
+                                           sCols(1) & "','" & _
+                                           sCols(2) & "','" & _
+                                           sCols(3) & "','" & _
+                                           App.User & "','" & _
+                                           Format(Now(),"hh:mm:ss") & "','" & _
+                                           Format(Now(),"YYYYMMDD") & "')"
+      DB.Execute sSQL
+    Next i
+    '
+    App.MsgBox(iCnt+1 & " " & GetMsg(188))
+  End If
+End Sub
+
+Private Sub CreateOffline()
+  On Error Resume Next
+  '
+  Dim sSQL      As String
+  Dim sChar     As String
+  Dim sVChar    As String
+  Dim sNumber   As String
+  Dim sFloat    As String
+  Dim bIsServer As Boolean
+
+  Select Case msDBType
+  Case "SQL Server"
+    sChar   = "NCHAR"
+    sVChar  = "NVARCHAR"
+    sNumber = "NUMERIC"
+    sFloat  = "FLOAT"
+  Case "DB2"
+    sChar   = "VARCHAR"
+    sVChar  = "VARCHAR"
+    sNumber = "NUMERIC"
+    sFloat  = "FLOAT"
+  Case "Oracle"
+    sChar   = "CHAR"
+    sVChar  = "VARCHAR2"
+    sNumber = "NUMBER"
+    sFloat  = "NUMBER"
+  Case Else
+    App.MsgBox(GetMsg(139) & " " & msDBType)
+    Exit Sub
+  End Select
+  '
+  bIsServer = chkTxn.Checked
+  '
+  ' Assure that OI001 exists
+  '
+  If Not mbOI001 Then
+    DB.Execute "drop table OI001L1"
+    DB.Execute "drop table OI001"
+    DoEvents
+    '
+    sSQL = "create table OI001 (" & _
+            "ILQNAME %char%(15) NOT NULL, " & _
+            "ILSEQNO %float% NOT NULL,    " & _
+            "ILCO    %char%(5),           " & _
+            "ILMCU   %char%(12),          " & _
+            "ILDOCO  %float%,             " & _
+            "ILDCTO  %char%(2),           " & _
+            "ILLNID  %float%,             " & _
+            "ILTRDJ  %number%(18,0),      " & _
+            "ILITM   %float%,             " & _
+            "ILLITM  %char%(25) NOT NULL, " & _
+            "ILAITM  %char%(25),          " & _
+            "ILUOM1  %char%(2),           " & _
+            "ILQTY1  %float%,             " & _
+            "ILUOM2  %char%(2),           " & _
+            "ILQTY2  %float%,             " & _
+            "ILLOCN  %char%(20),          " & _
+            "ILLOTN  %char%(30),          " & _
+            "ILLOTS  %char%(1))"
+    '
+    sSQL = Replace(sSQL, "%char%",   sChar)
+    sSQL = Replace(sSQL, "%number%", sNumber)
+    sSQL = Replace(sSQL, "%float%",  sFloat)
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX OI001L1 ON OI001 (ILQNAME, ILSEQNO)"
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  ' Assure that OI098/OI099 exists
+  '
+  ' OI098 should be placed on the transaction server and replicated to the remote location
+  ' OI099 should be placed on the remote server as it will trigger the deletion of OI001 records
+  '
+  If Not mbOI098 And bIsServer Then
+    DB.Execute "drop table OI098L1"
+    DB.Execute "drop table OI098"
+    DoEvents
+    '
+    sSQL = "create table OI098 (" & _
+            "ILQNAME %char%(15) NOT NULL, " & _
+            "ILSEQNO %float% NOT NULL," & _
+            "ILUSER  %char%(10) NULL," & _
+            "ILMSG   %char%(3000) NULL," & _
+            "ILDATE  %char%(14) NULL," & _
+            "ILMSENT %char%(1) NULL)"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%float%", sFloat)
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    sSQL = "CREATE INDEX OI098L1 ON OI098 (ILQNAME, ILSEQNO)"
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  If Not mbOI099 And Not bIsServer Then
+    DB.Execute "drop table OI099"
+    DoEvents
+    '
+    sSQL = "create table OI099 (" & _
+            "ILQNAME %char%(15) NOT NULL, " & _
+            "ILSEQNO %float% NOT NULL," & _
+            "ILUSER  %char%(10) NULL," & _
+            "ILMSG   %char%(3000) NULL," & _
+            "ILDATE  %char%(14) NULL," & _
+            "ILMSENT %char%(1) NULL)"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%float%", sFloat)
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    ' Create trigger
+    '
+    Select Case msDBType
+    Case "Oracle"
+      sSQL = "CREATE OR REPLACE TRIGGER trgDEL001 INSTEAD OF INSERT ON vOI099 " & vbCrLf & _
+             "For Each ROW " & vbCrLf & _
+             "BEGIN "& vbCrLf & _
+             "DELETE FROM OI001 WHERE ILQNAME = :New.ILQNAME And ILSEQNO = :New.ILSEQNO;" & vbCrLf & _
+             "End; "
+
+    Case Else
+      sSQL = "IF  EXISTS (SELECT * FROM sys.triggers WHERE object_id = OBJECT_ID(N'[dbo].[trgDEL001]')) " & vbCrLf & _
+             "DROP TRIGGER [dbo].[trgDEL001]
+
+      DB.Execute sSQL
+      DoEvents
+
+      sSQL = "create trigger trgDEL001 on OI099 instead of INSERT as " & _
+             "SET NOCOUNT ON " & _
+             "Declare @QNAME %vchar%(15)" & vbCrLf & _
+             "Declare @SEQNO %float%" & vbCrLf & _
+             "Declare SourceINS_Cursor CURSOR For" & vbCrLf & _
+             "Select ILQNAME, ILSEQNO FROM Inserted" & vbCrLf & _
+             "Open SourceINS_Cursor" & vbCrLf & _
+             "Fetch Next From SourceINS_Cursor Into @QNAME, @SEQNO" & vbCrLf & _
+             "While @@fetch_status = 0 Begin" & vbCrLf & _
+             "  delete from OI001 where ILQNAME = @QNAME And ILSEQNO = @SEQNO" & vbCrLf & _
+             "  Fetch Next From SourceINS_Cursor Into @QNAME, @SEQNO" & vbCrLf & _
+             "End" & vbCrLf & _
+             "Close SourceINS_Cursor" & vbCrLf & _
+             "Deallocate SourceINS_Cursor" & vbCrLf
+    End Select
+    '
+    sSQL = Replace(sSQL, "%vchar%", sVChar)
+    sSQL = Replace(sSQL, "%float%", sFloat)
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  Call ValidateOITables
+End Sub
+
+Private Sub ValidateOITables()
+  On Error Resume Next
+  '
+  Dim nErrNo    As Currency
+  Dim sSQL      As String
+  Dim bIsServer As Boolean
+  '
+  bIsServer = chkTxn.Checked
+  '
+  ' Check OI001
+  '
+  lblProgress.Caption = "Validate OI001"
+  Screen.Refresh
+  '
+  sSQL = "select ILQNAME,ILSEQNO,ILCO,ILMCU,ILDOCO,ILDCTO,ILLNID,ILTRDJ," & _
+         "ILITM,ILLITM,ILAITM,ILUOM1,ILQTY1,ILUOM2,ILQTY2,ILLOCN,ILLOTN " & _
+         "from OI001 where ILQNAME = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbOI001 = (nErrNo=0)
+  '
+  If Not mbOI001 Then
+    lstTables.List.AddItem 0,"Table OI001     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table OI001     - verified"
+  End If
+  '
+  ' Check OI098
+  '
+  lblProgress.Caption = "Validate OI098"
+  Screen.Refresh
+  '
+  sSQL = "select ILQNAME,ILSEQNO,ILUSER,ILMSG,ILDATE,ILMSENT from OI098"
+  nErrNo = DB.Execute(sSQL)
+  mbOI098 = (nErrNo=0)
+  '
+  If Not mbOI098 Then
+    lstTables.List.AddItem 0,"Table OI098     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table OI098     - verified"
+  End If
+  '
+  ' Check OI099 - checking the view checks the table
+  '
+  lblProgress.Caption = "Validate OI099"
+  Screen.Refresh
+  '
+  sSQL = "select ILQNAME,ILSEQNO,ILUSER,ILMSG,ILDATE,ILMSENT from vOI099"
+  nErrNo = DB.Execute(sSQL)
+  mbOI099 = (nErrNo=0)
+  '
+  If Not mbOI099 Then
+    lstTables.List.AddItem 0,"Table OI099     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table OI099     - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+End Sub
+
+Public Sub CreateLP
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sChar    As String
+  Dim sPriKey1 As String
+  Dim sPriKey2 As String
+  Dim sNumber  As String
+  Dim sFloat   As String
+  '
+  Select Case msDBType
+    Case "SQL Server"
+      sChar    = "NCHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+    Case "DB2"
+      sChar = "CHAR"
+      sPriKey2 = ", PRIMARY KEY (%key%)"
+      sNumber  = "NUMERIC"
+      sFloat   = "NUMERIC(15,2)"
+    Case "Oracle"
+      sChar    = "CHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMBER"
+      sFloat   = "NUMBER"
+    Case "Access"
+      sChar    = "CHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+  End Select
+  '
+  ' Assure that LP002 exists
+  '
+  If Not mbLP002 Then
+'    DB.Execute "drop table LP002"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.LP002 (" & _
+            "ENCO    %char%(5) NOT NULL %prikey1%, " & _
+            "ENDSC1  %char%(30),     " & _
+            "ENUPFX  %char%(10),      " & _
+            "ENNNUM  %number%(18,6), " & _
+            "ENMFGID %char%(10),     " & _
+            "ENDUOM  %char%(2),      " & _
+            "ENUOM   %char%(2),      " & _
+            "ENWEI   %char%(2),      " & _
+            "ENPRE   %char%(10),     " & _
+            "ENLEAD  %char%(10),     " & _
+            "ENLEN   %number%(18,6), " & _
+            "ENNXTR  %char%(50),     " & _
+            "ENDSC2  %char%(100),    " & _
+            "ENUSER  %char%(10),     " & _
+            "ENDATE  %char%(10),     " & _
+            "ENTIME  %char%(10) %prikey2%)"
+    '
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    sSQL = Replace(sSQL, "%key%",     "ENCO")
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  ' Assure that LP005 exists
+  '
+  If Not mbLP005 Then
+'    DB.Execute "drop table LP005"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.LP005 (" & _
+            "EBMCU  %char%(12) NOT NULL %prikey1%, " & _
+            "EBCO   %char%(5),  " & _
+            "EBUSER %char%(10), " & _
+            "EBDATE %char%(10), " & _
+            "EBTIME %char%(10) %prikey2%)"
+    '
+    sSQL = Replace(sSQL, "%char%", sChar)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%key%", "EBMCU")
+    '
+    DB.Execute sSQL
+    DoEvents
+  End If
+  '
+  ' Assure that LP008 exists
+  '
+  If Not mbLP008 Then
+'    DB.Execute "drop table LP008L1"
+'    DB.Execute "drop table LP008"
+    DoEvents
+    '
+    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.LP008 (" & _
+            "LTCO   %char%(5) NOT NULL , " & _
+            "LTTRAI %char%(2) NOT NULL %prikey1%, " & _
+            "LTDSC1 %char%(30), " & _
+            "LTUOM  %char%(2),  " & _
+            "LTGWID %float%,    " & _
+            "LTGDEP %float%,    " & _
+            "LTGHET %float%,    " & _
+            "LTCUBE %float%,    " & _
+            "LTWUOM %char%(2),  " & _
+            "LTWEIG %float%,    " & _
+            "LTLOCN %char%(20), " & _
+            "LTUSER %char%(10), " & _
+            "LTDATE %char%(10), " & _
+            "LTTIME %char%(10))"
+    '
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%float%",   sFloat)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    ' Generate Indexes
+'    DB.Execute "create index LP008L1 ON LP008 (LTCO,LTTYPE)"
+  End If
+  '
+'  ' Assure that LP101 exists
+'  '
+'  If Not mbLP101 Then
+'    DB.Execute "drop table F55101L1"
+'    DB.Execute "drop table F55101L2"
+'    DB.Execute "drop table F55101"
+'    DoEvents
+'    '
+'    sSQL = "create table F55101 (" & _
+'            "LMLPID  %char%(20)  NOT NULL %prikey1%, " & _
+'            "LMMCU   %char%(12)  NOT NULL , " & _
+'            "LMDSC1  %char%(30),  " & _
+'            "LMTYPE  %char%(1),   " & _
+'            "LMLTYI  %char%(2),   " & _
+'            "LMLOCN  %char%(20),  " & _
+'            "LMRDOCO %char%(8),   " & _
+'            "LMRDCTO %char%(2),   " & _
+'            "LMRLLN  %number%(15,0)," & _
+'            "LMRNXTR %char%(3),   " & _
+'            "LMPSTB  %char%(3),   " & _
+'            "LMPALP  %char%(50),  " & _
+'            "LMSHAN  %number%(8), " & _
+'            "LMMMCU  %char%(12),  " & _
+'            "LMALPH  %char%(40),  " & _
+'            "LMROUT  %char%(3),   " & _
+'            "LMSTOP  %char%(3),   " & _
+'            "LMZON   %char%(3),   " & _
+'            "LMCNID  %char%(20),  " & _
+'            "LMCARS  %number%(8), " & _
+'            "LMPDAT  %char%(20),  " & _
+'            "LMRLNU  %char%(10),  " & _
+'            "LMIR01  %char%(30),  " & _
+'            "LMIR02  %char%(30),  " & _
+'            "LMIR03  %char%(30),  " & _
+'            "LMIR04  %char%(30),  " & _
+'            "LMVUOM  %char%(2),   " & _
+'            "LMCUBE  %float%,     " & _
+'            "LMWUOM  %char%(2),   " & _
+'            "LMWEIG  %number%(15)," & _
+'            "LMPATH  %char%(10),  " & _
+'            "LMVR01  %char%(25),  " & _
+'            "LMVR02  %char%(25),  " & _
+'            "LMSGBT  %number%(8), " & _
+'            "LMPRIO  %char%(1),   " & _
+'            "LMURAT  %float%,     " & _
+'            "LMURRF  %char%(15),  " & _
+'            "LMUSER  %char%(10),  " & _
+'            "LMDATE  %char%(8),   " & _
+'            "LMTIME  %char%(8))"
+'    '
+'    sSQL = Replace(sSQL, "%char%",    sChar)
+'    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+'    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+'    sSQL = Replace(sSQL, "%float%",   sFloat)
+'    sSQL = Replace(sSQL, "%number%",  sNumber)
+'    sSQL = Replace(sSQL, "%key%",     "LMLPID")
+'    '
+'    DB.Execute sSQL
+'    DoEvents
+'    '
+'    ' Generate Indexes
+'    DB.Execute "create index F55101L1 ON F55101 (LMLPID)"
+'    DB.Execute "create index F55101L2 ON F55101 (LMPALP)"
+'  End If
+'  '
+'  ' Assure that LP102 exists
+'  '
+'  If Not mbLP102 Then
+'    DB.Execute "drop table F55102L1"
+'    DB.Execute "drop table F55102L2"
+'    DB.Execute "drop table F55102L3"
+'    DB.Execute "drop table F55102L4"
+'    DB.Execute "drop table F55102L5"
+'    DB.Execute "drop table F55102L6"
+'    DB.Execute "drop table F55102"
+'    DoEvents
+'    '
+'    sSQL = "create table F55102 (" & _
+'            "LDLPID  %char%(20)  NOT NULL , " & _
+'            "LDLNID  %number%(6,3) NOT NULL ,    " & _
+'            "LDLITM  %char%(25),  " & _
+'            "LDSOQS  %number%(15)," & _
+'            "LDUORG  %number%(15)," & _
+'            "LDUOM   %char%(2),   " & _
+'            "LDLOTN  %char%(30),  " & _
+'            "LDLOTS  %char%(1),   " & _
+'            "LDRDOCO %char%(8),   " & _
+'            "LDRDCTO %char%(2),   " & _
+'            "LDRLLN  %number%(15,0)," & _
+'            "LDRNXTR %char%(3),   " & _
+'            "LDPSTB  %char%(3),   " & _
+'            "LDSPLIT %char%(20),  " & _
+'            "LDUKID  %number%(15)," & _
+'            "LDLPSN  %char%(30),  " & _
+'            "LDLOT2  %char%(30),  " & _
+'            "LDVUOM  %char%(2),   " & _
+'            "LDCUBE  %float%,     " & _
+'            "LDWUOM  %char%(2),   " & _
+'            "LDWEIG  %number%(15)," & _
+'            "LDLOT1  %char%(30),  " & _
+'            "LDXPDT  %char%(10),  " & _
+'            "LDLOTG  %char%(3),   " & _
+'            "LDPRIO  %char%(1),   " & _
+'            "LDVRMK  %char%(30),  " & _
+'            "LDVR01  %char%(25),  " & _
+'            "LDTEMP  %number%(7), " & _
+'            "LDAA    %float%,     " & _
+'            "LDAA1   %float%,     " & _
+'            "LDAA2   %float%,     " & _
+'            "LDAA3   %float%,     " & _
+'            "LDURAT  %float%,     " & _
+'            "LDURRF  %char%(15),  " & _
+'            "LDUSER  %char%(10),  " & _
+'            "LDDATE  %char%(8),   " & _
+'            "LDTIME  %char%(8))   "
+'    '
+'    sSQL = Replace(sSQL, "%char%",    sChar)
+'    sSQL = Replace(sSQL, "%float%",   sFloat)
+'    sSQL = Replace(sSQL, "%number%",  sNumber)
+'    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+'    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+'    '
+'    DB.Execute sSQL
+'    DoEvents
+'    '
+'    ' Generate Indexes
+'    DB.Execute "create index F55102L1 ON F55102 (LDLPID, LDLNID)"
+'    DB.Execute "create index F55102L2 ON F55102 (LDLPID, LDLITM)"
+'    DB.Execute "create index F55102L3 ON F55102 (LDRDOCO, LDRDCTO, LDRLLN)"
+'    DB.Execute "create index F55102L4 ON F55102 (LDLOT2)"
+'    DB.Execute "create index F55102L6 ON F55102 (LDUKID)"
+'  End If
+'  '
+'  ' Assure that LP101Hist exists
+'  '
+'  If Not mbLP11H Then
+'    DB.Execute "drop table F55101H1"
+'    DB.Execute "drop table F55101H"
+'    DoEvents
+'    '
+'    sSQL = "create table F55101H (" & _
+'            "LMLPID  %char%(20)  NOT NULL , " & _
+'            "LMMCU   %char%(12)  NOT NULL , " & _
+'            "LMDSC1  %char%(30),  " & _
+'            "LMTYPE  %char%(1),   " & _
+'            "LMLTYI  %char%(2),   " & _
+'            "LMLOCN  %char%(20),  " & _
+'            "LMRDOCO %char%(8),   " & _
+'            "LMRDCTO %char%(2),   " & _
+'            "LMRLLN  %number%(6,3)," & _
+'            "LMRNXTR %char%(3),   " & _
+'            "LMPSTB  %char%(3),   " & _
+'            "LMPALP  %char%(50),  " & _
+'            "LMSHAN  %number%(8), " & _
+'            "LMMMCU  %char%(12),  " & _
+'            "LMALPH  %char%(40),  " & _
+'            "LMROUT  %char%(3),   " & _
+'            "LMSTOP  %char%(3),   " & _
+'            "LMZON   %char%(3),   " & _
+'            "LMCNID  %char%(20),  " & _
+'            "LMCARS  %number%(8), " & _
+'            "LMPDAT  %char%(20),  " & _
+'            "LMRLNU  %char%(10),  " & _
+'            "LMIR01  %char%(30),  " & _
+'            "LMIR02  %char%(30),  " & _
+'            "LMIR03  %char%(30),  " & _
+'            "LMIR04  %char%(30),  " & _
+'            "LMVUOM  %char%(2),   " & _
+'            "LMCUBE  %float%,     " & _
+'            "LMWUOM  %char%(2),   " & _
+'            "LMWEIG  %number%(15)," & _
+'            "LMPATH  %char%(10),  " & _
+'            "LMVR01  %char%(25),  " & _
+'            "LMVR02  %char%(25),  " & _
+'            "LMSGBT  %number%(8), " & _
+'            "LMPRIO  %char%(1),   " & _
+'            "LMURAT  %float%,     " & _
+'            "LMURRF  %char%(15),  " & _
+'            "LMUSER  %char%(10),  " & _
+'            "LMDATE  %char%(8),   " & _
+'            "LMTIME  %char%(8),   " & _
+'            "LM55UKID  %char%(35))"
+'    '
+'    sSQL = Replace(sSQL, "%char%",    sChar)
+'    sSQL = Replace(sSQL, "%float%",   sFloat)
+'    sSQL = Replace(sSQL, "%number%",  sNumber)
+'    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+'    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+'    '
+'    DB.Execute sSQL
+'    DoEvents
+'    '
+'    ' Generate Indexes
+'    DB.Execute "create index F55101H1 ON F55101H (LMLPID,LMMCU)"
+'  End If
+'  '
+'  ' Assure that LP102Hist exists
+'  '
+'  If Not mbLP12H Then
+'    DB.Execute "drop table F55102H1"
+'    DB.Execute "drop table F55102H"
+'    DoEvents
+'    '
+'    sSQL = "create table F55102H (" & _
+'            "LDLPID  %char%(20)    NOT NULL , " & _
+'            "LDLNID  %number%(6,3) NOT NULL , " & _
+'            "LDLITM  %char%(25),  " & _
+'            "LDSOQS  %number%(15)," & _
+'            "LDUORG  %number%(15)," & _
+'            "LDUOM   %char%(2),   " & _
+'            "LDLOTN  %char%(30),  " & _
+'            "LDLOTS  %char%(1),   " & _
+'            "LDRDOCO %char%(8),   " & _
+'            "LDRDCTO %char%(2),   " & _
+'            "LDRLLN  %number%(6,3)," & _
+'            "LDRNXTR %char%(3),   " & _
+'            "LDPSTB  %char%(3),   " & _
+'            "LDSPLIT %char%(20),  " & _
+'            "LDUKID  %number%(15)," & _
+'            "LDLPSN  %char%(30),  " & _
+'            "LDLOT2  %char%(30),  " & _
+'            "LDVUOM  %char%(2),   " & _
+'            "LDCUBE  %float%,     " & _
+'            "LDWUOM  %char%(2),   " & _
+'            "LDWEIG  %number%(15)," & _
+'            "LDLOT1  %char%(30),  " & _
+'            "LDXPDT  %char%(10),  " & _
+'            "LDLOTG  %char%(3),   " & _
+'            "LDPRIO  %char%(1),   " & _
+'            "LDVRMK  %char%(30),  " & _
+'            "LDVR01  %char%(25),  " & _
+'            "LDTEMP  %number%(7), " & _
+'            "LDAA    %float%,     " & _
+'            "LDAA1   %float%,     " & _
+'            "LDAA2   %float%,     " & _
+'            "LDAA3   %float%,     " & _
+'            "LDURAT  %float%,     " & _
+'            "LDURRF  %char%(15),  " & _
+'            "LDUSER  %char%(10),  " & _
+'            "LDDATE  %char%(8),   " & _
+'            "LDTIME  %char%(8),   " & _
+'            "LD55UKID  %char%(35))"
+'    '
+'    sSQL = Replace(sSQL, "%char%",    sChar)
+'    sSQL = Replace(sSQL, "%float%",   sFloat)
+'    sSQL = Replace(sSQL, "%number%",  sNumber)
+'    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+'    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+'    '
+'    DB.Execute sSQL
+'    DoEvents
+'    '
+'    ' Generate Indexes
+'    DB.Execute "create index F55102H1 ON F55102H (LDLPID,LDLNID,LDDATE,LDTIME)"
+'  End If
+  '
+  Call ValidateLPTables
+  '
+  If msDBType = "DB2" Then
+    App.MsgBox("You need to setup AS400 Journaling for F55101, -H, F55102, -H and RFLog!")
+  End If
+  '
+End Sub
+
+Private Sub ValidateLPTables()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+  '
+  ' Check LP002
+  '
+  lblProgress.Caption = "Validate LP002"
+  Screen.Refresh
+  '
+  sSQL = "select ENCO,ENDSC1,ENNNUM,ENUPFX, ENDUOM, ENUOM, ENWEI, ENPRE, ENLEAD, ENLEN, ENNXTR, ENDSC2 from LP002"
+  nErrNo = DB.Execute(sSQL)
+  mbLP002 = (nErrNo=0)
+  '
+  If Not mbLP002 Then
+    lstTables.List.AddItem 0,"Table LP002     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table LP002     - verified"
+  End If
+  '
+  ' Check LP005
+  '
+  lblProgress.Caption = "Validate LP005"
+  Screen.Refresh
+  '
+  sSQL = "select EBMCU,EBCO from LP005"
+  nErrNo = DB.Execute(sSQL)
+  mbLP005 = (nErrNo=0)
+  '
+  If Not mbLP005 Then
+    lstTables.List.AddItem 0,"Table LP005     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table LP005     - verified"
+  End If
+  '
+  ' Check LP008
+  '
+  lblProgress.Caption = "Validate LP008"
+  Screen.Refresh
+  '
+  sSQL = "select LTTRAI,LTDSC1,LTGWID,LTGDEP,LTGHET,LTUOM,LTWEIG from LP008"
+  nErrNo = DB.Execute(sSQL)
+  mbLP008 = (nErrNo=0)
+  '
+  If Not mbLP008 Then
+    lstTables.List.AddItem 0,"Table LP008     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table LP008     - verified"
+  End If
+  '
+  ' Check LP101
+  '
+  lblProgress.Caption = "Validate F55101"
+  Screen.Refresh
+  '
+  sSQL = "select LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRLLN,LMRNXTR," & _
+         "LMPSTB,LMPALP,LMSHAN,LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT," & _
+         "LMRLNU,LMIR01,LMIR01,LMIR03,LMIR04,LMPATH,LMCUBE,LMVUOM,LMWEIG,LMWUOM," & _
+         "LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF from F55101 where LMLPID = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbLP101 = (nErrNo=0)
+  '
+  If Not mbLP101 Then
+    lstTables.List.AddItem 0,"Table F55101    - failed"
+  Else
+    lstTables.List.AddItem 0,"Table F55101    - verified"
+  End If
+   '
+  ' Check LP101HIST
+  '
+  lblProgress.Caption = "Validate F55101H"
+  Screen.Refresh
+  '
+  sSQL = "select LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRLLN,LMRNXTR," & _
+         "LMPSTB,LMPALP,LMSHAN,LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT," & _
+         "LMRLNU,LMIR01,LMIR01,LMIR03,LMIR04,LMPATH,LMCUBE,LMVUOM,LMWEIG,LMWUOM," & _
+         "LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF from F55101H where LMLPID = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbLP11H = (nErrNo=0)
+  '
+  If Not mbLP11H Then
+    lstTables.List.AddItem 0,"Table F55101H   - failed"
+  Else
+    lstTables.List.AddItem 0,"Table F55101H   - verified"
+  End If
+  '
+  ' Check LP102
+  '
+  lblProgress.Caption = "Validate F55102"
+  Screen.Refresh
+  '
+  sSQL = "select LDLPID,LDLITM,LDLOTN,LDLNID,LDSOQS,LDUORG,LDUOM,LDRDOCO,LDRDCTO,LDRLLN," & _
+         "LDRNXTR,LDPSTB,LDUKID,LDLPSN,LDLOT2,LDLOT1,LDXPDT,LDLOTG,LDLOTN,LDPRIO,LDVRMK," & _
+         "LDVR01,LDTEMP,LDAA,LDAA1,LDAA2,LDAA2,LDURAT,LDURRF from F55102 where LDLPID = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbLP102 = (nErrNo=0)
+  '
+  If Not mbLP102 Then
+    lstTables.List.AddItem 0,"Table F55102    - failed"
+  Else
+    lstTables.List.AddItem 0,"Table F55102    - verified"
+  End If
+  '
+  If lstTables.Text <> "" Then lstTables.Visible = True
+  '
+  ' Check LP102Hist
+  '
+  lblProgress.Caption = "Validate F55102H"
+  Screen.Refresh
+  '
+  sSQL = "select LDLPID,LDLITM,LDLOTN,LDLNID,LDSOQS,LDUORG,LDUOM,LDRDOCO,LDRDCTO,LDRLLN," & _
+         "LDRNXTR,LDPSTB,LDUKID,LDLPSN,LDLOT2,LDLOT1,LDXPDT,LDLOTG,LDLOTN,LDPRIO,LDVRMK," & _
+         "LDVR01,LDTEMP,LDAA,LDAA1,LDAA2,LDAA2,LDURAT,LDURRF from F55102H where LDLPID = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbLP12H = (nErrNo=0)
+  '
+  If Not mbLP12H Then
+    lstTables.List.AddItem 0,"Table F55102H   - failed"
+  Else
+    lstTables.List.AddItem 0,"Table F55102H   - verified"
+  End If
+  '
+  lstTables.List.Index = 1
+  If lstTables.Text <> "" Then lstTables.Visible = True
+
+  lstTables.List.AddItem 0,"---------------------------"
+  '
+  lblProgress.Caption = ""
+  Screen.Refresh
+End Sub
+
+Private Sub ValidateQLoadBal()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+  '
+  ' Check RFQBAL
+  '
+  lblProgress.Caption = "Validate RFQBAL"
+  Screen.Refresh
+  '
+  sSQL = "select * " & _
+         "from RFQBAL where QNAME = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbRFLOG = (nErrNo=0)
+  '
+  If Not mbRFLOG Then
+    lstTables.List.AddItem 0,"Table RFQBAL    - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RFQBAL    - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+End Sub
+
+Private Sub ValidateLogTables()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+  '
+  ' Check RFLOG
+  '
+  lblProgress.Caption = "Validate RFLOG"
+  Screen.Refresh
+  '
+  sSQL = "select RFTRID, RFERR, RFDL01, RFDATA, RFJOBN, RFUSER, RFDATE, RFQUEUE, RFQSEQ, RFUKID " & _
+         "from RFLOG where RFTRID = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbRFLOG = (nErrNo=0)
+  '
+  If Not mbRFLOG Then
+    lstTables.List.AddItem 0,"Table RFLOG     - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RFLOG     - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+End Sub
+
+Private Sub ValidateWOTables()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+  '
+  ' Check RFLOG
+  '
+  lblProgress.Caption = "Validate RFLOG"
+  Screen.Refresh
+  '
+  sSQL = "select WTMMCU, WTDOCO, WTDCTO, WTOPSQ, WTSHFT, WTTTYR, WTAN8, WTUPMJ " & _
+         "from RF31122 where WTMMCU = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbRF31122 = (nErrNo=0)
+  '
+  If Not mbRF31122 Then
+    lstTables.List.AddItem 0,"Table RF31122   - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RF31122   - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+End Sub
+
+Private Sub ValidateWMTables()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+  '
+  ' Check WDJOBS
+  '
+  lblProgress.Caption = "Validate WDJOBS"
+  Screen.Refresh
+  '
+  sSQL = "select R2TYFL,R2SGBT,R2SGSQ,R2PTSK,R2TRIP,R2PSTB,R2PRITY,R2MCU,R2ITM,R2LITM,R2UOM1,R2TQTY," & _
+          "R2FLOC,R2FLOT,R2LOTS,R2TLOC,R2TLOT,R2DSC1,R2DSC2,R2DOCO,R2DCTO,R2LNID,R2RCDJ,R2TRDJ," & _
+          "R2DRQJ,R2PZON,R2KZON,R2ZONR,R2LPID,R2URCD,R2URDT,R2URAT,R2URAB,R2URRF,R2USER,R2PID,R2UPMJ,R2TDAY " & _
+          "from WDJOBS where R2SGBT > 9999999 "
+  nErrNo = DB.Execute(sSQL)
+  mbRFWM = (nErrNo=0)
+  '
+  If Not mbRFWM Then
+    lstTables.List.AddItem 0,"Table WDJOBS    - failed"
+  Else
+    lstTables.List.AddItem 0,"Table WDJOBS    - verified"
+  End If
+  '
+  lblProgress.Caption = "Validate WDNN"
+  Screen.Refresh
+  '
+  sSQL = "select R2SGBT from WDNN where R2SGBT > 9999999 "
+  nErrNo = DB.Execute(sSQL)
+  mbRFWM = (nErrNo=0)
+  '
+  If Not mbRFWM Then
+    lstTables.List.AddItem 0,"Table WDNN      - failed"
+  Else
+    lstTables.List.AddItem 0,"Table WDNN      - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+End Sub
+
+Private Sub ValidatePFP()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+  '
+  ' Check F58PFP
+  '
+  lblProgress.Caption = "Validate F58PFP"
+  Screen.Refresh
+  '
+  sSQL = "select PFUSER, PFURCD, PFURDT, PFURAT, PFURAB, PFURRF, PFPID, PFJOBN, PFUPMJ, PFTDAY " & _
+         "from F58PFP where PFUSER = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbPFP = (nErrNo=0)
+  '
+  If Not mbPFP Then
+    lstTables.List.AddItem 0,"Table F58PFP    - failed"
+  Else
+    lstTables.List.AddItem 0,"Table F58PFP    - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+  '
+  lblProgress.Caption = ""
+  Screen.Refresh
+End Sub
+
+Public Sub CreateRFUP
+  On Error Resume Next
+
+  Dim sSQL      As String
+  Dim sChar     As String
+  Dim sVChar    As String
+  Dim sPriKey1  As String
+  Dim sPriKey2  As String
+
+  Select Case msDBType
+    Case "SQL Server"
+      sChar     = "NCHAR"
+      sVChar    = "VARCHAR"
+      sPriKey1  = " PRIMARY KEY"
+    Case "DB2"
+      sChar     = "CHAR"
+      sVChar    = "VARCHAR"
+      sPriKey2  = ", PRIMARY KEY (%key%)"
+    Case "Oracle"
+      sChar     = "NCHAR"
+      sVChar    = "VARCHAR2"
+      sPriKey1  = " PRIMARY KEY"
+    Case "Access"
+      sChar     = "CHAR"
+      sVChar    = "MEMO"
+      sPriKey1  = " PRIMARY KEY"
+  End Select
+
+  ' Assure that file exists
+  If Not mbRFUP001 Then
+    DB.Execute "drop table RFUP001L1"
+    DB.Execute "drop table RFUP001"
+    DoEvents
+
+    sSQL = "create table RFUP001                   (" _
+         & "RFUID   %char%(10) NOT NULL %prikey1%,  " _
+         & "RFALPH  %char%(40) NOT NULL,            " _
+         & "RFPWD   %char%(50),                     " _
+         & "RFSTAT  %char%(1),                      " _
+         & "RFMNU   %char%(20),                     " _
+         & "RFPROP  %text%(4000),                   " _
+         & "RFUSER  %char%(10),                     " _
+         & "RFUPMD  %char%(10),                     " _
+         & "RFUPMT  %char%(10) %prikey2%)"
+
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%text%",    sVChar)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%prikey2%", sPriKey2)
+    sSQL = Replace(sSQL, "%key%",     "RFUID")
+
+    If sVChar = "MEMO" Then
+      sSQL = Replace(sSQL, "(999)", "")
+    End If
+
+    DB.Execute sSQL
+    DoEvents
+
+    sSQL = "CREATE INDEX RFUP001L1 ON RFUP001 (RFUID)"
+
+    DB.Execute sSQL
+    DoEvents
+  End If
+
+  Call ValidateRFUP
+End Sub
+
+Private Sub ValidateRFUP()
+  On Error Resume Next
+
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+
+  ' Check RFUP001
+  lblProgress.Caption = "Validate RFUP001"
+  Screen.Refresh
+
+  sSQL = "select RFUID, RFALPH, RFPWD, RFSTAT, RFMNU, RFPROP, RFUSER, RFUPMD, RFUPMT " & _
+         "from RFUP001 where RFUID = 'XYZ' "
+  nErrNo = DB.Execute(sSQL)
+  mbRFUP001 = (nErrNo=0)
+
+  If Not mbRFUP001 Then
+    lstTables.List.AddItem 0,"Table RFUP001   - failed"
+  Else
+    lstTables.List.AddItem 0,"Table RFUP001   - verified"
+  End If
+
+  lstTables.List.AddItem 0,"---------------------------"
+
+  lblProgress.Caption = ""
+  Screen.Refresh
+
+End Sub
+
+Private Sub txtConnection_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  If Len(Rsp) = 0 Then Exit Sub
+  msDBType = SYS.ConnectionProperty(Rsp, dcDatabase)
+  '
+  If Len(Trim(msDBType)) = 0 Then
+    App.MsgBox("Selected Connection is not a Database connection!")
+    Exit Sub
+  End If
+  '
+  lblConnector.Caption = SYS.ConnectionProperty(Rsp,dcSourceId)
+  miSource = CInt(Rsp)
+  lstTables.List.Clear
+
+  Call ValidatePO
+  Call ValidateLogTables
+  Call ValidateOITables
+  Call ValidateLPTables
+  Call ValidateQLoadBal
+  Call ValidateWMTables
+  Call ValidateWOTables
+  Call ValidatePFP
+  Call ValidateRFUP
+
+  Cancel = False
+End Sub
+
+Private Sub txtConnection_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Rsp = App.ShowList(msList, False)
+  lblConnector.Caption = SYS.ConnectionProperty(Rsp,dcSourceId)
+  Cancel = Len(Trim(Rsp)) = 0
+End Sub
+
+Private Sub txtConnection_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub txtConnection_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+</Code>

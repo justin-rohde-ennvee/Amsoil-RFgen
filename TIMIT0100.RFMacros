@@ -1,0 +1,426 @@
+﻿<Record FileDesc="IM - Inventory Transfers" FileVersion="5.0.8.0" Desc="IM - Inventory Transfers" Depends="JDE.bas">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOTS" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmTOMCU" />
+<Param Name="tmTOLOCN" />
+<Param Name="tmTOLOTN" />
+<Param Name="tmTOLOTS" />
+<Param Name="tmDRKY" />
+<Param Name="tmTDSC" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: INVENTORY TRANSFERS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TIMIT0100"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOTS As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmTOMCU As Variant, ByRef tmTOLOCN As Variant, ByRef tmTOLOTN As Variant, ByRef tmTOLOTS As Variant, ByRef tmDRKY As Variant, ByRef tmTDSC As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sTNDate     As String
+  Dim nBatchNo    As Currency
+  Dim nJobNo      As Currency
+  Dim nQty2       As Currency
+  Dim sUOM2       As String
+  Dim sErrId      As String
+  Dim sErrDesc    As String
+  Dim sErrText    As String
+  Dim sGLDate     As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim nITM        As Long
+  Dim sAITM       As String
+  Dim s0911Vers   As String
+  Dim nDocNo      As String
+  '
+  Dim emGetAuditInfo                  As New EmbeddedProc
+  Dim emF4113FSBeginDoc               As New EmbeddedProc
+  Dim emF4113FSEditLine               As New EmbeddedProc
+  Dim emF0911FSGetNextDocNumber       As New EmbeddedProc
+  Dim emRetrieveCompanyCurrencyCode   As New EmbeddedProc
+  Dim emF0911FSBeginDoc               As New EmbeddedProc
+  Dim emReturnFYPN                    As New EmbeddedProc
+  Dim emX0010GetNextNumber            As New EmbeddedProc
+  Dim emF4113FSEndDoc                 As New EmbeddedProc
+  Dim emF4113FSClearWorkFile          As New EmbeddedProc
+  Dim emError                         As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  ' Get default information for this item
+  If Not GetItemInfo(tmMCU, tmLITM, cTNId, nITM, sAITM, tmUOM, sUOM2, tmQTY, nQty2) Then GoTo ExitE1
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)      
+
+  If Not emGetAuditInfo.Execute Then
+  If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F4113FSBeginDoc '
+  '-----------------'
+  emF4113FSBeginDoc.Name       = "F4113FSBeginDoc"
+  emF4113FSBeginDoc.LogMode = LogNever
+  emF4113FSBeginDoc.DebugLog   = cJDELogPath
+  '
+  emF4113FSBeginDoc.Param("TransactionProcessingType")    = 3
+  emF4113FSBeginDoc.Param("DocumentType")                 = tmDCTO
+  emF4113FSBeginDoc.Param("GLDate")                       = ""
+  emF4113FSBeginDoc.Param("TransactionDate")              = ""
+  emF4113FSBeginDoc.Param("BatchNumber")                  = "0"
+  emF4113FSBeginDoc.Param("BatchDate")                    = ""
+  emF4113FSBeginDoc.Param("DocumentNumber")               = ""
+  emF4113FSBeginDoc.Param("JELastLineNumber")             = "0"
+  emF4113FSBeginDoc.Param("GLExplanation")                = tmTDSC
+  emF4113FSBeginDoc.Param("FromBranchPlant")              = tmMCU
+  emF4113FSBeginDoc.Param("FromKeyCompany")               = ""
+  emF4113FSBeginDoc.Param("ToBranchPlant")                = tmTOMCU
+  emF4113FSBeginDoc.Param("ErrorCode")                    = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSBeginDoc.Name, "", emF4113FSBeginDoc)
+
+  If Not emF4113FSBeginDoc.Execute Then
+    sErrDesc = "F4113FSBeginDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4113FSBeginDoc.Name, "", emF4113FSBeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F4113FSEditLine '
+  '-----------------'
+  emF4113FSEditLine.Name       = "F4113FSEditLine"
+  emF4113FSEditLine.LogMode = LogNever
+  emF4113FSEditLine.DebugLog   = cJDELogPath
+  '
+  emF4113FSEditLine.Param("ComputerID")                     = emGetAuditInfo.Param("Workstation_UserId")
+  emF4113FSEditLine.Param("TransactionProcessingType")      = 3
+  emF4113FSEditLine.Param("LineAction")                     = 0
+  emF4113FSEditLine.Param("RecordWritten")                  = " "
+  emF4113FSEditLine.Param("F0911JobNumber")                 = 0
+  emF4113FSEditLine.Param("AllowQtyOverAvailable")          = GetProcOpt(tmPGM,tmZVERSION,"3;5")
+  emF4113FSEditLine.Param("DefaultFromPrimaryLocation")     = GetProcOpt(tmPGM,tmZVERSION,"1;2")
+  emF4113FSEditLine.Param("AllowHeldLot")                   = GetProcOpt(tmPGM,tmZVERSION,"3;3")
+  emF4113FSEditLine.Param("DocumentNumber")                 = "0"
+  emF4113FSEditLine.Param("GLDate")                         = emF4113FSBeginDoc.Param("GLDate")
+  emF4113FSEditLine.Param("TransactionDate")                = emF4113FSBeginDoc.Param("TransactionDate")
+  emF4113FSEditLine.Param("DocumentType")                   = tmDCTO
+  emF4113FSEditLine.Param("BatchDate")                      = emF4113FSBeginDoc.Param("TransactionDate")
+  emF4113FSEditLine.Param("BatchNumber")                    = "0"
+  emF4113FSEditLine.Param("BatchStatus")                    = " "  'emBatchOpen.Param("PreviousBatchStatus")
+  emF4113FSEditLine.Param("GLExplanation")                  = tmTDSC
+  emF4113FSEditLine.Param("ItemNumber")                     = tmLITM
+  emF4113FSEditLine.Param("TransactionQty")                 = tmQTY
+  emF4113FSEditLine.Param("TransactionUOM")                 = tmUOM
+  emF4113FSEditLine.Param("FromBranchPlant")                = tmMCU
+  emF4113FSEditLine.Param("FromDisplayLocation")            = tmLOCN
+  emF4113FSEditLine.Param("FromLotNumber")                  = tmLOTN
+  emF4113FSEditLine.Param("FromKeyCompany")                 = tmCO
+  emF4113FSEditLine.Param("FromUnitCost")                   = 0
+  emF4113FSEditLine.Param("FromExtendedAmount")             = 0
+  emF4113FSEditLine.Param("ToBranchPlant")                  = tmTOMCU
+  emF4113FSEditLine.Param("ToDisplayLocation")              = tmTOLOCN
+  emF4113FSEditLine.Param("ToLotNumber")                    = tmLOTN
+  emF4113FSEditLine.Param("ToUnitCost")                     = 0
+  emF4113FSEditLine.Param("ToExtendedAmount")               = 0
+  emF4113FSEditLine.Param("FromLineNumber")                 = 0
+  emF4113FSEditLine.Param("ToLineNumber")                   = 0
+  emF4113FSEditLine.Param("PreviousLineNumber")             = 0
+  emF4113FSEditLine.Param("LastJELine")                     = 0
+  emF4113FSEditLine.Param("DefaultFromTOPrimaryLocation")   = 1
+  emF4113FSEditLine.Param("ReasonCode")                     = tmDRKY
+  emF4113FSEditLine.Param("InvJobNumber")                   = 0
+  'emF4113FSEditLine.Param("ConfiguredStringID")            = 0
+  emF4113FSEditLine.Param("StockingType")                   = " "
+  emF4113FSEditLine.Param("CostEntered")                    = " "
+  emF4113FSEditLine.Param("WMSLineNumber")                  = 0
+  emF4113FSEditLine.Param("AgreementSearchMethod")          = " "
+  emF4113FSEditLine.Param("MultipleAgreementFound")         = " "
+  s0911Vers = GetProcOpt(tmPGM,tmZVERSION,"2;2")
+  If Len(s0911Vers) > 0 Then
+   emF4113FSEditLine.Param("GLMBFVersion")                  = s0911Vers
+  Else
+   emF4113FSEditLine.Param("GLMBFVersion")                  = "ZJDE0001"
+  End If
+  emF4113FSEditLine.Param("SecondaryQty")                   = nQty2
+  emF4113FSEditLine.Param("SecondaryUOM")                   = sUOM2
+  emF4113FSEditLine.Param("ToLotStatusCode")                = tmTOLOTS
+  emF4113FSEditLine.Param("LastJELine")                     = " "
+  emF4113FSEditLine.Param("PODefaultLotStatus")             = GetProcOpt(tmPGM,tmZVERSION,"3;5")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSEditLine.Name, "", emF4113FSEditLine)
+
+  If Not emF4113FSEditLine.Execute Then
+    sErrDesc = "F4113FSEditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4113FSEditLine.Name, "", emF4113FSEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  If emF4113FSEditLine.Param("F0911JobNumber") > 0 Then
+    '-------------------------'
+    ' F0911FSGetNextDocNumber '
+    '-------------------------'
+    emF0911FSGetNextDocNumber.Name = "F0911FSGetNextDocNumber"
+    emF0911FSGetNextDocNumber.Param("JobNumber")              = emF4113FSEditLine.Param("F0911JobNumber")
+    emF0911FSGetNextDocNumber.Param("NextNumberIndex")        = 4
+    emF0911FSGetNextDocNumber.Param("NextNumberSystemCode")   = "41"
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSGetNextDocNumber.Name, "", emF0911FSGetNextDocNumber)
+    If Not emF0911FSGetNextDocNumber.Execute Then
+      sErrDesc = "F0911FSGetNextDocNumber"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSGetNextDocNumber.Name, "", emF0911FSGetNextDocNumber, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+    nDocNo = emF0911FSGetNextDocNumber.Param("DocNumber")
+    '-----------------------------'
+    ' RetrieveCompanyCurrencyCode '
+    '-----------------------------'
+    emRetrieveCompanyCurrencyCode.Name = "RetrieveCompanyCurrencyCode"
+    emRetrieveCompanyCurrencyCode.Param("Company")                 = tmCO
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emRetrieveCompanyCurrencyCode.Name, "", emRetrieveCompanyCurrencyCode)
+    If Not emRetrieveCompanyCurrencyCode.Execute Then
+      sErrDesc = "RetrieveCompanyCurrencyCode"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emRetrieveCompanyCurrencyCode.Name, "", emRetrieveCompanyCurrencyCode, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+    '-----------------'
+    ' F0911FSBeginDoc '
+    '-----------------'
+    emF0911FSBeginDoc.Name = "F0911FSBeginDoc"
+    emF0911FSBeginDoc.Param("JobNumber")              = emF4113FSEditLine.Param("F0911JobNumber")
+    emF0911FSBeginDoc.Param("DocAction")              = "1"
+    emF0911FSBeginDoc.Param("EditInstructionFlag")    = "1"
+    emF0911FSBeginDoc.Param("LastLineNumber")         = emF4113FSEditLine.Param("LastJELine")
+    emF0911FSBeginDoc.Param("CompanyKey")             = tmCO
+    emF0911FSBeginDoc.Param("DocumentType")           = tmDCTO
+    emF0911FSBeginDoc.Param("DocNumber")              = nDocNo
+    emF0911FSBeginDoc.Param("GLDate")                 = emF4113FSBeginDoc.Param("GLDate")
+    emF0911FSBeginDoc.Param("BatchNumber")            = emF4113FSEditLine.Param("BatchNumber")
+    emF0911FSBeginDoc.Param("BatchType")              = "N"
+    emF0911FSBeginDoc.Param("BatchDate")              = emF4113FSBeginDoc.Param("GLDate")
+    emF0911FSBeginDoc.Param("BatchSystemDate")        = emF4113FSBeginDoc.Param("GLDate")
+    emF0911FSBeginDoc.Param("TransactionCurrency")    = emRetrieveCompanyCurrencyCode.Param("CurrencyCode")
+    emF0911FSBeginDoc.Param("Explanation")            = tmTDSC
+    emF0911FSBeginDoc.Param("BaseCoCurrency")         = emRetrieveCompanyCurrencyCode.Param("CurrencyCode")
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSBeginDoc.Name, "", emF0911FSBeginDoc)
+    If Not emF0911FSBeginDoc.Execute Then
+      sErrDesc = "F0911FSBeginDoc"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSBeginDoc.Name, "", emF0911FSBeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+  Else
+    '------------'
+    ' ReturnFYPN '
+    '------------'
+    emReturnFYPN.Name = "ReturnFYPN"
+    emReturnFYPN.Param("Company")               = tmCO
+    emReturnFYPN.Param("TransactionDate")       = emF4113FSBeginDoc.Param("GLDate")
+    emReturnFYPN.Param("ReturnPeriodNumber")    = 0
+    emReturnFYPN.Param("ReturnFiscalYear")      = 0
+    emReturnFYPN.Param("ReturnCentury")         = 0
+    If Not emReturnFYPN.Execute Then
+      sErrDesc = "ReturnFYPN"
+      GoTo ExitE1
+    End If
+    '--------------------'
+    ' X0010GetNextNumber '
+    '--------------------'
+    emX0010GetNextNumber.Name = "X0010GetNextNumber"
+    emX0010GetNextNumber.Param("SystemCode")              = "41"
+    emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 4
+    emX0010GetNextNumber.Param("CompanyKey")              = tmCO
+    emX0010GetNextNumber.Param("DocumentType")            = tmDCTO
+    emX0010GetNextNumber.Param("Century")                 = emReturnFYPN.Param("ReturnCentury")
+    emX0010GetNextNumber.Param("FiscalYear1")             = emReturnFYPN.Param("ReturnFiscalYear")
+    emX0010GetNextNumber.Param("SameAsDocumentType")      = tmDCTO
+    emX0010GetNextNumber.Param("NextNumber001")            = 0
+    If Not emX0010GetNextNumber.Execute Then
+      sErrDesc = "X0010GetNextNumber"
+      GoTo ExitE1
+    End If
+    nDocNo = emX0010GetNextNumber.Param("NextNumber001")
+  End If  ' emF4113FSEditLine.Param("F0911JobNumber")
+
+  '---------------'
+  ' F4113FSEndDoc '
+  '---------------'
+  emF4113FSEndDoc.Name       = "F4113FSEndDoc"
+  emF4113FSEndDoc.LogMode = LogNever
+  emF4113FSEndDoc.DebugLog   = cJDELogPath
+  '
+  emF4113FSEndDoc.Param("ComputerID")                   = emF4113FSEditLine.Param("ComputerID")
+  emF4113FSEndDoc.Param("TransactionProcessingType")    = 3
+  emF4113FSEndDoc.Param("ProgramID")                    = "EP4113"
+  emF4113FSEndDoc.Param("DocumentType")                 = tmDCTO
+  emF4113FSEndDoc.Param("DocumentNumber")               = nDocNo
+  emF4113FSEndDoc.Param("F0911JobNumber")               = emF4113FSEditLine.Param("F0911JobNumber")
+  emF4113FSEndDoc.Param("BatchNumber")                  = emF4113FSEditLine.Param("BatchNumber")
+  emF4113FSEndDoc.Param("BatchStatus")                  = " "
+  emF4113FSEndDoc.Param("SummarizeGL")                  = GetProcOpt(tmPGM,tmZVERSION,"3;2")
+  emF4113FSEndDoc.Param("InvJobNumber")                 = emF4113FSEditLine.Param("InvJobNumber")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSEndDoc.Name, "", emF4113FSEndDoc)
+
+  If Not emF4113FSEndDoc.Execute Then
+    sErrDesc = "F4113FSEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4113FSEndDoc.Name, "", emF4113FSEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '----------------------'
+  ' F4113FSClearWorkFile '
+  '----------------------'
+  emF4113FSClearWorkFile.Name = "F4113FSClearWorkFile"
+
+  emF4113FSClearWorkFile.Param("ComputerID")          = emF4113FSEditLine.Param("ComputerID")
+  emF4113FSClearWorkFile.Param("DocumentType")        = tmDCTO
+  emF4113FSClearWorkFile.Param("ProcessCloseBatch")   = "1"
+  emF4113FSClearWorkFile.Param("BatchNumber")         = emF4113FSEditLine.Param("BatchNumber")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSClearWorkFile.Name, "", emF4113FSClearWorkFile)
+
+  If Not emF4113FSClearWorkFile.Execute Then
+    sErrDesc = "F4113FSClearWorkFile"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4113FSClearWorkFile.Name, "", emF4113FSClearWorkFile, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  Set emGetAuditInfo                  = Nothing
+  Set emF4113FSBeginDoc               = Nothing
+  Set emF4113FSEditLine               = Nothing
+  Set emF0911FSBeginDoc               = Nothing
+  Set emF0911FSGetNextDocNumber       = Nothing
+  Set emRetrieveCompanyCurrencyCode   = Nothing
+  Set emReturnFYPN                    = Nothing
+  Set emX0010GetNextNumber            = Nothing
+  Set emF4113FSEndDoc                 = Nothing
+  Set emF4113FSClearWorkFile          = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+
+  ' Offline inventory
+  If gbOfflineEnabled Then
+    If bSuccess Then
+      DeleteOI(TM.QueueName,TM.SeqNo)
+    Else
+      DeleteOI(TM.QueueName,TM.SeqNo, tmUSER, "Unable to execute " & cTNId & "; reason: " & vbCrLf & sErrDesc, Format(Date, "YYYYMMDD") & Format(Time, "HHNNSS"))
+    End If
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+
+World:
+  Dim bBatch As Boolean
+
+  sTNDate = Format(Date, "mmddyy") ' no '/'
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HIMIT0100")
+  SM.SendTextAlt 69, 2,  sTNDate,  8
+  SM.SendTextAlt 50, 5,  tmTDSC,   30
+  SM.SendTextAlt 21, 8,  tmMCU,    12
+  SM.SendTextAlt 54, 8,  tmTOMCU,  12
+  SM.SendTextAlt  4, 12, tmLITM,   26
+  SM.SendTextAlt 31, 12, tmQTY,    13
+  SM.SendTextAlt 45, 12, tmUOM,    2
+  SM.SendTextAlt 48, 12, tmLOCN,   20
+  SM.SendTextAlt 69, 12, tmLOTN,   11
+  SM.SendTextAlt 17, 13, tmDRKY,   3
+  SM.SendTextAlt 48, 17, tmTOLOCN, 20
+  '
+LoopErr:
+  SM.SendKey KeyEnter
+  SM.WaitForHost(10)
+  '
+  SM.GetText(21, 6, 6, sGLDate, True)
+  bBatch = Len(sGLDate) = 0                   ' GL date disappears when processed
+
+  ' Error Handling
+  If bBatch = False Then
+    Call GetWorldErr(sErrId, sErrText)        ' Indicates a hard error has occured
+    If Len(sErrId) = 0 Then GoTo LoopErr
+  End If
+
+  bSuccess = (sErrId = "")
+  '
+  tmERRID = sErrId
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+  '
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

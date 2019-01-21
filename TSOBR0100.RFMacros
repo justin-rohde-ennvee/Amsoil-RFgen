@@ -1,0 +1,257 @@
+﻿<Record FileDesc="SO - BO Release Only" FileVersion="5.0.8.0" Desc="SO - BO Release Only">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmBOQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmLNID" />
+<Param Name="tmUSER" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: SO - BACK ORDER RELEASE ONLY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TSOBR0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmBOQTY As Variant, ByRef tmUOM As Variant, ByRef tmLNID As Variant, ByRef tmUSER As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sErrDesc    As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  '
+  Dim emGetAuditInfo                As New EmbeddedProc
+  Dim emBackOrderReleaseEditLine    As New EmbeddedProc
+  Dim emBackOrderReleaseEndDoc      As New EmbeddedProc
+  Dim emF41021DeleteCache           As New EmbeddedProc
+  Dim emError                       As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------------'
+  ' BackOrderReleaseEditLine '
+  '--------------------------'
+  emBackOrderReleaseEditLine.Name = "BackorderReleaseEditLine"
+  '
+  emBackOrderReleaseEditLine.Param("OrderNumber")                 = tmDOCO
+  emBackOrderReleaseEditLine.Param("Ordertype")                   = tmDCTO
+  emBackOrderReleaseEditLine.Param("OrderCompany")                = tmCO
+  emBackOrderReleaseEditLine.Param("Linenumber")                  = tmLNID
+  emBackOrderReleaseEditLine.Param("QuantityReleased")            = tmQTY
+  emBackOrderReleaseEditLine.Param("OriginalBackorderQuantity")   = tmBOQTY
+  emBackOrderReleaseEditLine.Param("Programid")                   = "EP42117"
+  emBackOrderReleaseEditLine.Param("Version")                     = tmZVERSION
+  emBackOrderReleaseEditLine.Param("Userid")                      = tmUSER
+  emBackOrderReleaseEditLine.Param("BackordersAllowedYN")         = "Y"
+  emBackOrderReleaseEditLine.Param("JobNumber")                   = 0
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emBackOrderReleaseEditLine.Name, "", emBackOrderReleaseEditLine)
+
+  If Not emBackOrderReleaseEditLine.Execute Then
+    tmERRID = emBackOrderReleaseEditLine.Param("ErrorMessageID")
+    sErrDesc = "BackorderReleaseEditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emBackOrderReleaseEditLine.Name, "", emBackOrderReleaseEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------------'
+  ' BackOrderReleaseEndDoc '
+  '------------------------'
+  emBackOrderReleaseEndDoc.Name = "BackorderReleaseEndDoc"
+  '
+  emBackOrderReleaseEndDoc.Param("Programid")     = "EP42117"
+  emBackOrderReleaseEndDoc.Param("Userid")        = tmUSER
+  emBackOrderReleaseEndDoc.Param("ComputerID")    = emGetAuditInfo.Param("Workstation_UserId")
+  emBackOrderReleaseEndDoc.Param("JobNumber")     = emBackOrderReleaseEditLine.Param("JobNumber")
+  emBackOrderReleaseEndDoc.Param("Version")       = tmZVERSION
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emBackOrderReleaseEndDoc.Name, "", emBackOrderReleaseEndDoc)
+
+  If Not emBackOrderReleaseEndDoc.Execute Then
+    sErrDesc = "BackorderReleaseEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emBackOrderReleaseEndDoc.Name, "", emBackOrderReleaseEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------------'
+  ' F41021DeleteCache '
+  '-------------------'
+  emF41021DeleteCache.Name = "F41021DeleteCache"
+
+  emF41021DeleteCache.Param("SuppressErrorMessage")   = "1"
+  emF41021DeleteCache.Param("ProgramID")              = "EP42117"
+  emF41021DeleteCache.Param("Mode")                   = "1"
+  emF41021DeleteCache.Param("WorkStationID")          = emGetAuditInfo.Param("Workstation_UserId")
+  emF41021DeleteCache.Param("UserID")                 = tmUSER
+  emF41021DeleteCache.Param("JobNo")                  = emBackOrderReleaseEditLine.Param("JobNumber")
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF41021DeleteCache.Name, "", emF41021DeleteCache)
+
+  If Not emF41021DeleteCache.Execute Then
+    sErrDesc = "F41021DeleteCache"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF41021DeleteCache.Name, "", emF41021DeleteCache, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emError.Name       = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID")   = tmERRID
+    ' emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emGetAuditInfo                = Nothing
+  Set emBackOrderReleaseEditLine    = Nothing
+  Set emBackOrderReleaseEndDoc      = Nothing
+  Set emError                       = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim i             As Integer
+  Dim sQty          As String
+  Dim sLine         As String
+  Dim sFirstLine    As String
+  Dim sItem         As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HSOBR0100")
+  SM.SendTextAlt 68, 1, tmMCU,  12
+  SM.SendTextAlt 19, 3, tmLITM, 26
+  SM.SendTextAlt 19, 6, tmDOCO, 8
+  SM.SendTextAlt 28, 6, tmDCTO, 2
+  SM.SendKey KeyEnter
+  '
+  i = 12
+
+  Do
+    i = i + 1
+    If i = 22 Then
+      SM.SendKey KeyPageDown
+      i = 13
+    End If
+    SM.GetText(68,i,12,sQty,True)
+    If sQty <> "" Then
+      SM.SendTextAlt(68,i," ",12)
+    End If
+  Loop Until sQty = ""
+  '
+  SM.SendKey KeyF4
+  '
+  i = 11
+
+  Do
+    i = i + 3
+    If i = 23 Then
+      SM.SendKey KeyPageDown
+      i = 14
+    End If
+    SM.GetText 18,i,8,sLine,True
+    If sLine = sFirstLine Then
+      tmERRTEXT = "Line not found."
+      SM.SendKey KeyF3
+      SM.SendKey KeyF12
+      SM.CommitTrans
+      Transaction = False
+      Exit Function
+    End If
+    If sFirstLine = "" Then sFirstLine = sLine
+  Loop Until Val(sLine) = tmLNID
+  '
+  SM.SendTextAlt 68, i - 1, tmQTY, 12
+  SM.SendKey KeyEnter
+  SM.GetText(19,3,26,sItem,True)
+  '
+  If sItem <> "" Then Call GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+  If bSuccess Then SM.SendKey KeyEnter
+  '
+ExitWorld:
+  SM.SendKey KeyF3
+  SM.SendTextAlt 7, 19, "15"
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

@@ -1,0 +1,17 @@
+﻿<Record FileDesc="Inventory Management (Lot / SN)" FileVersion="5.0.8.0" Desc="Inventory Management (Lot / SN)" Heading="Inventory Management (Lot / SN)">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FIMII0300" Desc="1-Issues" Options="-Pgm=P4112 -Vers=ZJDE0001" />
+<MenuItem Id="FIMII0200" Desc="2-Issues to GL Acct" Options="-Pgm=P4112 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIT0200" Desc="3-Transfers" Options="-Pgm=P4113 -Vers=ZJDE0001 -From=None -To=None" />
+<MenuItem Id="FIMIA0100" Desc="4-Adjustments" Options="-Pgm=P4114 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIR0100" Desc="5-Reclassifications" Options="-Pgm=P4116 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="FIMCC0100" Desc="6-Cycle Counts" Options="-Pgm=P41240 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FIMQI0100" Desc="7-Locations by Item " />
+<MenuItem Id="FIMQL0100" Desc="8-Items by Location" />
+<MenuItem Id="FIMQSD110" Desc="9-Supply And Demand" />
+<MenuItem Id="-" />
+<MenuItem Id="FIMIT0210" Desc="A-Bin Transfer" Options="-Pgm=P4113 -Vers=ZJDE0001 -From=None -To=None" />
+</Record>

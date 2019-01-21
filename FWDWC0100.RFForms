@@ -1,0 +1,379 @@
+﻿<Record FileDesc="WD - Warehouse Director Console" FileVersion="5.0.8.0" Desc="WD - Warehouse Director Console" Group="WD" LinkTo="No Links" LinkType="0" PromptList="txtMCU&vm;txtInterval&vm;btnStart&vm;btnStop&vm;lblStatus&vm;Label1&vm;lblDateTime&vm;lbxJobs">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtInterval" />
+<SchemaParam Linked="0" Attr="3" Name="btnStart" />
+<SchemaParam Linked="0" Attr="4" Name="btnStop" />
+<SchemaParam Linked="0" Attr="5" Name="lblStatus" />
+<SchemaParam Linked="0" Attr="6" Name="Label1" />
+<SchemaParam Linked="0" Attr="7" Name="lblDateTime" />
+<SchemaParam Linked="0" Attr="8" Name="lbxJobs" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="44" Width="63" Height="22" AnchorRight="552" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plants:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="44" Width="119" Height="22" AnchorRight="424" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtInterval" Attr="2" Defaults="3;O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="66" Width="111" Height="22" AnchorRight="504" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Run Interval:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="66" Width="87" Height="22" AnchorRight="424" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnStart" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="START" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="24" Top="132" Width="87" Height="44" AnchorRight="528" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnStop" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="STOP" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="128" Top="132" Width="87" Height="44" AnchorRight="424" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblStatus" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="16" FontStyle="2" MultiLine="0" Left="65" Top="290" Width="137" Height="29" AnchorRight="437" AnchorBottom="275" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Running..." />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label1" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="88" Width="79" Height="22" AnchorRight="536" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="(seconds)" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDateTime" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="16" FontStyle="0" MultiLine="0" Left="65" Top="348" Width="150" Height="29" AnchorRight="424" AnchorBottom="217" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDateTime" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxJobs" Attr="8" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="175" Height="22" AnchorRight="464" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Active Warehouse Jobs" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="639" Height="264" AnchorRight="0" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="639" FormHeight="594" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Warehouse Director Console]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' INVENTORY: WAREHOUSE DIRECTOR CONSOLE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+
+Option Explicit
+
+Private Const cTNId = "FWDWC0100"
+
+Private mnInterval As Long
+Private mnCounter  As Long
+Private msStatusF  As String  '  R2PSTB
+Private msStatusT  As String  '  R2PSTB
+
+Private Sub btnStart_Click()
+  On Error Resume Next
+
+  ' Get interval
+
+  ' numeric?
+  If Not IsNumeric(txtInterval.Text) Then
+    App.MsgBox GetMsg(146)
+    App.SetFocus "txtInterval"
+    Exit Sub
+  End If
+
+  mnInterval = CLng(txtInterval.Text) * 1000
+
+  App.TimerInterval = mnInterval
+  App.TimerEnabled  = True
+
+  lblStatus.Caption = "Running..."
+  Screen.Refresh
+
+End Sub
+
+Private Sub btnStop_Click()
+  On Error Resume Next
+
+  App.TimerEnabled  = False
+
+  lblDateTime.Caption = ""
+
+  lblStatus.Caption = ""
+  Screen.Refresh
+
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If Left(RFPrompt(iCN).FieldId, 3) <> "txt" Then Exit Sub
+
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim vArray    As Variant
+  Dim vArray2   As Variant
+  Dim iCnt      As Integer
+  Dim sMCU      As String
+  '
+  Call SetDisplay()
+
+  lblStatus.Caption   = ""
+  lblDateTime.Caption = ""
+
+  lbxJobs.Visible = False
+
+  msStatusF = App.GetValue("StsFr")
+  msStatusT = App.GetValue("StsTo")
+  '
+  vArray = Split(SYS.GetProperty("WD", "MCU"),";")
+  For iCnt = 0 To UBound(vArray)
+    vArray2 = Split(vArray(iCnt),"|")
+    sMCU = sMCU & Trim(vArray2(0)) & ","
+  Next iCnt
+  sMCU = Left(sMCU,Len(sMCU) -1)     ' cut last ","
+  '
+  txtMCU.Defaults = sMCU
+
+  'App.SetOption(ShowHorizontalScrollBar, True)   ' todo - upgrade: App.SetOption removed
+  'App.SetOption(ShowVerticalScrollBar, True)   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If Left(RFPrompt(iCN).FieldId, 3) <> "txt" Then Exit Sub
+
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnTimer()
+  On Error Resume Next
+
+  Dim emProc As New EmbeddedProc
+
+  lblDateTime.Caption = Time
+
+  mnCounter = mnCounter + 1
+  lblStatus.Caption = "Running... " & mnCounter
+  Screen.Refresh
+
+  emProc.Name       = "TWDXX0100"
+  emProc.DataSource = gsDataSource
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  If Not emProc.Execute Then
+    App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+    App.SetFocus "txtInterval"
+
+    App.TimerEnabled = False
+
+    lblStatus.Caption = ""
+    Screen.Refresh
+
+    Exit Sub
+  End If
+
+  Call BuildList
+
+End Sub
+
+Private Sub txtInterval_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If Len(Rsp) = 0 Then Exit Sub
+
+  Cancel = True
+
+  ' numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(146)
+    Exit Sub
+  End If
+
+  mnInterval = CLng(Rsp) * 1000
+  Cancel = False
+
+End Sub
+
+'Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+'  On Error Resume Next
+'  '
+'  App.SetValue("tmMCU", "")
+'  App.SetValue("Company", "")
+'
+'End Sub
+
+'Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+'  On Error Resume Next
+'  '
+'  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+'  If Len(Rsp) > 0 Then AllowChange = False
+'End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  Dim sValue   As String
+  Dim iCnt     As Integer
+  Dim vArray   As Variant
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+'  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+'  '
+'  App.SetValue("tmCO",   sCompany)
+'  App.SetValue("tmMCU",  sMCU)
+
+  vArray = Split(Rsp, ",")
+  sValue = "'"
+
+  For iCnt = 0 To UBound(vArray)
+    If Not Validate_BranchPlant(vArray(iCnt), sMCU, sCompany) Then Exit Sub
+    sValue = sValue & sMCU & "','"
+  Next
+
+  sValue = Left(sValue, Len(sValue) - 2)
+  App.SetValue("tmMCU", sValue)
+
+  Cancel = False
+End Sub
+
+'Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+'  On Error Resume Next
+'  '
+'  Cancel = Not Search_BranchPlant(Rsp)
+'End Sub
+
+Private Sub BuildList
+  On Error Resume Next
+
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sType     As String
+  Dim sDisp     As String
+  Dim sTYFL     As String
+  Dim iRows     As Integer
+  Dim iCnt      As Integer
+  Dim vArray    As Variant
+  '
+  lbxJobs.Visible = True
+  lbxJobs.List.Clear
+  '
+'  sSql = "select R2TYFL, R2LITM, R2FLOC, R2TLOC, R2DOCO, R2DCTO, R2TQTY, R2UOM1 from  WDJOBS " _
+'       & " where R2MCU = '%tmMCU' and R2PSTB between '" & msStatusF & "' and '" & msStatusT & "' And R2TYFL = '1' or" _
+'       & "       R2MCU = '%tmMCU' and R2PSTB between '" & msStatusF & "' and '" & msStatusT & "' And R2TYFL = '2' or" _
+'       & "       R2MCU = '%tmMCU' and R2PSTB between '" & msStatusF & "' and '" & msStatusT & "' And R2TYFL = '3' " _
+'       & " order by R2TYFL, R2LITM, R2FLOC, R2TLOC"
+
+  sSql = "select R2PRITY, R2TYFL, R2LITM, R2FLOC, R2TLOC, R2DOCO, R2DCTO, R2TQTY, R2UOM1, R2FLOT from  WDJOBS" & _
+         " where R2MCU in(%tmMCU) and R2PSTB between '" & msStatusF & "' and '" & msStatusT & "'" & _
+         " and R2TYFL in('1','2','3')" & _
+         " order by R2PRITY, R2UPMJ , R2TDAY "        'R2TYFL, R2LITM, R2FLOC, R2TLOC"
+
+  DB.Execute(sSql, sCols, sRows)
+
+  iRows = DB.Count(sRows)
+
+  sDisp =         "P" & " "
+  sDisp = sDisp & "Type" & " "
+  sDisp = sDisp & FixLeft("Item", giLenItem) & " "
+  sDisp = sDisp & FixLeft("Fr Locn", giLenLOCN) & " "
+  sDisp = sDisp & FixLeft("To Locn", giLenLOCN) & " "
+  sDisp = sDisp & FixLeft("Lotn.", giLenLOTN) & " "
+  sDisp = sDisp & FixRight("Order", 8) & " "
+  sDisp = sDisp & FixLeft("Ty", 2) & " "
+  sDisp = sDisp & FixRight("Qty", giLenQTY) & " "
+  sDisp = sDisp & FixLeft("UOM", 3)
+  lbxJobs.Caption = sDisp
+
+  For iCnt = 1 To iRows
+
+    sTYFL = Trim(DB.Extract(sCols, sRows, iCnt, "R2TYFL"))
+
+    Select Case sTYFL
+    Case "1"
+      sType = "PUT "
+    Case "2"
+      sType = "PICK"
+    Case "3"
+      sType = "REPL"
+    Case Else
+    End Select
+
+    sDisp =         DB.Extract(sCols, sRows, iCnt, "R2PRITY") & " "
+    sDisp = sDisp & sType & " "
+    sDisp = sDisp & FixLeft(DB.Extract(sCols, sRows, iCnt, "R2LITM"), giLenItem) & " "
+    sDisp = sDisp & FixLeft(DB.Extract(sCols, sRows, iCnt, "R2FLOC"), giLenLOCN) & " "
+    sDisp = sDisp & FixLeft(DB.Extract(sCols, sRows, iCnt, "R2TLOC"), giLenLOCN) & " "
+    sDisp = sDisp & FixLeft(DB.Extract(sCols, sRows, iCnt, "R2FLOT"), giLenLOTN) & " "
+    sDisp = sDisp & FixRight(DB.Extract(sCols, sRows, iCnt, "R2DOCO"), 8) & " "
+    sDisp = sDisp & FixLeft(DB.Extract(sCols, sRows, iCnt, "R2DCTO"), 2) & " "
+    sDisp = sDisp & FixRight(DB.Extract(sCols, sRows, iCnt, "R2TQTY"), giLenQTY) & " "
+    sDisp = sDisp & FixLeft(DB.Extract(sCols, sRows, iCnt, "R2UOM1"), 2)
+
+    lbxJobs.List.AddItem sDisp
+
+  Next
+
+  lbxJobs.List.AddItem "*** End of Data ***"
+  '
+
+End Sub
+</Code>

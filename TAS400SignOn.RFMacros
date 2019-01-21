@@ -1,0 +1,141 @@
+﻿<Record FileDesc="Named User Sign On Screen" FileVersion="5.0.8.0" Desc="Named User Sign On Screen">
+<Param Name="tmUser" />
+<Param Name="tmPassword" />
+<Param Name="tmErrId" />
+<Param Name="tmErrText" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: Named User AS400 Sign On
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+
+Private Function Transaction(ByRef tmUser As Variant, ByRef tmPassword As Variant, ByRef tmErrId As Variant, ByRef tmErrText As Variant) As Boolean
+  On Error Resume Next
+  '
+  ' Check if SignOn Screen is up
+  '
+  If tmUser = "SignOff" Then
+    Call LogOffFromMainMenu()
+    Transaction = True
+    Exit Function
+  End If
+  '
+  Dim sText As String
+  ' Check if SignOn Screen is up
+  '
+  SM.GetText(48,2,6,sText,True)
+  If sText = "System" Then
+    Call LogOnToMainMenu(tmUser, tmPassword)
+  Else
+    Call AbortNavigation(tmUser, tmPassword)
+  End If
+  '
+  SM.GetText(3,1,10,sText,True)
+  If Trim(UCase(sText)) <> Trim(UCase(gsSMMain)) Then
+    tmErrId = "269"
+    tmErrText = GetMsg(tmErrId)
+    Exit Function
+  End If
+  '
+  Transaction = True
+
+  End Function
+
+
+
+Private Function LogOnToMainMenu(ByRef tmUser As String, ByRef tmPassword As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sText As String
+  '
+  SM.SendTextAlt 53, 6, tmUser
+  SM.SetCursor 53, 7
+  SM.SendTextAlt 53, 7, tmPassword
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.WaitForHost 5
+  SM.SendTextAlt 10, 6, "1"
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.WaitForHost 5
+  '
+  '
+  SM.GetText(3,1,10,sText,True)
+  LogOnToMainMenu = Trim(UCase(sText)) = Trim(UCase(gsSMMain))
+  '
+End Function
+
+Private Function LogOffFromMainMenu() As Boolean
+  On Error Resume Next
+  '
+  Dim sText As String
+  '
+  SM.SendKey KeyF3
+  SM.SendKey KeyF3
+  SM.SendKey KeyF3
+  SM.SendKey KeyF12
+  SM.SendKey KeyF12
+  SM.SendKey KeyF12
+  SM.SendTextAlt 7, 19, ".."
+  SM.SendKey KeyEnter
+  SM.WaitForHost 5
+  '
+  SM.GetText(48,2,6,sText,True)
+  If sText <> "System" Then
+    SM.SendTextAlt 7, 19, "signoff"
+    SM.SendKey KeyEnter
+    SM.WaitForHost 5
+  End If
+  '
+End Function
+
+Private Function AbortNavigation(ByRef tmUser As String, ByRef tmPassword As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sText As String
+  '
+  SM.SendKey KeyF3
+  SM.SendKey KeyF3
+  SM.SendKey KeyF3
+  SM.SendKey KeyF12
+  SM.SendKey KeyF12
+  SM.SendKey KeyF12
+  SM.SendTextAlt 7, 19, ".."
+  SM.SendKey KeyEnter
+  SM.WaitForHost 5
+  '
+  SM.GetText(48,2,6,sText,True)
+  If sText <> "System" Then
+    SM.SendTextAlt 7, 19, "signoff"
+    SM.SendKey KeyEnter
+    SM.WaitForHost 5
+  End If
+  '
+  SM.SendTextAlt 53, 6, tmUser
+  SM.SendKey KeyEnter
+  SM.SendTextAlt 53, 7, tmPassword
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.SendTextAlt 10, 6, "1"
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  SM.SendKey KeyEnter
+  '
+  SM.GetText(3,1,10,sText,True)
+  AbortNavigation = Trim(UCase(sText)) = Trim(UCase(gsSMMain))
+  '
+End Function
+</Code>

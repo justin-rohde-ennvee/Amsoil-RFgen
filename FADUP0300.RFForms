@@ -1,0 +1,606 @@
+﻿<Record FileDesc="ADM - Export User Menus to CSV" FileVersion="5.0.8.0" Desc="ADM - Export User Menus to CSV" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtPath&vm;lbxProfile&vm;cmdExport&vm;lblMessage&vm;txtHidden">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtPath" />
+<SchemaParam Linked="0" Attr="2" Name="lbxProfile" />
+<SchemaParam Linked="0" Attr="3" Name="cmdExport" />
+<SchemaParam Linked="0" Attr="4" Name="lblMessage" />
+<SchemaParam Linked="0" Attr="5" Name="txtHidden" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtPath" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="48" Width="157" Height="24" AnchorRight="344" AnchorBottom="478" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Input Database:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="72" Width="627" Height="24" AnchorRight="-126" AnchorBottom="454" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxProfile" Attr="2" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="10" Top="119" Width="87" Height="24" AnchorRight="414" AnchorBottom="407" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Profile:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="1" Left="10" Top="144" Width="627" Height="336" AnchorRight="-126" AnchorBottom="70" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdExport" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Export to File" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="12" FontStyle="0" MultiLine="1" Left="10" Top="503" Width="187" Height="48" AnchorRight="314" AnchorBottom="-1" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblMessage" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="12" FontStyle="0" MultiLine="0" Left="440" Top="503" Width="107" Height="24" AnchorRight="-36" AnchorBottom="23" BackColor1="000001" BackColor2="000001" ForeColor="0080FF" Caption="lblMessage" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="528" Width="0" Height="22" AnchorRight="343" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="248" Top="506" Width="0" Height="22" AnchorRight="263" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="511" FormHeight="550" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="12" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000000" Caption="                      [ Export User Menus ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="12" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000000" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATIVE: EXPORT USER MENUS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+'-----------'
+' VARIABLES '
+'-----------'
+Public msUserID        As String               'User ID output to text file.
+Public msUserName      As String               'User name output to text file.
+
+Public mCn             As ADODB.Connection     'Connection used to create recordsets.
+Public mrsUsers        As ADODB.Recordset      'Recordset that holds extracted data from RFUsers.
+Public mrsMenus        As ADODB.Recordset      'Recordset that holds extracted data from RFMenus.
+Public mrsForms        As ADODB.Recordset      'Recordset that holds extracted data from RFForms.
+Public msMenus()       As String               'Array used to hold all Menu IDs in master database (for validation).
+Public msForms()       As String               'Array used to hold all Form IDs in master database (for validation).
+
+Public msParentMenuID  As String               'String used to hold Parent Menu ID.
+Public mvObjectID      As Variant              'Array used to hold all objects in a given menu.
+
+Public mbMoreMenus     As Boolean              'Boolean variable used to identify if additional menus need analysis
+Public mvMoreMenuIDs() As String               'Array used to hold additional Menu IDs to analyze.
+Public miMenu          As Integer              'Index value used to increment size of mvMoreMenuIDs
+
+Public msParentChild() As String               'Array used to hold the final results Parent Menu and Child output to text file.
+Public miForm          As Integer              'Index value used to increment size of msParentChild
+
+Public msDBPath        As String               'Path of current Master Database.
+
+'-----------'
+' CONSTANTS '
+'-----------'
+Public Const cOutFile           = "C:\FADUP0900.csv"    'File where output can be found.
+Public Const HKEY_LOCAL_MACHINE = &H80000002
+Public Const KEY_QUERY_VALUE    = &H1
+Public Const ERROR_NONE         = 0
+Public Const REG_SZ As Long     = 1
+Public Const REG_DWORD As Long  = 4
+
+'-----------'
+' FUNCTIONS '
+'-----------'
+Declare Function RegCloseKey Lib "advapi32.dll" _
+(ByVal hKey As Long) As Long
+
+Declare Function RegOpenKeyEx Lib "advapi32.dll" Alias _
+"RegOpenKeyExA" (ByVal hKey As Long, ByVal lpSubKey As String, _
+ByVal ulOptions As Long, ByVal samDesired As Long, phkResult As _
+Long) As Long
+
+Declare Function RegQueryValueExNULL Lib "advapi32.dll" Alias _
+"RegQueryValueExA" (ByVal hKey As Long, ByVal lpValueName As _
+String, ByVal lpReserved As Long, lpType As Long, ByVal lpData _
+As Long, lpcbData As Long) As Long
+
+Declare Function RegQueryValueExString Lib "advapi32.dll" Alias _
+"RegQueryValueExA" (ByVal hKey As Long, ByVal lpValueName As _
+String, ByVal lpReserved As Long, lpType As Long, ByVal lpData _
+As String, lpcbData As Long) As Long
+
+Declare Function RegQueryValueExLong Lib "advapi32.dll" Alias _
+"RegQueryValueExA" (ByVal hKey As Long, ByVal lpValueName As _
+String, ByVal lpReserved As Long, lpType As Long, lpData As _
+Long, lpcbData As Long) As Long
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Call PerformADO("")
+  Call ResetForm
+
+  lblMessage.Caption = ""
+  txtHidden.Caption = "
+  txtPath.Defaults = msDBPath
+
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BackColor1 = &H80FFFF&
+  RFPrompt(iCN).ForeColor = &H000000&
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BackColor1 = &HFFFFFF&
+  RFPrompt(iCN).ForeColor = &H000000&
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+
+  mCn.Close
+  mCn = Nothing
+
+  mrsUsers.Close
+  mrsUsers = Nothing
+
+  mrsForms.Close
+  mrsForms = Nothing
+
+  mrsMenus.Close
+  mrsMenus = Nothing
+
+End Sub
+
+Private Sub txtPath_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sDsp     As String
+  Dim sVal     As String
+  Dim iRcd     As Integer
+  Dim iCnt     As Integer
+  Dim szData() As Byte
+  Dim sRecord  As String
+
+  Rsp = Trim(UCase(Rsp))
+
+  Call PerformADO(Rsp)
+
+  Cancel = True
+
+  If Len(Rsp) = 0 Then Exit Sub
+
+  lbxProfile.List.Clear
+
+  sDsp = "O|" & FixLeft("UserID",10," ") & "|" & FixLeft("Name",30," ") & "|" & FixLeft("Initial Menu",12," ")
+
+  lbxProfile.Caption = sDsp
+
+  iRcd = mrsUsers.RecordCount
+
+  For iCnt = 1 To iRcd
+    'Obtain data from last field for password, menu, and properties.
+    szData = mrsUsers.Fields(2).GetChunk(999999)
+    If Len(szData) = 0 Then
+      szData = mrsUsers.Fields(2)
+    End If
+    If (szData(1) = 0) Then
+      sRecord = CStr(szData)
+    Else
+      sRecord = StrConv(szData, vbUnicode)
+    End If
+    sDsp = "1|" & FixLeft(mrsUsers.Fields(0).Value,10," ") & "|" & FixLeft(mrsUsers.Fields(1).Value,30," ") & "|" & FixLeft(Ext(sRecord,3),10," ")
+    lbxProfile.List.AddItem(sDsp, sDsp)
+    mrsUsers.MoveNext
+  Next
+
+  lbxProfile.List.AddItem("", ". . . End of data")
+
+  lblMessage.Caption = ""
+
+  Cancel = False
+
+End Sub
+
+Private Sub lbxProfile_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim iLbCurr As Integer
+
+  iLbCurr = lbxProfile.List.Index                 'current line
+
+  If Left(Rsp,1)  = "1" Then
+    Mid$(Rsp,1,1) = " "
+  Else
+    Mid$(Rsp,1,1) = "1"
+  End If
+
+  lbxProfile.List.RemoveItem iLbCurr                  'remove line
+  lbxProfile.List.InsertItem Rsp, Rsp,iLbCurr            'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+  lbxProfile.List.Index = iLbCurr
+
+  Cancel = True
+
+End Sub
+
+Private Sub cmdExport_Click()
+  On Error Resume Next
+  'Prepares the results for export to a .csv file.
+
+  Dim vArray  As Variant
+  Dim iLblMax As Integer
+  Dim iCnt    As Integer
+  Dim iMenu   As Integer
+  Dim sMenu   As String
+  Dim sList   As String
+  Dim iRecExp As Integer
+
+  iLblMax   = lbxProfile.List.Count       'Max lines
+
+  For iCnt = 1 To iLblMax
+    lbxProfile.List.Index = iCnt
+    If Left(lbxProfile.Text,1) = "1" Then
+      vArray = Split(lbxProfile.Text,"|")
+      msUserID = Trim(vArray(1))
+      msUserName = Trim(vArray(2))
+      sMenu = Trim(vArray(3))
+      'Calls MenuList with startup menu for selected user.
+      sList = MenusList(sMenu)
+      'Calls MenuList with additional menus found for selected user.
+      If mbMoreMenus = True Then
+        For iMenu = 0 To UBound(mvMoreMenuIDs)
+          If mvMoreMenuIDs(iMenu) <> "" Then        'A blank value in mvMoreMenuIDs(iMenu) indicates the end of the values in this array.
+            Call MenusList(mvMoreMenuIDs(iMenu))
+          Else
+            Exit For                                'A blank is encountered: end of populated array, we're done; exit For loop.
+          End If
+        Next
+      End If
+      Call WriteFile(False)
+      Call ResetForm
+      iRecExp = iRecExp + 1
+    End If
+  Next iCnt
+
+  Select Case iRecExp
+    Case Is = 0
+      lblMessage.Label.Left = 45
+      lblMessage.Caption = iRecExp & " records exported."
+    Case Is = 1
+      Call WriteFile(True)
+      lbxProfile.List.Clear
+      lblMessage.Label.Left = 46
+      lblMessage.Caption = iRecExp & " record exported."
+      App.SetFocus(1)
+    Case Is > 1
+      Call WriteFile(True)
+      lbxProfile.List.Clear
+      If iRecExp < 10 Then
+        lblMessage.Label.Left = 45
+      Else
+        lblMessage.Label.Left = 44
+      End If
+      lblMessage.Caption = iRecExp & " records exported."
+      App.SetFocus(1)
+  End Select
+
+End Sub
+
+Public Function MenusList(ByRef sInitMenu As String) As String
+  On Error Resume Next
+  'Searches the master database to locate a menu and it's elements/entries.
+
+  Dim szMenuData() As Byte
+  Dim sContents    As String
+  Dim sObjectIDs   As String
+  Dim sObjectID    As String
+  Dim iRcd         As Integer
+  Dim iCnt         As Integer
+
+  msParentMenuID = sInitMenu
+
+  'Filter mrsMenus to what the user's initial menu is.
+  mrsMenus.MoveFirst
+  mrsMenus.Filter = "Id = " & "'" & sInitMenu & "'"
+
+  'Obtain data from field for form and submenus
+  szMenuData = mrsMenus.Fields(2).GetChunk(999999)
+  If Len(szMenuData) = 0 Then
+    szMenuData = mrsMenus.Fields(2)
+  End If
+
+  'Parse data into separate logical units for processing.
+  If (szMenuData(1) = 0) Then
+    sContents = CStr(szMenuData)
+  Else
+    sContents = StrConv(szMenuData, vbUnicode)
+  End If
+
+  sObjectIDs  = Ext(sContents,2)              '-|FADCT0100|FADLG0110|FADUP0100|FADUP0200|-|FADPO010|FADPO010_W|FADRL010|-|FADEX0100|FADTM0100|FADDB0100'
+  mvObjectID  = Split(sObjectIDs, Chr(2))     '-' & 'FADCT0100' & 'FADLG0110' & 'FADUP0100' & 'FADUP0200' & '-' & 'FADPO010' & 'FADPO010_W' & 'FADRL010' & '-' & 'FADEX0100' & 'FADTM0100' & 'FADDB0100'
+
+  'Loop through each logical unit (object) to process as Form or Menu.
+  iRcd = UBound(mvObjectID)
+
+  For iCnt = 0 To iRcd
+    sObjectID = CStr(mvObjectID(iCnt))
+    If InStr(1, sObjectID, " ") > 0 Then
+      sObjectID = Left(sObjectID, InStr(1, sObjectID, " ") - 1)   'Entries like "FHRTE0100 -P051121 ZJDE0001" become "FHRTE0100"
+    End If
+    Select Case IdentifyObject(sObjectID)
+      Case "FORM"
+        ReDim Preserve msParentChild(1, miForm)
+        msParentChild(0, miForm) = msParentMenuID
+        msParentChild(1, miForm) = sObjectID
+        miForm = miForm + 1
+      Case "MENU"
+        ReDim Preserve msParentChild(1, miForm)
+        msParentChild(0, miForm) = msParentMenuID
+        msParentChild(1, miForm) = sObjectID
+        miForm = miForm + 1
+        mvMoreMenuIDs(miMenu) = sObjectID
+        mbMoreMenus = True
+        miMenu = miMenu + 1
+      Case Else
+        'Do nothing.
+    End Select
+  Next
+
+End Function
+
+Public Function IdentifyObject (ByRef sObject As String) As String
+  On Error Resume Next
+  'Identifies whether the menu element/entry is a form or submenu.
+
+  Dim iCnt As Integer
+
+  'Check if it is a form
+  For iCnt = 0 To UBound(msForms)
+    If sObject = msForms(iCnt) Then
+      IdentifyObject = "FORM"
+      Exit Function
+    End If
+  Next
+
+  'Check if it is a submenu
+    For iCnt = 0 To UBound(msMenus)
+    If sObject = msMenus(iCnt) Then
+      IdentifyObject = "MENU"
+      Exit Function
+    End If
+  Next
+
+End Function
+
+Public Sub WriteFile (ByRef bWriteAuditLine As Boolean)
+  On Error Resume Next
+  'Writes the exported data to a .csv file.
+
+  Dim i         As Integer
+  Dim sMenuItem As String
+
+  Open cOutFile For Append As #1
+    If bWriteAuditLine = False Then
+      For i = 0 To miForm
+        If i < miForm Then
+          sMenuItem = sMenuItem & msParentChild(0, i) & ": " & msParentChild(1, i) & ";"
+        Else
+          sMenuItem = sMenuItem & msParentChild(0, i) & ": " & msParentChild(1, i)
+        End If
+      Next
+      Print #1, msUserID & ";" & msUserName & ";" & sMenuItem
+    Else
+      Print #1, "Extracted by " & App.User & " on " & Date() &  " at " & Time()
+    End If
+  Close #1
+
+End Sub
+
+Public Sub ResetForm
+  On Error Resume Next
+  'Resets and initializes critical variables in the form.
+
+  mbMoreMenus = False
+
+  miMenu = 0
+  miForm = 0
+
+  ReDim msParentChild(1, miForm) As String
+  ReDim mvMoreMenuIDs(1000)      As String
+
+End Sub
+
+Public Sub PerformADO (ByRef sPath As String)
+  On Error Resume Next
+  'Performs necessary ADO related tasks to initialize this application.
+
+  Dim vValue As Variant
+  Dim vArray As Variant
+  Dim iRcd   As Integer
+  Dim iCnt   As Integer
+
+  Select Case sPath
+    Case ""
+      vArray = Split(SYS.GetProperty("Config", "Env"), "|")
+      '
+      ' get path to local RFgen.mdb -> Target
+      '
+      QueryValue ("SOFTWARE\DataMAXSG\RFGen" & vArray(7) , "Source", vValue)
+      If vArray(7) = "40" Then vValue = Left(vValue, Len(vValue) /2)
+      ListBox1.List.AddItem vValue, vValue
+      'Update the path below to point to the master
+      'RFgen database on your computer.
+      'strPath = "C:\Program Files\RFgen\rfgen.mdb"
+      msDBPath = CStr(vValue)
+    Case Else
+      msDBPath = sPath
+  End Select
+
+  'Create a new ADO Connection to .mdb
+  'using the Microsoft Access and Jet OLE DB
+  'providers.
+  Set mCn = New ADODB.Connection
+  With mCn
+    .Provider = "Microsoft.Access.OLEDB.10.0"
+    .Properties("Data Provider").Value = "Microsoft.Jet.OLEDB.4.0"
+    .Properties("Data Source").Value = msDBPath
+    .Open
+  End With
+
+  If Err.Number <> 0 Then
+    Set mCn = New ADODB.Connection
+    With mCn
+      .Provider = "Microsoft.Jet.OLEDB.4.0"
+      .Properties("Data Source").Value = msDBPath
+      .Open
+    End With
+  End If
+
+  'USERS
+  'Create a new ADO Recordset by using a server-side
+  'keyset cursor and optimistic locking.
+  Set mrsUsers = New ADODB.Recordset
+  With mrsUsers
+    .ActiveConnection = mCn
+    .Source = "SELECT * FROM rfusers ORDER BY Id"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+  End With
+
+  'MENUS
+  'Populate recordset for Menus
+  Set mrsMenus = New ADODB.Recordset
+  With mrsMenus
+    .ActiveConnection = mCn
+    .Source = "SELECT * FROM rfmenus ORDER BY id"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+   End With
+
+   'Populate array for Menu IDs used in validation.
+   iRcd = mrsMenus.RecordCount
+   ReDim msMenus(iRcd - 1)
+   mrsMenus.MoveFirst
+   For iCnt = 0 To iRcd
+    msMenus(iCnt) = mrsMenus.Fields(0).Value
+    mrsMenus.MoveNext
+   Next
+
+  'FORMS
+  'Populate recordset for Forms.
+  Set mrsForms = New ADODB.Recordset
+  With mrsForms
+    .ActiveConnection = mCn
+    .Source = "SELECT * FROM rfforms ORDER BY id"
+    .CursorType = adOpenKeyset
+    .LockType = adLockOptimistic
+    .CursorLocation = adUseServer
+    .Open
+   End With
+
+  'Populate array for Form IDs used in validation.
+  iRcd = mrsForms.RecordCount
+  ReDim msForms(iRcd - 1)
+  mrsForms.MoveFirst
+  For iCnt = 0 To iRcd
+    msForms(iCnt) = mrsForms.Fields(0).Value
+    mrsForms.MoveNext
+  Next
+
+End Sub
+
+Private Sub QueryValue(ByRef sKeyName As String, ByRef sValueName As String, ByRef vValue As Variant)
+
+  Dim lRetVal As Long         'result of the API functions
+  Dim hKey    As Long         'handle of opened key
+
+  lRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, sKeyName, 0, KEY_QUERY_VALUE, hKey)
+  lRetVal = QueryValueEx(hKey, sValueName, vValue)
+
+  RegCloseKey (hKey)
+
+End Sub
+
+Function QueryValueEx(ByVal lhKey As Long, ByVal szValueName As String, ByRef vValue As Variant) As Long
+  On Error GoTo QueryValueExError
+
+  Dim cch    As Long
+  Dim lrc    As Long
+  Dim lType  As Long
+  Dim lValue As Long
+  Dim sValue As String
+
+  ' Determine the size and type of data to be read
+  lrc = RegQueryValueExNULL(lhKey, szValueName, 0&, lType, 0&, cch)
+
+  If lrc <> ERROR_NONE Then
+    Error 5
+  End If
+
+  Select Case lType
+    ' For strings
+    Case REG_SZ:
+      sValue = String(cch, 0)
+      lrc = RegQueryValueExString(lhKey, szValueName, 0&, lType, sValue, cch)
+      If lrc = ERROR_NONE Then
+        vValue = Left$(sValue, cch-1)
+      Else
+        vValue = Empty
+      End If
+    ' For DWORDS
+    Case REG_DWORD:
+      lrc = RegQueryValueExLong(lhKey, szValueName, 0&, lType, lValue, cch)
+      If lrc = ERROR_NONE Then
+        vValue = lValue
+      End If
+    Case Else
+      'all other data types not supported
+      lrc = -1
+  End Select
+
+QueryValueExExit:
+  QueryValueEx = lrc
+  Exit Function
+
+QueryValueExError:
+  Resume QueryValueExExit
+
+End Function
+</Code>

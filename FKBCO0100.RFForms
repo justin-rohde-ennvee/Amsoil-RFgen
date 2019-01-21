@@ -1,0 +1,483 @@
+﻿<Record FileDesc="KB - Kanban Check Out" FileVersion="5.0.8.0" Desc="KB - Kanban Check Out" Group="KB" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtKID1&vm;txtCDN&vm;txtQTY&vm;lblItem&vm;lblItemDesc&vm;lblQty&vm;txtAccept" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtKID1" />
+<SchemaParam Linked="0" Attr="3" Name="txtCDN" />
+<SchemaParam Linked="0" Attr="4" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="5" Name="lblItem" />
+<SchemaParam Linked="0" Attr="6" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="7" Name="lblQty" />
+<SchemaParam Linked="0" Attr="8" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="73" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtKID1" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ID#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="119" Height="22" AnchorRight="73" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtCDN" Attr="3" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="55" Height="22" AnchorRight="185" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Card#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="119" Height="22" AnchorRight="73" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="4" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="88" Width="39" Height="22" AnchorRight="185" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="119" Height="22" AnchorRight="73" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItem" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="63" Height="22" AnchorRight="177" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItem" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="95" Height="22" AnchorRight="145" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQty" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="55" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="264" Width="0" Height="22" AnchorRight="88" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Kanban - Check Out]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' KANBAN: KANBAN CHECK OUT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId         = "FKBCO0100"
+Private msPgm               As String
+Private msVersion           As String
+Private msStatus            As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim sHeader As String
+  '
+  ' Initialize the RFGen recordset with extra fields
+  Call SetDisplay()
+  '
+  ' Initialize special controls
+  lblItem.Caption = ""
+  lblItem.Label.BackColor1 = cFieldDefaultBC
+  lblItem.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblQty.Caption = ""
+  lblQty.Label.BackColor1 = cFieldDefaultBC
+  lblQty.Label.ForeColor = cFieldDefaultFC
+  '
+  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  ' get DocType from Proc.Opt.
+  msStatus = GetProcOpt(msPgm,msVersion,"1;3",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim emProc As New EmbeddedProc
+  '
+  emProc.Name                = "TKBCO0100"
+  emProc.DataSource          = gsDataSource
+  emProc.Param("tmCO")       = App.GetValue("tmCO")
+  emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+  emProc.Param("tmLITM")     = App.GetValue("tmLITM")
+  emProc.Param("tmQTY")      = App.GetValue("tmQTY")
+  emProc.Param("tmUOM")      = App.GetValue("tmUOM")
+  emProc.Param("tmKID1")     = App.GetValue("tmKID1")
+  emProc.Param("tmCDN")      = App.GetValue("tmCDN")
+  emProc.Param("tmKBQT")     = App.GetValue("tmKBQT")
+  emProc.Param("tmTYPE")     = "M"
+  emProc.Param("tmZVERSION") = msVersion
+  emProc.Param("tmPGM")      = msPgm
+  emProc.Param("tmUser")     = App.User
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)     
+
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)     
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+  '
+  lblItem.Caption = ""
+  lblItemDesc.Caption = ""
+  lblQty.Caption = ""
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtKID1_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmKID1", "")
+
+End Sub
+
+Private Sub txtKID1_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  sSQL = "Select count(*) from  F3016" & _
+         " where KMKID1 = '" & Rsp & "' and KMMMCU = '%tmMCU'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(71)
+    Exit Sub
+  End If
+  '
+  sSQL = "Select KDCDN from  F30161 where KDKID1 = '" & Rsp & "'"
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox(GetMsg(69))
+    Exit Sub
+  End If
+  '
+  ' Default Card ID if unique
+  If DB.Count(sRows) = 1 Then
+    txtCDN.Text = DB.Extract(sCols, sRows, 1, "KDCDN")
+  End If
+  '
+  App.SetValue("tmKID1", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtKID1_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  If Not Search_F3016(Rsp, sMCU, msStatus) Then Cancel = True
+
+End Sub
+
+Private Sub txtCDN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCDN", "")
+  App.SetValue("tmUOM", "")
+  App.SetValue("tmKBQT", "")
+  '
+  lblItem.Caption = ""
+  lblItemDesc.Caption = ""
+  lblQty.Caption = ""
+
+End Sub
+
+Private Sub txtCDN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sLITM   As String
+  Dim sUOM    As String
+  Dim nKbQty  As Currency
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  sSQL = "Select count(*) from  F30161" & _
+         " where KDKID1 = '%tmKID1' and KDCDN = " & Rsp
+  '
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Val(sRows) = 0 Then
+    App.MsgBox(GetMsg(68))
+    Exit Sub
+  End If
+  '
+  sSQL = "Select KMLITM, KMUOM from  F3016" & _
+         " where KMKID1 = '%tmKID1' and KMKBST = '1' and KMMMCU = '%tmMCU'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(70)
+    Exit Sub
+  End If
+  '
+  sLITM  = DB.Extract(sCols, sRows, 1, "KMLITM")
+  sUOM   = DB.Extract(sCols, sRows, 1, "KMUOM")
+  '
+  sSQL = "Select KDTRQT from  F30161" & _
+         " where KDKID1 = '%tmKID1' and KDCDN = " &Rsp
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(70)
+    Exit Sub
+  End If
+
+  nKbQty = ConvDecimalsFromSQL("TRQT",(DB.Extract(sCols, sRows, 1, "KDTRQT")))
+  '
+  '
+  sSQL = "select IMDSC1 from  F4101" & _
+         " where IMLITM = '" & sLITM & "'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  lblItem.Caption = sLITM
+  lblItemDesc.Caption = DB.Extract(sCols, sRows, 1, "IMDSC1")
+  lblQty.Caption = CStr(nKbQty) & " UOM: " & sUOM
+  '
+  App.SetValue("tmKBQT", nKbQty)
+  App.SetValue("tmUOM", sUOM)
+  App.SetValue("tmCDN", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtCDN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sKID1 As String
+  '
+  sKID1 = App.GetValue("tmKID1")
+  '
+  If Not Search_F30161(Rsp, sKID1) Then Cancel = True
+
+End Sub
+
+Private Sub txtQTY_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQTY", "")
+
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty   As Currency
+  Dim nKbQty As Currency
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim vRsp   As Variant
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+
+  If (nQty = 0) Then
+    App.MsgBox GetMsg(182)
+    Exit Sub
+  End If
+  '
+  nKbQty = Val(App.GetValue("tmKBQT"))
+
+  If nKbQty <> nQty Then
+    vRsp = App.MsgBox(GetMsg(26), vbYesNo, vbNo)
+    If vRsp <> vbYes Then Exit Sub
+  End If
+  '
+  App.SetValue("tmQTY", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+</Code>

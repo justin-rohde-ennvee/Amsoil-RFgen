@@ -1,0 +1,418 @@
+﻿<Record FileDesc="LP - Reset Cycle Count" FileVersion="5.0.8.0" Desc="LP - Reset Cycle Count" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;txtAccept&vm;lblLPDesc&vm;lblLPLocn&vm;lblLITM&vm;lblLOTN" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="3" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="4" Name="lblLPDesc" />
+<SchemaParam Linked="0" Attr="5" Name="lblLPLocn" />
+<SchemaParam Linked="0" Attr="6" Name="lblLITM" />
+<SchemaParam Linked="0" Attr="7" Name="lblLOTN" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+<Display Name="Telnet" Type="0" Width="160" Height="352" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="22" Width="55" Height="22" AnchorRight="177" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="22" Width="119" Height="22" AnchorRight="65" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="22" Width="55" Height="22" AnchorRight="97" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="119" Height="22" AnchorRight="41" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="44" Width="39" Height="22" AnchorRight="177" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="44" Width="119" Height="22" AnchorRight="65" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="374" Width="63" Height="22" AnchorRight="97" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="374" Width="87" Height="22" AnchorRight="9" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="264" Width="151" Height="22" AnchorRight="81" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="330" Width="151" Height="22" AnchorRight="9" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="160" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPDesc" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="66" Width="79" Height="22" AnchorRight="105" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPDesc" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="418" Width="0" Height="22" AnchorRight="160" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPLocn" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="88" Width="79" Height="22" AnchorRight="105" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPLocn" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="440" Width="0" Height="22" AnchorRight="160" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLITM" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="110" Width="63" Height="22" AnchorRight="121" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLITM" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="462" Width="0" Height="22" AnchorRight="160" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLOTN" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="132" Width="63" Height="22" AnchorRight="121" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLOTN" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="0" Height="22" AnchorRight="160" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Reset Cycle Count]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+<Layout Visible="1" FormWidth="160" FormHeight="506" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Cycle Count]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2006 The DataMAX Software Group, Inc., All Rights Reserved.|
+' -------------------------------------------------------------------------------
+'
+' LP: RESET CYCLE COUNT
+'
+' NOTES:
+
+Option Explicit
+
+Private Const cTNId      = "FLPCC0100"
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  SetDisplay()
+  '
+  Dim sHeader As String
+  '
+  ' Initialize special controls
+  '
+  lblLPDesc.Caption = ""
+  lblLPDesc.Label.BackColor1 = cFieldDefaultBC
+  lblLPDesc.Label.ForeColor = cFieldDefaultFC
+
+  lblLPLocn.Caption = ""
+  lblLPLocn.Label.BackColor1 = cFieldDefaultBC
+  lblLPLocn.Label.ForeColor = cFieldDefaultFC
+
+  lblLITM.Caption = ""
+  lblLITM.Label.BackColor1 = cFieldDefaultBC
+  lblLITM.Label.ForeColor = cFieldDefaultFC
+
+  lblLOTN.Caption = ""
+  lblLOTN.Label.BackColor1 = cFieldDefaultBC
+  lblLOTN.Label.ForeColor = cFieldDefaultFC
+  '
+  txtAccept.Visible = False
+  '
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim i      As Integer
+  Dim nQtyCC As Currency
+  Dim nQty   As Currency
+  '
+  Dim emProc As New EmbeddedProc
+
+  If gbOracleJDE And Len(Trim(App.GetValue("tmLOTN"))) = 0 Then App.SetValue("tmLOTN", " ")
+
+  ' Remove the quantity from the cycle count record.
+  sSQL = "select PJTQCT from F4141 " & _
+         " where PJLITM = '%tmLITM' and PJLOTN = '%tmLOTN' and " & _
+         " PJMCU = '%tmMCU' and PJLOCN = '%tmLOCN' and PJCYNO = %tmCYNO"
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  nQtyCC = ConvDecimalsFromSQL("PQOH",DB.Extract(sCols,sRows,1,1))
+  '
+  nQty = App.GetValue("tmCCQTY")
+
+  If (nQtyCC - nQty) >= 0 Then
+    nQty = nQtyCC - nQty
+  Else
+    nQty = 0
+  End If
+  '
+  emProc.Name       = "TIMCC0100"
+  emProc.DataSource = gsDataSource
+  '
+  emProc.Param("tmCO")      = App.GetValue("tmCO")
+  emProc.Param("tmMCU")     = App.GetValue("tmMCU")
+  emProc.Param("tmCYNO")    = App.GetValue("tmCYNO")
+  emProc.Param("tmLITM")    = App.GetValue("tmLITM")
+  emProc.Param("tmLOTN")    = App.GetValue("tmLOTN")
+  emProc.Param("tmLOCN")    = App.GetValue("tmLOCN")
+  emProc.Param("tmQTY")     = nQty
+  emProc.Param("tmUOM")     = App.GetValue("tmUOM")
+  emProc.Param("tmDSC1")    = App.GetValue("tmDSC1")
+  emProc.Param("tmMODE")    = App.GetValue("tmMODE")
+  emProc.Param("tmUSER")    = App.User
+  emProc.Param("tmPGM")     = App.GetValue("tmPgm")
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      Cancel = True
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+
+  '
+  ' Reset count status on the LP detail records
+  If gbCommitCtl then DB.BeginTrans(gsLPSource)
+  '
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+  sSQL = "select LDLPID, LDLNID from F55102" & _
+         " where LDLPID = '%tmLPID' and" & _
+         " LDLITM = '%tmLITM' and LDLOTN = '%tmLOTN'"
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i = 1 To DB.Count(sRows)
+
+    uLP102.sLDLPID = DB.Extract(sCols, sRows, i,"LDLPID")
+    uLP102.nLDLNID = DB.Extract(sCols, sRows, i,"LDLNID")
+
+    If Not X_LP102("I", uLP102) Then
+      If gbCommitCtl then DB.RollbackTrans gsLPSource
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+
+    uLP102.sLDURRF = ""
+    uLP102.sLDUSER = App.User
+    uLP102.sLDDATE = Format(Date, "yyyymmdd")
+    uLP102.sLDTIME = Format(Time, "hhnnss")
+
+    If Not X_LP102("C", uLP102) Then
+      If gbCommitCtl then DB.RollbackTrans gsLPSource
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+
+  Next i
+
+  If gbCommitCtl then DB.CommitTrans gsLPSource
+
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLITM.Caption = ""
+  lblLOTN.Caption = ""
+  '
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLPID", "")
+
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLITM.Caption = ""
+  lblLOTN.Caption = ""
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nLNID As Long
+  Dim nQty  As Currency
+  Dim sLITM As String
+  Dim sLOTN As String
+  Dim sUOM  As String
+  Dim sLOCN As String
+  Dim sSN   As String
+  Dim bMixedLP As Boolean
+
+  Dim uLP101    As LP101Data       ' create LP101 Structure
+  '
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  ' Check if LP exists
+  '
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  '
+  uLP101.sLMLPID = Rsp
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    App.MsgBox(GetMsg(104))
+    Exit Sub
+  End If
+
+  lblLPDesc.Caption = uLP101.sLMDSC1
+  lblLPLocn.Caption = uLP101.sLMLOCN
+  '
+  If Not LP_GetItem(Rsp, nLNID, sLITM, sLOTN, nQty, sUOM, sLOCN, sSN, bMixedLP) Then
+    App.MsgBox GetMsg(104)
+    Exit Sub
+  End If
+
+  lblLITM.Caption = sLITM
+  lblLOTN.Caption = sLOTN
+
+  App.SetValue("tmLOCN", sLOCN)
+  App.SetValue("tmLITM", sLITM)
+  App.SetValue("tmLOTN", sLOTN)
+  App.SetValue("tmCCQTY", nQty)
+  App.SetValue("tmUOM", sUOM)
+
+  Dim uLP102 As LP102Data
+
+  Call LP102_Reset(uLP102)
+
+  uLP102.sLDLPID = Rsp
+  uLP102.nLDLNID = nLNID
+
+  If Not X_LP102("I", uLP102) Then
+    App.MsgBox GetMsg(104)
+    Exit Sub
+  End If
+
+  App.SetValue("tmCYNO", uLP102.sLDURRF)
+
+  App.SetValue("tmLPID", Rsp)
+  Cancel = False
+  '
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+</Code>

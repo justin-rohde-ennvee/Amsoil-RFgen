@@ -1,0 +1,1043 @@
+﻿<Record FileDesc="LP - Unpick Item" FileVersion="5.0.8.0" Desc="LP - Unpick Item" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;Frame1&vm;txtLPID&vm;lblLPLocn&vm;lblLPDesc&vm;lblNumUnits&vm;Frame2&vm;txtITEM&vm;lblItemDesc&vm;txtLOTN&vm;lblItemQty&vm;txtQTY&vm;txtTOLOCN&vm;txtAccept&vm;btnDetachAll" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="Frame1" />
+<SchemaParam Linked="0" Attr="3" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="4" Name="lblLPLocn" />
+<SchemaParam Linked="0" Attr="5" Name="lblLPDesc" />
+<SchemaParam Linked="0" Attr="6" Name="lblNumUnits" />
+<SchemaParam Linked="0" Attr="7" Name="Frame2" />
+<SchemaParam Linked="0" Attr="8" Name="txtITEM" />
+<SchemaParam Linked="0" Attr="9" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="10" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="11" Name="lblItemQty" />
+<SchemaParam Linked="0" Attr="12" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="13" Name="txtTOLOCN" />
+<SchemaParam Linked="0" Attr="14" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="15" Name="btnDetachAll" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="151" Height="22" AnchorRight="41" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame1" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Unpick From:" Style="2">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="223" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="39" Height="22" AnchorRight="193" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="66" Width="127" Height="22" AnchorRight="49" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPLocn" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="88" Width="79" Height="22" AnchorRight="97" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPLocn" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPDesc" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="88" Width="79" Height="22" AnchorRight="17" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblNumUnits" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="110" Width="95" Height="22" AnchorRight="81" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblNumUnits" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame2" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Item to Unpick:" Style="2">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="223" Height="22" AnchorRight="9" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtITEM" Attr="8" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="63" Height="22" AnchorRight="169" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Itm/LP:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="154" Width="111" Height="22" AnchorRight="65" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="95" Height="22" AnchorRight="129" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="47" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="176" Width="95" Height="22" AnchorRight="81" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemQty" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="198" Width="87" Height="22" AnchorRight="25" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="39" Height="22" AnchorRight="193" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="220" Width="87" Height="22" AnchorRight="89" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTOLOCN" Attr="13" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="47" Height="22" AnchorRight="185" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="242" Width="87" Height="22" AnchorRight="89" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDetachAll" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Detach All" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="184" Top="154" Width="55" Height="44" AnchorRight="1" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Unpick Item]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: DETACH ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC = "RFGen Detach LP"
+Private Const cTNId = "FLPDI0100"
+'
+Private msPgm        As String
+Private msVersion    As String
+Private msDOCTYPE    As String
+Private msAllowHold  As String
+Private mnMaxQty     As Currency
+Private gsLPSource   As String
+Private mbIsPlate    As Boolean
+Private mbSerialized As Boolean
+Private miMoveCtr    As Integer
+Private msMoveItems  As String
+Private msMoveQtys   As String
+Private msMoveUoms   As String
+Private msMoveLots   As String
+Private mbDetachAll  As Boolean
+
+Private Sub btnDetachAll_Click()
+  On Error Resume Next
+  txtITEM.Visible = False
+  btnDetachAll.Visible = False
+  lblItemDesc.Caption = "Detaching All"
+  mbDetachAll = True
+  mbIsPlate = True
+  txtTOLOCN.Visible = True
+  txtITEM.Required = False
+  txtQTY.Required = False
+  App.SetFocus("txtTOLOCN")
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If iCN <> 15 Then
+    RFPrompt(iCN).BorderStyle = DisplayStandard
+    RFPrompt(iCN).BackColor1 = cFieldFocusBC
+    RFPrompt(iCN).ForeColor = cFieldFocusFC
+  End If
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sHeader As String
+  '
+  Call SetDisplay()
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  lblLPDesc.Caption = ""
+  lblLPDesc.Label.BackColor1 = cFieldDefaultBC
+  lblLPDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblLPLocn.Caption = ""
+  lblLPLocn.Label.BackColor1 = cFieldDefaultBC
+  lblLPLocn.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItemQty.Caption = ""
+  lblItemQty.Label.BackColor1 = cFieldDefaultBC
+  lblItemQty.Label.ForeColor = cFieldDefaultFC
+
+  lblNumUnits.Caption = ""
+  lblNumUnits.Label.BackColor1 = cFieldDefaultBC
+  lblNumUnits.Label.ForeColor = cFieldDefaultFC
+  '
+  Frame1.Label.BackColor1 = cFieldDefaultBC
+  Frame1.Label.ForeColor = cFieldDefaultFC
+  '
+  Frame2.Label.BackColor1 = cFieldDefaultBC
+  Frame2.Label.ForeColor = cFieldDefaultFC
+  '
+  txtLPID.Visible = False
+  Frame2.Visible = False
+  txtITEM.Visible = False
+  txtLOTN.Visible = False
+  txtQTY.Visible = False
+  txtTOLOCN.Visible = False
+  btnDetachAll.Visible = False
+
+  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+  '
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' get DocType from Proc.Opt. for Inv. Transfer
+  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+  '
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN <> 15) Then
+    RFPrompt(iCN).BorderStyle = DisplayTransparent
+    RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+    RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  End If
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim nRQty    As Currency
+
+  '
+  App.SetValue("LPITVersion", msVersion)
+  '
+  '--------------------------------------------------------------------------
+  ' attach full LP or item.
+  '
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+  '
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim sLPArray As String
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+  '
+  If mbIsPlate Then
+    If mbDetachAll Then
+      uLP101.sLMLPID = App.GetValue("tmPALP")
+      If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+        App.MsgBox(GetMsg(104))
+        Exit Sub
+      End If
+      '
+      'Set the value for variables
+      App.SetValue("LMCO"   ,App.GetValue("tmCO"))
+      App.SetValue("LMMCU"  ,App.GetValue("tmMCU"))
+      App.SetValue("tmNMCU" ,App.GetValue("tmMCU"))
+      App.SetValue("LMLOCN" ,uLP101.sLMLOCN)
+      App.SetValue("tmNLOCN",App.GetValue("tmNLOCN"))
+      'Public Type LPOper
+      uLPOper.sLPID      = App.GetValue("tmPALP")    ' LP ID Child
+      uLPOper.sPALP      = App.GetValue("tmPALP")    ' LP ID Parent
+      uLPOper.sFMCU      = App.GetValue("tmMCU")     ' from Plant
+      uLPOper.sTMCU      = App.GetValue("tmNMCU")    ' to Plant
+      uLPOper.sFLOCN     = App.GetValue("tmLOCN")    ' from Location
+      uLPOper.sTLOCN     = App.GetValue("tmNLOCN")   ' to Location
+      uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+      uLPOper.bIsPlate   = True                      ' Plate or Item
+      uLPOper.bDetach    = False                     ' remove item
+      If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", "LP_MoveItems", "")
+      If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+        App.MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", "LP_MoveItems", "")
+        If gbCommitCtl Then DB.RollbackTrans gsLPSource
+        Exit Sub
+      End If
+      '
+      If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", "LP_MoveExecute", "")
+      If Not LP_MoveExecute(uLPOper,uLP101,False , cTRANDESC, sLPArray) Then
+        App.MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", "LP_MoveExecute", "")
+        Call LP_MoveExecute(uLPOper,uLP101,True , cTRANDESC, sLPArray)
+        If gbCommitCtl Then DB.RollbackTrans gsLPSource
+        Exit Sub
+      End If
+
+      LP_DetachAllItems(App.GetValue("tmPALP"))
+      GoTo LPDone
+
+
+    Else
+      'Public Type LPOper
+      uLPOper.sLPID      = App.GetValue("tmLPID")    ' LP ID Child
+      uLPOper.sPALP      = App.GetValue("tmPALP")    ' LP ID Parent
+      uLPOper.sFMCU      = App.GetValue("tmNMCU")    ' from Plant
+      uLPOper.sTMCU      = App.GetValue("tmMCU")     ' to Plant
+      uLPOper.sFLOCN     = App.GetValue("tmLOCN")    ' from Location
+      uLPOper.sTLOCN     = App.GetValue("tmNLOCN")   ' to Location
+      uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+      uLPOper.bIsPlate   = mbIsPlate                 ' Plate or Item
+      uLPOper.bDetach    = True                      ' remove from LP
+
+    End If 'if mbDetachAll
+
+    '
+  Else 'If it isn't a plate
+    sSql = "select * from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & App.GetValue("tmPALP") & "' and LDLITM = '" & App.GetValue("tmLITM") & "' and LDLOTN = '" & App.GetValue("tmLOTN") & "'"
+    DB.Execute(sSql, sCols, sRows)
+    App.SetValue("tmLNID", DB.Extract(sCols,sRows,1,"LDLNID"))
+    '
+    uLP101.sLMLPID    = App.GetValue("tmPALP")    ' Parent LP
+    '
+    uLP102.sLDLPID    = uLP101.sLMLPID            ' LP Line Details
+    uLP102.nLDLNID    = App.GetValue("tmLNID")    ' LP Line
+    '
+    If Not X_LP102("I",uLP102) Then   ' Inquiry on LP102
+      App.MsgBox(GetMsg(104))
+      If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+      GoTo LPDone
+    End If
+    '
+      'Public Type LPOper
+   uLPOper.sLPID      = ""                        ' LP ID Child
+   uLPOper.sPALP      = App.GetValue("tmPALP")    ' LP ID Parent
+   uLPOper.sFMCU      = App.GetValue("tmMCU")     ' from Plant
+   uLPOper.sTMCU      = App.GetValue("tmMCU")     ' to Plant
+   uLPOper.sFLOCN     = App.GetValue("tmLOCN")    ' from Location
+   uLPOper.sTLOCN     = App.GetValue("tmNLOCN")   ' to Location
+   uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+   uLPOper.bIsPlate   = mbIsPlate                 ' Plate or Item
+   uLPOper.bDetach    = True                      ' remove from LP
+    '
+  End If 'If mbIsPlate
+  '
+  If Not LP_AttachDetach(uLPOper, uLP102) Then
+    App.MsgBox(GetMsg(40))
+    If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+    GoTo LPDone
+  End If
+  '
+  If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+  LPDone:
+  '
+  '--------------------------------------------------------------------------
+  '
+  lblLPDesc.Caption   = ""
+  lblLPLocn.Caption   = ""
+  lblItemDesc.Caption = ""
+  lblItemQty.Caption  = ""
+  lblNumUnits.Caption = ""
+  App.SetValue("tmLPID", "")
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmITM",  "")
+  App.SetValue("tmUOM",  "")
+  App.SetValue("tmLOTN", "")
+  App.SetValue("tmLOTS", "")
+  btnDetachAll.Visible = False
+  txtQTY.Visible = False
+  txtTOLOCN.Visible = False
+  txtITEM.Visible = False
+  txtLPID.Visible = False
+
+  '
+  txtQTY.DisplayOnly = False
+  '
+  Screen.Bell(1)
+  mnMaxQty = 0
+  mbIsPlate = False
+  mbDetachAll = False
+End Sub
+
+Private Sub txtITEM_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  txtTOLOCN.Visible = False
+  App.SetValue("tmNLOCN", "")
+  lblItemDesc.Caption = ""
+  txtLOTN.Visible = False
+  lblItemQty.Caption = ""
+  txtQTY.Visible = False
+  btnDetachAll.Visible = False
+End Sub
+
+Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+   App.SetValue("tmLOTN", "")
+End Sub
+
+Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sITM        As String
+  Dim sLITM       As String
+  Dim sAITM       As String
+  Dim sDSC1       As String
+  Dim sUOM        As String
+  Dim sLOCN       As String
+  Dim sLOTN       As String
+  Dim sHold       As String
+  Dim vRsp        As Variant
+
+  Dim nType       As Long
+  Dim nLNID       As Long
+  Dim bHasLots    As Boolean
+  Dim bMixedLP    As Boolean
+  Dim nQty        As Currency
+  Dim nLQty       As Currency
+  Dim nOnHand     As Currency
+  Dim nAvail      As Currency
+  '
+  Cancel = True
+  Rsp = Trim(UCase(Rsp))
+  '
+
+  If (txtLOTN.DisplayOnly = True) Then
+    Cancel = False
+    Exit Sub
+  End If
+
+  If Not mbIsPlate Then
+    '
+    ' Exists on LP?
+    '
+    If Not LP_FindItem(App.GetValue("tmPALP"),nLNID,App.GetValue("tmLITM"),Rsp,nLQty,sUOM,sLOCN,bMixedLP) Then
+      App.MsgBox(GetMsg(65))
+      Exit Sub
+    End If
+    '
+    App.SetValue("tmLNID", nLNID)
+    App.SetValue("tmLPQty", nLQty)
+
+    ' check Proc.Opt.if Lots on Hold are allowed
+    msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+    If gbPOError Then
+      App.ExitForm
+      Exit Sub
+    End If
+    '
+    ' check inventory
+    Call GetItemQty(App.GetValue("tmMCU"),App.GetValue("tmITM"),Rsp,Trim(App.GetValue("tmLOCN")),msAllowHold,nOnHand,nAvail,sHold)
+
+    If msAllowHold = "" And sHold <> "" Then
+      App.MsgBox(GetMsg(121))
+      Exit Sub
+    End If
+
+    ' check Proc.Opt.to default ToLots
+    If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+      App.SetValue("tmLOTS", sHold)  ' 09/15/05 RBR
+    End If
+    If gbPOError Then
+      App.ExitForm
+      Exit Sub
+    End If
+
+    ' show adjustable Qty. regarding Proc.Opt.
+
+    Select Case GetProcOpt(msPgm,msVersion,"3;4")
+      Case ""   'Disallow neg.qty available
+        If nAvail < 0 Then
+          mnMaxQty = 0
+          lblItemQty.Caption = " 0 " & App.GetValue("tmUOM")
+        Else
+          mnMaxQty = (nAvail)
+          If mnMaxQty > nLQty Then mnMaxQty = nLQty ' not more than on LP even when the location has more on Hand / Available
+          lblItemQty.Caption = mnMaxQty & " " & App.GetValue("tmUOM")
+        End If
+
+      Case "1"  'Allow neg.qty available
+        mnMaxQty = nLQty
+
+      Case "2"  'Disallow neg.qty on Hand
+        If nOnHand < 0 Then
+          mnMaxQty = 0
+          lblItemQty.Caption = " 0 " & App.GetValue("tmUOM")
+        Else
+          mnMaxQty = nOnHand
+          If mnMaxQty > nLQty Then mnMaxQty = nLQty ' not more than on LP even when the location has more on Hand / Available
+          lblItemQty.Caption = mnMaxQty & " " & App.GetValue("tmUOM")
+        End If
+    End Select
+    '
+    If gbPOError Then
+      App.ExitForm
+      Exit Sub
+    End If
+    '
+    lblItemQty.Caption = "LP Qty: " & mnMaxQty & " " & App.GetValue("tmUOM")
+  End If
+  '
+  txtQTY.Visible = True
+
+  '
+  App.SetValue("tmLOTN", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sITM  As String
+  Dim sLOCN As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  '
+  If Not Search_F41021_LOTN(Rsp, "", sMCU, sITM, sLOCN, True) Then Cancel = True
+End Sub
+
+
+Private Sub txtLPID_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",   "")
+  App.SetValue("tmMCU",  "")
+  App.SetValue("tmNMCU", "")
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  App.SetValue("tmNMCU", sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmPALP", "")
+  App.SetValue("tmLOCN", "")
+  '
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+
+  txtITEM.Visible = False
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sError    As String
+  Dim uLP101    As LP101Data       ' create LP101 Structure
+  Dim sSQL      As String
+  Dim sSql2     As String
+  Dim sRows     As String
+  Dim sRows2    As String
+  Dim sCols     As String
+  Dim sCols2    As String
+  Dim sItemList As String
+  Dim nNumItems As Long
+  Dim nTotalUnits As Long
+  Dim sDirectItems  As String
+  Dim x As Integer
+  Dim y As Integer
+  Dim nPos As Long
+  Dim sFirstItem As String
+  Dim sLOCNJDE As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  '
+  uLP101.sLMLPID = Rsp
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    App.MsgBox(GetMsg(104))
+    Exit Sub
+  End If
+
+  If uLP101.sLMRDCTO <> "ST" Then
+      App.MsgBox("Not a Picked Sales Order Transfer.  Unpick Item Is Not Necessary.  Adjust / Cancel Quantities in JDE.")
+      Cancel = True
+      Exit Sub
+  End If
+
+  If Trim(uLP101.sLMMCU) <> Trim(App.GetValue("tmMCU")) Then
+    App.MsgBox("Error: License Plate is not in the Selected Branch Plant.")
+    Cancel = True
+    Exit Sub
+  End If
+
+  If (Val(Trim(uLP101.sLMRNXTR)) < 545 Or Val(Trim(uLP101.sLMRNXTR)) = 999) Then
+    App.MsgBox("Licence Plate Must Already Be Picked")
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmSTATUS", Trim(uLP101.sLMRNXTR))
+
+'  Calculate and Display inventory info about the Pallet
+
+  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
+  DB.Execute(sSql2, sCols2, sRows2)
+  If (DB.Count(sRows2) > 0 ) Then
+    sDirectItems = "+ Items On Pallet.
+  End If
+
+  For x = 1 To DB.Count(sRows2)
+    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+      nNumItems = nNumItems + 1
+    End If
+
+  Next x
+
+  sSQL = "select LMLPID from F55101 where LMPALP = '" & Rsp & "'"
+
+  DB.Execute(sSQL, sCols, sRows)
+  nTotalUnits = DB.Count(sRows)
+  For y = 1 To DB.Count(sRows)
+    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
+    DB.Execute(sSql2, sCols2, sRows2)
+
+    For x = 1 To DB.Count(sRows2)
+      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+        nNumItems = nNumItems + 1
+      End If
+    Next x
+  Next y
+'  App.MsgBox(sItemList & " " & nNumItems)
+  If nNumItems = 0 And Trim(sDirectItems) = "" Then
+    lblLPDesc.Caption = "Pallet is Empty"
+
+  ElseIf nNumItems > 1 Then
+    lblLPDesc.Caption = nNumItems & " Items"
+    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
+  Else
+    nPos = InStr(sItemList, "***") - 1
+    sFirstItem = Trim(Mid(sItemList, 1, nPos))
+    sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & Rsp & "' "
+    DB.Execute(sSQL, sCols, sRows)
+    lblLPDesc.Caption = sFirstItem '& " " & DB.Extract(sCols,sRows,1,"LDUORG") & " " & DB.Extract(sCols,sRows,1,"LDUOM")
+    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
+  End If
+'End of calculate and display LP summary info.
+
+'  lblLPDesc.Caption = uLP101.sLMDSC1
+  lblLPLocn.Caption = uLP101.sLMLOCN
+  '
+  App.SetValue("tmPALP", Rsp)
+  Validate_Locn(uLP101.sLMLOCN, uLP101.sLMMCU, sLOCNJDE)
+  If (Trim(sLOCNJDE) = "") Then
+    sLOCNJDE = " "
+  End If
+  App.SetValue("tmLOCN", sLOCNJDE)
+  Frame2.Visible = True
+  txtLPID.Visible = True
+  txtITEM.Visible = True
+  btnDetachAll.Visible = False
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtITEM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLITM",   "")
+  App.SetValue("tmITM",    "")
+  App.SetValue("tmUOM",    "")
+  App.SetValue("tmQTY",    "")
+  App.SetValue("tmLOTN",   "")
+  App.SetValue("tmLNID",   "")
+  App.SetValue("tmNLOCN", "")
+  '
+  txtITEM.Visible=False
+  btnDetachAll.Visible =False
+  Frame2.Visible = False
+  lblItemDesc.Caption = ""
+  lblItemQty.Caption  = ""
+  lblNumUnits.Caption = ""
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+End Sub
+
+Private Sub txtITEM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sITM        As String
+  Dim sLITM       As String
+  Dim sAITM       As String
+  Dim sDSC1       As String
+  Dim sUOM        As String
+  Dim sLOCN       As String
+  Dim sLOTN       As String
+  Dim sHold       As String
+  Dim vRsp        As Variant
+
+  Dim nType       As Long
+  Dim nLNID       As Long
+  Dim bHasLots    As Boolean
+  Dim bMixedLP    As Boolean
+  Dim nQty        As Currency
+  Dim nLQty       As Currency
+  Dim nOnHand     As Currency
+  Dim nAvail      As Currency
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data
+
+  Dim sSql2     As String
+  Dim sRows2    As String
+  Dim sCols2    As String
+  Dim sItemList As String
+  Dim sLPLOTN   As String
+  Dim nNumItems As Long
+  Dim nTotalUnits As Long
+  Dim sDirectItems  As String
+  Dim x As Integer
+  Dim y As Integer
+  Dim nPos As Long
+  Dim sFirstItem As String
+
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  ' Lot Control?
+  '
+'  txtLOTN.Visible  = False
+'  txtLOTN.Required = False
+
+  '
+  ' Inventory Item or LP
+  '
+  If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, bHasLots, mbSerialized, False , True) Then
+    '
+    ' Exists on LP?
+    '
+
+    If Not LP_FindItem(App.GetValue("tmPALP"),nLNID,Rsp,"",nLQty,sUOM,"",bMixedLP) Then
+      App.MsgBox(GetMsg(65))
+      Cancel = True
+      Exit Sub
+    End If
+    uLP101.sLMLPID = Trim(App.GetValue("tmPALP"))
+    uLP102.sLDLPID = Trim(App.GetValue("tmPALP"))
+    X_LP101("I", uLP101)
+    X_LP102("I", uLP102)
+
+    '
+    ' Lot Control?
+    '
+    txtLOTN.Visible  = bHasLots
+    txtLOTN.Required = bHasLots
+    txtLOTN.Text = Trim(uLP102.sLDLOTN)
+    App.SetValue("tmLOTN", Trim(uLP102.sLDLOTN))
+    txtLOTN.DisplayOnly = True
+
+    mnMaxQty = nLQty
+    txtQTY.Defaults = mnMaxQty & ";O"
+
+    txtQTY.Required = True
+
+    txtQTY.Visible = True
+
+
+    '
+    mbIsPlate = False
+    '
+  Else  ' scanned item is a license plate
+    '
+    App.MsgBox("Only Valid Items Are Allowed.  Use LP Unpick To Unpick a License Plate")
+    Cancel = True
+    Exit Sub
+    '
+  End If
+
+  txtTOLOCN.Defaults = Trim(uLP101.sLMLOCN)
+  txtTOLOCN.DisplayOnly = True
+  If txtLOTN.Visible = False Then
+    If txtQTY.Visible = False Then
+      txtTOLOCN.Visible = True
+    End If
+  End If
+  btnDetachAll.Visible = False
+  '
+'  lblItemDesc.Caption = uLP101.sLMDSC1
+  '
+  App.SetValue("tmLITM", Rsp)
+  App.SetValue("tmITM",  sITM)
+  App.SetValue("tmUOM",  sUOM)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtITEM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU   As String
+  Dim sSQL   As String
+  Dim vRsp   As Variant
+  Dim sValue As String
+  Dim sLNID  As String
+  Dim oList  As New SearchList
+  '
+  sMCU = App.GetValue("tmMCU")
+
+    sSQL = "Select LDLITM, LDUORG, LDUOM, LDLOTN, LDLNID from  F55102" & _
+           " where LDLPID = '%tmPALP' order by LDLITM"
+    '
+    oList.MaxRows = giMaxSearchRows
+    oList.ShowEmptyList = True
+    oList.ReturnAllRows = True
+    oList.SetColumn(1, "Item", 12, CenterLeft, True)
+    oList.SetColumn(2, "Qty",   8, CenterRight, True)
+    oList.SetColumn(3, "Uom",   3, CenterLeft, True)
+    oList.SetColumn(4, "Lot#", 10, CenterLeft, True)
+    oList.SetColumn(5, "Line",  4, CenterRight, True)
+    oList.SQL = sSQL
+    '
+    sValue = oList.ShowList
+    Rsp = LField(sValue, Chr(3), 1)
+    sLNID = LField(sValue, Chr(3), 5)
+    App.SetValue("tmLNID", sLNID)
+  '
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtTOLOCN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmNLOCN", "")
+End Sub
+
+Private Sub txtTOLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sLOCN As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  sMCU = App.GetValue("tmNMCU")
+  If Not Validate_Locn(Rsp, sMCU, sLOCN) Then Exit Sub
+  '
+  If App.GetValue("tmSTATUS") = "999" And (UCase(Trim(Rsp)) <> UCase(Trim(App.GetValue("tmLOCN")))) Then
+    App.MsgBox("This License Plate Was Never Completed Into JDE.  It Can Only Be Detached To Its Current Location.")
+    Cancel = True
+    Exit Sub
+  End If
+  App.SetValue("tmNLOCN", sLOCN)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtTOLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmNMCU")
+  If Not Search_F4100(Rsp, "", sMCU) Then Cancel = True
+End Sub
+
+Private Sub txtQTY_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQTY", "")
+End Sub
+
+Private Sub txtQTY_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If mbIsPlate Then
+    Rsp = "1"
+    Exit Sub
+  End If
+  '
+'  If (Len(Rsp)=0) Then
+'    Rsp = CStr(mnMaxQty)
+'    AllowChange = False
+'  End If
+  '
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  If mbIsPlate Then
+    Cancel = False
+    Exit Sub
+  End If
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+  '
+  If (nQty<= 0) Then
+    App.MsgBox GetMsg(180)
+    Exit Sub
+  End If
+  '
+  ' exceeds
+  If nQty > mnMaxQty Then
+    App.MsgBox(GetMsg(175))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmQTY", Rsp)
+
+  txtTOLOCN.Visible = True
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+</Code>

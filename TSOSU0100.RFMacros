@@ -1,0 +1,215 @@
+﻿<Record FileDesc="SO - Speed Status Update" FileVersion="5.0.8.0" Desc="SO - Speed Status Update">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmLNID" />
+<Param Name="tmSTSLAST" />
+<Param Name="tmSTSNEXT" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: SO - SPEED STATUS UPDATE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TSOSU0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmLNID As Variant, ByRef tmSTSLAST As Variant, ByRef tmSTSNEXT As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim nBatchNo    As Currency
+  Dim nJobNo      As Currency
+  Dim sErrId      As String
+  Dim sErrDesc    As String
+  Dim sErrText    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sITM        As String
+  Dim sAITM       As String
+
+  Dim emGetLocalComputerId      As New EmbeddedProc
+  Dim emUpdateF4211AndF42199    As New EmbeddedProc
+  Dim emNothing                 As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------------'
+  ' GetLocalComputerId '
+  '--------------------'
+  emGetLocalComputerId.Name       = "GetLocalComputerId"
+  emGetLocalComputerId.LogMode = LogNever
+  emGetLocalComputerId.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetLocalComputerId.Name, "", emGetLocalComputerId)
+
+  If Not emGetLocalComputerId.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetLocalComputerId.Name, "", emGetLocalComputerId, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '----------------------'
+  ' UpdateF4211AndF42199 '
+  '----------------------'
+  emUpdateF4211AndF42199.Name       = "UpdateF4211AndF42199"
+  emUpdateF4211AndF42199.LogMode = LogNever
+  emUpdateF4211AndF42199.DebugLog   = cJDELogPath
+  '
+  emUpdateF4211AndF42199.Param("CompKeyOrderNo")      = tmCO
+  emUpdateF4211AndF42199.Param("DocOrderInvoiceE")    = tmDOCO
+  emUpdateF4211AndF42199.Param("OrderType")           = tmDCTO
+  emUpdateF4211AndF42199.Param("LineNumber")          = tmLNID
+  emUpdateF4211AndF42199.Param("LastStatus")          = tmSTSLAST
+  emUpdateF4211AndF42199.Param("NextStatus")          = tmSTSNEXT
+  emUpdateF4211AndF42199.Param("ProgramID")           = "EP42040"
+  emUpdateF4211AndF42199.Param("DateUpdated")         = sTNDate
+  emUpdateF4211AndF42199.Param("UserID")              = tmUSER
+  emUpdateF4211AndF42199.Param("SuppressErrorMsg")    = "1"
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emUpdateF4211AndF42199.Name, "", emUpdateF4211AndF42199)
+
+  If Not emUpdateF4211AndF42199.Execute Then
+    sErrDesc = "UpdateF4211AndF42199"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emUpdateF4211AndF42199.Name, "", emUpdateF4211AndF42199, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  Set emGetLocalComputerId      = Nothing
+  Set emUpdateF4211AndF42199    = Nothing
+  '
+  tmERRTEXT = sErrDesc
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim i         As Integer
+  Dim sLine     As String
+  Dim sError    As String
+  Dim sOrder    As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HSOSU0100")
+  SM.SendTextAlt 69, 1, tmMCU, 12
+  SM.SendTextAlt 22, 5, tmDOCO, 8
+  SM.SendTextAlt 22, 7, tmDCTO, 2
+  SM.SendKey KeyEnter
+
+  SM.GetText 5,12,8,sError,True
+  '
+  If sError = "" Then
+    Call GetWorldErr(tmERRID,tmERRTEXT)
+    tmERRTEXT = "Invalid Order"
+    GoTo ExitWorld
+  End If
+  '
+  i = 11
+  '
+  Do
+    i = i + 1
+    If i = 24 Then
+      i = 12
+      SM.SendKey KeyPageDown
+    End If
+    SM.GetText 14,i,7,sLine,True
+  Loop Until Val(sLine) = Val(tmLNID) Or sLine = ""
+  '
+  If sLine = "" Then
+    tmERRTEXT = "Line not found"
+    GoTo ExitWorld
+  End If
+  '
+  SM.SendTextAlt 3, i, "1"
+  SM.SendTextAlt 78, 2, tmSTSNEXT, 3
+
+  SM.SendKey KeyEnter
+  SM.WaitForHost(20)
+  SM.GetText(22,5,8,sOrder,True)
+  '
+  If sOrder <> "" Then
+    Call GetWorldErr(sErrId, sErrText)  'Indicates a hard error has occured
+    bSuccess = (sErrId = "")
+    '
+    tmERRID = sErrId
+    tmERRTEXT = sErrText
+    GoTo ExitWorld
+  End If
+  '
+  bSuccess = True
+  '
+ExitWorld:
+
+  SM.SendKey KeyF3                        ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain          ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+  '
+  SM.CommitTrans
+  
+  Transaction = bSuccess
+
+End Function
+</Code>

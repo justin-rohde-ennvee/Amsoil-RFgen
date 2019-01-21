@@ -1,0 +1,627 @@
+﻿<Record FileDesc="LP - Create Plate" FileVersion="5.0.8.0" Desc="LP - Create Plate" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;txtNMCU&vm;lblSep&vm;txtTYPE&vm;txtTRAI&vm;lblTrai&vm;txtDESC&vm;txtLOCN&vm;txtAccept&vm;lblLPID&vm;Lbl" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="3" Name="txtNMCU" />
+<SchemaParam Linked="0" Attr="4" Name="lblSep" />
+<SchemaParam Linked="0" Attr="5" Name="txtTYPE" />
+<SchemaParam Linked="0" Attr="6" Name="txtTRAI" />
+<SchemaParam Linked="0" Attr="7" Name="lblTrai" />
+<SchemaParam Linked="0" Attr="8" Name="txtDESC" />
+<SchemaParam Linked="0" Attr="9" Name="txtLOCN" />
+<SchemaParam Linked="0" Attr="10" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="11" Name="lblLPID" />
+<SchemaParam Linked="0" Attr="12" Name="Lbl" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="22" Width="55" Height="22" AnchorRight="169" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="151" Height="22" AnchorRight="25" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="44" Width="39" Height="22" AnchorRight="169" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="44" Width="119" Height="22" AnchorRight="57" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNMCU" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="79" Height="22" AnchorRight="161" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="66" Width="87" Height="22" AnchorRight="89" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSep" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="239" Height="22" AnchorRight="1" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-----------------------------" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTYPE" Attr="5" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="110" Width="47" Height="22" AnchorRight="169" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="110" Width="55" Height="22" AnchorRight="121" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTRAI" Attr="6" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="71" Height="22" AnchorRight="169" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Tr Code:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="132" Width="71" Height="22" AnchorRight="105" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTrai" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="136" Top="132" Width="63" Height="22" AnchorRight="41" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTrai" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDESC" Attr="8" Defaults=";o" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="103" Height="22" AnchorRight="137" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Description:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="239" Height="44" AnchorRight="1" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOCN" Attr="9" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="47" Height="22" AnchorRight="193" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="220" Width="199" Height="22" AnchorRight="1" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPID" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="66" Width="63" Height="22" AnchorRight="153" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPID" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Lbl" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="136" Top="110" Width="31" Height="22" AnchorRight="73" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="L/P" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Create Plate]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: CREATE PLATE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTNId = "FLPCP0100"
+'
+Private mbNew           As Boolean
+Private mbCallFormInUse As Boolean
+Private mbPlateInUse    As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim i    As Integer
+  Dim sMCU As String
+  Dim sEntity As String
+  '
+  Call SetDisplay()
+  '
+  txtNMCU.Visible = (App.GetValue("TransferYN") = "Y")
+
+  sMCU = App.GetValue("txtMCU")
+  mbCallFormInUse = (Len(sMCU)>0)
+  '
+  For i = 1 To 8
+    RFPrompt(i).BackColor1 = cFieldDefaultBC
+    RFPrompt(i).ForeColor = cFieldDefaultFC
+  Next i
+  '
+  lblTrai.Caption = ""
+  lblTrai.Label.BackColor1 = cFieldDefaultBC
+  lblTrai.Label.ForeColor = cFieldDefaultFC
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim nCtr   As Currency
+  Dim nErrNo As Single
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sPfx   As String
+  Dim sLPID  As String
+  '
+  '--------------------------------------------------------------------------
+  ' Create LP and attach item. Validation happend in txtLPID_OnEnter
+  '
+  If gbCommitCtl then DB.BeginTrans(gsLPSource)
+  '
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+  '
+  uLP101.sLMLPID = App.GetValue("tmLPID")
+  uLP101.sLMDSC1 = App.GetValue("tmDESC")
+  uLP101.sLMALPH = App.GetValue("tmALPH")
+  uLP101.sLMTYPE = App.GetValue("tmTYPE")
+  uLP101.sLMTRAI = App.GetValue("tmTRAI")
+  uLP101.sLMLOCN = App.GetValue("tmLOCN")
+  '
+  If mbNew Then
+    '
+    If Not X_LP101("A",uLP101) Then   ' Inquiry on LP101
+      App.MsgBox(GetMsg(104))
+      If gbCommitCtl then DB.RollbackTrans(gsLPSource)
+      GoTo LPDone
+    End If
+    '
+  Else
+    '
+    If Not X_LP101("C",uLP101) Then   ' Inquiry on LP101
+      App.MsgBox(GetMsg(104))
+      If gbCommitCtl then DB.RollbackTrans(gsLPSource)
+      GoTo LPDone
+    End If
+  End If
+  '
+  '
+  If gbCommitCtl then DB.CommitTrans(gsLPSource)
+  LPDone:
+  '--------------------------------------------------------------------------
+  '
+  lblLPID.Caption = sLPID
+  lblLPID.Visible = True
+
+  lblTrai.Caption = ""
+  txtLOCN.DisplayOnly = False
+  '
+  mbPlateInUse = False
+  If mbCallFormInUse Then App.ExitForm
+  gsLPID = sLPID
+  Exit Sub
+  '
+OnError:
+  App.MsgBox GetMsg(45) & vbCrLf & SysErr.Description
+  Cancel = True
+End Sub
+
+Private Sub txtMCU_LostFocus()
+  On Error Resume Next
+  '
+  Dim sEntity As String
+  '
+  If Trim(App.GetValue("tmENTITY")) = "" Then
+    If LP_ValidateEntity(App.GetValue("tmMCU"), sEntity) Then
+      App.SetValue("tmEntity", sEntity)
+    Else
+      Exit Sub
+    End If
+  End If
+  '
+  ' Validate pre printed label format
+  If Not gbLPPrePrnt Then txtLPID.Defaults = "New;O"
+
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",     "")
+  App.SetValue("tmMCU",    "")
+  App.SetValue("tmENTITY", "")
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  Dim sEntity  As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany)  Then Exit Sub
+  '
+  If Not LP_ValidateEntity(sMCU, sEntity)  Then Exit Sub    ' Varify Branch is assigned to an Entity
+
+  App.SetValue("tmCO",     sCompany)
+  App.SetValue("tmMCU",    sMCU)
+  App.SetValue("tmENTITY", sEntity)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLPID", "")
+  '
+  txtTRAI.Text  = ""
+  txtDESC.Text  = ""
+  txtLOCN.Text  = ""
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sAttachedTo As String
+  Dim sLPID       As String
+  Dim sError      As String
+  Dim bExists     As Boolean
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP102 Structure
+  '
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  txtLOCN.DisplayOnly = False
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  '
+  uLP101.sLMLPID = Rsp
+  '
+  ' Check if LP exists
+  '
+  If Not LP_Validate(Rsp,sError,bExists) Then
+    If Len(Trim(sError)) > 0 Then
+      App.MsgBox(sError)
+      Exit Sub
+    End If
+  End If
+  '
+  If X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    '
+    txtDESC.Text = uLP101.sLMDSC1
+    txtTYPE.Text = uLP101.sLMTYPE
+    txtTRAI.Text = uLP101.sLMTRAI
+    txtLOCN.Text = uLP101.sLMLOCN
+    '
+    ' Allow location to change only if nothing attached
+    '
+    mbPlateInUse = Len(uLP101.sLMPALP) > 0
+    '
+    If mbPlateInUse Then
+      txtLOCN.DisplayOnly = True
+      '
+    Else
+      '
+      uLP102.sLDLPID = Rsp
+      If X_LP102("I",uLP102) Then   ' Inquiry on LP101
+        txtLOCN.DisplayOnly = True
+      End If
+      '
+    End If
+
+    mbNew = False
+  Else
+    mbNew = True
+  End If
+  '
+  App.SetValue("tmLPID", Rsp)
+  Cancel = False
+  '
+End Sub
+
+Private Sub txtLPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_LP101(Rsp, App.GetValue("tmMCU"))
+End Sub
+
+Private Sub txtNMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+  Cancel = True
+  Rsp = FixRight(Rsp, 12 , " ")
+
+  sSQL = "select MCDL01 from F0006 where MCMCU = '" & Rsp & "'"
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Len(Rsp) = 0 Then
+    App.MsgBox GetMsg(51)
+    Exit Sub
+  End If
+
+  App.SetValue("tmNMCU",Rsp)
+  App.SetValue("tmALPH", Trim(DB.Extract(sCols,sRows,1,"MCDL01")))
+  '
+  Rsp = Trim(Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtNMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim oList As New SearchList
+
+  sSQL = "select MCMCU,ABALPH,ALCTY1 from F0116 inner join " & _
+        " F0101 On ALAN8 = ABAN8 inner Join F0006 On ABAN8 = MCAN8" & _
+        " where ABAT1 = 'F' and MCMCU <> '%tmMCU' order by MCMCU"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "To",           8, CenterLeft, True)
+  oList.SetColumn(2, "Description", 15, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtTYPE_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmTYPE", "")
+End Sub
+
+Private Sub txtTYPE_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Cancel = True
+  Rsp = Trim(UCase(Rsp))
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  If Trim(Rsp) = "P" Or Trim(Rsp) = "L" Then
+    App.SetValue("tmTYPE",Rsp)
+  Else
+    App.MsgBox GetMsg(250)
+    Exit Sub
+  End If
+  '
+  If Trim(Rsp) = "L" Then
+    txtTRAI.Visible = True
+    txtTRAI.Required = True
+  Else
+    txtTRAI.Visible = False
+    txtTRAI.Required =  False
+  End If
+  '
+  App.SetValue("txtTYPE",Rsp)
+  Cancel = False
+
+End Sub
+
+Private Sub txtTRAI_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmTRAI", "")
+  '
+  lblTrai.Caption = ""
+End Sub
+
+Private Sub txtTRAI_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = App.GetValue("LMTRAI")
+End Sub
+
+Private Sub txtTRAI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLocn As String
+  Dim sMCU  As String
+  Dim sLocnJDE As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  sSQL = "select LTDSC1, LTLOCN from  LP008" & _
+         " where LTTRAI = '" & Rsp & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows)=0) Then
+    App.MsgBox GetMsg(219)
+    Exit Sub
+  End If
+  '
+  lblTrai.Caption = DB.Extract(sCols,sRows,1,"LTDSC1")
+
+  If mbNew Then
+    txtDESC.Defaults = DB.Extract(sCols,sRows,1,"LTDSC1") & ";O"
+
+    sLocn = DB.Extract(sCols,sRows,1,"LTLOCN")
+    sMCU = App.GetValue("tmMCU")
+    If Not Validate_Locn(sLocn, sMCU, sLocnJDE) Then Exit Sub
+
+    txtLOCN.Defaults = sLocn & ";O"
+  End If
+  '
+  App.SetValue("tmTRAI", Rsp)
+  Cancel = False
+  '
+End Sub
+
+Private Sub txtTRAI_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim oList As New SearchList
+  '
+  sSQL = "Select LTTRAI, LTDSC1 from  LP008" & _
+         " order by LTTRAI"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Trai", 4, CenterLeft, True)
+  oList.SetColumn(2, "Desc", 20, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtDESC_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = App.GetValue("LMDSC1")
+End Sub
+
+Private Sub txtDESC_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDESC", "")
+End Sub
+
+Private Sub txtDESC_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = UCase(Trim(Rsp))
+  App.SetValue("tmDESC", Rsp)
+End Sub
+
+Private Sub txtLOCN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLOCN", "")
+End Sub
+
+Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sLocn As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  If mbPlateInUse Then Rsp = App.GetValue("LMLOCN")
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  If Not Validate_Locn(Rsp, sMCU, sLocn) Then Exit Sub
+  '
+  App.SetValue("tmLOCN", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  If Not Search_F4100(Rsp, "", sMCU) Then cancel = True
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+</Code>

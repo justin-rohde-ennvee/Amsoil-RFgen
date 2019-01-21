@@ -1,0 +1,858 @@
+﻿<Record FileDesc="FA - Simple Disposal" FileVersion="5.0.8.0" Desc="FA - Simple Disposal">
+<Param Name="sItem" />
+<Param Name="sMethode" />
+<Param Name="sType" />
+<Param Name="sDate" />
+<Param Name="sCompany" />
+<Param Name="sQuantity" />
+<Param Name="sFAAMCU" />
+<Param Name="sFAAOBJ" />
+<Param Name="sFAASUB" />
+<Param Name="sFADMCU" />
+<Param Name="sFADOBJ" />
+<Param Name="sFADSUB" />
+<Param Name="sFLAAID" />
+<Param Name="sFLAAmount" />
+<Param Name="sFLDAID" />
+<Param Name="sFLDAmount" />
+<Param Name="sDTOBJ" />
+<Param Name="sDTMCU" />
+<Param Name="sDispMdesc" />
+<Param Name="sFACurrency" />
+<Param Name="sFADesc" />
+<Param Name="sCoCurrency" />
+<Param Name="sDTAID" />
+<Param Name="sDTDesc" />
+<Param Name="sDTSUB" />
+<Param Name="tmErrText" />
+<Param Name="tmErrId" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: FA - SIMPLE DISPOSAL
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId = "TFADI0100"
+
+Private Function Transaction(ByRef sItem As Variant, ByRef sMethode As Variant, ByRef sType As Variant, ByRef sDate As Variant, ByRef sCompany As Variant, ByRef sQuantity As Variant, ByRef sFAAMCU As Variant, ByRef sFAAOBJ As Variant, ByRef sFAASUB As Variant, ByRef sFADMCU As Variant, ByRef sFADOBJ As Variant, ByRef sFADSUB As Variant, ByRef sFLAAID As Variant, ByRef sFLAAmount As Variant, ByRef sFLDAID As Variant, ByRef sFLDAmount As Variant, ByRef sDTOBJ As Variant, ByRef sDTMCU As Variant, ByRef sDispMdesc As Variant, ByRef sFACurrency As Variant, ByRef sFADesc As Variant, ByRef sCoCurrency As Variant, ByRef sDTAID As Variant, ByRef sDTDesc As Variant, ByRef sDTSUB As Variant, ByRef tmErrText As Variant, ByRef tmErrId As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sErrDesc    As String
+
+  Dim sCurr       As String
+  Dim iLineNr     As Integer
+  Dim sAssetID    As String
+
+  Dim vDate       As String
+  Dim vsDate      As String
+  Dim vdblDate    As Double
+  '
+  Dim emGetAuditInfo                      As EmbeddedProc
+  Dim emF1307UpdateAssetStatus            As EmbeddedProc
+  Dim emValidateJobCostDateandPeriod      As EmbeddedProc
+  Dim emValidateJobCostDateandPeriod2     As EmbeddedProc
+  Dim emF1202DateSensitiveRetrieval       As EmbeddedProc
+  Dim emF1202DateSensitiveRetrieval2      As EmbeddedProc
+  Dim emX0010GetNextNumber                As EmbeddedProc
+  Dim emBatchOpenBatchControlProcessing   As EmbeddedProc
+  Dim emF0911FSBeginDoc                   As EmbeddedProc
+  Dim emSimpleAccountConcatenation        As EmbeddedProc
+  Dim emSimpleAccountConcatenation2       As EmbeddedProc
+  Dim emSimpleAccountConcatenation3       As EmbeddedProc
+  Dim emF0911FSEditLine                   As EmbeddedProc
+  Dim emF0911FSEditLine2                  As EmbeddedProc
+  Dim emF0911FSEditLine3                  As EmbeddedProc
+  Dim emF0911FSEditLine4                  As EmbeddedProc
+  Dim emF0911FSEndDoc                     As EmbeddedProc
+  Dim emBatchControlProcessing            As EmbeddedProc
+  Dim emF0911FSClearStack                 As EmbeddedProc
+  Dim emFSCloseBatch                      As EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Transaction = False
+  '
+  ' Run in Demomode -> GLDate is 06/01/2005
+  If SYS.EnvironmentProperty("DemoMode Y/N") = "Y" Then
+    App.SetValue("GLDate", "06/01/2005")
+  Else
+    Dim dDate As String
+    dDate = Format(Date, "MM") & "/" & Format(Date, "DD") & "/" & Format(Date, "YYYY")
+    App.SetValue("GLDate", dDate)
+  End If
+  '
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmErrText = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  If Trim(sCoCurrency) <> Trim(sFACurrency) Then
+    sCurr = "F"
+  Else
+    sCurr = "D"
+  End If
+  '
+  iLineNr = 1
+  '
+  sAssetID = FixRight(Trim(sItem),8,"0")
+  '
+  If Not ERP.BeginTrans Then
+    TM.AbortTrans
+    tmErrText = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  Set emGetAuditInfo = New EmbeddedProc
+  '
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  emGetAuditInfo.Param("UserName")              = " "
+  emGetAuditInfo.Param("Date")                  = " "
+  emGetAuditInfo.Param("Time")                  = " "
+  emGetAuditInfo.Param("Workstation_UserId")    = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)      
+  '
+  If Not emGetAuditInfo.Execute Then  ' Function call failed!
+    sErrDesc = emGetAuditInfo.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------------'
+  ' F1307UpdateAssetStatus '
+  '------------------------'
+  Set emF1307UpdateAssetStatus = New EmbeddedProc
+  '
+  emF1307UpdateAssetStatus.Name       = "F1307UpdateAssetStatus"
+  emF1307UpdateAssetStatus.LogMode = LogNever
+  emF1307UpdateAssetStatus.DebugLog   = cJDELogPath
+  '
+  emF1307UpdateAssetStatus.Param("RecordType")              = "1"
+  emF1307UpdateAssetStatus.Param("AssetNumber")             = sItem
+  emF1307UpdateAssetStatus.Param("NewStatusOfEquipment")    = sMethode
+  emF1307UpdateAssetStatus.Param("BeginDateOfStatus")       = sDate
+  emF1307UpdateAssetStatus.Param("BeginTimeOfStatus")       = "000000"
+  emF1307UpdateAssetStatus.Param("ProgramId")               = "RF_FADisp"
+  emF1307UpdateAssetStatus.Param("StatusRemark")            = " "
+  emF1307UpdateAssetStatus.Param("ProcessingMode")          = "3"
+  emF1307UpdateAssetStatus.Param("UpdateChildrenStatus")    = "0"
+  emF1307UpdateAssetStatus.Param("ErrorCode")               = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1307UpdateAssetStatus.Name, "", emF1307UpdateAssetStatus)      
+  '
+  If Not emF1307UpdateAssetStatus.Execute Then  ' Function call failed!
+    sErrDesc = emF1307UpdateAssetStatus.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1307UpdateAssetStatus.Name, "", emF1307UpdateAssetStatus, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  ' Update FA Master
+  vDate = ConvDatetoJDE(CStr(Date))     ' convert todays date to seriell
+  vsDate = ConvDatetoJDE(CStr(sDate))   ' convert transaction date to seriell
+  '
+  sSQL = "update F1201 set FADSP = " & vsDate & ", FAEQST = '" & sMethode & "', FALCT = " & vDate & ",  " _
+  & " FAUSER = '" & emGetAuditInfo.Param("UserName") & "', FAPID = '" & emF1307UpdateAssetStatus.Param("ProgramID") & "', FAUPMJ = " & vDate & ", " _
+  & " FAUPMT = " & emGetAuditInfo.Param("Time") & " where FANUMB = " & sItem & "
+
+  DB.Execute(sSQL)
+
+  '------------------------------'
+  ' ValidateJobCostDateandPeriod '
+  '------------------------------'
+  'Get Financal Period for Item
+  Set emValidateJobCostDateandPeriod  = New EmbeddedProc
+  '
+  emValidateJobCostDateandPeriod.Name       = "ValidateJobCostDateandPeriod"
+  emValidateJobCostDateandPeriod.LogMode = LogNever
+  emValidateJobCostDateandPeriod.DebugLog   = cJDELogPath
+  '
+  emValidateJobCostDateandPeriod.Param("Company")                 = sCompany
+  emValidateJobCostDateandPeriod.Param("PeriodEndDate")           = sDate
+  emValidateJobCostDateandPeriod.Param("Period")                  = ""
+  emValidateJobCostDateandPeriod.Param("FiscalYear")              = ""
+  emValidateJobCostDateandPeriod.Param("Century")                 = ""
+  emValidateJobCostDateandPeriod.Param("ErrorMessage")            = ""
+  emValidateJobCostDateandPeriod.Param("SuppressErrorMessage")    = ""
+  emValidateJobCostDateandPeriod.Param("StartPeriodDate")         = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emValidateJobCostDateandPeriod.Name, "", emValidateJobCostDateandPeriod)      
+  '
+  If Not emValidateJobCostDateandPeriod.Execute Then  ' Function call failed!
+    sErrDesc = emValidateJobCostDateandPeriod.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emValidateJobCostDateandPeriod.Name, "", emValidateJobCostDateandPeriod, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------------------'
+  ' ValidateJobCostDateandPeriod '
+  '------------------------------'
+  'Get Financal Period For Item
+  Set emValidateJobCostDateandPeriod2 = New EmbeddedProc
+  '
+  emValidateJobCostDateandPeriod2.Name       = "ValidateJobCostDateandPeriod"
+  emValidateJobCostDateandPeriod2.LogMode = LogNever
+  emValidateJobCostDateandPeriod2.DebugLog   = cJDELogPath
+  '
+  emValidateJobCostDateandPeriod2.Param("Company")                = sCompany
+  emValidateJobCostDateandPeriod2.Param("PeriodEndDate")          = ""
+  emValidateJobCostDateandPeriod2.Param("Period")                 = "14"
+  emValidateJobCostDateandPeriod2.Param("FiscalYear")             = emValidateJobCostDateandPeriod.Param("FiscalYear")
+  emValidateJobCostDateandPeriod2.Param("Century")                = emValidateJobCostDateandPeriod.Param("Century")
+  emValidateJobCostDateandPeriod2.Param("ErrorMessage")           = ""
+  emValidateJobCostDateandPeriod2.Param("SuppressErrorMessage")   = ""
+  emValidateJobCostDateandPeriod2.Param("StartPeriodDate")        = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emValidateJobCostDateandPeriod2.Name, "", emValidateJobCostDateandPeriod2)      
+  '
+  If Not emValidateJobCostDateandPeriod2.Execute Then  ' Function call failed!
+    sErrDesc = emValidateJobCostDateandPeriod2.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emValidateJobCostDateandPeriod2.Name, "", emValidateJobCostDateandPeriod2, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------------------'
+  ' F1202DateSensitiveRetrieval '
+  '-----------------------------'
+  Set emF1202DateSensitiveRetrieval = New EmbeddedProc
+  '
+  emF1202DateSensitiveRetrieval.Name       = "F1202DateSensitiveRetrieval"
+  emF1202DateSensitiveRetrieval.LogMode = LogNever
+  emF1202DateSensitiveRetrieval.DebugLog   = cJDELogPath
+  '
+  emF1202DateSensitiveRetrieval.Param("AssetID")        = sItem
+  emF1202DateSensitiveRetrieval.Param("AccountID")      = sFLAAID
+  emF1202DateSensitiveRetrieval.Param("Company")        = sCompany
+  emF1202DateSensitiveRetrieval.Param("LedgerType")     = "AA"
+  emF1202DateSensitiveRetrieval.Param("Subledger")      = " "
+  emF1202DateSensitiveRetrieval.Param("SubledgerType")  = " "
+  emF1202DateSensitiveRetrieval.Param("Date")           = emValidateJobCostDateandPeriod2.Param("StartPeriodDate")
+  emF1202DateSensitiveRetrieval.Param("ErrorFlag")      = " "
+  emF1202DateSensitiveRetrieval.Param("Century")        = emValidateJobCostDateandPeriod2.Param("Century")
+  emF1202DateSensitiveRetrieval.Param("FiscalYear")     = emValidateJobCostDateandPeriod2.Param("FiscalYear")
+  emF1202DateSensitiveRetrieval.Param("PeriodNumber")   = emValidateJobCostDateandPeriod2.Param("Period")
+  emF1202DateSensitiveRetrieval.Param("StartPeriod")    = emValidateJobCostDateandPeriod2.Param("StartPeriodDate")
+  emF1202DateSensitiveRetrieval.Param("EndPeriod")      = emValidateJobCostDateandPeriod2.Param("StartPeriodDate")
+  emF1202DateSensitiveRetrieval.Param("Pointer")        = "0"
+  emF1202DateSensitiveRetrieval.Param("Inception")      = "0"
+  emF1202DateSensitiveRetrieval.Param("YearToDate")     = "0"
+  emF1202DateSensitiveRetrieval.Param("Period")         = "0"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1202DateSensitiveRetrieval.Name, "", emF1202DateSensitiveRetrieval)      
+  '
+  If Not emF1202DateSensitiveRetrieval.Execute Then  ' Function call failed!
+    sErrDesc = emF1202DateSensitiveRetrieval.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1202DateSensitiveRetrieval.Name, "", emF1202DateSensitiveRetrieval, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------------------'
+  ' F1202DateSensitiveRetrieval '
+  '-----------------------------'
+  Set emF1202DateSensitiveRetrieval2 = New EmbeddedProc
+  '
+  emF1202DateSensitiveRetrieval2.Name       = "F1202DateSensitiveRetrieval"
+  emF1202DateSensitiveRetrieval2.LogMode = LogNever
+  emF1202DateSensitiveRetrieval2.DebugLog   = cJDELogPath
+  '
+  emF1202DateSensitiveRetrieval2.Param("AssetID")         = sItem
+  emF1202DateSensitiveRetrieval2.Param("AccountID")       = sFLDAID
+  emF1202DateSensitiveRetrieval2.Param("Company")         = sCompany
+  emF1202DateSensitiveRetrieval2.Param("LedgerType")      = "AA"
+  emF1202DateSensitiveRetrieval2.Param("Subledger")       = " "
+  emF1202DateSensitiveRetrieval2.Param("SubledgerType")   = " "
+  emF1202DateSensitiveRetrieval2.Param("Date")            = emValidateJobCostDateandPeriod2.Param("StartPeriodDate")
+  emF1202DateSensitiveRetrieval2.Param("ErrorFlag")       = " "
+  emF1202DateSensitiveRetrieval2.Param("Century")         = emValidateJobCostDateandPeriod2.Param("Century")
+  emF1202DateSensitiveRetrieval2.Param("FiscalYear")      = emValidateJobCostDateandPeriod2.Param("FiscalYear")
+  emF1202DateSensitiveRetrieval2.Param("PeriodNumber")    = emValidateJobCostDateandPeriod2.Param("Period")
+  emF1202DateSensitiveRetrieval2.Param("StartPeriod")     = emValidateJobCostDateandPeriod2.Param("StartPeriodDate")
+  emF1202DateSensitiveRetrieval2.Param("EndPeriod")       = emValidateJobCostDateandPeriod2.Param("StartPeriodDate")
+  emF1202DateSensitiveRetrieval2.Param("Pointer")         = "0"
+  emF1202DateSensitiveRetrieval2.Param("Inception")       = "0"
+  emF1202DateSensitiveRetrieval2.Param("YearToDate")      = "0"
+  emF1202DateSensitiveRetrieval2.Param("Period")          = "0"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1202DateSensitiveRetrieval2.Name, "", emF1202DateSensitiveRetrieval2)      
+  '
+  If Not emF1202DateSensitiveRetrieval2.Execute Then  ' Function call failed!
+    sErrDesc = emF1202DateSensitiveRetrieval2.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1202DateSensitiveRetrieval2.Name, "", emF1202DateSensitiveRetrieval2, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  Set emX0010GetNextNumber = New EmbeddedProc
+  '
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "09"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = "2"
+  emX0010GetNextNumber.Param("CompanyKey")              = sCompany
+  emX0010GetNextNumber.Param("DocumentType")            = "AD"
+  emX0010GetNextNumber.Param("Century")                 = emValidateJobCostDateandPeriod.Param("Century")
+  emX0010GetNextNumber.Param("FiscalYear1")             = emValidateJobCostDateandPeriod.Param("FiscalYear")
+  emX0010GetNextNumber.Param("SameAsDocumentType")      = ""
+  emX0010GetNextNumber.Param("NextNumber001")           = 0
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)      
+  '
+  If Not emX0010GetNextNumber.Execute Then  ' Function call failed!
+    sErrDesc = emX0010GetNextNumber.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------------------------'
+  ' BatchOpenBatchControlProcessing '
+  '---------------------------------'
+  Set emBatchOpenBatchControlProcessing = New EmbeddedProc
+  '
+  emBatchOpenBatchControlProcessing.Name       = "BatchOpenBatchControlProcessing"
+  emBatchOpenBatchControlProcessing.LogMode = LogNever
+  emBatchOpenBatchControlProcessing.DebugLog   = cJDELogPath
+  '
+  emBatchOpenBatchControlProcessing.Param("BatchType")                = "Z"
+  emBatchOpenBatchControlProcessing.Param("BatchNumber")              = "0"
+  emBatchOpenBatchControlProcessing.Param("DateBatchJulian")          = "0"
+  emBatchOpenBatchControlProcessing.Param("PreviousBatchStatus")      = " "
+  emBatchOpenBatchControlProcessing.Param("PostOutOfBalance")         = " "
+  emBatchOpenBatchControlProcessing.Param("SuppressBatchControl")     = " "
+  emBatchOpenBatchControlProcessing.Param("BatchControlCancelFlag")   = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emBatchOpenBatchControlProcessing.Name, "", emBatchOpenBatchControlProcessing)      
+  '
+  If Not emBatchOpenBatchControlProcessing.Execute Then  ' Function call failed!
+    sErrDesc = emBatchOpenBatchControlProcessing.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emBatchOpenBatchControlProcessing.Name, "", emBatchOpenBatchControlProcessing, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F0911FSBeginDoc '
+  '-----------------'
+  Set emF0911FSBeginDoc = New EmbeddedProc
+  '
+  emF0911FSBeginDoc.Name       = "F0911FSBeginDoc"
+  emF0911FSBeginDoc.LogMode = LogNever
+  emF0911FSBeginDoc.DebugLog   = cJDELogPath
+  '
+  emF0911FSBeginDoc.Param("JobNumber")                  = "0"
+  emF0911FSBeginDoc.Param("DocAction")                  = "A"
+  emF0911FSBeginDoc.Param("EditInstructionFlag")        = "0"
+  emF0911FSBeginDoc.Param("ErrorFlag")                  = ""
+  emF0911FSBeginDoc.Param("TypeDoc")                    = "J"
+  emF0911FSBeginDoc.Param("LastLineNumber")             = "0"
+  emF0911FSBeginDoc.Param("CompanyKey")                 = sCompany
+  emF0911FSBeginDoc.Param("DocumentType")               = "AD"
+  emF0911FSBeginDoc.Param("DocNumber")                  = emX0010GetNextNumber.Param("NextNumber001")
+  emF0911FSBeginDoc.Param("GLDate")                     = App.GetValue("GLDate")
+  emF0911FSBeginDoc.Param("LedgerType")                 = "AA"
+  emF0911FSBeginDoc.Param("BatchNumber")                = emBatchOpenBatchControlProcessing.Param("BatchNumber")
+  emF0911FSBeginDoc.Param("BatchType")                  = "Z"
+  emF0911FSBeginDoc.Param("BatchDate")                  = emGetAuditInfo.Param("Date")
+  emF0911FSBeginDoc.Param("BatchSystemDate")            = emGetAuditInfo.Param("Date")
+  emF0911FSBeginDoc.Param("BatchTime")                  = emGetAuditInfo.Param("Time")
+  emF0911FSBeginDoc.Param("TransactionCurrency")        = sFACurrency
+  emF0911FSBeginDoc.Param("CurrencyRate")               = "0"
+  emF0911FSBeginDoc.Param("Explanation")                = sFADesc
+  emF0911FSBeginDoc.Param("Reference1")                 = ""
+  emF0911FSBeginDoc.Param("HomeBusinessUnit")           = ""
+  emF0911FSBeginDoc.Param("InvoiceNumber")              = ""
+  emF0911FSBeginDoc.Param("InvoiceDate")                = "0"
+  emF0911FSBeginDoc.Param("ReverseVoid")                = ""
+  emF0911FSBeginDoc.Param("HistoricalDate")             = "0"
+  emF0911FSBeginDoc.Param("HistoricalRate")             = "0"
+  emF0911FSBeginDoc.Param("CurrencyMode")               = sCurr
+  emF0911FSBeginDoc.Param("BaseCoCurrency")             = sCoCurrency
+  emF0911FSBeginDoc.Param("MultiCurrencyInterco")       = " "
+  emF0911FSBeginDoc.Param("AmountToDistribute")         = "0"
+  emF0911FSBeginDoc.Param("CurAmountToDistribute")      = "0"
+  emF0911FSBeginDoc.Param("CurrencyFlag")               = "Z"
+  emF0911FSBeginDoc.Param("HeaderChangedFlag")          = ""
+  emF0911FSBeginDoc.Param("ModelFlag")                  = ""
+  emF0911FSBeginDoc.Param("JEVersion")                  = ""
+  emF0911FSBeginDoc.Param("ExchangeRateDateFlag")       = ""
+  emF0911FSBeginDoc.Param("PaymentInstrument")          = ""
+  emF0911FSBeginDoc.Param("ConfigHubTransactionType")   = ""
+  emF0911FSBeginDoc.Param("BaseCompany")                = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSBeginDoc.Name, "", emF0911FSBeginDoc)      
+  '
+  If Not emF0911FSBeginDoc.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSBeginDoc.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSBeginDoc.Name, "", emF0911FSBeginDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '----------------------------'
+  ' SimpleAccountConcatenation '
+  '----------------------------'
+  Set emSimpleAccountConcatenation = New EmbeddedProc
+  '
+  emSimpleAccountConcatenation.Name       = "SimpleAccountConcatenation"
+  emSimpleAccountConcatenation.LogMode = LogNever
+  emSimpleAccountConcatenation.DebugLog   = cJDELogPath
+  '
+  emSimpleAccountConcatenation.Param("AccountNumber")           = ""
+  emSimpleAccountConcatenation.Param("DatabaseBusinessUnit")    = sFAAMCU
+  emSimpleAccountConcatenation.Param("DatabaseObject")          = sFAAOBJ
+  emSimpleAccountConcatenation.Param("DatabaseSubsidiary")      = sFAASUB
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emSimpleAccountConcatenation.Name, "", emSimpleAccountConcatenation)      
+  '
+  If Not emSimpleAccountConcatenation.Execute Then  ' Function call failed!
+    sErrDesc = emSimpleAccountConcatenation.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emSimpleAccountConcatenation.Name, "", emSimpleAccountConcatenation, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F0911FSEditLine '
+  '-----------------'
+  Set emF0911FSEditLine = New EmbeddedProc
+  '
+  emF0911FSEditLine.Name       = "F0911FSEditLine"
+  emF0911FSEditLine.LogMode = LogNever
+  emF0911FSEditLine.DebugLog   = cJDELogPath
+  '
+  emF0911FSEditLine.Param("JobNumber")                = emF0911FSBeginDoc.Param("JobNumber")
+  emF0911FSEditLine.Param("LineAction")               = "A"
+  emF0911FSEditLine.Param("ProcessingMode")           = "1"
+  emF0911FSEditLine.Param("EditFlag")                 = "0"
+  emF0911FSEditLine.Param("ErrorFlag")                = " "
+  emF0911FSEditLine.Param("RecordWrittenFlag")        = " "
+  emF0911FSEditLine.Param("TypeDoc")                  = emF0911FSBeginDoc.Param("TypeDoc")
+  emF0911FSEditLine.Param("LineNumber")               = iLineNr
+  emF0911FSEditLine.Param("Amount")                   = CDbl(emF1202DateSensitiveRetrieval.Param("Inception")) * -1
+  emF0911FSEditLine.Param("AccountNumber")            = emSimpleAccountConcatenation.Param("AccountNumber")
+  emF0911FSEditLine.Param("AccountID")                = sFLAAID
+  emF0911FSEditLine.Param("BusinessUnit")             = sFAAMCU
+  emF0911FSEditLine.Param("Object")                   = sFAAOBJ
+  emF0911FSEditLine.Param("Subsidiary")               = sFAASUB
+  emF0911FSEditLine.Param("AccountMode")              = "2"
+  emF0911FSEditLine.Param("FiscalYear")               = emX0010GetNextNumber.Param("FiscalYear1")
+  emF0911FSEditLine.Param("PeriodNumber")             = emValidateJobCostDateandPeriod.Param("Period")
+  emF0911FSEditLine.Param("Century")                  = emX0010GetNextNumber.Param("Century")
+  emF0911FSEditLine.Param("Subledger")                = " "
+  emF0911FSEditLine.Param("SubledgerType")            = " "
+  emF0911FSEditLine.Param("Units")                    = "0"
+  emF0911FSEditLine.Param("UnitOfMeasure")            = " "
+  emF0911FSEditLine.Param("ServiceDate")              = App.GetValue("GLDate")
+  emF0911FSEditLine.Param("LineExtension")            = " "
+  emF0911FSEditLine.Param("AssetID")                  = sAssetID
+  emF0911FSEditLine.Param("PostedCode")               = " "
+  emF0911FSEditLine.Param("Explanation")              = sFADesc
+  emF0911FSEditLine.Param("Reference2")               = " "
+  emF0911FSEditLine.Param("Company")                  = sCompany
+  emF0911FSEditLine.Param("CheckDate")                = App.GetValue("GLDate")
+  emF0911FSEditLine.Param("DisplayKeyCompany")        = " "
+  emF0911FSEditLine.Param("DisplayBaseCoCurr")        = " "
+  emF0911FSEditLine.Param("DisplayTransCurrency")     = " "
+  emF0911FSEditLine.Param("DisplayExchgRate")         = "0"
+  emF0911FSEditLine.Param("DisplayCurrencyMode")      = " "
+  emF0911FSEditLine.Param("LastLineNo")               = "0"
+  emF0911FSEditLine.Param("OriginalAmount")           = "0"
+  emF0911FSEditLine.Param("OriginalAmountForeign")    = "0"
+  emF0911FSEditLine.Param("GlPostCodeAlt009")         = "P"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSEditLine.Name, "", emF0911FSEditLine)      
+  '
+  If Not emF0911FSEditLine.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSEditLine.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSEditLine.Name, "", emF0911FSEditLine, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  iLineNr = iLineNr +1    '*add 1 To Line Number
+
+  '----------------------------'
+  ' SimpleAccountConcatenation '
+  '----------------------------'
+  Set emSimpleAccountConcatenation2 = New EmbeddedProc
+  '
+  emSimpleAccountConcatenation2.Name       = "SimpleAccountConcatenation"
+  emSimpleAccountConcatenation2.LogMode = LogNever
+  emSimpleAccountConcatenation2.DebugLog   = cJDELogPath
+  '
+  emSimpleAccountConcatenation2.Param("AccountNumber")          = ""
+  emSimpleAccountConcatenation2.Param("DatabaseBusinessUnit")   = sDTMCU
+  emSimpleAccountConcatenation2.Param("DatabaseObject")         = sDTOBJ
+  emSimpleAccountConcatenation2.Param("DatabaseSubsidiary")     = sDTSUB
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emSimpleAccountConcatenation2.Name, "", emSimpleAccountConcatenation2)      
+  '
+  If Not emSimpleAccountConcatenation2.Execute Then  ' Function call failed!
+    sErrDesc = emSimpleAccountConcatenation2.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emSimpleAccountConcatenation2.Name, "", emSimpleAccountConcatenation2, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F0911FSEditLine '
+  '-----------------'
+  Set emF0911FSEditLine2 = New EmbeddedProc
+  '
+  emF0911FSEditLine2.Name       = "F0911FSEditLine"
+  emF0911FSEditLine2.LogMode = LogNever
+  emF0911FSEditLine2.DebugLog   = cJDELogPath
+  '
+  emF0911FSEditLine2.Param("JobNumber")               = emF0911FSBeginDoc.Param("JobNumber")
+  emF0911FSEditLine2.Param("LineAction")              = "A"
+  emF0911FSEditLine2.Param("ProcessingMode")          = "1"
+  emF0911FSEditLine2.Param("EditFlag")                = "0"
+  emF0911FSEditLine2.Param("ErrorFlag")               = " "
+  emF0911FSEditLine2.Param("RecordWrittenFlag")       = " "
+  emF0911FSEditLine2.Param("TypeDoc")                 = emF0911FSBeginDoc.Param("TypeDoc")
+  emF0911FSEditLine2.Param("LineNumber")              = iLineNr
+  emF0911FSEditLine2.Param("Amount")                  = CDbl(emF1202DateSensitiveRetrieval.Param("Inception"))
+  emF0911FSEditLine2.Param("AccountNumber")           = emSimpleAccountConcatenation2.Param("AccountNumber")
+  emF0911FSEditLine2.Param("AccountID")               = sDTAID
+  emF0911FSEditLine2.Param("BusinessUnit")            = sDTMCU
+  emF0911FSEditLine2.Param("Object")                  = sDTOBJ
+  emF0911FSEditLine2.Param("Subsidiary")              = sDTSUB
+  emF0911FSEditLine2.Param("AccountMode")             = "2"
+  emF0911FSEditLine2.Param("FiscalYear")              = emX0010GetNextNumber.Param("FiscalYear1")
+  emF0911FSEditLine2.Param("PeriodNumber")            = emValidateJobCostDateandPeriod.Param("Period")
+  emF0911FSEditLine2.Param("Century")                 = emX0010GetNextNumber.Param("Century")
+  emF0911FSEditLine2.Param("Subledger")               = " "
+  emF0911FSEditLine2.Param("SubledgerType")           = " "
+  emF0911FSEditLine2.Param("Units")                   = "0"
+  emF0911FSEditLine2.Param("UnitOfMeasure")           = " "
+  emF0911FSEditLine2.Param("ServiceDate")             = App.GetValue("GLDate")
+  emF0911FSEditLine2.Param("LineExtension")           = " "
+  emF0911FSEditLine2.Param("AssetID")                 = sAssetID
+  emF0911FSEditLine2.Param("PostedCode")              = " "
+  emF0911FSEditLine2.Param("Explanation")             = sDispMdesc
+  emF0911FSEditLine2.Param("Reference2")              = " "
+  emF0911FSEditLine2.Param("Company")                 = sCompany
+  emF0911FSEditLine2.Param("CheckDate")               = App.GetValue("GLDate")
+  emF0911FSEditLine2.Param("DisplayKeyCompany")       = " "
+  emF0911FSEditLine2.Param("DisplayBaseCoCurr")       = " "
+  emF0911FSEditLine2.Param("DisplayTransCurrency")    = " "
+  emF0911FSEditLine2.Param("DisplayExchgRate")        = "0"
+  emF0911FSEditLine2.Param("DisplayCurrencyMode")     = " "
+  emF0911FSEditLine2.Param("LastLineNo")              = "0"
+  emF0911FSEditLine2.Param("OriginalAmount")          = "0"
+  emF0911FSEditLine2.Param("OriginalAmountForeign")   = "0"
+  emF0911FSEditLine2.Param("GlPostCodeAlt009")        = "P"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSEditLine2.Name, "", emF0911FSEditLine2)      
+  '
+  If Not emF0911FSEditLine2.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSEditLine2.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSEditLine2.Name, "", emF0911FSEditLine2, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  iLineNr = iLineNr +1    '*add 1 To Line Number
+
+  '----------------------------'
+  ' SimpleAccountConcatenation '
+  '----------------------------'
+  Set emSimpleAccountConcatenation3 = New EmbeddedProc
+  '
+  emSimpleAccountConcatenation3.Name       = "SimpleAccountConcatenation"
+  emSimpleAccountConcatenation3.LogMode = LogNever
+  emSimpleAccountConcatenation3.DebugLog   = cJDELogPath
+  '
+  emSimpleAccountConcatenation3.Param("AccountNumber")          = ""
+  emSimpleAccountConcatenation3.Param("DatabaseBusinessUnit")   = sFADMCU
+  emSimpleAccountConcatenation3.Param("DatabaseObject")         = sFADOBJ
+  emSimpleAccountConcatenation3.Param("DatabaseSubsidiary")     = sFADSUB
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emSimpleAccountConcatenation3.Name, "", emSimpleAccountConcatenation3)      
+  '
+  If Not emSimpleAccountConcatenation3.Execute Then  ' Function call failed!
+    sErrDesc = emSimpleAccountConcatenation3.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emSimpleAccountConcatenation3.Name, "", emSimpleAccountConcatenation3, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F0911FSEditLine '
+  '-----------------'
+  Set emF0911FSEditLine3 = New EmbeddedProc
+  '
+  emF0911FSEditLine3.Name       = "F0911FSEditLine"
+  emF0911FSEditLine3.LogMode = LogNever
+  emF0911FSEditLine3.DebugLog   = cJDELogPath
+  '
+  emF0911FSEditLine3.Param("JobNumber")               = emF0911FSBeginDoc.Param("JobNumber")
+  emF0911FSEditLine3.Param("LineAction")              = "A"
+  emF0911FSEditLine3.Param("ProcessingMode")          = "1"
+  emF0911FSEditLine3.Param("EditFlag")                = "0"
+  emF0911FSEditLine3.Param("ErrorFlag")               = " "
+  emF0911FSEditLine3.Param("RecordWrittenFlag")       = " "
+  emF0911FSEditLine3.Param("TypeDoc")                 = emF0911FSBeginDoc.Param("TypeDoc")
+  emF0911FSEditLine3.Param("LineNumber")              = iLineNr
+  emF0911FSEditLine3.Param("Amount")                  = CDbl(emF1202DateSensitiveRetrieval2.Param("Inception")) * -1
+  emF0911FSEditLine3.Param("AccountNumber")           = emSimpleAccountConcatenation3.Param("AccountNumber")
+  emF0911FSEditLine3.Param("AccountID")               = sFLDAID
+  emF0911FSEditLine3.Param("BusinessUnit")            = sFADMCU
+  emF0911FSEditLine3.Param("Object")                  = sFADOBJ
+  emF0911FSEditLine3.Param("Subsidiary")              = sFADSUB
+  emF0911FSEditLine3.Param("AccountMode")             = "2"
+  emF0911FSEditLine3.Param("FiscalYear")              = emX0010GetNextNumber.Param("FiscalYear1")
+  emF0911FSEditLine3.Param("PeriodNumber")            = emValidateJobCostDateandPeriod.Param("Period")
+  emF0911FSEditLine3.Param("Century")                 = emX0010GetNextNumber.Param("Century")
+  emF0911FSEditLine3.Param("Subledger")               = " "
+  emF0911FSEditLine3.Param("SubledgerType")           = " "
+  emF0911FSEditLine3.Param("Units")                   = "0"
+  emF0911FSEditLine3.Param("UnitOfMeasure")           = " "
+  emF0911FSEditLine3.Param("ServiceDate")             = App.GetValue("GLDate")
+  emF0911FSEditLine3.Param("LineExtension")           = " "
+  emF0911FSEditLine3.Param("AssetID")                 = sAssetID
+  emF0911FSEditLine3.Param("PostedCode")              = " "
+  emF0911FSEditLine3.Param("Explanation")             = sDispMdesc
+  emF0911FSEditLine3.Param("Reference2")              = " "
+  emF0911FSEditLine3.Param("Company")                 = sCompany
+  emF0911FSEditLine3.Param("CheckDate")               = App.GetValue("GLDate")
+  emF0911FSEditLine3.Param("DisplayKeyCompany")       = " "
+  emF0911FSEditLine3.Param("DisplayBaseCoCurr")       = " "
+  emF0911FSEditLine3.Param("DisplayTransCurrency")    = " "
+  emF0911FSEditLine3.Param("DisplayExchgRate")        = "0"
+  emF0911FSEditLine3.Param("DisplayCurrencyMode")     = " "
+  emF0911FSEditLine3.Param("LastLineNo")              = "0"
+  emF0911FSEditLine3.Param("OriginalAmount")          = "0"
+  emF0911FSEditLine3.Param("OriginalAmountForeign")   = "0"
+  emF0911FSEditLine3.Param("GlPostCodeAlt009")        = "P"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSEditLine3.Name, "", emF0911FSEditLine3)      
+  '
+  If Not emF0911FSEditLine3.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSEditLine3.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSEditLine3.Name, "", emF0911FSEditLine3, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  iLineNr = iLineNr +1    '*add 1 To Line Number
+
+  '-----------------'
+  ' F0911FSEditLine '
+  '-----------------'
+  Set emF0911FSEditLine4 = New EmbeddedProc
+  '
+  emF0911FSEditLine4.Name       = "F0911FSEditLine"
+  emF0911FSEditLine4.LogMode = LogNever
+  emF0911FSEditLine4.DebugLog   = cJDELogPath
+  '
+  emF0911FSEditLine4.Param("JobNumber")               = emF0911FSBeginDoc.Param("JobNumber")
+  emF0911FSEditLine4.Param("LineAction")              = "A"
+  emF0911FSEditLine4.Param("ProcessingMode")          = "1"
+  emF0911FSEditLine4.Param("EditFlag")                = "0"
+  emF0911FSEditLine4.Param("ErrorFlag")               = " "
+  emF0911FSEditLine4.Param("RecordWrittenFlag")       = " "
+  emF0911FSEditLine4.Param("TypeDoc")                 = emF0911FSBeginDoc.Param("TypeDoc")
+  emF0911FSEditLine4.Param("LineNumber")              = iLineNr
+  emF0911FSEditLine4.Param("Amount")                  = CDbl(emF1202DateSensitiveRetrieval2.Param("Inception"))
+  emF0911FSEditLine4.Param("AccountNumber")           = emSimpleAccountConcatenation2.Param("AccountNumber")
+  emF0911FSEditLine4.Param("AccountID")               = sDTAID
+  emF0911FSEditLine4.Param("BusinessUnit")            = sDTMCU
+  emF0911FSEditLine4.Param("Object")                  = sDTOBJ
+  emF0911FSEditLine4.Param("Subsidiary")              = sDTSUB
+  emF0911FSEditLine4.Param("AccountMode")             = "2"
+  emF0911FSEditLine4.Param("FiscalYear")              = emX0010GetNextNumber.Param("FiscalYear1")
+  emF0911FSEditLine4.Param("PeriodNumber")            = emValidateJobCostDateandPeriod.Param("Period")
+  emF0911FSEditLine4.Param("Century")                 = emX0010GetNextNumber.Param("Century")
+  emF0911FSEditLine4.Param("Subledger")               = " "
+  emF0911FSEditLine4.Param("SubledgerType")           = " "
+  emF0911FSEditLine4.Param("Units")                   = "0"
+  emF0911FSEditLine4.Param("UnitOfMeasure")           = " "
+  emF0911FSEditLine4.Param("ServiceDate")             = App.GetValue("GLDate")
+  emF0911FSEditLine4.Param("LineExtension")           = " "
+  emF0911FSEditLine4.Param("AssetID")                 = sAssetID
+  emF0911FSEditLine4.Param("PostedCode")              = " "
+  emF0911FSEditLine4.Param("Explanation")             = sDispMdesc
+  emF0911FSEditLine4.Param("Reference2")              = " "
+  emF0911FSEditLine4.Param("Company")                 = sCompany
+  emF0911FSEditLine4.Param("CheckDate")               = App.GetValue("GLDate")
+  emF0911FSEditLine4.Param("DisplayKeyCompany")       = " "
+  emF0911FSEditLine4.Param("DisplayBaseCoCurr")       = " "
+  emF0911FSEditLine4.Param("DisplayTransCurrency")    = " "
+  emF0911FSEditLine4.Param("DisplayExchgRate")        = "0"
+  emF0911FSEditLine4.Param("DisplayCurrencyMode")     = " "
+  emF0911FSEditLine4.Param("LastLineNo")              = "0"
+  emF0911FSEditLine4.Param("OriginalAmount")          = "0"
+  emF0911FSEditLine4.Param("OriginalAmountForeign")   = "0"
+  emF0911FSEditLine4.Param("GlPostCodeAlt009")        = "P"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSEditLine4.Name, "", emF0911FSEditLine4)      
+  '
+  If Not emF0911FSEditLine4.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSEditLine4.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSEditLine4.Name, "", emF0911FSEditLine4, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F0911FSEndDoc '
+  '-----------------'
+  Set emF0911FSEndDoc = New EmbeddedProc
+  '
+  emF0911FSEndDoc.Name       = "F0911FSEndDoc"
+  emF0911FSEndDoc.LogMode = LogNever
+  emF0911FSEndDoc.DebugLog   = cJDELogPath
+  '
+  emF0911FSEndDoc.Param("JobNumber")                  = emF0911FSBeginDoc.Param("JobNumber")
+  emF0911FSEndDoc.Param("ComputerID")                 = emGetAuditInfo.Param("Workstation_UserId")
+  emF0911FSEndDoc.Param("ErrorFlag")                  = " "
+  emF0911FSEndDoc.Param("BatchNumber")                = emF0911FSBeginDoc.Param("BatchNumber")
+  emF0911FSEndDoc.Param("BatchType")                  = emF0911FSBeginDoc.Param("BatchType")
+  emF0911FSEndDoc.Param("PrevBatchStatus")            = ""
+  emF0911FSEndDoc.Param("BatchStatus")                = "1"
+  emF0911FSEndDoc.Param("OverrideMode")               = "A"
+  emF0911FSEndDoc.Param("StartingDocAmount")          = "0"
+  emF0911FSEndDoc.Param("CurrencyFlag")               = "Z"
+  emF0911FSEndDoc.Param("NextNumberIndex")            = "0"
+  emF0911FSEndDoc.Param("NextNumberSystemcode")       = ""
+  emF0911FSEndDoc.Param("TypeOfDocument")             = "J"
+  emF0911FSEndDoc.Param("DocNumber")                  = emF0911FSBeginDoc.Param("DocNumber")
+  emF0911FSEndDoc.Param("ProgramID")                  = emF1307UpdateAssetStatus.Param("ProgramId")
+  emF0911FSEndDoc.Param("UserID")                     = emGetAuditInfo.Param("UserName")
+  emF0911FSEndDoc.Param("UpdateBatchHeader")          = "1"
+  emF0911FSEndDoc.Param("BypassCurrencyConv")         = " "
+  emF0911FSEndDoc.Param("ConfigHubTransactionType")   = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSEndDoc.Name, "", emF0911FSEndDoc)      
+  '
+  If Not emF0911FSEndDoc.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSEndDoc.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSEndDoc.Name, "", emF0911FSEndDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------------'
+  ' BatchControlProcessing '
+  '------------------------'
+  Set emBatchControlProcessing        = New EmbeddedProc
+  '
+  emBatchControlProcessing.Name       = "BatchControlProcessing"
+  emBatchControlProcessing.LogMode = LogNever
+  emBatchControlProcessing.DebugLog   = cJDELogPath
+  '
+  emBatchControlProcessing.Param("BatchType")                 = emF0911FSBeginDoc.Param("BatchType")
+  emBatchControlProcessing.Param("BatchNumber")               = emF0911FSBeginDoc.Param("BatchNumber")
+  emBatchControlProcessing.Param("BatchControlCancelFlag")    = "0"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emBatchControlProcessing.Name, "", emBatchControlProcessing)      
+  '
+  If Not emBatchControlProcessing.Execute Then  ' Function call failed!
+    sErrDesc = emBatchControlProcessing.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emBatchControlProcessing.Name, "", emBatchControlProcessing, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------------'
+  ' F0911FSClearStack '
+  '-------------------'
+  Set emF0911FSClearStack = New EmbeddedProc
+  '
+  emF0911FSClearStack.Name       = "F0911FSClearStack"
+  emF0911FSClearStack.LogMode = LogNever
+  emF0911FSClearStack.DebugLog   = cJDELogPath
+  '
+  emF0911FSClearStack.Param("JobNumber")        = emF0911FSBeginDoc.Param("JobNumber")
+  emF0911FSClearStack.Param("ClearHeader")      = "1"
+  emF0911FSClearStack.Param("ClearDetail")      = "1"
+  emF0911FSClearStack.Param("DetailLineFrom")   = "0"
+  emF0911FSClearStack.Param("DetailLineThru")   = "0"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF0911FSClearStack.Name, "", emF0911FSClearStack)      
+  '
+  If Not emF0911FSClearStack.Execute Then  ' Function call failed!
+    sErrDesc = emF0911FSClearStack.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF0911FSClearStack.Name, "", emF0911FSClearStack, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------'
+  ' FSCloseBatch '
+  '--------------'
+  Set emFSCloseBatch = New EmbeddedProc
+  '
+  emFSCloseBatch.Name       = "FSCloseBatch"
+  emFSCloseBatch.LogMode = LogNever
+  emFSCloseBatch.DebugLog   = cJDELogPath
+  '
+  emFSCloseBatch.Param("Batchnumber")             = emF0911FSBeginDoc.Param("BatchNumber")
+  emFSCloseBatch.Param("Batchtype")               = emF0911FSBeginDoc.Param("BatchType")
+  emFSCloseBatch.Param("PrevBatchstatus")         = ""
+  emFSCloseBatch.Param("ChangeBatchStatus")       = ""
+  emFSCloseBatch.Param("DocumentInBalance")       = ""
+  emFSCloseBatch.Param("SuppressBatchControl")    = ""
+  emFSCloseBatch.Param("OverrideMode")            = ""
+  emFSCloseBatch.Param("SuppressDeleteFlag")      = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emFSCloseBatch.Name, "", emFSCloseBatch)      
+  '
+  If Not emFSCloseBatch.Execute Then   ' Function call failed!
+    sErrDesc = emFSCloseBatch.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emFSCloseBatch.Name, "", emFSCloseBatch, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  Set emGetAuditInfo                      = Nothing
+  Set emF1307UpdateAssetStatus            = Nothing
+  Set emX0010GetNextNumber                = Nothing
+  Set emBatchOpenBatchControlProcessing   = Nothing
+  Set emF0911FSBeginDoc                   = Nothing
+  Set emSimpleAccountConcatenation        = Nothing
+  Set emF0911FSEditLine                   = Nothing
+  Set emSimpleAccountConcatenation2       = Nothing
+  Set emF0911FSEditLine2                  = Nothing
+  Set emSimpleAccountConcatenation3       = Nothing
+  Set emF0911FSEditLine3                  = Nothing
+  Set emF0911FSEditLine4                  = Nothing
+  Set emF0911FSEndDoc                     = Nothing
+  Set emBatchControlProcessing            = Nothing
+  Set emF0911FSClearStack                 = Nothing
+  Set emFSCloseBatch                      = Nothing
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If Len(Trim(sErrDesc)) > 0 Then
+    tmErrText = sErrDesc
+    ERP.RollbackTrans
+    Exit Function
+  End If
+  '
+  ERP.CommitTrans
+
+  Transaction = True
+
+End Function
+</Code>

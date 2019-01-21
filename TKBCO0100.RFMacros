@@ -1,0 +1,191 @@
+﻿<Record FileDesc="KB - Kanban Check Out" FileVersion="5.0.8.0" Desc="KB - Kanban Check Out">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmKID1" />
+<Param Name="tmCDN" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmKBQT" />
+<Param Name="tmTYPE" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: KB - CHECK OUT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TKBCO0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmKID1 As Variant, ByRef tmCDN As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmKBQT As Variant, ByRef tmTYPE As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim nJobNo      As Currency
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim bSuccess    As Boolean
+
+  Dim emKanbanProcessingBeginDoc    As New EmbeddedProc
+  Dim emKanbanCheckOutEditLine      As New EmbeddedProc
+  Dim emKanbanProcessingEndDoc      As New EmbeddedProc
+  Dim emError                       As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------------------'
+  ' KanbanProcessingBeginDoc '
+  '--------------------------'
+  emKanbanProcessingBeginDoc.Name       = "KanbanProcessingBeginDoc"
+  emKanbanProcessingBeginDoc.LogMode = LogNever
+  emKanbanProcessingBeginDoc.DebugLog   = cJDELogPath
+  '
+  emKanbanProcessingBeginDoc.Param("KanbanProcessingVersion")   = tmZVERSION
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanProcessingBeginDoc.Name, "", emKanbanProcessingBeginDoc)
+
+  If Not emKanbanProcessingBeginDoc.Execute Then
+    sErrDesc = "KanbanProcessingBeginDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanProcessingBeginDoc.Name, "", emKanbanProcessingBeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  nJobNo = emKanbanProcessingBeginDoc.Param("Jobnumber")
+
+  If (nJobNo = 0) Then
+    App.LogError "KanbanProcessingBeginDoc(Jobnumber)", "Function did not return a valid number"
+    GoTo ExitMe
+  End If
+
+  '------------------------'
+  ' KanbanCheckOutEditLine '
+  '------------------------'
+  emKanbanCheckOutEditLine.Name       = "KanbanCheckOutEditLine"
+  emKanbanCheckOutEditLine.LogMode = LogNever
+  emKanbanCheckOutEditLine.DebugLog   = cJDELogPath
+  '
+  emKanbanCheckOutEditLine.Param("Jobnumber")               = nJobNo
+  emKanbanCheckOutEditLine.Param("ProcessEdits")            = "1"
+  emKanbanCheckOutEditLine.Param("KanbanID")                = tmKID1
+  emKanbanCheckOutEditLine.Param("DepositNumber")           = tmCDN
+  emKanbanCheckOutEditLine.Param("TransactionQuantity")     = tmQTY
+  emKanbanCheckOutEditLine.Param("TransactionUOM")          = tmUOM
+  emKanbanCheckOutEditLine.Param("TransactionDate")         = sTNDate
+  emKanbanCheckOutEditLine.Param("CompanyKeyOrderNo")       = tmCO
+  emKanbanCheckOutEditLine.Param("KanbanTransactionQty")    = tmKBQT
+  emKanbanCheckOutEditLine.Param("TypeBill")                = tmTYPE
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanCheckOutEditLine.Name, "", emKanbanCheckOutEditLine)
+
+  If Not emKanbanCheckOutEditLine.Execute Then
+    tmERRID = emKanbanCheckOutEditLine.Param("ErrorMessageID")
+    sErrDesc = "KanbanCheckOutEditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanCheckOutEditLine.Name, "", emKanbanCheckOutEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  tmERRID = emKanbanCheckOutEditLine.Param("ErrorMessageID")
+  '
+  If cFailOnWarnings And (Len(tmERRID)>0) Then
+    sErrDesc = "KanbanCheckOutEditLine"
+    GoTo ExitMe
+  End If
+
+  '------------------------'
+  ' KanbanProcessingEndDoc '
+  '------------------------'
+  emKanbanProcessingEndDoc.Name       = "KanbanProcessingEndDoc"
+  emKanbanProcessingEndDoc.LogMode = LogNever
+  emKanbanProcessingEndDoc.DebugLog   = cJDELogPath
+  '
+  emKanbanProcessingEndDoc.Param("Jobnumber")               = nJobNo
+  emKanbanProcessingEndDoc.Param("SuppressErrorMessages")   = "1"
+  emKanbanProcessingEndDoc.Param("KanbanID")                = tmKID1
+  emKanbanProcessingEndDoc.Param("DepositNumber")           = tmCDN
+  emKanbanProcessingEndDoc.Param("TransactionQuantity")     = tmQTY
+  emKanbanProcessingEndDoc.Param("KanbanAction")            = "2"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanProcessingEndDoc.Name, "", emKanbanProcessingEndDoc)
+
+  If Not emKanbanProcessingEndDoc.Execute Then
+    tmERRID = emKanbanProcessingEndDoc.Param("ErrorMessageID")
+    sErrDesc = "KanbanProcessingEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanProcessingEndDoc.Name, "", emKanbanProcessingEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+  '
+  tmERRID = emKanbanProcessingEndDoc.Param("ErrorMessageID")
+  '
+  If cFailOnWarnings And (Len(tmERRID)>0) Then
+    sErrDesc = "KanbanProcessingEndDoc"
+    GoTo ExitMe
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitMe:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emKanbanProcessingBeginDoc    = Nothing
+  Set emKanbanCheckOutEditLine      = Nothing
+  Set emKanbanProcessingEndDoc      = Nothing
+  Set emError                       = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+End Function
+</Code>

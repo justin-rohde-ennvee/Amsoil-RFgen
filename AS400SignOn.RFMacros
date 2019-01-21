@@ -1,0 +1,50 @@
+﻿<Record FileDesc="Named User Sign On Screen" FileVersion="5.0.8.0" Desc="Named User Sign On Screen">
+<Param Name="tmUser" />
+<Param Name="tmPassword" />
+<Param Name="tmErrId" />
+<Param Name="tmErrText" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: Named User AS400 Sign On
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+
+Private Function Transaction(ByRef tmUser As Variant, ByRef tmPassword As Variant, ByRef tmErrId As Variant, ByRef tmErrText As Variant) As Boolean
+  On Error Resume Next
+  '
+  End Function
+
+
+
+Private Function LogOnToMainMenu(ByRef tmUser As String, ByRef tmPassword As String) As Boolean
+  On Error Resume Next
+End Function
+
+Private Function LogOffFromMainMenu() As Boolean
+  On Error Resume Next
+  '
+  Dim iCol As Integer
+  Dim iRow As Integer
+  Dim sText As String
+  Dim bSuccess As Boolean
+  '
+  SM.GoToScreen "Base"
+  '
+  LogOffFromMainMenu = SM.WaitForHost(5)
+End Function
+
+Private Function AbortNavigation(ByRef tmUser As String, ByRef tmPassword As String) As Boolean
+  On Error Resume Next
+  
+End Function
+</Code>

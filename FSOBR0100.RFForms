@@ -1,0 +1,708 @@
+﻿<Record FileDesc="SO - BackOrder Release" FileVersion="5.0.8.0" Desc="SO - BackOrder Release" Group="SO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="lstDOCO&vm;txtQTY&vm;lstChosen&vm;lblQTY&vm;Label2&vm;lblProcess&vm;lblUOM">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="lstDOCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="3" Name="lstChosen" />
+<SchemaParam Linked="0" Attr="4" Name="lblQTY" />
+<SchemaParam Linked="0" Attr="5" Name="Label2" />
+<SchemaParam Linked="0" Attr="6" Name="lblProcess" />
+<SchemaParam Linked="0" Attr="7" Name="lblUOM" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="3840" Height="14080" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="3" FieldId="lstDOCO" Attr="1" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="95" Height="22" AnchorRight="312" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Back Orders" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="66" Width="407" Height="66" AnchorRight="0" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="2" Defaults=";O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="63" Height="22" AnchorRight="344" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Release" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="132" Width="55" Height="22" AnchorRight="288" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstChosen" Attr="3" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="231" Height="22" AnchorRight="176" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Orders Chosen To Be Released" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="399" Height="66" AnchorRight="8" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQTY" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="111" Height="22" AnchorRight="232" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Qty used: 0/0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label2" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="239" Height="22" AnchorRight="168" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="F3=Switch Lists     F5=Accept" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblProcess" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="111" Height="22" AnchorRight="296" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Processing..." />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblUOM" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="132" Width="55" Height="22" AnchorRight="232" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="lblUOM" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="407" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[SO BACKORDER RELEASE]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' PURCHASE ORDERS: RECEIPTS BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+'
+Private Const cPgm                = "P42117"
+
+' Backorder Release
+Private msBORelSt                 As String     'SO Status (SDNXTR) for Backorder SO Release
+Private msVersion                 As String
+
+' Inventory Transfer (FIMIT0100)
+Private Const cInvTrans           = False				              'Set To True To run Inv.Transfer
+Private Const cTRANDESC           = "RFGen BO Release"
+Private Const cZVER_IT            = "ZJDE0001"			          'Specify a Version For Inv.Transfer
+Private msDOCTYPE                 As String
+
+' SO Pick Confirm (FSOPC0100)
+Private Const cPickConf           = False			  'Set To True To run Ship Confirm
+Private Const cPickLocn           = "SHIP"			'Define Location To Ship from
+Private Const cZVERSION_PICK_SO   = "ZJDE0002"	'Specify a Version For Inv.Transfer
+'
+Private Const cTNId               = "FSOBR0100"     
+Private mnQTY                     As Currency
+Private msCaller                  As String
+Private msCallVers                As String
+Private msCallUDC                 As String
+Private msCallUL                  As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  Dim sSQL     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sCols1   As String
+  Dim sRows1   As String
+  Dim sDOCO    As String
+  Dim sDCTO    As String
+  Dim sLNID    As String
+  Dim sAN8     As String
+  Dim sQTY     As String
+  Dim sDisp    As String
+  Dim sValue   As String
+  Dim sMCU     As String
+  Dim sCompany As String
+  Dim sUOM     As String
+  Dim sUOMSD   As String
+  Dim sHeader  As String
+  Dim i        As Integer
+  Dim iOrders  As Integer
+  Dim cQty     As Currency
+  Dim vArray   As Variant
+  '
+  lstChosen.BorderStyle = DisplayTransparent
+  lstChosen.BackColor1 = cFieldDefaultBC
+  lstChosen.ForeColor = cFieldDefaultFC
+  '
+  vArray = Split(gsValCache, "|")
+  '
+  App.SetValue("tmLITM", vArray(5))
+  App.SetValue("tmITM",  vArray(6))
+  App.SetValue("tmLOTN", vArray(7))
+  App.SetValue("tmLOCN", vArray(8))
+  App.SetValue("tmQTY",  vArray(9))
+  App.SetValue("tmUOM",  vArray(10))
+  App.SetValue("tmMCU",  FixRight(vArray(4),12," "))
+  msVersion          =  vArray(13)
+
+  msCaller           =  vArray(0)
+  msCallVers         =  vArray(1)
+  msCallUDC          =  vArray(2)
+  msCallUL           =  vArray(3)
+  '
+  lblQTY.Caption = "Qty used: 0/" & CStr(App.GetValue("tmQTY"))
+  lblUOM.Caption = " "
+  txtQTY.Visible = False
+  lblProcess.Visible = False
+  '
+  Call Validate_BranchPlant(Trim(App.GetValue("tmMCU")), sMCU, sCompany)
+  '
+  App.SetValue("tmCO",  sCompany)
+
+  ' get Status from Proc.Opt.
+  msBORelSt = GetProcOpt(cPgm,msVersion,"2;4",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+  '
+  ' find backorder record in F4211
+  '
+  If GetProcOpt(cPgm,msVersion,"2;1") = "1" Then
+    cQty = ConvDecimalsToSQL("SOBK",App.GetValue("tmQTY"))
+    sSQL = "select SDDOCO, SDDCTO, SDLNID, SDSOBK, SDAN8, SDUOM from  F4211" & _
+           " where SDITM = %tmITM and SDMCU = '%tmMCU' " & _
+           " and SDNXTR = " & msBORelSt & " and SDSOBK >= " & cQty & "  "
+  Else
+    sSQL = "select SDDOCO, SDDCTO, SDLNID, SDSOBK, SDAN8, SDUOM from  F4211" & _
+           " where SDITM = %tmITM and SDMCU = '%tmMCU' " & _
+           " and SDNXTR = " & msBORelSt & " and SDSOBK <> 0  "
+  End If
+
+  If GetProcOpt(cPgm,msVersion,"2;3") = "" Then
+    sSQL = sSQL & " and SDHOLD = '  ' "
+  End If
+  '
+  sSQL = sSQL &" order by SDDOCO ASC "
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  iOrders = DB.Count(sRows)
+  '
+  For i = 1 To iOrders
+    sDOCO  = FixLeft(DB.Extract(sCols, sRows, i, "SDDOCO"), 8 ," ")
+    sDCTO  = FixLeft(DB.Extract(sCols, sRows, i, "SDDCTO"), 2 ," ")
+    sLNID  = CStr(ConvDecimalsFromSQL("LNID",DB.Extract(sCols,sRows,i,3)))
+    sLNID  = FixRight(Format(sLNID,"###.000"),7," ")
+    sQTY   = CStr(ConvDecimalsFromSQL("SOBK",DB.Extract(sCols,sRows,i,"SDSOBK")))
+    sQTY   = FixRight(sQTY, 8 ," ")
+    sUOMSD = DB.Extract(sCols, sRows, i, "SDUOM")
+    sAN8   = DB.Extract(sCols, sRows, i, "SDAN8")
+    sSQL = "Select ABALPH from  F0101 where ABAN8 = " & sAN8 & " "
+    DB.Execute(sSQL, sCols1, sRows1)
+    sAN8 = DB.Extract(sCols1, sRows1, 1, "ABALPH")
+    sDisp  = sDOCO & " " & sDCTO & " " & sQTY & " " & sUOMSD & " " & sLNID & " " & sAN8
+    sValue = Trim(sDOCO) & "|" & Trim(sDCTO) & "|" & Trim(sLNID)& "|" & Trim(sQTY)& "|" & sUOMSD & "|" & Trim(sUOMSD) & "|" & Trim(sAN8)
+    lstDOCO.List.AddItem sValue, sDisp
+  Next i
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim nLNID   As Currency
+  Dim cQty    As Currency
+  Dim cQtyBO  As Currency
+  Dim i       As Integer
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sDOCO   As String
+  Dim sDCTO   As String
+  Dim sValue  As String
+  Dim sITM    As String
+  Dim sQTY    As String
+  Dim sData   As String
+  Dim emProc  As New EmbeddedProc
+  Dim emProc2 As New EmbeddedProc
+  Dim emProc3 As New EmbeddedProc
+
+  ' run Inv.Transfer if selected
+  If cInvTrans Then
+    msDOCTYPE = GetProcOpt("P4113",cZVER_IT,"1;1")
+    If gbPOError Then
+      App.ExitForm
+      Exit Sub
+    End If
+    emProc2.Name                = "TIMIT0100"
+    emProc2.DataSource          = gsDataSource
+    emProc2.Param("tmCO")       = App.GetValue("tmCO")
+    emProc2.Param("tmMCU")      = App.GetValue("tmMCU")
+    emProc2.Param("tmLITM")     = App.GetValue("tmLITM")
+    emProc2.Param("tmQTY")      = mnQTY
+    emProc2.Param("tmUOM")      = App.GetValue("tmUOM")
+    emProc2.Param("tmLOCN")     = App.GetValue("tmLOCN")
+    emProc2.Param("tmLOTN")     = App.GetValue("tmLOTN")
+    emProc2.Param("tmNMCU")     = App.GetValue("tmMCU")
+    emProc2.Param("tmNLOCN")    = cPickLocn
+    emProc2.Param("tmDCTO")     = msDOCTYPE
+    emProc2.Param("tmDRKY")     = ""             ' reason code
+    emProc2.Param("tmTDSC")     = cTRANDESC
+    emProc2.Param("tmZVERSION") = cZVER_IT
+    emProc2.Param("tmUser")     = App.User
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc2)
+    If gbQueueProcessing Then
+      If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+      
+      If Not emProc2.Queue Then
+        App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+        Cancel = True
+        App.SetFocus "txtAccept"
+        Exit Sub
+      End If
+    Else
+      If Not emProc2.Execute Then
+        App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc2)
+        Cancel = True
+        App.SetFocus "txtAccept"
+        Exit Sub
+      End If
+    End If
+  End If
+  '
+  ' run Backorder Release For All lines
+  For i = 1 To lstChosen.List.Count
+    lstChosen.List.Index = i
+    sValue = lstChosen.Text
+    sValue = Replace(sValue,"|",Chr(1))
+    sDOCO  = Ext(sValue,1)
+    sDCTO  = Ext(sValue,2)
+    nLNID  = ConvDecimalsToSQL("LNID", Ext(sValue,3))
+    sQTY   = Ext(sValue,4)
+    sSQL = "select SDLITM,SDUOM,SDSOBK,SDUOM,SDSHAN,SDANBY,SDLNTY from  F4211" & _
+           " where SDDOCO = " & sDOCO & " and SDDCTO = '" & sDCTO & "' and " & _
+           " SDLNID = " & nLNID & " and SDITM = %tmITM and SDMCU = '%tmMCU'"
+    DB.Execute(sSQL,sCols,sRows)
+    App.SetValue("tmDOCO",  sDOCO)
+    App.SetValue("tmDCTO",  sDCTO)
+    App.SetValue("tmLITM",  DB.Extract(sCols, sRows, 1, "SDLITM"))
+    App.SetValue("tmBOQTY", ConvDecimalsFromSQL("SOBK",DB.Extract(sCols, sRows, 1, "SDSOBK")))
+    App.SetValue("tmQTY",   sQTY)
+    App.SetValue("tmLNID",  ConvDecimalsFromSQL("LNID", nLNID))
+    App.SetValue("tmUOMSD", DB.Extract(sCols, sRows, 1, "SDUOM"))
+    App.SetValue("tmLNTY",  DB.Extract(sCols, sRows, 1, "SDLNTY"))
+    cQty   = CCur(sQTY)
+    cQtyBO = CCur(App.GetValue("tmBOQTY"))
+    ' UOM conversion if required
+    If Trim(App.GetValue("tmUOMSD")) <> Trim(App.GetValue("tmUOM")) Then
+    '***     ConvUOM(App.GetValue("tmITM"),cQty,App.GetValue("tmUOM"),App.GetValue("tmUOMSD"))
+    End If
+    emProc.Clear
+    emProc.Name       = "TSOBR0100"
+    emProc.DataSource = gsDataSource
+    emProc.Param("tmCO")       = App.GetValue("tmCO")
+    emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+    emProc.Param("tmDOCO")     = App.GetValue("tmDOCO")
+    emProc.Param("tmDCTO")     = App.GetValue("tmDCTO")
+    emProc.Param("tmLITM")     = App.GetValue("tmLITM")
+    emProc.Param("tmQTY")      = cQty
+    emProc.Param("tmBOQTY")    = cQtyBO
+    emProc.Param("tmUOM")      = App.GetValue("tmUOMSD")
+    emProc.Param("tmLNID")     = App.GetValue("tmLNID")
+    emProc.Param("tmUSER")     = App.User
+    emProc.Param("tmZVERSION") = msVersion
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+    If gbQueueProcessing Then
+      If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+      
+      If Not emProc.Queue Then
+        App.MsgBox GetMsg(7) & vbCrLf & SysErr.Description
+        Cancel = True
+        Exit Sub
+      End If
+    Else
+      If Not emProc.Execute Then
+        App.MsgBox GetMsg(7) & vbCrLf & SysErr.Description
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+        Cancel = True
+        Exit Sub
+      End If
+    End If
+    ' run Pick Confirm if selected
+    If cQtyBO > 0 Then cQtyBO = cQtyBO - cQty 'Set remaining Backorder Qty.
+    If cPickConf Then
+      emProc3.Clear
+      emProc3.Name       = "TOSC0100"
+      emProc3.DataSource = gsDataSource
+      emProc3.Param("tmCO")       = App.GetValue("tmCO")
+      emProc3.Param("tmMCU")      = App.GetValue("tmMCU")
+      emProc3.Param("tmDOCO")     = App.GetValue("tmDOCO")
+      emProc3.Param("tmDCTO")     = App.GetValue("tmDCTO")
+      emProc3.Param("tmLITM")     = App.GetValue("tmLITM")
+      emProc3.Param("tmLOTN")     = App.GetValue("tmLOTN")
+      emProc3.Param("tmLOCN")     = cPickLocn
+      emProc3.Param("tmQTY")      = cQty
+      emProc3.Param("tmQTYBO")    = cQtyBO
+      emProc3.Param("tmUOM")      = App.GetValue("tmUOMSD")
+      emProc3.Param("tmLNID")     = App.GetValue("tmLNID")
+      emProc3.Param("tmSHIPTO")   = DB.Extract(sCols, sRows, 1, "SDSHAN")
+      emProc3.Param("tmCARRIER")  = DB.Extract(sCols, sRows, 1, "SDANBY")
+      emProc3.Param("tmLNTY")     = App.GetValue("tmLNTY")
+      emProc3.Param("tmUSER")     = App.User
+      emProc3.Param("tmZVERSION") = cZVERSION_PICK_SO
+      If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc3)
+      If gbQueueProcessing Then
+        If gbQLoadBal Then emProc3.QueueName = RFQBalance("", 1)
+
+        If Not emProc3.Queue Then
+          App.MsgBox GetMsg(155) & vbCrLf & SysErr.Description
+          Cancel = True
+          App.SetFocus "txtAccept"
+          Exit Sub
+        End If
+      Else
+        If Not emProc3.Execute Then
+          App.MsgBox GetMsg(155) & vbCrLf & SysErr.Description
+          If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc3)     
+          Cancel = True
+          App.SetFocus "txtAccept"
+          Exit Sub
+        End If
+      End If
+    End If
+  Next i
+  '
+  If msCaller = "FPOIR0100" Then
+    App.SetValue("txtLITM",   App.GetValue("tmLITM"), msCaller)
+  Else
+    App.SetValue("txtDOCO",   App.GetValue("tmDOCO"), msCaller)
+    App.SetValue("txtDCTO",   App.GetValue("tmDCTO"), msCaller)
+  End If
+
+  App.SetValue("txtMCU",      App.GetValue("tmMCU"),  msCaller)
+  '
+  sData =     " -Pgm="            & "P4312"       & _
+              " -Vers="           & msCallVers    & _
+              " -UDC="            & msCallUDC     & _
+              " -UniqueLotY/N="   & msCallUL
+
+  App.CallForm(msCaller & sData,False)
+
+ End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  If Fkey = 3 Then
+    Select Case App.PromptNo
+      Case 1, 2
+        App.SetFocus 3
+      Case 3
+        App.SetFocus 1
+    End Select
+  ElseIf Fkey = 5 Then
+    lblProcess.Visible = True
+    Screen.Refresh
+    Form_OnUpdate(False)
+  End If
+
+End Sub
+
+Private Sub lstDOCO_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If mnQTY > CCur(App.GetValue("tmQTY")) Then
+    App.MsgBox(GetMsg(240))
+  End If
+
+  lblUOM.Caption = ""
+  
+End Sub
+
+Private Sub lstDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sValue As String
+  Dim sUOMSD   As String
+  Dim nQty     As Currency
+  '
+  If Rsp = "" Then
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  txtQTY.Visible = True
+  '
+  sValue = lstDOCO.Text
+  sValue = Replace(sValue,"|",Chr(1))
+  sUOMSD   = Ext(sValue,6)
+  txtQTY.Text = CStr(Ext(sValue,4))
+    '
+  If Trim(sUOMSD) <> Trim(App.GetValue("tmUOM")) Then
+    nQty = 1
+    ConvUOM(App.GetValue("tmITM"),nQty,Trim(sUOMSD),Trim(App.GetValue("tmUOM")))
+    lblUOM.Caption = "1 " & Trim(sUOMSD) & " = " & nQty & " " & Trim(App.GetValue("tmUOM"))
+  End If
+
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sRsp     As String
+  Dim sDOCO    As String
+  Dim sDCTO    As String
+  Dim sLNID    As String
+  Dim sQTY     As String
+  Dim sOldQTY  As String
+  Dim sUOM     As String
+  Dim sUOMSD   As String
+  Dim sAN8     As String
+  Dim sTmpDOCO As String
+  Dim sTmpDCTO As String
+  Dim sTmpLNID As String
+  Dim sTmpQTY  As String
+  Dim sTmpUOM  As String
+  Dim sDisp    As String
+  Dim sValue   As String
+  Dim i        As Integer
+  Dim iListIdx As Integer
+  Dim bPartQty As Boolean
+  Dim vArray   As Variant
+  Dim nQty     As Currency
+  '
+  sRsp = Rsp
+  '
+  If sRsp = "" Or Not IsNumeric(sRsp) Or Val(sRsp) = 0 Then
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  iListIdx = lstDOCO.List.Index
+  sValue   = lstDOCO.Text
+  sValue   = Replace(sValue,"|",Chr(1))
+  sDOCO    = Ext(sValue,1)
+  sDCTO    = Ext(sValue,2)
+  sLNID    = Ext(sValue,3)
+  sQTY     = Ext(sValue,4)
+  sUOM     = Ext(sValue,5)
+  sUOMSD   = Ext(sValue,6)
+  sAN8     = Ext(sValue,7)
+  '
+  If CCur(sRsp) > CCur(sQTY) Then
+    Cancel = True
+    App.MsgBox(GetMsg(174))
+    Exit Sub
+  Else
+    txtQTY.Visible = False
+  End If
+  '
+  ' convert Qty by UOM
+  If Trim(sUOMSD) <> Trim(App.GetValue("tmUOM")) Then
+    nQty = CCur(Rsp)
+    Call ConvUOM(App.GetValue("tmITM"),nQty,Trim(sUOMSD),Trim(App.GetValue("tmUOM")))
+    Rsp = CStr(nQty)
+  End If
+  '
+  sOldQTY = sQTY
+
+  mnQTY = mnQTY + CCur(Rsp)
+
+  lblQTY.Caption = "Qty used: " & CStr(mnQTY) & "/" & CStr(App.GetValue("tmQTY"))
+  '
+  If CCur(sRsp) <> CCur(sQTY) Then bPartQty = True
+  '
+  sDOCO  = FixLeft(sDOCO,8," ")
+  sDCTO  = FixLeft(sDCTO,2 ," ")
+  sQTY   = FixRight(sRsp, 8 ," ")
+  '
+  ' If already exists in Chosen List.Data, remove and sum QTY
+  For i = 1 To lstChosen.List.Count
+    lstChosen.List.Index = i
+    sValue = lstChosen.Text
+    sValue = Replace(sValue,"|",Chr(1))
+    sTmpDOCO = Ext(sValue,1)
+    sTmpDCTO = Ext(sValue,2)
+    sTmpLNID = Ext(sValue,3)
+    sTmpQTY  = Ext(sValue,4)
+    sTmpUOM  = Ext(sValue,5)
+    If (Trim(sTmpDOCO) = Trim(sDOCO)) And (Trim(sTmpDCTO) = Trim(sDCTO)) And (Trim(sTmpLNID) = Trim(sLNID)) Then
+      sQTY = CStr(CCur(sQTY) + CCur(sTmpQTY))
+      lstChosen.List.RemoveItem i
+      Exit For
+    End If
+  Next i
+  '
+  ' Add to the Chosen List.Data
+  sDOCO  = FixLeft(sDOCO, 8 ," ")
+  sDCTO  = FixLeft(sDCTO, 2 ," ")
+  sLNID  = FixRight(Format(sLNID,"###.000"),7," ")
+  sQTY   = FixRight(sQTY, 8 ," ")
+
+  sDisp  = sDOCO & " " & sDCTO & " " & sQTY & " " & sUOMSD & " " & sLNID & " " & sAN8
+  sValue = Trim(sDOCO) & "|" & Trim(sDCTO) & "|" & Trim(sLNID) & "|" & Trim(sQTY) & "|" & sUOMSD & "|" & Trim(sUOMSD) & "|" & Trim(sAN8)
+  '
+  lstChosen.List.AddItem sValue, sDisp
+  lstChosen.List.Sorted = True
+  lstDOCO.List.RemoveItem iListIdx
+  '
+  If bPartQty Then
+    vArray = Split(sValue,"|")
+    sValue = ""
+    vArray(3) = CStr(CCur(sOldQTY) - CCur(sRsp))
+    sQTY = vArray(3)
+    For i = 1 To UBound(vArray) + 1
+      sValue = sValue & vArray(i - 1) & "|"
+    Next i
+    sDOCO  = FixLeft(sDOCO, 8 ," ")
+    sDCTO  = FixLeft(sDCTO, 2 ," ")
+    sLNID  = FixRight(Format(sLNID,"###.000"),7," ")
+    sQTY   = FixRight(sQTY, 8 ," ")
+    sDisp  = sDOCO & " " & sDCTO & " " & sQTY & " " & sUOMSD & " " & sLNID & " " & sAN8
+    sValue = Left(sValue,(Len(sValue) - 1))
+    lstDOCO.List.AddItem sValue, sDisp
+    lstDOCO.List.Sorted = True
+    lblUOM.Caption = ""
+  End If
+  '
+  App.SetFocus("lstDOCO")
+
+End Sub
+
+Private Sub lstChosen_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim bFnd     As Boolean
+  Dim i        As Integer
+  Dim sTmpDOCO As String
+  Dim sTmpDCTO As String
+  Dim sTmpLNID As String
+  Dim sTmpQTY  As String
+  Dim sDOCO    As String
+  Dim sDCTO    As String
+  Dim sLNID    As String
+  Dim sUOM     As String
+  Dim sSDUOM   As String
+  Dim sAN8     As String
+  Dim sQTY     As String
+  Dim sDisp    As String
+  Dim sCValue  As String
+  Dim sDValue  As String
+  Dim vArray   As Variant
+  Dim nQty     As Currency
+  '
+  Cancel = True
+
+  If Rsp = "" Then Exit Sub
+  '
+  ' Remove from Chosen List.Data
+  sCValue = lstChosen.Text
+  sCValue = Replace(sCValue,"|",Chr(1))
+  sDOCO  = Ext(sCValue,1)
+  sDCTO  = Ext(sCValue,2)
+  sLNID  = Ext(sCValue,3)
+  sQTY   = Ext(sCValue,4)
+  sUOM   = Ext(sCValue,5)
+  sSDUOM = Ext(sCValue,6)
+  sAN8   = Ext(sCValue,7)
+  '
+  lstchosen.List.RemoveItem lstChosen.List.Index
+  '
+  ' See if chosen item is a partial and is already in the DOCO List.Data
+  For i = 1 To lstDOCO.List.Count
+    lstDOCO.List.Index = i
+    sDValue = lstDOCO.Text
+    sDValue = Replace(sDValue,"|",Chr(1))
+    sTmpDOCO = Ext(sDValue,1)
+    sTmpDCTO = Ext(sDValue,2)
+    sTmpLNID = Ext(sDValue,3)
+    sTmpQTY  = Ext(sDValue,4)
+    If (sDOCO = sTmpDOCO) And (sDCTO = sTmpDCTO) And (sLNID = sTmpLNID) Then
+      bFnd = True
+      Exit For
+    End If
+  Next i
+  '
+  ' Convert Qty by UOM
+  If Trim(sSDUOM) <> Trim(App.GetValue("tmUOM")) Then
+    nQty = CCur(sQTY)
+    ConvUOM(App.GetValue("tmITM"),nQty,Trim(sSDUOM),Trim(App.GetValue("tmUOM")))
+    mnQTY = mnQTY - nQty
+  Else
+    mnQTY = mnQTY - CCur(sQTY)
+  End If
+
+  lblQTY.Caption = "Qty used: " & CStr(mnQTY) & "/" & CStr(App.GetValue("tmQTY"))
+  '
+  sCValue = Replace(sCValue,Chr(1), "|")
+  '
+  If bFnd Then
+    lstDOCO.List.RemoveItem lstDOCO.List.Index
+    sQTY = CStr(CCur(sQTY) + CCur(sTmpQTY))
+    vArray = Split(sCValue,"|")
+    sCValue = ""
+    vArray(3) = sQTY
+    For i = 1 To UBound(vArray) + 1
+      sCValue = sCValue & vArray(i - 1) & "|"
+    Next i
+    sCValue = Left(sCValue,(Len(sCValue) - 1))
+  End If
+  '
+  sDOCO  = FixLeft(sDOCO, 8 ," ")
+  sDCTO  = FixLeft(sDCTO, 2 ," ")
+  sLNID  = FixRight(Format(sLNID,"###.000"),7," ")
+  sQTY   = FixRight(sQTY, 8 ," ")
+
+  sDisp = sDOCO & " " & sDCTO & " " & sQTY & " " & sSDUOM & " " & sLNID & " " & sAN8
+  lstDOCO.List.AddItem sCValue, sDisp
+  lstDOCO.List.Sorted = True
+
+  App.SetFocus("lstDOCO")
+
+End Sub
+</Code>

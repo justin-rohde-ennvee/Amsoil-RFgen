@@ -1,0 +1,16 @@
+﻿<Record FileDesc="DC User Menu" FileVersion="5.0.8.0" Desc="DC User Menu" Heading="[Distribution Center]">
+<MenuItem Id="FSOPC0201_AMS" Desc="1 Sales Order Picking" Options="-Pgm=P4205 -Vers=RGN0003 -BOVers=RGN0004" />
+<MenuItem Id="FSOSC0101_AMS" Desc="2 Sales Order Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0005" />
+<MenuItem Id="FLPAI0100_AMS" Desc="3 Create / Attach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="4 Detach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPTL0100_AMS" Desc="5 Transfer LP Location" Options="-Pgm=P4113 -Vers=AMS0001" />
+<MenuItem Id="FIMIT0100" Desc="6 Transfer Item/Non-Lot" Options="-Pgm=P4113 -Vers=AMS0001" />
+<MenuItem Id="FLPQL0100_AMS" Desc="7 LP - Inquiry By Location" />
+<MenuItem Id="FLPQI0100_AMS" Desc="8 LP - Inquiry" />
+<MenuItem Id="FIMQI0100" Desc="9 Item Location Inquiry" />
+<MenuItem Id="FLPCC0100_AMS" Desc="0 IM - Cycle Counts (by LP)" Options="-Pgm=P41240 -Vers=RGN0001" />
+<MenuItem Id="FLPLB0100_AMS" Desc="A Label Reprint" />
+<MenuItem Id="FSOPC0200_AMS" Desc="B ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />
+<MenuItem Id="FSOSC0100_AMS" Desc="C ST Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
+<MenuItem Id="FLPCC0100_AMS" Desc="D LP Cycle Count" Options="-Pgm=P41240 -Vers=RGN0001" />
+</Record>

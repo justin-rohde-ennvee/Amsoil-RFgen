@@ -1,0 +1,595 @@
+﻿<Record FileDesc="FS Load Files to CE" FileVersion="5.0.8.0" Desc="FS Load Files to CE" Group="FS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="LstWO&vm;BtnAccept&vm;lblListBox&vm;BtnLoadWO&vm;lblDownload&vm;btnBack&vm;lblCustAdd&vm;vlblCustAdd1&vm;vlblCustAdd2&vm;vlblCustAdd3&vm;vlblCustAdd4&vm;vlblCustAdd5&vm;vlblCustAdd6&vm;vlblCustAdd7&vm;vlblCustAdd8&vm;vlblCustAdd9&vm;lblCustNo&vm;lblAddLine1&vm;lblAddLine2&vm;lblAddLine3&vm;lblAddLine4&vm;lblCty1&vm;lblState&vm;lblPostalCode&vm;lblCountry&vm;Phone&vm;vLblArCode&vm;vLblPhNo&vm;txtNone">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="LstWO" />
+<SchemaParam Linked="0" Attr="2" Name="BtnAccept" />
+<SchemaParam Linked="0" Attr="3" Name="lblListBox" />
+<SchemaParam Linked="0" Attr="4" Name="BtnLoadWO" />
+<SchemaParam Linked="0" Attr="5" Name="lblDownload" />
+<SchemaParam Linked="0" Attr="6" Name="btnBack" />
+<SchemaParam Linked="0" Attr="7" Name="lblCustAdd" />
+<SchemaParam Linked="0" Attr="8" Name="vlblCustAdd1" />
+<SchemaParam Linked="0" Attr="9" Name="vlblCustAdd2" />
+<SchemaParam Linked="0" Attr="10" Name="vlblCustAdd3" />
+<SchemaParam Linked="0" Attr="11" Name="vlblCustAdd4" />
+<SchemaParam Linked="0" Attr="12" Name="vlblCustAdd5" />
+<SchemaParam Linked="0" Attr="13" Name="vlblCustAdd6" />
+<SchemaParam Linked="0" Attr="14" Name="vlblCustAdd7" />
+<SchemaParam Linked="0" Attr="15" Name="vlblCustAdd8" />
+<SchemaParam Linked="0" Attr="16" Name="vlblCustAdd9" />
+<SchemaParam Linked="0" Attr="17" Name="lblCustNo" />
+<SchemaParam Linked="0" Attr="18" Name="lblAddLine1" />
+<SchemaParam Linked="0" Attr="19" Name="lblAddLine2" />
+<SchemaParam Linked="0" Attr="20" Name="lblAddLine3" />
+<SchemaParam Linked="0" Attr="21" Name="lblAddLine4" />
+<SchemaParam Linked="0" Attr="22" Name="lblCty1" />
+<SchemaParam Linked="0" Attr="23" Name="lblState" />
+<SchemaParam Linked="0" Attr="24" Name="lblPostalCode" />
+<SchemaParam Linked="0" Attr="25" Name="lblCountry" />
+<SchemaParam Linked="0" Attr="26" Name="Phone" />
+<SchemaParam Linked="0" Attr="27" Name="vLblArCode" />
+<SchemaParam Linked="0" Attr="28" Name="vLblPhNo" />
+<SchemaParam Linked="0" Attr="29" Name="txtNone" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="2">
+<Controls>
+<Control Type="3" FieldId="LstWO" Attr="1" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="198" Width="0" Height="22" AnchorRight="7" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="22" Width="231" Height="154" AnchorRight="200" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="BtnAccept" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Accept" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="242" Width="127" Height="22" AnchorRight="256" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblListBox" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="95" Height="22" AnchorRight="336" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Work Orders" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="BtnLoadWO" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Load WO" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="127" Height="22" AnchorRight="256" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDownload" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="110" Width="47" Height="22" AnchorRight="360" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnBack" Attr="6">
+<Layouts>
+<Layout PageNo="2" Visible="1" Caption="Back" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="264" Width="95" Height="22" AnchorRight="264" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCustAdd" Attr="7">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="11" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="135" Height="23" AnchorRight="296" AnchorBottom="351" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Customer Address" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd1" Attr="8">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="22" Width="31" Height="22" AnchorRight="288" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd2" Attr="9">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="44" Width="31" Height="22" AnchorRight="288" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd3" Attr="10">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="66" Width="31" Height="22" AnchorRight="288" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd4" Attr="11">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="88" Width="31" Height="22" AnchorRight="288" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd5" Attr="12">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="110" Width="31" Height="22" AnchorRight="288" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd6" Attr="13">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="132" Width="31" Height="22" AnchorRight="288" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd7" Attr="14">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="154" Width="31" Height="22" AnchorRight="288" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd8" Attr="15">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="176" Width="31" Height="22" AnchorRight="288" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vlblCustAdd9" Attr="16">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="198" Width="31" Height="22" AnchorRight="288" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCustNo" Attr="17">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="22" Width="71" Height="22" AnchorRight="360" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Customer" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAddLine1" Attr="18">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="44" Width="79" Height="22" AnchorRight="352" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Add Line1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAddLine2" Attr="19">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="66" Width="79" Height="22" AnchorRight="352" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Add Line2" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAddLine3" Attr="20">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="88" Width="79" Height="22" AnchorRight="352" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Add Line3" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAddLine4" Attr="21">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="110" Width="79" Height="22" AnchorRight="352" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Add Line4" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCty1" Attr="22">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="132" Width="39" Height="22" AnchorRight="392" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="City" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblState" Attr="23">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="154" Width="47" Height="22" AnchorRight="384" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="State" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPostalCode" Attr="24">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="176" Width="95" Height="22" AnchorRight="336" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Postal Code" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCountry" Attr="25">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="198" Width="63" Height="22" AnchorRight="368" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Country" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Phone" Attr="26">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="4" MultiLine="0" Left="0" Top="220" Width="47" Height="22" AnchorRight="384" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Phone" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vLblArCode" Attr="27">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="220" Width="55" Height="22" AnchorRight="264" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="(Lbl)-" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="vLblPhNo" Attr="28">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="220" Width="31" Height="22" AnchorRight="240" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lbl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNone" Attr="29" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="330" Width="0" Height="22" AnchorRight="423" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="352" Width="0" Height="22" AnchorRight="431" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="431" FormHeight="374" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+
+'Created
+'03/17/07 Kapil Warikoo
+
+Option Explicit
+Private index As Long
+Private bDone As Boolean
+Private vAdd  As Integer
+
+
+Private Sub btnBack_Click()
+  App.SetFocus "lstWO"
+End Sub
+
+Private Sub BtnLoadWO_Click()
+On Error Resume Next
+  '
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim i       As Long
+  Dim sAdd    As String
+  Dim sWO     As String
+  Dim sDesc   As String
+  Dim sLine   As String
+  Dim bConn   As Boolean
+  Dim vRsp    As Variant
+
+  '
+'TagRtry:
+'  If bDone Then Exit Sub
+'    LstWO.List.AddItem 1,"Loading..."
+'    Screen.Refresh
+'
+'    bConn = Server.Connect("172.17.48.35",21097)
+'    bConn = Server.Connect("158.222.122.75",21097)
+'    bConn = Server.Connect
+'  If bConn = False Then
+'    vRsp = App.MsgBox("Error! Connect to Host failed. Retry? ",vbYesNo,vbYes)
+'      If (vRsp = vbYes) Then
+'        GoTo TagRtry
+'      Else
+'        Exit Sub
+'      End If
+'  End If
+  '
+
+  'Connect to the CE device
+
+  bConn=Server.Connect
+
+  ' get the address no for the user
+  sSQL = "select aban8 from f0101 where abalph='Marcheso, Dominic                      '"
+  Server.ExecuteSQL(sSQL, sCols, sRows)
+
+  vAdd=Round(CInt(sRows))
+
+  ' select the work orders assigned to the resource
+  sSQL = "select WAAN8,WADOCO, WADL01  from F48311,F4801 where F4801.WADOCO=F48311.RADOCO And F4801.WADCTO=F48311.RADCTO And F48311.RARSCN=" & CStr(vAdd)
+  Server.ExecuteSQL(sSQL, sCols, sRows)
+  LstWO.List.Clear
+  '
+  For i   = 1 To DB.Count(sRows)
+    sAdd  = DB.Extract(sCols, sRows, i, "WAAN8")
+    sWO   = DB.Extract(sCols, sRows, i, "WADOCO")
+    sDesc = DB.Extract(sCols, sRows, i, "WADL01")
+    sLine = FixRight(sWO,8," ") & " " & sDesc
+    LstWO.List.AddItem sWO, sLine
+  Next i
+  '
+  index = 0
+  bDone = True
+End Sub
+
+Private Sub BtnAccept_Click()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sRsp   As String
+  Dim sMCU   As String
+  Dim sTemp  As String
+  Dim i      As Integer
+  Dim ncount As Long
+  Dim rs     As Boolean
+
+
+ If Device.IsOffline Then '*** Only in Batch mode
+
+     ' load records to local table
+
+      lblDownload.Visible = True
+
+      'Find the B/P for the resource from the resource master file
+      sSQL = "select RMMMCU from F48310 where RMRSCN="& CStr(vAdd)
+      Server.ExecuteSQL(sSQL, sCols, sRows)
+      sMCU  = sRows
+
+      'download data from the item master
+      sSQL = "drop table F4101"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 1/11....."
+      Screen.Refresh
+      sSQL  = "create table F4101(IMITM float primary key,IMLITM nchar(25),IMUOM1 nchar(2),IMDSC1 nchar(30))"
+      DB.Execute(sSQL)
+      sSQL = "select IMITM,IMLITM,IMUOM1,IMDSC1 from F4101"
+      Server.GetTable(sSQL,"F4101")
+
+      'download data from the item branch
+      sSQL = "drop table F4102"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 2/11....."
+      Screen.Refresh
+      sSQL  = "create table F4102(IBITM float,IBLITM nchar(25),IBMCU nchar(12),IBSRCE nchar(1),IBSAFE float)"
+      DB.Execute(sSQL)
+      sSQL = "select IBITM,IBLITM,IBMCU,IBSRCE,IBSAFE from F4102 where IBMCU='" & (sMCU) & "'"
+      Server.GetTable(sSQL,"F4102")
+
+      'download the B/P data
+      sSQL = "drop table F0006"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 3/11....."
+      Screen.Refresh
+      sSQL  = "create table F0006(MCMCU nchar(12), MCCO nchar(5))"
+      DB.Execute(sSQL)
+      sSQL = "Select MCMCU,MCCO from F0006"
+      Server.GetTable(sSQL,"F0006")
+
+      'download the UDC data
+      sSQL = "drop table F0005 "
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 4/11....."
+      Screen.Refresh
+      sSQL  = "create table F0005(DRSY nchar (4),DRRT nchar (2),DRKY nchar(10),DRDL01 nchar(30),DRDL02 nchar(30))"
+      DB.Execute(sSQL)
+      sSQL = "select DRSY,DRRT,DRKY,DRDL01,DRDL02 from psctl810.dbo.f0005 where  drsy in('06','31') and drrt in('SH','TY')"
+      Server.GetTable(sSQL,"F0005")
+
+
+      'download F0101 to validate address book data
+      sSQL = "drop table F0101"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 5/11....."
+      Screen.Refresh
+      sSQL  = "create table F0101(ABAN8 float,ABAC29 nchar (3),ABALPH nchar(40),ABMCU nchar(12),ABAT1  nchar (3))"
+      DB.Execute(sSQL)
+      sSQL = "select ABAN8,ABAC29,ABALPH,ABMCU,ABAT1 from F0101"
+      Server.GetTable(sSQL,"F0101")
+
+      'download F41001 To Get cost method For the B/P
+      sSQL = "drop table F41001"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 6/11....."
+      Screen.Refresh
+      sSQL  = "CREATE TABLE F41001 (CIPRIM nchar(1),CISYM1 nchar(1),CISYM2 nchar(1),CISYM3 nchar(1),CISYM5 nchar(1),CISECD nchar(1),CISEPL nchar(1),CISE01 float,CISE02 float,CISE03 float,CISE04 float,CISE05 float,CISE06 float,CISE07 float,CISE08 float,CISE09 float,gbIsE10 float,CILR01 nchar(1),CILR02 nchar(1),CILR03 nchar(1),CILR04 nchar(1),CILR05 nchar(1),CILR06 nchar(1),CILR07 nchar (1),CILR08 nchar (1),CILR09 nchar(1),CILR10 nchar(1),CIAN8 float,CIPOCS float,CIINCS float,CIIALP float,CIBSDY float,CIIA1 float,CIIB1 float,CIIC1 float,CIIA2 float,CIIB2 float,CIIC2 float,CIIA3 float,CIIB3 float,CIIC3 float,CIPNC float,CIGLPO nchar (1),CIUNGL nchar (1),CICMGL nchar(1)," & _
+      "CICSMT nchar(2),CIPCSM nchar(2),CIBACK nchar(1),CICOMH float,CIICRI nchar(1),CIIARI nchar(1),CIMATY nchar(1),CIXRT nchar(2),CIXRT2 nchar(2),CIARTG nchar(12),CIDA01 nchar(1),CIDA02 nchar(1),CIDA03 nchar(1),CIDA04 nchar(1),CIDA05 nchar(1),CIDA06 nchar(1),CIDA07 nchar(1),CIDA08 nchar(1),CIDA09 nchar(1), CIDA10 nchar(1), CIDA11 nchar(1),CIDA12 nchar(1),CIDA13 nchar(1),CIDA14 nchar(1),CIDA15 nchar(1),CIDA16 nchar(1),CISYM4 nchar(1),CIWIUM nchar(2),CIVUMD nchar(2),CIUWUM nchar(2),CIULOT nchar(1),CILCTL nchar(1),CIWCTL nchar(1),CIMVER nchar(3),CICLOC nchar(20),CIXLOC nchar(20),CISTPU nchar(1),CIDNTP nchar(1),CITMPS float,CIUSMT nchar(1),CIOT1Y nchar(1),CIOT2Y nchar(1),CIOT3Y nchar(1),CIOT4Y nchar(1),CIOT5Y nchar(1),CIUSID nchar(1),CIUSER nchar(10),CIPID nchar(10)," & _
+      "CIJOBN nchar(10),CIUPMJ numeric(18, 0),CITDAY float,CISY nchar(4),CIMCU nchar(12),CIOT6Y nchar(1),CISCTL nchar(1),CISEPS nchar(1),CISYM6 nchar(1),CILAF nchar(1),CILTFM nchar(1),CIRWLA nchar(1),CILNPA nchar(1))"
+      DB.Execute(sSQL)
+      sSQL = "select * from F41001"
+      Server.GetTable(sSQL,"F41001")
+
+      'download F4100 location master
+      sSQL = "drop table F4100"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 7/11....."
+      Screen.Refresh
+      sSQL  = "create table F4100(LMMCU nchar(12),LMLOCN nchar(20))"
+      DB.Execute(sSQL)
+      sSQL = "select LMMCU,LMLOCN from F4100"
+      Server.GetTable(sSQL,"F4100")
+
+      'download F4108 lot master
+      sSQL = "drop table F4108"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table ....."
+      Screen.Refresh
+      sSQL  = "create table F4108(IOLOTN nchar(30),IOLOTS nchar(1),,IOMCU nchar(12))"
+      DB.Execute(sSQL)
+      sSQL = "select IOLOTN,IOLOTS,IOMCU from F4108"
+      Server.GetTable(sSQL,"F4108")
+
+      'download F30008  Work Centre Rates File
+      sSQL = "drop table F30008"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table ....."
+      Screen.Refresh
+      sSQL  = "create table F30008(IWMCU nchar(12),IWLEDG nchar(2))"
+      DB.Execute(sSQL)
+      sSQL = "select IWMCU,IWLEDG from F30008"
+      Server.GetTable(sSQL,"F30008")
+
+      'download F41021 item location
+      sSQL = "drop table F41021"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 8/11....."
+      Screen.Refresh
+      sSQL  = "create table F41021(LIITM float,LIMCU nchar(12),LILOCN nchar(20),LILOTN nchar(30),LIPCOM float,LIHCOM float,LIFCOM float,LIQOWO float,LIOT1P float,LIOT2P float,LIPREQ float,LIQWBO float, LIOT1A float,LIQTIN float,LIQTTR float,LIQTO1 float,LIQTO2 float,LIQONL float,LILOTS nchar(1),LIPQOH float)"
+      DB.Execute(sSQL)
+      sSQL = "select LIITM,LIMCU,LILOCN,LILOTN,LIPCOM,LIHCOM,LIFCOM,LIQOWO,LIOT1P,LIOT2P,LIPREQ,LIQWBO,LIOT1A,LIQTIN,LIQTTR,LIQTO1,LIQTO2,LIQONL,LILOTS,LIPQOH from F41021 where LIMCU='" & (sMCU) & "'"
+      Server.GetTable(sSQL,"F41021")
+
+      ' download workorder data.....
+      sSQL = "drop table F4801"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 9/11....."
+      Screen.Refresh
+      sSQL  = "create table F4801(WADOCO float,WADCTO nchar(2),WAMCU nchar(12),WADL01 nchar(30),WALITM nchar(25),WASRST nchar(2),WAUORG float,WASOQS float,WASOCN float,WAUOM nchar(2))"
+      DB.Execute(sSQL)
+      sSQL = "Select WADOCO,WADCTO,WAMCU,WADL01,WALITM,WASRST,WAUORG,WASOQS,WASOCN,WAUOM from F4801 where WADOCO IN(select WADOCO from F48311,F4801 where F4801.WADOCO=F48311.RADOCO And F4801.WADCTO=F48311.RADCTO And F48311.RARSCN='6077')"
+      Server.GetTable(sSQL,"F4801")
+
+      'download the routing data
+      sSQL = "drop table F3112"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 10/11....."
+      Screen.Refresh
+      sSQL  = "create table F3112(WLDOCO float,WLDCTO nchar(2),WLMCU nchar(12),WLMMCU nchar(12),WLDSC1 nchar(30),WLOPSQ float)"
+      DB.Execute(sSQL)
+      sSQL = "Select WLDOCO,WLDCTO,WLMCU,WLMMCU,WLDSC1,WLOPSQ from F3112 where WLDOCO IN(select WADOCO from F48311,F4801 where F4801.WADOCO=F48311.RADOCO And F4801.WADCTO=F48311.RADCTO And F48311.RARSCN='6077')"
+      Server.GetTable(sSQL,"F3112")
+
+      'download the partlist data
+      sSQL = "drop table F3111"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download Table 11/11....."
+      Screen.Refresh
+      sSQL  = "create table F3111(WMDOCO float,WMDCTO nchar(2),WMMCU nchar(12),WMCPIT float,WMUORG float,WMTRQT float,WMUM nchar(2),WMOPSQ float,WMUKID float,WMCMCU nchar(12),WMDSC1 nchar(30),WMMTST nchar(2),WMCPIL nchar(25),WMITC nchar(1),WMCPNT float)"
+      DB.Execute(sSQL)
+      sSQL = "Select WMDOCO,WMDCTO,WMMCU,WMCPIT,WMUORG,WMTRQT,WMUM,WMOPSQ,WMUKID,WMCMCU,WMDSC1,WMMTST,WMCPIL,WMITC,WMCPNT from F3111 where WMDOCO IN(select WADOCO from F48311,F4801 where F4801.WADOCO=F48311.RADOCO And F4801.WADCTO=F48311.RADCTO And F48311.RARSCN='6077')"
+      Server.GetTable(sSQL,"F3111")
+
+
+      'download PO tables
+
+      sSQL = "drop table RFPO"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download PO Table"
+      Screen.Refresh
+      sSQL  = "create table RFPO (POPID nchar(10),POREL nchar(10),POSEQ nvarchar(250),POKEY nvarchar(250),POUSER nchar(10),POTIME nchar(12),PODATE nchar(10))"
+      DB.Execute(sSQL)
+      sSQL = "Select POPID,POREL,POSEQ,POKEY,POUSER,POTIME,PODATE from RFPO"
+      Server.GetTable(sSQL,"RFPO")
+
+      sSQL = "drop table RFPOCE"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download PO Table"
+      Screen.Refresh
+      sSQL  = "create table RFPOCE (PCPID nchar(10),PCVERS nchar(10),PCJPO nchar(250))"
+      DB.Execute(sSQL)
+      sSQL = "Select PCPID,PCVERS,rtrim(ltrim(PCJPO)) PCJPO from RFPOCE"
+      Server.GetTable(sSQL,"RFPOCE")
+
+      'download data field specification table
+      sSQL = "drop table F9210"
+      DB.Execute(sSQL)
+      lblDownload.Caption = "Download DD Table"
+      Screen.Refresh
+      sSQL  = "create table F9210 (FRDTAI nchar(10),FRCLAS nchar(10),FRCDEC nchar(1))"
+      DB.Execute(sSQL)
+      sSQL  = "Select FRDTAI,FRCLAS,FRCDEC from psdd810.dbo.F9210 where FRDTAI in ('OPSQ','CPNT','UORG','PQOH','SAFE')"
+      Server.GetTable(sSQL,"F9210")
+
+      lblDownload.Visible = False
+      Screen.Refresh
+    End If
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+    'App.SetOption(ShowHorizontalScrollBar, True)   ' todo - upgrade: App.SetOption removed
+    'App.SetOption(ShowVerticalScrollBar, True)   ' todo - upgrade: App.SetOption removed
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  Server.Disconnect
+End Sub
+
+Private Sub LstWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sWO     As String
+  Dim sAdd    As String
+  Dim sAdd1   As String
+  Dim sAdd2   As String
+  Dim sAdd3   As String
+  Dim sAdd4   As String
+  Dim sAdd5   As String
+  Dim sAddz   As String
+  Dim sCty1   As String
+  Dim sAdds   As String
+  Dim sCtr    As String
+  Dim sAr     As String
+  Dim sPh     As String
+  Dim sLine   As String
+
+  sSQL  = "select WAAN8 from F4801 where WADOCO='" & Rsp & "'"
+  DB.Execute(sSQL,sCols,sRows)
+
+  'Get Address details for the customer
+  sSQL  = "select ALAN8,ALADD1,ALADD2,ALADD3,ALADD4,ALADDZ,ALCTY1,ALADDS,ALCTR from F0116 where ALAN8='" & sRows & "'"
+  Server.ExecuteSQL(sSQL,sCols,sRows)
+
+  sAdd  = CStr(DB.Extract(sCols,sRows,1,"ALAN8"))
+  sAdd1 = CStr(DB.Extract(sCols,sRows,1,"ALADD1"))
+  sAdd2 = CStr(DB.Extract(sCols,sRows,1,"ALADD2"))
+  sAdd3 = CStr(DB.Extract(sCols,sRows,1,"ALADD3"))
+  sAdd4 = CStr(DB.Extract(sCols,sRows,1,"ALADD4"))
+  sAddz = CStr(DB.Extract(sCols,sRows,1,"ALADDZ"))
+  sCty1 = CStr(DB.Extract(sCols,sRows,1,"ALCTY1"))
+  sAdds = CStr(DB.Extract(sCols,sRows,1,"ALADDS"))
+  sCtr  = CStr(DB.Extract(sCols,sRows,1,"ALCTR"))
+
+  sLine   = FixLeft(sAdd,27," ") & FixLeft(sAdd1,54," ")& FixLeft(sAddz,81," ")& FixLeft(sCty1,108," ")& FixLeft(sAdds,162," ")
+  '& FixLeft(sAdd2,81," ")& FixLeft(sAdd3,108," ")& FixLeft(sAdd4,162," ")& FixLeft(sAddz,189," ")& FixLeft(sCty1,216," ")& FixLeft(sAdds,243," ")
+
+
+  vlblCustAdd1.Caption  = sAdd
+  vlblCustAdd2.Caption  = sAdd1
+  vlblCustAdd3.Caption  = sAdd2
+  vlblCustAdd4.Caption  = sAdd3
+  vlblCustAdd5.Caption  = sAdd4
+  vlblCustAdd6.Caption  = sCty1
+  vlblCustAdd7.Caption  = sAdds
+  vlblCustAdd8.Caption  = sAddz
+  vlblCustAdd9.Caption  = sCtr
+
+  'Get Phone details for the customer
+  sSQL  = "select WPAR1,WPPH1 from F0115 where WPAN8='" & sAdd & "'"
+  Server.ExecuteSQL(sSQL,sCols,sRows)
+  sAr = CStr(DB.Extract(sCols,sRows,1,"WPAR1"))
+  sPh = CStr(DB.Extract(sCols,sRows,1,"WPPH1"))
+
+  vlblArCode.Caption  = sAr
+  vlblPhNo.Caption    = sPh
+
+End Sub
+</Code>

@@ -1,0 +1,1011 @@
+﻿<Record FileDesc="ADM - Maintain Queued TM (Dynamic View)" FileVersion="5.0.8.0" Desc="ADM - Maintain Queued TM (Dynamic View)" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtDATEFrom&vm;txtDateTo&vm;txtSort&vm;txtHidden&vm;lbxQueue&vm;btnSubmit&vm;btnRefresh&vm;btnEdit&vm;btnDelete&vm;lbxDetail&vm;txtDetail&vm;lblTM&vm;btnDone&vm;btnDelDetail&vm;lblTMName&vm;txtHidden2&vm;lblQueueName&vm;btnFailed&vm;btnQueued&vm;btnCompl&vm;lbxAll&vm;lbxRFErr">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtDATEFrom" />
+<SchemaParam Linked="0" Attr="2" Name="txtDateTo" />
+<SchemaParam Linked="0" Attr="3" Name="txtSort" />
+<SchemaParam Linked="0" Attr="4" Name="txtHidden" />
+<SchemaParam Linked="0" Attr="5" Name="lbxQueue" />
+<SchemaParam Linked="0" Attr="6" Name="btnSubmit" />
+<SchemaParam Linked="0" Attr="7" Name="btnRefresh" />
+<SchemaParam Linked="0" Attr="8" Name="btnEdit" />
+<SchemaParam Linked="0" Attr="9" Name="btnDelete" />
+<SchemaParam Linked="0" Attr="10" Name="lbxDetail" />
+<SchemaParam Linked="0" Attr="11" Name="txtDetail" />
+<SchemaParam Linked="0" Attr="12" Name="lblTM" />
+<SchemaParam Linked="0" Attr="13" Name="btnDone" />
+<SchemaParam Linked="0" Attr="14" Name="btnDelDetail" />
+<SchemaParam Linked="0" Attr="15" Name="lblTMName" />
+<SchemaParam Linked="0" Attr="16" Name="txtHidden2" />
+<SchemaParam Linked="0" Attr="17" Name="lblQueueName" />
+<SchemaParam Linked="0" Attr="18" Name="btnFailed" />
+<SchemaParam Linked="0" Attr="19" Name="btnQueued" />
+<SchemaParam Linked="0" Attr="20" Name="btnCompl" />
+<SchemaParam Linked="0" Attr="21" Name="lbxAll" />
+<SchemaParam Linked="0" Attr="22" Name="lbxRFErr" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtDATEFrom" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="95" Height="22" AnchorRight="1256" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date range:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="22" Width="87" Height="22" AnchorRight="1168" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDateTo" Attr="2" Defaults="@DATE" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="22" Width="0" Height="22" AnchorRight="1159" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="22" Width="87" Height="22" AnchorRight="1072" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSort" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="312" Top="22" Width="79" Height="22" AnchorRight="960" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Order by:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="22" Width="167" Height="22" AnchorRight="760" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="576" Top="22" Width="0" Height="22" AnchorRight="775" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="576" Top="22" Width="0" Height="22" AnchorRight="775" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxQueue" Attr="5" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="66" Width="135" Height="22" AnchorRight="792" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Transactions in " />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="424" Top="88" Width="927" Height="220" AnchorRight="0" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnSubmit" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Repost" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="824" Top="308" Width="167" Height="22" AnchorRight="360" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnRefresh" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Refresh" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="624" Top="308" Width="167" Height="22" AnchorRight="560" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnEdit" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Edit / View" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="308" Width="167" Height="22" AnchorRight="760" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDelete" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Delete" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1024" Top="308" Width="167" Height="22" AnchorRight="160" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxDetail" Attr="10" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="352" Width="167" Height="22" AnchorRight="760" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Transaction Details:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="424" Top="374" Width="495" Height="352" AnchorRight="432" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDetail" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="726" Width="63" Height="22" AnchorRight="864" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Detail:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="632" Top="726" Width="295" Height="22" AnchorRight="424" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTM" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="592" Top="352" Width="47" Height="22" AnchorRight="712" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTM" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDone" Attr="13">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Done Update" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="748" Width="167" Height="22" AnchorRight="760" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDelDetail" Attr="14">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Delete Line" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="760" Top="748" Width="167" Height="22" AnchorRight="424" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTMName" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="664" Top="352" Width="79" Height="22" AnchorRight="608" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTMName" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden2" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="770" Width="0" Height="22" AnchorRight="1351" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="770" Width="0" Height="22" AnchorRight="1279" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQueueName" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="424" Top="44" Width="103" Height="22" AnchorRight="824" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblQueueName" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnFailed" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Failed" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="95" Height="22" AnchorRight="1256" AnchorBottom="528" BackColor1="0000FF" BackColor2="0000FF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnQueued" Attr="19">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Queued" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="308" Width="103" Height="22" AnchorRight="1104" AnchorBottom="528" BackColor1="00FFFF" BackColor2="00FFFF" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnCompl" Attr="20">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Compl." ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="296" Top="308" Width="103" Height="22" AnchorRight="952" AnchorBottom="528" BackColor1="008000" BackColor2="008000" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxAll" Attr="21" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="151" Height="22" AnchorRight="1200" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Transaction Queues" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="391" Height="220" AnchorRight="960" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxRFErr" Attr="22" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="748" Width="127" Height="22" AnchorRight="1224" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen Error log" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="770" Width="1343" Height="88" AnchorRight="8" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="1351" FormHeight="858" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[ Maintain Queued Transactions ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                                |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATION: TRANSACTION MANAGEMENT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC     = "RFGen TM"
+Private Const cTransaction  = "TIMII0100;TPOIR0100;TIMIT0900;TIMIA0100;TIMIT0100;F4312PORECEIPTS;TSOSC0200;"
+Private Const cTranText     = "Inv.Issue;PO Receive;Inv.Transfer;Inv.Adjust.;Inv.Transfer;PO Receive;SO Pick;"
+Private Const cLog          = "1;2;3;4;5;6;7;"
+Private Const cLogText      = "Macro Exec.;Error Macro;BSFN Exec.;Error BSFN;SQL Exec.;Error SQL;Error LP Lbl.;"
+
+Private msTrans   As String
+Private msOrder   As String
+Private msPath    As String
+Private msLogTxt  As String
+
+Public msQueues() As String
+
+Private Sub btnCompl_Click()
+  On Error Resume Next
+  '
+  Dim sName   As String
+  '
+  sName = lbxAll.Text & "_Completed"
+  Call BuildList(sName)
+
+End Sub
+
+Private Sub btnFailed_Click()
+  On Error Resume Next
+  '
+  Dim sName   As String
+  '
+  sName = lbxAll.Text & "_Failed"
+  Call BuildList(sName)
+
+End Sub
+
+Private Sub btnQueued_Click()
+  On Error Resume Next
+  '
+  Dim sName   As String
+  '
+  sName = lbxAll.Text
+  Call BuildList(sName)
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim iCnt    As Integer
+  Dim vTrans  As Variant
+  Dim vText   As Variant
+  Dim sTran   As String
+  Dim sText   As String
+  Dim vArray  As Variant
+  Dim iCon    As Integer
+  Dim iRefInt As Long
+  Dim mvLog     As Variant
+  Dim mvLogTxt  As Variant
+
+  Call SetDisplay()
+
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, True   ' todo - upgrade: App.SetOption removed
+
+  lblTM.Caption = ""
+  lblTMName.Caption = ""
+  lblQueueName.Caption = ""
+
+  vTrans    = Split(cTransaction,";")
+  vText     = Split(cTranText,";")
+
+  For iCnt = 0 To UBound(vTrans)
+    sTran = Trim(UCase(vTrans(iCnt)))
+    sText = Trim(UCase(vText(iCnt)))
+    msTrans = Rep(msTrans,1 ,-1, sTran)
+    msTrans = Rep(msTrans,2 ,-1, sText)
+  Next
+
+  mvLog     = Split(cLog,";")
+  mvLogTxt  = Split(cLogText,";")
+
+  For iCnt = 0 To UBound(mvLog)
+    sTran = Trim(mvLog(iCnt))
+    sText = Trim(mvLogTxt(iCnt))
+    msLogTxt = Rep(msLogTxt,1 ,-1, sTran)
+    msLogTxt = Rep(msLogTxt,2 ,-1, sText)
+  Next
+
+  lbxDetail.Visible     = False
+  txtDetail.Visible     = False
+  btnDone.Visible       = False
+  btnDelDetail.Visible  = False
+  lblTM.Caption         = ""
+  lblTMName.Caption     = ""
+
+  App.MakeList(msOrder,"Transaction" ,"Transaction","Select sort order")
+  App.MakeList(msOrder,"Date" ,"Date"       )
+  App.MakeList(msOrder,"User" ,"User"       )
+
+
+  txtDATEFrom.Text = Format(CStr(DateAdd("d", -3, Date)), "mm/dd/yyyy")
+  txtDATETo.Text   = Format(Date, "mm/dd/yyyy")
+  App.SetValue("tmFrmDate", Format(CStr(DateAdd("d", -3, Date)), "YYYYMMDD"))
+  App.SetValue("tmToDate" , Format(Date, "YYYYMMDD"))
+  App.SetValue("tmFrmDateErr", Format(CStr(DateAdd("d", -3, Date)), "YYYYMMDD") & "000000")
+  App.SetValue("tmToDateErr" , Format(Date, "YYYYMMDD") & "240000")
+
+  txtSort.Text = "Date"
+  App.SetValue("tmFile", "_Failed")
+
+  vArray = Split(SYS.GetProperty("Config", "MonTM"), "|")
+
+  iCon      = CInt(vArray(2))         ' Number Connector
+
+  ' Force to the right destination
+  If DB.UseDataSource(iCon) Then
+    msPath = Trim(SYS.ConnectionProperty(iCon,dcSourceId)) & ".dbo."
+  End If
+
+  'Code to control the Timer On this form.
+  App.TimerInterval = CLng(App.GetValue("RefInt"))  'FADTM0900 -RefInt=30000
+
+  'Enable an auto query of all failed queues on form load.
+  App.SetValue("tmQueue", "ALL")
+  App.SetValue("tmFile", "_Failed")
+
+End Sub
+
+Private Sub Form_OnTimer()
+  On Error Resume Next
+
+  Call BuildListAll()
+  Screen.Refresh
+
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+
+  iCN = App.PromptNo
+
+  If Left(RFPrompt(iCN).FieldId,3) <> "lbx" And Left(RFPrompt(iCN).FieldId,3) <> "chk" Then
+    RFPrompt(iCN).BorderStyle = DisplayStandard
+    RFPrompt(iCN).BackColor1 = cFieldFocusBC
+    RFPrompt(iCN).ForeColor = cFieldFocusFC
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+
+  iCN = App.PromptNo
+
+  If Left(RFPrompt(iCN).FieldId,3) <> "lbx" And Left(RFPrompt(iCN).FieldId,3) <> "chk" Then
+    RFPrompt(iCN).BorderStyle = DisplayTransparent
+    RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+    RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  End If
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+
+  'App.SetOption ShowHorizontalScrollBar, False   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, False   ' todo - upgrade: App.SetOption removed
+
+  ' Force to the default destination
+  DB.UseDataSource(0)
+
+End Sub
+
+Private Sub txtDATEFrom_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If IsDate(Rsp) = True Then
+    App.SetValue("tmFrmDate", Format(Rsp, "YYYYMMDD"))
+    App.SetValue("tmFrmDateErr", Format(CStr(DateAdd("d", -3, Rsp)), "YYYYMMDD") & "000000")
+    Cancel = False
+  Else
+    Cancel = True
+  End If
+
+End Sub
+
+Private Sub txtDateTo_LostFocus()
+  On Error Resume Next
+  '
+  Call BuildListAll()
+
+End Sub
+
+Private Sub txtDateTo_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If IsDate(Rsp) = True Then
+    App.SetValue("tmToDate", Format(Rsp, "YYYYMMDD"))
+    App.SetValue("tmToDateErr" , Format(Rsp, "YYYYMMDD") & "240000")
+    Cancel = False
+  Else
+    Cancel = True
+  End If
+
+End Sub
+
+Private Sub txtSort_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Rsp = App.ShowList(msOrder)
+
+End Sub
+
+Private Sub txtSort_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  App.SetValue("tmSort", Trim(Rsp))
+
+End Sub
+
+Private Sub txtHidden_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  lbxDetail.Visible    = False
+  txtDetail.Visible    = False
+  btnDone.Visible      = False
+  btnDelDetail.Visible = False
+
+End Sub
+
+Private Sub lbxQueue_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  lbxDetail.Visible       = False
+  txtDetail.Visible       = False
+  btnDone.Visible         = False
+  btnDelDetail.Visible    = False
+  lblTM.Caption = ""
+  lblTMName.Caption = ""
+
+  Screen.Refresh
+
+End Sub
+
+Private Sub lbxQueue_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim iLbCurr As Integer
+  Dim iCnt    As Integer
+  Dim iFnd    As Integer
+  Dim vArray  As Variant
+  Dim sDsp    As String
+  Dim sName   As String
+  Dim sOptn   As String
+
+  iLbCurr = lbxQueue.List.Index                 ' current line
+
+  sOptn = Mid$(Rsp,1,1)
+
+  Select Case sOptn
+    Case " "
+      Mid$(Rsp,1,1) = "1"
+    Case "1"
+      Mid$(Rsp,1,1) = " "
+    Case Else
+  End Select
+
+  vArray = Split(Rsp,"|")
+  sName = Trim(vArray(10))
+
+  iFnd = Locate(sName, msTrans, 1)
+
+  If iFnd > 0 Then
+    vArray(10) = FixLeft(Ext(msTrans, 2, iFnd), 10, " ")
+  End If
+
+  For iCnt = 0 To UBound(vArray)
+    sDsp = sDsp & vArray(iCnt) & "|"
+  Next
+
+  lbxQueue.List.RemoveItem iLbCurr                  ' remove line
+  lbxQueue.List.InsertItem Rsp, sDsp, iLbCurr          ' replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+  lbxQueue.List.Index = iLbCurr
+
+  Cancel = True                                                   ' stay on current prompt
+
+End Sub
+
+Private Sub btnSubmit_Click()
+  On Error Resume Next
+
+  Dim iOK As Integer
+
+  Call BlindExecute(iOK)
+
+End Sub
+
+Private Sub btnDelete_Click()
+  On Error Resume Next
+
+  Dim iOK  As Integer
+
+  Call BlindDelete(iOK)
+
+  App.SetFocus("txtHidden")
+
+End Sub
+
+Private Sub btnEdit_Click()
+  On Error Resume Next
+
+  Dim i         As Integer
+  Dim iCnt      As Integer
+  Dim sTM       As String
+  Dim sDsp      As String
+  Dim vArray    As Variant
+  Dim vArray1   As Variant
+  Dim oProc     As New EmbeddedProc
+
+  lbxDetail.List.Clear
+
+  vArray = Split(lbxQueue.Text,"|")
+
+  If vArray(0) = " " Then
+    lbxDetail.Visible      = True
+    txtDetail.Visible      = True
+    btnDone.Visible      = True
+    btnDelDetail.Visible = True
+    lblTM.Caption = vArray(1)
+    sTM = Trim(vArray(09))
+    lblTMName.Caption = sTM
+    App.SetValue("tmSeqNo", vArray(1))
+    vArray1 = Split(vArray(11), Chr(179))
+    oProc.Name        = sTM
+    oProc.DataSource  = gsDataSource
+    iCnt = CInt(oProc.ParamCount)
+    For i = 1 To iCnt
+      sDsp = FixLeft(oProc.ParamName(i),10, " ") & "|" & vArray1(i -1)
+      lbxDetail.List.AddItem  sDsp, sDsp
+    Next i
+    App.SetFocus("lbxDetail")
+  Else
+    App.SetFocus("lbxQueue")
+  End If
+
+End Sub
+
+Private Sub btnRefresh_Click()
+  On Error Resume Next
+
+  App.SetFocus("txtHidden")
+
+End Sub
+
+Private Sub lbxDetail_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim vArray As Variant
+
+  vArray = Split(Rsp,"|")
+
+  txtDetail.Caption = vArray(0)
+  txtDetail.Defaults = CStr(vArray(1)) & ";O"
+
+End Sub
+
+Private Sub txtDetail_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sDsp    As String
+  Dim iLbCurr As Integer
+
+  Cancel = True
+
+  sDsp = FixLeft(txtDetail.Caption, 10, " ") & "|" & Trim(Rsp)
+
+  iLbCurr = lbxDetail.List.Index            ' current line
+
+  lbxDetail.List.RemoveItem iLbCurr             ' remove line
+  lbxDetail.List.InsertItem sDsp, sDsp,iLbCurr     ' replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+  lbxDetail.List.Index = iLbCurr
+
+  Cancel = False
+
+  App.SetFocus("lbxDetail")
+
+End Sub
+
+Private Sub btnDone_Click()
+  On Error Resume Next
+
+  Dim nSeqNo  As Long
+  Dim iLbCurr As Integer
+  Dim nLine   As Integer
+  Dim nErrNo  As Integer
+  Dim vArray  As Variant
+  Dim iLblMax As Integer
+  Dim sVal    As String
+  Dim sData   As String
+  Dim sSQL    As String
+  Dim emProc  As New EmbeddedProc
+
+  emProc.Name       = lblTMName.Caption
+  emProc.DataSource = gsDataSource
+  emProc.QueueName  = App.GetValue("tmQueue")
+
+  iLblMax = lbxDetail.List.Count           'max line
+
+  For iLbCurr = 1 To iLblMax
+    lbxDetail.List.Index = iLbCurr
+    sVal = lbxDetail.Text                 'get current value
+    vArray = Split(sVal,"|")
+    vArray(1) = Replace(vArray(1),Chr(181),Chr(1))    'just in case is has a dyn.array inside
+    vArray(1) = Replace(vArray(1),Chr(182),Chr(2))
+    vArray(1) = Replace(vArray(1),Chr(183),Chr(3))
+    emProc.Param(iLbCurr) = vArray(1)
+  Next iLbCurr
+
+  If Not emProc.Queue Then Exit Sub
+
+  nSeqNo = CLng(App.GetValue("tmSeqNo"))
+
+  sSQL = "delete from " & App.GetValue("tmQueue") & "_Failed" & " where SeqNo = " & nSeqNo
+  DB.Execute(sSQL)
+
+  sSQL = "delete from OI001 where ILQNAME = 'RFQueue' and ILSEQNO = " & nSeqNo
+  DB.Execute(sSQL)
+
+  App.SetFocus("txtHidden")
+
+End Sub
+
+Private Sub btnDelDetail_Click()
+  On Error Resume Next
+
+  Dim nSeqNo As Long
+  Dim sSQL   As String
+
+  nSeqNo = CLng(App.GetValue("tmSeqNo"))
+
+  sSQL = "delete from " & App.GetValue("tmQueue") & "_Failed" & " where SeqNo = " & nSeqNo
+  DB.Execute(sSQL)
+
+  sSQL = "delete from OI001 where ILQNAME = 'RFQueue' and ILSEQNO = " & nSeqNo
+  DB.Execute(sSQL)
+
+  App.SetFocus("txtHidden")
+
+End Sub
+
+Private Sub txtHidden2_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  App.SetFocus("lbxDetail")
+
+End Sub
+
+Public Sub BlindExecute(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim iLbCurr   As Integer
+  Dim nErrNo    As Integer
+  Dim vArray    As Variant
+  Dim iLblMax   As Integer
+  Dim sVal      As String
+  Dim sSQL      As String
+  Dim sQueName  As String
+
+  sQueName = App.GetValue("tmQueue")
+
+  Cancel = True
+
+  iLblMax = lbxQueue.List.Count                'max line
+
+  For iLbCurr = 1 To iLblMax
+    lbxQueue.List.Index = iLbCurr
+    sVal = lbxQueue.Text
+    If Left(sVal, 1) = 1 Then                              'get current value
+      vArray = Split(sVal,"|")
+      sSQL = "insert into " & sQueName & " select SEQNO,TRANDATE,TIMECREATED,STATUS,TYPE,SOURCE,NAME," & _
+             "RECORD,FORMID,USERID,DEVICENO,IPADDRESS from " & sQueName & "_Failed" & _
+             " where SeqNo = " & vArray(1)
+      nErrNo = DB.Execute(sSQL)
+      If nErrNo = 0 Then
+        sSQL = "delete from " & sQueName & "_Failed" & " where SeqNo = " & vArray(1)
+        DB.Execute(sSQL)
+        lbxQueue.List.RemoveItem iLbCurr           'remove line
+        Mid$(sVal,1,1) = "*"
+        lbxQueue.List.InsertItem sVal, sVal,iLbCurr   'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+        lbxQueue.List.Index = iLbCurr
+        Screen.Refresh
+      End If
+    End If
+  Next iLbCurr
+
+  Cancel = False
+
+End Sub
+
+Public Sub BlindDelete(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim iLbCurr   As Integer
+  Dim vArray    As Variant
+  Dim iLblMax   As Integer
+  Dim sVal      As String
+  Dim sSQL      As String
+  Dim sQueName  As String
+
+  sQueName = App.GetValue("tmQueue")
+
+  Cancel = True
+
+  iLblMax = lbxQueue.List.Count                    ' max line
+
+  For iLbCurr = 1 To iLblMax
+    lbxQueue.List.Index = iLbCurr
+    sVal = lbxQueue.Text
+    If Left(sVal, 1) = 1 Then                                  ' get current value
+      vArray = Split(sVal,"|")
+      sSQL = "delete from " & sQueName & "_Failed" & " where SeqNo = " & vArray(1)
+      DB.Execute(sSQL)
+      lbxQueue.List.RemoveItem iLbCurr                 ' remove line
+      Mid$(sVal,1,1) = "*"
+      lbxQueue.List.InsertItem sVal, sVal,iLbCurr         ' replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+      lbxQueue.List.Index = iLbCurr
+      Screen.Refresh
+    End If
+  Next iLbCurr
+
+  Cancel = False
+
+End Sub
+
+
+Private Function BuildList (ByRef sName As String)
+  On Error Resume Next
+
+  Dim rs        As ADODB.Recordset
+  Dim emProc    As New EmbeddedProc
+  Dim sDsp      As String
+  Dim sVal      As String
+  Dim sSQL      As String
+  Dim szData()  As Byte
+  Dim iFnd      As Integer
+  Dim sDateF    As String
+
+  Dim sId       As String
+  Dim sRecord   As String
+  Dim i         As Integer
+  Dim iCnt      As Integer
+  Dim iRcd      As Integer
+  Dim iCnt2     As Integer
+  Dim iRcd2     As Integer
+  Dim sDateT    As String
+  Dim vArray    As Variant
+  '
+  Dim sSeqNo    As String
+  Dim sTranDate As String
+  Dim sTrans    As String
+  Dim sUser     As String
+  Dim sData     As String
+  Dim sTM       As String
+  '
+  Dim sFld      As String
+  Dim sDOCO     As String
+  Dim sDCTO     As String
+  Dim sLNID     As String
+  Dim sItem     As String
+  Dim sSearch   As String
+  Dim sLike     As String
+  Dim sOrderBy  As String
+
+  Dim vData     As Variant
+  Dim sRout     As String
+  Dim sStop     As String
+  '
+  lbxQueue.List.Clear
+  lbxQueue.List.AddItem "", "Retrieving data . . ."
+  lblQueueName.Caption = sName
+  '
+  Screen.Refresh
+  lbxQueue.List.Clear
+  '
+  sDsp = "O|" & FixLeft("Seq.",8," ") & "|" & FixLeft("Rt.", 3, " ") & "|" & FixLeft("St", 2, " ") & "|" & FixLeft("Item",giLenItem," ")
+  sDsp = sDsp & "|" & FixLeft("Date",20," ") & "|" & FixRight("Doco",8," ") & "|" & FixLeft("DT",2," ") & "|" & FixLeft("Line",7," ")
+  sDsp = sDsp & "|" & FixLeft("Trans",15," ") & "|" & FixLeft("User",10," ")& "|" & FixLeft("Data",500," ")
+  '
+  lbxQueue.Caption = sDsp
+  '
+  sDateF = App.GetValue("tmFrmDate")
+  sDateT = App.GetValue("tmToDate")
+  '
+  ' create Search string
+  '
+  If Len(App.GetValue("tmTask")) > 0 Then
+    If Len(App.GetValue("tmTrip")) > 0 Then       ' search Trip and Task
+      sSearch = Trim(App.GetValue("tmTrip")) & "000" & Chr(6) & Trim(App.GetValue("tmTask"))
+      sLike   = " and Record LIKE '" & sSearch & "%' "
+    Else                                        ' search Task only
+      sSearch = Trim(App.GetValue("tmTrip")) & "000" & Chr(6) & Trim(App.GetValue("tmTask"))
+      sLike   = " and Record LIKE '%" & Chr(6) & sSearch & Chr(6) & "%' "
+    End If
+  End If
+  '
+  ' create Order By
+  '
+  Select Case App.GetValue("tmSort")
+    Case "Transaction"
+      sOrderBy = " order by Name, SeqNo DESC "
+    Case "Date"
+      sOrderBy = " order by SeqNo DESC "
+    Case "User"
+      sOrderBy = " order by UserId, SeqNo DESC "
+  End Select
+
+  '
+  sSQL = "select * from " & sName & " where TranDate >= '" & sDateF & "' and TranDate <= '" & sDateT & "' "
+  '
+  If Len(sLike)    > 0 Then sSQL = sSQL & sLike
+  If Len(sOrderBy) > 0 Then sSQL = sSQL & sOrderBy
+  '
+  '
+  Set rs = New ADODB.Recordset
+  Set rs = DB.OpenResultset(sSQL)
+  iRcd = rs.RecordCount
+  For iCnt = 1 To iRcd
+    If Not rs.EOF And Len(rs.Fields(0).Value) > 0 Then
+      sSeqNo    = FixLeft(rs.Fields(0).Value,8," ")
+      sTranDate = Format(rs.Fields(2).Value, "MM/DD/YY HH:NN:SS AM/PM")   'FixLeft(rs.Fields(2).Value,23," ")
+      sTrans    = FixLeft(rs.Fields(6).Value,15," ")
+      sUser     = FixLeft(rs.Fields(9).Value,10," ")
+      sData     = Trim(rs.Fields(7).Value)
+      sData = Replace(sData,Chr(6),Chr(179))
+      sData = Replace(sData,Chr(1),Chr(181))    'just in case there is a dynamic array inside
+      sData = Replace(sData,Chr(2),Chr(182))
+      sData = Replace(sData,Chr(3),Chr(183))
+      vData = Split(sData, Chr(179))
+      sRout = FixLeft(vData(0), 3, " ")
+      sStop = FixLeft(vData(1), 2, " ")
+      sTM = Trim(UCase(sTrans))
+      emProc.Name = sTM
+      vArray = Split(sData, Chr(179))
+      iRcd2 = UBound(vArray)
+      sFld  = ""
+      sDOCO = ""
+      sDCTO = ""
+      sLNID = ""
+      sItem = ""
+      For iCnt2 = 0 To iRcd2
+        sFld = Trim(Mid(emProc.ParamName(iCnt2 +1),3,10))
+        Select Case sFld
+          Case "DOCO"
+            sDOCO = vArray(iCnt2)
+          Case "DCTO"
+            sDCTO = vArray(iCnt2)
+          Case "LNID"
+            sLNID = vArray(iCnt2)
+          Case "LITM"
+            sItem = vArray(iCnt2)
+          Case Else
+        End Select
+      Next iCnt2
+      sDOCO = FixRight(sDOCO,8," ")
+      sDCTO = FixLeft(sDCTO,2," ")
+      If Len(Trim(sLNID)) > 0 Then
+        sLNID = FixRight(Format(sLNID,"###.000"),7," ")
+      Else
+        sLNID = "       "
+      End If
+      sItem = FixLeft(sItem,giLenItem," ")
+      sName = Trim(UCase(sTrans))
+      iFnd = Locate(sName,msTrans,1)
+      If iFnd > 0 Then sName = Ext(msTrans,2,iFnd)
+      sName = FixLeft(sName,15," ")
+      sDsp = " |" & sSeqNo & "|" & sRout & "|" & sStop & "|" & sItem & "|" & sTranDate & "|"
+      sDsp = sDsp & sDOCO & "|" & sDCTO & "|" & sLNID & "|" & sTrans & "|" & sUser & "|" & sData
+      sVal = " |" & sSeqNo & "|" & sRout & "|" & sStop  & "|"& sItem & "|" & sTranDate & "|"
+      sVal = sDsp & sDOCO & "|" & sDCTO & "|" & sLNID & "|" & sTrans & "|" & sUser & "|" & sData
+  '          If i = 1 And iCnt = 1 Then
+  '            lbxQueue.List.Clear
+  '            Screen.Refresh
+  '          End If
+      lbxQueue.List.AddItem sVal, sDsp
+      rs.MoveNext
+    End If
+  Next iCnt
+
+  lbxQueue.List.AddItem "", "... End of data"
+
+  rs.Close
+  rs = Nothing
+
+  Screen.Refresh
+
+End Function
+
+Private Function BuildListAll
+  On Error Resume Next
+  '
+  Dim sDateF    As String
+  Dim sDateT    As String
+  Dim sData     As String
+  Dim sList     As String
+  Dim sDsp      As String
+  Dim sQueue    As String
+  Dim sName     As String
+  Dim iCnt      As Integer
+  Dim iRcd      As Integer
+  Dim iFnd      As Integer
+  Dim sRcd      As String
+  Dim sSQL      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sCols1    As String
+  Dim sRows1    As String
+  Dim rs        As ADODB.Recordset
+
+  App.TimerEnabled = False
+  '
+  lbxAll.List.Clear
+  lbxAll.List.AddItem "", "Name................  Failed  Queued  Compl."
+  lbxRFErr.List.Clear
+  '
+  sDateF = App.GetValue("tmFrmDate")
+  sDateT = App.GetValue("tmToDate")
+
+  sSQL = "select Id from RFQueue_Control where Id <> 'VERSION' order by Id"
+  DB.Execute(sSQL,sCols1,sRows1)
+  '
+  iRcd = DB.Count(sRows1)
+
+  For iCnt = 1 To iRcd
+    sQueue = Trim(UCase(DB.Extract(sCols1,sRows1,iCnt,1)))
+    If Trim(sQueue) <> "" Then
+      'Obtain count of FAILED.
+      sName = sQueue & "_Failed"
+      sSQL = "select count(*) from " & sName & " where TranDate >= '" & sDateF & "' and TranDate <= '" & sDateT & "' "
+      DB.Execute (sSQL, sCols, sRows)
+      sRcd = FixRight(Val(sRows), 6, " ")
+      sDsp = FixLeft(sQueue,20,".") & FixRight(CStr(sRcd),8," ")
+      'Obtain count of QUEUED
+      sName = sQueue
+      sSQL = "select count(*) from " & sName & " where TranDate >= '" & sDateF & "' and TranDate <= '" & sDateT & "' "
+      DB.Execute (sSQL, sCols, sRows)
+      sRcd = FixRight(Val(sRows), 6, " ")
+      sDsp = sDsp & FixRight(CStr(sRcd),8," ")
+      'Obtain count of COMPLETED
+      sName = sQueue & "_Completed"
+      sSQL = "select count(*) from " & sName & " where TranDate >= '" & sDateF & "' and TranDate <= '" & sDateT & "' "
+      DB.Execute (sSQL, sCols, sRows)
+      sRcd = FixRight(Val(sRows), 6, " ")
+      sDsp = sDsp & FixRight(CStr(sRcd),8," ")
+      lbxAll.List.AddItem sQueue, sDsp
+    End If
+  Next
+
+  lbxAll.List.AddItem "", "...... Last update: " & CStr(Now)
+  '
+  sSQL = "select * from RFlog where RFERR in ('2','4','6') and RFDATE Between '%tmFrmDateErr' and '%tmToDateErr' order by RFUKID DESC"
+  '
+  Set rs = New ADODB.Recordset
+  Set rs = DB.OpenResultset(sSQL)
+  iRcd = rs.RecordCount
+  For iCnt = 1 To iRcd
+    If Not rs.EOF And Len(rs.Fields(6).Value) > 0 Then
+      sDsp  = Left(CStr(rs.Fields(6).Value),4) & "." & Mid(CStr(rs.Fields(6).Value),5,2) & "." & Mid(CStr(rs.Fields(6).Value),7,2) & " "
+      sDsp  = sDsp & Mid(CStr(rs.Fields(6).Value),9,2) & ":" & Mid(CStr(rs.Fields(6).Value),11,2) & ":" & Mid(CStr(rs.Fields(6).Value),13,2)
+      iFnd= Locate(Trim(rs.Fields(1).Value), msLogTxt, 1)
+      sDsp  = sDsp & "|" & FixLeft(Ext(msLogTxt,2,iFnd),12," ")
+      sDsp  = sDsp & "|" & rs.Fields(2).Value
+      sData = Left(rs.Fields(3).Value,80)
+      sData = Replace(sData,Chr(6),Chr(179))
+      sData = Replace(sData,Chr(1),Chr(181))    'just in case there is a dynamic array inside
+      sData = Replace(sData,Chr(2),Chr(182))
+      sData = Replace(sData,Chr(3),Chr(183))
+      sDsp  = sDsp & "|" & sData
+      lbxRFErr.List.AddItem "", sDsp
+      rs.MoveNext
+    End If
+  Next iCnt
+  '
+  App.TimerEnabled = True
+
+  Screen.Refresh
+
+End Function
+</Code>

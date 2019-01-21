@@ -1,0 +1,371 @@
+﻿<Record FileDesc="FA - Create Fixed Asset" FileVersion="5.0.8.0" Desc="FA - Create Fixed Asset">
+<Param Name="tmCO" />
+<Param Name="tmITEM" />
+<Param Name="tmUNIT" />
+<Param Name="tmPARENT" />
+<Param Name="tmSERIAL" />
+<Param Name="tmMCU" />
+<Param Name="tmDESC1" />
+<Param Name="tmDESC2" />
+<Param Name="tmDESC3" />
+<Param Name="tmACCOUNT" />
+<Param Name="tmLOCATION" />
+<Param Name="tmAcObj" />
+<Param Name="tmAcSub" />
+<Param Name="tmQTY" />
+<Param Name="tmPGM" />
+<Param Name="tmVERSION" />
+<Param Name="tmDATE" />
+<Param Name="tmSTATUS" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: FA - CREATE FIXED ASSET
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TFACR0100"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmITEM As Variant, ByRef tmUNIT As Variant, ByRef tmPARENT As Variant, ByRef tmSERIAL As Variant, ByRef tmMCU As Variant, ByRef tmDESC1 As Variant, ByRef tmDESC2 As Variant, ByRef tmDESC3 As Variant, ByRef tmACCOUNT As Variant, ByRef tmLOCATION As Variant, ByRef tmAcObj As Variant, ByRef tmAcSub As Variant, ByRef tmQTY As Variant, ByRef tmPGM As Variant, ByRef tmVERSION As Variant, ByRef tmDATE As Variant, ByRef tmSTATUS As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess        As Boolean
+  Dim sErrId          As String
+  Dim sErrDesc        As String
+
+  Dim sGLDate         As String
+  Dim sTNDate         As String
+
+  Dim sSql            As String
+  Dim sCols           As String
+  Dim sRows           As String
+
+  Dim sAccountNr      As String
+  Dim sMajAcClass     As String
+  Dim sDeprAcMCU      As String
+  Dim sDeprAcObj      As String
+  Dim sDeprExAcMCU    As String
+  Dim sDeprExAcObj    As String
+  Dim sDeprRevMCU     As String
+  Dim sDeprRevObj     As String
+
+  '
+  Dim emX0010GetNextNumber        As New EmbeddedProc
+  Dim emCompressCharacterString   As New EmbeddedProc
+  Dim emF1201ProcessMasterData    As New EmbeddedProc
+  Dim emGetErrorMessage           As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Transaction = False
+  '
+  Call SetEnvironment()  ' in case macro is running in TM
+
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  ' Get Account numbers from F12002
+  sSql = "select * from F12002 where FDCO = '" & tmCO & "' and FDDAOB = '" & tmACCOUNT & "' "
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", "F12002", Replace(sSql, "'", "`"))          				  
+
+  If Len(sRows) = 0 Then
+    tmERRTEXT = "No records found in F12002!"
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F12002", Replace(sSql, "'", "`"))           
+    GoTo ExitMe
+  Else
+    sMajAcClass   = DB.Extract(sCols,sRows,1,"FDACL1")
+    sDeprAcMCU    = DB.Extract(sCols,sRows,1,"FDDMCU")
+    sDeprAcObj    = DB.Extract(sCols,sRows,1,"FDDOBJ")
+    sDeprExAcMCU  = DB.Extract(sCols,sRows,1,"FDXMCU")
+    sDeprExAcObj  = DB.Extract(sCols,sRows,1,"FDXOBJ")
+    sDeprRevMCU   = DB.Extract(sCols,sRows,1,"FDRMCU")
+    sDeprRevObj   = DB.Extract(sCols,sRows,1,"FDROBJ")
+  End If
+
+  ' Account number
+  'sAccountNr = tmLOCATION & "." & tmAcObj
+  sAccountNr = Trim(tmMCU) & "." & tmAcObj
+
+  If Len(Trim(tmAcSub)) > 0 Then
+    sAccountNr = sAccountNr & "." & tmAcSub
+  End If
+
+  If tmITEM = 0 Then
+    '--------------------'
+    ' X0010GetNextNumber '
+    '--------------------'
+    emX0010GetNextNumber.Name = "X0010GetNextNumber"
+    emX0010GetNextNumber.Param("SystemCode")              = "12"
+    emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 1
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+    If Not emX0010GetNextNumber.Execute Then
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+      GoTo ExitMe
+    End If
+    tmITEM = emX0010GetNextNumber.Param("NextNumber001")
+  End If
+
+  '-------------------------'
+  ' CompressCharacterString '
+  '-------------------------'
+  emCompressCharacterString.Name  = "CompressCharacterString"
+  '
+  emCompressCharacterString.Param("NameAlpha")            = tmDESC1
+  emCompressCharacterString.Param("DescripCompressed")    = " "
+  emCompressCharacterString.Param("ABSearchMode")         = " "
+  emCompressCharacterString.Param("LanguageType")         = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emCompressCharacterString.Name, "", emCompressCharacterString)      
+  '
+  If Not emCompressCharacterString.Execute Then
+    sErrDesc = "CompressCharacterString"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emCompressCharacterString.Name, "", emCompressCharacterString, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+  '------------------------'
+  ' F1201ProcessMasterData '
+  '------------------------'
+  emF1201ProcessMasterData.Name = "F1201ProcessMasterData"
+
+  emF1201ProcessMasterData.Param("ActionCode")                      = "A"
+  emF1201ProcessMasterData.Param("UpdateMasterFile")                = "1"
+  emF1201ProcessMasterData.Param("ProcessEdits")                    = "1"
+  emF1201ProcessMasterData.Param("SuppressErrorMessage")            = "1"
+  emF1201ProcessMasterData.Param("ErrorMessageID")                  = " "
+  emF1201ProcessMasterData.Param("CallingProgramVersion")           = tmVERSION
+  emF1201ProcessMasterData.Param("CallingProgramId")                = "EP1201"
+  emF1201ProcessMasterData.Param("ProcessModule")                   = "FA"
+  emF1201ProcessMasterData.Param("Company")                         = tmCO
+  emF1201ProcessMasterData.Param("ItemNumber")                      = tmITEM
+  emF1201ProcessMasterData.Param("UnitNumber")                      = tmUNIT
+  If Len(Trim(tmPARENT)) = 0 Then
+    emF1201ProcessMasterData.Param("ParentNumber")                  = tmITEM
+  Else
+    emF1201ProcessMasterData.Param("ParentNumber")                  = tmPARENT
+  End If
+  emF1201ProcessMasterData.Param("SerialNumber")                    = tmSERIAL
+  emF1201ProcessMasterData.Param("SequenceNumber")                  = 0
+  emF1201ProcessMasterData.Param("MajorAccountingClass")            = sMajAcClass
+  emF1201ProcessMasterData.Param("MajorEquipmentClass")             = " "
+  emF1201ProcessMasterData.Param("Manufacturer")                    = " "
+  emF1201ProcessMasterData.Param("ModelYear")                       = " "
+  emF1201ProcessMasterData.Param("UsageMilesOrHours")               = " "
+  emF1201ProcessMasterData.Param("BusinessUnit")                    = tmMCU
+  emF1201ProcessMasterData.Param("Description")                     = tmDESC1
+  emF1201ProcessMasterData.Param("Description_02")                  = tmDESC2
+  emF1201ProcessMasterData.Param("Description_03")                  = tmDESC3
+  emF1201ProcessMasterData.Param("CompressedDescription")           = emCompressCharacterString.Param("DescripCompressed")
+  emF1201ProcessMasterData.Param("DateAcquired")                    = tmDATE
+  emF1201ProcessMasterData.Param("DateDisposedOrRetired")           = ""
+  emF1201ProcessMasterData.Param("EquipmentStatus")                 = tmSTATUS
+  emF1201ProcessMasterData.Param("NewOrUsedAcquisition")            = "N"
+  emF1201ProcessMasterData.Param("EstimatedSalvageValue")           = 0
+  emF1201ProcessMasterData.Param("ReplacementCost")                 = 0
+  emF1201ProcessMasterData.Param("LastYearsReplacementCost")        = 0
+  emF1201ProcessMasterData.Param("AssetCostAcctBusinessUnit")       = tmMCU
+  emF1201ProcessMasterData.Param("AssetCostAcctObject")             = tmACCOUNT
+  emF1201ProcessMasterData.Param("AssetCostAcctSubsidiary")         = " "
+  emF1201ProcessMasterData.Param("AccumDeprAcctBusinessUnit")       = sDeprAcMCU
+  emF1201ProcessMasterData.Param("AccumDeprAcctObject")             = sDeprAcObj
+  emF1201ProcessMasterData.Param("AccumDeprAcctSubsidiary")         = " "
+  emF1201ProcessMasterData.Param("DepreciationExpBusinessUnit")     = tmMCU       'sDeprExAcMCU
+  emF1201ProcessMasterData.Param("DepreciationExpObject")           = sDeprExAcObj
+  emF1201ProcessMasterData.Param("DepreciationExpSubsidiary")       = " "
+  emF1201ProcessMasterData.Param("AssetRevenueBusinessUnit")        = tmMCU
+  emF1201ProcessMasterData.Param("AssetRevenueObject")              = sDeprRevObj
+  emF1201ProcessMasterData.Param("AssetRevenueSubsidiary")          = " "
+  emF1201ProcessMasterData.Param("CurrentItemQty")                  = tmQTY
+  emF1201ProcessMasterData.Param("OriginalItemQty")                 = tmQTY
+  emF1201ProcessMasterData.Param("TaxEntity")                       = 0
+  emF1201ProcessMasterData.Param("ITC")                             = 0
+  emF1201ProcessMasterData.Param("InvestmentTaxCredit")             = 0
+  emF1201ProcessMasterData.Param("FinanceMethod")                   = " "
+  emF1201ProcessMasterData.Param("ITCOwnedFlagYN")                  = "Y"
+  emF1201ProcessMasterData.Param("PurchaseOption")                  = " "
+  emF1201ProcessMasterData.Param("PurchaseOptionPrice")             = 0
+  emF1201ProcessMasterData.Param("PurchaseOptionMaxAmount")         = 0
+  emF1201ProcessMasterData.Param("LessorRenterOrMortgagor")         = 0
+  emF1201ProcessMasterData.Param("ContractDate")                    = ""
+  emF1201ProcessMasterData.Param("DateExpired")                     = ""
+  emF1201ProcessMasterData.Param("MonthlyPayment")                  = 0
+  emF1201ProcessMasterData.Param("Remark")                          = " "
+  emF1201ProcessMasterData.Param("Remark_Line2")                    = " "
+  emF1201ProcessMasterData.Param("PolicyNumber")                    = " "
+  emF1201ProcessMasterData.Param("InsuranceCompany")                = " "
+  emF1201ProcessMasterData.Param("InsurancePremium")                = 0
+  emF1201ProcessMasterData.Param("InsuranceValue")                  = 0
+  emF1201ProcessMasterData.Param("ValueIndex")                      = 0
+  emF1201ProcessMasterData.Param("Location")                        = tmLOCATION
+  emF1201ProcessMasterData.Param("State")                           = " "
+  emF1201ProcessMasterData.Param("StartEffectiveDateForLocChg")     = ""
+  emF1201ProcessMasterData.Param("ExpectedReturnDate")              = ""
+  emF1201ProcessMasterData.Param("ClearedY")                        = " "
+  emF1201ProcessMasterData.Param("Explanation")                     = " "
+  emF1201ProcessMasterData.Param("ExplanationRemark")               = " "
+  emF1201ProcessMasterData.Param("AddressNumber")                   = 0
+  emF1201ProcessMasterData.Param("CategoryCode6")                   = " "
+  emF1201ProcessMasterData.Param("CategoryCode7")                   = " "
+  emF1201ProcessMasterData.Param("CategoryCode8")                   = " "
+  emF1201ProcessMasterData.Param("CategoryCode9")                   = " "
+  emF1201ProcessMasterData.Param("RateGroup")                       = " "
+  emF1201ProcessMasterData.Param("StandardFuelConsumption")         = 0
+  emF1201ProcessMasterData.Param("DispAccumDepr_CC")                = " "
+  emF1201ProcessMasterData.Param("DispAccumDepr_Obj")               = " "
+  emF1201ProcessMasterData.Param("DispAccumDepr_Sub")               = " "
+  emF1201ProcessMasterData.Param("UnitNo")                          = " "
+  emF1201ProcessMasterData.Param("ParentItemNumber")                = 0
+  emF1201ProcessMasterData.Param("2ndItemNumber")                   = " "
+  emF1201ProcessMasterData.Param("AFENumber")                       = " "
+  emF1201ProcessMasterData.Param("JobType")                         = " "
+  emF1201ProcessMasterData.Param("JobStep")                         = " "
+  emF1201ProcessMasterData.Param("UnionCode")                       = " "
+  emF1201ProcessMasterData.Param("SubledgerInactiveCode")           = " "
+  emF1201ProcessMasterData.Param("CategoryCode20")                  = " "
+  emF1201ProcessMasterData.Param("CatagoryCode11")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode12")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode13")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode14")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode15")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode16")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode17")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode18")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode19")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode21")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode22")                  = " "
+  emF1201ProcessMasterData.Param("CategoryCode23")                  = " "
+  emF1201ProcessMasterData.Param("AllowWorkOrder")                  = "1"
+  emF1201ProcessMasterData.Param("Criticality")                     = 0
+  emF1201ProcessMasterData.Param("WarrantyFlag")                    = " "
+  emF1201ProcessMasterData.Param("WarrantyExpiration")              = ""
+  emF1201ProcessMasterData.Param("PurchaseOptionCreditPct")         = 0
+  emF1201ProcessMasterData.Param("PolicyRenewalMonth")              = 0
+  emF1201ProcessMasterData.Param("DateLastChanged")                 = ""
+  emF1201ProcessMasterData.Param("ProgramIDForProcOpt")             = tmPGM
+  emF1201ProcessMasterData.Param("VersionForProcOpt")               = tmVERSION
+  emF1201ProcessMasterData.Param("AccountNumber")                   = sAccountNr
+  emF1201ProcessMasterData.Param("ProductModel")                    = ""
+  emF1201ProcessMasterData.Param("UpdateChildStatusOnChange")       = ""
+  emF1201ProcessMasterData.Param("UpdateChildBUOnChange")           = ""
+  emF1201ProcessMasterData.Param("StartEffectiveTimeForStatChg")    = 0
+  emF1201ProcessMasterData.Param("AssetMasterMBFCacheName")         = ""
+  emF1201ProcessMasterData.Param("EquipTagMBFCacheName")            = ""
+  emF1201ProcessMasterData.Param("AutomaticCleanup")                = "1"
+  emF1201ProcessMasterData.Param("StartEffectiveForParentChg")      = ""
+  emF1201ProcessMasterData.Param("StartEffectiveForStatusChg")      = tmDATE
+  emF1201ProcessMasterData.Param("StartEffectiveForAddrNumChg")     = ""
+  emF1201ProcessMasterData.Param("BeginTimeForAddrNumChg")          = 0
+  emF1201ProcessMasterData.Param("UpdateChildrenOnAddrChg")         = ""
+  emF1201ProcessMasterData.Param("Country")                         = ""
+  emF1201ProcessMasterData.Param("Branch")                          = ""
+  emF1201ProcessMasterData.Param("ProductFamily")                   = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1201ProcessMasterData.Name, "", emF1201ProcessMasterData)      
+  '
+  If Not emF1201ProcessMasterData.Execute Then
+    GoTo ExitMe
+  End If
+  '
+  If Trim(emF1201ProcessMasterData.Param("ErrorMessageId")) <> "" Then
+    tmERRID = emF1201ProcessMasterData.Param("ErrorMessageId")
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1201ProcessMasterData.Name, "", emF1201ProcessMasterData, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+'-------'
+' Exits '
+'-------'
+ExitMe:
+  If tmERRID <> "" Then
+    emGetErrorMessage.Name       = "GetErrorMessageGlossaryText"
+    emGetErrorMessage.LogMode = LogNever
+    emGetErrorMessage.DebugLog   = cJDELogPath
+    emGetErrorMessage.Param("ErrorMessageID")   = tmERRID
+    emGetErrorMessage.Execute
+    tmERRTEXT = tmERRID & "  " & emGetErrorMessage.Param("GlossaryText_500Chars")
+  End If
+  '
+  Set emX0010GetNextNumber        = Nothing
+  Set emF1201ProcessMasterData    = Nothing
+  Set emGetErrorMessage           = Nothing
+  '
+  If Len(Trim(sErrDesc)) > 0 Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+    Transaction = True
+  End If
+
+World:
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  SM.GoToScreen("HFACR0100")
+  SM.SendTextAlt 23, 3, "A"
+  SM.SendTextAlt 23, 4, tmITEM
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 51, 4, tmDESC1
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 5, tmUNIT
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 51, 5, tmDESC2
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 51, 6, tmDESC3
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 7, tmSERIAL
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 9, tmCO
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 10, tmMCU
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 11, tmMCU
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 36, 11, tmAcObj
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 43, 11, tmAcSub
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 12, tmDATE
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 14, tmLOCATION
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 17, tmSTATUS
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 23, 18, tmQTY
+  SM.SendKey KeyEnter
+
+End Function
+</Code>

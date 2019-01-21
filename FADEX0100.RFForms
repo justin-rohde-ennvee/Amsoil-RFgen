@@ -1,0 +1,104 @@
+﻿<Record FileDesc="ADM - Example User Message if Queue failed" FileVersion="5.0.8.0" Desc="ADM - Example User Message if Queue failed" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Unlinked1&vm;Label1&vm;Label2&vm;Label3&vm;Label4">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Unlinked1" />
+<SchemaParam Linked="0" Attr="2" Name="Label1" />
+<SchemaParam Linked="0" Attr="3" Name="Label2" />
+<SchemaParam Linked="0" Attr="4" Name="Label3" />
+<SchemaParam Linked="0" Attr="5" Name="Label4" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="Unlinked1" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="0" Height="22" AnchorRight="232" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="87" Height="22" AnchorRight="153" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label1" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="215" Height="22" AnchorRight="25" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Hit Enter to submit a test" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label2" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="231" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Transaction Macro to RFQueue" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label3" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="231" Height="22" AnchorRight="9" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="TM returns a message to the " />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label4" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="167" Height="22" AnchorRight="73" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="active user session." />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                                |
+' -------------------------------------------------------------------------------
+'
+Option Explicit
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  
+
+End Sub
+
+Private Sub Unlinked1_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim emProc1 As EmbeddedProc
+  '
+  Set emProc1 = New EmbeddedProc
+  '
+  emProc1.Name = "TADMExFailed"
+  emProc1.DataSource = "JDE"
+  '
+  emProc1.Param("tmTDSC")     = "Test RFgen TM"
+  emProc1.Param("tmUSER")     = App.User
+  emProc1.Param("tmPGM")      = "Test"
+  emProc1.Param("tmZVERSION") = "ZJDE0001"
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc1.QueueName = RFQBalance("", 1)
+
+    If Not emProc1.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+    End If
+  Else
+    emProc1.Execute
+  End If
+  '
+  App.ExitForm
+
+
+End Sub
+</Code>

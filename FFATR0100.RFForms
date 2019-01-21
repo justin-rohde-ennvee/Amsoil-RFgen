@@ -1,0 +1,572 @@
+﻿<Record FileDesc="FA - Transfer Fixed Asset" FileVersion="5.0.8.0" Desc="FA - Transfer Fixed Asset" Group="FA" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtLocation&vm;txtAssetNumber&vm;txtUnitNumber&vm;Label1&vm;lblDesc1&vm;lblDesc2&vm;lblSerial&vm;txtToLocn&vm;txtDate&vm;txtTime&vm;txtAccept&vm;lblQty">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtLocation" />
+<SchemaParam Linked="0" Attr="2" Name="txtAssetNumber" />
+<SchemaParam Linked="0" Attr="3" Name="txtUnitNumber" />
+<SchemaParam Linked="0" Attr="4" Name="Label1" />
+<SchemaParam Linked="0" Attr="5" Name="lblDesc1" />
+<SchemaParam Linked="0" Attr="6" Name="lblDesc2" />
+<SchemaParam Linked="0" Attr="7" Name="lblSerial" />
+<SchemaParam Linked="0" Attr="8" Name="txtToLocn" />
+<SchemaParam Linked="0" Attr="9" Name="txtDate" />
+<SchemaParam Linked="0" Attr="10" Name="txtTime" />
+<SchemaParam Linked="0" Attr="11" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="12" Name="lblQty" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+<Display Name="Telnet" Type="0" Width="160" Height="352" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtLocation" Attr="1" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="22" Width="47" Height="22" AnchorRight="177" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="119" Height="22" AnchorRight="49" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="22" Width="47" Height="22" AnchorRight="152" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="119" Height="22" AnchorRight="32" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAssetNumber" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="63" Height="22" AnchorRight="177" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Asset#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="44" Width="87" Height="22" AnchorRight="81" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="63" Height="22" AnchorRight="152" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Asset#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="44" Width="87" Height="22" AnchorRight="64" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUnitNumber" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="55" Height="22" AnchorRight="177" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Unit#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="88" Width="103" Height="22" AnchorRight="65" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="55" Height="22" AnchorRight="152" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Unit#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="88" Width="103" Height="22" AnchorRight="48" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label1" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="23" Height="22" AnchorRight="145" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="or" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="23" Height="22" AnchorRight="120" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="or" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDesc1" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="71" Height="22" AnchorRight="169" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDesc1" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="71" Height="22" AnchorRight="144" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDesc1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDesc2" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="71" Height="22" AnchorRight="169" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDesc2" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="71" Height="22" AnchorRight="144" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDesc2" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSerial" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="79" Height="22" AnchorRight="161" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSerial" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="79" Height="22" AnchorRight="136" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSerial" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtToLocn" Attr="8" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="198" Width="71" Height="22" AnchorRight="161" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="198" Width="119" Height="22" AnchorRight="49" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="198" Width="71" Height="22" AnchorRight="136" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="198" Width="119" Height="22" AnchorRight="24" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDate" Attr="9" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="79" Height="22" AnchorRight="161" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date eff:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="220" Width="87" Height="22" AnchorRight="81" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="79" Height="22" AnchorRight="136" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date eff:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="220" Width="87" Height="22" AnchorRight="56" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTime" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="79" Height="22" AnchorRight="161" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Time eff:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="55" Height="22" AnchorRight="113" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="79" Height="22" AnchorRight="136" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Time eff:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="55" Height="22" AnchorRight="88" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="215" Height="22" AnchorRight="25" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Press Enter to Accept....." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="0" Height="22" AnchorRight="168" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="215" Height="22" AnchorRight="0" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Press Enter to Accept....." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="0" Height="22" AnchorRight="143" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQty" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="55" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="55" Height="22" AnchorRight="160" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[TRANSFER FIXED ASSET]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+<Layout Visible="1" FormWidth="215" FormHeight="352" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[TRANSFER FIXED ASSET]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' FIXED ASSET: TRANSFER
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC = "RFGen FA Transfer"
+Private Const cTNId     = "FFATR0100"
+
+Private msPgm        As String
+Private msVersion    As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  Call ClearValues
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim emProc As New EmbeddedProc
+
+  emProc.Name              = "TFATR0100"
+  emProc.DataSource        = gsDataSource
+
+  emProc.Param("sItem")    = App.GetValue("AssetNumber")
+  emProc.Param("sNewLocn") = App.GetValue("ToLocn")
+  emProc.Param("sCurLocn") = App.GetValue("Location")
+  emProc.Param("sDate")    = App.GetValue("Date")
+  emProc.Param("sTime")    = App.GetValue("Time")
+  emProc.Param("sQty")     = App.GetValue("Quantity")
+  emProc.Param("sStatus")  = App.GetValue("Status")
+  emProc.Param("tmUser")   = App.User
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(6) & vbCrLf & emProc.Param("tmERRTEXT")
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(6) & vbCrLf & emProc.Param("tmERRTEXT")
+      Cancel = True
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+
+  Call ClearValues
+End Sub
+
+Private Sub txtLocation_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("Location", "")
+  App.SetValue("Company", "")
+  txtAssetNumber.DisplayOnly = True
+  txtUnitNumber.DisplayOnly  = True
+End Sub
+
+Private Sub txtLocation_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  ' Format Value
+  Rsp = FixRight(UCase(Rsp), 12, " ")
+  '
+  sSQL = "select MCMCU, MCDL01, MCCO from F0006 where MCMCU = '" & Rsp & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(51))
+    Exit Sub
+  End If
+  '
+  App.SetValue("Company", Val(DB.Extract(sCols, sRows, 1, "MCCO")))
+  App.SetValue("Location", Rsp)
+  '
+  Cancel = False
+  Rsp = Trim(Rsp)
+End Sub
+
+Private Sub txtLocation_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select FALOC as Branch, MCDL01 as Description from F1201 " & _
+                     "INNER join F0006 ON MCMCU = FALOC GROUP BY FALOC, MCDL01")
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtAssetNumber_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblDesc1.Caption    = ""
+  lblDesc2.Caption    = ""
+  lblSerial.Caption   = ""
+  txtUnitNumber.Text  = ""
+  lblQty.Caption      = ""
+  '
+  App.SetValue("AssetNumber", "")
+  App.SetValue("Quantity", "")
+  App.SetValue("Status", "")
+  App.SetValue("DateDsp", "")
+End Sub
+
+Private Sub txtAssetNumber_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Dim vsDate As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  sSQL = "select FAAPID, FANUMB, FAASID, FADL01, FADL02, FADL03, FAEQST, FAARCQ, FADSP from F1201 " _
+       & "where FANUMB = " & Rsp & " and FALOC = '%Location' "
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(50))
+    Exit Sub
+  End If
+  '
+  lblDesc1.Caption    = DB.Extract(sCols,sRows,1,"FADL01")
+  lblDesc2.Caption    = DB.Extract(sCols,sRows,1,"FADL02")
+  lblSerial.Caption   = DB.Extract(sCols,sRows,1,"FAASID")
+  txtUnitNumber.Text  = DB.Extract(sCols,sRows,1,"FAAPID")
+  lblQty.Caption      = " Qty: " & ConvDecimalsFromSQL("ARCQ",DB.Extract(sCols,sRows,1,"FAARCQ"))
+  '
+  App.SetValue("AssetNumber", Rsp)
+  App.SetValue("Quantity", ConvDecimalsFromSQL("ARCQ",DB.Extract(sCols,sRows,1,"FAARCQ")))
+  App.SetValue("Status",   DB.Extract(sCols,sRows,1,"FAEQST"))
+  App.SetValue("DateDsp",  DB.Extract(sCols,sRows,1,"FADSP"))
+  '
+  If App.GetValue("DateDsp") <> 0 Then
+    vsDate = App.GetValue("DateDsp")
+    Call ConvJDEtoDate(vsDate)
+    App.MsgBox(GetMsg(95) & " " & vsDate)
+    Exit Sub
+  End If
+  '
+  Cancel = False
+  Rsp = Trim(Rsp)
+  '
+  txtAssetNumber.Text = Rsp
+  App.SetFocus("txtToLocn")
+End Sub
+
+Private Sub txtAssetNumber_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select FANUMB as Asset, FAAPID as Unit,  FADL01 as Description from F1201  " _
+                   & " where FALOC = '%Location' order by FAAPID")
+
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtUnitNumber_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblDesc1.Caption    = ""
+  lblDesc2.Caption    = ""
+  lblSerial.Caption   = ""
+  txtAssetNumber.Text = ""
+  lblQty.Caption      = ""
+  '
+  App.SetValue("AssetNumber", "")
+  App.SetValue("Quantity",    "")
+  App.SetValue("Status",      "")
+  App.SetValue("DateDsp",     "")
+End Sub
+
+Private Sub txtUnitNumber_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Dim vsDate As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  sSQL = "select FAAPID, FANUMB, FAASID, FADL01, FADL02, FADL03, FAEQST, FAARCQ, FADSP from F1201 " _
+       & " where FAAPID = '" & Rsp & "' and FALOC = '%Location' "
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(89))
+    Exit Sub
+  End If
+  '
+  lblDesc1.Caption    = DB.Extract(sCols,sRows,1,"FADL01")
+  lblDesc2.Caption    = DB.Extract(sCols,sRows,1,"FADL02")
+  lblSerial.Caption   = DB.Extract(sCols,sRows,1,"FAASID")
+  txtAssetNumber.Text = DB.Extract(sCols,sRows,1,"FANUMB")
+  lblQty.Caption      = " Qty: " & ConvDecimalsFromSQL("ARCQ",DB.Extract(sCols,sRows,1,"FAARCQ"))
+  '
+  App.SetValue("AssetNumber", DB.Extract(sCols,sRows,1,"FANUMB"))
+  App.SetValue("Quantity",    ConvDecimalsFromSQL("ARCQ",DB.Extract(sCols,sRows,1,"FAARCQ")))
+  App.SetValue("Status",      DB.Extract(sCols,sRows,1,"FAEQST"))
+  App.SetValue("DateDsp",     DB.Extract(sCols,sRows,1,"FADSP"))
+  '
+  If App.GetValue("DateDsp") <> 0 Then
+    vsDate = App.GetValue("DateDsp")
+    ConvJDEtoDate(vsDate)
+    App.MsgBox(GetMsg(95) & " " & vsDate)
+    Exit Sub
+  End If
+
+  Cancel = False
+  Rsp = Trim(Rsp)
+End Sub
+
+Private Sub txtUnitNumber_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select FAAPID as Unit, FANUMB as Asset,  FADL01 as Description from F1201 " _
+                   & " where FALOC = '%Location' order by FAAPID")
+
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtToLocn_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("ToLocn", "")
+End Sub
+
+Private Sub txtToLocn_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  ' Format Value
+  Rsp = FixRight(UCase(Rsp), 12, " ")
+  '
+  sSQL = "select MCMCU, MCDL01, MCCO from F0006 where MCMCU = '"+Rsp+"'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(51))
+    Exit Sub
+  End If
+  '
+  If Trim(App.GetValue("Location")) = Trim(Rsp) Then
+    App.MsgBox(GetMsg(200))
+    Exit Sub
+  End If
+  '
+  App.SetValue("ToLocn", Rsp)
+  '
+  Cancel = False
+  Rsp = Trim(Rsp)
+End Sub
+
+Private Sub txtToLocn_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select MCMCU as Branch, MCDL01 as Description from F0006 ORDER BY MCMCU")
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtDate_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("Date", "")
+End Sub
+
+Private Sub txtDate_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Rsp = CStr(CDate(Rsp))
+  App.SetValue("Date", CDate(Rsp))
+End Sub
+
+Private Sub txtTime_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("Time", "")
+End Sub
+
+Private Sub txtTime_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp) = 0) Then Rsp = "000000"
+
+  If IsNumeric(Rsp)=False Then
+    App.MsgBox GetMsg(215)
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  App.SetValue("Time", Rsp)
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+
+Public Sub ClearValues
+  On Error Resume Next
+  '
+  lblDesc1.Caption      = ""
+  lblDesc2.Caption      = ""
+  lblSerial.Caption     = ""
+  lblQty.Caption        = ""
+  txtUnitNumber.Text    = ""
+  txtAssetNumber.Text   = ""
+  txtAssetNumber.DisplayOnly = False
+  txtUnitNumber.DisplayOnly  = False
+  '
+  App.SetValue("AssetNumber", "")
+End Sub
+</Code>

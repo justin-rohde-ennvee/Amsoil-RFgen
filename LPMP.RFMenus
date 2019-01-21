@@ -1,0 +1,12 @@
+﻿<Record FileDesc="Line Process Manual Plus" FileVersion="5.0.8.0" Desc="Line Process Manual Plus" Heading="[Drum Line]">
+<MenuItem Id="-" Desc="-- LP Management --" />
+<MenuItem Id="FLPDI0100_AMS" Desc="1. Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQI0100_AMS" Desc="2. LP - Inquiry" />
+<MenuItem Id="-" />
+<MenuItem Id="FLPLB0100_AMS" Desc="3. Label Reprint" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Work Order Manual Completion --" />
+<MenuItem Id="FLPTC0100M_AMS" Desc="4. Line Processing (Manual) " Options="-Pgm=P31114 -Vers=RGN0001" />
+</Record>

@@ -1,0 +1,361 @@
+﻿<Record FileDesc="IM - Supply And Demand" FileVersion="5.0.8.0" Desc="IM - Supply And Demand" Group="IM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLITM&vm;lblItemDesc&vm;lblItemDesc2&vm;txtLOTN&vm;lbxAVAIL&vm;txtSetFocus" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="3" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="4" Name="lblItemDesc2" />
+<SchemaParam Linked="0" Attr="5" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="6" Name="lbxAVAIL" />
+<SchemaParam Linked="0" Attr="7" Name="txtSetFocus" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="55" Height="22" AnchorRight="192" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="95" Height="22" AnchorRight="104" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="55" Height="22" AnchorRight="192" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="191" Height="22" AnchorRight="8" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="95" Height="22" AnchorRight="152" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc2" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="103" Height="22" AnchorRight="144" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc2" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="47" Height="22" AnchorRight="192" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="183" Height="22" AnchorRight="16" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxAVAIL" Attr="6" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="0" Height="22" AnchorRight="247" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="247" Height="154" AnchorRight="0" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSetFocus" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="247" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="247" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="247" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Supply And Demand]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' INVENTORY: Supply And Demand
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+'
+Option Explicit
+
+Private miLastCN     As Integer
+Private mbSerialized As Boolean
+Private mbSkipMcu    As Boolean
+Private mbSilent     As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN>6) Then Exit Sub
+  '
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  ' Initialize special controls
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItemDesc2.Caption = ""
+  lblItemDesc2.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc2.Label.ForeColor = cFieldDefaultFC
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN>6) Then Exit Sub
+  '
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  '
+  miLastCN = iCN
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus("txtLITM")
+  Cancel = True
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLITM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmITM", "")
+  App.SetValue("tmUOM", "")
+  '
+  lblItemDesc.Caption =  ""
+  lblItemDesc2.Caption =  ""
+  '
+  txtLOTN.Visible = False
+  txtLOTN.Required = False
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nType       As Long
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sDSC1       As String
+  Dim sDSC2       As String
+  Dim sUOM        As String
+  Dim bHasLots    As Boolean
+  Dim sLocn       As String
+  Dim sAllowHold  As String
+  Dim nOnHand     As Currency
+  Dim nAvail      As Currency
+  Dim sHold       As String
+  Dim sDOCO       As String
+  Dim sDCTO       As String
+  Dim nUORG       As Currency
+  Dim sPPDJ       As String
+  Dim iCnt        As Integer
+  Dim i           As Integer
+  Dim sLine       As String
+  Dim nOnHandBal  As Currency
+  Dim sITM        As String
+  Dim sLITM       As String
+  Dim sAITM       As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  ' Validate Item Master / get Item Branch
+  If Not Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, _
+                       sUOM, nType, bHasLots, mbSerialized, mbSkipMcu, mbSilent) Then Exit Sub
+
+  App.SetValue("tmITM", sITM)
+  App.SetValue("tmLITM",sLITM)
+  App.SetValue("tmAITM",sAITM)
+  App.SetValue("tmUOM", sUOM)
+  App.SetValue("tmLITM", Rsp)
+  App.SetValue("tmLOTN", "")
+  '
+  lblItemDesc.Caption = sDSC1
+  lblItemDesc2.Caption = sDSC2
+
+  ' Get quantity on hand for all locations and display it.
+  '
+  sSQL = "select sum(LIPQOH) from F41021 where liitm='%tmITM' and limcu='%tmMCU' and lipqoh<>0"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Len(sRows) > 0 Then
+    nOnHandBal = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols, sRows, 1, 1))
+  End If
+  '
+  sLine = "Order#       Qty    Date"
+  lbxAVAIL.List.AddItem("", sLine)
+  lbxAVAIL.List.InsertItem "", String(28, "-")   ' todo - upgrade: 'InsertLocn' is now first parameter
+  '
+  sLine = FixRight(nOnHandBal, 16, " ") & " " & Format(Date,"mm/dd/yyyy")
+  lbxAVAIL.List.AddItem "", sLine
+
+  ' Get open POs and display them.
+  '
+  sSQL = "select PDDOCO,PDDCTO,PDUORG,PDPPDJ from F4311 where pdlitm='%tmLITM' and pdmcu='%tmMCU' and pdnxtr<='400' " _
+    & "and pduorg>0 and pddcto='OP' order by pdppdj,pddoco"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  iCnt = DB.Count(sRows)
+  '
+  If iCnt > 0 Then
+    For i = 1 To iCnt
+      sDOCO = DB.Extract(sCols,sRows,i,"PDDOCO")
+      sDCTO = DB.Extract(sCols,sRows,i,"PDDCTO")
+      nUORG = ConvDecimalsFromSQL("UORG", DB.Extract(sCols,sRows,i,"PDUORG"))
+      sPPDJ = DB.Extract(sCols,sRows,i,"PDPPDJ")
+      '
+      If sPPDJ = "0" Then
+        sPPDJ = ""
+      Else
+        sPPDJ = ConvJDEtoDate(DB.Extract(sCols,sRows,i,"PDPPDJ"))
+      End If
+
+      sLine = FixRight(sDOCO, 6, " ") & " " & sDCTO & " " & FixRight(nUORG, 6, " ") & " " & sPPDJ
+      lbxAVAIL.List.AddItem "", sLine
+
+      ' Add supply to on hand balance.
+      '
+      nOnHandBal = nOnHandBal + nUORG
+    Next i
+  End If
+
+  ' Get open WOs and display them
+  '
+  sSQL = "select WMDOCO,WMDCTO,WMUORG,WADRQJ from F3111 inner join F4801 on wmdoco=wadoco where wmcpil='%tmLITM' and wmmcu='%tmMCU' " _
+    & "and wasrst<='95' and wmuorg>0 order by wadrqj,wmdoco"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  iCnt = DB.Count(sRows)
+  '
+  If iCnt > 0 Then
+    For i = 1 To iCnt
+      sDOCO = DB.Extract(sCols,sRows,i,"WMDOCO")
+      sDCTO = DB.Extract(sCols,sRows,i,"WMDCTO")
+      nUORG = ConvDecimalsFromSQL("UORG", DB.Extract(sCols,sRows,i,"WMUORG"))
+      sPPDJ = DB.Extract(sCols,sRows,i,"WADRQJ")
+      '
+      If sPPDJ = "0" Then
+        sPPDJ = ""
+      Else
+        sPPDJ = ConvJDEtoDate(DB.Extract(sCols,sRows,i,"WADRQJ"))
+      End If
+
+      sLine = FixRight(sDOCO, 6, " ") & " " & sDCTO & " " & FixRight("-" & nUORG, 6, " ") & " " & sPPDJ
+      lbxAVAIL.List.AddItem "", sLine
+
+      ' Subtract demand from on hand balance.
+      '
+      nOnHandBal = nOnHandBal - nUORG
+    Next i
+  End If
+
+  ' Display total on hand.
+  '
+  sLine = String(10, " ") & String(6, "-")
+  lbxAVAIL.List.AddItem "", sLine
+  '
+  sLine = FixRight(nOnHandBal, 16, " ")
+  lbxAVAIL.List.AddItem "", sLine
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  If Not Search_F4101(Rsp, Rsp, sMCU) Then cancel = True
+End Sub
+
+Private Sub lbxAVAIL_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  lbxAVAIL.List.Clear
+  lblItemDesc.Caption = ""
+  lblItemDesc2.Caption = ""
+End Sub
+
+Private Sub txtSetFocus_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtLITM.Text = ""
+  App.SetFocus("txtLITM")
+End Sub
+</Code>

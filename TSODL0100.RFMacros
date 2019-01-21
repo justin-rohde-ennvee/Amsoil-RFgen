@@ -1,0 +1,286 @@
+﻿<Record FileDesc="SO - Delete Order Line" FileVersion="5.0.8.0" Desc="SO - Delete Order Line">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmLNTY" />
+<Param Name="tmLNID" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: SO - DELETE ORDER LINE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TSODL0100"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmLNTY As Variant, ByRef tmLNID As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sErrDesc    As String
+  Dim bSuccess    As Boolean
+
+  Dim emGetAuditInfo              As New EmbeddedProc
+  Dim emGetF4201OrderInfo         As New EmbeddedProc
+  Dim emSetELCalledFromSOEL16     As New EmbeddedProc
+  Dim emRetrieveProccessAndTID    As New EmbeddedProc
+  Dim emF4211FSEditLine           As New EmbeddedProc
+  Dim emF4211FSEditLine_2         As New EmbeddedProc
+  Dim emF4211FSEndDoc             As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine
+  End If
+
+  '-------------------'
+  ' GetF4201OrderInfo '
+  '-------------------'
+  emGetF4201OrderInfo.Name       = "GetF4201OrderInfo"
+  emGetF4201OrderInfo.LogMode = LogNever
+  emGetF4201OrderInfo.DebugLog   = cJDELogPath
+  '
+  emGetF4201OrderInfo.Param("OrderNumber")          = tmDOCO
+  emGetF4201OrderInfo.Param("OrderType")            = tmDCTO
+  emGetF4201OrderInfo.Param("KeyCompany")           = tmCO
+  emGetF4201OrderInfo.Param("SuppressErrorMesg")    = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetF4201OrderInfo.Name, "", emGetF4201OrderInfo)
+
+  If Not emGetF4201OrderInfo.Execute Then
+    sErrDesc = "GetF4201OrderInfo"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetF4201OrderInfo.Name, "", emGetF4201OrderInfo, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine    '
+  End If
+
+  '-----------------------'
+  ' SetELCalledFromSOEL16 '
+  '-----------------------'
+  emSetELCalledFromSOEL16.Name = "SetELCalledFromSOEL16"
+  '
+  emSetELCalledFromSOEL16.Param("EditLineSOEMBFFlags") =    "000000000000000000000000000000"
+  emSetELCalledFromSOEL16.Param("Value")               =    "3"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emSetELCalledFromSOEL16.Name, "", emSetELCalledFromSOEL16)
+
+  If Not emSetELCalledFromSOEL16.Execute Then
+    sErrDesc = "SetELCalledFromSOEL16"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emSetELCalledFromSOEL16.Name, "", emSetELCalledFromSOEL16, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine
+  End If
+  '
+  emRetrieveProccessAndTID.Name = "RetrieveProcessAndTransactionID"
+  emRetrieveProccessAndTID.DataSource = "JDE"
+    '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emRetrieveProccessAndTID.Name, "", emRetrieveProccessAndTID)
+
+  If Not emRetrieveProccessAndTID.Execute Then
+    sErrDesc = "emRetrieveProccessAndTID"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emRetrieveProccessAndTID.Name, "", emRetrieveProccessAndTID, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine
+  End If
+
+  '-----------------'
+  ' F4211FSEditLine '
+  '-----------------'
+  emF4211FSEditLine.Name = "F4211FSEditLine"
+  '
+  emF4211FSEditLine.Param("CMLineAction")             = "D"
+  emF4211FSEditLine.Param("CMProcessEdits")           = "1"
+  emF4211FSEditLine.Param("CMWriteToWFFlag")          = "2"
+  emF4211FSEditLine.Param("CMComputerID")             = emGetAuditInfo.Param("Workstation_UserId")
+  emF4211FSEditLine.Param("OrderCo")                  = tmCO
+  emF4211FSEditLine.Param("OrderNo")                  = tmDOCO
+  emF4211FSEditLine.Param("OrderType")                = tmDCTO
+  emF4211FSEditLine.Param("LineNo")                   = tmLNID
+  emF4211FSEditLine.Param("BusinessUnit")             = tmMCU
+  emF4211FSEditLine.Param("ShipToNo")                 = emGetF4201OrderInfo.Param("ShipToAddrNumber")
+  emF4211FSEditLine.Param("RequestedDate")            = emGetF4201OrderInfo.Param("RequestedDate")
+  emF4211FSEditLine.Param("PromisedDate")             = emGetF4201OrderInfo.Param("OriginalPromiseDate")
+  emF4211FSEditLine.Param("PromisedDlvryDate")        = emGetF4201OrderInfo.Param("PromisedDelDate")
+  emF4211FSEditLine.Param("ItemNo")                   = tmLITM
+  emF4211FSEditLine.Param("Location")                 = tmLOCN
+  emF4211FSEditLine.Param("LotNo")                    = tmLOTN
+  emF4211FSEditLine.Param("LineType")                 = tmLNTY
+  emF4211FSEditLine.Param("QtyOrdered")               = tmQTY
+  emF4211FSEditLine.Param("CMLineNo")                 = tmLNID
+  emF4211FSEditLine.Param("CMProgramID")              = "EP4210"
+  emF4211FSEditLine.Param("CMVersion")                = tmZVERSION
+  emF4211FSEditLine.Param("UserID")                   = emGetAuditInfo.Param("UserName")
+  emF4211FSEditLine.Param("DateUpdated")              = emGetAuditInfo.Param("Date")
+  emF4211FSEditLine.Param("RevenueBusinessUnit")      = tmMCU
+  emF4211FSEditLine.Param("ProcessID")                = emRetrieveProccessAndTID.Param("ProcessID")
+  emF4211FSEditLine.Param("TransactionID")            = emRetrieveProccessAndTID.Param("TransactionID")
+  emF4211FSEditLine.Param("DualQuantity")             = tmQTY
+  emF4211FSEditLine.Param("DualUOM")                  = tmUOM
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4211FSEditLine.Name, "", emF4211FSEditLine)
+
+  If Not emF4211FSEditLine.Execute Then
+    sErrDesc = "F4211FSEditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4211FSEditLine.Name, "", emF4211FSEditLine, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine
+  End If
+
+  '-----------------'
+  ' F4211FSEditLine '
+  '-----------------'
+  emF4211FSEditLine_2.Name = "F4211FSEditLine"
+  '
+  emF4211FSEditLine_2.Param("CMJobNo")                = emF4211FSEditLine.Param("CMJobNo")
+  emF4211FSEditLine_2.Param("CMLineAction")           = "C"
+  emF4211FSEditLine_2.Param("CMProcessEdits")         = "1"
+  emF4211FSEditLine_2.Param("CMWriteToWFFlag")        = "2"
+  emF4211FSEditLine_2.Param("CMRecdWrittenToWF")      = emF4211FSEditLine.Param("CMRecdWrittenToWF")
+  emF4211FSEditLine_2.Param("CMComputerID")           = emGetAuditInfo.Param("Workstation_UserId")
+  emF4211FSEditLine_2.Param("OrderCo")                = tmCO
+  emF4211FSEditLine_2.Param("OrderNo")                = tmDOCO
+  emF4211FSEditLine_2.Param("OrderType")              = tmDCTO
+  emF4211FSEditLine_2.Param("LineNo")                 = tmLNID
+  emF4211FSEditLine_2.Param("BusinessUnit")           = tmMCU
+  emF4211FSEditLine_2.Param("ShipToNo")               = emGetF4201OrderInfo.Param("ShipToAddrNumber")
+  emF4211FSEditLine_2.Param("RequestedDate")          = emGetF4201OrderInfo.Param("RequestedDate")
+  emF4211FSEditLine_2.Param("PromisedDate")           = emGetF4201OrderInfo.Param("OriginalPromiseDate")
+  emF4211FSEditLine_2.Param("PromisedDlvryDate")      = emGetF4201OrderInfo.Param("PromisedDelDate")
+  emF4211FSEditLine_2.Param("ItemNo")                 = tmLITM
+  emF4211FSEditLine_2.Param("Location")               = tmLOCN
+  emF4211FSEditLine_2.Param("LotNo")                  = tmLOTN
+  emF4211FSEditLine_2.Param("LineType")               = tmLNTY
+  emF4211FSEditLine_2.Param("LastStatus")             = emF4211FSEditLine.Param("LastStatus")
+  emF4211FSEditLine_2.Param("NextStatus")             = emF4211FSEditLine.Param("NextStatus")
+  emF4211FSEditLine_2.Param("QtyOrdered")             = tmQTY
+  emF4211FSEditLine_2.Param("QtyCanceled")            = emF4211FSEditLine.Param("QtyCanceled")
+  emF4211FSEditLine_2.Param("UnitCost")               = emF4211FSEditLine.Param("UnitCost")
+  emF4211FSEditLine_2.Param("ExtendedCost")           = emF4211FSEditLine.Param("ExtendedCost")
+  emF4211FSEditLine_2.Param("TransactionUOM")         = tmUOM
+  emF4211FSEditLine_2.Param("PricingUOM")             = emF4211FSEditLine.Param("PricingUOM")
+  emF4211FSEditLine_2.Param("ItemWeight")             = emF4211FSEditLine.Param("ItemWeight")
+  emF4211FSEditLine_2.Param("WeightUOM")              = emF4211FSEditLine.Param("WeightUOM")
+  emF4211FSEditLine_2.Param("CMLineNo")               = tmLNID
+  emF4211FSEditLine_2.Param("CMProgramID")            = "EP4210"
+  emF4211FSEditLine_2.Param("CMVersion")              = tmZVERSION
+  emF4211FSEditLine_2.Param("UserID")                 = emGetAuditInfo.Param("UserName")
+  emF4211FSEditLine_2.Param("DateUpdated")            = emGetAuditInfo.Param("Date")
+  emF4211FSEditLine_2.Param("WKTotalCost")            = emF4211FSEditLine.Param("WKTotalCost")
+  emF4211FSEditLine_2.Param("WKForeignTotalCost")     = emF4211FSEditLine.Param("WKForeignTotalCost")
+  emF4211FSEditLine_2.Param("WKCheckAvailability")    = "1"
+  emF4211FSEditLine_2.Param("LastLineNoAssigned")     = emF4211FSEditLine.Param("LastLineNoAssigned")
+  emF4211FSEditLine_2.Param("StockingType")           = emF4211FSEditLine.Param("StockingType")
+  emF4211FSEditLine_2.Param("RevenueBusinessUnit")    = tmMCU
+  emF4211FSEditLine_2.Param("F4201BranchPlant")       = tmMCU
+  emF4211FSEditLine_2.Param("ProcessID")              = emRetrieveProccessAndTID.Param("ProcessID")
+  emF4211FSEditLine_2.Param("TransactionID")          = emRetrieveProccessAndTID.Param("TransactionID")
+  emF4211FSEditLine_2.Param("DualQuantity")           = tmQTY
+  emF4211FSEditLine_2.Param("DualUOM")                = tmUOM
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4211FSEditLine_2.Name, "", emF4211FSEditLine_2)
+
+  If Not emF4211FSEditLine_2.Execute Then
+    sErrDesc = "F4211FSEditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4211FSEditLine_2.Name, "", emF4211FSEditLine_2, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine
+  End If
+
+  '---------------'
+  ' F4211FSEndDoc '
+  '---------------'
+  emF4211FSEndDoc.Clear
+  emF4211FSEndDoc.Name       = "F4211FSEndDoc"
+  emF4211FSEndDoc.LogMode = LogNever
+  emF4211FSEndDoc.DebugLog   = cJDELogPath
+  '
+  emF4211FSEndDoc.Param("CMJobNo")                  = emF4211FSEditLine.Param("CMJobNo")
+  emF4211FSEndDoc.Param("SalesOrderNo")             = tmDOCO
+  emF4211FSEndDoc.Param("CMComputerID")             = emGetAuditInfo.Param("Workstation_UserId")
+  emF4211FSEndDoc.Param("OrderType")                = tmDCTO
+  emF4211FSEndDoc.Param("KeyCompany")               = tmCO
+  emF4211FSEndDoc.Param("OrderTotal")               = emF4211FSEditLine.Param("WKOrderTotal")
+  emF4211FSEndDoc.Param("ForeignOrderTotal")        = emF4211FSEditLine.Param("WKForeignOrderTotal")
+  emF4211FSEndDoc.Param("ProgramID")                = "EP4210"
+  emF4211FSEndDoc.Param("CMProgramID")              = "EP4210"
+  emF4211FSEndDoc.Param("CMVersion")                = tmZVERSION
+  emF4211FSEndDoc.Param("TimeOfDay")                = emGetAuditInfo.Param("Time")
+  emF4211FSEndDoc.Param("TotalCost")                = emF4211FSEditLine.Param("WKTotalCost")
+  emF4211FSEndDoc.Param("ForeignTotalCost")         = emF4211FSEditLine.Param("WKForeignTotalCost")
+  emF4211FSEndDoc.Param("SuppressRlvBlnktFlag")     = "0"
+  emF4211FSEndDoc.Param("WKRelatedOrderProcess")    =  1
+  emF4211FSEndDoc.Param("CMUseWorkFiles")           = "2"
+  emF4211FSEndDoc.Param("CMProcessEdits")           = "1"
+  emF4211FSEndDoc.Param("ProcessID")                = emRetrieveProccessAndTID.Param("ProcessID")
+  emF4211FSEndDoc.Param("TransactionID")            = emRetrieveProccessAndTID.Param("TransactionID")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4211FSEndDoc.Name, "", emF4211FSEndDoc)
+
+  If Not emF4211FSEndDoc.Execute Then
+    sErrDesc = "F4211FSEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4211FSEndDoc.Name, "", emF4211FSEndDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ErrLine
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ErrLine:
+  Set emGetAuditInfo              = Nothing
+  Set emGetF4201OrderInfo         = Nothing
+  Set emSetELCalledFromSOEL16     = Nothing
+  Set emRetrieveProccessAndTID    = Nothing
+  Set emF4211FSEditLine_2         = Nothing
+  Set emF4211FSEditLine           = Nothing
+  Set emF4211FSEndDoc             = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+End Function
+</Code>

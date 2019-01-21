@@ -1,0 +1,302 @@
+﻿<Record FileDesc="LP - Load Inquiry" FileVersion="5.0.8.0" Desc="LP - Load Inquiry" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;lstInquiry&vm;txtHidden1&vm;txtHidden2" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="lstInquiry" />
+<SchemaParam Linked="0" Attr="3" Name="txtHidden1" />
+<SchemaParam Linked="0" Attr="4" Name="txtHidden2" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="352" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="151" Height="22" AnchorRight="208" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstInquiry" Attr="2" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="87" Height="22" AnchorRight="320" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP Details" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="407" Height="242" AnchorRight="0" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden1" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="407" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="286" Width="0" Height="22" AnchorRight="335" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden2" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="407" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="286" Width="0" Height="22" AnchorRight="335" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="407" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Inquiry]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: INQUIRY LP
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private mnMaxQty     As Currency
+Private gsLPSource   As String
+Private msDefLOCN    As String
+Private msStatusF    As String
+Private msStatusT    As String
+Private mbSerialized As Boolean
+Private mbIsPlate    As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  msStatusF = App.GetValue("StatusFrom")
+  msStatusT = App.GetValue("StatusTo")
+  '
+  If Len(msStatusF) = 0 Then msStatusF = "540"
+  If Len(msStatusT) = 0 Then msStatusT = "560"
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub lstInquiry_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCnt    As Integer
+  Dim iFnd    As Integer
+  Dim sSQL    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sOpt    As String
+  Dim sLOCN   As String
+  Dim sDesc   As String
+  Dim sLPID   As String
+  Dim sPalp   As String
+  Dim sType   As String
+  Dim sParent As String
+  
+  Dim vArray  As Variant
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  lstInquiry.List.Clear
+  '
+  ' get all LPs with valid data
+  '
+  sSQL = "select LDLPID from F55102 where LDRNXTR between '" & msStatusF & "' and '" & msStatusT & "' group by LDLPID "
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  ' get highest LP level
+  '
+  For iCnt = 1 To DB.Count(sRows)
+    sLPID = Trim(DB.Extract(sCols,sRows,iCnt,"LDLPID"))
+    '
+    Do While sLPID <> ""
+      sSQL = "select LMPALP from F55101 where LMLPID = '" & sLPID & "' "
+      DB.Execute(sSQL,sCols2,sRows2)
+      sLPID = Trim(DB.Extract(sCols2,sRows2,1,"LMPALP"))
+      If Len(sLPID) > 0 Then sPalp = sLPID
+    Loop
+    '
+    If Len(Trim(sPalp)) > 0 Then
+      iFnd = Locate(sParent, sPalp, 1)
+      '
+      If iFnd = 0 Then
+        sParent = sParent & sPalp & "|"        'add parent LP
+      End If
+    End If
+  Next iCnt
+
+  vArray = Split(sParent,"|")
+
+  For iCnt = 0 To UBound(vArray)
+    Call BuildList(vArray(iCnt), sOpt, msStatusF, msStatusT)
+  Next iCnt
+
+  lstInquiry.List.AddItem " ","End of data"
+End Sub
+
+Private Sub lstInquiry_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim vArray As Variant
+  '
+  vArray = Split(Rsp,"|")
+  '
+  Rsp = vArray(0)
+  Rsp = Replace(Rsp,".","")
+  Rsp = Replace(Rsp,">","")
+  '
+  gVariant(1) = Rsp
+  '
+  App.ExitForm
+End Sub
+
+Private Sub txtHidden2_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus("txtHidden1")
+End Sub
+
+Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String, ByRef sStatusF As String, ByRef sStatusT As String)
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sSql1  As String
+  Dim sCols1 As String
+  Dim sRows1 As String
+  Dim sSql2  As String
+  Dim sCols2 As String
+  Dim sRows2 As String
+  Dim sType  As String
+  Dim sLPID  As String
+  Dim s2PALP As String
+  Dim sDsp   As String
+  Dim iCnt   As Long
+  Dim iCnt1  As Long
+  Dim iCnt2  As Long
+
+  sSQL = "select * from F55101 where LMLPID = '" & sPalp & "' and" & _
+        " LMMCU = '%tmMCU' "
+  DB.Execute(sSQL,sCols,sRows)
+
+  For iCnt = 1 To DB.Count(sRows)
+    sLPID = DB.Extract(sCols,sRows,iCnt,"LMLPID")
+    sType = DB.Extract(sCols,sRows,iCnt,"LMTYPE")
+    '
+    'Check details from F55102
+    '
+    sSql1 = "select LDLPID, LDLNID from F55102 where LDLPID = '" & sLPID & "' "
+    DB.Execute(sSql1,sCols1,sRows1)
+    '
+    sSql2 = "select LDLPID, LDLNID from F55102 where LDLPID = '" & sLPID & "' and LDRNXTR between '" & sStatusF & "' and '" & sStatusT & "' "
+    DB.Execute(sSql2,sCols2,sRows2)
+    '
+    ' does not exist           has record in right status
+    '
+    If DB.Count(sRows1) = 0 Or Len(sRows2) > 0 Then
+      sDsp =              FixLeft(sOpt & DB.Extract(sCols,sRows,iCnt,"LMLPID"),giLenLP + Len(sOpt)," ")     ' write parent header
+      sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMDSC1"),(30 - Len(sOpt))," ")
+      sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMTYPE"),2," ")
+      lstInquiry.List.AddItem sDsp, sDsp          'add line to listbox
+    End If
+    '                                                                                   ' get all childs
+    sSql2 = "select * from F55101 where LMPALP = '" & sPalp & "' and" & _
+            " LMMCU = '%tmMCU' order by LMLPID"
+    DB.Execute(sSql2,sCols2,sRows2)
+    '
+    If DB.Count(sRows2) > 0 Then
+      If Len(sOpt) = 0 Then
+        sOpt = ">"
+      Else
+        sOpt = "." & sOpt
+      End If
+    End If
+    '
+    For iCnt2 = 1 To DB.Count(sRows2)
+      s2PALP = Trim(DB.Extract(sCols2,sRows2,iCnt2,"LMLPID"))
+      BuildList(s2PALP, sOpt, sStatusF, sStatusT)
+      '
+      If Len(sOpt) > 1 Then
+        sOpt = Right(sOpt,Len(sOpt) -1)
+      End If
+    Next iCnt2
+  Next iCnt
+End Function
+</Code>

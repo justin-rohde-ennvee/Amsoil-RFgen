@@ -1,0 +1,13 @@
+﻿<Record FileDesc="Win32 Base Module" FileVersion="5.0.8.0" Desc="Win32 Base Module" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' Win32.bas
+'
+'
+
+Option Explicit
+</Code>

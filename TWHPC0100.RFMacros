@@ -1,0 +1,350 @@
+﻿<Record FileDesc="WH - Pick Confirm" FileVersion="5.0.8.0" Desc="WH - Pick Confirm">
+<Param Name="tmTRIP" />
+<Param Name="tmTASK" />
+<Param Name="tmLITM" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmSGBT" />
+<Param Name="tmSGSQ" />
+<Param Name="tmQTY" />
+<Param Name="tmFLOCN" />
+<Param Name="tmTLOCN" />
+<Param Name="tmLOTN" />
+<Param Name="tmZVERSION" />
+<Param Name="tmMoveVers" />
+<Param Name="tmUser" />
+<Param Name="tmPwd" />
+<Param Name="tmRemID" />
+<Param Name="tmTXN" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WH - PICK CONFIRM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private msResKey    As String
+Private Const cTNId = "TWHPC0100"
+
+Private Function Transaction(ByRef tmTRIP As Variant, ByRef tmTASK As Variant, ByRef tmLITM As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmSGBT As Variant, ByRef tmSGSQ As Variant, ByRef tmQTY As Variant, ByRef tmFLOCN As Variant, ByRef tmTLOCN As Variant, ByRef tmLOTN As Variant, ByRef tmZVERSION As Variant, ByRef tmMoveVers As Variant, ByRef tmUser As Variant, ByRef tmPwd As Variant, ByRef tmRemID As Variant, ByRef tmTXN As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim sGLDate     As String
+  Dim sLocnJDE    As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  Dim bLogin      As Boolean
+  Dim bOK         As Integer
+
+  Dim emX0010GetNextNumber            As New EmbeddedProc
+  Dim emGetAuditInfo                  As New EmbeddedProc
+  Dim emF4611VerifyAndGetSuggestion   As New EmbeddedProc
+  Dim emF4611SuggestionEditLine       As New EmbeddedProc
+  Dim emF4611SuggestionEndDoc         As New EmbeddedProc
+  Dim emGetErrorMessageGlossaryText   As New EmbeddedProc
+  Dim emF00095RemoveReservation       As New EmbeddedProc
+  Dim emF41002ConvertUOMStructure     As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name = "X0010GetNextNumber"
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "00"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 4
+  emX0010GetNextNumber.Param("CompanyKey")              = "00000"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+
+  If Not emX0010GetNextNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------------------'
+  ' F4611VerifyAndGetSuggestion '
+  '-----------------------------'
+  emF4611VerifyAndGetSuggestion.Name       = "F4611VerifyAndGetSuggestion"
+  emF4611VerifyAndGetSuggestion.LogMode = LogNever
+  emF4611VerifyAndGetSuggestion.DebugLog   = cJDELogPath
+  '
+  emF4611VerifyAndGetSuggestion.Param("BatchNumberSuggestio")   = tmSGBT
+  emF4611VerifyAndGetSuggestion.Param("SequenceNumberSugges")   = tmSGSQ
+  emF4611VerifyAndGetSuggestion.Param("index")                  = 1
+  emF4611VerifyAndGetSuggestion.Param("keys")                   = 2
+  emF4611VerifyAndGetSuggestion.Param("ReturnRecordPtr")        = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4611VerifyAndGetSuggestion.Name, "", emF4611VerifyAndGetSuggestion)
+
+  If Not emF4611VerifyAndGetSuggestion.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4611VerifyAndGetSuggestion.Name, "", emF4611VerifyAndGetSuggestion, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------------------'
+  ' F41002ConvertUOMStructure '
+  '---------------------------'
+  emF41002ConvertUOMStructure.Name = "F41002ConvertUOMStructure"
+  '
+  emF41002ConvertUOMStructure.Param("BranchPlant")            = emF4611VerifyAndGetSuggestion.Param("CostCenter")
+  emF41002ConvertUOMStructure.Param("ShortItemNumber")        = emF4611VerifyAndGetSuggestion.Param("IdentifierShortItem")
+  emF41002ConvertUOMStructure.Param("TransactionUOM")         = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasurePrimary")
+  emF41002ConvertUOMStructure.Param("TransactionQty")         = tmQTY
+  emF41002ConvertUOMStructure.Param("PrimaryUOM")             = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasurePrimary")
+  emF41002ConvertUOMStructure.Param("VerifyUOMLevelsAsIs")    = "1"
+  emF41002ConvertUOMStructure.Param("UOMLevel1")              = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel1")
+  emF41002ConvertUOMStructure.Param("UOMLevel2")              = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel2")
+  emF41002ConvertUOMStructure.Param("UOMLevel3")              = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel3")
+  emF41002ConvertUOMStructure.Param("UOMLevel4")              = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel4")
+  emF41002ConvertUOMStructure.Param("UOMLevel5")              = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel5")
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF41002ConvertUOMStructure.Name, "", emF41002ConvertUOMStructure)
+
+  If Not emF41002ConvertUOMStructure.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF41002ConvertUOMStructure.Name, "", emF41002ConvertUOMStructure, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------------------'
+  ' F4611SuggestionEditLine '
+  '-------------------------'
+  emF4611SuggestionEditLine.Name = "F4611SuggestionEditLine"
+  emF4611SuggestionEditLine.LogMode = LogNever
+  emF4611SuggestionEditLine.DebugLog   = cJDELogPath
+  '
+  emF4611SuggestionEditLine.Param("SuggestionBatch")        = emF4611VerifyAndGetSuggestion.Param("BatchNumberSuggestio")
+  emF4611SuggestionEditLine.Param("SuggestionSequence")     = emF4611VerifyAndGetSuggestion.Param("SequenceNumberSugges")
+  emF4611SuggestionEditLine.Param("JobNumber")              = emX0010GetNextNumber.Param("NextNumber001")
+  emF4611SuggestionEditLine.Param("ProgramId")              = "P4617"
+  emF4611SuggestionEditLine.Param("P4617Version")           = tmZVERSION
+  emF4611SuggestionEditLine.Param("ActionCode")             = "1"
+  emF4611SuggestionEditLine.Param("TransactionQuantity")    = tmQTY
+  emF4611SuggestionEditLine.Param("TransactionUoM")         = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasurePrimary")
+  Call Validate_Locn(tmFLOCN,emF4611VerifyAndGetSuggestion.Param("CostCenter"),sLocnJDE,bOK)
+  emF4611SuggestionEditLine.Param("FromLocation")           = sLocnJDE
+  Call Validate_Locn(tmTLOCN,emF4611VerifyAndGetSuggestion.Param("CostCenter"),sLocnJDE,bOK)
+  emF4611SuggestionEditLine.Param("ToLocation")             = sLocnJDE
+  emF4611SuggestionEditLine.Param("UnitOfMeasureLevel1")    = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel1")
+  emF4611SuggestionEditLine.Param("UnitOfMeasureLevel2")    = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel2")
+  emF4611SuggestionEditLine.Param("UnitOfMeasureLevel3")    = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel3")
+  emF4611SuggestionEditLine.Param("UnitOfMeasureLevel4")    = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel4")
+  emF4611SuggestionEditLine.Param("UnitOfMeasureLevel5")    = emF4611VerifyAndGetSuggestion.Param("UnitOfMeasureLevel5")
+  emF4611SuggestionEditLine.Param("QuantityTotalLevel1")    = emF41002ConvertUOMStructure.Param("ConvertedQty1")
+  emF4611SuggestionEditLine.Param("QuantityTotalLevel2")    = emF41002ConvertUOMStructure.Param("ConvertedQty2")
+  emF4611SuggestionEditLine.Param("QuantityTotalLevel3")    = emF41002ConvertUOMStructure.Param("ConvertedQty3")
+  emF4611SuggestionEditLine.Param("QuantityTotalLevel4")    = emF41002ConvertUOMStructure.Param("ConvertedQty4")
+  emF4611SuggestionEditLine.Param("QuantityTotalLevel5")    = emF41002ConvertUOMStructure.Param("ConvertedQty5")
+  emF4611SuggestionEditLine.Param("Lot")                    = tmLOTN
+  emF4611SuggestionEditLine.Param("RecResUniqueID_PID")     = tmRemID
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4611SuggestionEditLine.Name, "", emF4611SuggestionEditLine)
+
+  If Not emF4611SuggestionEditLine.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4611SuggestionEditLine.Name, "", emF4611SuggestionEditLine, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  If emF4611SuggestionEditLine.Param("ErrorMessageId") <> "" Then
+    tmERRID = emF4611SuggestionEditLine.Param("ErrorMessageId")
+    GoTo ExitE1
+  End If
+
+  '-----------------------'
+  ' F4611SuggestionEndDoc '
+  '-----------------------'
+  emF4611SuggestionEndDoc.Name       = "F4611SuggestionEndDoc"
+  emF4611SuggestionEndDoc.LogMode = LogNever
+  emF4611SuggestionEndDoc.DebugLog   = cJDELogPath
+  '
+  emF4611SuggestionEndDoc.Param("LCJobNumber")          = emX0010GetNextNumber.Param("NextNumber001")
+  emF4611SuggestionEndDoc.Param("ProgramId")            = "EP4617"
+  emF4611SuggestionEndDoc.Param("Version")              = tmZVERSION
+  emF4611SuggestionEndDoc.Param("MoveTagsVersion")      = tmMoveVers
+  emF4611SuggestionEndDoc.Param("UserId")               = emGetAuditInfo.Param("UserName")
+  emF4611SuggestionEndDoc.Param("RecResUniqueID_PID")   = tmRemID
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4611SuggestionEndDoc.Name, "", emF4611SuggestionEndDoc)
+
+  If Not emF4611SuggestionEndDoc.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4611SuggestionEndDoc.Name, "", emF4611SuggestionEndDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  ' Remove Reservation
+  msResKey = Trim(App.GetValue("tmSGBT")) & Replace(Trim(Format(App.GetValue("tmSGSQ"),"#.000")),",",".")
+
+  '-------------------------'
+  ' F00095RemoveReservation '
+  '-------------------------'
+  emF00095RemoveReservation.Name = "F00095RemoveReservation"
+  emF00095RemoveReservation.DataSource = "JDE"
+  '
+  emF00095RemoveReservation.Param("UserId")         = tmUser
+  emF00095RemoveReservation.Param("NameObject")     = "F4611"
+  emF00095RemoveReservation.Param("GenericKey")     = msResKey
+  emF00095RemoveReservation.Param("Application")    = tmRemID
+  '
+  emF00095RemoveReservation.Execute
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    '-----------------------------'
+    ' GetErrorMessageGlossaryText '
+    '-----------------------------'
+    emGetErrorMessageGlossaryText.Name       = "GetErrorMessageGlossaryText"
+    emGetErrorMessageGlossaryText.LogMode = LogNever
+    emGetErrorMessageGlossaryText.DebugLog   = cJDELogPath
+    emGetErrorMessageGlossaryText.Param("ErrorMessageID")   = tmERRID
+    emGetErrorMessageGlossaryText.Execute
+    tmERRTEXT = tmERRID & "  " & emGetErrorMessageGlossaryText.Param("GlossaryText_500Chars")
+  End If
+  '
+  Set emX0010GetNextNumber            = Nothing
+  Set emGetAuditInfo                  = Nothing
+  Set emF4611VerifyAndGetSuggestion   = Nothing
+  Set emF4611SuggestionEditLine       = Nothing
+  Set emF4611SuggestionEndDoc         = Nothing
+  Set emGetErrorMessageGlossaryText   = Nothing
+  Set emF00095RemoveReservation       = Nothing
+  Set emF41002ConvertUOMStructure     = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim i         As Integer
+  Dim sTrip     As String
+  Dim sError    As String
+  '
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  If tmTXN = "PICK" Then
+    SM.GoToScreen("HWHCI0100")
+  ElseIf tmTXN = "PUT" Then
+    SM.GoToScreen("HWHPI0100")
+  ElseIf tmTXN = "REPLENISH" Then
+    SM.GoToScreen("HWHRI0100")
+  Else
+    tmERRTEXT = "No World screen exists."
+    GoTo ExitWorld
+  End If
+  '
+  SM.SendTextAlt 23, 3, tmTASK, 8
+  SM.SendTextAlt 23, 5, tmLITM, 26
+  '
+  If tmTXN <> "REPLENISH" Then
+    SM.SendTextAlt 23, 4, tmDOCO, 8
+    SM.SendTextAlt 32, 4, tmDCTO, 2
+  End If
+  '
+  SM.SendKey KeyEnter
+  '
+  SM.GetText 4,8,16,sError,True
+  '
+  If sError = "" Then
+    Call GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+    bSuccess = (sErrID = "")
+    tmERRID = sErrID
+    tmERRTEXT = sErrText
+    GoTo ExitWorld
+  End If
+  '
+  i = 7
+  '
+  Do
+    i = i + 1
+    If i = 24 Then
+      i = 8
+      SM.SendKey KeyPageDown
+    End If
+    SM.GetText 13,i,7,sTrip,True
+  Loop Until Val(sTrip) = tmTRIP Or sTrip = ""
+  '
+  If sTrip = "" Then
+    tmERRTEXT = "TRIP not found"
+    GoTo ExitWorld
+  End If
+  '
+  SM.SendTextAlt 2, i, "1", 1
+  SM.SendKey KeyEnter
+
+  bSuccess = True
+  '
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

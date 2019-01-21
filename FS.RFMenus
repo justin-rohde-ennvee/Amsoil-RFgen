@@ -1,0 +1,6 @@
+﻿<Record FileDesc="Field Service" FileVersion="5.0.8.0" Desc="Field Service" Heading="[Field Service]">
+<MenuItem Id="FFSLoadBatchFiles" Desc="1-FS - Load Data to CE" />
+<MenuItem Id="FWOCI0100" Desc="2-WO Component Issue" Options="-Pgm=P31113 -Vers=ZJDE0002" />
+<MenuItem Id="FWOTE0100" Desc="3-WO Time Entry" Options="-Pgm=P311221 -Vers=ZJDE0002" />
+<MenuItem Id="UnloadReader" Desc="4-Upload Data" />
+</Record>

@@ -1,0 +1,590 @@
+﻿<Record FileDesc="WO - Work AttachPLRouting (Ferraz)" FileVersion="5.0.8.0" Desc="WO - Work AttachPLRouting (Ferraz)" Depends="JDE.bas">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - ATTACH PARTS List.Data & ROUTING
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TWOCW0300"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim nBatchNo    As Currency
+  Dim nJobNo      As Currency
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim bSuccess    As Boolean
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim nITM        As Long
+  '
+  Dim emF4801BeginDocument                As New EmbeddedProc
+  Dim emF4801EditLine                     As New EmbeddedProc
+  Dim emF3111BeginDoc                     As New EmbeddedProc
+  Dim emF3112WorkOrderRoutingsBeginDoc    As New EmbeddedProc
+  Dim emF3112WorkOrderRoutingsEditDoc     As New EmbeddedProc
+  Dim emF3112WorkOrderRoutingsEndDoc      As New EmbeddedProc
+  Dim emF3111EditDoc                      As New EmbeddedProc
+  Dim emF3111EndDoc                       As New EmbeddedProc
+  Dim emF4801EndDocument                  As New EmbeddedProc
+  Dim emError                             As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  'Get data from F4801
+  sSQL  = "Select * from F4801 where WADOCO = " & tmDOCO & " and WADCTO = '" & tmDCTO & "'"
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4801", Replace(sSQL, "'", "`"))
+  '
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4801", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' F4801BeginDocument '
+  '--------------------'
+  emF4801BeginDocument.Name = "F4801BeginDocument"
+  '
+  emF4801BeginDocument.Param("JobNumber")               = 0
+  emF4801BeginDocument.Param("ErrorCode")               = ""
+  emF4801BeginDocument.Param("BranchPlant")             = ""
+  emF4801BeginDocument.Param("InteractiveBatchFlag")    = "B"
+  emF4801BeginDocument.Param("ErrorMessageID")          = ""
+  emF4801BeginDocument.Param("SuppressErrorMessages")   = "0"
+  emF4801BeginDocument.Param("ProcessEdits")            = "0"
+  emF4801BeginDocument.Param("ProcessModule")           = "MFG"
+  emF4801BeginDocument.Param("ProgramID")               = "ER31410"
+  emF4801BeginDocument.Param("VersionID")               = "XJDE0001"
+  emF4801BeginDocument.Param("ProjectNumber")           = 0
+  emF4801BeginDocument.Param("CalculateCumCostFlag")    = ""
+  emF4801BeginDocument.Param("ReSynchronizeFlag")       = ""
+  emF4801BeginDocument.Param("WorkFileLineNumber")      = 0
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4801BeginDocument.Name, "", emF4801BeginDocument)
+
+  If Not emF4801BeginDocument.Execute Then
+    sErrDesc = "emF4801BeginDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4801BeginDocument.Name, "", emF4801BeginDocument, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------'
+  ' F4801EditLine '
+  '---------------'
+  emF4801EditLine.Name = "F4801EditLine"
+  '
+  emF4801EditLine.Param("JobNumber")                      = emF4801BeginDocument.Param("JobNumber")
+  emF4801EditLine.Param("ActionCode")                     = "2"
+  emF4801EditLine.Param("ProcessEdits")                   = "0"
+  emF4801EditLine.Param("ErrorCode")                      = ""
+  emF4801EditLine.Param("ProcessModule")                  = "MFG"
+  emF4801EditLine.Param("WorkFileLineNumber")             = 0
+  emF4801EditLine.Param("SuppressErrorMessages")          = "1"
+  emF4801EditLine.Param("ErrorMessageID")                 = ""
+  emF4801EditLine.Param("ProcessToolEditing")             = ""
+  emF4801EditLine.Param("SOParentLineNumber")             = 0
+  emF4801EditLine.Param("RecordWrittenToWorkFileFlag")    = "0"
+  emF4801EditLine.Param("OrderNumber")                    = tmDOCO
+  emF4801EditLine.Param("OrderType")                      = tmDCTO
+  emF4801EditLine.Param("OrderSuffix")                    = "   "
+  emF4801EditLine.Param("RelatedOrderNumber")             = "        "
+  emF4801EditLine.Param("RelatedOrderType")               = "  "
+  emF4801EditLine.Param("LineNumber")                     = .000
+  emF4801EditLine.Param("PegToWorkOrder")                 = 0
+  emF4801EditLine.Param("ParentOrderNumber")              = "        "
+  emF4801EditLine.Param("WOType")                         = "S"
+  emF4801EditLine.Param("WOPriority")                     = "1"
+  emF4801EditLine.Param("WODescription")                  = "Cro-Moly Frame, Red           "
+  emF4801EditLine.Param("StatusComment")                  = "                              "
+  emF4801EditLine.Param("Company")                        = tmCO
+  emF4801EditLine.Param("BusinessUnit")                   = tmMCU
+  emF4801EditLine.Param("BranchPlant")                    = tmMCU
+  emF4801EditLine.Param("Location")                       = "                    "
+  emF4801EditLine.Param("AisleLocation")                  = "        "
+  emF4801EditLine.Param("BinLocation")                    = "        "
+  emF4801EditLine.Param("WOStatus")                       = " "          '"10"
+  emF4801EditLine.Param("DateStatusChanged")              = " "          '"10/5/2007"
+  emF4801EditLine.Param("Subsidiary")                     = "        "
+  emF4801EditLine.Param("CustomerNumber")                 = 0
+  emF4801EditLine.Param("OriginatorNumber")               = DB.Extract(sCols,sRows,1,"WAANO")       ' from F4801
+  emF4801EditLine.Param("Manager")                        = DB.Extract(sCols,sRows,1,"WAANSA")      ' from F4801
+  emF4801EditLine.Param("Supervisor")                     = 0
+  emF4801EditLine.Param("AssignedToAddressNumber")        = 0
+  emF4801EditLine.Param("PlannedCompletionDate")          = DB.Extract(sCols,sRows,1,"WADPL")
+  emF4801EditLine.Param("InspectorNumber")                = 0
+  emF4801EditLine.Param("NextAddressNumber")              = 0
+  emF4801EditLine.Param("OrderDate")                      = DB.Extract(sCols,sRows,1,"WATRDJ")
+  emF4801EditLine.Param("StartDate")                      = DB.Extract(sCols,sRows,1,"WASTRT")
+  emF4801EditLine.Param("RequestedDate")                  = DB.Extract(sCols,sRows,1,"WADRQJ")
+  emF4801EditLine.Param("CompletionDate")                 = ""
+  emF4801EditLine.Param("AssignedToDate")                 = ""
+  emF4801EditLine.Param("AssignToInspectorDate")          = ""
+  emF4801EditLine.Param("PaperPrintedDate")               = ""
+  emF4801EditLine.Param("WOCategoryCode001")              = "    "
+  emF4801EditLine.Param("WOCategoryCode002")              = "   "
+  emF4801EditLine.Param("WOCategoryCode003")              = "   "
+  emF4801EditLine.Param("WOCategoryCode004")              = "   "
+  emF4801EditLine.Param("WOCategoryCode005")              = "   "
+  emF4801EditLine.Param("WOCategoryCode006")              = "   "
+  emF4801EditLine.Param("WOCategoryCode007")              = "   "
+  emF4801EditLine.Param("WOCategoryCode008")              = "   "
+  emF4801EditLine.Param("WOCategoryCode009")              = "   "
+  emF4801EditLine.Param("WOCategoryCode010")              = "   "
+  emF4801EditLine.Param("Reference")                      = "                         "
+  emF4801EditLine.Param("Reference2")                     = "                         "
+  emF4801EditLine.Param("EstimatedAmount")                = .00
+  emF4801EditLine.Param("CrewSize")                       = .0
+  emF4801EditLine.Param("DistributionRate")               = .00
+  emF4801EditLine.Param("PayType")                        = "     "
+  emF4801EditLine.Param("ChargeToOriginalAmount")         = .00
+  emF4801EditLine.Param("EstimatedHours")                 = .00
+  emF4801EditLine.Param("ChargeToOriginalHours")          = .00
+  emF4801EditLine.Param("ActualAmount")                   = .00
+  emF4801EditLine.Param("HoursActual")                    = .00
+  emF4801EditLine.Param("ShortItemNumber")                = DB.Extract(sCols,sRows,1,"WAITM")
+  emF4801EditLine.Param("3rdItemNumber")                  = DB.Extract(sCols,sRows,1,"WAAITM")
+  emF4801EditLine.Param("2ndItemNumber")                  = tmLITM
+  emF4801EditLine.Param("AssetNumber")                    = 0
+  emF4801EditLine.Param("UnitNumber")                     = "            "
+  emF4801EditLine.Param("QtyOrdered")                     = DB.Extract(sCols,sRows,1,"WAUORG")
+  emF4801EditLine.Param("QtyBackOrdered")                 = 0
+  emF4801EditLine.Param("QtyCanceled")                    = 0
+  emF4801EditLine.Param("QtyShipped")                     = 0
+  emF4801EditLine.Param("QuantityShippedToDate")          = 0
+  emF4801EditLine.Param("UnitOfMeasure")                  = DB.Extract(sCols,sRows,1,"WAUOM")
+  emF4801EditLine.Param("MessageNumber")                  = "          "
+  emF4801EditLine.Param("BeginTime")                      = 0
+  emF4801EditLine.Param("TypeOfBill")                     = "M  "
+  emF4801EditLine.Param("TypeOfRouting")                  = "M  "
+  emF4801EditLine.Param("PickListPrinted")                = " "
+  emF4801EditLine.Param("PostingEdit")                    = " "
+  emF4801EditLine.Param("VarianceFlag")                   = " "
+  emF4801EditLine.Param("BillOfMaterialFlag")             = " "
+  emF4801EditLine.Param("RouteSheetFlag")                 = " "
+  emF4801EditLine.Param("FlashMessage")                   = " "
+  emF4801EditLine.Param("FreezeCode")                     = "N"
+  emF4801EditLine.Param("IndentedCode")                   = " "
+  emF4801EditLine.Param("ResequenceCode")                 = .00
+  emF4801EditLine.Param("MilesOrHoursAmount")             = .00
+  emF4801EditLine.Param("TicklerDate")                    = ""
+  emF4801EditLine.Param("ProjectedBudgetAmount")          = 0
+  emF4801EditLine.Param("PercentComplete")                = .00
+  emF4801EditLine.Param("LeadtimeLevel")                  = 0
+  emF4801EditLine.Param("LeadtimeCumulative")             = 0
+  emF4801EditLine.Param("UnaccountedHours")               = .00
+  emF4801EditLine.Param("LotNumber")                      = "                              "
+  emF4801EditLine.Param("LotPotency")                     = .000
+  emF4801EditLine.Param("LotGrade")                       = "   "
+  emF4801EditLine.Param("CriticalRatioPriority1")         = .00
+  emF4801EditLine.Param("CriticalRatioPriority2")         = .00
+  emF4801EditLine.Param("DocumentType")                   = "  "
+  emF4801EditLine.Param("SubledgerInactiveCode")          = " "
+  emF4801EditLine.Param("RelatedKeyCompany")              = "     "
+  emF4801EditLine.Param("BillRevisionLevel")              = "AA "
+  emF4801EditLine.Param("RoutingRevisionLevel")           = "   "
+  emF4801EditLine.Param("DrawingChange")                  = " "
+  emF4801EditLine.Param("RoutingChange")                  = " "
+  emF4801EditLine.Param("NewPartNumberRequired")          = " "
+  emF4801EditLine.Param("ReasonCode")                     = "  "
+  emF4801EditLine.Param("Phase")                          = "   "
+  emF4801EditLine.Param("ExistingDisposition")            = "   "
+  emF4801EditLine.Param("BillOfMaterialsChange")          = " "
+  emF4801EditLine.Param("UserReservedCode")               = "  "
+  emF4801EditLine.Param("UserReservedDate")               = ""
+  emF4801EditLine.Param("UserReservedAmount")             = .00
+  emF4801EditLine.Param("UserReservedNumber")             = 0
+  emF4801EditLine.Param("UserReservedReference")          = "               "
+  emF4801EditLine.Param("ParentNumber")                   = 0
+  emF4801EditLine.Param("NextStatus")                     = "  "
+  emF4801EditLine.Param("Criticality")                    = 0
+  emF4801EditLine.Param("EstimatedDowntimeHours")         = .00
+  emF4801EditLine.Param("ActualDowntimeHours")            = .00
+  emF4801EditLine.Param("ServiceAddressNumber")           = 0
+  emF4801EditLine.Param("MeterPosition")                  = 0
+  emF4801EditLine.Param("ApprovalType")                   = "   "
+  emF4801EditLine.Param("EstimatedLaborAmount")           = .00
+  emF4801EditLine.Param("EstimatedMaterialAmount")        = .00
+  emF4801EditLine.Param("EstimatedOtherAmount")           = .00
+  emF4801EditLine.Param("ActualLaborAmount")              = .00
+  emF4801EditLine.Param("ActualMaterialAmount")           = .00
+  emF4801EditLine.Param("ItemNumberUnknownFormat")        = tmLITM
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4801EditLine.Name, "", emF4801EditLine)
+
+  If Not emF4801EditLine.Execute Then
+    sErrDesc = "emF4801EditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4801EditLine.Name, "", emF4801EditLine, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '---------------'
+  ' F3111BeginDoc '
+  '---------------'
+  emF3111BeginDoc.Name = "F3111BeginDoc"
+  '
+  emF3111BeginDoc.Param("JobNumber")                      = emF4801BeginDocument.Param("JobNumber")
+  emF3111BeginDoc.Param("ProcessEdits")                   = "1"
+  emF3111BeginDoc.Param("SuppressErrorMessages")          = ""
+  emF3111BeginDoc.Param("ErrorCode")                      = ""
+  emF3111BeginDoc.Param("ErrorMessageID")                 = ""
+  emF3111BeginDoc.Param("Version")                        = "XJDE0001"
+  emF3111BeginDoc.Param("ProgramID")                      = "ER31410"
+  emF3111BeginDoc.Param("DataDictionaryValidation")       = ""
+  emF3111BeginDoc.Param("OrderNumber")                    = tmDOCO
+  emF3111BeginDoc.Param("OrderType")                      = ""
+  emF3111BeginDoc.Param("BranchPlant")                    = ""
+  emF3111BeginDoc.Param("DateRequested")                  = ""
+  emF3111BeginDoc.Param("QtyOrdered")                     = 0
+  emF3111BeginDoc.Param("ItemNumberUnknownFormat")        = ""
+  emF3111BeginDoc.Param("ItemNumberDescription1")         = ""
+  emF3111BeginDoc.Param("ItemNumberDescription2")         = ""
+  emF3111BeginDoc.Param("WODescription")                  = ""
+  emF3111BeginDoc.Param("ProcessModule")                  = "MFG"
+  emF3111BeginDoc.Param("StartDate")                      = ""
+  emF3111BeginDoc.Param("ShortItemNumber")                = 0
+  emF3111BeginDoc.Param("F3009HasPercentOrRates")         = ""
+  emF3111BeginDoc.Param("F3009ModCostByWCEfficiency")     = ""
+  emF3111BeginDoc.Param("F3009IncludeVarLaborOH")         = ""
+  emF3111BeginDoc.Param("F3009CalcVarOnDirectLabor")      = ""
+  emF3111BeginDoc.Param("F3009CalcVarOnSetupLabor")       = ""
+  emF3111BeginDoc.Param("F3009IncludeWCEffInOH")          = ""
+  emF3111BeginDoc.Param("F3009IncFixedLaborOrOHinCost")   = ""
+  emF3111BeginDoc.Param("F3009CalcFixOnDirectLabor")      = ""
+  emF3111BeginDoc.Param("F3009CalcFixOnSetupLabor")       = ""
+  emF3111BeginDoc.Param("F3009IncVarMachOHinCost")        = ""
+  emF3111BeginDoc.Param("F3009IncFixedMachOHinCost")      = ""
+  emF3111BeginDoc.Param("F3009BackflushOptions")          = ""
+  emF3111BeginDoc.Param("F3009MasterRoutingYN")           = ""
+  emF3111BeginDoc.Param("F3009CommitmentControl")         = ""
+  emF3111BeginDoc.Param("F3009HardSoftCommit")            = ""
+  emF3111BeginDoc.Param("F4101PrimaryUOM")                = ""
+  emF3111BeginDoc.Param("F4102TempFlashMsg")              = ""
+  emF3111BeginDoc.Param("F4102StockNonstock")             = ""
+  emF3111BeginDoc.Param("F4101RevisionLevel")             = ""
+  emF3111BeginDoc.Param("F4102AcctingCostQty")            = 0
+  emF3111BeginDoc.Param("F4102PotencyControl")            = ""
+  emF3111BeginDoc.Param("F4102StockingType")              = ""
+  emF3111BeginDoc.Param("F4102PrintMessage")              = ""
+  emF3111BeginDoc.Param("F4102RevisionLevel")             = ""
+  emF3111BeginDoc.Param("F4102ShrinkFactor")              = 0
+  emF3111BeginDoc.Param("F4102ShrinkFactorMethod")        = ""
+  emF3111BeginDoc.Param("F4102StandardPotency")           = 0
+  emF3111BeginDoc.Param("F4101DrawingNumber")             = ""
+  emF3111BeginDoc.Param("F4101RevisionNumber")            = ""
+  emF3111BeginDoc.Param("InteractiveBatchFlag")           = "B"
+  emF3111BeginDoc.Param("F4801QtyInPrimary")              = 0
+  emF3111BeginDoc.Param("F4801BusinessUnit")              = ""
+  emF3111BeginDoc.Param("F4801Subsidiary")                = ""
+  emF3111BeginDoc.Param("F4801AddressNo")                 = 0
+  emF3111BeginDoc.Param("ComputerID")                     = ""
+  emF3111BeginDoc.Param("F4801QtyOrderedWithShrink")      = 0
+  emF3111BeginDoc.Param("AssetItemNumber")                = 0
+  emF3111BeginDoc.Param("ProjectNumber")                  = 0
+  emF3111BeginDoc.Param("BypassPORetrieval")              = ""
+  emF3111BeginDoc.Param("WorkOrderIssuesVersion")         = ""
+  emF3111BeginDoc.Param("F4801UnitOfMeasure")             = ""
+  emF3111BeginDoc.Param("WorkOrderEntryVersion")          = ""
+  emF3111BeginDoc.Param("ProjectGLClassCode")             = ""
+  emF3111BeginDoc.Param("JobCostInterfaceYN")             = ""
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111BeginDoc.Name, "", emF3111BeginDoc)
+
+  If Not emF3111BeginDoc.Execute Then
+    sErrDesc = "emF3111BeginDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111BeginDoc.Name, "", emF3111BeginDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------------------'
+  ' F3112WorkOrderRoutingsBeginDoc '
+  '--------------------------------'
+  emF3112WorkOrderRoutingsBeginDoc.Name = "F3112WorkOrderRoutingsBeginDoc"
+  '
+  emF3112WorkOrderRoutingsBeginDoc.Param("ErrorMessageID")                = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("ErrorCode")                     = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("ProcessEdits")                  = "1"
+  emF3112WorkOrderRoutingsBeginDoc.Param("ProcessModule")                 = "MFG"
+  emF3112WorkOrderRoutingsBeginDoc.Param("ComputerID")                    = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("LineActionCode")                = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("P3112Version")                  = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("ProgramId")                     = "ER31410"
+  emF3112WorkOrderRoutingsBeginDoc.Param("DataDictionaryValidation")      = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("SuppressErrorMessages")         = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("CreateCache")                   = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801OrderNumber")              = tmDOCO
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801OrderType")                = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801BranchPlant")              = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801QtyOrdered")               = 0
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801DateRequested")            = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801UnitOfMeasure")            = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("PrimaryItemNumber")             = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("ItemDescription1")              = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("ItemDescription2")              = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("PORoutingTypeFlag")             = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("POCreatePartsListFlag")         = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("JobNumber")                     = emF4801BeginDocument.Param("JobNumber")
+  emF3112WorkOrderRoutingsBeginDoc.Param("ShortItemNumber")               = 0
+  emF3112WorkOrderRoutingsBeginDoc.Param("P48013Version")                 = "ZJDE0001"
+  emF3112WorkOrderRoutingsBeginDoc.Param("R31410Version")                 = "XJDE0001"
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009HasPercentOrRates")        = emF3111BeginDoc.Param("F3009HasPercentOrRates")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009ModcostByWCEfficiency")    = emF3111BeginDoc.Param("F3009ModCostByWCEfficiency")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009IncludeVarLaborOH")        = emF3111BeginDoc.Param("F3009IncludeVarLaborOH")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009CalcVarOnDirectLabor")     = emF3111BeginDoc.Param("F3009CalcVarOnDirectLabor")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009CalcVarOnSetupLabor")      = emF3111BeginDoc.Param("F3009CalcVarOnSetupLabor")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009IncludeWCEffInOH")         = emF3111BeginDoc.Param("F3009IncludeWCEffInOH")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009IncFixLaborOrOHinCost")    = emF3111BeginDoc.Param("F3009IncFixedLaborOrOHinCost")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009CalcFixOnDirectLabor")     = emF3111BeginDoc.Param("F3009CalcFixOnDirectLabor")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009CalcFixOnSetupLabor")      = emF3111BeginDoc.Param("F3009CalcFixOnSetupLabor")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009IncVarMachOHinCost")       = emF3111BeginDoc.Param("F3009IncVarMachOHinCost")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009IncFixedMachOHinCost")     = emF3111BeginDoc.Param("F3009IncFixedMachOHinCost")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009BackflushOptions")         = emF3111BeginDoc.Param("F3009BackflushOptions")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009MasterRoutingYN")          = emF3111BeginDoc.Param("F3009MasterRoutingYN")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009CommitmentControl")        = emF3111BeginDoc.Param("F3009CommitmentControl")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F3009HardSoftCommit")           = emF3111BeginDoc.Param("F3009HardSoftCommit")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4101PrimaryUOM")               = emF3111BeginDoc.Param("F4101PrimaryUOM")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102TempFlashMsg")             = emF3111BeginDoc.Param("F4102TempFlashMsg")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102StockNonstock")            = emF3111BeginDoc.Param("F4102StockNonstock")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4101RevisionLevel")            = emF3111BeginDoc.Param("F4101RevisionLevel")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102AcctingCostQty")           = emF3111BeginDoc.Param("F4102AcctingCostQty")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102PotencyControl")           = emF3111BeginDoc.Param("F4102PotencyControl")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102StockingType")             = emF3111BeginDoc.Param("F4102StockingType")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102PrintMessage")             = emF3111BeginDoc.Param("F4102PrintMessage")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102RevisionLevel")            = emF3111BeginDoc.Param("F4102RevisionLevel")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102ShrinkFactor")             = emF3111BeginDoc.Param("F4102ShrinkFactor")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102ShrinkFactorMethod")       = emF3111BeginDoc.Param("F4102ShrinkFactorMethod")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4102StandardPotency")          = emF3111BeginDoc.Param("F4102StandardPotency")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4101DrawingNumber")            = emF3111BeginDoc.Param("F4101DrawingNumber")
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4101RevisionNumber")           = emF3111BeginDoc.Param("F4101RevisionNumber")
+  emF3112WorkOrderRoutingsBeginDoc.Param("InteractiveBatchFlag")          = "B"
+  emF3112WorkOrderRoutingsBeginDoc.Param("F4801DateStart")                = ""
+  emF3112WorkOrderRoutingsBeginDoc.Param("ProjectNumber")                 = 0
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3112WorkOrderRoutingsBeginDoc.Name, "", emF3112WorkOrderRoutingsBeginDoc)
+
+  If Not emF3112WorkOrderRoutingsBeginDoc.Execute Then
+    sErrDesc = "emF3112WorkOrderRoutingsBeginDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3112WorkOrderRoutingsBeginDoc.Name, "", emF3112WorkOrderRoutingsBeginDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------------------------'
+  ' F3112WorkOrderRoutingsEditDoc '
+  '-------------------------------'
+  emF3112WorkOrderRoutingsEditDoc.Name = "F3112WorkOrderRoutingsEditDoc"
+  '
+  emF3112WorkOrderRoutingsEditDoc.Param("ComputerID")               = ""
+  emF3112WorkOrderRoutingsEditDoc.Param("ErrorMessageID")           = ""
+  emF3112WorkOrderRoutingsEditDoc.Param("ProcessEdits")             = "3"
+  emF3112WorkOrderRoutingsEditDoc.Param("ProcessModule")            = "MFG"
+  emF3112WorkOrderRoutingsEditDoc.Param("InteractiveBatchFlag")     = "B"
+  emF3112WorkOrderRoutingsEditDoc.Param("ErrorCode")                = ""
+  emF3112WorkOrderRoutingsEditDoc.Param("OrderNumber")              = tmDOCO
+  emF3112WorkOrderRoutingsEditDoc.Param("ShortItemNumber")          = emF4801EditLine.Param("ShortItemNumber")
+  emF3112WorkOrderRoutingsEditDoc.Param("BranchPlant")              = tmMCU
+  emF3112WorkOrderRoutingsEditDoc.Param("nCacheCounter")            = "0"
+  emF3112WorkOrderRoutingsEditDoc.Param("F4801FlashMessage")        = ""
+  emF3112WorkOrderRoutingsEditDoc.Param("EstimatedAmount")          = 0
+  emF3112WorkOrderRoutingsEditDoc.Param("EstimatedHours")           = 0
+  emF3112WorkOrderRoutingsEditDoc.Param("JobNumber")                = emF4801BeginDocument.Param("JobNumber")
+  emF3112WorkOrderRoutingsEditDoc.Param("BackschedulingUOM")        = "HR"
+  emF3112WorkOrderRoutingsEditDoc.Param("CRPWriteWOFlag")           = ""
+  emF3112WorkOrderRoutingsEditDoc.Param("SuppressErrorMessages")    = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3112WorkOrderRoutingsEditDoc.Name, "", emF3112WorkOrderRoutingsEditDoc)
+
+  If Not emF3112WorkOrderRoutingsEditDoc.Execute Then
+    sErrDesc = "emF3112WorkOrderRoutingsEditDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3112WorkOrderRoutingsEditDoc.Name, "", emF3112WorkOrderRoutingsEditDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------------------'
+  ' F3112WorkOrderRoutingsEndDoc '
+  '------------------------------'
+  emF3112WorkOrderRoutingsEndDoc.Name = "F3112WorkOrderRoutingsEndDoc"
+  '
+  emF3112WorkOrderRoutingsEndDoc.Param("ProcessEdits")          = "1"
+  emF3112WorkOrderRoutingsEndDoc.Param("ErrorMessageID")        = ""
+  emF3112WorkOrderRoutingsEndDoc.Param("ErrorCode")             = ""
+  emF3112WorkOrderRoutingsEndDoc.Param("ProgramId")             = "ER31410"
+  emF3112WorkOrderRoutingsEndDoc.Param("ComputerID")            = ""
+  emF3112WorkOrderRoutingsEndDoc.Param("CacheEdits")            = "C"
+  emF3112WorkOrderRoutingsEndDoc.Param("JobNumber")             = emF4801BeginDocument.Param("JobNumber")
+  emF3112WorkOrderRoutingsEndDoc.Param("ProcessModule")         = "MFG"
+  emF3112WorkOrderRoutingsEndDoc.Param("UpdateX4801Cache")      = "1"
+  emF3112WorkOrderRoutingsEndDoc.Param("X4801WorkFileLineNo")   = emF4801EditLine.Param("WorkFileLineNumber")
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3112WorkOrderRoutingsEndDoc.Name, "", emF3112WorkOrderRoutingsEndDoc)
+
+  If Not emF3112WorkOrderRoutingsEndDoc.Execute Then
+    sErrDesc = "emF3112WorkOrderRoutingsEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3112WorkOrderRoutingsEndDoc.Name, "", emF3112WorkOrderRoutingsEndDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------'
+  ' F3111EditDoc '
+  '--------------'
+  emF3111EditDoc.Name = "F3111EditDoc"
+  '
+  emF3111EditDoc.Param("JobNumber")               = emF4801BeginDocument.Param("JobNumber")
+  emF3111EditDoc.Param("ProcessEdits")            = "6"
+  emF3111EditDoc.Param("SuppressErrorMessages")   = ""
+  emF3111EditDoc.Param("ErrorCode")               = ""
+  emF3111EditDoc.Param("ErrorMessageID")          = ""
+  emF3111EditDoc.Param("InteractiveBatch")        = "B"
+  emF3111EditDoc.Param("CopyOrderNumber")         = 0
+  emF3111EditDoc.Param("CopyItemNumber")          = emF4801EditLine.Param("ShortItemNumber")
+  emF3111EditDoc.Param("BranchPlant")             = tmMCU
+  emF3111EditDoc.Param("nCacheCounter")           = "0"
+  emF3111EditDoc.Param("F4801FlashMessage")       = ""
+  emF3111EditDoc.Param("EstimatedAmount")         = 0
+  emF3111EditDoc.Param("EstimatedHours")          = 0
+  emF3111EditDoc.Param("ProcessModule")           = "MFG"
+  emF3111EditDoc.Param("BillRevisionLevel")       = "AA "
+  emF3111EditDoc.Param("SubstitutesExistFlag")    = ""
+  emF3111EditDoc.Param("BatchQuantity")           = 0
+  emF3111EditDoc.Param("AsOfDate")                = ""
+  emF3111EditDoc.Param("CacheName")               = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111EditDoc.Name, "", emF3111EditDoc)
+
+  If Not emF3111EditDoc.Execute Then
+    sErrDesc = "emF3111EditDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111EditDoc.Name, "", emF3111EditDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------'
+  ' F3111EndDoc '
+  '-------------'
+  emF3111EndDoc.Name = "F3111EndDoc"
+  '
+  emF3111EndDoc.Param("JobNumber")                = emF4801BeginDocument.Param("JobNumber")
+  emF3111EndDoc.Param("ProcessEdits")             = "2"
+  emF3111EndDoc.Param("SuppressErrorMessages")    = ""
+  emF3111EndDoc.Param("ErrorCode")                = ""
+  emF3111EndDoc.Param("ErrorMessageID")           = ""
+  emF3111EndDoc.Param("ProcessModule")            = "MFG"
+  emF3111EndDoc.Param("UpdateX4801Cache")         = "1"
+  emF3111EndDoc.Param("X4801WorkFileLineNo")      = emF4801EditLine.Param("WorkFileLineNumber")
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111EndDoc.Name, "", emF3111EndDoc)
+
+  If Not emF3111EndDoc.Execute Then
+    sErrDesc = "emF3111EndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111EndDoc.Name, "", emF3111EndDoc, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------'
+  ' F4801EndDocument '
+  '------------------'
+  emF4801EndDocument.Name = "F4801EndDocument"
+  '
+  emF4801EndDocument.Param("JobNumber")                 = emF4801BeginDocument.Param("JobNumber")
+  emF4801EndDocument.Param("ErrorCode")                 = ""
+  emF4801EndDocument.Param("OrderNumber")               = 0
+  emF4801EndDocument.Param("SuppressErrorMessages")     = ""
+  emF4801EndDocument.Param("ErrorMessageID")            = ""
+  emF4801EndDocument.Param("OrderType")                 = ""
+  emF4801EndDocument.Param("OrderNoKeyCompany")         = ""
+  emF4801EndDocument.Param("BeginningTime")             = 0
+  emF4801EndDocument.Param("BeginDate")                 = ""
+  emF4801EndDocument.Param("EquipmentStatus")           = ""
+  emF4801EndDocument.Param("ChildFlag")                 = ""
+  emF4801EndDocument.Param("WorkFileLineNumber")        = emF4801EditLine.Param("WorkFileLineNumber")
+  emF4801EndDocument.Param("SOParentLineNumber")        = 0
+  emF4801EndDocument.Param("SalesOrderNumber")          = 0
+  emF4801EndDocument.Param("LineNumber")                = 0
+  emF4801EndDocument.Param("NameRemark")                = ""
+  emF4801EndDocument.Param("InteractiveBatchFlag")      = "I"
+  emF4801EndDocument.Param("ProcessEdits")              = "1"
+  emF4801EndDocument.Param("ProcessModule")             = "MFG"
+  emF4801EndDocument.Param("ActionCode")                = ""
+  emF4801EndDocument.Param("ProjectNumber")             = 0
+  emF4801EndDocument.Param("SynchronizeSequenceFlag")   = ""
+  emF4801EndDocument.Param("CalculateCumulativeFlag")   = ""
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4801EndDocument.Name, "", emF4801EndDocument)
+
+  If Not emF4801EndDocument.Execute Then
+    sErrDesc = "emF4801EndDocument"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4801EndDocument.Name, "", emF4801EndDocument, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+ bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+  '
+End Function
+</Code>

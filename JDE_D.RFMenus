@@ -1,0 +1,12 @@
+﻿<Record FileDesc="RFGen JD Edwards Transaction Suites" FileVersion="5.0.8.0" Desc="RFGen JD Edwards Transaction Suites" Heading="[RFGen JDE Suites]">
+<MenuItem Id="IM_D" Desc="1-Bestands Verwaltung" />
+<MenuItem Id="SO" Desc="2-Vertrieb" />
+<MenuItem Id="PO" Desc="3-Einkauf" />
+<MenuItem Id="WO" Desc="4-Fertigung" />
+<MenuItem Id="KB" Desc="5-Kanban" />
+<MenuItem Id="WH" Desc="6-Lager Verwaltung" />
+<MenuItem Id="FA" Desc="7-Anlagen Buchhaltung" />
+<MenuItem Id="LP" Desc="8-Container Verw." />
+<MenuItem Id="EPM" Desc="9-Anlagen Wartung" />
+<MenuItem Id="test" Desc="test" />
+</Record>

@@ -1,0 +1,384 @@
+﻿<Record FileDesc="WO - Component Scrap" FileVersion="5.0.8.0" Desc="WO - Component Scrap">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmCMCU" />
+<Param Name="tmDRKY" />
+<Param Name="tmDRKYDESC" />
+<Param Name="tmDOCTYPE" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - COMPONENT SCRAP
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TWOCS0100"      
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmCMCU As Variant, ByRef tmDRKY As Variant, ByRef tmDRKYDESC As Variant, ByRef tmDOCTYPE As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess        As Boolean
+  Dim nBatchNo        As Currency
+  Dim nJobNo          As Currency
+  Dim nCost           As Currency
+  Dim nExtn           As Currency
+  Dim nCancelled      As Currency
+  Dim sErrDesc        As String
+  Dim sGLDate         As String
+  Dim sTNDate         As String
+  Dim sSQL            As String
+  Dim sCols           As String
+  Dim sRows           As String
+  Dim sITM            As String
+  Dim sAITM           As String
+  Dim sGLPT           As String
+  Dim sKEYID          As String
+  Dim sCOSTMETHOD     As String
+  Dim sErrID          As String
+  Dim sErrText        As String
+
+  Dim emGetAuditInfo              As New EmbeddedProc
+  Dim emWriteCardexRecord         As New EmbeddedProc
+  Dim emF3111ProcessMasterData    As New EmbeddedProc
+  Dim emError                     As New EmbeddedProc
+  Dim emNothing                   As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  ' Get default information for this item
+  sSQL = "select IBITM, IBAITM, IBGLPT from  F4102" & _
+         " where IBLITM = '" & tmLITM & "' and IBMCU = '" & tmMCU & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4102", Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4102", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sITM  = DB.Extract(sCols,sRows,1,"IBITM")
+  sAITM = DB.Extract(sCols,sRows,1,"IBAITM")
+  sGLPT = DB.Extract(sCols,sRows,1,"IBGLPT")
+
+  ' Determine Cost Method
+  sSQL = "select CICSMT from  F41001" & _
+         " where CIMCU = '" & tmCMCU & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F41001", Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F41001", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sCOSTMETHOD  = DB.Extract(sCols,sRows,1,"CICSMT")
+
+  ' Get the unit cost
+  sSQL = "select COUNCS from  F4105" & _
+         " where COITM = " & sITM & " and COMCU = '" & tmCMCU & "' and COLEDG = '" & sCOSTMETHOD & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4105", Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4105", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  nCost = ConvDecimalsFromSQL("UNCS",  DB.Extract(sCols,sRows,1,"COUNCS"))
+  nExtn = tmQTY * nCost
+  '
+  ' WO Unique Key
+  sSQL = "select WMUKID from  F3111" & _
+         " where WMCPIL = '" & tmLITM & "' and WMDOCO = " & tmDOCO & " and WMDCTO = '" & tmDCTO & "' and WMMCU = '" & tmMCU & "'"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F3111", Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F3111", Replace(sSQL, "'", "`"))
+    GoTo ExitE1
+  End If
+  '
+  sKEYID = DB.Extract(sCols, sRows, 1, "WMUKID")
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------------'
+  ' WriteCardexRecord '
+  '-------------------'
+  emWriteCardexRecord.Name       = "WriteCardexRecord"
+  emWriteCardexRecord.LogMode = LogNever
+  emWriteCardexRecord.DebugLog   = cJDELogPath
+  '
+  emWriteCardexRecord.Param("ShortItemNumber")            = sITM
+  emWriteCardexRecord.Param("SecondItemNumber")           = tmLITM
+  emWriteCardexRecord.Param("ThirdItemNumber")            = sAITM
+  emWriteCardexRecord.Param("BranchPlant")                = tmCMCU
+  emWriteCardexRecord.Param("Location")                   = tmLOCN
+  emWriteCardexRecord.Param("Lot")                        = tmLOTN
+  emWriteCardexRecord.Param("CompanyNumber")              = tmCO
+  emWriteCardexRecord.Param("DocumentNumber")             = tmDOCO
+  emWriteCardexRecord.Param("DocumentType")               = tmDOCTYPE
+  emWriteCardexRecord.Param("GLCategory")                 = sGLPT
+  emWriteCardexRecord.Param("OrderType")                  = tmDCTO
+  emWriteCardexRecord.Param("OrderNumber")                = tmDOCO
+  emWriteCardexRecord.Param("AsOfPostedCode")             = "X"
+  emWriteCardexRecord.Param("TransactionDate")            = sTNDate
+  emWriteCardexRecord.Param("TransactionUnitOfMeasure")   = tmUOM
+  emWriteCardexRecord.Param("TransactionExplanation")     = tmDRKYDESC
+  emWriteCardexRecord.Param("ReasonCode")                 = tmDRKY
+  emWriteCardexRecord.Param("TransactionQuantity")        = tmQTY * (-1)
+  emWriteCardexRecord.Param("UnitCost")                   = nCost
+  emWriteCardexRecord.Param("ExtendedCost")               = nExtn * (-1)
+  emWriteCardexRecord.Param("TerminalIdentification")     = emGetAuditInfo.Param("Workstation_UserId")
+  emWriteCardexRecord.Param("TimeOfDay")                  = emGetAuditInfo.Param("Time")
+  emWriteCardexRecord.Param("UserID")                     = tmUSER
+  emWriteCardexRecord.Param("ProgramID")                  = "EP31116"
+  emWriteCardexRecord.Param("DateCreated")                = sTNDate
+  emWriteCardexRecord.Param("UnitOfMeasureSecondary")     = tmUOM
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emWriteCardexRecord.Name, "", emWriteCardexRecord)
+
+  If Not emWriteCardexRecord.Execute Then
+    sErrDesc = "WriteCardexRecord"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emWriteCardexRecord.Name, "", emWriteCardexRecord, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '------------------------'
+  ' F3111ProcessMasterData '
+  '------------------------'
+  ' Read F3111 Record then update with Qty Scrapped
+  emF3111ProcessMasterData.Name        = "F3111ProcessMasterData"
+  emF3111ProcessMasterData.LogMode = LogNever
+  emF3111ProcessMasterData.DebugLog   = cJDELogPath
+  '
+  emF3111ProcessMasterData.Param("ActionCode")              = "I"
+  emF3111ProcessMasterData.Param("OrderNumber")             = tmDOCO
+  emF3111ProcessMasterData.Param("OrderType")               = tmDCTO
+  emF3111ProcessMasterData.Param("ComponentItemNoShort")    = sITM
+  emF3111ProcessMasterData.Param("UniqueKeyID")             = sKEYID
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111ProcessMasterData.Name, "", emF3111ProcessMasterData)
+
+  If Not emF3111ProcessMasterData.Execute Then
+    tmERRID = emF3111ProcessMasterData.Param("ErrorMessageID")
+    sErrDesc = "F3111ProcessMasterData"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111ProcessMasterData.Name, "", emF3111ProcessMasterData, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  tmERRID = emF3111ProcessMasterData.Param("ErrorMessageID")
+  '
+  If cFailOnWarnings And (Len(tmERRID) > 0) Then
+    sErrDesc = "F3111ProcessMasterData"
+    GoTo ExitE1
+  End If
+  '
+  nCancelled = Val(emF3111ProcessMasterData.Param("UnitsQuantityCanceled")) + Val(tmQTY)
+
+  '------------------------'
+  ' F3111ProcessMasterData '
+  '------------------------'
+  emF3111ProcessMasterData.Name        = "F3111ProcessMasterData"
+  emF3111ProcessMasterData.LogMode = LogNever
+  emF3111ProcessMasterData.DebugLog   = cJDELogPath
+
+  emF3111ProcessMasterData.Param("ActionCode")              = "C"
+  emF3111ProcessMasterData.Param("OrderNumber")             = tmDOCO
+  emF3111ProcessMasterData.Param("OrderType")               = tmDCTO
+  emF3111ProcessMasterData.Param("ComponentItemNoShort")    = sITM
+  emF3111ProcessMasterData.Param("UniqueKeyID")             = sKEYID
+  emF3111ProcessMasterData.Param("UnitsQuantityCanceled")   = nCancelled
+  emF3111ProcessMasterData.Param("DateUpdated")             = sTNDate
+  emF3111ProcessMasterData.Param("TimeOfDay")               = emGetAuditInfo.Param("Time")
+  emF3111ProcessMasterData.Param("WorkStationId")           = emGetAuditInfo.Param("Workstation_UserId")
+  emF3111ProcessMasterData.Param("UserId")                  = tmUSER
+  emF3111ProcessMasterData.Param("ProgramId")               = "EP31116"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF3111ProcessMasterData.Name, "", emF3111ProcessMasterData)
+
+  If Not emF3111ProcessMasterData.Execute Then
+    tmERRID = emF3111ProcessMasterData.Param("ErrorMessageID")
+    sErrDesc = "F3111ProcessMasterData"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF3111ProcessMasterData.Name, "", emF3111ProcessMasterData, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  tmERRID = emF3111ProcessMasterData.Param("ErrorMessageID")
+  '
+  If cFailOnWarnings And (Len(tmERRID) > 0) Then
+    sErrDesc = "F3111ProcessMasterData"
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emGetAuditInfo              = Nothing
+  Set emWriteCardexRecord         = Nothing
+  Set emF3111ProcessMasterData    = Nothing
+  Set emError                     = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+
+  ' Offline inventory
+  If gbOfflineEnabled Then
+    If bSuccess Then
+      DeleteOI(TM.QueueName,TM.SeqNo)
+    Else
+      DeleteOI(TM.QueueName,TM.SeqNo, tmUSER, "Unable to execute " & cTNId & "; reason: " & vbCrLf & sErrDesc, Format(Date, "YYYYMMDD") & Format(Time, "HHNNSS"))
+    End If
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim i       As Integer
+  Dim sText   As String
+  Dim sItem   As String
+  Dim sLocn   As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HWOCS0100")
+  SM.SendTextAlt 21, 3, "I", 1
+  SM.SendTextAlt 21, 4, tmDOCO, 8
+  '
+  SM.SendKey KeyEnter
+  '
+  SM.SendKey KeyF4
+  SM.SendTextAlt 21, 3, "C", 1
+  '
+  i = 7
+  '
+  Do
+    i = i + 4
+    If i = 23 Then
+      i = 11
+      SM.SendKey KeyPageDown
+    End If
+    SM.GetText 2,i,26,sItem,True
+    SM.GetText 17,i+3, 20, sLocn,True
+  Loop Until (sItem = tmLITM And sLocn = tmLOCN) Or sItem = ""
+  '
+  If sItem = "" Then
+    tmERRTEXT = "Item not found"
+    GoTo ExitWorld
+  End If
+  '
+  SM.SendTextAlt 61, i, tmQTY, 15
+  SM.SendTextAlt 17, i, tmDRKY, 2
+  SM.SendKey KeyEnter
+  '
+  ' Error checking
+  SM.GetText(53,2,27,sText,True)
+  '
+  If sText <> "" Then Call GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+  
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

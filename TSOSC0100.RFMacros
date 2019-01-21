@@ -1,0 +1,326 @@
+﻿<Record FileDesc="SO - Ship Confirm" FileVersion="5.0.8.0" Desc="SO - Ship Confirm">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmLITM" />
+<Param Name="tmLOTN" />
+<Param Name="tmLOCN" />
+<Param Name="tmQTY" />
+<Param Name="tmQTYBO" />
+<Param Name="tmQTYCA" />
+<Param Name="tmUOM" />
+<Param Name="tmLNID" />
+<Param Name="tmSHIPTO" />
+<Param Name="tmCARRIER" />
+<Param Name="tmLNTY" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmZVERSION" />
+<Param Name="tmCNID" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: SO - SHIP CONFIRM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TSOSC0100"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmLITM As Variant, ByRef tmLOTN As Variant, ByRef tmLOCN As Variant, ByRef tmQTY As Variant, ByRef tmQTYBO As Variant, ByRef tmQTYCA As Variant, ByRef tmUOM As Variant, ByRef tmLNID As Variant, ByRef tmSHIPTO As Variant, ByRef tmCARRIER As Variant, ByRef tmLNTY As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmZVERSION As Variant, ByRef tmCNID As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess    As Boolean
+  Dim nBatchNo    As Currency
+  Dim nQty2       As Currency
+  Dim nLNID       As Long
+  Dim sErrDesc    As String
+  Dim sGLDate     As String
+  Dim sTNDate     As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim nITM        As Long
+  Dim sAITM       As String
+  Dim sUOM2       As String
+  Dim sErrID      As String
+  Dim sErrText    As String
+
+  Dim emGetItemUoMConversionFactor    As New EmbeddedProc
+  Dim emGetAuditInfo                  As New EmbeddedProc
+  Dim emF42UI05EditLine               As New EmbeddedProc
+  Dim emShipConfirmEndDoc             As New EmbeddedProc
+  Dim emNothing                       As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  ' Get default information for this item
+  If Not GetItemInfo(tmMCU, tmLITM, cTNId, nITM, sAITM, tmUOM, sUOM2, tmQTY, nQty2) Then GoTo ExitE1
+
+  nLNID = ConvDecimalsToSQL("LNID", tmLNID)
+
+  sSQL = "select SDUOM2 from F4211 where SDDOCO = " & tmDOCO & _
+         " and SDDCTO = '" & tmDCTO & "' and SDMCU = '" & tmMCU & "' and SDLNID = " & nLNID & " "
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4211", Replace(sSQL, "'", "`"))
+
+  If Len(SysErr.Description) <> 0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F4211", Replace(sSQL, "'", "`"))
+  End If
+
+  sUOM2 = Trim(DB.Extract(sCols,sRows,1,"SDUOM2"))
+
+  If Len(sUOM2) > 0 And tmUOM <> sUOM2 Then
+    '----------------------------'
+    ' GetItemUoMConversionFactor '
+    '----------------------------'
+    emGetItemUoMConversionFactor.Name       = "GetItemUoMConversionFactor"
+    emGetItemUoMConversionFactor.Param("BranchPlant")         = tmMCU
+    emGetItemUoMConversionFactor.Param("FromUnitOfMeasure")   = tmUOM
+    emGetItemUoMConversionFactor.Param("ToUnitOfMeasure")     = sUOM2
+    emGetItemUoMConversionFactor.Param("QuantityToConvert")   = tmQTY
+    emGetItemUoMConversionFactor.Param("ShortItemNumber")     = nITM
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetItemUoMConversionFactor.Name, "", emGetItemUoMConversionFactor)
+    If Not emGetItemUoMConversionFactor.Execute Then
+      sErrDesc = "GetItemUoMConversionFactor"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetItemUoMConversionFactor.Name, "", emGetItemUoMConversionFactor, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+    nQty2 = emGetItemUoMConversionFactor.Param("QuantityConvertedFromtoTo")
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------'
+  ' F42UI05EditLine '
+  '-----------------'
+  emF42UI05EditLine.Name       = "F42UI05EditLine"
+  emF42UI05EditLine.LogMode = LogNever
+  emF42UI05EditLine.DebugLog   = cJDELogPath
+  '
+  emF42UI05EditLine.Param("RecordWritten")                  = "0"
+  emF42UI05EditLine.Param("OrderNumber")                    = tmDOCO
+  emF42UI05EditLine.Param("OrderType")                      = tmDCTO
+  emF42UI05EditLine.Param("OrderCompany")                   = tmCO
+  emF42UI05EditLine.Param("LineNumber")                     = tmLNID
+  emF42UI05EditLine.Param("BranchPlant")                    = tmMCU
+  emF42UI05EditLine.Param("Location")                       = tmLOCN
+  emF42UI05EditLine.Param("Lot")                            = tmLOTN
+  emF42UI05EditLine.Param("EnteredShipQuantity")            = tmQTY
+  emF42UI05EditLine.Param("EnteredBackorderQuantity")       = tmQTYBO
+  emF42UI05EditLine.Param("EnteredCancelQuantity")          = tmQTYCA
+  emF42UI05EditLine.Param("EnteredLineType")                = tmLNTY
+  emF42UI05EditLine.Param("Carrier")                        = tmCARRIER
+  emF42UI05EditLine.Param("ActualDeliveryDate")             = sTNDate
+  emF42UI05EditLine.Param("ProgramID")                      = "EP4205"
+  emF42UI05EditLine.Param("WriteIfWarning")                 = "1"
+  emF42UI05EditLine.Param("UserId")                         = emGetAuditInfo.Param("UserName")  'tmUSER
+  emF42UI05EditLine.Param("WorkStationId")                  = emGetAuditInfo.Param("Workstation_UserId")
+  emF42UI05EditLine.Param("Version")                        = tmZVERSION
+  emF42UI05EditLine.Param("ActionCode")                     = "C"
+  emF42UI05EditLine.Param("ModeProcessing")                 = "1"
+  emF42UI05EditLine.Param("TRAN_DeliveryDate")              = sTNDate
+  emF42UI05EditLine.Param("Original_CompanyKeyOrderNo")     = tmCO
+  emF42UI05EditLine.Param("Original_OrderType2")            = tmDCTO
+  emF42UI05EditLine.Param("Original_OrderNumber")           = tmDOCO
+  emF42UI05EditLine.Param("Original_LineNumber_3")          = tmLNID
+  emF42UI05EditLine.Param("XT4111LineNumber")               = 0
+  emF42UI05EditLine.Param("B4200310LineNumber")             = 0
+  emF42UI05EditLine.Param("UnitOfMeasureAsInput")           = tmUOM
+  emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = 0
+  emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = 0
+  emF42UI05EditLine.Param("AddressNumberShipTo")            = tmSHIPTO
+  emF42UI05EditLine.Param("LineType_2")                     = tmLNTY
+  emF42UI05EditLine.Param("ComputerID")                     = emGetAuditInfo.Param("Workstation_UserId")
+  emF42UI05EditLine.Param("ContainerID")                    = tmCNID
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF42UI05EditLine.Name, "", emF42UI05EditLine)
+
+  If Not emF42UI05EditLine.Execute Then
+    sErrDesc = "F42UI05EditLine"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF42UI05EditLine.Name, "", emF42UI05EditLine, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  If emF42UI05EditLine.Param("ErrorConditions") = "2" Then
+    sErrDesc = "F42UI05EditLine - Function did not execute"
+    GoTo ExitE1
+  End If
+
+  '-------------------'
+  ' ShipConfirmEndDoc '
+  '-------------------'
+  emShipConfirmEndDoc.Name       = "ShipConfirmEndDoc"
+  emShipConfirmEndDoc.LogMode = LogNever
+  emShipConfirmEndDoc.DebugLog   = cJDELogPath
+  '
+  emShipConfirmEndDoc.Param("JobNumber")          = emF42UI05EditLine.Param("JobnumberA")
+  emShipConfirmEndDoc.Param("ComputerId")         = emGetAuditInfo.Param("Workstation_UserId")
+  emShipConfirmEndDoc.Param("ErrorCondition")     = " "
+  emShipConfirmEndDoc.Param("UserId")             = emGetAuditInfo.Param("UserName")
+'  emShipConfirmEndDoc.Param("UserId")             = tmUSER
+  emShipConfirmEndDoc.Param("R42565Version")      = GetProcOpt(tmPGM,tmZVERSION, "8;2")
+  emShipConfirmEndDoc.Param("TRANSyncEndDoc")     = " "
+  emShipConfirmEndDoc.Param("mTRANJobsNumber")    = 0
+  emShipConfirmEndDoc.Param("P4205Version")       = tmZVERSION
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emShipConfirmEndDoc.Name, "", emShipConfirmEndDoc)
+
+'  If Not emShipConfirmEndDoc.Execute Then
+'    sErrDesc = "ShipConfirmEndDoc"
+'    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emShipConfirmEndDoc.Name, "", emShipConfirmEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+'    GoTo ExitE1
+'  End If
+
+  ' Ignore XPI Error Version >= 8.12
+  emShipConfirmEndDoc.Execute
+
+  If Len(Trim(emShipConfirmEndDoc.Param("ErrorCondition"))) > 0 Then
+    sErrDesc = "ShipConfirmEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emShipConfirmEndDoc.Name, "", emShipConfirmEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  Set emGetAuditInfo        = Nothing
+  Set emF42UI05EditLine     = Nothing
+  Set emShipConfirmEndDoc   = Nothing
+  '
+  tmERRTEXT = sErrDesc
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+
+  ' Offline inventory
+  If gbOfflineEnabled Then
+    If bSuccess Then
+      DeleteOI(TM.QueueName,TM.SeqNo)
+    Else
+      DeleteOI(TM.QueueName,TM.SeqNo, tmUSER, "Unable to execute " & cTNId & "; reason: " & vbCrLf & sErrDesc, Format(Date, "YYYYMMDD") & Format(Time, "HHNNSS"))
+    End If
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim bBatch As Boolean
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mmddyy") ' no '/'
+
+  SM.GoToScreen("HSOSC0100")
+  SM.SendTextAlt 69, 1, tmMCU,       12
+  SM.SendTextAlt 17, 3, tmDOCO,      8
+  SM.SendTextAlt 26, 3, tmDCTO,      2
+  SM.SendKey KeyEnter
+
+  SM.SendTextAlt 17, 6, tmLNID,      7
+  SM.SendKey KeyEnter
+
+  SM.SendTextAlt 60, 5, sTNDate,     8
+
+  If gsJDEVers = "A9.2" Then
+    SM.SendTextAlt 2,  9, "1",         2
+    SM.SendTextAlt 5,  9, tmQTY,       13
+    SM.SendTextAlt 45, 9, tmLOCN,      20
+    SM.SendTextAlt 66, 9, tmLOTN,      15
+  Else
+    SM.SendTextAlt 2,  9, "1",         1
+    SM.SendTextAlt 4,  9, tmQTY,       13
+    SM.SendTextAlt 44, 9, tmLOCN,      20
+    SM.SendTextAlt 65, 9, tmLOTN,      15
+  End If
+  '
+LoopErr:
+  SM.SendKey KeyEnter
+  '
+  bBatch = SM.WaitForText("*",5,80,1)          '*** B/P is *  when processed
+
+  If Not bBatch Then
+    Call GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+    If Len(sErrID) = 0 Then GoTo LoopErr
+  End If
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+  '
+ExitWorld:
+  If bSuccess Then SM.SendKey KeyEnter
+
+  SM.SendKey KeyEnter
+
+  SM.WaitForHost 10
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

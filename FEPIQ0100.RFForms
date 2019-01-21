@@ -1,0 +1,187 @@
+﻿<Record FileDesc="EPM - Tool Transfer History" FileVersion="5.0.8.0" Desc="EPM - Tool Transfer History" Group="EPM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtItem&vm;lblItemDesc&vm;txtAccept&vm;lstF1204" Depends="JDE.bas&vm;EPM.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtItem" />
+<SchemaParam Linked="0" Attr="2" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="3" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="4" Name="lstF1204" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtItem" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="47" Height="22" AnchorRight="568" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Unit#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="159" Height="22" AnchorRight="384" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="95" Height="22" AnchorRight="520" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="464" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="615" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstF1204" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="63" Height="22" AnchorRight="552" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="66" Width="615" Height="220" AnchorRight="0" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="615" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="     Tool Transfer History" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' EQUIPMENT PLANT MAINTENANCE: TOOL TRANSFER HISTORY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId   = "FEPIQ0100"
+Private msNUMB        As String
+
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  '
+  txtAccept.Visible = False
+  '
+  msNUMB = App.GetValue("FANUMB")
+  '
+  If Len(msNUMB) > 0 Then
+    txtItem.Text = msNUMB
+  End If
+  '
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblItemDesc.Caption = ""
+  
+End Sub
+
+Private Sub txtItem_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmNUMB", "")
+
+End Sub
+
+Private Sub txtItem_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLOCN As String
+  Dim sList As String
+  Dim sDsp  As String
+  Dim iCnt  As Integer
+  '
+  ' select from Item Number
+  sSQL = "select FADL01, FMLOC from F1204 inner join F1201" & _
+         " on FMNUMB = FANUMB" & _
+         " where FMNUMB = " & Rsp & " and FMAL = 'C'"
+
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Len(sRows) = 0 Then
+    ' select from Unit number
+    sSQL = "select FANUMB, FADL01, FMLOC from F1204 inner join F1201" & _
+           " on FMNUMB = FANUMB" & _
+           " where FAAPID = '" & Rsp & "' and FMAL = 'C'"
+    DB.Execute(sSQL, sCols, sRows)
+    If Len(sRows) = 0 Then
+      Cancel = True
+      App.MsgBox(GetMsg(129))
+      Exit Sub
+    End If
+    Rsp = Trim(DB.Extract(sCols, sRows, 1, "FANUMB"))
+  End If
+
+  lblItemDesc.Caption = Trim(DB.Extract(sCols, sRows, 1, "FADL01"))
+  '
+  App.SetValue("tmNUMB", Rsp)
+  '
+  ' clear listbox
+  lstF1204.List.Clear
+
+  sSQL = "select * from F1204 where FMNUMB = " & Rsp & " order by FMTRNN DESC"
+
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Len(sRows) > 0 Then
+    For iCnt = 1 To DB.Count(sRows)
+      sDsp = FixLeft(DB.Extract(sCols,sRows,iCnt,"FMLOC"),12," ") & " | "
+      sDsp = sDsp & ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,"FMEFTB")) & " | "
+      If DB.Extract(sCols,sRows,iCnt,"FMEND") > 0 Then
+        sDsp = sDsp & ConvJDEtoDate(DB.Extract(sCols,sRows,iCnt,"FMEND")) & " | "
+      Else
+        sDsp = sDsp & "Current    | "
+      End If
+      sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"FMRMK"),25," ") & " | "
+      lstF1204.List.AddItem " ", sDsp
+    Next iCnt
+  End If
+
+End Sub
+</Code>

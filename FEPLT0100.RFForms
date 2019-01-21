@@ -1,0 +1,305 @@
+﻿<Record FileDesc="EPM - Location Transfer" FileVersion="5.0.8.0" Desc="EPM - Location Transfer" Group="EPM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtItem&vm;txtFrom&vm;txtTo&vm;txtQty&vm;txtAccept" Depends="JDE.bas&vm;EPM.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtItem" />
+<SchemaParam Linked="0" Attr="2" Name="txtFrom" />
+<SchemaParam Linked="0" Attr="3" Name="txtTo" />
+<SchemaParam Linked="0" Attr="4" Name="txtQty" />
+<SchemaParam Linked="0" Attr="5" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtItem" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="95" Height="22" AnchorRight="145" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item Number" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="44" Width="135" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtFrom" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="71" Height="22" AnchorRight="169" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="From Loc" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="66" Width="87" Height="22" AnchorRight="57" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTo" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="55" Height="22" AnchorRight="185" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To Loc" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="88" Width="87" Height="22" AnchorRight="57" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQty" Attr="4" Defaults="1;O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="71" Height="22" AnchorRight="169" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Quantity" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="110" Width="87" Height="22" AnchorRight="57" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="151" Height="22" AnchorRight="89" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="0" Height="22" AnchorRight="168" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="     Location Transfer" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' EQUIPMENT PLANT MAINTENANCE: LOCATION TRANSFER
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId           = "FEPLT0100"     
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim emProc As EmbeddedProc
+  '
+  Set emProc = New EmbeddedProc
+  '
+  emProc.Name            = "TEPLT0100"
+  emProc.DataSource      = gsDataSource
+  emProc.Param("tmNUMB") = App.GetValue("tmNUMB")
+  emProc.Param("tmFLOC") = App.GetValue("tmFLOC")
+  emProc.Param("tmTLOC") = App.GetValue("tmTLOC")
+  emProc.Param("tmQTY")  = App.GetValue("tmQty")
+  emProc.Param("tmUser") = App.User
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "", emProc.Name, "", emProc)     
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(222) & vbCrLf & emProc.Param("tmERRTEXT")
+      Cancel = True
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, emProc.Param("tmERRTEXT"), emProc.Name,"" , emProc)     
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+
+End Sub
+
+Private Sub txtItem_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmNUMB", "")
+
+End Sub
+
+Private Sub txtItem_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+
+  Rsp = UCase(Rsp)
+  Cancel = True
+
+  sSQL = "select count(*) from F1204 where FMNUMB = " & Rsp
+
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Val(sRows) = 0 Then
+    App.MsgBox(GetMsg(129))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmNUMB", Rsp)
+  Cancel = False
+
+End Sub
+
+Private Sub txtItem_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Search_F1204_NUMB(Rsp)
+
+End Sub
+
+Private Sub txtFrom_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmFLOC", "")
+
+End Sub
+
+Private Sub txtFrom_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+
+  Rsp = UCase(Rsp)
+  Cancel = True
+
+  If Not ValidateBU(Rsp) Then Exit Sub
+
+  App.SetValue("tmFLOC", Rsp)
+  Cancel = False
+
+End Sub
+
+Private Sub txtFrom_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Search_F1204_LOC(Rsp)
+  '
+
+End Sub
+
+Private Sub txtTo_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmTLOC", "")
+
+End Sub
+
+Private Sub txtTo_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+
+  Rsp = UCase(Rsp)
+  Cancel = True
+
+  If Not ValidateBU(Rsp) Then Exit Sub
+
+  App.SetValue("tmTLOC", Rsp)
+  Cancel = False
+  
+End Sub
+
+Private Sub txtTo_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select MCMCU as Branch, MCDL01 as Description from F0006 ORDER BY MCMCU")
+
+  Rsp = App.ShowList(sList, True)
+  '
+  Cancel = (Len(Rsp)=0)
+
+End Sub
+
+Private Sub txtQty_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQty", "")
+
+End Sub
+
+Private Sub txtQty_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+  Cancel = True
+
+  If Val(Rsp) < 1 Then
+    Cancel = True
+    ErrMsg = "Quantity can not be less than 1"
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmQty", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+</Code>

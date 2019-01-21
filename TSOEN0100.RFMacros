@@ -1,0 +1,283 @@
+﻿<Record FileDesc="SO - Sales Order Entry" FileVersion="5.0.8.0" Desc="SO - Sales Order Entry">
+<Param Name="tmCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmDOCO" />
+<Param Name="tmLNTY" />
+<Param Name="tmMCU" />
+<Param Name="tmAN8" />
+<Param Name="tmSHAN" />
+<Param Name="tmValCache" />
+<Param Name="tmUSER" />
+<Param Name="tmCnt" />
+<Param Name="tmZVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: SO - SALES ORDER ENTRY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmDCTO As Variant, ByRef tmDOCO As Variant, ByRef tmLNTY As Variant, ByRef tmMCU As Variant, ByRef tmAN8 As Variant, ByRef tmSHAN As Variant, ByRef tmValCache As Variant, ByRef tmUSER As Variant, ByRef tmCnt As Variant, ByRef tmZVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess      As Boolean
+  Dim sErrDesc      As String
+  Dim sSQL          As String
+  Dim sCols         As String
+  Dim sRows         As String
+  Dim nITM          As Long
+  Dim iCnt          As Long
+  Dim nAN8          As Long
+  Dim cTNId         As String
+  Dim sLITM         As String
+  Dim sLOCN         As String
+  Dim sUOM          As String
+  Dim sLOTN         As String
+  Dim sLNTY         As String
+  Dim nQty          As Long
+  Dim nUnitPrice    As Long
+  Dim sReqDate      As String
+  '
+  Dim emGetAuditInfo                    As New EmbeddedProc
+  Dim emF4211FSEndDoc                   As New EmbeddedProc
+  Dim emF4211FSEditLine                 As New EmbeddedProc
+  Dim emF41001GetAddressNoFromBranch    As New EmbeddedProc
+  Dim emF4211FSBeginDoc                 As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  cTNId = "TSOEN0100"
+  '
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  '------------------------------'
+  ' F41001GetAddressNoFromBranch '
+  '------------------------------'
+  emF41001GetAddressNoFromBranch.Name = "F41001GetAddressNoFromBranch"
+
+  emF41001GetAddressNoFromBranch.Param("CostCenter")  = tmMCU
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF41001GetAddressNoFromBranch.Name, "", emF41001GetAddressNoFromBranch)
+
+  If Not emF41001GetAddressNoFromBranch.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF41001GetAddressNoFromBranch.Name, "", emF41001GetAddressNoFromBranch, tmUSER, TM.QueueName, TM.SeqNo)
+    sErrDesc = "F41001GetAddressNoFromBranch"
+    GoTo ErrLine
+  End If
+  '
+  nAN8 = emF41001GetAddressNoFromBranch.Param("AddressNumber")
+
+  If nAN8 = 0 Then
+    sErrDesc = "Failed get Adress number for Plant:" & tmMCU
+    GoTo ErrLine
+  End If
+  '
+  If gbCustomerMaster ="F0301" Then
+    sSQL = "select A5CRCA from F0301 where A5AN8 = " & tmAN8
+  Else
+    sSQL = "select AICRCA from F03012 where AIAN8 = " & tmAN8
+  End If
+
+  DB.Execute(sSQL,sCols,sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", gbCustomerMaster, Replace(sSQL, "'", "`"))
+
+  If Len(sRows) = 0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", gbCustomerMaster, Replace(sSQL, "'", "`"))
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    sErrDesc = "F4211FSBeginDoc"
+    GoTo ErrLine
+  End If
+
+  '-----------------'
+  ' F4211FSBeginDoc '
+  '-----------------'
+  emF4211FSBeginDoc.Name = "F4211FSBeginDoc"
+  '
+  emF4211FSBeginDoc.Param("CMDocAction")          = "A"
+  emF4211FSBeginDoc.Param("CMProcessEdits")       = "1"
+  emF4211FSBeginDoc.Param("CMComputerID")         = emGetAuditInfo.Param("Workstation_UserId")
+  emF4211FSBeginDoc.Param("CMUpdateWriteToWF")    = "2"
+  emF4211FSBeginDoc.Param("CMProgramID")          = "EP4210"
+  emF4211FSBeginDoc.Param("CMVersion")            = tmZVERSION
+  emF4211FSBeginDoc.Param("OrderCo")              = tmCO
+  emF4211FSBeginDoc.Param("OrderType")            = tmDCTO
+  emF4211FSBeginDoc.Param("BusinessUnit")         = tmMCU
+  emF4211FSBeginDoc.Param("ShipToNo")             = tmSHAN
+  emF4211FSBeginDoc.Param("OrderDate")            = emGetAuditInfo.Param("Date")
+  emF4211FSBeginDoc.Param("Mode")                 = "F"
+  emF4211FSBeginDoc.Param("DateUpdated")          = emGetAuditInfo.Param("Date")
+  emF4211FSBeginDoc.Param("UserID")               = emGetAuditInfo.Param("UserName")
+  emF4211FSBeginDoc.Param("WKBaseCurrency")       = DB.Extract(sCols,sRows,1,"A6CRRP")
+  emF4211FSBeginDoc.Param("RetrieveOrderNo")      = "1"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4211FSBeginDoc.Name, "", emF4211FSBeginDoc)
+
+  If Not emF4211FSBeginDoc.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4211FSBeginDoc.Name, "", emF4211FSBeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    sErrDesc = "F4211FSBeginDoc"
+    GoTo ErrLine
+  End If
+  '
+  If gbCustomerMaster ="F0301" Then
+    sSQL = "select A5CRCA from F0301 where A5AN8 = " & tmSHAN
+  Else
+    sSQL = "select AICRCA from F03012 where AIAN8 = " & tmSHAN
+  End If
+
+  DB.Execute(sSQL,sCols,sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", gbCustomerMaster, Replace(sSQL, "'", "`"))
+
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows from " &gbCustomerMaster & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", gbCustomerMaster, Replace(sSQL, "'", "`"))
+    GoTo ErrLine
+  End If
+
+  ' Extract values from data structure
+  For iCnt = 1 To tmCnt
+    sLITM       = Ext(tmValCache,iCnt,1)            'long Item Number
+    nQty        = CCur(Ext(tmValCache,iCnt,3))      'Ordered Qty.
+    sUOM        = Ext(tmValCache,iCnt,4)            'Transaction UOM
+    nUnitPrice  = CCur(Ext(tmValCache,iCnt,5))      'Unit Price
+    sReqDate    = Ext(tmValCache,iCnt,6)            'Deliv Date
+    '-----------------'
+    ' F4211FSEditLine '
+    '-----------------'
+    emF4211FSEditLine.Name = "F4211FSEditLine"
+    emF4211FSEditLine.Param("CMJobNo")                = emF4211FSBeginDoc.Param("CMJobNumber")
+    emF4211FSEditLine.Param("CMLineAction")           = "A"
+    emF4211FSEditLine.Param("CMProcessEdits")         = "1"
+    emF4211FSEditLine.Param("CMWriteToWFFlag")        = "2"
+    emF4211FSEditLine.Param("CMComputerID")           = emGetAuditInfo.Param("Workstation_UserId")
+    emF4211FSEditLine.Param("OrderCo")                = tmCO
+    emF4211FSEditLine.Param("OrderNo")                = emF4211FSBeginDoc.Param("OrderNo")
+    emF4211FSEditLine.Param("OrderType")              = tmDCTO
+    emF4211FSEditLine.Param("LineNo")                 = iCnt
+    emF4211FSEditLine.Param("BusinessUnit")           = tmMCU
+    emF4211FSEditLine.Param("RequestedDate")          = sReqDate
+    emF4211FSEditLine.Param("ShipToNo")               = tmSHAN
+    emF4211FSEditLine.Param("ItemNo")                 = sLITM
+    'emF4211FSEditLine.Param("Location")              = tmLOCN
+    'emF4211FSEditLine.Param("LotNo")                 = tmLOTN
+    emF4211FSEditLine.Param("LineType")               = tmLNTY
+    'emF4211FSEditLine.Param("NextStatus")            = tmNXTR
+    emF4211FSEditLine.Param("QtyOrdered")             = nQty
+    emF4211FSEditLine.Param("TransactionUOM")         = sUOM
+    emF4211FSEditLine.Param("CMLineNo")               = iCnt
+    emF4211FSEditLine.Param("CMProgramID")            = "EP4210"
+    emF4211FSEditLine.Param("CMVersion")              = tmZVERSION
+    emF4211FSEditLine.Param("OverridePrice")          = "1"              '"0"       override unit price
+    emF4211FSEditLine.Param("OverrideCost")           = "0"
+    emF4211FSEditLine.Param("UnitPrice")              = nUnitPrice
+    emF4211FSEditLine.Param("UserID")                 = emGetAuditInfo.Param("UserName")
+    emF4211FSEditLine.Param("DateUpdated")            = emGetAuditInfo.Param("Date")
+    emF4211FSEditLine.Param("WKCheckAvailability")    = "1"
+    emF4211FSEditLine.Param("SalesOrderFlags")        = "0000000000000000000000000000000000000000"
+    emF4211FSEditLine.Param("TOEPOCurrencyCode")      = emF4211FSBeginDoc.Param("CurrencyCode")
+    emF4211FSEditLine.Param("F4201BranchPlant")       = tmMCU
+    emF4211FSEditLine.Param("RevenueBusinessUnit")    = tmMCU
+    emF4211FSEditLine.Param("ProcessID")              = emF4211FSBeginDoc.Param("ProcessID")
+    emF4211FSEditLine.Param("TransactionID")          = emF4211FSBeginDoc.Param("TransactionID")
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4211FSEditLine.Name, "", emF4211FSEditLine)
+    If Not emF4211FSEditLine.Execute Then
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4211FSEditLine.Name, "", emF4211FSEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+      sErrDesc = "F4211FSEditLine"
+      GoTo ErrLine
+    End If
+  Next iCnt
+
+  '---------------'
+  ' F4211FSEndDoc '
+  '---------------'
+  emF4211FSEndDoc.Clear
+  emF4211FSEndDoc.Name       = "F4211FSEndDoc"
+  emF4211FSEndDoc.LogMode = LogNever
+  emF4211FSEndDoc.DebugLog   = cJDELogPath
+  '
+  emF4211FSEndDoc.Param("CMJobNo")                  = emF4211FSEditLine.Param("CMJobNo")
+  emF4211FSEndDoc.Param("SalesOrderNo")             = "" '*
+  emF4211FSEndDoc.Param("CMComputerID")             = emGetAuditInfo.Param("Workstation_UserId")
+  emF4211FSEndDoc.Param("OrderType")                = tmDCTO
+  emF4211FSEndDoc.Param("KeyCompany")               = tmCO
+  emF4211FSEndDoc.Param("OrderTotal")               = emF4211FSEditLine.Param("WKOrderTotal")
+  emF4211FSEndDoc.Param("ForeignOrderTotal")        = emF4211FSEditLine.Param("WKForeignOrderTotal")
+  emF4211FSEndDoc.Param("BaseCurrencyCode")         = DB.Extract(sCols,sRows,1,"A5CRCA")
+  emF4211FSEndDoc.Param("ProgramID")                = "EP4210"
+  emF4211FSEndDoc.Param("CMProgramID")              = "EP4210"
+  emF4211FSEndDoc.Param("CMVersion")                = tmZVERSION
+  emF4211FSEndDoc.Param("TimeOfDay")                = emGetAuditInfo.Param("Time")
+  emF4211FSEndDoc.Param("TotalCost")                = emF4211FSEditLine.Param("WKTotalCost")
+  emF4211FSEndDoc.Param("ForeignTotalCost")         = emF4211FSEditLine.Param("WKForeignTotalCost")
+  emF4211FSEndDoc.Param("SuppressRlvBlnktFlag")     = "0"
+  emF4211FSEndDoc.Param("WKRelatedOrderProcess")    =  1
+  emF4211FSEndDoc.Param("CMUseWorkFiles")           = "2"
+  emF4211FSEndDoc.Param("CMProcessEdits")           = "1"
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4211FSEndDoc.Name, "", emF4211FSEndDoc)
+
+  If Not emF4211FSEndDoc.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF4211FSEndDoc.Name, "", emF4211FSEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    sErrDesc = "F4211FSEndDoc"
+    GoTo ErrLine
+  End If
+  '
+  tmDOCO = emF4211FSEndDoc.Param("SalesOrderNo")
+  '
+  bSuccess = True
+  '
+'-------'
+' Exits '
+'-------'
+ErrLine:
+  Set emF41001GetAddressNoFromBranch    = Nothing
+  Set emGetAuditInfo                    = Nothing
+  Set emF4211FSBeginDoc                 = Nothing
+  Set emF4211FSEditLine                 = Nothing
+  Set emF4211FSEndDoc                   = Nothing
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+End Function
+</Code>

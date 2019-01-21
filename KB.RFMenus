@@ -1,0 +1,6 @@
+﻿<Record FileDesc="Kanban" FileVersion="5.0.8.0" Desc="Kanban" Heading="[Kanban]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FKBCO0100" Desc="1-Kanban Check Out" Options="-Pgm=P3157 -Vers=ZJDE0001" />
+<MenuItem Id="FKBCI0100" Desc="2-Kanban Check In" Options="-Pgm=P3157 -Vers=ZJDE0002" />
+<MenuItem Id="-" />
+</Record>

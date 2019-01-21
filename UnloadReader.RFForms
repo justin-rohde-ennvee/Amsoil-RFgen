@@ -1,0 +1,101 @@
+﻿<Record FileDesc="Upload Data" FileVersion="5.0.8.0" Desc="Upload Data" Group="FS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="LblStatus&vm;Unlinked2&vm;BtnUpload">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="LblStatus" />
+<SchemaParam Linked="0" Attr="2" Name="Unlinked2" />
+<SchemaParam Linked="0" Attr="3" Name="BtnUpload" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="10" FieldId="LblStatus" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="0" Top="44" Width="79" Height="22" AnchorRight="161" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="LblStatus" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="Unlinked2" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="0" Height="22" AnchorRight="240" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="0" Height="22" AnchorRight="168" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="BtnUpload" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Upload Data" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="110" Width="143" Height="22" AnchorRight="65" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[UPLOAD TO SERVER]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Sub BtnUpload_Click()
+  On Error Resume Next
+  '
+  Dim vRsp  As Variant
+  Dim bConn As Boolean
+  Dim bSend As Boolean
+  '
+  'TagRtry:
+  'LblStatus.Caption = "Connecting . . . "
+  'bConn = Server.Connect("172.17.48.35",21097)
+  '
+  'If bConn = False Then
+  '  vRsp = App.MsgBox("Error! Connect to Host failed. Retry? ",vbYesNo,vbYes)
+  '    If (vRsp = vbYes) Then
+  '      GoTo TagRtry
+  '    Else
+  '      Exit Sub
+  '    End If
+  'End If
+  '
+
+  LblStatus.Caption = "Connecting . . . "
+  bConn = Server.Connect
+
+  LblStatus.Visible = True
+  'LblStatus.Label.ForeColor = "&H00FFFF"
+  LblStatus.Label.ForeColor = vbBlack
+  LblStatus.Caption = "Uploading data . . . "
+  Screen.Refresh
+
+  bSend = Server.SendQueue
+  '
+  If bSend = False Then
+    App.MsgBox("Error sending data!")
+    LblStatus.Visible = False
+    Screen.Refresh
+    App.Sleep 2
+    App.ExitForm
+  End If
+  '
+  LblStatus.Caption = "Uploading data finished! "
+  App.Sleep 2
+  App.ExitForm
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  Server.Disconnect
+End Sub
+
+Private Sub LblStatus_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+
+End Sub
+</Code>

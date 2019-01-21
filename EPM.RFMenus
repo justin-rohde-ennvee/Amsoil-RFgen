@@ -1,0 +1,14 @@
+﻿<Record FileDesc="Equipment Plant Maintenance" FileVersion="5.0.8.0" Desc="Equipment Plant Maintenance" Heading="[Equipment P/M]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FEPIE0100" Desc="1-Information Entry " />
+<MenuItem Id="FEPLT0100" Desc="2-Location Transfer" />
+<MenuItem Id="EPMTools" Desc="3-Tools" />
+<MenuItem Id="FEPTE0100" Desc="4-Time Entry" />
+<MenuItem Id="FEPWE0100" Desc="5-Work Order Entry" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FEPQI0100" Desc="6-Equipment Inquiry" />
+<MenuItem Id="FEPQW0100" Desc="7-Work Order Inquiry" />
+<MenuItem Id="-" Desc="-- Batch Applications Field Service" />
+<MenuItem Id="FS" Desc="8-Field Service" />
+</Record>

@@ -1,0 +1,39 @@
+﻿<Record FileDesc="TM - DBMoveQueue" FileVersion="5.0.8.0" Desc="TM - DBMoveQueue" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: TM - DB MOVE QUEUE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction() As Boolean
+  On Error Resume Next
+  ' on the Transaction Server this function needs to be in the FORMS.BAS and called by Transaction Manager on a timer event
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sFrom   As String
+  Dim sTo     As String
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  sFrom = "RFQueue"             ' Name local Queue
+  sTo   = "VM812.RFQueue"       ' Name of Connection, Name of Remote Queue
+
+  '                local   ,  .Remote
+  If Not TM.MoveQueue (sFrom, sTo) Then
+    'Screen.Print -1, -1 ,"Move Queue from " & sFrom & " To " & sTo & "/" & SysErr.Number & " / " & SysErr.Description
+  End If
+
+End Function
+</Code>

@@ -1,0 +1,408 @@
+﻿<Record FileDesc="EPM - Tool Check In/Out" FileVersion="5.0.8.0" Desc="EPM - Tool Check In/Out" Group="EPM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtItem&vm;txtFrom&vm;txtTo&vm;txtQty&vm;txtAccept&vm;lblFrLocDesc&vm;lblToLocDesc&vm;lblItemDesc" Depends="JDE.bas&vm;EPM.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtItem" />
+<SchemaParam Linked="0" Attr="2" Name="txtFrom" />
+<SchemaParam Linked="0" Attr="3" Name="txtTo" />
+<SchemaParam Linked="0" Attr="4" Name="txtQty" />
+<SchemaParam Linked="0" Attr="5" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="6" Name="lblFrLocDesc" />
+<SchemaParam Linked="0" Attr="7" Name="lblToLocDesc" />
+<SchemaParam Linked="0" Attr="8" Name="lblItemDesc" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtItem" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="71" Height="22" AnchorRight="161" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Tool ID:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="44" Width="135" Height="22" AnchorRight="33" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtFrom" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="110" Width="47" Height="22" AnchorRight="161" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="From:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="110" Width="135" Height="22" AnchorRight="33" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTo" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="176" Width="31" Height="22" AnchorRight="161" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="176" Width="135" Height="22" AnchorRight="33" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQty" Attr="4" Defaults="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="71" Height="22" AnchorRight="169" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Quantity" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="132" Width="87" Height="22" AnchorRight="57" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="0" Height="22" AnchorRight="168" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFrLocDesc" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="103" Height="22" AnchorRight="65" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblFrLocDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblToLocDesc" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="198" Width="103" Height="22" AnchorRight="65" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblToLocDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="95" Height="22" AnchorRight="73" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Tool Check In/Out]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' EQUIPMENT PLANT MAINTENANCE: TOOL CHECK IN/OUT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId       = "FEPTC0100"
+Private msCrib            As String
+Private mbSV              As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sSV As String
+
+  Call SetDisplay()
+
+  lblFrLocDesc.Caption = ""
+  lblFrLocDesc.Label.BackColor1 = cFieldDefaultBC
+  lblFrLocDesc.Label.ForeColor = cFieldDefaultFC
+
+  lblToLocDesc.Caption = ""
+  lblToLocDesc.Label.BackColor1 = cFieldDefaultBC
+  lblToLocDesc.Label.ForeColor = cFieldDefaultFC
+
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+
+  txtAccept.Visible = False
+  '
+  msCrib = Trim(UCase(GetUserInfo("TOOLCRIB")))
+  '
+  ' supervisor Y/N
+  sSV    = UCase(App.GetValue("SupervisorYN"))
+  mbSV = False
+
+  If sSV = "Y" Then
+   mbSV = True
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  If Fkey = 2 Then
+    If Len(App.GetValue("tmNUMB")) > 0 Then
+      App.CallForm("FEPIQ0100" & " -FANUMB =" & App.GetValue("tmNUMB"),True)
+    End If
+  End If
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sRMK    As String
+  Dim emProc  As EmbeddedProc
+  '
+  If Not mbSV Then
+    If App.GetValue("tmTLOC") = msCrib Then
+    sRMK = "RFgen CheckIn"
+    Else
+    sRMK = "RFgen CheckOut"
+    End If
+  Else
+    sRMK = "RFgen Transfer by: " & Trim(UCase(App.User))
+  End If
+  '
+  Set emProc = New EmbeddedProc
+  '
+  emProc.Name            = "TEPLT0100"
+  emProc.DataSource      = gsDataSource
+  emProc.Param("tmNUMB") = App.GetValue("tmNUMB")
+  emProc.Param("tmFLOC") = App.GetValue("tmFLOC")
+  emProc.Param("tmTLOC") = App.GetValue("tmTLOC")
+  emProc.Param("tmQTY")  = App.GetValue("tmQty")
+  emProc.Param("tmRMK")  = sRMK
+  emProc.Param("tmUser") = App.User
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "", emProc.Name, "", emProc)     
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(222) & vbCrLf & emProc.Param("tmERRTEXT")
+      Cancel = True
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, emProc.Param("tmERRTEXT"), emProc.Name,"" , emProc)     
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+
+  lblItemDesc.Caption = ""
+  lblFrLocDesc.Caption = ""
+  lblToLocDesc.Caption = ""
+
+End Sub
+
+Private Sub txtItem_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmNUMB", "")
+
+End Sub
+
+Private Sub txtItem_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLOCN As String
+  '
+  ' select from Item Number
+  sSQL = "select FADL01, FMLOC from F1204 inner join F1201" & _
+         " on FMNUMB = FANUMB" & _
+         " where FMNUMB = " & Rsp & " and FMAL = 'C'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Len(sRows) = 0 Then
+    ' select from Unit number
+    sSQL = "select FANUMB, FADL01, FMLOC from F1204 inner join F1201" & _
+           " on FMNUMB = FANUMB" & _
+           " where FAAPID = '" & Rsp & "' and FMAL = 'C'"
+    DB.Execute(sSQL, sCols, sRows)
+    If Len(sRows) = 0 Then
+      Cancel = True
+      App.MsgBox(GetMsg(129))
+      Exit Sub
+    End If
+    Rsp = Trim(DB.Extract(sCols, sRows, 1, "FANUMB"))
+  End If
+
+  lblItemDesc.Caption = Trim(DB.Extract(sCols, sRows, 1, "FADL01"))
+  sLOCN = Trim(DB.Extract(sCols, sRows, 1, "FMLOC"))
+  txtFrom.Text = sLOCN
+  '
+  If Not mbSV Then
+    If sLOCN <> msCrib Then
+      txtTo.Text = msCrib
+    End If
+  End If
+
+  App.SetValue("tmNUMB", Rsp)
+
+End Sub
+
+Private Sub txtFrom_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmFLOC", "")
+  lblFrLocDesc.Caption = ""
+
+End Sub
+
+Private Sub txtFrom_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sMCU  As String
+
+  If Len(Rsp) = 0 Then Exit Sub
+  Rsp = UCase(Rsp)
+
+  Cancel = True
+
+  sMCU = FixRight(Rsp, 12, " ")
+
+  sSQL = "select MCDL01 from F0006" & _
+         " where MCMCU = '" & sMCU & "'"
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox "Invalid From Location"
+    Exit Sub
+  End If
+
+  lblFrLocDesc.Caption = Trim(DB.Extract(sCols, sRows, 1, "MCDL01"))
+
+  App.SetValue("tmFLOC", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtTo_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmTLOC", "")
+  lblToLocDesc.Caption = ""
+
+End Sub
+
+Private Sub txtTo_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sMCU  As String
+
+  If Len(Rsp) = 0 Then Exit Sub
+  Rsp = UCase(Rsp)
+
+  Cancel = True
+
+  sMCU = FixRight(Rsp, 12, " ")
+
+  sSQL = "select MCDL01 from F0006" & _
+         " where MCMCU = '" & sMCU & "'"
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox "Invalid To Location"
+    Exit Sub
+  End If
+
+  lblToLocDesc.Caption = Trim(DB.Extract(sCols, sRows, 1, "MCDL01"))
+
+  App.SetValue("tmTLOC", Rsp)
+  '
+  If App.GetValue("tmFLOC") = Rsp Then
+    App.MsgBox "Same from / to Location"
+    Exit Sub
+  End If
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtQty_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQty", "")
+
+End Sub
+
+Private Sub txtQty_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If Val(Rsp) < 1 Then
+    Cancel = True
+    ErrMsg = "Quantity can not be less than 1"
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmQty", Rsp)
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+</Code>

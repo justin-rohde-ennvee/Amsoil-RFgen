@@ -1,0 +1,66 @@
+﻿<Record FileDesc="AR - Acc.Status Summary" FileVersion="5.0.8.0" Desc="AR - Acc.Status Summary" MacroType="1">
+<Param Name="tmShipTo" Location="17,4" Size="21" Value="                 4242" />
+<Param Name="tmLstInv" Location="23,19" Size="16" />
+<Param Name="tmLstPaid" Location="23,20" Size="16" />
+<Param Name="tmCrdMsg" Location="60,4" Size="20" />
+<Param Name="tmCrdMsg2" Location="60,5" Size="20" />
+<Param Name="tmFuture" Location="59,7" Size="21" Value="            17,749.25" />
+<Param Name="tmCurrent" Location="59,8" Size="21" Value="         4,578,746.31" />
+<Param Name="tm031060" Location="59,9" Size="21" Value="           200,000.00" />
+<Param Name="tm061090" Location="59,10" Size="21" />
+<Param Name="tm091120" Location="59,11" Size="21" />
+<Param Name="tm121150" Location="59,12" Size="21" />
+<Param Name="tm151180" Location="59,13" Size="21" />
+<Param Name="tm181210" Location="59,14" Size="21" />
+<Param Name="tm210" Location="59,15" Size="21" />
+<Param Name="tmTotAmt" Location="59,16" Size="21" Value="         4,396,495.56" />
+<Param Name="tmCreLmt" Location="59,17" Size="21" />
+<Param Name="tmCrdOvr" Location="59,18" Size="21" />
+<Param Name="tmYearCur" Location="59,19" Size="21" />
+<Param Name="tmYearPri" Location="59,20" Size="21" />
+<Param Name="tmLstPaidAmt" Location="59,21" Size="21" Value="                     " />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: AR - ACCOUNT STATUS SUMMARY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction(ByRef tmShipTo As Variant, ByRef tmLstInv As Variant, ByRef tmLstPaid As Variant, ByRef tmCrdMsg As Variant, ByRef tmCrdMsg2 As Variant, ByRef tmFuture As Variant, ByRef tmCurrent As Variant, ByRef tm031060 As Variant, ByRef tm061090 As Variant, ByRef tm091120 As Variant, ByRef tm121150 As Variant, ByRef tm151180 As Variant, ByRef tm181210 As Variant, ByRef tm210 As Variant, ByRef tmTotAmt As Variant, ByRef tmCreLmt As Variant, ByRef tmCrdOvr As Variant, ByRef tmYearCur As Variant, ByRef tmYearPri As Variant, ByRef tmLstPaidAmt As Variant) As Boolean
+  On Error Resume Next
+  '
+  SM.SendTextAlt 17, 4, tmShipTo, 21
+  SM.SendKey KeyEnter
+  '
+  SM.GetText 59, 07, 22, tmFuture, False
+  SM.GetText 59, 08, 22, tmCurrent, False
+  SM.GetText 59, 09, 22, tm031060, False
+  SM.GetText 23, 19, 16, tmLstInv, False
+  SM.GetText 23, 20, 16, tmLstPaid, False
+  SM.GetText 60, 04, 20, tmCrdMsg, False
+  SM.GetText 60, 05, 20, tmCrdMsg2, False
+  SM.GetText 59, 10, 22, tm061090, False
+  SM.GetText 59, 11, 22, tm091120, False
+  SM.GetText 59, 12, 22, tm121150, False
+  SM.GetText 59, 13, 22, tm151180, False
+  SM.GetText 59, 14, 22, tm181210, False
+  SM.GetText 59, 15, 22, tm210, False
+  SM.GetText 59, 17, 22, tmCreLmt, False
+  SM.GetText 59, 18, 22, tmCrdOvr, False
+  SM.GetText 59, 19, 22, tmYearCur, False
+  SM.GetText 59, 20, 22, tmYearPri, False
+  SM.GetText 59, 16, 22, tmTotAmt, False
+  '
+  Transaction = True
+  
+End Function
+</Code>

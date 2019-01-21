@@ -1,0 +1,496 @@
+﻿<Record FileDesc="WO - Inquiry by Item" FileVersion="5.0.8.0" Desc="WO - Inquiry by Item" Group="WO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDOCO&vm;txtDCTO&vm;txtDATE&vm;txtSRST&vm;txtLITM&vm;lblItemDesc&vm;txtUORG&vm;txtSOQS&vm;txtSOCN&vm;txtUOPN&vm;lblRecCnt&vm;txtAccept" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="4" Name="txtDATE" />
+<SchemaParam Linked="0" Attr="5" Name="txtSRST" />
+<SchemaParam Linked="0" Attr="6" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="7" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="8" Name="txtUORG" />
+<SchemaParam Linked="0" Attr="9" Name="txtSOQS" />
+<SchemaParam Linked="0" Attr="10" Name="txtSOCN" />
+<SchemaParam Linked="0" Attr="11" Name="txtUOPN" />
+<SchemaParam Linked="0" Attr="12" Name="lblRecCnt" />
+<SchemaParam Linked="0" Attr="13" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="73" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="WO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="103" Height="22" AnchorRight="89" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="3" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="44" Width="47" Height="22" AnchorRight="41" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="39" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDATE" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="66" Width="39" Height="22" AnchorRight="185" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Due:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="87" Height="22" AnchorRight="105" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSRST" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="136" Top="66" Width="63" Height="22" AnchorRight="41" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Status:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="66" Width="39" Height="22" AnchorRight="9" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="6" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="55" Height="22" AnchorRight="185" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="183" Height="22" AnchorRight="9" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="95" Height="22" AnchorRight="97" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUORG" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="55" Height="22" AnchorRight="185" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Orig#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="132" Width="151" Height="22" AnchorRight="41" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSOQS" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="55" Height="22" AnchorRight="185" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Cmpl#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="151" Height="22" AnchorRight="41" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSOCN" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="55" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Cncl#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="176" Width="151" Height="22" AnchorRight="41" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUOPN" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="55" Height="22" AnchorRight="185" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Open#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="151" Height="22" AnchorRight="41" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblRecCnt" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="95" Height="22" AnchorRight="145" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="(1/1) &lt;-,-&gt;" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="199" Height="22" AnchorRight="41" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter For New Inquiry..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="264" Width="0" Height="22" AnchorRight="48" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[WO Inquiry - By Item]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' WORK ORDERS: INQUIRY BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cHideF  = 4
+Private Const cHideT  = 11
+Private msStatusF
+Private msStatusT     
+Private miRow         As Integer
+Private miMax         As Integer
+Private msCols        As String
+Private msRows        As String
+Private msBoMCols     As String
+Private msBoMRows     As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+    '
+  msStatusF = App.GetValue("StsFr")
+  msStatusT = App.GetValue("StsTo")
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  Dim i As Integer
+  '
+  ' Initialize special controls
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  For i=cHideF To cHideT
+    RFPrompt(i).BackColor1 = cFieldDefaultBC
+    RFPrompt(i).ForeColor = cFieldDefaultFC
+    RFPrompt(i).Visible = False
+  Next i
+  '
+  lblRecCnt.Caption = ""
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+
+  Call Clear_DependentFields
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtDOCO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDOCO", "")
+
+  Call Clear_DependentFields
+
+End Sub
+
+Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = UCase(Rsp)
+  '
+  sSQL = "select WADCTO from  F4801" & _
+         " where WADOCO = " & Rsp & " and WAMCU='%tmMCU'"
+
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(228))
+    Exit Sub
+  End If
+  '
+  ' If Order Number is unique then default DocType
+  If (DB.Count(sRows) = 1) Then
+    txtDCTO.Text = DB.Extract(sCols, sRows, 1, "WADCTO")
+    App.SetValue("tmDCTO", txtDCTO.Text)
+  End If
+  '
+  App.SetValue("tmDOCO", Rsp)
+
+  If Not Validate_WorkOrder Then Exit Sub
+  Cancel = False
+
+End Sub
+
+Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sDocType  As String
+  Dim sMCU      As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F4801_DOCO(Rsp, sMCU, msStatusF, msStatusT, sDocType)
+  If Not Cancel Then txtDCTO.Text = sDocType
+End Sub
+
+Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDCTO",  "")
+
+  Call Clear_DependentFields
+
+End Sub
+
+Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  App.SetValue("tmDCTO", Rsp)
+  '
+  If Not Validate_WorkOrder Then Exit Sub
+  Cancel = False
+End Sub
+
+Private Sub txtDCTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sDOCO As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  sDOCO = App.GetValue("tmDOCO")
+  '
+  Cancel = Not Search_F4801_DCTO(Rsp, sMCU, msStatusF, msStatusT, sDOCO)
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  Dim i As Integer
+  '
+  miRow = 0
+  miMax = 0
+  msCols = ""
+  msRows = ""
+  msBoMCols = ""
+  msBoMRows = ""
+  '
+  For i=cHideF To cHideT
+    RFPrompt(i).Visible = False
+  Next i
+  '
+  lblItemDesc.Caption = ""
+  lblRecCnt.Caption = ""
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnCursor(ByRef Cursor As String)
+  On Error Resume Next
+  '
+  If Cursor = "L" And miRow>0 Then
+    miRow = miRow-1
+    Call ShowLineInfo
+  ElseIf Cursor = "R" And miRow<miMax Then
+    miRow = miRow+1
+    Call ShowLineInfo
+  End If
+
+End Sub
+
+Private Sub Clear_DependentFields
+  On Error Resume Next
+  '
+  Dim i As Integer
+  '
+  miRow = 0
+  miMax = 0
+  msCols = ""
+  msRows = ""
+  msBoMCols = ""
+  msBoMRows = ""
+  '
+  For i=cHideF To cHideT
+    RFPrompt(i).Visible = False
+  Next i
+  '
+  lblItemDesc.Caption = ""
+  lblRecCnt.Caption = ""
+
+End Sub
+
+Private Sub ShowLineInfo()
+  On Error Resume Next
+  '
+  Dim nUORG   As Currency
+  Dim nSOQS   As Currency
+  Dim nSOCN   As Currency
+  Dim nUOPN   As Currency
+  Dim sUOM    As String
+  Dim sLITM   As String
+  Dim sDesc   As String
+  '
+  If miRow = 0 Then
+    sLITM  = DB.Extract(msCols,msRows,1,"WALITM")
+    sDesc  = DB.Extract(msCols,msRows,1,"WADL01")
+    sUOM  = DB.Extract(msCols,msRows,1,"WAUOM")
+    nUORG = ConvDecimalsFromSQL("UORG", DB.Extract(msCols,msRows,1,"WAUORG"))
+    nSOQS = ConvDecimalsFromSQL("SOQS", DB.Extract(msCols,msRows,1,"WASOQS"))
+    nSOCN = ConvDecimalsFromSQL("SOCN", DB.Extract(msCols,msRows,1,"WASOCN"))
+    nUOPN = ConvDecimalsFromSQL("UORG", DB.Extract(msCols,msRows,1,"QTY"))
+  Else
+    sLITM  = DB.Extract(msBoMCols,msBoMRows,miRow,"WMCPIL")
+    sDesc  = DB.Extract(msBoMCols,msBoMRows,miRow,"WMDSC1")
+    sUOM  = DB.Extract(msBoMCols,msBoMRows,miRow,"WMUM")
+    nUORG = ConvDecimalsFromSQL("UORG", DB.Extract(msBoMCols,msBoMRows,miRow,"WMUORG"))
+    nSOQS = ConvDecimalsFromSQL("SOQS", DB.Extract(msBoMCols,msBoMRows,miRow,"WMTRQT"))
+    nSOCN = ConvDecimalsFromSQL("SOCN", DB.Extract(msBoMCols,msBoMRows,miRow,"WMSOCN"))
+    nUOPN = ConvDecimalsFromSQL("UORG", DB.Extract(msBoMCols,msBoMRows,miRow,"QTY"))
+  End If
+  '
+  txtLITM.Text = Trim(sLITM)
+  lblItemDesc.Caption = sDesc
+  txtUORG.Text = FixRight(nUORG, 8) & " " & sUOM
+  txtSOQS.Text = FixRight(nSOQS, 8) & " " & sUOM
+  txtSOCN.Text = FixRight(nSOCN, 8) & " " & sUOM
+  txtUOPN.Text = FixRight(nUOPN, 8) & " " & sUOM
+  '
+  lblRecCnt.Caption = "(" & miRow+1 & "/" & miMax+1 & ") <-,->"
+  lblRecCnt.Visible = (miMax>0)
+
+End Sub
+
+Private Function Validate_WorkOrder As Boolean
+  On Error Resume Next
+  '
+  Dim i     As Integer
+  Dim sMCU  As String
+  Dim sDOCO As String
+  Dim sDCTO As String
+  Dim sSQL  As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  sDOCO = App.GetValue("tmDOCO")
+  sDCTO = App.GetValue("tmDCTO")
+  '
+  If (Len(sMCU)=0 Or Len(sDOCO)=0 Or Len(sDCTO)=0) Then
+    Call Clear_DependentFields
+    Exit Function
+  End If
+  '
+  Validate_WorkOrder = False
+  '
+  sSQL = "select WADRQJ, WASRST, WALITM, WADL01, WAUORG, WASOQS, WASOCN, WAUORG-WASOQS-WASOCN as QTY, WAUOM from  F4801" & _
+         " where WADOCO = %tmDOCO and WADCTO = '%tmDCTO' and WAMCU = '%tmMCU'"
+
+  DB.Execute(sSQL,msCols,msRows)
+  '
+  If (Len(msRows) = 0) Then
+    App.MsgBox GetMsg(228)
+    Exit Function
+  End If
+  '
+  txtDATE.Text = ConvJDEtoDate(DB.Extract(msCols, msRows, 1, "WADRQJ"))
+  txtSRST.Text = Trim(DB.Extract(msCols,msRows,1,"WASRST"))
+  '
+  ' get BoM
+  sSQL = "select WMCPIL, WMDSC1, WMUORG, WMTRQT, WMSOCN, WMUORG-WMTRQT-WMSOCN as QTY, WMUM from  F3111" & _
+         " where WMDOCO = %tmDOCO and WMDCTO = '%tmDCTO'  and WMMCU = '%tmMCU'"
+
+  DB.Execute(sSQL,msBoMCols,msBoMRows)
+  '
+  miRow = 0
+  miMax = DB.Count(msBoMRows)
+
+  Call ShowLineInfo
+  '
+  For i=cHideF To cHideT
+    RFPrompt(i).Visible = True
+  Next i
+  '
+  Validate_WorkOrder = True
+
+End Function
+</Code>

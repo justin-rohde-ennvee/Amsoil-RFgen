@@ -1,0 +1,17 @@
+﻿<Record FileDesc="Aggrand" FileVersion="5.0.8.0" Desc="Aggrand" Heading="[Aggrand]">
+<MenuItem Id="-" Desc="-- Warehousing --" />
+<MenuItem Id="FLPAI0100_AMS" Desc="1. Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="2. Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPTL0100_AMS" Desc="3. Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPLB0100_AMS" Desc="4. Label Reprint" />
+<MenuItem Id="FLPAS0100_AMS" Desc="5. LP Adjust Status" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQL0100_AMS" Desc="6. LP - Inquiry by Location" />
+<MenuItem Id="FLPQI0100_AMS" Desc="7. LP - Inquiry" />
+<MenuItem Id="FIMQI0100" Desc="8. Item Location Inquiry" />
+<MenuItem Id="FLPQI0300_AMS" Desc="9. LP - History Inquiry" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Work Order Manual Completion --" />
+<MenuItem Id="FLPTC0100M_AMS" Desc="0. Line Processing (Manual) " Options="-Pgm=P31114 -Vers=RGN0001" />
+</Record>

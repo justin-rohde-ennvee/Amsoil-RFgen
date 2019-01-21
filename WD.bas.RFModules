@@ -1,0 +1,618 @@
+﻿<Record FileDesc="RFgen Warehouse Director Module" FileVersion="5.0.8.0" Desc="RFgen Warehouse Director Module" />
+<Code>
+Option Explicit
+'
+' Update the warehouse job status
+'
+Public Function WDUpdateStatus(ByVal sSGBT As String, ByVal sSGSQ As String, Optional ByVal bUnlock As Boolean, Optional ByVal sPSTBOverride As String) As Boolean
+  On Error Resume Next
+
+  Dim sSql   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sPSTB  As String
+  Dim sNPSTB As String
+  Dim nErrNo As Long
+
+  ' Check warehouse job current status
+  sSql = "select R2PSTB from WDJOBS" & _
+         " where R2SGBT = '" & sSGBT & "' and R2SGSQ = '" & sSGSQ & "'"
+  DB.Execute(sSql, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(45)
+    Exit Function
+  End If
+
+  sPSTB = DB.Extract(sCols, sRows, 1, "R2PSTB")
+
+  Select Case sPSTB
+
+    Case "320"
+      sNPSTB = "321"          ' New Request -> Work In Process
+
+    Case "321"
+      If bUnlock Then
+        sNPSTB = "320"        ' Work In Process -> New Request
+      Else
+        sNPSTB = "399"        ' Work In Process -> Requested Completed
+      End If
+
+    Case Else
+
+  End Select
+
+  ' Update warehouse job status
+  If sPSTBOverride <> "" Then sNPSTB = sPSTBOverride
+
+  sSql = "update WDJOBS" & _
+         " set R2PSTB = '" & sNPSTB & "'" & _
+         " where R2SGBT = '" & sSGBT & "' and R2SGSQ = '" & sSGSQ & "'"
+  nErrNo = DB.Execute(sSql)
+
+  If nErrNo <> 0 Then
+    App.MsgBox GetMsg(45)
+    Exit Function
+  End If
+
+  WDUpdateStatus = True
+
+End Function
+'
+' Search Warehouse Details by LPID
+'
+Public Function Search_WDJOBS_LPID(ByRef Rsp As String, ByVal sMCU As String, ByVal vStatus As Variant, ByVal vTYFL As Variant, ByRef nDOCO As Variant, ByRef sDCTO As Variant, ByRef nLNID As Variant, ByRef sFLOC As Variant, ByRef sTLOC As Variant, ByRef sLITM As Variant) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql     As String
+  Dim sValue   As String
+  Dim sWhere   As String
+  Dim oList    As New SearchList
+  Dim iDecLNID As Integer
+'
+  sSql = "select LDLPID, LDLITM, R2FLOC, R2TLOC, R2DOCO, R2DCTO, R2LNID, R2DSC1 from WDJOBS" & _
+         " inner join F55102 on R2LITM = LDLITM and R2FLOT = LDLOTN" & _
+         " inner join F55101 on LDLPID = LMLPID and R2FLOC = LMLOCN" & _
+         " where R2MCU = '" & sMCU & "' and R2PSTB = '" & vStatus & "' and R2TYFL = '" & vTYFL & "'"
+
+  '
+  ' if doco, dcto is specified
+  If nDOCO <> 0 Then sWhere = " and R2DOCO = " & nDOCO & " and R2DCTO = '" & sDCTO & "' "
+  If Len(Trim(sWhere)) > 0 Then sSql = sSql & sWhere
+
+  If vTYFL = "1" Then
+    sSql = sSql & " order by LDLPID, R2LITM, R2DOCO, R2DCTO, R2LNID, R2TLOC, R2FLOC"
+  Else
+    sSql = sSql & " order by LDLPID, R2LITM, R2DOCO, R2DCTO, R2LNID, R2FLOC, R2TLOC"
+  End If
+  '
+'  Select Case App.GetValue("tmCISY")  ' Get what Item number is used
+'    Case 1
+'      sSql = Replace(sSql,"R2LITM","R2ITM")
+'    Case 3
+'      sSql = Replace(sSql,"R2LITM","R2AITM")
+'    Case Else
+'  End Select
+
+  Call GetDecimals("LNID", iDecLNID)
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "LP#",     giLenLP, CenterLeft, True)
+  oList.SetColumn(2, "Item",  giLenItem, CenterLeft, True)
+  oList.SetColumn(3, "From",  giLenLOCN, CenterLeft,False)
+  oList.SetColumn(4, "To",    giLenLOCN, CenterLeft,False)
+  oList.SetColumn(5, "Doco",          8, CenterRight, True)
+  oList.SetColumn(6, "Type",          2, CenterLeft, True)
+  oList.SetColumn(7, "Line",          6, CenterLeft, True, iDecLNID)
+  oList.SetColumn(8, "Desc",         15, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  sValue = oList.ShowList
+  '
+  Rsp   = LField(sValue, Chr(3), 1)
+  sLITM = LField(sValue, Chr(3), 2)
+  sFLOC = LField(sValue, Chr(3), 3)
+  sTLOC = LField(sValue, Chr(3), 4)
+  nDOCO = LField(sValue, Chr(3), 5)
+  sDCTO = LField(sValue, Chr(3), 6)
+  nLNID = LField(sValue, Chr(3), 7)
+  '
+  Search_WDJOBS_LPID = (Len(Rsp) > 0)
+End Function
+'
+' Search Warehouse Details by LITM
+'
+Public Function Search_WDJOBS_LITM(ByRef Rsp As String, ByVal sMCU As String, ByVal vStatus As Variant, ByVal vTYFL As Variant, ByRef nDOCO As Variant, ByRef sDCTO As Variant, ByRef nLNID As Variant, ByRef sFLOC As Variant, ByRef sTLOC As Variant) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql     As String
+  Dim sValue   As String
+  Dim sWhere   As String
+  Dim oList    As New SearchList
+  Dim iDecLNID As Integer
+'
+  sSql = "select R2LITM, R2FLOC, R2TLOC, R2DOCO, R2DCTO, R2LNID, R2DSC1 from WDJOBS" & _
+         " where R2MCU = '" & sMCU & "' and R2PSTB = '" & vStatus & "' and R2TYFL = '" & vTYFL & "'"
+
+  '
+  ' if doco, dcto is specified
+  If nDOCO <> 0 Then sWhere = " and R2DOCO = " & nDOCO & " and R2DCTO = '" & sDCTO & "' "
+  If Len(Trim(sWhere)) > 0 Then sSql = sSql & sWhere
+
+  If vTYFL = "1" Then
+    sSql = sSql & " order by R2LITM, R2DOCO, R2DCTO, R2LNID, R2TLOC, R2FLOC"
+  Else
+    sSql = sSql & " order by R2LITM, R2DOCO, R2DCTO, R2LNID, R2FLOC, R2TLOC"
+  End If
+  '
+'  Select Case App.GetValue("tmCISY")  ' Get what Item number is used
+'    Case 1
+'      sSql = Replace(sSql,"R2LITM","R2ITM")
+'    Case 3
+'      sSql = Replace(sSql,"R2LITM","R2AITM")
+'    Case Else
+'  End Select
+
+  Call GetDecimals("LNID", iDecLNID)
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "Item",  giLenItem, CenterLeft, True)
+  oList.SetColumn(2, "From",  giLenLOCN, CenterLeft,False)
+  oList.SetColumn(3, "To",    giLenLOCN, CenterLeft,False)
+  oList.SetColumn(4, "Doco",          8, CenterRight, True)
+  oList.SetColumn(5, "Type",          2, CenterLeft, True)
+  oList.SetColumn(6, "Line",          6, CenterLeft, True, iDecLNID)
+  oList.SetColumn(7, "Desc",         15, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  sValue = oList.ShowList
+  '
+  Rsp   = LField(sValue, Chr(3), 1)
+  sFLOC = LField(sValue, Chr(3), 2)
+  sTLOC = LField(sValue, Chr(3), 3)
+  nDOCO = LField(sValue, Chr(3), 4)
+  sDCTO = LField(sValue, Chr(3), 5)
+  nLNID = LField(sValue, Chr(3), 6)
+  '
+  Search_WDJOBS_LITM = (Len(Rsp) > 0)
+End Function
+
+Public Function WD_CreateRepl(sMCU As String, sTLOC As String, sItem As String, nReplQty As Currency, sUser As String, sTNId As String) As Boolean      ' PH 10/29/10
+  On Error Resume Next
+
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sColsInv As String
+  Dim sRowsInv As String
+  Dim sColsJB  As String
+  Dim sRowsJB  As String
+  Dim sColsLP  As String
+  Dim sRowsLP  As String
+  Dim sTYFL    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sFLOC    As String
+  Dim sFLOT    As String
+  Dim sTLOT    As String
+  Dim sUOM     As String
+  Dim sRCDJ    As String
+  Dim sTRDJ    As String
+  Dim sDRQJ    As String
+  Dim sPID     As String
+  Dim sUPMJ    As String
+  Dim sTDAY    As String
+  Dim sDSC1    As String
+  Dim sDSC2    As String
+  Dim sSKLocn  As String
+  Dim sLPID    As String
+  Dim sSKLpid  As String
+
+  Dim nSGBT    As Currency
+  Dim nSGSQ    As Currency
+  Dim nQty     As Currency
+  Dim nMinQty  As Currency
+  Dim nFQTY    As Currency
+  Dim nPQOH    As Currency
+  Dim nQtyOpen As Currency
+
+  Dim iRowCnt  As Integer
+  Dim iCnt     As Integer
+  Dim iRowCnt2 As Integer
+  Dim iCnt2    As Integer
+  Dim iFind    As Integer
+
+  Dim vArray   As Variant
+
+  Dim bOracle  As Boolean
+
+  Dim nErrNo   As Long
+
+  Const cPLUom     = "CA"          ' Pallet unit of measure
+  Const cPSTB      = "320"         ' Default request status
+  Const cReplZone  = "RFREPL"      ' Replenishment zone ID (LMZONR)
+  Const cErrMsg    = "UOM Conversion Failed"
+  Const cOmitLocn  = "''"          ' Locations to omit
+
+  vArray = Split(SYS.GetProperty("Config", "Env"), "|")
+  bOracle = (vArray(9) = "Oracle")
+
+
+  ' Get next batch number
+  sSql = "select R2SGBT from WDNN"
+  DB.Execute(sSql, sCols, sRows)
+
+  nSGBT = DB.Extract(sCols, sRows, 1, "R2SGBT")
+  nSGBT = nSGBT + 1
+
+  sSql = "update WDNN set R2SGBT = " & nSGBT
+  DB.Execute(sSql)
+
+  sTYFL = "3"
+
+  sRCDJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+  sTRDJ = "0"
+  sDRQJ = sRCDJ
+  sUser = sUser
+  sPID  = sTNId
+  sUPMJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+  sTDAY = Format(Time, "hhnnss")
+
+  ' Get item master info
+  sSql = "select IMITM, IMUOM1, IMDSC1, IMDSC2 from F4101" & _
+         " where IMLITM = '" & sItem & "'"
+  DB.Execute(sSql, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(63)
+    Exit Function
+  End If
+
+  sITM  = DB.Extract(sCols, sRows, 1, "IMITM")
+  sUOM  = DB.Extract(sCols, sRows, 1, "IMUOM1")
+  sDSC1 = DB.Extract(sCols, sRows, 1, "IMDSC1")
+  sDSC2 = DB.Extract(sCols, sRows, 1, "IMDSC2")
+
+  ' Find locations to replenish from
+  nQtyOpen = nReplQty                          ' replenishment quantity
+  If Not ConvUOM(sITM, nQtyOpen, sUOM, cPLUom) Then
+    App.MsgBox(cErrMsg & vbCrLf & _
+      "ITEM = " & sLITM & " ; QTY = " & nQtyOpen & " ; FROM_UOM = " & cPLUom & " ; TO_UOM = " & sUOM)
+    Exit Function
+  End If
+
+  Do While nQtyOpen > 0
+
+    sSql = "select LILOCN, LILOTN, LIPQOH from F41021" & _
+             " inner join F4100 on LIMCU = LMMCU and LILOCN = LMLOCN" & _
+             " inner join F4108 on LIMCU = IOMCU and LIITM = IOITM and LILOTN = IOLOTN" & _
+             " where LIMCU = '" & sMCU & "' and LIITM = " & sITM & " and LIPQOH > 0" & _
+             " and LILOTS in(' ', '') and LMARPL = 'Y'" & _
+             " and LMLOCN not in(" & cOmitLocn & ")"
+
+    If sSKLocn <> "" Then sSql = sSql & " and LILOCN not in(" & sSKLocn & ")"
+        sSql = sSql & " order by IOMMEJ, LILOTN, LIPQOH, LILOCN"
+        DB.Execute(sSql, sColsInv, sRowsInv)
+
+    If Len(sRowsInv) = 0 Then Exit Do
+
+    sFLOC = DB.Extract(sColsInv, sRowsInv, 1, "LILOCN")
+    sFLOT = Trim(DB.Extract(sColsInv, sRowsInv, 1, "LILOTN"))
+    sTLOT = sFLOT
+    nPQOH = DB.Extract(sColsInv, sRowsInv, 1, "LIPQOH")
+
+    If nQtyOpen <= nPQOH Then
+      nFQTY = nQtyOpen
+    Else
+      nFQTY = nPQOH
+    End If
+
+    ' Add LP number to the putaway request
+        sLPID = ""
+
+        ' In case database is Oracle
+        If bOracle Then
+          If Len(sFLOT) = 0 Then sFLOT = " "
+          If Len(sFLOC) = 0 Then sFLOC = " "
+          sLPID = " "
+        End If
+
+        sSql = "select LDLPID from F55102" & _
+               " inner join F55101 on LDLPID = LMLPID" & _
+               " where LDLITM = '" & sItem & "' and LMLOCN = '" & sFLOC & "' and LDLOTN = '" & sFLOT & "'"
+
+        If sSKLpid <> "" Then sSql = sSql & " and LDLPID not in(" & sSKLpid & ")"
+
+        DB.Execute(sSql, sColsLP, sRowsLP)
+
+        If Len(sRowsLP) > 0 Then
+          sLPID = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LDLPID"))
+        End If
+
+    ' Get next sequence number
+    nSGSQ = nSGSQ + 1
+
+    ' Create replenishment request
+    sSql = "select count(*) from WDJOBS" & _
+           " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
+           " and R2FLOT = '" & sFLOT & "' and R2FLOC = '" & sFLOC & "' and R2TLOT = '" & sTLOT & "'" & _
+           " and R2TLOC = '" & sTLOC & "'"
+    DB.Execute(sSql, sColsJB, sRowsJB)
+
+    If Val(sRowsJB) = 0 Then
+
+      sSql = "insert into WDJOBS" & _
+             " (R2TYFL, R2SGBT, R2SGSQ, R2MCU, R2ITM, R2LITM, R2UOM1, R2TQTY, R2FLOC," & _
+             " R2FLOT, R2TLOC, R2TLOT, R2DSC1, R2DSC2, R2RCDJ, R2TRDJ, R2DRQJ, R2LPID," & _
+             " R2USER, R2PID, R2UPMJ, R2TDAY, R2PSTB, R2PRITY)" & _
+             " values(" & _
+             "'" & sTYFL & "'" & "," & _
+                   nSGBT       & "," & _
+                   nSGSQ       & "," & _
+             "'" & sMCU  & "'" & "," & _
+                   sITM        & "," & _
+             "'" & sItem & "'" & "," & _
+             "'" & sUOM  & "'" & "," & _
+                   nFQTY       & "," & _
+             "'" & sFLOC & "'" & "," & _
+             "'" & sFLOT & "'" & "," & _
+             "'" & sTLOC & "'" & "," & _
+             "'" & sTLOT & "'" & "," & _
+             "'" & sDSC1 & "'" & "," & _
+             "'" & sDSC2 & "'" & "," & _
+                   sRCDJ       & "," & _
+                   sTRDJ       & "," & _
+                   sDRQJ       & "," & _
+             "'" & sLPID & "'" & "," & _
+             "'" & sUser & "'" & "," & _
+             "'" & sPID  & "'" & "," & _
+                   sUPMJ       & "," & _
+                   sTDAY       & "," & _
+             "'" & cPSTB & "'" & "," & _
+             "'" & "1"   & "'" & ")"
+      nErrNo = DB.Execute(sSql)
+
+      If nErrNo <> 0 Then
+        App.LogError(sTNId, GetMsg(45))
+        Exit Function
+      End If
+
+    End If
+
+    ' save location as "processed"
+    iFind = InStr(sSKLocn, sFLOC)
+
+    If iFind = 0 Then
+      If Len(sSKLocn) > 0 Then sSKLocn = sSKLocn & ","
+      sSKLocn = sSKLocn & "'" & sFLOC & "',"
+      sSKLocn = Left(sSKLocn, Len(sSKLocn) -1)     ' cut last ","
+    End If
+
+    ' save LP as "processed"
+        iFind = InStr(sSKLpid, sLPID)
+
+        If iFind = 0 Then
+          If Len(sSKLpid) > 0 Then sSKLpid = sSKLpid & ","
+          sSKLpid = sSKLpid & "'" & sLPID & "',"
+          sSKLpid = Left(sSKLpid, Len(sSKLpid) -1)     ' cut last ","
+        End If
+
+    nQtyOpen = nQtyOpen - nFQTY
+
+  Loop
+
+  WD_CreateRepl = True
+
+End Function
+
+Public Function WDNN() As Long
+  On Error Resume Next
+
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  '
+  ' Get next batch number
+  '
+  sSql = "select R2SGBT from WDNN "    'with(ROWLOCK)"
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If sRows = "" Then
+    WDNN = 1
+    sSql = "insert into WDNN values(" & WDNN & ")"
+    DB.Execute(sSql)
+  Else
+    WDNN = Val(sRows)
+    WDNN = WDNN + 1
+    '
+    sSql = "update WDNN set R2SGBT = " & WDNN
+    DB.Execute(sSql)
+  End If
+
+End Function
+
+Public Function Putaway (ByVal sLPID As String, ByVal nSGBT As Long, ByVal sTNId As String, ByVal sPutZone As String) As Boolean            ' PH 09/22/11
+  On Error Resume Next
+  '
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sColsJB  As String
+  Dim sRowsJB  As String
+  Dim sTYFL    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sFLOC    As String
+  Dim sFLOT    As String
+  Dim sTLOC    As String
+  Dim sTLOT    As String
+  Dim sUOM     As String
+  Dim sRCDJ    As String
+  Dim sTRDJ    As String
+  Dim sDRQJ    As String
+  Dim sUser    As String
+  Dim sPID     As String
+  Dim sUPMJ    As String
+  Dim sTDAY    As String
+  Dim sDSC1    As String
+  Dim sDSC2    As String
+  Dim sSKLocn  As String
+  Dim sDOCO    As String
+  Dim sDCTO    As String
+  Dim sMCU     As String
+  Dim sLOCN    As String
+  Dim sLOTN    As String
+
+  Dim nSGSQ    As Currency
+  Dim nQTY     As Currency
+  Dim nFQTY    As Currency
+  Dim nLNID    As Currency
+  Dim nErrNo   As Long
+
+  Const cPSTB = "320"
+  '
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+  '
+  Putaway = False
+  '
+  uLP102.sLDLPID = sLPID
+  If Not X_LP102("I",uLP102) Then   ' Inquiry on LP102
+    App.MsgBox(GetMsg(104))
+    Exit Function
+  End If
+  '
+  ' Generate putaway requests
+  '
+  sTYFL = "1"
+  nSGBT = WDNN()
+  sLPID = App.GetValue("tmLPID")
+  sMCU  = App.GetValue("tmMCU")
+  sDOCO = CStr(Val(uLP102.sLDRDOCO))
+  sDCTO = uLP102.sLDRDCTO
+  nLNID = ConvDecimalsToSQL("LNID", uLP102.sLDRLNID)
+  sITM  = App.GetValue("tmITM")
+  nQTY  = uLP102.nLDUORG
+  sUOM  = uLP102.sLDUOM
+  sLITM = uLP102.sLDLITM
+  sFLOC = App.GetValue("tmLOCN")
+  sFLOT = uLP102.sLDLOTN
+'  GetItemPrimary(App.GetValue("tmMCU"),App.GetValue("tmITM"),sLOTN, sLOCN)
+'  sTLOC = sLOCN
+  sTLOT = sFLOT
+  sRCDJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+  sTRDJ = "0"
+  sDRQJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+  sUser = App.User
+  sPID  = sTNId
+  sUPMJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+  sTDAY = Format(Time, "hhnnss")
+  sDSC1 = App.GetValue("tmDSC1")
+  sDSC2 = App.GetValue("tmDSC2")
+
+  If Len(sFLOT) = 0 Then sFLOT = " "                ' In case database is Oracle
+  '
+  ' Find a put away location
+  sSql = "select LILOCN from F41021" & _
+         " inner join F4100 on LILOCN = LMLOCN" & _
+         " where LIMCU = '" & sMCU & "' and LIITM = " & sITM & " and LIPQOH = 0" & _
+         " and LMPZON <> '" & sPutZone & "'"
+
+  If Trim(sFLOT) <> "" Then sSql = sSql & " and LILOCN <> ''"
+
+  sSql = sSql & " order by LILOTN, LIPQOH, LILOCN"
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    If Not GetItemPrimary(sMCU, sITM, "", sTLOC) Then Exit Function
+  End If
+
+  sTLOC = DB.Extract(sCols, sRows, 1, "LILOCN")
+  sTLOT = sFLOT
+
+
+  ' Create putaway request
+  sSql = "select count(*) from WDJOBS" & _
+               " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
+               " and R2FLOT = '" & sFLOT & "' and R2FLOC = '" & sFLOC & "' and R2TLOT = '" & sTLOT & "'" & _
+               " and R2TLOC = '" & sTLOC & "' and R2DOCO = " & sDOCO & _
+               " and R2DCTO = '" & sDCTO & "' and R2LNID = " & nLNID & " and R2LPID = '" & sLPID & "'"
+  DB.Execute(sSql, sColsJB, sRowsJB)
+
+  If Val(sRowsJB) = 0 Then
+
+    nSGSQ = nSGSQ + 1
+
+    sSql = "insert into WDJOBS" & _
+           " (R2TYFL" & _
+           ",R2SGBT" & _
+           ",R2SGSQ" & _
+           ",R2PSTB" & _
+           ",R2MCU" & _
+           ",R2ITM" & _
+           ",R2LITM" & _
+           ",R2UOM1" & _
+           ",R2TQTY" & _
+           ",R2FLOC" & _
+           ",R2FLOT" & _
+           ",R2TLOC" & _
+           ",R2TLOT" & _
+           ",R2DSC1" & _
+           ",R2DSC2" & _
+           ",R2DOCO" & _
+           ",R2DCTO" & _
+           ",R2LNID" & _
+           ",R2RCDJ" & _
+           ",R2TRDJ" & _
+           ",R2DRQJ" & _
+           ",R2LPID" & _
+           ",R2USER" & _
+           ",R2PID" & _
+           ",R2UPMJ" & _
+           ",R2TDAY)" & _
+           " values(" & _
+           "'" & sTYFL & "'" & "," & _
+                 nSGBT       & "," & _
+                 nSGSQ       & "," & _
+           "'" & cPSTB & "'" & "," & _
+           "'" & sMCU  & "'" & "," & _
+                 sITM        & "," & _
+           "'" & sLITM & "'" & "," & _
+           "'" & sUOM  & "'" & "," & _
+                 nQTY        & "," & _
+           "'" & sFLOC & "'" & "," & _
+           "'" & sFLOT & "'" & "," & _
+           "'" & sTLOC & "'" & "," & _
+           "'" & sTLOT & "'" & "," & _
+           "'" & sDSC1 & "'" & "," & _
+           "'" & sDSC2 & "'" & "," & _
+                 sDOCO       & "," & _
+           "'" & sDCTO & "'" & "," & _
+                 nLNID       & "," & _
+                 sRCDJ       & "," & _
+                 sTRDJ       & "," & _
+                 sDRQJ       & "," & _
+           "'" & sLPID & "'" & "," & _
+           "'" & sUser & "'" & "," & _
+           "'" & sPID  & "'" & "," & _
+                 sUPMJ       & "," & _
+                 sTDAY & ")"
+
+    nErrNo = DB.Execute(sSql)
+
+    If nErrNo <> 0 Then
+      App.LogError(sTNID, GetMsg(45))
+      Exit Function
+    End If
+
+  End If
+
+  Putaway = True
+
+End Function
+</Code>

@@ -1,0 +1,11 @@
+﻿<Record FileDesc="Handhelds" FileVersion="5.0.8.0" Desc="Handhelds" Heading="[Handhelds]">
+<MenuItem Id="-" Desc="-- LP Management --" />
+<MenuItem Id="FLPDI0100_AMS" Desc="1. Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPAI0100_AMS" Desc="2. Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQI0100_AMS" Desc="3. LP - Inquiry" />
+<MenuItem Id="-" />
+<MenuItem Id="FLPLB0100_AMS" Desc="4. Label Reprint" />
+<MenuItem Id="-" />
+</Record>

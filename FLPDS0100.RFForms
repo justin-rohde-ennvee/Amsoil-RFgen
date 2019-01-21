@@ -1,0 +1,131 @@
+﻿<Record FileDesc="LP - Show Del. Spec.Instruction" FileVersion="5.0.8.0" Desc="LP - Show Del. Spec.Instruction" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="lblLPID&vm;txtDel1&vm;txtDel2&vm;txtSpec1&vm;txtSpec2&vm;lblDSC1&vm;txtHidden">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="lblLPID" />
+<SchemaParam Linked="0" Attr="2" Name="txtDel1" />
+<SchemaParam Linked="0" Attr="3" Name="txtDel2" />
+<SchemaParam Linked="0" Attr="4" Name="txtSpec1" />
+<SchemaParam Linked="0" Attr="5" Name="txtSpec2" />
+<SchemaParam Linked="0" Attr="6" Name="lblDSC1" />
+<SchemaParam Linked="0" Attr="7" Name="txtHidden" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="10" FieldId="lblLPID" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="63" Height="22" AnchorRight="177" AnchorBottom="298" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblLPID" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDel1" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="127" Height="22" AnchorRight="113" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Del.Instruction" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="66" Width="239" Height="44" AnchorRight="1" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDel2" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="0" Height="22" AnchorRight="240" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="110" Width="239" Height="44" AnchorRight="1" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSpec1" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="151" Height="22" AnchorRight="89" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Spec. Instructions" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="239" Height="44" AnchorRight="1" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSpec2" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="0" Height="22" AnchorRight="240" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="220" Width="239" Height="44" AnchorRight="1" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDSC1" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="63" Height="22" AnchorRight="177" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDSC1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="0" Height="22" AnchorRight="240" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="264" Width="0" Height="22" AnchorRight="168" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: SHOW DELETE SPECIAL INSTRUCTIONS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+Option Explicit
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLPID As String
+  '
+  Call SetDisplay()
+  '
+  sLPID = App.GetValue("LPID")
+  lblLPID.Caption = sLPID
+  '
+  sSql = "Select LMIR01, LMIR02, LMIR03, LMIR04, LMDSC1 from F55101 where LMLPID = '" & sLPID & "' "
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(sRows) > 0 Then
+    txtDel1.Text = DB.Extract(sCols,sRows,1,1)
+    txtDel2.Text = DB.Extract(sCols,sRows,1,2)
+    txtSpec1.Text = DB.Extract(sCols,sRows,1,3)
+    txtSpec2.Text = DB.Extract(sCols,sRows,1,4)
+    lblDSC1.Caption = DB.Extract(sCols,sRows,1,5)
+  End If
+
+  If Len(Trim(txtDel1.Text))  = 0 And _
+     Len(Trim(txtDel2.Text))  = 0 And _
+     Len(Trim(txtSpec1.Text)) = 0 And _
+     Len(Trim(txtSpec2.Text)) = 0 Then
+    App.ExitForm
+  End If
+
+End Sub
+
+Private Sub txtHidden_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.ExitForm
+End Sub
+</Code>

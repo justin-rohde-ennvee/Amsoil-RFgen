@@ -1,0 +1,2545 @@
+﻿<Record FileDesc="LP - Load Management Workbench (LMW)" FileVersion="5.0.8.0" Desc="LP - Load Management Workbench (LMW)" Group="LP" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDtFr&vm;txtDtTO&vm;txtSort&vm;txtSODcto&vm;txtLPID&vm;lblLPID&vm;txtTRAI&vm;lblTRAI&vm;txtSelROUT&vm;txtSelSTOP&vm;txtSelZON&vm;txtNMCU&vm;chkDetail&vm;lblNMCU&vm;lstDOCO&vm;lblVolWei&vm;txtROUT&vm;txtSTOP&vm;txtZON&vm;txtIR01&vm;txtIR02&vm;txtIR03&vm;txtIR04&vm;btnAssign&vm;txtDESC&vm;txtCARS&vm;txtRLNU&vm;txtDate&vm;txtTime&vm;txtCNID&vm;btnCreate&vm;lblFKey&vm;lblCARS&vm;txtHidden&vm;lblLine&vm;lblDt&vm;btnDettach&vm;btnMove&vm;btnDelete&vm;btnUpdate&vm;btnQuit&vm;lblRemain&vm;btnDatePlu&vm;btnDateMin&vm;lblDate" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtDtFr" />
+<SchemaParam Linked="0" Attr="3" Name="txtDtTO" />
+<SchemaParam Linked="0" Attr="4" Name="txtSort" />
+<SchemaParam Linked="0" Attr="5" Name="txtSODcto" />
+<SchemaParam Linked="0" Attr="6" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="7" Name="lblLPID" />
+<SchemaParam Linked="0" Attr="8" Name="txtTRAI" />
+<SchemaParam Linked="0" Attr="9" Name="lblTRAI" />
+<SchemaParam Linked="0" Attr="10" Name="txtSelROUT" />
+<SchemaParam Linked="0" Attr="11" Name="txtSelSTOP" />
+<SchemaParam Linked="0" Attr="12" Name="txtSelZON" />
+<SchemaParam Linked="0" Attr="13" Name="txtNMCU" />
+<SchemaParam Linked="0" Attr="14" Name="chkDetail" />
+<SchemaParam Linked="0" Attr="15" Name="lblNMCU" />
+<SchemaParam Linked="0" Attr="16" Name="lstDOCO" />
+<SchemaParam Linked="0" Attr="17" Name="lblVolWei" />
+<SchemaParam Linked="0" Attr="18" Name="txtROUT" />
+<SchemaParam Linked="0" Attr="19" Name="txtSTOP" />
+<SchemaParam Linked="0" Attr="20" Name="txtZON" />
+<SchemaParam Linked="0" Attr="21" Name="txtIR01" />
+<SchemaParam Linked="0" Attr="22" Name="txtIR02" />
+<SchemaParam Linked="0" Attr="23" Name="txtIR03" />
+<SchemaParam Linked="0" Attr="24" Name="txtIR04" />
+<SchemaParam Linked="0" Attr="25" Name="btnAssign" />
+<SchemaParam Linked="0" Attr="26" Name="txtDESC" />
+<SchemaParam Linked="0" Attr="27" Name="txtCARS" />
+<SchemaParam Linked="0" Attr="28" Name="txtRLNU" />
+<SchemaParam Linked="0" Attr="29" Name="txtDate" />
+<SchemaParam Linked="0" Attr="30" Name="txtTime" />
+<SchemaParam Linked="0" Attr="31" Name="txtCNID" />
+<SchemaParam Linked="0" Attr="32" Name="btnCreate" />
+<SchemaParam Linked="0" Attr="33" Name="lblFKey" />
+<SchemaParam Linked="0" Attr="34" Name="lblCARS" />
+<SchemaParam Linked="0" Attr="35" Name="txtHidden" />
+<SchemaParam Linked="0" Attr="36" Name="lblLine" />
+<SchemaParam Linked="0" Attr="37" Name="lblDt" />
+<SchemaParam Linked="0" Attr="38" Name="btnDettach" />
+<SchemaParam Linked="0" Attr="39" Name="btnMove" />
+<SchemaParam Linked="0" Attr="40" Name="btnDelete" />
+<SchemaParam Linked="0" Attr="41" Name="btnUpdate" />
+<SchemaParam Linked="0" Attr="42" Name="btnQuit" />
+<SchemaParam Linked="0" Attr="43" Name="lblRemain" />
+<SchemaParam Linked="0" Attr="44" Name="btnDatePlu" />
+<SchemaParam Linked="0" Attr="45" Name="btnDateMin" />
+<SchemaParam Linked="0" Attr="46" Name="lblDate" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="8" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="1272" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="22" Width="87" Height="22" AnchorRight="1184" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDtFr" Attr="2" Defaults="1/1/2000" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="22" Width="95" Height="22" AnchorRight="1056" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date Range:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="264" Top="22" Width="87" Height="22" AnchorRight="976" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDtTO" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="368" Top="22" Width="0" Height="22" AnchorRight="959" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="384" Top="22" Width="87" Height="22" AnchorRight="856" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSort" Attr="4" Defaults="Sales Order" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="480" Top="22" Width="79" Height="22" AnchorRight="768" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Order by:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="560" Top="22" Width="103" Height="22" AnchorRight="664" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSODcto" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="664" Top="22" Width="95" Height="22" AnchorRight="568" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Order Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="760" Top="22" Width="167" Height="22" AnchorRight="400" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="6" Defaults="NEW;O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="55" Height="22" AnchorRight="1272" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Load#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="44" Width="167" Height="22" AnchorRight="1104" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPID" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="232" Top="44" Width="63" Height="22" AnchorRight="1032" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPID" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTRAI" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="312" Top="44" Width="71" Height="22" AnchorRight="944" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Trailer:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="384" Top="44" Width="87" Height="22" AnchorRight="856" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTRAI" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="480" Top="44" Width="63" Height="22" AnchorRight="784" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTRAI" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSelROUT" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="760" Top="44" Width="55" Height="22" AnchorRight="512" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Route:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="808" Top="44" Width="47" Height="22" AnchorRight="472" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSelSTOP" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="864" Top="44" Width="47" Height="22" AnchorRight="416" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Stop:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="904" Top="44" Width="47" Height="22" AnchorRight="376" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSelZON" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="960" Top="44" Width="47" Height="22" AnchorRight="320" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Zone:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1000" Top="44" Width="47" Height="22" AnchorRight="280" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNMCU" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1000" Top="0" Width="79" Height="22" AnchorRight="248" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1080" Top="0" Width="103" Height="22" AnchorRight="144" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkDetail" Attr="14" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1072" Top="44" Width="95" Height="22" AnchorRight="160" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Show Lines:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1160" Top="44" Width="31" Height="31" AnchorRight="136" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblNMCU" Attr="15">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="1192" Top="0" Width="63" Height="22" AnchorRight="72" AnchorBottom="814" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblNMCU" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstDOCO" Attr="16" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="95" Height="22" AnchorRight="1232" AnchorBottom="748" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Sales Order" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="1327" Height="506" AnchorRight="0" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblVolWei" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="512" Top="594" Width="79" Height="22" AnchorRight="736" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblVolWei" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtROUT" Attr="18" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="638" Width="55" Height="22" AnchorRight="1200" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Route:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="638" Width="31" Height="22" AnchorRight="1176" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSTOP" Attr="19" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="638" Width="47" Height="22" AnchorRight="1064" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Stop:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="256" Top="638" Width="31" Height="22" AnchorRight="1040" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtZON" Attr="20" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="368" Top="638" Width="47" Height="22" AnchorRight="912" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Zone:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="408" Top="638" Width="31" Height="22" AnchorRight="888" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtIR01" Attr="21" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="660" Width="103" Height="22" AnchorRight="1192" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Del. Instr.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="660" Width="247" Height="22" AnchorRight="960" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtIR02" Attr="22" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="418" Width="0" Height="22" AnchorRight="1327" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="376" Top="660" Width="247" Height="22" AnchorRight="704" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtIR03" Attr="23" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="682" Width="111" Height="22" AnchorRight="1192" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Spec. Instr.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="682" Width="247" Height="22" AnchorRight="960" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtIR04" Attr="24" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="0" Height="22" AnchorRight="1327" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="376" Top="682" Width="247" Height="22" AnchorRight="704" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnAssign" Attr="25">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Assign to all selected lines" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="632" Top="682" Width="239" Height="22" AnchorRight="456" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDESC" Attr="26" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="726" Width="103" Height="22" AnchorRight="1200" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Description:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="726" Width="247" Height="22" AnchorRight="960" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtCARS" Attr="27" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="748" Width="71" Height="22" AnchorRight="1200" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Carrier:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="748" Width="87" Height="22" AnchorRight="1120" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtRLNU" Attr="28" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="770" Width="87" Height="22" AnchorRight="1200" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Ship Dock:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="770" Width="87" Height="22" AnchorRight="1120" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDate" Attr="29" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="312" Top="770" Width="47" Height="22" AnchorRight="968" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="770" Width="103" Height="22" AnchorRight="872" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTime" Attr="30" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="584" Top="770" Width="47" Height="22" AnchorRight="696" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Time:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="632" Top="770" Width="87" Height="22" AnchorRight="608" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtCNID" Attr="31" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="792" Width="79" Height="22" AnchorRight="1200" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Cont. ID:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="792" Width="167" Height="22" AnchorRight="1040" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnCreate" Attr="32">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Create Load" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="304" Top="792" Width="167" Height="22" AnchorRight="856" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFKey" Attr="33">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="814" Width="63" Height="22" AnchorRight="1256" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblFKey" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCARS" Attr="34">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="748" Width="63" Height="22" AnchorRight="1048" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblCARS" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHidden" Attr="35" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="104" Top="528" Width="0" Height="22" AnchorRight="1223" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="528" Width="0" Height="22" AnchorRight="1167" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLine" Attr="36">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="704" Width="1071" Height="22" AnchorRight="256" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-------------------------------------------------------------------------------------------------------------------------------------" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDt" Attr="37">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="360" Top="22" Width="23" Height="22" AnchorRight="944" AnchorBottom="792" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-&gt;" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDettach" Attr="38">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Dettach" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="616" Width="87" Height="22" AnchorRight="1160" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnMove" Attr="39">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Move" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="616" Width="87" Height="22" AnchorRight="1080" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDelete" Attr="40">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Delete" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="616" Width="87" Height="22" AnchorRight="1000" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnUpdate" Attr="41">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Update" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="320" Top="616" Width="87" Height="22" AnchorRight="920" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnQuit" Attr="42">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Done Sel." ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="616" Width="87" Height="22" AnchorRight="1240" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblRemain" Attr="43">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="594" Width="159" Height="22" AnchorRight="816" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Remaining Capacity:" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDatePlu" Attr="44">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="+" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="416" Top="748" Width="31" Height="22" AnchorRight="880" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDateMin" Attr="45">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="-" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="748" Width="31" Height="22" AnchorRight="944" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDate" Attr="46">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="456" Top="770" Width="47" Height="22" AnchorRight="824" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="1327" FormHeight="836" Scrollbars="6">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[ Create Load Sales Order ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LP: Load Management Workbench (Licence Plate)
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC = "RFGen Load Management"
+Private Const cTNId     = "FLPSO0100"
+Private Const mnDate    = 1              'number of days in advance for pick date
+
+Private msDOCTYPE    As String
+Private msVersSO     As String
+Private msVersST     As String
+Private msSODCTO     As String
+Private mbSO         As Boolean              ' True = Sales Order, False = Transfer Orders
+Private msPgm        As String
+Private msVersion    As String
+Private msProg       As String
+Private msStatusF    As String
+Private msStatusT    As String
+Private mbSerialized As Boolean
+Private msAllowHold  As String
+Private msVUOM       As String
+Private msWUOM       As String
+Private msMode       As String
+Private msSort       As String
+Private msCaption    As String
+Private mnMaxQty     As Currency
+Private mnVolMax     As Currency
+Private mnWeiMax     As Currency
+Private mnVol        As Currency
+Private mnWei        As Currency
+
+Private Sub chkDetail_Click()
+  On Error Resume Next
+  '
+  Call BuildList()
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCn As Integer
+  '
+  iCn = App.PromptNo
+  RFPrompt(iCn).BorderStyle = DisplayStandard
+  RFPrompt(iCn).BackColor1 = cFieldFocusBC
+  RFPrompt(iCn).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Dim sHeader As String
+  Dim sSODCTO As String
+  Dim nInStr  As Integer
+  Dim iCnt    As Integer
+  Dim sDRSY   As String
+  Dim sDRRT   As String
+  Dim sDCTO   As String
+  Dim sPgVers As String
+  '
+  ' Initialize the RFGen recordset with extra fields
+  '
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  '
+  ' Initialize special controls
+  '
+  lblLPID.Caption = ""
+  lblLPID.Label.BackColor1 = cFieldDefaultBC
+  lblLPID.Label.ForeColor = cFieldDefaultFC
+  '
+  lblCARS.Caption = ""
+  lblCARS.Label.BackColor1 = cFieldDefaultBC
+  lblCARS.Label.ForeColor = cFieldDefaultFC
+  '
+  lblNMCU.Caption = ""
+  lblNMCU.Label.BackColor1 = cFieldDefaultBC
+  lblNMCU.Label.ForeColor = cFieldDefaultFC
+  '
+  lblFKey.Caption = ""
+  lblFKey.Label.BackColor1 = cFieldDefaultBC
+  lblFKey.Label.ForeColor = cFieldDefaultFC
+  '
+  lblVolWei.Caption = ""
+  lblVolWei.Label.BackColor1 = cFieldDefaultBC
+  lblVolWei.Label.ForeColor = cFieldDefaultFC
+  '
+  lblVolWei.Label.BackColor1 = cFieldDefaultBC
+  lblVolWei.Label.ForeColor = cFieldDefaultFC
+  lblVolWei.Visible = False
+  '
+  lblTRAI.Caption = ""
+  lblTRAI.Label.BackColor1 = cFieldDefaultBC
+  lblTRAI.Label.ForeColor = cFieldDefaultFC
+  '
+  lblDate.Caption = ""
+  lblDate.Label.BackColor1 = cFieldDefaultBC
+  lblDate.Label.ForeColor = cFieldDefaultFC
+  '
+  txtDtFr.Text = Format(Date, "MM/DD/YY")
+  txtDtTo.Text = Format(Date, "MM/DD/YY")
+  '
+  btnDettach.Visible = False
+  btnMove.Visible    = False
+  btnDelete.Visible  = False
+  btnUpdate.Visible  = False
+  '
+  sSODCTO  = Trim(App.GetValue("SalesOrderUDC"))
+  msVersST = Trim(App.GetValue("Transfer"))
+
+  'Get Program Name and Version from the Menu
+
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+  App.SetValue("LPITVersion", App.GetValue("VersIT"))  'Inv.Transfer in LP_ Macros (JDE.bas)
+  '
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+
+  ' get Status From from Proc.Opt. and Header
+  msStatusF = GetProcOpt(msPgm,msVersion,"1;1")
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' get Status To from Proc.Opt. and Header
+  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+
+  If Len(sSODCTO) = 0 And Len(msVersST) > 0 Then
+  ' Transfer Orders
+    mbSO = False
+    Form.Caption = "[ Create Load Transfer Order ]"
+    lstDOCO.Caption = "Transfer Orders"
+  Else
+
+  ' Sales Orders
+    mbSO = True
+    Form.Caption = "[ Create Load Sales Order ]"
+    lstDOCO.Caption = "Sales Orders"
+    txtNMCU.Visible = False
+    nInStr = InStr(sSODCTO,"/")
+    sDRSY = Left(sSODCTO,nInStr -1)
+    sDRRT = Mid(sSODCTO, nInStr +1,2)
+    sSql = "select DRKY from F0005 where " & _
+           "DRSY = '" & sDRSY & "' and DRRT = '" & sDRRT & "' "
+    DB.Execute(sSql,sCols,sRows)
+    If (Len(sRows) = 0) Then
+      App.MsgBox (GetMsg(87) & sSODCTO)
+      Exit Sub
+    End If
+
+    For iCnt = 1 To DB.Count(sRows)
+      sDCTO = Trim(DB.Extract(sCols,sRows,iCnt,"DRKY"))
+      If Len(sDCTO) = 2 Then msSODCTO = msSODCTO & sDCTO & ";"
+    Next iCnt
+
+    txtSODcto.Text = msSODCTO
+
+  End If
+  '
+  txtDate.Text = Format(DateAdd("d",mnDate,Date),"MM/DD/YYYY")
+  lblDate.Caption = Format(DateAdd("d",mnDate,Date),"dddd")
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",  "")
+  App.SetValue("tmMCU", "")
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  Dim sEntity  As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  If Not LP_ValidateEntity(sMCU, sEntity) Then Exit Sub     ' Varify Branch is assigned to an Entity
+
+  App.SetValue("tmCO",     sCompany)
+  App.SetValue("tmMCU",    sMCU)
+  App.SetValue("tmNMCU",   sMCU)
+  App.SetValue("tmENTITY", sEntity)
+  '
+  App.SetValue("tmDate","")
+  App.SetValue("tmTime","")
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtDtFr_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sExpDt As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(Rsp)
+  sExpDt = CStr(CDate(Rsp))
+  '
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+  '
+  Rsp = sExpDt
+  App.SetValue("tmDtFr", ConvDatetoJDE(Rsp))
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtDtTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sExpDt As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(Rsp)
+  sExpDt = CStr(CDate(Rsp))
+  '
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+  '
+  Rsp = sExpDt
+  App.SetValue("tmDtTo", ConvDatetoJDE(Rsp))
+  '
+  If App.GetValue("tmDtTo") < App.GetValue("tmDtFr") Then
+    App.MsgBox(GetMsg(233))
+    Exit Sub
+  End If
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtNMCU_LostFocus()
+  On Error Resume Next
+  '
+  Call BuildList()
+  '
+End Sub
+
+Private Sub txtSelROUT_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 3, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "42", "RT", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmSelROUT", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtSelROUT_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "42", "RT") Then Cancel = True
+End Sub
+
+Private Sub txtSelSTOP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 3, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "42", "SP", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmSelStop", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtSelSTOP_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "42", "SP") Then Cancel = True
+End Sub
+
+Private Sub txtSelZONE_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 3, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "40", "ZN", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmSelZone", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtSelZONE_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "42", "ZN") Then Cancel = True
+End Sub
+Private Sub txtSort_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Cancel = True
+  msSort = Trim(UCase(Rsp))
+  If Len(Rsp) = 0 Then Exit Sub
+  Cancel = False
+End Sub
+
+Private Sub txtSort_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  App.MakeList(sList,"Sales Order","Sales Order Number")
+  App.MakeList(sList,"Ship to","Ship to Adress")
+  App.MakeList(sList,"Pick Date","Suggested Pick Date")
+
+  Rsp = App.ShowList(sList, True)
+  If Len(Rsp) = 0 Then Cancel = True
+End Sub
+
+Private Sub txtSODcto_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim vArray  As Variant
+  Dim iCnt    As Long
+  Dim sDCTO   As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  Cancel = True
+  If (Len(Rsp) = 0) Then Exit Sub
+  '
+  If Right(Rsp,1) <> ";" Then Rsp = Rsp & ";"
+
+  msSODCTO = ""
+  vArray = Split(Rsp, ";")
+  '
+  For iCnt = 1 To UBound(vArray)
+    sDCTO = vArray(iCnt -1)
+    If Len(sDCTO) = 2 Then msSODCTO = msSODCTO & "'" & sDCTO & "',"
+  Next iCnt
+
+  msSODCTO = Left(msSODCTO, Len(msSODCTO) -1)
+  msSODCTO = "(" & msSODCTO & ")"
+
+  Cancel = False
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sDsp  As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  msMode = "CRT"
+  '
+  btnDettach.Visible = False
+  btnMove.Visible    = False
+  btnDelete.Visible  = False
+  btnUpdate.Visible  = False
+  '
+  ' reset in case selection was changed
+  '
+  mnVol = mnVolMax
+  mnWei = mnWeiMax
+  '
+  If Rsp <> "NEW" Then
+    msMode = "DSP"
+    '
+    btnDettach.Visible = True
+    btnMove.Visible    = True
+    btnDelete.Visible  = True
+    btnUpdate.Visible  = True
+
+    sSql = "select LMLPID, LMDSC1 from F55101 where LMLPID = '" & Rsp & "' and " & _
+          " LMPALP = '' and LMMCU = '%tmMCU' and LMRNXTR = '" & msStatusT & "' "
+    DB.Execute(sSql,sCols,sRows)
+
+    If Len(sRows) = 0 Then
+      App.MsgBox GetMsg(73)
+      Exit Sub
+    End If
+    '
+    lblLPID.Caption = Trim(DB.Extract(sCols,sRows,1,2))
+    '
+    lstDOCO.List.Clear
+    sDsp =              FixLeft("LPID",22," ")
+    sDsp = sDsp & "|" & FixLeft("Desc.",30," ")
+    sDsp = sDsp & "|" & FixLeft("Ty",2," ")
+    sDsp = sDsp & "|" & FixLeft("Cont ID",20," ")
+    sDsp = sDsp & "|" & FixLeft("Desc.",30," ")
+    sDsp = sDsp & "|" & FixLeft("Rt",3," ")
+    sDsp = sDsp & "|" & FixLeft("Stp",3," ")
+    sDsp = sDsp & "|" & FixLeft("Zon",3," ")
+    sDsp = sDsp & "|" & FixLeft("Del1",5," ")
+    sDsp = sDsp & "|" & FixLeft("Del2",5," ")
+    sDsp = sDsp & "|" & FixLeft("Spec",5," ")
+    sDsp = sDsp & "|" & FixLeft("Spe2",5," ")
+    lstDOCO.Caption = sDsp           'add header to listbox
+
+    Call LoadList(Trim(Rsp), "")
+
+    App.SetFocus("lstDOCO")   ' set focus to listbox
+    App.SetValue("LMPALP", Rsp)
+  Else
+    App.SetValue("LMPALP", "")
+  End If
+
+  Cancel = False
+End Sub
+
+Private Sub txtLPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim oList As New SearchList
+
+  sSql = "select LMLPID, LMDSC1 from F55101 where LMPALP = '' and " & _
+        " LMMCU = '%tmMCU' and LMRNXTR >= '" & msStatusT & "' order by LMLPID"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Load ",       20, CenterLeft, True)
+  oList.SetColumn(2, "Description", 30, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  Rsp = oList.ShowList
+  '
+  Cancel = (Len(Rsp) = 0)
+  If Not Cancel Then msMode = "DSP"
+End Sub
+
+Private Sub txtTRAI_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmTRAI", "")
+  lblTRAI.Caption = ""
+End Sub
+
+Private Sub txtTRAI_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLocn As String
+  Dim sMCU  As String
+  Dim sDsp  As String
+  Dim sLocnJDE As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  Cancel = True
+  If (Len(Rsp) = 0) Then Exit Sub
+  '
+  sSql = "select LTDSC1, LTLOCN, LTCUBE, LTUOM, LTWEIG, LTWUOM from  LP008" & _
+         " where LTTRAI = '" & Rsp & "'"
+  DB.Execute(sSql, sCols, sRows)
+  '
+  If (Len(sRows)=0) Then
+    App.MsgBox GetMsg(219)
+    Exit Sub
+  End If
+  '
+  mnVolMax = DB.Extract(sCols,sRows,1,"LTCUBE")
+  mnWeiMax = DB.Extract(sCols,sRows,1,"LTWEIG")
+  msVUOM   = DB.Extract(sCols,sRows,1,"LTUOM")
+  msWUOM   = DB.Extract(sCols,sRows,1,"LTWUOM")
+  '
+  mnVol = mnVolMax
+  mnWei = mnWeiMax
+  sDsp = sDsp & "|" & FixRight(Format(CStr(mnVolMax),"###,###"),7," ")
+  sDsp = sDsp & "|" & FixLeft(msVUOM,2," ")
+  sDsp = sDsp & "|" & FixRight(Format(CStr(mnWeiMax),"###,###"),7," ")
+  sDsp = sDsp & "|" & FixLeft(msWUOM,2," ")
+
+  lblVolWei.Caption = sDsp
+  lblVolWei.Visible = True
+
+  sLocn = DB.Extract(sCols,sRows,1,"LTLOCN")
+  sMCU = App.GetValue("tmMCU")
+  Call Validate_Locn(sLocn, sMCU, sLocnJDE)
+  App.SetValue("tmLOCN", sLocn)
+
+  lblTRAI.Caption = Trim(DB.Extract(sCols,sRows,1,"LTDSC1"))
+
+  App.SetValue("tmTRAI", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtTRAI_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim oList As New SearchList
+  '
+  sSql = "Select LTTRAI, LTDSC1 from  LP008" & _
+         " order by LTTRAI"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Trai", 4, CenterLeft, True)
+  oList.SetColumn(2, "Desc", 20, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  Rsp = oList.ShowList
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub txtNMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Cancel = True
+  Rsp = FixRight(Rsp, 12 , " ")
+
+  sSql = "select MCDL01 from F0006 where MCMCU = '" & Rsp & "'"
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Len(Rsp) = 0 Then
+    App.MsgBox GetMsg(82)
+    Exit Sub
+  End If
+
+  App.SetValue("tmNMCU",Rsp)
+  lblNMCU.Caption = Trim(DB.Extract(sCols,sRows,1,"MCDL01"))
+  App.SetValue("LMALPH", Trim(DB.Extract(sCols,sRows,1,"MCDL01")))
+  '
+  Rsp = Trim(Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtNMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim oList As New SearchList
+
+  sSql = "select MCMCU,ABALPH,ALCTY1 from F0116 inner join " & _
+        " F0101 On ALAN8 = ABAN8 inner Join F0006 On ABAN8 = MCAN8" & _
+        " where ABAT1 = 'F' and MCMCU <> '%tmMCU' order by MCMCU"
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "To",           8, CenterLeft, True)
+  oList.SetColumn(2, "Description", 15, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  Rsp = oList.ShowList
+  Cancel = (Len(Rsp) = 0)
+End Sub
+
+Private Sub lstDOCO_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  lblFKey.Caption = "F2 Selection done."
+End Sub
+
+Private Sub lstDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iLbCurr   As Integer
+  Dim vArray    As Variant
+  Dim vRsp      As Variant
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sDsp      As String
+  Dim sVal      As String
+  Dim sFormat   As String
+  Dim iDecCnt   As Integer
+  Dim iLoop     As Integer
+  Dim nCalc     As Currency
+  Dim nSelVOL   As Currency
+  Dim nSelWEI   As Currency
+  Dim sSelVUOM  As String
+  Dim sSelWUOM  As String
+  Dim sDesc     As String
+  Dim sLocn     As String
+  Dim sPalp     As String
+  Dim sType     As String
+  Dim sLPArray  As String
+  Dim sMsgBtn   As String
+  Dim nErrNo    As Long
+  Dim bCancel   As Boolean
+  Dim sCalc     As String
+  Dim oList     As New SearchList
+  '
+  Select Case msMode
+  Case "CRT"
+
+    vArray = Split(Rsp,"|")
+    '
+    nSelVOL   = CCur(vArray(8))
+    sSelVUOM  = vArray(9)
+    nSelWEI   = CCur(vArray(10))
+    sSelWUOM  = vArray(11)
+    '
+    iLbCurr = lstDOCO.List.Index                   'current line
+
+    If Left(Rsp,1)  = "1" Then                                ' delesect
+      Mid$(Rsp,1,1) = " "
+      mnVol = mnVol + nSelVOL
+      mnWei = mnWei + nSelWEI
+      vArray(0) = " "
+    Else                                                      ' select
+      If Left(Rsp,1)  <> "*" Then
+        ' check max weight and volume
+        If mnVol - nSelVOL < 0 Then
+          App.MsgBox(GetMsg(205) & vbCrLf & CStr(mnVolMax) & " " & msVUOM)
+          Exit Sub
+        End If
+
+        If mnWei - nSelWEI < 0 Then
+          App.MsgBox(GetMsg(206) & vbCrLf & CStr(mnWeiMax) & " " & msWUOM)
+          Exit Sub
+        End If
+
+        Mid$(Rsp,1,1) = "1"
+        vArray(0) = "1"
+        mnVol = mnVol - nSelVOL
+        mnWei = mnWei - nSelWEI
+      End If
+    End If
+    '
+    sDsp = sDsp & "|" & FixRight(Format(CStr(mnVol),"###,###"),7," ")
+    sDsp = sDsp & "|" & FixLeft(msVUOM,2," ")
+    sDsp = sDsp & "|" & FixRight(Format(CStr(mnWei),"###,###"),7," ")
+    sDsp = sDsp & "|" & FixLeft(msWUOM,2," ")
+
+    lblVolWei.Caption = sDsp
+    lblVolWei.Visible = True
+    '
+    vArray(17) = Left(vArray(17),5)
+    vArray(18) = Left(vArray(18),5)
+    vArray(19) = Left(vArray(19),5)
+    vArray(20) = Left(vArray(20),5)
+
+    sVal = ""
+
+    For iLoop = 1 To UBound(vArray)
+      sVal = sVal & vArray( iLoop -1) & "|"
+    Next iLoop
+
+    lstDOCO.List.RemoveItem iLbCurr                  'remove line
+    lstDOCO.List.InsertItem(Rsp, sVal, iLbCurr)         'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+    lstDOCO.List.Index = iLbCurr
+
+  Case "DSP"
+      ' check lstDOCO_OnFkey
+
+  End Select
+
+  Cancel = True                                                 ' stay on current prompt
+End Sub
+
+Private Sub lstDOCO_LostFocus()
+  On Error Resume Next
+  '
+  lblFKey.Caption = ""
+End Sub
+
+Private Sub txtROUT_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = FixLeft(UCase(Rsp),3," ")
+  App.SetValue("tmROUT", Rsp)
+End Sub
+
+Private Sub txtSTOP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = FixLeft(UCase(Rsp),3," ")
+  App.SetValue("tmSTOP", Rsp)
+End Sub
+
+Private Sub txtZON_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = FixLeft(UCase(Rsp),3," ")
+  App.SetValue("tmZON", Rsp)
+End Sub
+
+Private Sub txtIR01_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetValue("tmIR01", Trim(Rsp))
+End Sub
+
+Private Sub txtIR02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetValue("tmIR02", Trim(Rsp))
+End Sub
+
+Private Sub txtIR03_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetValue("tmIR03", Trim(Rsp))
+End Sub
+
+Private Sub txtIR04_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetValue("tmIR04", Trim(Rsp))
+End Sub
+
+Private Sub btnAssign_Click()
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim iCnt    As Integer
+  Dim iLoop   As Integer
+  Dim nLine   As Integer
+  Dim vArDsp  As Variant
+  Dim vArVal  As Variant
+  Dim iLblMax As Integer
+  Dim sLst    As String
+  Dim sDsp    As String
+  Dim sVal    As String
+  Dim sDate   As String
+  Dim sTime   As String
+  Dim sUser   As String
+  Dim nErrNo  As Long
+  Dim emProc  As New EmbeddedProc
+  Dim uLP101  As LP101Data       ' create LP101 Structure
+
+  Select Case msMode
+  Case "CRT"
+    iLblMax = lstDOCO.List.Count                       'max line
+
+    For iCnt = 1 To iLblMax
+      lstDOCO.List.Index = iCnt
+      sLst = lstDOCO.Text                             'get current value
+      vArVal = Split(sLst,"|")
+      vArDsp = Split(sLst,"|")
+
+      If vArVal(0) = "1" Then
+        vArVal(0) = "2"
+        vArVal(14) = FixLeft(App.GetValue("tmROUT"), 3, " ")
+        vArVal(15) = FixLeft(App.GetValue("tmSTOP"), 3, " ")
+        vArVal(16) = FixLeft(App.GetValue("tmZON"),  3, " ")
+        vArVal(17) = FixLeft(App.GetValue("tmIR01"), 30, " ")
+        vArVal(18) = FixLeft(App.GetValue("tmIR02"), 30, " ")
+        vArVal(19) = FixLeft(App.GetValue("tmIR03"), 30, " ")
+        vArVal(20) = FixLeft(App.GetValue("tmIR04"), 30, " ")
+
+        vArDsp(0) = "2"
+        vArDsp(14) = FixLeft(App.GetValue("tmROUT"), 3, " ")
+        vArDsp(15) = FixLeft(App.GetValue("tmSTOP"), 3, " ")
+        vArDsp(16) = FixLeft(App.GetValue("tmZON"),  3, " ")
+        vArDsp(17) = FixLeft(App.GetValue("tmIR01"), 5, " ")
+        vArDsp(18) = FixLeft(App.GetValue("tmIR02"), 5, " ")
+        vArDsp(19) = FixLeft(App.GetValue("tmIR03"), 5, " ")
+        vArDsp(20) = FixLeft(App.GetValue("tmIR04"), 5, " ")
+
+        sDsp = ""
+        sVal = ""
+        '
+        For iLoop = 1 To UBound(vArVal)
+          sVal = sVal & vArVal( iLoop -1) & "|"
+          sDsp = sDsp & vArDsp( iLoop -1) & "|"
+        Next iLoop
+
+        lstDOCO.List.RemoveItem iCnt                   'remove line
+        lstDOCO.List.InsertItem sVal, sDsp, iCnt          'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+      End If
+    Next iCnt
+
+    lstDOCO.List.Index = 1
+    '
+  Case "DSP"
+    sDate = Format(Date,"YYYYMMDD")
+    sTime = Format(Time,"HHMMSS")
+    sUser = App.User
+    '
+    uLP101.sLMLPID = App.GetValue("LMLPID")
+
+    X_LP101("I",uLP101)
+
+    Call LP101Hist(uLP101)
+
+    sSql = "update  F55101" & _
+           " set LMROUT = '%txtROUT',  " & _
+           " LMSTOP     = '%txtSTOP',  " & _
+           " LMZON      = '%txtZON',   " & _
+           " LMCNID     = '%txtCNID',  " & _
+           " LMIR01     = '%txtIR01',  " & _
+           " LMIR02     = '%txtIR02',  " & _
+           " LMIR03     = '%txtIR03',  " & _
+           " LMIR04     = '%txtIR04',  " & _
+           " LMUSER = '" & sUser & "', LMDATE = '" & sDate & "', LMTIME = '" & sTime & "' " & _
+           " where LMLPID = '%LMLPID' and LMMCU = '%tmMCU' "
+    '
+    nErrNo = DB.Execute(sSql)
+    '
+    If Ext(gsLog,5) = "1" Then Call TranLog(cTRANDESC, "5", "F55101", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(cTRANDESC, "6", "F55101", Replace(sSql, "'", "`"))
+      Exit Sub
+    End If
+
+    lstDOCO.List.Clear
+    Call LoadList(App.GetValue("LMPALP"),"")
+    App.SetFocus("txtLPID")
+  End Select
+
+End Sub
+
+Private Sub txtDESC_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetValue("tmDSC1", Trim(Rsp))
+End Sub
+
+Private Sub txtCARS_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If Len(Trim(Rsp)) = 0 Then Exit Sub
+  Cancel = True
+
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  sSql = "select ABALPH, ABAN8 from  F0101" & _
+         " where ABAT1 = 'TC' and ABAN8 = '" & Rsp & "' "
+  DB.Execute(sSql,sCols,sRows)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(14)
+    Exit Sub
+  End If
+
+  Cancel = False
+  App.SetValue("tmCARS", FixRight(Rsp,8," "))
+  lblCARS.Caption = Trim(DB.Extract(sCols,sRows,1,1))
+End Sub
+
+Private Sub txtCARS_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_F0101_Carrier(Rsp)
+End Sub
+
+Private Sub txtRLNU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = FixLeft(UCase(Rsp),10," ")
+  App.SetValue("tmDoor", Trim(Rsp))
+End Sub
+
+Private Sub txtDate_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sExpDt As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(Rsp)
+  sExpDt = CStr(CDate(Rsp))
+  '
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+  '
+  Rsp = sExpDt
+  lblDate.Caption = Format(Rsp,"dddd")
+  '
+  App.SetValue("tmDate", Format(Rsp,"YYMMDD"))
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtTime_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  If Len(Rsp) = 0 Then Exit Sub
+  Cancel = True
+  '
+  If Not IsNumeric(Rsp) Then Exit Sub
+  If Len(Rsp) > 4 Then Exit Sub
+  '
+  Rsp = Format(Rsp,"00:##")
+  App.SetValue("tmTime", Replace(Rsp,":",""))
+  Cancel = False
+End Sub
+
+Private Sub txtCNID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetValue("tmCNID", Trim(Rsp))
+End Sub
+
+Private Sub btnCreate_Click()
+  On Error Resume Next
+  '
+  Dim iCnt    As Integer
+  Dim iLoop   As Integer
+  Dim nLine   As Integer
+  Dim vArray  As Variant
+  Dim nErrNo  As Single
+
+  Dim iLblMax As Integer
+  Dim sType   As String
+  Dim sVal    As String
+  Dim sDsp    As String
+  Dim sCube   As String
+  Dim sWeig   As String
+
+  Dim emProc  As New EmbeddedProc
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  '
+  ' ' db.begintrans gsLPSource
+
+  If msMode = "CRT" Then
+    '
+    ' Create LP for Load
+    '
+    Call LP101_Reset(uLP101)      ' init LP101 Structure
+    '
+    uLP101.sLMRNXTR = msStatusT
+    uLP101.sLMTYPE  = "L"
+    uLP101.sLMVUOM  = msVUOM
+    uLP101.sLMWUOM  = msWUOM
+
+    If Len(Trim(App.GetValue("tmDSC1"))) = 0 Then
+      uLP101.sLMDSC1 = "Created " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS") & "-" & App.User
+    Else
+      uLP101.sLMDSC1 = App.GetValue("tmDSC1")
+    End If
+
+    uLP101.sLMTRAI = App.GetValue("tmTRAI")
+    uLP101.nLMCARS = Val(App.GetValue("tmCARS"))
+    uLP101.sLMCNID = App.GetValue("tmCNID")
+    uLP101.sLMRLNU = App.GetValue("tmDoor")
+    uLP101.sLMPDAT = App.GetValue("tmDate") & App.GetValue("tmTime")
+
+    If Not X_LP101_A(uLP101) Then
+      ' DB.RollbackTrans gsLPSource
+      Exit Sub
+    End If
+
+    App.SetValue("tmPALP", uLP101.sLMLPID)
+    iLblMax = (lstDOCO.List.Count -1)                     'max line
+
+    For iCnt = 1 To iLblMax
+      lstDOCO.List.Index = iCnt
+      sVal = lstDOCO.Text                                'get current value
+      vArray = Split(sVal,"|")
+
+      If vArray(0) > " " And vArray(0) <> "*" Then
+        '
+        ' Create LP for Doco
+        '
+        Call LP101_Reset(uLP101)
+        '
+        uLP101.sLMRNXTR = msStatusT
+        uLP101.sLMTYPE = "L"
+        uLP101.sLMLPID =  Null
+        uLP101.sLMPALP =  App.GetValue("tmPALP")
+        uLP101.sLMDSC1 = "Load " & vArray(1) & "/" & vArray(2)
+
+        uLP101.sLMRDOCO = Trim(vArray(1))
+        uLP101.sLMRDCTO = Trim(vArray(2))
+        uLP101.nLMSHAN  = Trim(vArray(4))
+        uLP101.sLMALPH  = vArray(5)
+
+        uLP101.nLMCUBE =  CCur(vArray(8))
+        uLP101.sLMVUOM =  vArray(9)
+
+        uLP101.nLMWEIG =  CCur(vArray(10))
+        uLP101.sLMWUOM =  vArray(11)
+
+        uLP101.sLMRLNU =  App.GetValue("tmDoor")
+        uLP101.sLMPDAT =  App.GetValue("tmDate") & App.GetValue("tmTime")
+
+        uLP101.sLMROUT =  Trim(vArray(14))
+        uLP101.sLMSTOP =  Trim(vArray(15))
+        uLP101.sLMZONE =  Trim(vArray(16))
+
+        uLP101.sLMIR01 =  vArray(17)
+        uLP101.sLMIR02 =  vArray(18)
+        uLP101.sLMIR03 =  vArray(19)
+        uLP101.sLMIR04 =  vArray(20)
+
+        If Not X_LP101_A(uLP101) Then
+          ' DB.RollbackTrans gsLPSource
+          Exit Sub
+        End If
+        '
+        ' Update List.Data Box
+        '
+        vArray(0) = "*"
+        sDsp = ""
+
+        vArray(12) = FixLeft(uLP101.sLMRLNU, 5," ")
+        vArray(13) = FixLeft(Format(uLP101.sLMPDAT,"00/00/00 00:00"), 14)
+        vArray(21) = FixLeft(uLP101.sLMPALP, giLenLP, " ")
+        vArray(22) = FixLeft(uLP101.sLMLPID, giLenLP, " ")
+
+        For iLoop = 1 To UBound(vArray)
+          sDsp = sDsp & vArray( iLoop -1) & "|"
+        Next iLoop
+
+        vArray(17) = Left(vArray(17),5)
+        vArray(18) = Left(vArray(18),5)
+        vArray(19) = Left(vArray(19),5)
+        vArray(20) = Left(vArray(20),5)
+
+        sVal = ""
+        '
+        For iLoop = 1 To UBound(vArray)
+          sVal = sVal & vArray( iLoop -1) & "|"
+        Next iLoop
+
+        lstDOCO.List.RemoveItem iCnt                   'remove line
+        lstDOCO.List.InsertItem sDsp, sVal, iCnt          'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+      End If
+    Next iCnt
+  Else  ' msMode <> "CRT"
+
+    Call LP101_Reset(uLP101)
+
+    uLP101.sLMLPID = App.GetValue("tmLPID")
+    Call X_LP101("I", uLP101)
+
+    If Len(Trim(App.GetValue("tmDSC1"))) = 0 Then
+      uLP101.sLMDSC1 = "Updated " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS") & " by " & App.User
+    Else
+      uLP101.sLMDSC1 = App.GetValue("tmDSC1")
+    End If
+
+    uLP101.sLMTRAI = App.GetValue("tmTRAI")
+    uLP101.nLMCARS = Val(App.GetValue("tmCARS"))
+    uLP101.sLMCNID = App.GetValue("tmCNID")
+    uLP101.sLMRLNU = App.GetValue("tmDoor")
+    uLP101.sLMPDAT = App.GetValue("tmPDAT")
+
+    If Not X_LP101("C", uLP101) Then
+      ' DB.RollbackTrans gsLPSource
+      Exit Sub
+    End If
+  End If
+
+  App.SetValue("LMTYPE",sType)                                'restore Type
+  lstDOCO.List.Index = 1
+  txtDESC.Text = ""
+  txtCARS.Text = ""
+  txtCNID.Text = ""
+  txtRLNU.Text = ""
+  lblLPID.Caption = App.GetValue("LMPALP")
+
+  App.SetFocus("txtDESC")
+
+  ' db.committrans gsLPSource
+End Sub
+
+Private Sub txtHidden_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  App.SetFocus("txtCARS")
+End Sub
+
+Private Sub btnDettach_Click()
+  On Error Resume Next
+  '
+  Dim nGoto As Integer
+  '
+  Call ExecuteFKey("Dettach", nGoto)
+  '
+  If nGoto <> 0 Then App.SetFocus(nGoto)  ' goto selected prompt
+End Sub
+
+Private Sub btnMove_Click()
+  On Error Resume Next
+  '
+  Dim nGoto As Integer
+  '
+  Call ExecuteFKey("Move", nGoto)
+  '
+  If nGoto <> 0 Then App.SetFocus(nGoto)  ' goto selected prompt
+End Sub
+
+Private Sub btnDelete_Click()
+  On Error Resume Next
+  '
+  Dim nGoto As Integer
+  '
+  Call ExecuteFKey("Delete", nGoto)
+  '
+  If nGoto <> 0 Then App.SetFocus(nGoto)  ' goto selected prompt
+End Sub
+
+Private Sub btnUpdate_Click()
+  On Error Resume Next
+  '
+  Dim nGoto As Integer
+  '
+  Call ExecuteFKey("Update", nGoto)
+  '
+  If nGoto <> 0 Then App.SetFocus(nGoto)  ' goto selected prompt
+End Sub
+
+Private Sub btnQuit_Click()
+  On Error Resume Next
+  '
+  If msMode = "CRT" Then
+   App.SetFocus("txtROUT")
+  Else
+   App.SetFocus("txtLPID")
+  End If
+End Sub
+
+Private Sub btnDatePlu_Click()
+  On Error Resume Next
+  '
+  txtDate.Text = DateAdd("d", 1, txtDate.Text)
+  lblDate.Caption = Format(txtDate.Text,"dddd")
+  '
+  App.SetValue("tmDate", Format(txtDate.Text,"YYMMDD"))
+  '
+  App.SetValue("tmDate","")
+  App.GetValue("tmTime","")
+End Sub
+
+Private Sub btnDateMin_Click()
+  On Error Resume Next
+  '
+  txtDate.Text = DateAdd("d", -1, txtDate.Text)
+  lblDate.Caption = Format(txtDate.Text,"dddd")
+  '
+  App.SetValue("tmDate", Format(txtDate.Text,"YYMMDD"))
+End Sub
+
+Public Sub LoadList(ByVal sPalp As String, ByRef sOpt As String)
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sSql1   As String
+  Dim sCols1  As String
+  Dim sRows1  As String
+  Dim sSql2   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sLPID   As String
+  Dim sType   As String
+  Dim s2PALP  As String
+  Dim sLPALP  As String
+  Dim sDsp    As String
+  Dim iCnt    As Long
+  Dim iCnt1   As Long
+  Dim iCnt2   As Long
+
+  sSql = "select * from F55101 where LMLPID = '" & sPalp & "' and" & _
+        " LMMCU = '%tmMCU' and LMRNXTR = '" & msStatusT & "' " & _
+        " Order By LMROUT, LMSTOP DESC, LMZON DESC "
+  DB.Execute(sSql,sCols,sRows)
+
+  For iCnt = 1 To DB.Count(sRows)
+    sLPID = Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID"))
+    sType = Trim(DB.Extract(sCols,sRows,iCnt,"LMTYPE"))
+    sLPALP = Trim(DB.Extract(sCols,sRows,iCnt,"LMPALP"))
+    '
+    sDsp =              FixLeft(sOpt & sLPID,22," ")     ' write parent header
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMDSC1"),30," ")
+    sDsp = sDsp & "|" & FixLeft(sType,2," ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMCNID"),20," ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMALPH"),30," ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMROUT"), 3, " ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMSTOP"), 3, " ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMZON"),  3, " ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMRLNU"), 5, " ")
+    sDsp = sDsp & "|" &  Format(DB.Extract(sCols,sRows,iCnt,"LMPDAT"),"00/00/00 00:00")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMIR01"), 5, " ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMIR02"), 5, " ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMIR03"), 5, " ")
+    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMIR04"), 5, " ")
+    lstDOCO.List.AddItem sLPID & "|" & sType & "|" & sLPALP, sDsp                'add line to listbox
+    '
+    'get details from F55102
+    '
+    sSql1 = "select * from F55102 where LDLPID = '" & sLPID & "' order by LDLPID, LDLNID"
+    DB.Execute(sSql1,sCols1,sRows1)
+    '
+    For iCnt1 = 1 To DB.Count(sRows1)
+      sDsp =              FixLeft("..> " & DB.Extract(sCols1,sRows1,iCnt1,"LDLITM"),22," ")     ' write parent details
+      sDsp = sDsp & ":" & FixRight(DB.Extract(sCols1,sRows1,iCnt1,"LDUORG"),12," ")
+      sDsp = sDsp & ":" & FixLeft(DB.Extract(sCols1,sRows1,iCnt1,"LDLOTN"),20," ")
+      sDsp = sDsp & ":" & FixLeft(DB.Extract(sCols1,sRows1,iCnt1,"LDRDOCO"),8," ")
+      sDsp = sDsp & ":" & FixLeft(DB.Extract(sCols1,sRows1,iCnt1,"LDRDCTO"),2," ")
+      sDsp = sDsp & ":" & FixRight(DB.Extract(sCols1,sRows1,iCnt1,"LDRLNID"),6," ")
+      lstDOCO.List.AddItem sDsp, sDsp                                            'add line to listbox
+    Next iCnt1
+    '                                                                                   ' get all childs
+    sSql2 = "select * from F55101 where LMPALP = '" & sPalp & "' and" & _
+            " LMMCU = '%tmMCU' and LMRNXTR = '" & msStatusT & "' order by LMLPID"
+    DB.Execute(sSql2,sCols2,sRows2)
+    '
+    If DB.Count(sRows2) > 0 Then
+      If Len(sOpt) = 0 Then
+        sOpt = ">"
+      Else
+        sOpt = "." & sOpt
+      End If
+    End If
+    '
+    For iCnt2 = 1 To DB.Count(sRows2)
+      s2PALP = Trim(DB.Extract(sCols2,sRows2,iCnt2,"LMLPID"))
+      LoadList(s2PALP, sOpt)
+      '
+      If Len(sOpt) > 1 Then
+        sOpt = Right(sOpt,Len(sOpt) -1)
+      End If
+    Next iCnt2
+  Next iCnt
+End Sub
+
+Private Sub ExecuteFKey(ByRef sAction As String, ByRef nGoto As Integer)
+  On Error Resume Next
+  '
+  Dim iLbCurr   As Integer
+  Dim vArray    As Variant
+  Dim vRsp      As Variant
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sDsp      As String
+  Dim sVal      As String
+  Dim sFormat   As String
+  Dim iDecCnt   As Integer
+  Dim iLoop     As Integer
+  Dim nCalc     As Currency
+  Dim nSelVOL   As Currency
+  Dim nSelWEI   As Currency
+  Dim sSelVUOM  As String
+  Dim sSelWUOM  As String
+  Dim sDesc     As String
+  Dim sLocn     As String
+  Dim sPalp     As String
+  Dim sNPalp    As String
+  Dim sType     As String
+  Dim sLPArray  As String
+  Dim sMsgBtn   As String
+  Dim nErrNo    As Long
+  Dim sCalc     As String
+  Dim sLPID     As String
+  Dim bCancel   As Boolean
+  Dim oList     As New SearchList
+
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+
+  vArray = Split(lstDOCO.Text,"|")
+  sLPID = vArray(0)
+  sPalp = Trim(vArray(2))
+  '
+  If Len(sLPID) > 0 And vArray(1) = "L" Then
+    App.SetValue("LMLPID", sLPID)
+    App.SetValue("LMPALP", sPalp)
+    App.SetValue("tmLPID", sLPID)
+    App.SetValue("tmPALP", sPalp)
+
+    Select Case sAction
+
+    Case "Move"
+    ' show List.Data of other Loads
+      sSql = "select LMLPID, LMDSC1 from F55101 where LMPALP = '' and LMLPID <> '%LMPALP' and " & _
+            " LMMCU = '%tmMCU' and LMTYPE = 'L' and LMRNXTR >= '" & msStatusT & "' order by LMLPID"
+
+      oList.MaxRows = giMaxSearchRows
+      oList.ShowEmptyList = True
+      oList.ReturnAllRows = False
+      oList.SetColumn(1, "Load ",       20, CenterLeft, True)
+      oList.SetColumn(2, "Description", 30, CenterLeft, True)
+      oList.SQL = sSql
+      '
+      sNPalp = Trim(oList.ShowList)
+      If Len(sNPalp) = 0 Then Exit Sub
+
+      ' ' db.begintrans(gsLPSource)
+      '
+      Call LP101_Reset(uLP101)      ' init LP101 Structure
+      Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+      uLP101.sLMLPID = sLPID
+      If Not X_LP101("I", uLP101) Then Exit Sub
+
+      'Set the value for variables
+      App.SetValue("LMCO"   ,App.GetValue("tmCO"))
+      App.SetValue("LMMCU"  ,App.GetValue("tmMCU"))
+      App.SetValue("tmNMCU" ,App.GetValue("tmMCU"))
+      App.SetValue("LMLOCN" ,sLocn)
+      App.SetValue("tmNLOCN",sLocn)
+      '
+      'Public Type LPOper
+      uLPOper.sLPID      = App.GetValue("tmLPID")    ' LP ID Child
+      uLPOper.sPALP      = App.GetValue("tmPALP")    ' LP ID Parent
+      uLPOper.sFMCU      = App.GetValue("tmMCU")     ' from Plant
+      uLPOper.sTMCU      = App.GetValue("tmNMCU")    ' to Plant
+      uLPOper.sFLOCN     = sLocn                     ' from Location
+      uLPOper.sTLOCN     = App.GetValue("tmNLOCN")   ' to Location
+      uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+      uLPOper.bIsPlate   = True                      ' Plate or Item
+      uLPOper.bDetach    = False                     ' remove item
+
+      If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", "LP_MoveItems", "")
+      If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+        App.MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", "LP_MoveItems", "")
+        ' DB.RollbackTrans gsLPSource
+        Exit Sub
+      End If
+      '
+      If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", "LP_MoveExecute", "")
+      If Not LP_MoveExecute(uLPOper,uLP101,False , cTRANDESC, sLPArray) Then
+        App.MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", "LP_MoveExecute", "")
+        Call LP_MoveExecute(uLPOper,uLP101,True , cTRANDESC, sLPArray)
+        ' DB.RollbackTrans gsLPSource
+        Exit Sub
+      End If
+      '
+      ' db.committrans(gsLPSource)
+
+    Case "Dettach"
+
+      ' ' db.begintrans(gsLPSource)
+
+      Call LP101_Reset(uLP101)      ' init LP101 Structure
+      Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+      uLP101.sLMLPID = sLPID
+      If Not X_LP101("I", uLP101) Then Exit Sub
+
+        'Public Type LPOper
+      uLPOper.sLPID      = App.GetValue("tmLPID")    ' LP ID Child
+      uLPOper.sPALP      = App.GetValue("tmPALP")    ' LP ID Parent
+      uLPOper.sFMCU      = App.GetValue("tmNMCU")    ' from Plant
+      uLPOper.sTMCU      = App.GetValue("tmMCU")     ' to Plant
+      uLPOper.sFLOCN     = App.GetValue("tmLOCN")    ' from Location
+      uLPOper.sTLOCN     = sLocn                     ' to Location
+      uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+      uLPOper.bIsPlate   = True                      ' Plate or Item
+      uLPOper.bDetach    = True                      ' remove from LP
+
+      If Not LP_AttachDetach(uLPOper, uLP102) Then
+        App.MsgBox(GetMsg(40))
+        ' DB.RollbackTrans(gsLPSource)
+        Exit Sub
+      End If
+      '
+      ' db.committrans(gsLPSource)
+
+    Case "Delete"
+      Call LP101_Reset(uLP101)
+
+      uLP101.sLMLPID = sLPID
+      If Not X_LP101("I", uLP101) Then Exit Sub
+
+      ' ' db.begintrans gsLPSource
+      '
+      Call LP101Hist(uLP101)
+
+      sSql = "delete from F55101 where LMLPID = '" & sLPID & "' "
+      nErrNo = DB.Execute(sSql)
+      '
+      If nErrNo <> 0 Then
+        App.MsgBox GetMsg(42) & vbCrLf & SysErr.Description
+        ' DB.RollbackTrans gsLPSource
+        Exit Sub
+      End If
+      '
+      ' db.committrans gsLPSource
+      sLPID = sPalp   ' to rebuild the List.Data
+
+    Case "Update"
+
+      sSql = "select * from F55101 where LMLPID = '" & sLPID & "' and LMMCU =  '%tmMCU' "
+      DB.Execute(sSql, sCols,sRows)
+      '
+      If Len(sRows) > 0 Then
+        If Len(sPalp) > 0 Then
+          msCaption = btnAssign.Caption
+          btnAssign.Caption = "Update Details"
+          '
+          txtROUT.Text = Trim(DB.Extract(sCols,sRows,1,"LMROUT"))
+          txtSTOP.Text = Trim(DB.Extract(sCols,sRows,1,"LMSTOP"))
+          txtZON.Text  = Trim(DB.Extract(sCols,sRows,1,"LMZON"))
+          txtIR01.Text = Trim(DB.Extract(sCols,sRows,1,"LMIR01"))
+          txtIR02.Text = Trim(DB.Extract(sCols,sRows,1,"LMIR02"))
+          txtIR03.Text = Trim(DB.Extract(sCols,sRows,1,"LMIR03"))
+          txtIR04.Text = Trim(DB.Extract(sCols,sRows,1,"LMIR04"))
+          '
+          nGoto = txtIR04.Index
+        Else
+          msCaption = btnCreate.Caption
+          btnCreate.Caption = "Update Load"
+          '
+          txtDESC.Text = Trim(DB.Extract(sCols,sRows,1,"LMDSC1"))
+          txtCARS.Text = Trim(DB.Extract(sCols,sRows,1,"LMCARS"))
+          txtRLNU.Text = Trim(DB.Extract(sCols,sRows,1,"LMRLNU"))
+          txtCNID.Text = Trim(DB.Extract(sCols,sRows,1,"LMCNID"))
+          '
+          nGoto = txtCNID.Index
+        End If
+      End If
+      '
+      Exit Sub
+    End Select
+    '
+    ' rebuild List.Data
+    '
+    lstDOCO.List.Clear
+    Call LoadList(Trim(sLPID), "")
+    App.SetFocus("txtLPID")
+  End If
+End Sub
+
+Private Sub BuildList()
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sSql1   As String
+  Dim sCols1  As String
+  Dim sRows1  As String
+  Dim sSql2   As String
+  Dim sCols2  As String
+  Dim sRows2  As String
+  Dim sSql3   As String
+  Dim sCols3  As String
+  Dim sRows3  As String
+  Dim sSql4   As String
+  Dim sCols4  As String
+  Dim sRows4  As String
+  Dim sDOCO   As String
+  Dim sDCTO   As String
+  Dim sLPNXTR As String
+  Dim sALPH   As String
+  Dim sPDDJ   As String
+  Dim sVUOM   As String
+  Dim sWUOM   As String
+  Dim sVUOMD  As String
+  Dim sWUOMD  As String
+  Dim sROUT   As String
+  Dim sSTOP   As String
+  Dim sZon    As String
+  Dim sDel1   As String
+  Dim sDel2   As String
+  Dim sSpe1   As String
+  Dim sSpe2   As String
+  Dim sDock   As String
+  Dim sLPID   As String
+  Dim sLOAD   As String
+  Dim sHold   As String
+  Dim sDoor   As String
+  Dim sPDat   As String
+  Dim nVoluD  As Currency
+  Dim nWeigD  As Currency
+  Dim nVolu   As Currency
+  Dim nWeig   As Currency
+  Dim nVol    As Currency
+  Dim nWei    As Currency
+  Dim nVolD   As Currency
+  Dim nWeiD   As Currency
+  Dim nCalc   As Currency
+  Dim nLNID   As Currency
+  Dim sCalc   As String
+  Dim sFormat As String
+  Dim sDsp    As String
+  Dim sVal    As String
+  Dim sKey    As String
+  Dim sDocDct As String
+  Dim sCDocDt As String
+  Dim sOpt    As String
+  Dim sCNID   As String
+  Dim sPickers As String
+  Dim iDecCnt As Integer
+  Dim iCnt    As Long
+  Dim iCnt2   As Long
+  Dim nSHAN   As Long
+  Dim nCARS   As Long
+  '
+  If mbSO = True Then   ' new Load for Sales Orders
+    If msMode = "CRT" Then
+      sSql = "select SDPDDJ, SDCARS, SDSHAN, SDDOCO, SDDCTO, sum(SDITWT) as ITWT, SDWTUM, sum(SDITVL) as ITVL, SDVLUM" & _
+            " from F4211 " & _
+            " where SDMCU = '%tmMCU' " & _
+            " and SDNXTR between '" & msStatusF & "' And '" & msStatusT & "' " & _
+            " and SDDCTO In " & msSODCTO & " And SDPDDJ Between %tmDtFr And %tmDtTo "
+      '
+      If Len(Trim(App.GetValue("tmSelRout"))) > 0 Then
+        sSql = sSql & " and SDROUT = '%tmSelROUT'"
+      End If
+      If Len(Trim(App.GetValue("tmSelSTOP"))) > 0 Then
+        sSql = sSql & " and SDSTOP = '%tmSelSTOP'"
+      End If
+      If Len(Trim(App.GetValue("tmSelZONE"))) > 0 Then
+        sSql = sSql & " and SDZONE = '%tmSelZONE'"
+      End If
+      '
+      Select Case msSort
+        Case "SALES ORDER"
+        sSql = sSql & " group by SDDOCO, SDDCTO, SDSHAN, SDPDDJ, SDCARS, SDWTUM, SDVLUM " & _
+                      " order by SDDOCO, SDDCTO, SDSHAN, SDPDDJ, SDCARS, SDWTUM, SDVLUM "
+
+        Case "SHIP TO"
+        sSql = sSql & " group by SDSHAN, SDDOCO, SDDCTO, SDPDDJ, SDCARS, SDWTUM, SDVLUM " & _
+                      " order by SDSHAN, SDDOCO, SDDCTO, SDPDDJ, SDCARS, SDWTUM, SDVLUM "
+
+        Case "PICK DATE"
+        sSql = sSql & " group by SDPDDJ, SDCARS, SDSHAN, SDDOCO, SDDCTO, SDWTUM, SDVLUM " & _
+                      " order by SDPDDJ, SDCARS, SDSHAN, SDDOCO, SDDCTO, SDWTUM, SDVLUM "
+      End Select
+      '
+      lstDOCO.List.Clear
+      '
+      DB.Execute(sSql,sCols,sRows)
+      '
+      If Len(sRows) = 0 Then
+        App.MsgBox(GetMsg(134))
+        Exit Sub
+      Else
+        sDsp =        " |" & FixRight("Document",8," ")
+        sDsp = sDsp & "|" & FixLeft("DT",       2," ")
+        sDsp = sDsp & "|" & FixLeft("HC",       2," ")
+        sDsp = sDsp & "|" & FixRight("ShipTo",  8," ")
+        sDsp = sDsp & "|" & FixLeft("Adress",  20," ")
+        sDsp = sDsp & "|" & FixLeft("Carrier",  8," ")
+        sDsp = sDsp & "|" & FixLeft("Date",     8," ")
+        sDsp = sDsp & "|" & FixRight("Vol.",    7," ")
+        sDsp = sDsp & "|" & FixLeft(" ",        2," ")
+        sDsp = sDsp & "|" & FixRight("Weight",  7," ")
+        sDsp = sDsp & "|" & FixLeft(" ",        2," ")
+        sDsp = sDsp & "|" & FixLeft("Door",     5," ")
+        sDsp = sDsp & "|" & FixLeft("Pick",    14," ")
+        sDsp = sDsp & "|" & FixLeft("Rt",       3," ")
+        sDsp = sDsp & "|" & FixLeft("Stp",      3," ")
+        sDsp = sDsp & "|" & FixLeft("Zon",      3," ")
+        sDsp = sDsp & "|" & FixLeft("Del1",     5," ")
+        sDsp = sDsp & "|" & FixLeft("Del2",     5," ")
+        sDsp = sDsp & "|" & FixLeft("Spec",     5," ")
+        sDsp = sDsp & "|" & FixLeft("Spe2",     5," ")
+        sDsp = sDsp & "|" & FixLeft("Load",giLenLP," ")
+        sDsp = sDsp & "|" & FixLeft("LPID",giLenLP," ")
+        lstDOCO.Caption = sDsp           'add header to listbox
+
+        For iCnt = 1 To DB.Count(sRows)
+          If sDOCO <> DB.Extract(sCols,sRows,iCnt,"SDDOCO")  Or  _
+             sDCTO <> DB.Extract(sCols,sRows,iCnt,"SDDCTO")  Or  _
+             nSHAN <> DB.Extract(sCols,sRows,iCnt,"SDSHAN")  Or  _
+             sPDDJ <> DB.Extract(sCols,sRows,iCnt,"SDPDDJ")  Or  _
+             nCARS <> DB.Extract(sCols,sRows,iCnt,"SDCARS")  Then              'level break
+            '******************************************************
+            '*** write prior group
+            '******************************************************
+            sDsp = sOpt & "|" & FixRight(sDOCO,8," ")                       ' write prior recordset
+            sDsp = sDsp & "|" & FixLeft(sDCTO,2," ")
+            sDsp = sDsp & "|" & FixLeft(sHold,2," ")
+            sDsp = sDsp & "|" & FixRight(nSHAN,8," ")
+
+            sSql1 = "select ABALPH from F0101 where ABAN8 = " & nSHAN
+            DB.Execute(sSql1,sCols1,sRows1)
+
+            sDsp = sDsp & "|" & FixLeft(Replace(DB.Extract(sCols1,sRows1,1,"ABALPH"),"'"," "),20," ")
+            sDsp = sDsp & "|" & FixRight(nCARS,8," ")
+            sDsp = sDsp & "|" & Format(ConvJDEtoDate(sPDDJ),"MM/DD/YY")
+
+            nCalc = Round(ConvDecimalsFromSQL("ITVL",nVolu))
+            sCalc = FixRight(Format(CStr(nCalc),"###,##0"),7," ")
+            '
+            ' replace with dot for the non US market
+            If Mid$(CStr( 3 / 2),2,1) = "," Then sCalc = Replace(sCalc,",",".")
+            sDsp = sDsp & "|" & sCalc
+            sDsp = sDsp & "|" & FixLeft(msVUOM,2," ")
+
+            nCalc = Round(ConvDecimalsFromSQL("ITWT",nWeig))
+            sCalc = FixRight(Format(CStr(nCalc),"###,##0"),7," ")
+            '
+            ' replace with dot for the non US market
+            If Mid$(CStr( 3 / 2),2,1) = "," Then sCalc = Replace(sCalc,",",".")
+            sDsp = sDsp & "|" & sCalc
+            sDsp = sDsp & "|" & FixLeft(msWUOM,2," ")
+            sDsp = sDsp & "|" & FixLeft(sDoor,5," ")
+            sDsp = sDsp & "|" & FixLeft(sPDat,14," ")
+
+            sDsp = sDsp & "|" & FixLeft(sROUT, 3, " ")
+            sDsp = sDsp & "|" & FixLeft(sSTOP, 3, " ")
+            sDsp = sDsp & "|" & FixLeft(sZon,  3, " ")
+            sVal = sDsp
+            sDsp = sDsp & "|" & FixLeft(sDel1, 5, " ")
+            sDsp = sDsp & "|" & FixLeft(sDel2, 5, " ")
+            sDsp = sDsp & "|" & FixLeft(sSpe1, 5, " ")
+            sDsp = sDsp & "|" & FixLeft(sSpe2, 5, " ")
+            sDsp = sDsp & "|" & FixLeft(sLOAD, giLenLP, " ")
+            sDsp = sDsp & "|" & FixLeft(sLPID, giLenLP, " ") & "|"
+
+            sVal = sVal & "|" & FixLeft(sDel1, 30, " ")
+            sVal = sVal & "|" & FixLeft(sDel2, 30, " ")
+            sVal = sVal & "|" & FixLeft(sSpe1, 30, " ")
+            sVal = sVal & "|" & FixLeft(sSpe2, 30, " ")
+            sVal = sVal & "|" & FixLeft(sLOAD, giLenLP, " ")
+            sVal = sVal & "|" & FixLeft(sLPID, giLenLP, " ") & "|"
+            '
+            If iCnt > 1 Then lstDOCO.List.AddItem sVal, sDsp          'add line to listbox. not first cycle
+            ' ------------------------------------------------------------------
+            ' Get order details?
+            ' ------------------------------------------------------------------
+            If chkDetail.Checked And sDOCO <> "" Then
+
+                          sSql = "select SDLNID, SDLITM, SDDSC1, SDUORG, SDUOM, SDVLUM, SDITVL as ITVL, SDWTUM, SDITWT as ITWT from F4211 " & _
+                                 " where SDMCU = '%tmMCU' " & _
+                                 " and SDNXTR between '" & msStatusF & "' And '" & msStatusT & "' " & _
+                                 " and SDDOCO = " & sDOCO & " and SDDCTO = '" & sDCTO & "'"
+                          DB.Execute(sSql, sCols2, sRows2)
+
+                          For iCnt2 = 1 To DB.Count(sRows2)
+
+                            'check if already assigned in LP101
+                            nLNID = DB.Extract(sCols2, sRows2, iCnt2, "SDLNID")
+
+                            sSql = "select LMLPID, LMRNXTR, LMPALP, LMRLNU, LMPDAT, LMROUT, LMSTOP, LMZON, LMIR01, LMIR02, LMIR03, LMIR04, LMURRF, LMCNID from F55101 " & _
+                                   " where LMRDOCO = '" & sDOCO & "' and LMRDCTO = '" & sDCTO & "' and LMMCU = '%tmMCU' " & _
+                                   " and LMRLLN = " & nLNID
+                            DB.Execute(sSql, sCols4, sRows4)
+                            '
+                            If Len(sRows3) > 0 Then
+                              sLPNXTR = DB.Extract(sCols4, sRows4,1,2)
+                            End If
+
+                            If sLPNXTR = msStatusT Then                          'show as already selected
+                              sOpt = "*"
+                              sLPID = Trim(DB.Extract(sCols4, sRows4,1,"LMLPID"))
+                              sLOAD = Trim(DB.Extract(sCols4, sRows4,1,"LMPALP"))
+                              sROUT = DB.Extract(sCols4, sRows4,1,"LMROUT")
+                              sSTOP = DB.Extract(sCols4, sRows4,1,"LMSTOP")
+                              sZon  = DB.Extract(sCols4, sRows4,1,"LMZON")
+                              sCNID = DB.Extract(sCols4, sRows4,1,"LMCNID")
+                              sDoor = DB.Extract(sCols4, sRows4,1,"LMRLNU")
+                              sPDat = Format(DB.Extract(sCols4, sRows4,1,"LMPDAT"),"00/00/00 00:00")
+                              sDel1 = DB.Extract(sCols4, sRows4,1,"LMIR01")
+                              sDel2 = DB.Extract(sCols4, sRows4,1,"LMIR02")
+                              sSpe1 = DB.Extract(sCols4, sRows4,1,"LMIR03")
+                              sSpe2 = DB.Extract(sCols4, sRows4,1,"LMIR04")
+                              sPickers = DB.Extract(sCols4, sRows4,1,"LMURRF")
+                            End If
+
+                            sDsp = sOpt & "|" & FixRight(sDOCO,8)
+                            sDsp = sDsp & "|" & FixLeft(sDCTO,2)
+                            sDsp = sDsp & "|" & FixRight(Format(ConvDecimalsFromSQL("LNID", DB.Extract(sCols2, sRows2, iCnt2, "SDLNID")), "#.000"), 8)
+                            sDsp = sDsp & "|" & FixLeft(Trim(DB.Extract(sCols2, sRows2, iCnt2, "SDLITM")), 8)
+                            sDsp = sDsp & "|" & FixLeft(Trim(DB.Extract(sCols2, sRows2, iCnt2, "SDDSC1")), 17)
+                            sDsp = sDsp & "|" & FixRight(ConvDecimalsFromSQL("SDUORG", DB.Extract(sCols2, sRows2, iCnt2, "SDUORG")), 8)
+                            sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols2, sRows2, iCnt2, "SDUOM"), 5)
+                            '
+                            ' Calculate Volume
+                            '
+                            sVUOMD = DB.Extract(sCols2,sRows2,iCnt2,"SDVLUM")
+                            nVoluD = DB.Extract(sCols2,sRows2,iCnt2,"ITVL")
+                            If Trim(sVUOMD) <> Trim(msVUOM) _
+                              And Trim(sVUOMD) <> "" Then                      'convert Volume to Type UOM
+                              ConvStdUOM(nVoluD,sVUOMD,msVUOM)
+                            End If
+                            '
+                            nCalc = Round(ConvDecimalsFromSQL("ITVL",nVoluD))
+                            sCalc = FixRight(Format(CStr(nCalc),"###,##0"),7," ")
+                            '
+                            ' replace with dot for the non US market
+                            If Mid$(CStr( 3 / 2),2,1) = "," Then sCalc = Replace(sCalc,",",".")
+                            sDsp = sDsp & "|" & sCalc
+                            sDsp = sDsp & "|" & FixLeft(msVUOM,2," ")
+                            '
+                            ' Calculate Weight
+                            '
+                            sWUOMD = DB.Extract(sCols2,sRows2,iCnt2,"SDWTUM")
+                            nWeigD = DB.Extract(sCols2,sRows2,iCnt2,"ITWT")
+                            If Trim(sWUOMD) <> Trim(msWUOM) _
+                              And Trim(sWUOMD) <> "" Then                      'convert Volume to Type UOM
+                              ConvStdUOM(nWeigD,sWUOMD,msWUOM)
+                            End If
+                            '
+                            nCalc = Round(ConvDecimalsFromSQL("ITWT",nWeigD))
+                            sCalc = FixRight(Format(CStr(nCalc),"###,##0"),7," ")
+                            '
+                            ' replace with dot for the non US market
+                            If Mid$(CStr( 3 / 2),2,1) = "," Then sCalc = Replace(sCalc,",",".")
+                            sDsp = sDsp & "|" & sCalc
+                            sDsp = sDsp & "|" & FixLeft(msWUOM,2," ")
+                            sDsp = sDsp & "|" & FixLeft(sDoor,5," ")
+                            sDsp = sDsp & "|" & FixLeft(sPDat,14," ")
+
+                            sDsp = sDsp & "|" & FixLeft(sROUT, 3, " ")                         ' PH 12/01/11
+                            sDsp = sDsp & "|" & FixLeft(sSTOP, 3, " ")                         ' PH 12/01/11
+                            sDsp = sDsp & "|" & FixLeft(sZon,  3, " ")                         ' PH 12/01/11
+                            sDsp = sDsp & "|" & FixLeft(sCNID, 20, " ")                         ' PH 12/01/11
+                            sVal = sDsp
+                            sDsp = sDsp & "|" & FixLeft(sDel1, 5, " ")
+                            sDsp = sDsp & "|" & FixLeft(sDel2, 5, " ")
+                            sDsp = sDsp & "|" & FixLeft(sSpe1, 5, " ")
+                            sDsp = sDsp & "|" & FixLeft(sSpe2, 5, " ")
+                            sDsp = sDsp & "|" & FixLeft(sLOAD, giLenLP, " ")
+                            sDsp = sDsp & "|" & FixLeft(sLPID, giLenLP, " ")
+                            sDsp = sDsp & "|" & FixLeft(sPickers,30," ") & "|"                   ' PH 11/17/11
+
+                            sVal = sVal & "|" & FixLeft(sDel1, 30, " ")
+                            sVal = sVal & "|" & FixLeft(sDel2, 30, " ")
+                            sVal = sVal & "|" & FixLeft(sSpe1, 30, " ")
+                            sVal = sVal & "|" & FixLeft(sSpe2, 30, " ")
+                            sVal = sVal & "|" & FixLeft(sLOAD, giLenLP, " ")
+                            sVal = sVal & "|" & FixLeft(sLPID, giLenLP, " ")
+                            sVal = sVal & "|" & FixLeft(sPickers,30," ") & "|"                   ' PH 11/17/11
+
+                            lstDOCO.List.AddItem sVal, sDsp
+                          Next
+
+                          sDsp = " |"
+                          sVal = sDsp
+                          If iCnt2 > 1 Then  lstDOCO.List.AddItem sVal, sDsp
+
+            End If
+            ' ------------------------------------------------------------------
+            ' End details
+            ' ------------------------------------------------------------------
+            sLPID = ""
+            sLOAD = ""
+            sROUT = ""
+            sSTOP = ""
+            sZon  = ""
+            sPDat = ""
+            sDoor = ""
+            sDel1 = ""
+            sDel2 = ""
+            sSpe1 = ""
+            sSpe2 = ""
+            sLPNXTR = ""
+            sOpt = " "
+            sLPID = " "
+            '
+            '******************************************************
+            '*** process next group
+            '******************************************************
+            '
+            ' Get Sales Header
+            '
+            sDOCO = DB.Extract(sCols,sRows,iCnt,"SDDOCO")
+            sDCTO = DB.Extract(sCols,sRows,iCnt,"SDDCTO")
+            '
+            If Len(sDOCO) > 0 Then
+              sSql3 = "select * from F4201 where SHDOCO = " & sDOCO & " and SHDCTO = '" & sDCTO & "' and SHMCU = '%tmMCU' "
+              DB.Execute(sSql3,sCols3,sRows3)
+
+              If Len(sRows3) > 0 Then
+                sROUT = DB.Extract(sCols3,sRows3,1,"SHROUT")
+                sSTOP = DB.Extract(sCols3,sRows3,1,"SHSTOP")
+                sZon  = DB.Extract(sCols3,sRows3,1,"SHZON")
+                sHold = DB.Extract(sCols3,sRows3,1,"SHHOLD")
+              End If
+            End If
+            '
+            'check if already assigned in LP101
+            '
+            sSql2 = "select LMLPID, LMRNXTR, LMPALP, LMRLNU, LMPDAT, LMROUT, LMSTOP, LMZON, LMIR01, LMIR02, LMIR03, LMIR04 from F55101 " & _
+                    " where LMRDOCO = '" & sDOCO & "' and LMRDCTO = '" & sDCTO & "' and LMMCU = '%tmMCU' "
+            DB.Execute(sSql2,sCols2,sRows2)
+            '
+            If Len(sRows2) > 0 Then
+              sLPNXTR = DB.Extract(sCols2,sRows2,1,2)
+            End If
+
+            If sLPNXTR = msStatusT Then                          'show as already selected
+              sOpt = "*"
+              sLPID = Trim(DB.Extract(sCols2,sRows2,1,"LMLPID"))
+              sLOAD = Trim(DB.Extract(sCols2,sRows2,1,"LMPALP"))
+              sROUT = DB.Extract(sCols2,sRows2,1,"LMROUT")
+              sSTOP = DB.Extract(sCols2,sRows2,1,"LMSTOP")
+              sZon  = DB.Extract(sCols2,sRows2,1,"LMZON")
+              sDoor = DB.Extract(sCols2,sRows2,1,"LMRLNU")
+              sPDat = Format(DB.Extract(sCols2,sRows2,1,"LMPDAT"),"00/00/00 00:00")
+              sDel1 = DB.Extract(sCols2,sRows2,1,"LMIR01")
+              sDel2 = DB.Extract(sCols2,sRows2,1,"LMIR02")
+              sSpe1 = DB.Extract(sCols2,sRows2,1,"LMIR03")
+              sSpe2 = DB.Extract(sCols2,sRows2,1,"LMIR04")
+            End If
+
+            If sLPNXTR <= msStatusT Then                        'ommit records already in process
+              sDOCO = DB.Extract(sCols,sRows,iCnt,"SDDOCO")
+              sDCTO = DB.Extract(sCols,sRows,iCnt,"SDDCTO")
+              sPDDJ = DB.Extract(sCols,sRows,iCnt,"SDPDDJ")
+              nSHAN = DB.Extract(sCols,sRows,iCnt,"SDSHAN")
+              nCARS = DB.Extract(sCols,sRows,iCnt,"SDCARS")
+              '
+              sVUOM = DB.Extract(sCols,sRows,iCnt,"SDVLUM")
+              nVol  = DB.Extract(sCols,sRows,iCnt,"ITVL")        'get Volume
+              '
+              If Trim(sVUOM) <> Trim(msVUOM) _
+                And Trim(sVUOM) <> "" Then                      'convert Volume to Type UOM
+                ConvStdUOM(nVol,sVUOM,msVUOM)
+              End If
+
+              nVolu = nVol                                      'reset accumulate Volume
+              sWUOM = DB.Extract(sCols,sRows,iCnt,"SDWTUM")
+              nWei  = DB.Extract(sCols,sRows,iCnt,"ITWT")        'get weight
+              '
+              If Trim(sWUOM) <> Trim(msWUOM) _
+                And Trim(sWUOM) <> "" Then                      'convert weight to Type UOM
+                ConvStdUOM(nWei,sWUOM,msWUOM)
+              End If
+              '
+              nWeig = nWei                                      'reset accumulate Weight
+            End If
+            '
+          Else                                                  'no level break, just accumulate
+            '
+            If sLPNXTR <= msStatusT Then                        'ommit records already in process
+              sVUOM = DB.Extract(sCols,sRows,iCnt,"SDVLUM")
+              nVol  = DB.Extract(sCols,sRows,iCnt,"ITVL")        'get Volume
+              '
+              If Trim(sVUOM) <> Trim(msVUOM)  _
+                And Trim(sVUOM) <> "" Then                      'convert Volume to Type UOM
+                ConvStdUOM(nVol,sVUOM,msVUOM)
+              End If
+
+              nVolu = nVolu + nVol                              'accumulate Volume
+              sWUOM = DB.Extract(sCols,sRows,iCnt,"SDWTUM")
+              nWei  = DB.Extract(sCols,sRows,iCnt,"ITWT")        'get weight
+              '
+              If Trim(sWUOM) <> Trim(msWUOM) _
+                And Trim(sWUOM) <> "" Then                      'convert weight to Type UOM
+                ConvStdUOM(nWei,sWUOM,msWUOM)
+              End If
+              '
+              nWeig = nWeig + nWei                              'accumulate Weight
+            End If
+          End If
+        Next iCnt
+      End If
+
+    '**************************************************************
+    '*** process last line
+    '**************************************************************
+      sDsp = sOpt & "|" & FixRight(sDOCO,8," ")
+      sDsp = sDsp & "|" & FixLeft(sDCTO,2," ")
+      sDsp = sDsp & "|" & FixRight(sHold,2," ")
+      sDsp = sDsp & "|" & FixRight(nSHAN,8," ")
+
+      sSql1 = "select ABALPH from F0101 where ABAN8 = " & nSHAN
+      DB.Execute(sSql1,sCols1,sRows1)
+
+      sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols1,sRows1,1,"ABALPH"),20," ")
+      sDsp = sDsp & "|" & FixRight(nCARS,8," ")
+      sDsp = sDsp & "|" & Format(ConvJDEtoDate(sPDDJ),"MM/DD/YY")
+
+      nCalc = Round(ConvDecimalsFromSQL("ITVL",nVolu))
+      sDsp = sDsp & "|" & FixRight(Format(CStr(nCalc),"###,##0"),7," ")
+      sDsp = sDsp & "|" & FixLeft(msVUOM,2," ")
+
+      nCalc = Round(ConvDecimalsFromSQL("ITWT",nWeig))
+      sDsp = sDsp & "|" & FixRight(Format(CStr(nCalc),"###,##0"),7," ")
+      sDsp = sDsp & "|" & FixLeft(msWUOM,2," ")
+
+      sDsp = sDsp & "|" & FixLeft(sDoor,5," ")
+      sDsp = sDsp & "|" & FixLeft(sPDat,14," ")
+
+      sDsp = sDsp & "|" & FixLeft(sROUT, 3, " ")
+      sDsp = sDsp & "|" & FixLeft(sSTOP, 3, " ")
+      sDsp = sDsp & "|" & FixLeft(sZon, 3, " ")
+
+      sVal = sDsp
+      sDsp = sDsp & "|" & FixLeft(sDel1, 5, " ")
+      sDsp = sDsp & "|" & FixLeft(sDel2, 5, " ")
+      sDsp = sDsp & "|" & FixLeft(sSpe1, 5, " ")
+      sDsp = sDsp & "|" & FixLeft(sSpe2, 5, " ")
+      sDsp = sDsp & "|" & FixLeft(sLOAD, giLenLP, " ")
+      sDsp = sDsp & "|" & FixLeft(sLPID, giLenLP, " ") & "|"
+
+      sVal = sVal & "|" & FixLeft(sDel1, 30, " ")
+      sVal = sVal & "|" & FixLeft(sDel2, 30, " ")
+      sVal = sVal & "|" & FixLeft(sSpe1, 30, " ")
+      sVal = sVal & "|" & FixLeft(sSpe2, 30, " ")
+      sVal = sVal & "|" & FixLeft(sLOAD, giLenLP, " ")
+      sVal = sVal & "|" & FixLeft(sLPID, giLenLP, " ") & "|"
+      lstDOCO.List.AddItem sVal,sDsp                  'add line to listbox
+
+      lstDOCO.List.AddItem ""," End of Data " & CStr(iCnt +1) & " Records"          'add line to listbox
+    End If
+  Else  ' Transfer Order
+    App.SetFocus("txtDESC")
+  End If
+End Sub
+
+Private Function X_LP101_A(ByRef uLP101 As LP101Data) As Boolean
+  On Error Resume Next
+
+  Dim sSql      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  '
+  Dim sPfx      As String
+  Dim sLPID     As String
+  Dim sTNID     As String
+  Dim nErrNo    As Long
+  Dim nCtr      As Long
+
+  Dim nCCube    As Currency
+  Dim nCWeig    As Currency
+  Dim nPCube    As Currency
+  Dim nPWeig    As Currency
+  Dim sPCube    As Currency
+  Dim sPWeig    As Currency
+
+  ' Get Next LP Number
+  sSql = "select ENUPFX,ENNNUM from LP002 where ENCO = '%tmENTITY'"
+  nErrNo = DB.Execute(sSql, sCols, sRows)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(sTNID, "5", "LP002", Replace(sSql, "'", "`"))
+
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(sTNID, "6", "LP002", Replace(sSql, "'", "`"))
+    ' DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+  '
+  sPfx = Trim(DB.Extract(sCols,sRows,1,"ENUPFX"))
+  If sPfx = "*" Then sPfx = Trim(App.GetValue("tmMCU"))
+
+  nCtr = Val(DB.Extract(sCols,sRows,1,"ENNNUM"))
+  sLPID = gsLPLead & sPfx & FixRight(nCtr, (giLenLP - (Len(sPfx) + Len(gsLPLead))), "0")
+  uLP101.sLMLPID = sLPID
+
+  nCtr = nCtr + 1
+  '
+  sSql = "update  LP002" & _
+         " set ENNNUM = " & nCtr & _
+         " where ENCO = '%tmENTITY'"
+  nErrNo = DB.Execute(sSql)
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(sTNID, "5", "LP002", Replace(sSql, "'", "`"))
+
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(sTNID, "6", "LP002", Replace(sSql, "'", "`"))
+    ' DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+  '
+  ' update Parent with new weight / volume
+  '
+  If Len(uLP101.sLMPALP) > 0 Then
+    nCCube = uLP101.nLMCUBE
+    nCWeig = uLP101.nLMWEIG
+    '
+    ' get weight / volume from old parent
+    '
+    sSql = "select LMWEIG, LMCUBE from  F55101" & _
+           " where LMLPID = '" & uLP101.sLMPALP & "' "
+    nErrNo = DB.Execute sSql, sCols, sRows
+     '
+    If Ext(gsLog,5) = "1" Then Call TranLog(sTNID, "5", "LP101", Replace(sSql, "'", "`"))
+
+    If nErrNo<>0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(sTNID, "6", "LP101", Replace(sSql, "'", "`"))
+      ' DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+     '
+    If (Len(sRows)=0) Then
+      App.MsgBox(GetMsg(104) & ": " & uLP101.sLMPALP)
+      ' DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+    '
+    nPCube = CCur(DB.Extract(sCols,sRows,1,"LMCUBE"))
+    nPWeig = CCur(DB.Extract(sCols,sRows,1,"LMWEIG"))
+
+    sPCube = nPCube + nCCube
+    sPWeig = nPWeig + nCWeig
+
+    sSql = " update F55101 set LMCUBE = '" & sPCube & "', LMWEIG = '" & sPWeig & "' " & _
+           " where LMLPID = '" & uLP101.sLMPALP & "' "
+    nErrNo = DB.Execute(sSql)
+    '
+    If nErrNo <> 0 Then
+      ' DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+
+  End If  ' update Parent with new weight / volume
+  '
+ sSql = "INSERT INTO F55101" & _
+           " (LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRNXTR,LMPSTB,LMPALP,LMSHAN," & _
+           " LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT,LMRLNU,LMIR01,LMIR02,LMIR03,LMIR04," & _
+           " LMVUOM,LMCUBE,LMWUOM,LMWEIG,LMPATH,LMVR01,LMVR02,LMURAT,LMURRF,LMUSER,LMDATE,LMTIME)" & _
+           " VALUES('" & uLP101.sLMLPID  & "'," & _
+                   "'" & uLP101.sLMMCU   & "'," & _
+                   "'" & uLP101.sLMDSC1  & "'," & _
+                   "'" & uLP101.sLMTYPE  & "'," & _
+                   "'" & uLP101.sLMTRAI  & "'," & _
+                   "'" & uLP101.sLMLOCN  & "'," & _
+                   "'" & uLP101.sLMRDOCO & "'," & _
+                   "'" & uLP101.sLMRDCTO & "'," & _
+                   "'" & uLP101.sLMRNXTR & "'," & _
+                   "'" & uLP101.sLMPSTB  & "'," & _
+                   "'" & uLP101.sLMPALP  & "'," & _
+                         uLP101.nLMSHAN  & ","  & _
+                   "'" & uLP101.sLMMMCU  & "'," & _
+                   "'" & uLP101.sLMALPH  & "'," & _
+                   "'" & uLP101.sLMROUT  & "'," & _
+                   "'" & uLP101.sLMSTOP  & "'," & _
+                   "'" & uLP101.sLMZONE  & "'," & _
+                   "'" & uLP101.sLMCNID  & "'," & _
+                         uLP101.nLMCARS  & ","  & _
+                   "'" & uLP101.sLMPDAT  & "'," & _
+                   "'" & uLP101.sLMRLNU  & "'," & _
+                   "'" & uLP101.sLMIR01  & "'," & _
+                   "'" & uLP101.sLMIR02  & "'," & _
+                   "'" & uLP101.sLMIR03  & "'," & _
+                   "'" & uLP101.sLMIR04  & "'," & _
+                   "'" & uLP101.sLMVUOM  & "'," & _
+                         uLP101.nLMCUBE  & ","  & _
+                   "'" & uLP101.sLMWUOM  & "'," & _
+                         uLP101.nLMWEIG  & ","  & _
+                   "'" & uLP101.sLMPATH  & "'," & _
+                   "'" & uLP101.sLMVR01  & "'," & _
+                   "'" & uLP101.sLMVR02  & "'," & _
+                         uLP101.nLMURAT  & ","  & _
+                   "'" & uLP101.sLMURRF  & "'," & _
+                   "'" & uLP101.sLMUSER  & "'," & _
+                   "'" & uLP101.sLMDATE  & "'," & _
+                   "'" & uLP101.sLMTIME  & "')"
+
+  nErrNo = DB.Execute(sSql)
+
+  If nErrNo<>0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(sTNID, "6", "LP101", Replace(sSql, "'", "`"))
+    ' DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+
+  Call PrintLabels("LP", 1, "", 0, "", "", App.GetValue("LMLPID"))
+
+  X_LP101_A = True
+
+End Function
+</Code>

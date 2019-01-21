@@ -1,0 +1,14 @@
+﻿<Record FileDesc="User Module: Login.bas" FileVersion="5.0.8.0" Desc="User Module: Login.bas" LoadModule="1" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+
+' Login.bas
+'
+' Note: Add any initial connect/disconnect Visual Basic code
+'   to this	module. You can also modify events for the standard
+'   Login and Menu forms here.
+'
+</Code>

@@ -1,0 +1,367 @@
+﻿<Record FileDesc="KB - Kanban Check In" FileVersion="5.0.8.0" Desc="KB - Kanban Check In">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmKID1" />
+<Param Name="tmCDN" />
+<Param Name="tmLITM" />
+<Param Name="tmQTY" />
+<Param Name="tmUOM" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmZVERSION" />
+<Param Name="tmPGMIT" />
+<Param Name="tmZVERSIONIT" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmEmpl" />
+<Param Name="tmShift" />
+<Param Name="tmZVERSSBF" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: KB - KANBAN CHECK IN
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TKBCI0100"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmKID1 As Variant, ByRef tmCDN As Variant, ByRef tmLITM As Variant, ByRef tmQTY As Variant, ByRef tmUOM As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmZVERSION As Variant, ByRef tmPGMIT As Variant, ByRef tmZVERSIONIT As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmEmpl As Variant, ByRef tmShift As Variant, ByRef tmZVERSSBF As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim nJobNo      As Currency
+  Dim nDocNo      As Currency
+  Dim sErrId      As String
+  Dim sErrDesc    As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sSQL1       As String
+  Dim sCols1      As String
+  Dim sRows1      As String
+  Dim sMCU        As String
+  Dim sLOCN       As String
+  Dim sMMCU       As String
+  Dim sTLOC       As String
+  Dim nDOCO       As Variant
+  Dim sDCTO       As String
+  Dim sKBTM       As String
+  Dim sKBRC       As String
+  Dim i           As Integer
+  Dim iCnt        As Integer
+  Dim nOPSQ       As Currency
+  Dim j           As Integer
+  Dim iCnt1       As Integer
+  Dim nQTY        As Currency
+  Dim nCDN       As Variant
+  Dim sBFPF       As String
+  Dim sLastRow    As String
+  Dim bAbort      As Boolean
+  Dim bSuccess    As Boolean
+
+  Dim emKanbanProcessingBeginDoc      As New EmbeddedProc
+  Dim emKanbanCheckInEditLine         As New EmbeddedProc
+  Dim emKanbanCacheProcessWorkCache   As New EmbeddedProc
+  Dim emKanbanProcessingEndDoc        As New EmbeddedProc
+  Dim emError                         As New EmbeddedProc
+  Dim emNothing                       As New EmbeddedProc
+  Dim emGetAuditInfo                  As New EmbeddedProc
+  Dim emF3112SuperBackflushEditDoc    As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+
+  ' Get Kanban details
+  sSQL = "select KMLOCN, KMMCU, KMTLOC, KMMMCU, KMDOCO, KMDCTO from F3016" & _
+         " where KMKID1 = '" & tmKID1 & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F3016", Replace(sSQL, "'", "`"))
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F3016", Replace(sSQL, "'", "`"))
+    GoTo ExitMe
+  End If
+
+  sLOCN = Trim(DB.Extract(sCols, sRows, 1, "KMLOCN"))
+  sMCU  = FixRight(Trim(DB.Extract(sCols, sRows, 1, "KMMCU")), 12)
+  sTLOC = Trim(DB.Extract(sCols, sRows, 1, "KMTLOC"))
+  sMMCU = FixRight(Trim(DB.Extract(sCols, sRows, 1, "KMMMCU")), 12)
+  sDCTO = Trim(DB.Extract(sCols, sRows, 1, "KMDCTO"))
+  nDOCO = Val(DB.Extract(sCols, sRows, 1, "KMDOCO"))
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+  If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitMe
+  End If
+
+   ' Get Kanban details
+  sSQL1 = "select KDTRQT, KDCDN from F30161" & _
+         " where KDKID1 = '" & tmKID1 & "'
+  DB.Execute(sSQL1, sCols1, sRows1)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F30161", Replace(sSQL1, "'", "`"))
+  '
+  If (Len(sRows1) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL1
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F30161", Replace(sSQL1, "'", "`"))
+    GoTo ExitMe
+  End If
+
+  iCnt1 = DB.Count(sRows1)
+
+  For j= 1 To iCnt1
+
+    nQTY = 0
+    nCDN = 0
+    nQTY = ConvDecimalsFromSQL("TRQT",(DB.Extract(sCols1, sRows1, j, "KDTRQT")))
+    nCDN = Val(DB.Extract(sCols1, sRows1, j, "KDCDN"))
+
+    '--------------------------'
+    ' KanbanProcessingBeginDoc '
+    '--------------------------'
+    emKanbanProcessingBeginDoc.Name       = "KanbanProcessingBeginDoc"
+    emKanbanProcessingBeginDoc.LogMode = LogNever
+    emKanbanProcessingBeginDoc.DebugLog   = cJDELogPath
+    '
+    emKanbanProcessingBeginDoc.Param("KanbanProcessingVersion")   = tmZVERSION
+    '
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanProcessingBeginDoc.Name, "", emKanbanProcessingBeginDoc)
+
+    If Not emKanbanProcessingBeginDoc.Execute Then
+      sErrDesc = "KanbanProcessingBeginDoc"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanProcessingBeginDoc.Name, "", emKanbanProcessingBeginDoc, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitMe
+    End If
+    '
+    nJobNo = emKanbanProcessingBeginDoc.Param("Jobnumber")
+    '
+    If (nJobNo = 0) Then
+      App.LogError "KanbanProcessingBeginDoc(Jobnumber)", "Function did not return a valid number"
+      GoTo ExitMe
+    End If
+    '
+    '
+
+    '-----------------------'
+    ' KanbanCheckInEditLine '
+    '-----------------------'
+    emKanbanCheckInEditLine.Name       = "KanbanCheckInEditLine"
+    emKanbanCheckInEditLine.LogMode = LogNever
+    emKanbanCheckInEditLine.DebugLog   = cJDELogPath
+    '
+    emKanbanCheckInEditLine.Param("Jobnumber")                = nJobNo
+    emKanbanCheckInEditLine.Param("SuppressErrorMessages")    = "1"
+    emKanbanCheckInEditLine.Param("ProcessEdits")             = "1"
+    emKanbanCheckInEditLine.Param("KanbanID")                 = tmKID1
+    emKanbanCheckInEditLine.Param("DepositNumber")            = nCDN
+    emKanbanCheckInEditLine.Param("TransactionQuantity")      = nQTY
+    emKanbanCheckInEditLine.Param("TransactionUOM")           = tmUOM
+    emKanbanCheckInEditLine.Param("ProgramId")                = "EP3157"
+    emKanbanCheckInEditLine.Param("EmployeeNumber")           = tmEmpl
+    emKanbanCheckInEditLine.Param("ShiftCode")                = tmShift
+    emKanbanCheckInEditLine.Param("DocumentNumber")           = nDOCO
+    emKanbanCheckInEditLine.Param("DocumentType")             = sDCTO
+
+    '
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanCheckInEditLine.Name, "", emKanbanCheckInEditLine)
+
+    If Not emKanbanCheckInEditLine.Execute Then
+      tmERRID = emKanbanCheckInEditLine.Param("ErrorMessageID")
+      sErrDesc = "KanbanCheckInEditLine"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanCheckInEditLine.Name, "", emKanbanCheckInEditLine, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitMe
+    End If
+    '
+    sErrId = emKanbanCheckInEditLine.Param("ErrorMessageID")
+    '
+    If cFailOnWarnings And (Len(sErrId)>0) Then
+      sErrDesc = "KanbanCheckInEditLine"
+      GoTo ExitMe
+    End If
+
+    '-----------------------------'
+    ' KanbanCacheProcessWorkCache '
+    '-----------------------------'
+    emKanbanCacheProcessWorkCache.Name       = "KanbanCacheProcessWorkCache"
+    emKanbanCacheProcessWorkCache.LogMode = LogNever
+    emKanbanCacheProcessWorkCache.DebugLog   = cJDELogPath
+    '
+    emKanbanCacheProcessWorkCache.Param("CacheActionCode")    = "1"
+    emKanbanCacheProcessWorkCache.Param("NumberKeys")         = "1"
+    emKanbanCacheProcessWorkCache.Param("JobNumber")          = nJobNo
+    '
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanCacheProcessWorkCache.Name, "", emKanbanCacheProcessWorkCache)
+
+    If Not emKanbanCacheProcessWorkCache.Execute Then
+      tmERRID = emKanbanCacheProcessWorkCache.Param("ErrorMessageID")
+      sErrDesc = "KanbanCacheProcessWorkCache"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanCacheProcessWorkCache.Name, "", emKanbanCacheProcessWorkCache, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitMe
+    End If
+    '
+    sErrId = emKanbanCacheProcessWorkCache.Param("ErrorMessageID")
+    '
+    If cFailOnWarnings And (Len(sErrId)>0) Then
+      sErrDesc = "KanbanCacheProcessWorkCache"
+      GoTo ExitMe
+    End If
+
+    ' VerifyRoutingExists
+    '
+    If emKanbanCheckInEditLine.Param("ExecuteSBFProcess") ="1" Then
+    '
+      ' Is this the last row?
+      sSQL = "select WLOPSQ, WLBFPF from  F3112" & _
+           " where WLDOCO = " & nDOCO & " and WLDCTO = '" & sDCTO & "'"
+      DB.Execute(sSQL,sCols,sRows)
+      '
+      If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F3112", Replace(sSQL, "'", "`"))
+      '
+      If (Len(sRows) = 0) Then
+        App.LogError "DB.Execute", "Routing Does not exist " & vbCrLf & sSQL
+        If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F3112", Replace(sSQL, "'", "`"))
+        GoTo ExitMe
+      End If
+      '
+      iCnt = DB.Count(sRows)
+      sLastRow ="0"
+      For i=1 To iCnt
+        sBFPF = DB.Extract(sCols, sRows, i, "WLBFPF")
+        If ((sBFPF = "B") Or (sBFPF ="L") Or (sBFPF ="M")) Then
+          nOPSQ = ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols,sRows,i,"WLOPSQ"))
+          If emKanbanCheckInEditLine.Param("ThruOperationSequence")= nOPSQ Then
+            sLastRow ="1"
+          End If
+          '
+          ' F3112SuperBackflushEditDoc
+          '
+          '
+          emF3112SuperBackflushEditDoc.Name = "F3112SuperBackflushEditDoc"
+          '
+          emF3112SuperBackflushEditDoc.Param("ComputerID")          = emGetAuditInfo.Param("Workstation_UserId")
+          emF3112SuperBackflushEditDoc.Param("UserID")              = emGetAuditInfo.Param("UserName")
+          emF3112SuperBackflushEditDoc.Param("TimeOfDay")           = emGetAuditInfo.Param("Time")
+          emF3112SuperBackflushEditDoc.Param("DateUpdated")         = emGetAuditInfo.Param("Date")
+          emF3112SuperBackflushEditDoc.Param("ProgramID")           = "EP3157"
+          emF3112SuperBackflushEditDoc.Param("Version")             = tmZVERSSBF
+          emF3112SuperBackflushEditDoc.Param("ProcessEdits")        = "1"
+          emF3112SuperBackflushEditDoc.Param("OperationSequence")   = nOPSQ
+          emF3112SuperBackflushEditDoc.Param("OrderNumber")         = nDOCO
+          emF3112SuperBackflushEditDoc.Param("LastRowFlag")         = sLastRow
+          emF3112SuperBackflushEditDoc.Param("P311221BatchNumber")  = emKanbanCacheProcessWorkCache.Param("P311221BatchNumber")
+          emF3112SuperBackflushEditDoc.Param("ShiftCode")           = tmShift
+          emF3112SuperBackflushEditDoc.Param("TransactionDate")     = emGetAuditInfo.Param("Date")
+
+          If Not emF3112SuperBackflushEditDoc.Execute Then
+            sErrDesc = "F3112SuperBackflushEditDoc"
+            GoTo ExitMe
+          End If
+          '
+        End If
+        '
+      Next
+    End If
+    '------------------------'
+    ' KanbanProcessingEndDoc '
+    '------------------------'
+    emKanbanProcessingEndDoc.Name       = "KanbanProcessingEndDoc"
+    emKanbanProcessingEndDoc.LogMode = LogNever
+    emKanbanProcessingEndDoc.DebugLog   = cJDELogPath
+    '
+    emKanbanProcessingEndDoc.Param("Jobnumber")               = nJobNo
+    emKanbanProcessingEndDoc.Param("SuppressErrorMessages")   = "1"
+    emKanbanProcessingEndDoc.Param("KanbanID")                = tmKID1
+    emKanbanProcessingEndDoc.Param("DepositNumber")           = nCDN
+    emKanbanProcessingEndDoc.Param("TransactionQuantity")     = nQTY
+    emKanbanProcessingEndDoc.Param("KanbanAction")            = "1"
+    If emKanbanCheckInEditLine.Param("ExecuteSBFProcess") ="1" Then
+      emKanbanProcessingEndDoc.Param("KanbanLotNumber")       = emF3112SuperBackflushEditDoc.Param("KanbanLotNumber")
+    End If
+    '
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emKanbanProcessingEndDoc.Name, "", emKanbanProcessingEndDoc)
+
+    If Not emKanbanProcessingEndDoc.Execute Then
+      tmERRID = emKanbanProcessingEndDoc.Param("ErrorMessageID")
+      sErrDesc = "KanbanProcessingEndDoc"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emKanbanProcessingEndDoc.Name, "", emKanbanProcessingEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitMe
+    End If
+    '
+    tmERRID = emKanbanProcessingEndDoc.Param("ErrorMessageID")
+    '
+    If cFailOnWarnings And (Len(tmERRID)>0) Then
+      sErrDesc = "KanbanProcessingEndDoc"
+      GoTo ExitMe
+    End If
+Next
+
+
+  bSuccess = True
+  '
+'-------'
+' Exits '
+'-------'
+ExitMe:
+  If tmERRID <> "" Then
+    emError.Name = "GetErrorMessageGlossaryText"
+    emError.LogMode = LogNever
+    emError.DebugLog   = cJDELogPath
+    emError.Param("ErrorMessageID") = tmERRID
+    emError.Execute
+    tmERRTEXT = emError.Param("GlossaryText_500Chars")
+  Else
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  Set emGetAuditInfo                  = Nothing
+  Set emKanbanProcessingBeginDoc      = Nothing
+  Set emKanbanCheckInEditLine         = Nothing
+  Set emKanbanCacheProcessWorkCache   = Nothing
+  Set emKanbanProcessingEndDoc        = Nothing
+  Set emError                         = Nothing
+  Set emF3112SuperBackflushEditDoc    = Nothing
+
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+End Function
+</Code>

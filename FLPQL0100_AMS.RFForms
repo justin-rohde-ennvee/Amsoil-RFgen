@@ -1,0 +1,322 @@
+﻿<Record FileDesc="LP - LP Inquiry by Location" FileVersion="5.0.8.0" Desc="LP - LP Inquiry by Location" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLOCN&vm;lbxLITM&vm;txtSetFocus&vm;lblHeader" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLOCN" />
+<SchemaParam Linked="0" Attr="3" Name="lbxLITM" />
+<SchemaParam Linked="0" Attr="4" Name="txtSetFocus" />
+<SchemaParam Linked="0" Attr="5" Name="lblHeader" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="368" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="256" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOCN" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="47" Height="22" AnchorRight="368" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="183" Height="22" AnchorRight="192" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxLITM" Attr="3" Sorted="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="0" Height="22" AnchorRight="423" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="423" Height="220" AnchorRight="0" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSetFocus" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="0" Height="22" AnchorRight="423" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="423" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblHeader" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="367" Height="22" AnchorRight="56" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP         Item       Units   EA        Order" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="423" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP Inquiry by Location]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' INVENTORY: LOCATION INQUIRY BY LP
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'   WLG01 - KMD 8/12/2013:  Added a header line above the List.Data box so commented out code that populated a header within the List.Data box.
+'                           fixed SQL statement to include (or exclude, where needed) lots with PALP = "" and " "
+'
+Option Explicit
+
+Private miLastCN As Integer
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN>2) Then Exit Sub
+  '
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN>2) Then Exit Sub
+  '
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  '
+  miLastCN = iCN
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus("txtLOCN")
+  Cancel = True
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  'App.SetOption ShowHorizontalScrollBar, False   ' todo - upgrade: App.SetOption removed
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLOCN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLOCN", "")
+End Sub
+
+Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  On Error Resume Next
+  '
+  Dim i      As Integer
+  Dim iCnt   As Integer
+  Dim sMCU   As String
+  Dim sLocn  As String
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sItem  As String
+  Dim sDesc  As String
+  Dim sUOM   As String
+  Dim sLot   As String
+  Dim sLots  As String
+  Dim sLine  As String
+  Dim nQty   As Currency
+  Dim sLikOI As String
+  Dim sIPAdr As String
+
+  Dim sPALP As String
+  Dim sLITM As String
+  Dim sDOCO As String
+  Dim sDCTO As String
+  Dim nUnits As Currency
+  Dim sLPID As String
+
+
+
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  lbxLITM.List.Clear
+  '
+  sMCU = App.GetValue("tmMCU")
+  If Not Validate_Locn(Rsp, sMCU, sLocn) Then Exit Sub
+  '
+  App.SetValue("tmLOCN", sLocn)
+
+
+'  sSQL = "SELECT LMPALP, LMLOCN, case when count (distinct LDLITM) > 1 then 'Mixed' Else max(LDLITM) END  as LMLITM, LMRDOCO, LMRDCTO, LMRNXTR, COUNT(DISTINCT LDLPID) AS UNITS, SUM(LDUORG) AS QTY FROM F55102, F55101 where LDLPID = LMLPID AND LMMCU = '%tmMCU' AND LMLOCN = '%tmLOCN' AND LMPALP <> '' AND LMRNXTR <> '620' GROUP BY LMPALP, LMLOCN, LMRDOCO, LMRDCTO, LMRNXTR ORDER BY LMPALP"
+  sSQL = "SELECT LMPALP, LMLOCN, case when count (distinct LDLITM) > 1 then 'Mixed' Else max(LDLITM) END  as LMLITM, LMRDOCO, LMRDCTO, LMRNXTR, COUNT(DISTINCT LDLPID) AS UNITS, SUM(LDUORG) AS QTY FROM F55102, F55101 where LDLPID = LMLPID AND LMMCU = '%tmMCU' AND LMLOCN = '%tmLOCN' AND LMRNXTR <> '620' AND LMPALP not in ('',' ') GROUP BY LMPALP, LMLOCN, LMRDOCO, LMRDCTO, LMRNXTR ORDER BY LMPALP"
+'  sSQL = "SELECT LMLPID, LMPALP, LMLOCN, case when count (distinct LDLITM) > 1 then 'Mixed' Else max(LDLITM) END  as LMLITM, LMRDOCO, LMRDCTO, LMRNXTR, COUNT(DISTINCT LDLPID) AS UNITS, SUM(LDUORG) AS QTY FROM F55102, F55101 where LDLPID = LMLPID AND LMMCU = '%tmMCU' AND LMLOCN = '%tmLOCN' AND LMRNXTR <> '620' GROUP BY LMLPID, LMPALP, LMLOCN, LMRDOCO, LMRDCTO, LMRNXTR ORDER BY LMPALP"
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+'    App.MsgBox(GetMsg(131))
+'    Exit Sub
+  End If
+
+'**************************
+'WLG01 Start
+'**************************
+'  sLine = FixLeft("LP",10," ") & " "
+'  sLine = sLine & FixRight("Item", 10," ") & " "
+'  sLine = sLine & FixRight("Units", 7," ") & " "
+'  sLine = sLine & FixRight("(EA)",7," ") & " "
+'  sLine = sLine & FixRight("Order", 8," ") & " "
+'  sLine = sLine & FixRight(" ", 2," ") & " "
+
+'  lbxLITM.List.AddItem("",sLine)
+'**************************
+'WLG01 END
+'**************************
+  '
+  iCnt = DB.Count(sRows)
+  '
+  For i = 1 To iCnt
+    sPALP = Trim(DB.Extract(sCols, sRows, i, "LMPALP"))
+    sLPID = Trim(DB.Extract(sCols, sRows, i, "LMLPID"))
+    sLITM = Trim(DB.Extract(sCols, sRows, i, "LMLITM"))
+    sLocn = Trim(DB.Extract(sCols, sRows, i, "LMLOCN"))
+    sDOCO = Trim(DB.Extract(sCols, sRows, i, "LMRDOCO"))
+    sDCTO = Trim(DB.Extract(sCols, sRows, i, "LMRDCTO"))
+    nUnits  = Val(DB.Extract(sCols, sRows, i, "UNITS"))
+    nQty  = Val(DB.Extract(sCols, sRows, i, "QTY"))
+'    sUOM  = Trim(DB.Extract(sCols, sRows, i, "LDUOM"))
+
+    '
+
+    sLine = FixLeft(sPALP,10," ") & " "
+    sLine = sLine & FixRight(sLITM, 10," ") & " "
+    sLine = sLine & FixRight(CStr(nUnits), 7," ") & " "
+    sLine = sLine & FixRight(CStr(nQty),7," ") & " "
+    sLine = sLine & FixRight(sDOCO, 8," ") & " "
+    sLine = sLine & FixRight(sDCTO, 2," ") & " "
+
+    If Val(DB.Extract(sCols, sRows, i, "LMRNXTR")) <> 620 Then
+      lbxLITM.List.AddItem("",sLine)
+    End If
+  Next i
+
+  sSQL = "SELECT LMLPID, LMLOCN, case when count (distinct LDLITM) > 1 then 'Mixed' Else max(LDLITM) END  as LMLITM, LMRDOCO, LMRDCTO, LMRNXTR, COUNT(DISTINCT LDLPID) AS UNITS, SUM(LDUORG) AS QTY FROM F55102, F55101 where LDLPID = LMLPID AND LMMCU = '%tmMCU' AND LMLOCN = '%tmLOCN' AND LMRNXTR <> '620' AND LMPALP in ('',' ') GROUP BY LMLPID, LMLOCN, LMRDOCO, LMRDCTO, LMRNXTR ORDER BY LMLPID"
+
+  DB.Execute(sSQL,sCols,sRows)
+
+  iCnt = DB.Count(sRows)
+  '
+  For i = 1 To iCnt
+    sPALP = Trim(DB.Extract(sCols, sRows, i, "LMPALP"))
+    sLPID = Trim(DB.Extract(sCols, sRows, i, "LMLPID"))
+    sLITM = Trim(DB.Extract(sCols, sRows, i, "LMLITM"))
+    sLocn = Trim(DB.Extract(sCols, sRows, i, "LMLOCN"))
+    sDOCO = Trim(DB.Extract(sCols, sRows, i, "LMRDOCO"))
+    sDCTO = Trim(DB.Extract(sCols, sRows, i, "LMRDCTO"))
+    nUnits  = Val(DB.Extract(sCols, sRows, i, "UNITS"))
+    nQty  = Val(DB.Extract(sCols, sRows, i, "QTY"))
+'    sUOM  = Trim(DB.Extract(sCols, sRows, i, "LDUOM"))
+
+    '
+
+    sLine = FixLeft(sLPID,10," ") & " "
+    sLine = sLine & FixRight(sLITM, 10," ") & " "
+    sLine = sLine & FixRight(CStr(nUnits), 7," ") & " "
+    sLine = sLine & FixRight(CStr(nQty),7," ") & " "
+    sLine = sLine & FixRight(sDOCO, 8," ") & " "
+    sLine = sLine & FixRight(sDCTO, 2," ") & " "
+    If Val(DB.Extract(sCols, sRows, i, "LMRNXTR")) <> 620 Then
+      lbxLITM.List.AddItem("",sLine)
+    End If
+  Next i
+
+  lbxLITM.Image.DisplayMode
+  lbxLITM.Autosize
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  If Not Search_F4100(Rsp,Rsp, sMCU) Then Cancel = True
+End Sub
+
+Private Sub txtSetFocus_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus("txtLOCN")
+  App.SetValue("txtLOCN","")
+  lbxLITM.List.Clear
+End Sub
+</Code>

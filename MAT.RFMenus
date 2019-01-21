@@ -1,0 +1,13 @@
+﻿<Record FileDesc="Material Handler" FileVersion="5.0.8.0" Desc="Material Handler" Heading="Material Handler">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FIMII0100" Desc="1-Issues" Options="-Pgm=P4112 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIT0100" Desc="2-Transfers" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIA0100" Desc="3-Adjustments" Options="-Pgm=P4114 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIR0100" Desc="4-Reclassifications" Options="-Pgm=P4116 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="IM_CC" Desc="6-Cycle Counts" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FIMQI0100" Desc="7-Locations by Item " />
+<MenuItem Id="FIMQL0100" Desc="8-Items by Location" />
+</Record>

@@ -1,0 +1,223 @@
+﻿<Record FileDesc="LP Work Order Timed Auto Completion" FileVersion="5.0.8.0" Desc="LP Work Order Timed Auto Completion" MacroType="2" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2011 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 413                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WO - Automatic Completion
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+' Created 2/26/2013 - Jim Wagner, WhiteLight Group
+' Updated 4/9/2013 - Jim Wagner, WhiteLight Group - Synchronization and Speed improvements.
+' Note that all timed transactions are executed asychronously by Rfgen every 2 seconds with
+' the current setup.  The delay between initiation can be increased, but it can not be forced
+' to be synchronous.  The time of per execution is mostly dependant now on the hardware -
+' including the SQL Server, Rfgen Server, photo-eye to sql timing, and overall network latency
+' (minimal).
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TLPAC0100"
+
+Private Function Transaction() As Boolean
+
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim tmCO As String
+  Dim tmMCU As String
+  Dim tmDOCO As String
+  Dim tmDCTO As String
+  Dim tmLITM As String
+  Dim tmLOTN As String
+  Dim tmLOCN As String
+  Dim nCompletionQuantity As Long
+  Dim tmUOM As String
+  Dim tmUser As String
+  Dim msVersion As String
+  Dim msPgm As String
+  Dim nPalletMax As Long
+  Dim tmLPID As String
+  Dim tmPALP As String
+  Dim bProcessed As Boolean
+  Dim sErrMsg As String
+  Dim sSql3 As String
+  Dim nOper As Currency
+
+  Dim sTime As String
+  Dim sTimes() As String
+  Dim nMinutes As Long
+  Dim nSeconds As Long
+
+  Dim emProc            As New EmbeddedProc
+  Dim emGetAuditInfo    As New EmbeddedProc
+
+  Dim i As Integer
+
+  Dim sSqlOPSQ  As String
+  Dim sColsOPSQ As String
+  Dim sRowsOPSQ As String
+
+  sTime = Format(Time, "nn:ss")
+  sTimes = Split(sTime, ":")
+  nMinutes = CLng(sTimes(0))
+  nSeconds = CLng(sTimes(1))
+
+  If nMinutes = 0 Then
+    nMinutes = 5
+  End If
+
+  If nMinutes Mod 5 = 0 Then
+    If nSeconds >= 0 And nSeconds <= 6 Then
+      If Not ERP.BeginTrans Then
+        TM.AbortTrans
+        If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+        Exit Function
+      End If
+      emGetAuditInfo.Name       = "GetAuditInfo"
+      emGetAuditInfo.LogMode    = LogFailure
+      emGetAuditInfo.DebugLog   = cJDELogPath
+      If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+      If Not emGetAuditInfo.Execute Then
+        DB.Execute("insert into RFERROR (ErrorType, ErrorMessage) values " & _
+                 "('JDE Transaction Failure', 'Audit Info Business Function Failed to Run')")
+        If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUser, TM.QueueName, TM.SeqNo)
+        ERP.RollbackTrans
+      Else
+        ERP.CommitTrans
+      End If
+    End If
+  End If
+
+  sSql = "select * from RFIC"
+  DB.Execute(sSql, sCols, sRows)
+
+  If (DB.Count(sRows) = 0) Then
+    'Still waiting for entries - this is still a good condition.
+    Transaction = True
+    Exit Function
+  End If
+
+  Stop
+  For i=1 To DB.Count(sRows)
+    sSql3 = "delete from RFIC where ICDOCO = " & DB.Extract(sCols, sRows, i, "ICDOCO") & " and ICLPID = '" & DB.Extract(sCols, sRows, i, "ICLPID") & "' and ICPALP = '" & DB.Extract(sCols, sRows, i, "ICPALP") & "'"
+    DB.Execute(sSql3)
+  Next i
+
+  For i=1 To DB.Count(sRows)
+    tmCO = DB.Extract(sCols, sRows, i, "ICCO")
+    tmMCU = DB.Extract(sCols, sRows, i, "ICMCU")
+    tmDOCO = DB.Extract(sCols, sRows, i, "ICDOCO")
+    tmDCTO = DB.Extract(sCols, sRows, i, "ICDCTO")
+    tmLITM = DB.Extract(sCols, sRows, i, "ICLITM")
+    tmLOTN = DB.Extract(sCols, sRows, i, "ICLOTN")
+    tmLOCN = DB.Extract(sCols, sRows, i, "ICLOCN")
+    nCompletionQuantity = Val(DB.Extract(sCols, sRows, i, "ICQTY"))
+    tmUOM = DB.Extract(sCols, sRows, i, "ICUOM")
+    tmUser = DB.Extract(sCols, sRows, i, "ICUSER")
+    msVersion = DB.Extract(sCols, sRows, i, "ICVERS")
+    msPgm = DB.Extract(sCols, sRows, i, "ICPROG")
+    nPalletMax = Val(DB.Extract(sCols, sRows, i, "ICPMAX"))
+    tmLPID = DB.Extract(sCols, sRows, i, "ICLPID")
+    tmPALP = DB.Extract(sCols, sRows, i, "ICPALP")
+
+    
+'    emProc.Name       = "TWOCM0100"
+'    '
+'    emProc.Param("tmCO")       = tmCO
+'    emProc.Param("tmMCU")      = tmMCU
+'    emProc.Param("tmDOCO")     = tmDOCO
+'    emProc.Param("tmDCTO")     = tmDCTO
+'    emProc.Param("tmLITM")     = tmLITM
+'    emProc.Param("tmLOTN")     = tmLOTN
+'    emProc.Param("tmXPDT")     = ""
+'    emProc.Param("tmLOCN")     = tmLOCN
+'    emProc.Param("tmQTY")      = nCompletionQuantity
+'    emProc.Param("tmSCRAP")    = 0
+'    emProc.Param("tmUOM")      = tmUOM
+'    emProc.Param("tmDRKY")     = ""
+'    emProc.Param("tmDRKYDESC") = ""
+'    emProc.Param("tmUSER")     = tmUser
+'    emProc.Param("tmZVERSION") = msVersion
+'    emProc.Param("tmPGM")      = msPgm
+
+    sSqlOPSQ = "select WLOPSQ from F3112" & _
+               " where WLDOCO = " & tmDOCO & _
+               " and WLBFPF = 'B'" & _
+               " and WLDCTO = 'WO'" & _
+               " order by WLOPSQ"
+    DB.Execute(sSqlOPSQ, sColsOPSQ, sRowsOPSQ)
+
+    nOper = DB.Extract(sColsOPSQ, sRowsOPSQ, 1, "WLOPSQ")/100
+    tmLOCN = Trim(tmLOCN)
+    If tmLOCN = "" Then
+      tmLOCN = " "
+    End If
+    tmLOTN = Trim(tmLOTN)
+    If tmLOTN = "" Then
+      tmLOTN = " "
+    End If
+
+    emProc.Name                    = "TWOSB0100_AMS"
+    emProc.DataSource              = gsDataSource
+    emProc.Param("tmCO")           = tmCO
+    emProc.Param("tmMCU")          = tmMCU
+    emProc.Param("tmDOCO")         = tmDOCO
+    emProc.Param("tmDCTO")         = Trim(tmDCTO)
+    emProc.Param("tmLITM")         = Trim(tmLITM)
+    emProc.Param("tmLOTN")         = tmLOTN
+    emProc.Param("tmXPDT")         = "12/30/2040"
+    emProc.Param("tmLOCN")         = tmLOCN
+    emProc.Param("tmQTY")          = nCompletionQuantity
+    emProc.Param("tmSCRAP")        = 0
+    emProc.Param("tmUOM")          = tmUOM
+    emProc.Param("tmOPSQ")         = nOper
+    emProc.Param("tmPROCCODE")     = ""
+    emProc.Param("tmEMPL")         = "795451"
+    emProc.Param("tmUSER")         = "RFGEN"
+    emProc.Param("tmZVERSION")     = Trim(msVersion)
+    emProc.Param("tmZHOURSQTYS")   = "AMS0001"
+    emProc.Param("tmZCOMPLETIONS") = "AMS0001"
+    emProc.Param("tmZISSUES")      = "AMS0001"
+    emProc.Param("tmSHIFT")        = "1"
+    'emProc.Param("tmPGM")          = msPgm  -- not used
+    '
+    If Not emProc.Execute Then
+      bProcessed = False
+      sErrMsg = sErrMsg & "COMPLETION FAILED - ERROR"
+      DB.Execute("insert into RFERROR (ErrorType, ErrorMessage) values " & _
+                 "('JDE WO Complete Failure', 'Work Order Completion Failed for Order " & _
+                  tmDOCO & " Item " & tmLITM & "')")
+    Else
+      bProcessed = True
+    End If
+
+    If bProcessed Then
+      If nPalletMax <> 1 Then
+        sSql3 = "update F55101 set LMRNXTR = '' where LMLPID = '" & tmPALP & "'"
+        DB.Execute(sSql3)
+        sSql3 = "update F55101 set LMRNXTR = '' where LMPALP = '" & tmPALP & "'"
+        DB.Execute(sSql3)
+      Else
+        sSql3 = "update F55101 set LMRNXTR = '' where LMLPID = '" & tmLPID & "'"
+        DB.Execute(sSql3)
+      End If
+    End If
+  Next i
+
+  LPDone:
+  If (Trim(sErrMsg) = "") Then
+    Transaction = True
+  Else
+    App.LogError("Timed Transaction", sErrMsg)
+    Transaction = False
+  End If
+
+End Function
+</Code>

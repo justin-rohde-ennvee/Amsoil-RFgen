@@ -1,0 +1,84 @@
+﻿<Record FileDesc="Monitor Queues" FileVersion="5.0.8.0" Desc="Monitor Queues" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: MONITOR QUEUES
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction() As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sQueName    As String
+  Dim nTime       As Date
+  Dim nMin        As Integer
+  Dim vArray      As Variant
+  Dim iCnt        As Integer
+  Dim sList       As String
+  Dim iRowCnt     As Integer
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  ' run every x minutes only. TM will call the routine every 60 seconds
+  iCnt = CInt(SYS.GetProperty("Timer","Monitor"))
+  '
+  If iCnt < 5 Then      'Change that value to customer need
+    SYS.SetProperty("Timer","Monitor", iCnt +1)
+    Exit Function
+  End If
+
+  ' MonitorTM
+  vArray = Split(SYS.GetProperty("Config", "MonTM"), "|")
+  '
+  sQueName  = Split(vArray(0),";")    ' Names of Queues to monitor
+  nMin      = CInt(vArray(1))         ' Minutes for alert
+  '
+  vArray = Split(sQueName,";")
+  '
+  sList = ""
+
+  For iCnt = 0 To UBound(vArray)
+    nTime = DateAdd("n",(nMin * -1),Now)
+    sSQL = "select TimeCreated from " & vArray(iCnt) & " where TimeCreated > " & nTime
+    DB.Execute(sSQL,sCols,sRows)
+    iRowCnt = DB.Count(sRows)
+    If iRowCnt > 0 Then
+      sList = sList & CStr(iRowCnt) & " lines not processed in Queue " & Trim(vArray(iCnt)) & vbCrLf
+      sList = sList & "________________________ & vbCrLf
+    End If
+  Next
+
+  If Len(Trim(sList)) > 0 Then
+    Dim oMsg        As Object
+    Set oMsg       = CreateObject("CDO.Message")
+    oMsg.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
+    oMsg.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = SYS.GetProperty("Log", "MailServer")
+    oMsg.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 25
+    oMsg.Configuration.Fields.Update()
+    oMsg.To        = SYS.GetProperty("Log", "EmailAddr")
+    oMsg.Cc        = SYS.GetProperty("Log", "CCAddr")
+    oMsg.From      = SYS.GetProperty("Log", "EmailAddr")
+    oMsg.Subject   = "RFgen Transaction Queue has unprocessed transactions for more than " & CStr(nMin) & " Minutes!"
+    oMsg.TextBody = sList
+    oMsg.Send
+  End If
+  '
+  SYS.SetProperty("Timer","Monitor", 1)   ' Reset for next loops
+  '
+End Function
+</Code>

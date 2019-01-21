@@ -1,0 +1,109 @@
+﻿<Record FileDesc="ADM - Record Lock Maintenance" FileVersion="5.0.8.0" Desc="ADM - Record Lock Maintenance" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Label1&vm;Label2&vm;lstUsers&vm;cmdDelete">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Label1" />
+<SchemaParam Linked="0" Attr="2" Name="Label2" />
+<SchemaParam Linked="0" Attr="3" Name="lstUsers" />
+<SchemaParam Linked="0" Attr="4" Name="cmdDelete" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="10" FieldId="Label1" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="223" Height="22" AnchorRight="17" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Select the user holding the" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label2" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="239" Height="22" AnchorRight="1" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="record lock and click Delete." />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstUsers" Attr="3" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="0" Height="22" AnchorRight="240" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="110" Width="231" Height="132" AnchorRight="9" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdDelete" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Delete" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="264" Width="87" Height="22" AnchorRight="81" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Record Lock Maintenance]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                                |
+' -------------------------------------------------------------------------------
+'
+' ADMINISTRATION: REMOVE LOCK RECORDS WHEN USER DEVICE FAILES TO DO SO
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+Option Explicit
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+End Sub
+
+Private Sub Label1_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim i     As Integer
+  Dim iCnt  As Integer
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sUser As String
+  '
+  sSQL = "select distinct A1User from F00095 order by A1User asc"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If sRows = "" Then
+    App.MsgBox(GetMsg(213))
+    App.ExitForm
+  End If
+  '
+  iCnt = DB.Count(sRows)
+  '
+  For i = 1 To iCnt
+    sUser = DB.Extract(sCols, sRows, i, "A1User")
+    lstUsers.List.AddItem sUser, sUser
+  Next i
+End Sub
+
+Private Sub cmdDelete_Click()
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  '
+  sSQL = "delete from F00095 where A1User = '" & lstUsers.Text & "'"
+  DB.Execute(sSQL)
+  lstUsers.List.RemoveItem CInt(lstUsers.List.Index)
+  '
+  If lstUsers.Text = "" Then App.ExitForm ' no more entries
+End Sub
+</Code>

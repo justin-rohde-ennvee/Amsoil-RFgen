@@ -1,0 +1,20 @@
+﻿<Record FileDesc="DC Manager_Menu" FileVersion="5.0.8.0" Desc="DC Manager_Menu" Heading="[Distribution Center]">
+<MenuItem Id="FSOPC0201_AMS" Desc="1 Sales Order Picking" Options="-Pgm=P4205 -Vers=RGN0003 -BOVers=RGN0004" />
+<MenuItem Id="FSOSC0101_AMS" Desc="2 Sales Order Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0005" />
+<MenuItem Id="FLPAI0100_AMS" Desc="3 Create / Attach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="4 Detach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPTL0100_AMS" Desc="5 Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FIMIT0100_AMS" Desc="6 Transfer Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FPORC101_AMS" Desc="7 OT Receiving" Options="-Pgm=P4312 -Vers=RGN0001" />
+<MenuItem Id="FLPQL0100_AMS" Desc="8 LP - Inquiry By Location" />
+<MenuItem Id="FLPQI0100_AMS" Desc="9 LP - Inquiry" />
+<MenuItem Id="FIMQI0100" Desc="0 Item Location Inquiry" />
+<MenuItem Id="FIMCC0100" Desc="A IM - Cycle Counts (by Item)" Options="-Pgm=P41240 -Vers=ZJDE0001" />
+<MenuItem Id="FLPLB0100_AMS" Desc="B Label Reprint" />
+<MenuItem Id="FADRL010" Desc="C Record Lock Maintainence" />
+<MenuItem Id="FSOPC0200_AMS" Desc="D ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />
+<MenuItem Id="FSOSC0100_AMS" Desc="E ST Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
+<MenuItem Id="FLPUP0100_AMS" Desc="F Unpick License Plate" />
+<MenuItem Id="FLPCC0100_AMS" Desc="G LP Cycle Count" Options="-Pgm=P41240 -Vers=RGN0001 " />
+<MenuItem Id="FLPQI0300_AMS" Desc="H LP - History Inquiry" />
+</Record>

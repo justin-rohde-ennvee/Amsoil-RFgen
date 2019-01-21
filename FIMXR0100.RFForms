@@ -1,0 +1,413 @@
+﻿<Record FileDesc="IM - Maintain UPC/Item Number X-Ref." FileVersion="5.0.8.0" Desc="IM - Maintain UPC/Item Number X-Ref." Group="IM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDOCO&vm;txtDCTO&vm;txtLITM&vm;lblItemDesc1&vm;lblItemDesc2&vm;txtUPC&vm;txtGTIN">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="4" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="5" Name="lblItemDesc1" />
+<SchemaParam Linked="0" Attr="6" Name="lblItemDesc2" />
+<SchemaParam Linked="0" Attr="7" Name="txtUPC" />
+<SchemaParam Linked="0" Attr="8" Name="txtGTIN" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="55" Height="22" AnchorRight="184" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="44" Width="151" Height="22" AnchorRight="32" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="66" Width="47" Height="22" AnchorRight="184" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Doco:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="66" Width="87" Height="22" AnchorRight="96" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="88" Width="47" Height="22" AnchorRight="184" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="88" Width="87" Height="22" AnchorRight="96" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="63" Height="22" AnchorRight="184" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item #:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="110" Width="151" Height="22" AnchorRight="32" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc1" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="103" Height="22" AnchorRight="136" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc2" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="103" Height="22" AnchorRight="136" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc2" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUPC" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="95" Height="22" AnchorRight="144" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Scan UPC# :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="247" Height="22" AnchorRight="0" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtGTIN" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="103" Height="22" AnchorRight="136" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Scan GTIN# :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="247" Height="22" AnchorRight="0" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="247" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption=" [ UPC/GTIN/Item# X-Reference ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                              |
+' -------------------------------------------------------------------------------
+'
+' INVENTORY: UPC / SHORT ITEM # CROSS-REFERENCE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Public Const cTNID  = "FIMXR0100"
+
+Public mbFormCalled As Boolean
+Public msRFUser     As String
+Public msStatusF    As String
+Public msStatusT    As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  Dim iCN As Integer
+
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim vArray    As Variant
+  Dim sMCU      As String
+  Dim sPlant    As String
+  Dim sCompany  As String
+  '
+  SetDisplay()
+
+  vArray = Split(gsValCache,"|")
+  '
+  txtMCU.Text  = vArray(0)
+  txtDOCO.Text = vArray(1)
+  txtDCTO.Text = vArray(2)
+  msStatusF                = vArray(3)
+  msStatusT                = vArray(4)
+  txtUPC.Text  = ""
+  txtGTIN.Text = ""
+  '
+  ' Initialize special controls
+  lblItemDesc1.Caption = ""
+  lblItemDesc2.Caption = ""
+  '
+  sMCU = vArray(0)
+  Validate_BranchPlant(sMCU,sPlant,sCompany)
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  Dim iCN As Integer
+
+  iCN = App.PromptNo
+
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  gsValCache = cTNID & "|"
+  gsValCache = gsValCache & App.GetValue("tmLITM")
+  '
+  App.ExitForm
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+End Sub
+
+Private Sub txtUPC_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("UPC", "")
+
+End Sub
+
+Private Sub txtUPC_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+
+  'Check for pre-existing records in F4104 by UPC.
+  sSQL = "select IVLITM from F4104 where IVXRT = 'UP' and IVCITM = '" & Rsp & "' "
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.SetValue("UPC", Rsp)
+    Cancel = False
+  End If
+  '
+  WriteRecord("INSERT", DB.Extract(sCols,sRows,1,1),"UP")
+
+End Sub
+
+Private Sub txtGTIN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("GTIN", "")
+
+End Sub
+
+Private Sub txtGTIN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = Trim(UCase(Rsp))
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+
+  'Check for pre-existing records in F4104 by UPC.
+  sSql = "select IVLITM from F4104 where IVXRT = 'GT' and IVCITM = '" & Rsp & "' "
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.SetValue("GTIN", Rsp)
+    Cancel = False
+  End If
+  '
+  WriteRecord("INSERT", DB.Extract(sCols,sRows,1,1),"GT")
+
+End Sub
+
+Private Sub txtLITM_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iDecLNID As Integer
+  Dim iDecUOPN As Integer
+  Dim sSql     As String
+  Dim sValue   As String
+  Dim oList    As New SearchList
+  '
+  sSql = "Select PDDSC1, PDUOPN, PDUOM, PDLITM, PDLNID" & _
+         " from  F4311 where PDMCU = '%txtMCU' and PDDOCO = %txtDOCO and PDDCTO =  '%txtDCTO' " & _
+         " and PDNXTR between '" & msStatusF & "' and '" & msStatusT & "' order by PDLNID"
+  '
+  Select Case App.GetValue("tmCISY")  ' Get what Item number is used
+    Case 1
+      sSql = Replace(sSql,"PDLITM","PDITM")
+    Case 3
+      sSql = Replace(sSql,"PDLITM","PDAITM")
+    Case Else
+  End Select
+  '
+  Call GetDecimals("LNID", iDecLNID)
+  Call GetDecimals("UOPN", iDecUOPN)
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "Desc",        10, CenterLeft, True)
+  oList.SetColumn(2, "Qty",   giLenQTY, CenterRight, True, iDecUOPN)
+  oList.SetColumn(3, "UOM",          3, CenterLeft, True)
+  oList.SetColumn(4, "Item", giLenItem, CenterLeft, True)
+  oList.SetColumn(5, "Line",         6, CenterRight, True, iDecLNID)
+  oList.SQL = sSql
+  '
+  sValue = oList.ShowList
+  Rsp      = LField(sValue, Chr(3), 4)
+
+End Sub
+
+Private Sub txtLITM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  txtLITM.Text = ""
+
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql               As String
+  Dim sCols              As String
+  Dim sRows              As String
+  '
+  Rsp = Trim(UCase(Rsp))
+  Cancel = True
+  If Len(Rsp) = 0 Then Exit Sub
+  '
+  sSQL = "select PDITM, PDDSC1 , PDDSC2 from F4311 where " & _
+         "PDMCU = '%txtMCU' and PDDOCO = %txtDOCO and PDDCTO = '%txtDCTO'"
+  DB.Execute(sSQL,sCols,sRows)
+'
+  If Len(sRows) > 0 Then
+    lblItemDesc1.Caption = Trim(DB.Extract(sCols,sRows,1,2))
+    lblItemDesc2.Caption = Trim(DB.Extract(sCols,sRows,1,3))
+    App.SetValue("tmITM", DB.Extract(sCols,sRows,1,1))
+  End If
+  '
+  App.SetValue("tmLITM", Rsp)
+  '
+  Cancel = False
+  '
+End Sub
+
+Public Sub WriteRecord(ByRef sMode, ByRef sLITM As String, ByRef sXRT As String)
+  On Error Resume Next
+
+  Dim sSQL                As String
+  Dim sCols               As String
+  Dim sRows               As String
+  Dim sITM                As String
+  Dim sAITM               As String
+  Dim sDSC1               As String
+  Dim sUOM                As String
+  Dim bHasLots            As Boolean
+  Dim bSerialized         As Boolean
+  Dim sUSER               As String
+  Dim sPID                As String
+  Dim sJOBN               As String
+  Dim sUPMJ               As String
+  Dim sTDAY               As String
+  Dim sErrDesc            As String
+  Dim sErrText            As String
+  Dim sDSC2               As String
+  Dim nType               As Integer
+  Dim nSQLErrNo           As Currency
+  Dim emProcGetAuditInfo  As New EmbeddedProc
+  '
+  sDSC2 = lblItemDesc2.Caption
+  '
+  If Not Validate_Item(App.GetValue("txtMCU"), App.GetValue("tmLITM"), sITM, sLITM, sAITM, sDSC1, _
+                     sUOM, nType, bHasLots, bSerialized) Then Exit Sub
+
+  'Call JDE BSNF "GetAuditInfo" to obtain values for audit fields.
+  emProcGetAuditInfo.Name       = "GetAuditInfo"
+  emProcGetAuditInfo.LogMode    = LogNever
+  emProcGetAuditInfo.DebugLog   = cJDELogPath
+
+  emProcGetAuditInfo.Param("UserName")           = ""
+  emProcGetAuditInfo.Param("Date")               = ""
+  emProcGetAuditInfo.Param("Time")               = ""
+  emProcGetAuditInfo.Param("Workstation_UserId") = ""
+
+  If Ext(gsLog,3) = "1" Then
+    Call TranLog(cTNID, "3", emProcGetAuditInfo.Name, "", emProcGetAuditInfo)
+  End If
+
+  If emProcGetAuditInfo.Execute = False Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNID, "4", emProcGetAuditInfo.Name, "", emProcGetAuditInfo, msRFUser, TM.QueueName, TM.SeqNo)
+    End If
+    sErrDesc = emProcGetAuditInfo.Name
+    If Len(Trim(sErrDesc)) > 0 Then
+      sErrText = sErrDesc
+      ERP.RollbackTrans
+      Exit Sub
+    End If
+  End If
+
+  sUSER = emProcGetAuditInfo.Param("UserName")
+  sJOBN = emProcGetAuditInfo.Param("Workstation_UserId")
+  sUPMJ = Trim(ConvDatetoJDE(CStr(emProcGetAuditInfo.Param("Date"))))
+  sTDAY = CStr(emProcGetAuditInfo.Param("Time"))
+
+  'Execute DML SQL to F104
+  Select Case sMode
+    Case "INSERT"
+      If sXRT = "UP" Then
+      'Add the record to F4104.
+        'sSQL = "insert into F4104 (IVAN8, IVXRT, IVITM, IVEXDJ, IVEFTJ, IVMCU, IVCITM, IVDSC1, IVDSC2, IVALN, IVLITM, IVAITM, IVURCD, IVURDT, IVURAT, IVURAB, IVURRF, IVUSER, IVPID, IVJOBN, IVUPMJ, IVTDAY, IVRATO, IVAPSP, IVIDEM, IVAPSS, IVCIRV, IVADIND, IVBPIND) " & _
+        '       "values(0.000000, 'UP', " & sITM & ", 150365, " & sUPMJ & ", ' ', " & "'" & App.GetValue("UPC") & "'" & ", '" & sDSC1 & "'" & ", '" & sDSC2 & "'" & ", '" & App.GetValue("UPC") & "'" & ", '" & sLITM & "'" & ", '" & sAITM & "'" & ", ' ', 0, 0.000000, 0.000000, ' '," & "'" & sUSER & "'" & ", '" & cTNID & "'" & ", '" & sJOBN & "'" & ", " & sUPMJ & ", " & sTDAY & ", 0.000000, 0.000000, ' ', ' ', ' ', ' ', ' ')"
+        sSQL = "insert into F4104 (IVAN8, IVXRT, IVITM, IVEXDJ, IVEFTJ, IVMCU, IVCITM, IVDSC1, IVDSC2, IVALN, IVLITM, IVAITM, IVURCD, IVURDT, IVURAT, IVURAB, IVURRF, IVUSER, IVPID, IVJOBN, IVUPMJ, IVTDAY) " & _
+               "values(0.000000, 'UP', " & sITM & ", 150365, " & sUPMJ & ", ' ', " & "'" & App.GetValue("UPC") & "'" & ", '" & sDSC1 & "'" & ", '" & sDSC2 & "'" & ", '" & App.GetValue("UPC") & "'" & ", '" & sLITM & "'" & ", '" & sAITM & "'" & ", ' ', 0, 0.000000, 0.000000, ' '," & "'" & sUSER & "'" & ", '" & cTNID & "'" & ", '" & sJOBN & "'" & ", " & sUPMJ & ", " & sTDAY & ")"
+      Else
+        'sSQL = "insert into F4104 (IVAN8, IVXRT, IVITM, IVEXDJ, IVEFTJ, IVMCU, IVCITM, IVDSC1, IVDSC2, IVALN, IVLITM, IVAITM, IVURCD, IVURDT, IVURAT, IVURAB, IVURRF, IVUSER, IVPID, IVJOBN, IVUPMJ, IVTDAY, IVRATO, IVAPSP, IVIDEM, IVAPSS, IVCIRV, IVADIND, IVBPIND) " & _
+        '       "values(0.000000, 'GT', " & sITM & ", 150365, " & sUPMJ & ", ' ', " & "'" & App.GetValue("GTIN") & "'" & ", '" & sDSC1 & "'" & ", '" & sDSC2 & "'" & ", '" & App.GetValue("UPC") & "'" & ", '" & sLITM & "'" & ", '" & sAITM & "'" & ", ' ', 0, 0.000000, 0.000000, ' '," & "'" & sUSER & "'" & ", '" & cTNID & "'" & ", '" & sJOBN & "'" & ", " & sUPMJ & ", " & sTDAY & ", 0.000000, 0.000000, ' ', ' ', ' ', ' ', ' ')"
+        sSQL = "insert into F4104 (IVAN8, IVXRT, IVITM, IVEXDJ, IVEFTJ, IVMCU, IVCITM, IVDSC1, IVDSC2, IVALN, IVLITM, IVAITM, IVURCD, IVURDT, IVURAT, IVURAB, IVURRF, IVUSER, IVPID, IVJOBN, IVUPMJ, IVTDAY) " & _
+               "values(0.000000, 'GT', " & sITM & ", 150365, " & sUPMJ & ", ' ', " & "'" & App.GetValue("GTIN") & "'" & ", '" & sDSC1 & "'" & ", '" & sDSC2 & "'" & ", '" & App.GetValue("UPC") & "'" & ", '" & sLITM & "'" & ", '" & sAITM & "'" & ", ' ', 0, 0.000000, 0.000000, ' '," & "'" & sUSER & "'" & ", '" & cTNID & "'" & ", '" & sJOBN & "'" & ", " & sUPMJ & ", " & sTDAY & ")"
+      End If
+
+    Case "UPDATE"
+      If sXRT = "UP" Then
+      'Update the record in F4104.
+        sSQL = "update F4104 set IVCITM = " & "'" & App.GetValue("UPC") & "'" & ", IVALN = " & "'" & App.GetValue("UPC") & "'" & ", IVUSER = " & "'" & sUSER & "'" & ", IVPID = " & "'" & cTNID & "'" & ", IVJOBN = " & "'" & sJOBN & "'" &  ", IVUPMJ = " & sUPMJ & ", IVTDAY = " & sTDAY & " where IVXRT = 'UP'" & " and IVITM = " & sITM
+      Else
+        sSQL = "update F4104 set IVCITM = " & "'" & App.GetValue("GTIN") & "'" & ", IVALN = " & "'" & App.GetValue("GTIN") & "'" & ", IVUSER = " & "'" & sUSER & "'" & ", IVPID = " & "'" & cTNID & "'" & ", IVJOBN = " & "'" & sJOBN & "'" &  ", IVUPMJ = " & sUPMJ & ", IVTDAY = " & sTDAY & " where IVXRT = 'GT'" & " and IVITM = " & sITM
+      End If
+
+    Case Else
+
+  End Select
+
+  nSQLErrNo = DB.Execute(sSQL)
+
+  If nSQLErrNo <> 0 Then
+    App.MsgBox("DB ERROR: Record was not written to F4104.")
+  End If
+
+End Sub
+</Code>

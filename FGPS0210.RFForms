@@ -1,0 +1,451 @@
+﻿<Record FileDesc="GPS - Working Demo" FileVersion="5.0.8.0" Desc="GPS - Working Demo" Group="GPS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="imgTarget&vm;txtDist&vm;txtHeading&vm;imgHeading&vm;imgNorth&vm;txtWait1&vm;cmdDetails&vm;txtTarLat&vm;txtTarLon&vm;txtLatitude&vm;txtLongitude&vm;txtAltitude&vm;txtSpeed&vm;txtWait2">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="imgTarget" />
+<SchemaParam Linked="0" Attr="2" Name="txtDist" />
+<SchemaParam Linked="0" Attr="3" Name="txtHeading" />
+<SchemaParam Linked="0" Attr="4" Name="imgHeading" />
+<SchemaParam Linked="0" Attr="5" Name="imgNorth" />
+<SchemaParam Linked="0" Attr="6" Name="txtWait1" />
+<SchemaParam Linked="0" Attr="7" Name="cmdDetails" />
+<SchemaParam Linked="0" Attr="8" Name="txtTarLat" />
+<SchemaParam Linked="0" Attr="9" Name="txtTarLon" />
+<SchemaParam Linked="0" Attr="10" Name="txtLatitude" />
+<SchemaParam Linked="0" Attr="11" Name="txtLongitude" />
+<SchemaParam Linked="0" Attr="12" Name="txtAltitude" />
+<SchemaParam Linked="0" Attr="13" Name="txtSpeed" />
+<SchemaParam Linked="0" Attr="14" Name="txtWait2" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="2">
+<Controls>
+<Control Type="6" FieldId="imgTarget" Attr="1" Style="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="0" Width="0" Height="22" AnchorRight="119" AnchorBottom="298" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="24" Top="22" Width="183" Height="154" AnchorRight="88" AnchorBottom="144" BackColor1="0F0F0F" BackColor2="0F0F0F" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDist" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="47" Height="22" AnchorRight="248" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Dist:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="176" Width="63" Height="22" AnchorRight="192" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtHeading" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="104" Top="176" Width="23" Height="22" AnchorRight="168" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="at" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="176" Width="79" Height="22" AnchorRight="88" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="6" FieldId="imgHeading" Attr="4" Style="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="71" Height="22" AnchorRight="224" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Heading:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="220" Width="71" Height="66" AnchorRight="224" AnchorBottom="34" BackColor1="0F0F0F" BackColor2="0F0F0F" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="6" FieldId="imgNorth" Attr="5" Style="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="198" Width="55" Height="22" AnchorRight="64" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="North:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="168" Top="220" Width="71" Height="66" AnchorRight="56" AnchorBottom="34" BackColor1="0F0F0F" BackColor2="0F0F0F" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWait1" Attr="6" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="88" Top="264" Width="0" Height="22" AnchorRight="207" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="288" Top="176" Width="0" Height="22" AnchorRight="7" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdDetails" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Details" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="264" Width="87" Height="22" AnchorRight="128" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTarLat" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="95" Height="22" AnchorRight="200" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Target Lat:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="44" Width="127" Height="22" AnchorRight="72" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTarLon" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="95" Height="22" AnchorRight="200" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Target Lon:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="66" Width="127" Height="22" AnchorRight="72" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLatitude" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="103" Height="22" AnchorRight="192" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Current Lat:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="104" Top="110" Width="135" Height="22" AnchorRight="56" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLongitude" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="103" Height="22" AnchorRight="192" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Current Lon:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="104" Top="132" Width="135" Height="22" AnchorRight="56" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAltitude" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="176" Width="79" Height="22" AnchorRight="192" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Altitude:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="104" Top="176" Width="79" Height="22" AnchorRight="112" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSpeed" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="55" Height="22" AnchorRight="192" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Speed:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="104" Top="198" Width="79" Height="22" AnchorRight="112" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtWait2" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="264" Width="127" Height="22" AnchorRight="120" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to return" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="264" Width="0" Height="22" AnchorRight="167" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="295" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000000" Caption="[GPS Tracking]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000000" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' GPS: GPS WORKING DEMO
+'
+' NOTES:
+' This transaction will point in the direction of the target latitude and
+' longitude which is passed in from the calling form. The heading points
+' in the direction on a compass that you are traveling and the north arrow
+' points to geographic north. Click the details button to see your current
+' location, altitude and speed. Speed is in KPH and distance is in meters.
+'
+' The previous form should pass in the target location by doing:
+' App.SetValue("TarLat", "123.45", "FGPS0200")
+' App.SetValue("TarLon", "234.56", "FGPS0200")
+'
+' Change the constants to reflect the path to the arrow BMP files.
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Enum ConvertDistanceTo
+  dMeters = 1852
+  dKiloMeters = 1.852
+  dMiles = 1.1515
+  dNauticalMile = 1
+End Enum
+
+Enum ConvertAltTo
+  aMeters = 1
+  aKiloMeters = 1000
+  aMiles = 0.000621
+  aFeet = 3.28
+  aNauticalMile = 0.0054
+End Enum
+
+Enum ConvertSpeedTo
+  sMPH = 1.1515
+  sKPH = 1.852
+  sKnots = 1
+End Enum
+'
+' Set your unit of measure choice here
+Const cDemoMode As Boolean  = True
+Const cSpeed                = ConvertSpeedTo.sKPH
+Const cDistance             = ConvertDistanceTo.dKiloMeters
+Const cAltitude             = ConvertAltTo.aMeters
+Const cPathWin              = "C:\Daten\BRUEGGE\Kunden\Datamax\Demo JDE\JDE 8.10\GPS\Graphics\"
+Const cPathCE               = "\Program Files\RFgenCE\"
+Const pi                    = 3.14159265358979323846
+Public miCnt                As Integer'
+Dim mnLat                   As Double
+Dim mnLon                   As Double
+Dim mdLongitude             As Double
+Dim mdLatitude              As Double
+Dim mdHeading               As Double
+Dim mdSpeed                 As Double
+Dim mdAltitude              As Double
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  ' Load Target data
+  mnLat = 20
+  mnLon = 20
+  '
+  App.TimerInterval = 1000
+  App.TimerEnabled = True
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  App.TimerEnabled = False
+
+End Sub
+
+Private Sub Form_OnTimer()
+  On Error Resume Next
+  '
+  Dim sText     As String
+  Dim sPath     As String
+  Dim nBearing  As Double
+  Dim nDist     As Double
+  '
+  ' Test data
+  txtTarLat.Text = CStr(mnLat)
+  txtTarLon.Text = CStr(mnLon)
+  '
+  'Device.GetGPSInfo mdLongitude, mdLatitude, mdHeading, mdAltitude, mdSpeed
+  Call MakeUpData
+  '
+  If mdLongitude = 0 Then Exit Sub
+
+  nBearing = Rad2Deg(AngleBetPts(mdLatitude,mdLongitude,mnLat,mnLon))
+  '
+  txtLongitude.Text = Left(CStr(mdLongitude),15)
+  txtLatitude.Text = Left(CStr(mdLatitude),15)
+  txtAltitude.Text = Left(CStr(mdAltitude * cAltitude),9)
+  txtSpeed.Text = Left(CStr(mdSpeed * cDistance),6)
+  nDist = Int(Distance(mdLatitude, mdLongitude, mnLat, mnLon))
+  txtDist.Text = Format(nDist,"#,###")
+  '
+  If Device.IsOnline Then
+    sPath = cPathWin
+  Else
+    sPath = cPathCE
+  End If
+  '
+  Select Case mdHeading
+    Case Is < 22.5
+      imgHeading.Image.Path = sPath & "Green_N.bmp"
+      imgNorth.Image.Path   = sPath & "Red_N.bmp"
+    Case Is < 45
+      imgHeading.Image.Path = sPath & "Green_NE.bmp"
+      imgNorth.Image.Path   = sPath & "Red_NW.bmp"
+    Case Is < 67.5
+      imgHeading.Image.Path = sPath & "Green_NE.bmp"
+      imgNorth.Image.Path   = sPath & "Red_NW.bmp"
+    Case Is < 112.5
+      imgHeading.Image.Path = sPath & "Green_E.bmp"
+      imgNorth.Image.Path   = sPath & "Red_W.bmp"
+    Case Is < 135
+      imgHeading.Image.Path = sPath & "Green_SE.bmp"
+      imgNorth.Image.Path   = sPath & "Red_SW.bmp"
+    Case Is < 157.5
+      imgHeading.Image.Path = sPath & "Green_SE.bmp"
+      imgNorth.Image.Path   = sPath & "Red_SW.bmp"
+    Case Is < 202.5
+      imgHeading.Image.Path = sPath & "Green_S.bmp"
+      imgNorth.Image.Path   = sPath & "Red_S.bmp"
+    Case Is < 225
+      imgHeading.Image.Path = sPath & "Green_SW.bmp"
+      imgNorth.Image.Path   = sPath & "Red_SE.bmp"
+    Case Is < 247.5
+      imgHeading.Image.Path = sPath & "Green_SW.bmp"
+      imgNorth.Image.Path   = sPath & "Red_SE.bmp"
+    Case Is < 292.5
+      imgHeading.Image.Path = sPath & "Green_W.bmp"
+      imgNorth.Image.Path   = sPath & "Red_E.bmp"
+    Case Is < 315
+      imgHeading.Image.Path = sPath & "Green_NW.bmp"
+      imgNorth.Image.Path   = sPath & "Red_NE.bmp"
+    Case Is < 337.5
+      imgHeading.Image.Path = sPath & "Green_NW.bmp"
+      imgNorth.Image.Path   = sPath & "Red_NE.bmp"
+    Case Else
+      imgHeading.Image.Path = sPath & "Green_N.bmp"
+      imgNorth.Image.Path   = sPath & "Red_N.bmp"
+  End Select
+  '
+  ' Determine arrow for pointing to the target
+  nBearing = (360 - mdHeading) + nBearing
+
+  If nBearing > 360 Then nBearing = nBearing - 360
+  '
+  Select Case nBearing
+    Case Is < 22.5  : sText = "N"   : imgTarget.Image.Path = sPath & "Blue_N.bmp"
+    Case Is < 45    : sText = "NNE" : imgTarget.Image.Path = sPath & "Blue_NNE.bmp"
+    Case Is < 67.5  : sText = "ENE" : imgTarget.Image.Path = sPath & "Blue_ENE.bmp"
+    Case Is < 112.5 : sText = "E"   : imgTarget.Image.Path = sPath & "Blue_E.bmp"
+    Case Is < 135   : sText = "ESE" : imgTarget.Image.Path = sPath & "Blue_ESE.bmp"
+    Case Is < 157.5 : sText = "SSE" : imgTarget.Image.Path = sPath & "Blue_SSE.bmp"
+    Case Is < 202.5 : sText = "S"   : imgTarget.Image.Path = sPath & "Blue_S.bmp"
+    Case Is < 225   : sText = "SSW" : imgTarget.Image.Path = sPath & "Blue_SSW.bmp"
+    Case Is < 247.5 : sText = "WSW" : imgTarget.Image.Path = sPath & "Blue_WSW.bmp"
+    Case Is < 292.5 : sText = "W"   : imgTarget.Image.Path = sPath & "Blue_W.bmp"
+    Case Is < 315   : sText = "WNW" : imgTarget.Image.Path = sPath & "Blue_WNW.bmp"
+    Case Is < 337.5 : sText = "NNW" : imgTarget.Image.Path = sPath & "Blue_NNW.bmp"
+    Case Else       : sText = "N"   : imgTarget.Image.Path = sPath & "Blue_N.bmp"
+  End Select
+  '
+  txtHeading.Text = sText & " " & Format(nBearing,"#") & "°"
+
+End Sub
+
+Private Sub cmdDetails_Click()
+  On Error Resume Next
+  '
+  App.SetFocus("txtWait2")
+
+End Sub
+
+Public Sub txtWait_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Cancel = True
+
+End Sub
+
+Public Sub MakeUpData
+  On Error Resume Next
+  '
+' Following a spiral path from 0,20 to 20,20
+  miCnt = miCnt + 1
+  If miCnt = 23 Then miCnt = 1
+  mdHeading = 0
+  '
+  Select Case miCnt
+    Case 1  : mdLongitude = 1  : mdLatitude = 20 : mdSpeed = 50 : mdAltitude = 1000
+    Case 2  : mdLongitude = 8  : mdLatitude = 25 : mdSpeed = 50 : mdAltitude = 1000
+    Case 3  : mdLongitude = 16 : mdLatitude = 35 : mdSpeed = 51 : mdAltitude = 1000
+    Case 4  : mdLongitude = 20 : mdLatitude = 40 : mdSpeed = 51 : mdAltitude = 1005
+    Case 5  : mdLongitude = 23 : mdLatitude = 32 : mdSpeed = 52 : mdAltitude = 1005
+    Case 6  : mdLongitude = 27 : mdLatitude = 24 : mdSpeed = 52 : mdAltitude = 1005
+    Case 7  : mdLongitude = 30 : mdLatitude = 20 : mdSpeed = 51 : mdAltitude = 1010
+    Case 8  : mdLongitude = 27 : mdLatitude = 16 : mdSpeed = 51 : mdAltitude = 1010
+    Case 9  : mdLongitude = 23 : mdLatitude = 12 : mdSpeed = 51 : mdAltitude = 1010
+    Case 10 : mdLongitude = 20 : mdLatitude = 8  : mdSpeed = 50 : mdAltitude = 1015
+    Case 11 : mdLongitude = 17 : mdLatitude = 12 : mdSpeed = 50 : mdAltitude = 1015
+    Case 12 : mdLongitude = 14 : mdLatitude = 16 : mdSpeed = 50 : mdAltitude = 1015
+    Case 13 : mdLongitude = 10 : mdLatitude = 20 : mdSpeed = 49 : mdAltitude = 1020
+    Case 14 : mdLongitude = 14 : mdLatitude = 23 : mdSpeed = 49 : mdAltitude = 1020
+    Case 15 : mdLongitude = 17 : mdLatitude = 26 : mdSpeed = 48 : mdAltitude = 1020
+    Case 16 : mdLongitude = 20 : mdLatitude = 30 : mdSpeed = 49 : mdAltitude = 1020
+    Case 17 : mdLongitude = 22 : mdLatitude = 27 : mdSpeed = 50 : mdAltitude = 1025
+    Case 18 : mdLongitude = 24 : mdLatitude = 22 : mdSpeed = 50 : mdAltitude = 1025
+    Case 19 : mdLongitude = 25 : mdLatitude = 20 : mdSpeed = 51 : mdAltitude = 1030
+    Case 20 : mdLongitude = 23 : mdLatitude = 17 : mdSpeed = 51 : mdAltitude = 1030
+    Case 21 : mdLongitude = 21 : mdLatitude = 18 : mdSpeed = 52 : mdAltitude = 1035
+    Case 22 : mdLongitude = 20 : mdLatitude = 20 : mdSpeed = 51 : mdAltitude = 1035
+  End Select
+
+End Sub
+
+':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+':::                                                                         :::
+':::  This routine calculates the distance between two points (given the     :::
+':::  latitude/longitude of those points).                                   :::
+':::                                                                         :::
+':::  Definitions:                                                           :::
+':::    South latitudes are negative, east longitudes are positive           :::
+':::                                                                         :::
+':::  Passed to function:                                                    :::
+':::    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)  :::
+':::    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)  :::
+':::                                                                         :::
+':::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Public Function Distance(ByRef lat1 As Double, ByRef lon1 As Double, ByRef lat2 As Double, ByRef lon2 As Double) As Double
+  On Error Resume Next
+  '
+  Dim nTheta As Double
+  Dim nDist  As Double
+  '
+  nTheta = lon1 - lon2
+  nDist = Sin(Deg2Rad(lat1)) * Sin(Deg2Rad(lat2)) + Cos(Deg2Rad(lat1)) * Cos(Deg2Rad(lat2)) * Cos(Deg2Rad(nTheta))
+  nDist = ACOS(nDist)
+  nDist = Rad2Deg(nDist)
+  Distance = nDist * 60 * cSpeed
+
+End Function
+
+Public Function ACOS(ByRef Rad As Double) As Double
+  On Error Resume Next
+  '
+  If Abs(Rad) <> 1 Then
+    ACOS = pi/2 - Atn(Rad / Sqr(1 - Rad * Rad))
+  ElseIf Rad = -1 Then
+    ACOS = pi
+  End If
+
+End Function
+
+Public Function Deg2Rad(ByRef Deg As Double) As Double
+  On Error Resume Next
+  '
+  Deg2Rad = CDbl(Deg * pi / 180)
+
+End Function
+
+Public Function Rad2Deg(ByRef Rad As Double) As Double
+  On Error Resume Next
+  '
+  Rad2Deg = CDbl(Rad * 180 / pi)
+
+End Function
+
+'Angle between two points function
+Public Function AngleBetPts(ByRef Xa As Double, ByRef Ya As Double, ByRef Xb As Double, ByRef Yb As Double) As Double
+  On Error Resume Next
+  '
+  Dim XDiff As Double
+  Dim YDiff As Double
+  '
+  XDiff = Xb - Xa
+  YDiff = Yb - Ya
+
+  If XDiff <> 0 Then
+    AngleBetPts = Atn(YDiff / XDiff)
+    If XDiff < 0 Then AngleBetPts = AngleBetPts + pi
+  Else
+    If YDiff < 0 Then
+      AngleBetPts = 3 * (pi * 0.5) '90
+    Else
+      AngleBetPts = (pi * 0.5) '270
+    End If
+  End If
+  '
+  If AngleBetPts < 0 Then AngleBetPts = AngleBetPts + (pi * 2)
+
+End Function
+</Code>

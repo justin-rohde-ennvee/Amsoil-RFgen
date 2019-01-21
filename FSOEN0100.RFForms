@@ -1,0 +1,914 @@
+﻿<Record FileDesc="SO - Sales Order Entry" FileVersion="5.0.8.0" Desc="SO - Sales Order Entry" Group="SO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtAN8&vm;lblDesc1&vm;LstDoco&vm;lblAmt&vm;btnHeader&vm;btnCreate&vm;btnDetail&vm;txtLITM&vm;lblItemDesc&vm;lblItemDesc2&vm;txtQTY&vm;txtUPRC&vm;lblAEXP&vm;lblRcd&vm;txtOPDJ&vm;btnDown&vm;btnUp&vm;btnOverview&vm;btnHead&vm;lblAN8&vm;lblDESC&vm;lblAN8H&vm;lblDESCH&vm;txtSHIP&vm;lblSHIP&vm;txtOPDJH">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtAN8" />
+<SchemaParam Linked="0" Attr="3" Name="lblDesc1" />
+<SchemaParam Linked="0" Attr="4" Name="LstDoco" />
+<SchemaParam Linked="0" Attr="5" Name="lblAmt" />
+<SchemaParam Linked="0" Attr="6" Name="btnHeader" />
+<SchemaParam Linked="0" Attr="7" Name="btnCreate" />
+<SchemaParam Linked="0" Attr="8" Name="btnDetail" />
+<SchemaParam Linked="0" Attr="9" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="10" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="11" Name="lblItemDesc2" />
+<SchemaParam Linked="0" Attr="12" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="13" Name="txtUPRC" />
+<SchemaParam Linked="0" Attr="14" Name="lblAEXP" />
+<SchemaParam Linked="0" Attr="15" Name="lblRcd" />
+<SchemaParam Linked="0" Attr="16" Name="txtOPDJ" />
+<SchemaParam Linked="0" Attr="17" Name="btnDown" />
+<SchemaParam Linked="0" Attr="18" Name="btnUp" />
+<SchemaParam Linked="0" Attr="19" Name="btnOverview" />
+<SchemaParam Linked="0" Attr="20" Name="btnHead" />
+<SchemaParam Linked="0" Attr="21" Name="lblAN8" />
+<SchemaParam Linked="0" Attr="22" Name="lblDESC" />
+<SchemaParam Linked="0" Attr="23" Name="lblAN8H" />
+<SchemaParam Linked="0" Attr="24" Name="lblDESCH" />
+<SchemaParam Linked="0" Attr="25" Name="txtSHIP" />
+<SchemaParam Linked="0" Attr="26" Name="lblSHIP" />
+<SchemaParam Linked="0" Attr="27" Name="txtOPDJH" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="3">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="816" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="87" Height="22" AnchorRight="712" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAN8" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="79" Height="22" AnchorRight="792" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Customer:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="44" Width="87" Height="22" AnchorRight="712" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDesc1" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="44" Width="71" Height="22" AnchorRight="640" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblDesc1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="LstDoco" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="111" Height="22" AnchorRight="760" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Order Details" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="871" Height="154" AnchorRight="0" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAmt" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="55" Height="22" AnchorRight="816" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblAmt" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnHeader" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Header" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="119" Height="22" AnchorRight="752" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnCreate" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Create Order" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="119" Height="22" AnchorRight="752" AnchorBottom="12" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDetail" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Details" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="264" Width="119" Height="22" AnchorRight="632" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="47" Height="22" AnchorRight="824" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="167" Height="22" AnchorRight="632" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="10">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="95" Height="22" AnchorRight="776" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc2" Attr="11">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="103" Height="22" AnchorRight="768" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblItemDesc2" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="39" Height="22" AnchorRight="832" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="119" Height="22" AnchorRight="680" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUPRC" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="71" Height="22" AnchorRight="800" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="UnitPr.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="154" Width="119" Height="22" AnchorRight="680" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAEXP" Attr="14">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="63" Height="22" AnchorRight="808" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblAEXP" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblRcd" Attr="15">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="55" Height="22" AnchorRight="816" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblRcd" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtOPDJ" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="71" Height="22" AnchorRight="800" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="DelDate:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="176" Width="87" Height="22" AnchorRight="712" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDown" Attr="17">
+<Layouts>
+<Layout PageNo="2" Visible="1" Caption="Down" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="119" Height="22" AnchorRight="752" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnUp" Attr="18">
+<Layouts>
+<Layout PageNo="2" Visible="1" Caption="Up" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="242" Width="119" Height="22" AnchorRight="632" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnOverview" Attr="19">
+<Layouts>
+<Layout PageNo="2" Visible="1" Caption="Overview" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="119" Height="22" AnchorRight="752" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnHead" Attr="20">
+<Layouts>
+<Layout PageNo="2" Visible="1" Caption="Header" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="264" Width="119" Height="22" AnchorRight="632" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAN8" Attr="21">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="55" Height="22" AnchorRight="816" AnchorBottom="298" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblAN8" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDESC" Attr="22">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="63" Height="22" AnchorRight="808" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblDESC" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblAN8H" Attr="23">
+<Layouts>
+<Layout PageNo="3" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="63" Height="22" AnchorRight="808" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblAN8H" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDESCH" Attr="24">
+<Layouts>
+<Layout PageNo="3" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="71" Height="22" AnchorRight="800" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblDESCH" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSHIP" Attr="25" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="3" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="63" Height="22" AnchorRight="808" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ShipTo:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="87" Height="22" AnchorRight="784" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSHIP" Attr="26">
+<Layouts>
+<Layout PageNo="3" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="63" Height="22" AnchorRight="808" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="FF0000" Caption="lblSHIP" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtOPDJH" Attr="27" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="3" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="207" Height="22" AnchorRight="664" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Request Date (MM/DD/YYYY)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="87" Height="22" AnchorRight="784" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="871" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' PURCHASE ORDERS: RECEIPTS BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTRANDESC     = "RFGen SO Entry"
+Private Const cTNId         = "FSOEN0100"
+Private msPgm               As String
+Private msVersion           As String
+Private msDOCTYPE           As String
+Private msLineType          As String
+Private msValCache          As Variant
+Private mnCnt               As Integer
+Private miRecord            As Integer
+Private miRecMax            As Integer
+Private mbNewItem           As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim sHeader As String
+  '
+  Call SetDisplay()
+  '
+  ' Initialize the RFGen recordset with extra fields
+  ' Initialize special controls
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1  = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor  = cFieldDefaultFC
+  '
+  lblAN8.Caption = ""
+  lblAN8.Label.BackColor1       = cFieldDefaultBC
+  lblAN8.Label.ForeColor       = cFieldDefaultFC
+  '
+  lblAEXP.Caption = ""
+  lblAEXP.Label.BackColor1      = cFieldDefaultBC
+  lblAEXP.Label.ForeColor      = cFieldDefaultFC
+  '
+  lblAmt.Caption = ""
+  lblAmt.Label.BackColor1       = cFieldDefaultBC
+  lblAmt.Label.ForeColor       = cFieldDefaultFC
+  '
+  lblAN8H.Caption = ""
+  lblAN8H.Label.BackColor1      = cFieldDefaultBC
+  lblAN8H.Label.ForeColor      = cFieldDefaultFC
+  '
+  lblSHIP.Caption = ""
+  lblSHIP.Label.BackColor1      = cFieldDefaultBC
+  lblSHIP.Label.ForeColor      = cFieldDefaultFC
+  '
+  lblDESC.Caption = ""
+  lblDESC.Label.BackColor1      = cFieldDefaultBC
+  lblDESC.Label.ForeColor      = cFieldDefaultFC
+  '
+  lblDESC1.Caption = ""
+  lblDESC1.Label.BackColor1     = cFieldDefaultBC
+  lblDESC1.Label.ForeColor     = cFieldDefaultFC
+  '
+  lblDESCH.Caption = ""
+  lblDESCH.Label.BackColor1     = cFieldDefaultBC
+  lblDESCH.Label.ForeColor     = cFieldDefaultFC
+  '
+  lblRCD.Caption = ""
+  lblRCD.Label.BackColor1       = cFieldDefaultBC
+  lblRCD.Label.ForeColor       = cFieldDefaultFC
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  ' get DocType from Proc.Opt.
+  msDOCTYPE  = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+  msLineType = GetProcOpt(msPgm, msVersion, "1;2")
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' If the Doc Type is Null in the Processing Option show Error Msg
+  If msDOCTYPE = "" Then
+    App.MsgBox GetMsg(246)
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub LstDoco_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  miRecord = CInt(Rsp)
+  '
+  Call DispRecord
+
+End Sub
+
+Private Sub txtLITM_Click()
+  On Error Resume Next
+  '
+  App.SetFocus("LstDoco")
+
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim iCnt  As Integer
+  Dim cVal  As Currency
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  mbNewItem = False
+  '
+  sSql = "select IMITM, IMDSC1, IMDSC2, IMUOM1 from  F4101" & _
+         " where IMLITM = '" & Rsp & "'"
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(63))
+    Exit Sub
+  End If
+  '
+  ' check if item is already in the pricelist
+  For iCnt = 1 To mnCnt
+    If Ext(msValCache,iCnt,1) = Rsp Then
+      miRecord = iCnt
+      Call DispRecord
+      Cancel = False
+      Exit Sub
+    End If
+  Next iCnt
+  '
+  sSql = "select IMITM, IMDSC1, IMUOM1 from  F4101" & _
+         " where IMLITM = '" & Rsp & "'"
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(63))
+    Exit Sub
+  End If
+  '
+  msValCache = Rep(msValCache,iCnt,1, -1, Trim(Rsp))                                 ' Long Item Number
+  msValCache = Rep(msValCache,iCnt,2, -1, Trim(DB.Extract(sCols,sRows,1,"IMDSC1")))   ' Item Description
+  msValCache = Rep(msValCache,iCnt,3, -1, 0)
+  msValCache = Rep(msValCache,iCnt,4, -1, Trim(DB.Extract(sCols,sRows,1,"IMUOM1")))   ' UOM
+  msValCache = Rep(msValCache,iCnt,7, -1, Trim(DB.Extract(sCols,sRows,1,"IMDSC2")))   ' Item Description2
+  '
+  sSql = "Select BPUPRC from F4106 where BPLITM = '" & Rsp & "' and  BPMCU = '%tmMCU' and BPCRCD = '%tmCRCD' "
+  DB.Execute(sSql,sCols,sRows)
+  '
+  cVal =  DB.Extract(sCols,sRows,1,"BPUPRC")                                          ' List.Data Price
+  cVal =  ConvDecimalsFromSQL("LPRC",cVal)
+  msValCache = Rep(msValCache,iCnt,5, -1, FormatDecimals("UPRC",cVal))
+  '
+  msValCache = Rep(msValCache,iCnt,6, -1, "00/00/0000")
+  '
+  mnCnt = mnCnt +1
+  '
+  miRecord = mnCnt
+
+  Call DispRecord
+
+  Cancel=False
+
+End Sub
+
+Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim vRsp As Variant
+  '
+  vRsp = App.MsgBox("Search by Item of Description?",,,"[Item] [Descr.]")
+  '
+  If vRsp = "Item" Then
+    Cancel = Not Search_F4101(Rsp, Rsp, App.GetValue("tmMCU"))
+  Else
+    'Cancel = Not Search_F4101_Desc(Rsp, Rsp, App.GetValue("tmMCU"))
+  End If
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",  "")
+  App.SetValue("tmMCU", "")
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtAN8_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sList    As String
+  Dim iCnt     As Integer
+  Dim cVal     As Currency
+  '
+  If (Len(Rsp) = 0) Then
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  mnCnt = 0
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  sSql = "select * from F45521 inner join  F4101 on PDLITM = IMLITM where PDAN8 = " & Rsp & " and PDUORG = 1 order by PDLITM
+  '
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Len(sRows) > 0 Then
+    msValCache = ""
+    For iCnt = 1 To DB.Count(sRows)
+      msValCache = Rep(msValCache,iCnt,1, -1, Trim(DB.Extract(sCols,sRows,iCnt,"PDLITM")))   ' Long Item Number
+      msValCache = Rep(msValCache,iCnt,2, -1, Trim(DB.Extract(sCols,sRows,iCnt,"IMDSC1")))   ' Item Description
+      'cVal = DB.Extract(sCols,sRows,iCnt,"PDUORG")                                           ' Order Qty  default = 0
+      'cVal = ConvDecimalsFromSQL("UORG",cVal)
+      'msValCache = Rep(msValCache,iCnt,3, -1, cVal)
+      msValCache = Rep(msValCache,iCnt,3, -1, 0)
+      msValCache = Rep(msValCache,iCnt,4, -1, Trim(DB.Extract(sCols,sRows,iCnt,"PDUOM")))    ' UOM
+      cVal =  DB.Extract(sCols,sRows,iCnt,"PDLPRC")                                          ' List.Data Price
+      cVal =  ConvDecimalsFromSQL("LPRC",cVal)
+      msValCache = Rep(msValCache,iCnt,5, -1, cVal)
+      'msValCache = Rep(msValCache,icnt,6, -1, Format(DateAdd("d",+5,Date),"MM/DD/YYYY"))
+      msValCache = Rep(msValCache,iCnt,6, -1, "00/00/0000")
+      msValCache = Rep(msValCache,iCnt,7, -1, Trim(DB.Extract(sCols,sRows,iCnt,"IMDSC2")))   ' Item Description2
+      mnCnt = mnCnt +1
+    Next iCnt
+  End If
+
+  miRecord = 1
+
+  sSql = "select ABALPH from F0101 where ABAN8 = " & Rsp
+
+  DB.Execute(sSql,sCols,sRows)
+
+  lblAN8.Caption = Trim(Rsp)
+  lblDESC.Caption = Trim(DB.Extract(sCols,sRows,1,"ABALPH"))
+  lblDESC1.Caption = Trim(DB.Extract(sCols,sRows,1,"ABALPH"))
+  lblAN8H.Caption = Trim(Rsp)
+  lblDESCH.Caption = Trim(DB.Extract(sCols,sRows,1,"ABALPH"))
+  '
+  ' read customer master file
+
+  If gbCustomerMaster ="F0301" Then
+    sSql = "select A5CRCD from F0301 where A5AN8 = " & Rsp
+  Else
+    sSql = "select AICRCD from F03012 where AIAN8 = " & Rsp
+  End If
+
+  DB.Execute(sSql,sCols,sRows)
+
+  App.SetValue("tmCRCD", DB.Extract(sCols,sRows,1,1))
+  '
+  App.SetValue("tmAN8", Rsp)
+  '
+  Call BuildListBox()
+  '
+  Cancel = False
+  '
+End Sub
+
+Public Sub BuildListBox()
+  On Error Resume Next
+  '
+  Dim sList    As String
+  Dim iCnt     As Integer
+  Dim cVal     As Currency
+  Dim cAmt     As Currency
+  '
+  LstDoco.List.Clear
+  cAmt = 0
+
+  For iCnt = 1 To mnCnt
+    sList = " |" & FixLeft(Ext(msValCache,iCnt,1),giLenItem," ") & "|"
+    sList = sList & FixLeft(Ext(msValCache,iCnt,2),25," ") & "|"
+    cVal = CCur(Ext(msValCache,iCnt,3))
+    sList = sList & FixRight(FormatDecimals("UORG",cVal),giLenQTY," ") & "|"
+    sList = sList & FixLeft(Ext(msValCache,iCnt,4),02," ") & "|"
+    cVal =  CCur(Ext(msValCache,iCnt,5))
+    sList = sList & FixRight(FormatDecimals("LPRC",cVal),12," ") & "|"
+    sList = sList & FixRight(Ext(msValCache,iCnt,6),10," ") & "|"
+    sList = sList & FixLeft(Ext(msValCache,iCnt,7),25," ") & "|"
+    cAmt = cAmt + (CCur(Ext(msValCache,iCnt,3)) * CCur(Ext(msValCache,iCnt,5)))
+    lstDOCO.List.AddItem iCnt,sList
+  Next iCnt
+
+  lblAmt.Caption = "Order amount: " & FormatDecimals("AEXP",cAmt)
+  lblAEXP.Caption =  lblAmt.Caption
+
+End Sub
+
+Public Sub DispRecord
+  On Error Resume Next
+  '
+  txtLITM.Text          = Ext(msValCache,miRecord,1)
+  lblItemDesc.Caption   = Ext(msValCache,miRecord,2)
+  lblItemDesc2.Caption  = Ext(msValCache,miRecord,7)
+  '
+  txtQTY.Defaults       = Ext(msValCache,miRecord,3) & ";O"
+  txtUPRC.Defaults      = Ext(msValCache,miRecord,5) & ";O"
+  txtOPDJ.Defaults      = Ext(msValCache,miRecord,6) & ";O"'
+
+  txtQTY.Text           = Ext(msValCache,miRecord,3)
+  txtUPRC.Text          = Ext(msValCache,miRecord,5)
+  txtOPDJ.Text          = Ext(msValCache,miRecord,6)
+  '
+  lblAEXP.Caption       = lblAmt.Caption
+  lblRCD.Caption        = "Record " & CStr(miRecord) & " / " & CStr(mnCnt)
+  '
+  'App.SetFocus("txtLITM")
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub btnOverview_Click()
+  On Error Resume Next
+  '
+  App.SetFocus("LstDoco")
+  '
+End Sub
+
+Private Sub btnHeader_Click()
+  On Error Resume Next
+  '
+  App.SetFocus("txtSHIP")
+
+End Sub
+
+Private Sub btnDetail_Click()
+  On Error Resume Next
+  '
+  Call DispRecord
+  App.SetFocus("txtLITM")
+
+End Sub
+
+Private Sub btnCreate_Click()
+  On Error Resume Next
+
+  
+  Dim sDOCO  As String
+  '
+  ' Create the Sales Order Record
+  Dim emProc As New EmbeddedProc
+  '
+  emProc.Name                  = "TSOEN0100"
+  emProc.DataSource            = gsDataSource
+  emProc.Param("tmCO")         = App.GetValue("tmCO")
+  emProc.Param("tmMCU")        = App.GetValue("tmMCU")
+  emProc.Param("tmDCTO")       = msDOCTYPE
+  emProc.Param("tmLNTY")       = msLineType
+  emProc.Param("tmAN8")        = App.GetValue("tmAN8")
+  emProc.Param("tmSHAN")       = App.GetValue("tmSHAN")
+  emProc.Param("tmValCache")   = msValCache
+  emProc.Param("tmCnt")        = (miRecord-1)         ' Number of records
+  emProc.Param("tmUSER")       = UCase(App.User)
+  emProc.Param("tmZVERSION")   = msVersion
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      Exit Sub
+    End If
+  End If
+  '
+  sDOCO = emProc.Param("tmDOCO")
+  '
+  App.MsgBox ("Sales Order # " & sDOCO & " Created")
+  '
+End Sub
+
+Private Sub btnHead_Click()
+  On Error Resume Next
+  '
+  App.SetFocus("txtSHIP")
+
+End Sub
+
+Private Sub btnDown_Click()
+  On Error Resume Next
+  '
+  If miRecord <= 1 Then Exit Sub
+  miRecord = miRecord - 1
+  Call DispRecord
+
+End Sub
+
+Private Sub btnUp_Click()
+  On Error Resume Next
+  '
+  If miRecord >= mnCnt Then Exit Sub
+  miRecord = miRecord + 1
+  Call DispRecord
+
+End Sub
+
+Private Sub txtOPDJH_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If Len(Trim(txtOPDJH.Text)) > 0 Then
+    Rsp = Format(DateAdd("d",+5,Date),"MM/DD/YYYY")
+  End If
+
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty  As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel=True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+  If (nQty = 0) Then
+    App.MsgBox GetMsg(182)
+    Exit Sub
+  End If
+  '
+  ' Not Negative
+  nQty = Val(Rsp)
+  If (nQty < 0) Then
+    App.MsgBox GetMsg(167)
+    Exit Sub
+  End If
+  '
+  Rsp = FormatDecimals("UORG", nQty)
+  '
+  msValCache = Rep(msValCache,miRecord,3, Rsp)
+  '
+  Call BuildListBox()
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtSHIP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then
+    Cancel=True
+    Exit Sub
+  End If
+  '
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  '
+  sSql = "select ABALPH from F0101 where ABAN8 = " & Rsp
+  '
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Len(sRows) > 0 Then
+    lblSHIP.Caption = Trim(DB.Extract(sCols,sRows,1,1))
+  Else
+    App.MsgBox("Invalid Adress Number!")
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmSHAN", Rsp)
+  '
+  Cancel = False
+  '
+End Sub
+
+Private Sub txtUPRC_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nUPRC  As Currency
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel=True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nUPRC = Val(Rsp)
+  If (nUPRC = 0) Then
+    App.MsgBox GetMsg(182)
+    Exit Sub
+  End If
+  '
+  ' Not Negative
+  nUPRC = Val(Rsp)
+  If (nUPRC < 0) Then
+    App.MsgBox GetMsg(167)
+    Exit Sub
+  End If
+  '
+  Rsp = FormatDecimals("UPRC", nUPRC)
+  '
+  msValCache = Rep(msValCache,miRecord,5, Rsp)
+  '
+  Call BuildListBox()
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtOPDJH_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sExpDt As String
+  '
+  If (Len(Rsp)=0) Then
+    Cancel = True
+    Exit Sub
+  End If
+  '
+  Rsp = Trim(Rsp)
+
+  sExpDt = CStr(CDate(Rsp))
+  '
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+  '
+  Rsp = Format(sExpDt,"MM/DD/YYYY")
+  '
+  Cancel = False
+  '
+  App.SetValue("tmOPDJH", Rsp)
+
+  App.SetFocus("LstDoco")
+
+End Sub
+
+Private Sub txtOPDJ_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If Len(App.GetValue("tmOPDJH")) > 0 Then
+    Rsp = App.GetValue("tmOPDJH")
+  End If
+  '
+End Sub
+
+Private Sub txtOPDJ_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sExpDt As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = Trim(Rsp)
+  sExpDt = CStr(CDate(Rsp))
+  '
+  If (Len(sExpDt)=0) Then
+    App.MsgBox GetMsg(57)
+    Exit Sub
+  End If
+  '
+  Rsp = Format(sExpDt,"MM/DD/YYYY")
+  '
+  msValCache = Rep(msValCache,miRecord,6, Rsp)
+  '
+  Call BuildListBox()
+
+  Cancel = False
+  '
+  ' navigate to next record
+  If miRecord < mnCnt Then
+    miRecord = miRecord + 1
+    Call DispRecord
+  End If
+  '
+  App.SetFocus("txtLITM")
+
+End Sub
+</Code>

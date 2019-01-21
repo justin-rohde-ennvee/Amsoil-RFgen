@@ -1,0 +1,120 @@
+﻿<Record FileDesc="F00095 Reserve Object" FileVersion="5.0.8.0" Desc="F00095 Reserve Object">
+<Param Name="tmObj" />
+<Param Name="tmUser" />
+<Param Name="tmGenKey" />
+<Param Name="tmAppl" />
+<Param Name="tmErr" />
+<Param Name="tmReserver" />
+<Param Name="tmResAppl" />
+<Param Name="tmJob" />
+<Param Name="tmComp" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: F00095 RESERVE OBJECT
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings   = False
+
+Private Function Transaction(ByRef tmObj As Variant, ByRef tmUser As Variant, ByRef tmGenKey As Variant, ByRef tmAppl As Variant, ByRef tmErr As Variant, ByRef tmReserver As Variant, ByRef tmResAppl As Variant, ByRef tmJob As Variant, ByRef tmComp As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sErrDesc    As String
+
+  Dim emGetNextUniqueKeyID    As New EmbeddedProc
+  Dim emF00095ReserveObject   As New EmbeddedProc
+  Dim emGetErrorText          As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog("F00095ReserveObject", "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmErr = "No ERP Handle - retry!"
+    Exit Function
+  End If
+
+  '--------------------'
+  ' GetNextUniqueKeyID '
+  '--------------------'
+  emGetNextUniqueKeyID.Name                 = "GetNextUniqueKeyID"'
+  emGetNextUniqueKeyID.Param("ObjectName")  = "RRESERVE"
+  '
+  If Not emGetNextUniqueKeyID.Execute Then
+    sErrDesc = "emGetNextUniqueKeyID" & " " & tmObj & " " & tmUser  & " " & tmGenKey
+    GoTo ExitMe
+  End If
+  '
+  tmAppl      = emGetNextUniqueKeyID.Param("UniqueKeyID")
+
+  '---------------------'
+  ' F00095ReserveObject '
+  '---------------------'
+  emF00095ReserveObject.Name = "F00095ReserveObject"
+  '
+  emF00095ReserveObject.Param("NameObject")             = tmObj
+  emF00095ReserveObject.Param("UserId")                 = tmUser
+  emF00095ReserveObject.Param("SuppressErrorMessage")   = "1"
+  emF00095ReserveObject.Param("GenericKey")             = tmGenKey
+  emF00095ReserveObject.Param("Application")            = tmAppl
+  emF00095ReserveObject.Param("WarningError")           = "1"
+  emF00095ReserveObject.Param("ModeOfProcessing")       = ""
+  emF00095ReserveObject.Param("JobnumberA")             = "1"
+  emF00095ReserveObject.Param("ComputerID")             = "1"
+  '
+  If Not emF00095ReserveObject.Execute Then
+    sErrDesc = "F00095ReserveObject" & " " & tmObj & " " & tmUser  & " " & tmGenKey & " " & tmAppl
+    GoTo ExitMe
+  End If
+  '
+  tmResAppl   = emF00095ReserveObject.Param("ReserversNameAlpha")
+  tmReserver  = emF00095ReserveObject.Param("ReserversApplication")
+  '
+  tmErr = tmResAppl & tmReserver
+
+  ERP.CommitTrans
+
+  Transaction = True
+
+  Exit Function
+
+'-------'
+' Exits '
+'-------'
+ExitMe:
+  If emF00095ReserveObject.Param("ErrorMessageID") <> "" Then
+    emGetErrorText.Name = "GetErrorMessageGlossaryText"
+    emGetErrorText.LogMode = LogNever
+    emGetErrorText.DebugLog   = cJDELogPath
+    emGetErrorText.Param("ErrorMessageID") = emF00095ReserveObject.Param("ErrorMessageID")
+    emGetErrorText.Execute
+    tmErr = emGetErrorText.Param("GlossaryText_500Chars")
+  End If
+  '
+  Set emF00095ReserveObject = Nothing
+  Set emGetErrorText        = Nothing
+  '
+  If Len(Trim(sErrDesc)) > 0 Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+
+End Function
+</Code>

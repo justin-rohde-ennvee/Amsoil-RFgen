@@ -1,0 +1,292 @@
+﻿<Record FileDesc="EPM - Information Entry" FileVersion="5.0.8.0" Desc="EPM - Information Entry">
+<Param Name="tmNUMB" Location="23,4" Size="8" Value="23000" />
+<Param Name="tmAPID" Location="23,5" Size="12" Value="ABCDE" />
+<Param Name="tmDL01" Location="51,4" Size="30" Value="desc1" />
+<Param Name="tmCO" Location="23,9" Size="5" Value="200" />
+<Param Name="tmMCU" Location="23,10" Size="12" Value="30" />
+<Param Name="tmAMCU" Location="23,11" Size="12" Value="200" />
+<Param Name="tmAOBJ" Location="36,11" Size="6" Value="2030" />
+<Param Name="tmASUB" Location="43,11" Size="8" />
+<Param Name="tmLOC" Location="23,14" Size="12" Value="L1" />
+<Param Name="tmQTY" Location="23,18" Size="15" Value="9" />
+<Param Name="tmRMK" Location="23,21" Size="30" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+<Param Name="tmDL02" Location="51,5" Size="30" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: EPM - INFORMATION ENTRY
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cFailOnWarnings   = False
+Private Const cTNId             = "TEPIE0100"
+
+Private Function Transaction(ByRef tmNUMB As Variant, ByRef tmAPID As Variant, ByRef tmDL01 As Variant, ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmAMCU As Variant, ByRef tmAOBJ As Variant, ByRef tmASUB As Variant, ByRef tmLOC As Variant, ByRef tmQTY As Variant, ByRef tmRMK As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant, ByRef tmDL02 As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess        As Boolean
+  Dim sErrDesc        As String
+  Dim sGLDate         As String
+  Dim sTNDate         As String
+  Dim sCO             As String
+  Dim sMCU            As String
+  Dim sAMCU           As String
+  Dim sLOC            As String
+  Dim sITEM           As String
+  Dim sSQL            As String
+  Dim sCols           As String
+  Dim sRows           As String
+  Dim sAccountNr      As String
+  Dim sMajAcClass     As String
+  Dim sDeprAcMCU      As String
+  Dim sDeprAcObj      As String
+  Dim sDeprExAcMCU    As String
+  Dim sDeprExAcObj    As String
+  Dim sDeprRevMCU     As String
+  Dim sDeprRevObj     As String
+  Dim sErrID          As String
+  Dim sErrText        As String
+
+  Dim emGetLocalComputerId        As New EmbeddedProc
+  Dim emX0010GetNextNumber        As New EmbeddedProc
+  Dim emGetErrorMessage           As New EmbeddedProc
+  Dim emF1201ProcessMasterData    As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------------'
+  ' GetLocalComputerId '
+  '--------------------'
+  emGetLocalComputerId.Name       = "GetLocalComputerId"
+  emGetLocalComputerId.LogMode = LogNever
+  emGetLocalComputerId.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetLocalComputerId.Name, "", emGetLocalComputerId)
+  '
+  If Not emGetLocalComputerId.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetLocalComputerId.Name, "", emGetLocalComputerId, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+
+  emX0010GetNextNumber.Param("SystemCode")              = "12"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = 1
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+  '
+  If Not emX0010GetNextNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+
+  ' Get Account numbers from F12002
+  sCO   = FixRight(tmCO,   5, "0")
+  sMCU  = FixRight(tmMCU,  12," ")
+  sAMCU = FixRight(tmAMCU, 12," ")
+  sLOC  = FixRight(tmLOC,  12," ")
+
+  sSQL = "select * from F12002 where FDCO = '" & sCO & "' and FDDAOB = '" & tmAOBJ & "' "
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Len(sRows) = 0 Then
+    GoTo ExitE1
+  Else
+    sMajAcClass   = DB.Extract(sCols,sRows,1,"FDACL1")
+    sDeprAcMCU    = DB.Extract(sCols,sRows,1,"FDDMCU")
+    sDeprAcObj    = DB.Extract(sCols,sRows,1,"FDDOBJ")
+    sDeprExAcMCU  = DB.Extract(sCols,sRows,1,"FDXMCU")
+    sDeprExAcObj  = DB.Extract(sCols,sRows,1,"FDXOBJ")
+    sDeprRevMCU   = DB.Extract(sCols,sRows,1,"FDRMCU")
+    sDeprRevObj   = DB.Extract(sCols,sRows,1,"FDROBJ")
+  End If
+
+  '------------------------'
+  ' F1201ProcessMasterData '
+  '------------------------'
+  emF1201ProcessMasterData.Name = "F1201ProcessMasterData"
+
+  emF1201ProcessMasterData.Param("ActionCode")                    = "A"
+  emF1201ProcessMasterData.Param("UpdateMasterFile")              = "1"
+  emF1201ProcessMasterData.Param("ProcessEdits")                  = "1"
+  emF1201ProcessMasterData.Param("CallingProgramVersion")         = "ZJDE0002"
+  emF1201ProcessMasterData.Param("CallingProgramId")              = "EP1702"
+  emF1201ProcessMasterData.Param("ProcessModule")                 = "CSMS"
+  emF1201ProcessMasterData.Param("Company")                       = sCO
+  emF1201ProcessMasterData.Param("ItemNumber")                    = emX0010GetNextNumber.Param("NextNumber001")
+  emF1201ProcessMasterData.Param("UnitNumber")                    = tmAPID
+  emF1201ProcessMasterData.Param("ParentNumber")                  = emX0010GetNextNumber.Param("NextNumber001")
+  emF1201ProcessMasterData.Param("MajorAccountingClass")          = sMajAcClass
+  emF1201ProcessMasterData.Param("BusinessUnit")                  = sMCU
+  emF1201ProcessMasterData.Param("Description")                   = tmDL01
+  emF1201ProcessMasterData.Param("Description_02")                = tmDL02
+  emF1201ProcessMasterData.Param("CompressedDescription")         = Trim(UCase(tmDL01))
+  emF1201ProcessMasterData.Param("DateAcquired")                  = sTNDate
+  emF1201ProcessMasterData.Param("EquipmentStatus")               = "AV"
+  emF1201ProcessMasterData.Param("NewOrUsedAcquisition")          = "N"
+  emF1201ProcessMasterData.Param("AssetCostAcctBusinessUnit")     = sAMCU
+  emF1201ProcessMasterData.Param("AssetCostAcctObject")           = tmAOBJ
+  emF1201ProcessMasterData.Param("AssetCostAcctSubsidiary")       = tmASUB
+  emF1201ProcessMasterData.Param("AccumDeprAcctBusinessUnit")     = sDeprAcMCU
+  emF1201ProcessMasterData.Param("AccumDeprAcctObject")           = sDeprAcObj
+  emF1201ProcessMasterData.Param("DepreciationExpBusinessUnit")   = sDeprExAcMCU
+  emF1201ProcessMasterData.Param("DepreciationExpObject")         = sDeprExAcObj
+  emF1201ProcessMasterData.Param("CurrentItemQty")                = tmQTY
+  emF1201ProcessMasterData.Param("OriginalItemQty")               = tmQTY
+  emF1201ProcessMasterData.Param("LessorRenterOrMortgagor")       = 6074
+  emF1201ProcessMasterData.Param("ContractDate")                  = sTNDate
+  emF1201ProcessMasterData.Param("Remark")                        = tmRMK
+  emF1201ProcessMasterData.Param("Location")                      = sLOC
+  emF1201ProcessMasterData.Param("StartEffectiveDateForLocChg")   = sTNDate
+  emF1201ProcessMasterData.Param("AddressNumber")                 = 6074
+  emF1201ProcessMasterData.Param("AllowWorkOrder")                = "1"
+  emF1201ProcessMasterData.Param("ProgramIDForProcOpt")           = "P1702"
+  emF1201ProcessMasterData.Param("VersionForProcOpt")             = "ZJDE0002"
+  emF1201ProcessMasterData.Param("AutomaticCleanup")              = "0"
+  emF1201ProcessMasterData.Param("StartEffectiveForParentChg")    = sTNDate
+  emF1201ProcessMasterData.Param("StartEffectiveForStatusChg")    = sTNDate
+  emF1201ProcessMasterData.Param("StartEffectiveForAddrNumChg")   = sTNDate
+  emF1201ProcessMasterData.Param("Country")                       = "US"
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1201ProcessMasterData.Name, "", emF1201ProcessMasterData)
+  '
+  If Not emF1201ProcessMasterData.Execute Then
+    sErrDesc = "F1201ProcessMasterData"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1201ProcessMasterData.Name, "", emF1201ProcessMasterData, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  Else
+  ' Update equipment master with Unit Description
+    sITEM= emX0010GetNextNumber.Param("NextNumber001")
+    sSQL = "select FADL02 from F1201 where FANUMB = '" & sITEM & "' "
+    DB.Execute(sSQL,sCols,sRows)
+    If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F1201", Replace(sSQL, "'", "`"))
+    sSQL = "update F1201 set FADL02 = '%tmDL02' where FANUMB = '" & sITEM & "'"
+    DB.Execute(sSQL)
+    If Len(SysErr.Description) <> 0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F1201", Replace(sSQL, "'", "`"))
+    End If
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  If tmERRID <> "" Then
+    emGetErrorMessage.Name                    = "GetErrorMessageGlossaryText"
+    emGetErrorMessage.LogMode              = LogNever
+    emGetErrorMessage.DebugLog                = cJDELogPath
+    emGetErrorMessage.Param("ErrorMessageID") = tmERRID
+    emGetErrorMessage.Execute
+    tmERRTEXT = tmERRID & "  " & emGetErrorMessage.Param("GlossaryText_500Chars")
+  End If
+  '
+  Set emGetLocalComputerId        = Nothing
+  Set emX0010GetNextNumber        = Nothing
+  Set emGetErrorMessage           = Nothing
+  Set emF1201ProcessMasterData    = Nothing
+  '
+  If Len(Trim(tmERRTEXT)) = 0 Then
+    tmERRTEXT = sErrDesc
+  End If
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+World:
+  Dim sNum    As String
+
+  ' Force all business functions to use the same connection
+  If Not SM.BeginTrans Then
+    TM.AbortTrans
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  SM.GoToScreen("HEPIE0100")
+  SM.SendTextAlt 23, 3,  "A"
+  SM.SendTextAlt 23, 4,  tmNUMB, 8
+  SM.SendTextAlt 51, 4,  tmDL01, 30
+  SM.SendTextAlt 51, 5,  tmDL02, 30
+  SM.SendTextAlt 23, 5,  tmAPID, 12
+  SM.SendTextAlt 23, 9,  tmCO, 5
+  SM.SendTextAlt 23, 10, tmMCU, 12
+  SM.SendTextAlt 23, 11, tmAMCU, 12
+  SM.SendTextAlt 36, 11, tmAOBJ, 6
+  SM.SendTextAlt 43, 11, tmASUB, 8
+  SM.SendTextAlt 23, 12, CStr(Format(Date,"mm/dd/yy")), 10
+  SM.SendTextAlt 23, 14, tmLOC, 12
+  SM.SendTextAlt 36, 14, CStr(Format(Date,"mm/dd/yy")), 10
+  SM.SendTextAlt 23, 18, tmQTY, 15
+  SM.SendTextAlt 66, 18, tmQTY, 15
+  SM.SendTextAlt 23, 21, tmRMK, 30
+  SM.SendKey KeyEnter
+  '
+  SM.GetText(56,1,25,sNum,True)
+  '
+  If sNum = "" Then GetWorldErr(sErrID, sErrText)  'Indicates a hard error has occured
+
+  bSuccess = (sErrID = "")
+  '
+  tmERRID = sErrID
+  tmERRTEXT = sErrText
+
+ExitWorld:
+  SM.SendKey KeyF3                           ' Exit Screen
+  SM.WaitForHost(10)
+  SM.SendTextAlt 7, 19, gsSMMain              ' Goto back to SM Main Menu
+  SM.SendKey KeyEnter
+  '
+  SM.CommitTrans
+
+  Transaction = bSuccess
+
+End Function
+</Code>

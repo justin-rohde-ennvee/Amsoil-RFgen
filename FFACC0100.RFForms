@@ -1,0 +1,421 @@
+﻿<Record FileDesc="FA - Cycle Count Fixed Asset" FileVersion="5.0.8.0" Desc="FA - Cycle Count Fixed Asset" Group="FA" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtLocation&vm;txtAssetNumber&vm;txtUnitNumber&vm;Label1&vm;lblDesc1&vm;lblDesc2&vm;lblSerial&vm;txtAccept&vm;lblCountDate&vm;lblCmdKeys">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtLocation" />
+<SchemaParam Linked="0" Attr="2" Name="txtAssetNumber" />
+<SchemaParam Linked="0" Attr="3" Name="txtUnitNumber" />
+<SchemaParam Linked="0" Attr="4" Name="Label1" />
+<SchemaParam Linked="0" Attr="5" Name="lblDesc1" />
+<SchemaParam Linked="0" Attr="6" Name="lblDesc2" />
+<SchemaParam Linked="0" Attr="7" Name="lblSerial" />
+<SchemaParam Linked="0" Attr="8" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="9" Name="lblCountDate" />
+<SchemaParam Linked="0" Attr="10" Name="lblCmdKeys" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtLocation" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="22" Width="47" Height="22" AnchorRight="177" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="119" Height="22" AnchorRight="49" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAssetNumber" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="63" Height="22" AnchorRight="177" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Asset#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="44" Width="87" Height="22" AnchorRight="81" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUnitNumber" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="55" Height="22" AnchorRight="177" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Unit#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="88" Width="103" Height="22" AnchorRight="65" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label1" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="23" Height="22" AnchorRight="145" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="or" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDesc1" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="71" Height="22" AnchorRight="169" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDesc1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDesc2" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="71" Height="22" AnchorRight="169" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblDesc2" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSerial" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="79" Height="22" AnchorRight="161" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSerial" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="215" Height="22" AnchorRight="25" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Press Enter to Accept....." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="0" Height="22" AnchorRight="168" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCountDate" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="176" Width="103" Height="22" AnchorRight="137" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="lblCountDate" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCmdKeys" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="191" Height="22" AnchorRight="49" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="&lt;F5&gt; List counted Items" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[CYCLE COUNT FIXED ASSET]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' FIXED ASSET: CYCLE COUNT
+'
+' NOTES:
+' Quantity replaces current counted quantity.
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTNId = "FFACC0100"
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  Call ClearValues
+  '
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  Dim sRsp As String
+  
+  Dim sList As String
+  '
+  Select Case Fkey
+    Case 5
+    sList = DB.MakeList("select FANUMB as Asset, FAAPID as Unit, FAEXR as Counted from F1201 " & _
+                       "where FAMCU = '%Location' and FAEXR <> ' ' order by FANUMB")
+    App.ShowList(sList, True)
+  End Select
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim emProc As New EmbeddedProc
+  Dim vRsp As Variant
+  '
+  If (Len(App.GetValue("AssetNumber"))=0) Then
+    Cancel = True
+    App.MsgBox(GetMsg(5))
+    App.SetFocus "txtAssetNumber"
+    Exit Sub
+  End If
+  '
+  emProc.Name                     = "TFACC0100"
+  emProc.DataSource               = gsDataSource
+  '
+  emProc.Param("sItem")           = App.GetValue("AssetNumber")
+  emProc.Param("sUser")           = App.User
+  emProc.Param("sDate")           = Date
+  emProc.Param("sTime")           = Time
+  emProc.Param("tmUser")          = App.User
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+  '
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+    
+    If Not emProc.Queue Then
+      App.MsgBox (GetMsg(3) & vbCrLf & App.GetValue("AssetNumber"))
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    If Not emProc.Execute Then
+      App.MsgBox (GetMsg(3) & vbCrLf & App.GetValue("AssetNumber"))
+      Cancel = True
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  End If
+  '
+  Call ClearValues
+End Sub
+
+Private Sub txtLocation_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("Location", "")
+  App.SetValue("Company", "")
+  '
+  txtAssetNumber.DisplayOnly = True
+  txtUnitNumber.DisplayOnly = True
+End Sub
+
+Private Sub txtLocation_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  ' Format Value
+  Rsp = FixRight(UCase(Rsp), 12, " ")
+  '
+  ' Validate
+  sSQL = "select MCMCU, MCDL01, MCCO from F0006 where MCMCU = '"+Rsp+"'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(51))
+    Exit Sub
+  End If
+  '
+  App.SetValue("Company", Val(DB.Extract(sCols, sRows, 1, "MCCO")))
+  App.SetValue("Location", Rsp)
+  '
+  Cancel = False
+  Rsp = Trim(Rsp)
+End Sub
+
+Private Sub txtLocation_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select FALOC as Branch, MCDL01 as Description from F1201 " & _
+                     "INNER join F0006 ON MCMCU = FALOC GROUP BY FALOC, MCDL01")
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtAssetNumber_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblDesc1.Caption = ""
+  lblDesc2.Caption = ""
+  lblSerial.Caption = ""
+  txtUnitNumber.Text = ""
+  lblCountDate.Caption = ""
+  txtUnitNumber.DisplayOnly = False
+  '
+  App.SetValue("AssetNumber", "")
+End Sub
+
+Private Sub txtAssetNumber_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Trim(Rsp)) = 0) Then Exit Sub
+  Cancel = True
+  '
+  ' Validate
+  sSQL = "select FAAPID, FANUMB, FAASID, FADL01, FADL02, FADL03, FAEQST, FAEXR from F1201 " _
+  & " where FANUMB = " & Rsp & " and FAMCU = '%Location' "
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(50))
+    Exit Sub
+  End If
+  '
+  lblDesc1.Caption    = DB.Extract(sCols,sRows,1,"FADL01")
+  lblDesc2.Caption    = DB.Extract(sCols,sRows,1,"FADL02")
+  lblSerial.Caption   = DB.Extract(sCols,sRows,1,"FAASID")
+  txtUnitNumber.Text  = DB.Extract(sCols,sRows,1,"FAAPID")
+  '
+  If Trim(DB.Extract(sCols,sRows,1,"FAEXR")) <> "" Then
+    lblCountDate.Caption = "Counted: " & DB.Extract(sCols,sRows,1,"FAEXR")
+  End If
+  '
+  App.SetValue("AssetNumber", Rsp)
+  '
+  Cancel = False
+  Rsp = Trim(Rsp)
+  '
+  txtUnitNumber.DisplayOnly = True
+End Sub
+
+Private Sub txtAssetNumber_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select FANUMB as Asset, FAAPID as Unit,  FADL01 as Description from F1201 " _
+                   & " where FAMCU = '%Location' and FAEXR = ' ' order by FAAPID")
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtUnitNumber_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  lblDesc1.Caption = ""
+  lblDesc2.Caption = ""
+  lblSerial.Caption = ""
+  txtAssetNumber.Text = ""
+  lblCountDate.Caption = ""
+  '
+  App.SetValue("AssetNumber", "")
+End Sub
+
+Private Sub txtUnitNumber_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Trim(Rsp)) = 0) Then Exit Sub
+  Cancel = True
+  '
+  ' Validate
+  sSQL = "select FAAPID, FANUMB, FAASID, FADL01, FADL02, FADL03, FAEQST, FAEXR from F1201 " _
+       & " where FAAPID = '" & Rsp & "' and FAMCU = '%Location' "
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(89))
+    Exit Sub
+  End If
+  '
+  lblDesc1.Caption = DB.Extract(sCols,sRows,1,"FADL01")
+  lblDesc2.Caption = DB.Extract(sCols,sRows,1,"FADL02")
+  lblSerial.Caption = DB.Extract(sCols,sRows,1,"FAASID")
+  txtAssetNumber.Text = DB.Extract(sCols,sRows,1,"FANUMB")
+  '
+  If Trim(DB.Extract(sCols,sRows,1,"FAEXR")) <> "" Then
+    lblCountDate.Caption = "Counted: " & DB.Extract(sCols,sRows,1,"FAEXR")
+  End If
+  '
+  App.SetValue("AssetNumber", DB.Extract(sCols,sRows,1,"FANUMB"))
+  '
+  Cancel = False
+  Rsp = Trim(Rsp)
+End Sub
+
+Private Sub txtUnitNumber_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sList As String
+  '
+  sList = DB.MakeList("select FAAPID as Unit, FANUMB as Asset,  FADL01 as Description from F1201 " _
+                   & " where FAMCU = '%Location' and FAEXR = ' ' order by FAAPID")
+  Rsp = App.ShowList(sList, True)
+  Cancel = (Len(Rsp)=0)
+End Sub
+
+Private Sub txtAccept_OnBackup(ByRef Cancel As Boolean)
+ On Error Resume Next
+ '
+  txtUnitNumber.DisplayOnly = False
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+
+Public Sub ClearValues
+  On Error Resume Next
+  '
+  lblDesc1.Caption          = ""
+  lblDesc2.Caption          = ""
+  lblSerial.Caption         = ""
+  txtUnitNumber.Text        = ""
+  txtAssetNumber.Text       = ""
+  lblCountDate.Caption      = ""
+  txtUnitNumber.DisplayOnly = False
+  txtAccept.Visible         = False
+  '
+  App.SetValue("AssetNumber", "")
+End Sub
+</Code>

@@ -1,0 +1,15 @@
+﻿<Record FileDesc="Lager Verwaltung" FileVersion="5.0.8.0" Desc="Lager Verwaltung" Heading="Lager Verwaltung">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FIMII0100" Desc="1-Entnahmen" Options="-Pgm=P4112 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIT0100" Desc="2-Umlagerung" Options="-Pgm=P4112 -Vers=ZJDE0001 -From=None -To=None" />
+<MenuItem Id="FIMIA0100" Desc="3-Korrekturen" Options="-Pgm=P4112 -Vers=ZJDE0001" />
+<MenuItem Id="FIMIR0100" Desc="4-Umbenennung" Options="-Pgm=P4114 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" />
+<MenuItem Id="FIMCC0100" Desc="6-Inventur" Options="-P41240 -Vers=ZJDE0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FIMQI0100" Desc="7-Anz. Artikel Lagerort " />
+<MenuItem Id="FIMQL0100" Desc="8-Anz. Lagerort Artikel" />
+<MenuItem Id="-" />
+</Record>

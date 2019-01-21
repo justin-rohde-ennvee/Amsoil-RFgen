@@ -1,0 +1,14 @@
+﻿<Record FileDesc="RFGen JD Edwards Transaction Suites" FileVersion="5.0.8.0" Desc="RFGen JD Edwards Transaction Suites" Heading="[RFGen JDE Suites]">
+<MenuItem Id="IM" Desc="1-Inventory Management" />
+<MenuItem Id="SO" Desc="2-Sales Order Processing" />
+<MenuItem Id="PO" Desc="3-Purchase Order Processing" />
+<MenuItem Id="WO" Desc="4-Manufacturing" />
+<MenuItem Id="KB" Desc="5-Kanban" />
+<MenuItem Id="WH" Desc="6-Advanced Warehousing" />
+<MenuItem Id="FA" Desc="7-Fixed Assets" />
+<MenuItem Id="LP" Desc="8-License Plating" />
+<MenuItem Id="EPM" Desc="9-Equipment Plant Maintenance" />
+<MenuItem Id="FS" Desc="A-Field Service" />
+<MenuItem Id="HR" Desc="B-Human Resource" />
+<MenuItem Id="WD" Desc="C-Warehouse Director" />
+</Record>

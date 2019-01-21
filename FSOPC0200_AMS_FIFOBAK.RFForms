@@ -1,0 +1,2633 @@
+﻿<Record FileDesc="ST - Pick Confirm (multi lines)" FileVersion="5.0.8.0" Desc="ST - Pick Confirm (multi lines)" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="lstScanned&vm;Label1&vm;txtMCU&vm;txtDOCO&vm;txtDCTO&vm;txtLITM&vm;lblItemDesc&vm;lblSOQty&vm;lblScanCnt&vm;txtLOCN&vm;txtLOTN&vm;txtQTY&vm;txtAccept&vm;lblFKey" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="lstScanned" />
+<SchemaParam Linked="0" Attr="2" Name="Label1" />
+<SchemaParam Linked="0" Attr="3" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="4" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="5" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="6" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="7" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="8" Name="lblSOQty" />
+<SchemaParam Linked="0" Attr="9" Name="lblScanCnt" />
+<SchemaParam Linked="0" Attr="10" Name="txtLOCN" />
+<SchemaParam Linked="0" Attr="11" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="12" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="13" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="14" Name="lblFKey" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="2">
+<Controls>
+<Control Type="3" FieldId="lstScanned" Attr="1" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="71" Height="22" AnchorRight="1152" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Scanned:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="66" Width="1223" Height="220" AnchorRight="0" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="Label1" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="175" Height="22" AnchorRight="1048" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Press ENTER To Return" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMCU" Attr="3" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="1168" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="1056" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="4" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="1168" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="SO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="103" Height="22" AnchorRight="1072" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="5" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="44" Width="47" Height="22" AnchorRight="1024" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="39" Height="22" AnchorRight="992" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="6" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="79" Height="22" AnchorRight="1144" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Item/LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="66" Width="159" Height="22" AnchorRight="992" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="7">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="10" FontStyle="0" MultiLine="0" Left="72" Top="88" Width="95" Height="22" AnchorRight="1056" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSOQty" Attr="8">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="110" Width="71" Height="22" AnchorRight="1080" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSOQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblScanCnt" Attr="9">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="132" Width="87" Height="22" AnchorRight="1064" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblScanCnt" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOCN" Attr="10" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="47" Height="22" AnchorRight="1168" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="183" Height="22" AnchorRight="992" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="11" Defaults=";O" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="47" Height="22" AnchorRight="1168" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="176" Width="183" Height="22" AnchorRight="992" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="39" Height="22" AnchorRight="1168" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="198" Width="87" Height="22" AnchorRight="1088" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="1072" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="1223" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblFKey" Attr="14">
+<Layouts>
+<Layout PageNo="2" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="151" Height="22" AnchorRight="1072" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="F2-Execute F5-Show" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="1223" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Sales Transfer Pick Confirm]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' SALES TRANSFER ORDERS: ST PICKING WITH LP'S
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+' Original development: Jim Wagner - WhiteLight Group
+'
+
+Option Explicit
+
+Private Const cTNId         = "FSOPC0200"
+Private Const cForceLOTN    = False     ' True = force User to confirm same Lot Number
+Private Const cForceLOCN    = False     ' True = force User to confirm same Location
+Private Const cF00095       = True     ' True = run record lock in F00095
+Private msPgm               As String
+Private msVersion           As String
+Private msStatusF           As String
+Private msStatusT           As String
+Private msRelInv            As Boolean
+Private mbAddFr             As Boolean
+Private mnMaxQty            As Currency
+Private mnMaxQoH            As Currency
+Private msHardLOCN          As String
+Private msHardLOTN          As String
+Private mbSerialized        As Boolean
+Private mbHasLots           As Boolean
+Private msResKey            As String
+Private msResKeySav         As String
+Private msAppl              As String
+Private mnUKID              As Long
+Private msValCache          As Variant
+Private msLPList            As Variant
+Private mnCnt               As Long
+Private mnCounter           As Long
+Private sOlderLots()        As String
+Private msDeleteLogs        As String
+Private mbCheckOldestLots   As Boolean
+
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  Dim sFieldId As String
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+  '
+  sFieldId = RFPrompt(iCN).FieldId
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sHeader As String
+  Dim vArray  As Variant
+  '
+  Call SetDisplay()
+
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  '
+  ' Initialize the RFGen recordset with extra fields
+  App.SetValue("tmCO",      "")
+  App.SetValue("tmMCU",     "")
+  App.SetValue("tmDOCO",    "")
+  App.SetValue("tmDCTO",    "")
+  App.SetValue("tmLITM",    "")
+  App.SetValue("tmLOTN",    "")
+  App.SetValue("tmLOCN",    "")
+  App.SetValue("tmQTY",     "")
+  App.SetValue("tmUOM",     "")
+  App.SetValue("tmLNID",    "")
+  App.SetValue("tmSHIPTO",  "")
+  App.SetValue("tmCARRIER", "")
+  App.SetValue("tmLNTY",    "")
+  gbProcessing = False
+  '
+  ' Initialize special controls
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblSOQty.Caption = ""
+  lblSOQty.Label.BackColor1 = cFieldDefaultBC
+  lblSOQty.Label.ForeColor = cFieldDefaultFC
+  '
+  lblScanCnt.Caption = ""
+  lblScanCnt.Label.BackColor1 = cFieldDefaultBC
+  lblScanCnt.Label.ForeColor = cFieldDefaultFC
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  ' Get Status From from Proc.Opt. and Header
+  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+
+  ' get Status To from Proc.Opt. and Header
+  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Does Version relieve Inv?  from Proc.Opt.
+  msRelInv = True
+
+  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Does Version allow Add Freight?  from Proc.Opt.
+  mbAddFr = True
+
+  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  lblFKey.Visible = True
+  lblFKey.Caption = ""
+
+  gsValP4205 = ""
+
+  txtDCTO.Visible = False
+  txtLITM.Visible = False
+  txtLOCN.Visible = False
+  txtLOTN.Visible = False
+  txtQTY.Visible = False
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  Dim sData   As String
+  Dim vRsp As Variant
+  Dim vArrayLPs As Variant
+  Dim x As Integer
+  Dim sSql As String
+
+  If gbProcessing Then
+    Exit Sub
+  End If
+
+  If Fkey = 4 Then
+    If Trim(msValCache) <> "" Then
+      vRsp = App.MsgBox("There are items scanned but not picked.  Do you want to process the pick?",,,"[Yes] [No]")
+      '
+      If vRsp = "Yes" Then
+        Fkey = 0
+        Call ExecuteTM
+      Else
+
+      End If
+    End If
+
+    vArrayLPs = Split(msLPList)
+
+    For x=1 To UBound(vArrayLPs)
+      sSql = "update F55101 set LMRNXTR = '', LMRDOCO = '', LMRDCTO = '' where LMPALP = '" & Trim(vArrayLPs(x)) & "' or LMLPID = '" & Trim(vArrayLPs(x)) & "'"
+      DB.Execute(sSql)
+    Next x
+
+    gsValP4205    = ""
+  End If
+
+  If Fkey = 6 Then
+    If mbAddFr Then
+      sData = " -MCU="  & Trim(App.GetValue("tmMCU"))   & _
+              " -DOCO=" & Trim(App.GetValue("tmDOCO"))  & _
+              " -DCTO=" & Trim(App.GetValue("tmDCTO"))  & _
+              " -VERS=" & Trim(msVersion)
+      App.CallForm("FSOAL0100" & sData,True,True)
+    End If
+  End If
+
+  If Fkey = 2 Then
+    If Not ExecuteTM Then
+      lstScanned.DisplayOnly = False
+      App.SetFocus("lstScanned")           ' Show Listbox
+    Else
+      msValCache = ""
+      mnCnt = 0
+      lblScanCnt.Caption = ""
+      lblSOQty.Caption   = ""
+      txtLITM.Text   = ""
+      txtLOCN.Text   = ""
+      App.SetFocus("txtDOCO")             ' start over with Doco
+    End If
+  End If
+
+  If Fkey = 5 Then
+    BuildListBox
+    lstScanned.DisplayOnly = False
+    App.SetFocus("lstScanned")             ' Show Listbox
+  End If
+
+End Sub
+
+Private Sub Form_OnReturn(ByVal FormName As String)
+  On Error Resume Next
+
+
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+
+  Dim vArrayLPs() As String
+  Dim x As Integer
+  Dim sSql As String
+  Dim vRsp As Variant
+
+'  If Trim(msValCache) <> "" Then
+'    vRsp = App.MsgBox("There are items scanned but not picked.  Do you want to process the pick?",,,"[Yes] [No]")
+'    '
+'    If vRsp = "Yes" Then
+'      Call ExecuteTM
+'    Else
+'
+'    End If
+'  End If
+
+'  vArrayLPs = Split(msLPList)
+'
+'  For x=1 To UBound(vArrayLPs)
+'    sSQL = "update F55101 set LMRNXTR = '', LMRDOCO = '', LMRDCTO = '' where LMPALP = '" & Trim(vArrayLPs(x)) & "' or LMLPID = '" & Trim(vArrayLPs(x)) & "'"
+'    DB.Execute(sSQL)
+'  Next x
+'
+'  gsValP4205    = ""
+
+  If cF00095 Then F00095RemoveReservation("F4211", msResKeySav, msAppl)
+  'App.SetOption(ShowHorizontalScrollBar, False)   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub lstScanned_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  lstScanned.DisplayOnly = True
+
+End Sub
+
+Private Sub lstScanned_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  Dim vRsp As Variant
+  '
+'  If Fkey = 3 Then
+'    vRsp = App.MsgBox(GetMsg(253),vbYesNo, 1)
+'    If vRsp = vbYes Then
+'      lstScanned.List.Clear
+'      msValCache = ""
+'      mnCnt      = 0
+'      App.SetFocus(2)             ' start over
+'    End If
+'  End If
+
+  If Fkey = 4 Then
+    Fkey = 0
+    App.SendKey(vbKeyReturn)
+    Exit Sub
+  End If
+
+End Sub
+
+
+Private Sub txtLOTN_OnFkey(ByRef Fkey As Long)
+  On Error Resume Next
+  '
+  If Fkey = 2 Then
+    txtMCU.Required = False
+    txtLITM.Required = False
+    txtLOCN.Required = False
+    txtLOTN.Required = False
+    txtQTY.Required = False
+'    lblFKey.Visible =  False
+    App.SetFocus("txtLITM")
+    Exit Sub
+  End If
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+
+  sSql = "select DRKY from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='" & Trim(sMCU) & "'"
+  DB.Execute(sSql, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    mbCheckOldestLots = False
+  Else
+    mbCheckOldestLots = True
+  End If
+
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtDOCO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDOCO", "")
+
+End Sub
+
+Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(276)
+    Exit Sub
+  End If
+
+  sSql = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
+         " where SDDOCO = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' " & _
+         " order by SDDOCO, SDDCTO "
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(198)
+    Exit Sub
+  End If
+  '
+  txtLITM.Visible = True
+  txtDCTO.Visible = True
+  ' If Ordernumber is unique default DocType
+  If (DB.Count(sRows) = 1) Then
+    txtDCTO.Text = DB.Extract(sCols,sRows,1,"SDDCTO")
+  End If
+  '
+  sSql = "select SDDOCO, SDDCTO from  F4211" & _
+         " where SDDOCO = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' " & _
+         " order by SDDOCO, SDDCTO "
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  lblSOQty.Caption = "Open ST Lines: " & DB.Count(sRows)
+
+  App.SetValue("tmDOCO", Rsp)
+
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sDocType As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F4211_DOCO(Rsp, sMCU, msStatusF, msStatusT, sDocType)
+  If Not Cancel Then txtDCTO.Text = sDocType
+End Sub
+
+Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDCTO", "")
+
+End Sub
+
+Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sHold As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = UCase(Rsp)
+  '
+  sSql = "select count(*) from  F4211" & _
+         " where SDDCTO = '" & Rsp & "' and SDDOCO = %tmDOCO and SDMCU = '%tmMCU'"
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(197)
+    Exit Sub
+  End If
+
+  ' check if SO is on Hold
+  sSql = "select SHHOLD from  F4201" & _
+         " where SHDCTO = '" & Rsp & "' and SHDOCO = %tmDOCO and SHMCU = '%tmMCU'"
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  sHold = DB.Extract(sCols,sRows,1,1)
+
+  If Trim(sHold) <> "" Then
+    App.MsgBox GetMsg(214)
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmDCTO", Rsp)
+  '
+  ' unlock record from prior document
+  '
+  If cF00095 Then
+    If Len(Trim(msResKeySav)) > 0 Then F00095RemoveReservation("F4211", msResKeySav, msAppl)
+    '
+    ' proceed JDE Record Lock
+    '
+    msResKey = Trim(App.GetValue("tmDOCO")) & Trim(App.GetValue("tmDCTO")) & Trim(App.GetValue("tmCO"))
+    '
+    If Not F00095ReserveObject("F4211",msResKey,msAppl,msResKeySav) Then
+      txtDOCO.Text = ""
+      App.SetFocus("txtDOCO")
+      Exit Sub
+    End If
+  End If
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtDCTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim vDOCO As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  vDOCO = App.GetValue("tmDOCO")
+  '
+  Cancel = Not Search_F4211_DCTO(Rsp, sMCU, vDOCO, msStatusF, msStatusT)
+End Sub
+
+Private Sub txtLITM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmITM",  "")
+  App.SetValue("tmUOM",  "")
+  App.SetValue("tmLNID", "")
+  App.SetValue("tmSearchLNID", "")
+  App.SetValue("tmLOTN", "")
+  App.SetValue("tmLNTY", "")
+  App.SetValue("tmSOBK", "")
+  App.SetValue("tmSOCN", "")
+  '
+  lblItemDesc.Caption = ""
+  lblSOQty.Caption = ""
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  mnMaxQty = 0
+  mnMaxQoH = 0
+  msHardLOTN = ""
+  msHardLOCN = ""
+  mbSerialized = False
+
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nLNID    As Currency
+  Dim nSOBK    As Currency
+  Dim nSOCN    As Currency
+  Dim sMCU     As String
+  Dim sLot     As String
+  Dim sLocn    As String
+  Dim sCOMM    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sAITM    As String
+  Dim sDesc    As String
+  Dim sDSC1    As String
+  Dim sUOM     As String
+  Dim nType    As Long
+  Dim iCnt     As Long
+  Dim vArray   As Variant
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sSqlItems As String
+  Dim sColsItems As String
+  Dim sRowsItems As String
+
+  Dim sSqlITM As String
+  Dim sColsITM As String
+  Dim sRowsITM As String
+
+  Dim x As Long
+  Dim nOnCache As Long
+  Dim nOnLP As Long
+  Dim nAvailable As Long
+  Dim sOldestLotLP As String
+  Dim sOldestLotINV As String
+  Dim vRsp          As Variant
+  Dim sLastItem     As String
+
+  Dim sLPID         As String
+  Dim sLotFilterLP  As String
+  Dim sLotFilterINV As String
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+
+  Cancel=True
+
+  Rsp = Trim(UCase(Rsp))
+  msDeleteLogs = ""
+
+  ' Validate Item Master / get Item Branch
+  If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, mbHasLots, mbSerialized, False, True) Then
+
+    App.SetValue("tmITM", sITM)
+    App.SetValue("tmLITM", Rsp)
+    App.SetValue("tmLOTN", "")
+
+    ' Check SO Line
+    sSql = "select * from  F4211" & _
+           " where SDDOCO = %tmDOCO  and SDDCTO = '%tmDCTO' and SDLITM = '" & Rsp & "' and SDSOQS <> 0 " & _
+           " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU'"
+    '
+
+    '
+    DB.Execute(sSql,sCols,sRows)
+
+    If (Len(sRows) = 0) Then
+      App.MsgBox(GetMsg(101))
+      Exit Sub
+    End If
+    '
+    sDesc    = DB.Extract(sCols, sRows, 1, "SDDSC1")
+    sLot     = DB.Extract(sCols, sRows, 1, "SDLOTN")
+    sLocn    = DB.Extract(sCols, sRows, 1, "SDLOCN")
+    sCOMM    = DB.Extract(sCols, sRows, 1, "SDCOMM")
+    nSOBK    = ConvDecimalsFromSQL("SOBK", DB.Extract(sCols,sRows,1,"SDSOBK"))
+    nSOCN    = ConvDecimalsFromSQL("SOCN", DB.Extract(sCols,sRows,1,"SDSOCN"))
+    nLNID    = ConvDecimalsFromSQL("LNID", DB.Extract(sCols,sRows,1,"SDLNID"))
+    mnMaxQty = ConvDecimalsFromSQL("SOQS", DB.Extract(sCols,sRows,1,"SDSOQS"))
+    '
+    lblItemDesc.Caption = sDesc
+    App.SetValue("tmLNID",    nLNID)
+    App.SetValue("tmUOM",     DB.Extract(sCols,sRows,1,"SDUOM"))
+    App.SetValue("tmITM",     DB.Extract(sCols, sRows, 1, "SDITM"))
+    App.SetValue("tmLNTY",    DB.Extract(sCols, sRows, 1, "SDLNTY"))
+    App.SetValue("tmShipTo",  DB.Extract(sCols, sRows, 1, "SDSHAN"))
+    App.SetValue("tmCarrier", DB.Extract(sCols, sRows, 1, "SDCARS"))
+    App.SetValue("tmCO",      DB.Extract(sCols, sRows, 1, "SDKCOO"))
+    App.SetValue("tmSOBK",    nSOBK)
+    App.SetValue("tmSOCN",    nSOCN)
+    App.SetValue("SelCOMM",   sCOMM)
+    App.SetValue("tmCOMM",    sCOMM)
+    App.SetValue("tmSOQS",    mnMaxQty)
+    '
+    ' Reduce from label what's already picked
+    For iCnt = 1 To mnCnt
+      vArray = Split(Ext(msValCache,1, iCnt),";")
+      If vArray(2) = Trim(App.GetValue("tmDOCO")) And vArray(3) = Trim(App.GetValue("tmDCTO")) And vArray(4) = Trim(App.GetValue("tmLNID")) Then
+        mnMaxQty = mnMaxQty - Val(Ext(msValCache, 5, iCnt))
+      End If
+    Next iCnt
+
+    msHardLOTN = Trim(sLot)
+
+    If Len(Trim(sLocn)) > 0 Then
+      sMCU = App.GetValue("tmMCU")
+      msHardLOCN = sLocn
+      Call Validate_Locn(msHardLOCN, sMCU, sLocn)
+    End If
+
+    lblItemDesc.Caption = sDesc
+
+
+    txtLOTN.Visible = mbHasLots
+    txtLOTN.Required = mbHasLots
+    txtLOCN.Visible = True
+    '
+    If Not mbHasLots Then  App.SetValue("tmLOTN", "")
+    '
+    Cancel=False
+  Else 'License Plate ID was entered
+    'Check if the value entered is a valid license plate in the currently entered branch plant:
+    sLPID = Trim(Rsp)
+    sSql = "select * from F55101 where LMLPID = '" & sLPID & "' and LMMCU = '" & App.GetValue("tmMCU") & "'"
+    DB.Execute(sSql, sCols, sRows)
+
+    If (DB.Count(sRows) = 0) Then
+      App.MsgBox("LP or Item # Is Not Valid or LP Is Not In Correct Branch For Picking")
+      Cancel = True
+      Exit Sub
+    End If
+
+    If (Trim(DB.Extract(sCols,sRows,1,"LMPALP")) <> "") Then
+      App.MsgBox("License Plate is Attached to License Plate " & Trim(DB.Extract(sCols,sRows,1,"LMPALP")))
+      Cancel = True
+      Exit Sub
+    End If
+
+    If (Trim(DB.Extract(sCols,sRows,1,"LMRNXTR"))) <> "" Then
+      App.MsgBox("License Plate is already committed to Order")
+      Cancel = True
+      Exit Sub
+    End If
+
+    'Overall Goal: Check if enough quantity remains on the sales order to handle the everything on the license plate:
+
+    'Summarize the total quantity of each item on the license plate.
+
+    sSqlItems = "With CTE As (" & _
+                  " Select LDLITM, LDUORG from  F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                  " where LMPALP = '" & Trim(Rsp) & "'" & _
+                  " UNION All" & _
+                  " Select LDLITM, LDUORG from  F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                  " where LDLPID = '" & Trim(Rsp) & "'" & _
+                ") Select LDLITM, SUM(LDUORG) as TotalQty from CTE group by LDLITM"
+
+    DB.Execute(sSqlItems, sColsItems, sRowsItems)
+
+    'Compare each item to the open quantity of that item on the Sales Order.
+    For x = 1 To DB.Count(sRowsItems)
+      'Find out total quantity for the item remaining on sales order - assumption is that only one F4211 line is open per item:
+
+      sSql = "select * from  F4211" & _
+           " where SDDOCO = %tmDOCO  and SDDCTO = '%tmDCTO' and SDLITM = '" & Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLITM")) & "' and SDSOQS <> 0 " & _
+           " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU'"
+
+      DB.Execute(sSql,sCols,sRows)
+
+      If (Len(sRows) = 0) Then
+        App.MsgBox("Item Does Not Exist On Sales Order")
+        Exit Sub
+      End If
+      '
+      sDesc    = DB.Extract(sCols, sRows, 1, "SDDSC1")
+      sLot     = DB.Extract(sCols, sRows, 1, "SDLOTN")
+      sLocn    = DB.Extract(sCols, sRows, 1, "SDLOCN")
+      sCOMM    = DB.Extract(sCols, sRows, 1, "SDCOMM")
+      nSOBK    = ConvDecimalsFromSQL("SOBK", DB.Extract(sCols,sRows,1,"SDSOBK"))
+      nSOCN    = ConvDecimalsFromSQL("SOCN", DB.Extract(sCols,sRows,1,"SDSOCN"))
+      nLNID    = ConvDecimalsFromSQL("LNID", DB.Extract(sCols,sRows,1,"SDLNID"))
+      mnMaxQty = ConvDecimalsFromSQL("SOQS", DB.Extract(sCols,sRows,1,"SDSOQS"))
+      '
+      lblItemDesc.Caption = sDesc
+      App.SetValue("tmLNID",    nLNID)
+      App.SetValue("tmUOM",     DB.Extract(sCols,sRows,1,"SDUOM"))
+      App.SetValue("tmLITM",    DB.Extract(sCols, sRows, 1, "SDLITM"))
+      App.SetValue("tmITM",     DB.Extract(sCols, sRows, 1, "SDITM"))
+      App.SetValue("tmLNTY",    DB.Extract(sCols, sRows, 1, "SDLNTY"))
+      App.SetValue("tmShipTo",  DB.Extract(sCols, sRows, 1, "SDSHAN"))
+      App.SetValue("tmCarrier", DB.Extract(sCols, sRows, 1, "SDCARS"))
+      App.SetValue("tmCO",      DB.Extract(sCols, sRows, 1, "SDKCOO"))  ' INS RBR 01/08/2007
+      App.SetValue("tmSOBK",    nSOBK)
+      App.SetValue("tmSOCN",    nSOCN)
+      App.SetValue("SelCOMM",   sCOMM)
+      App.SetValue("tmCOMM",    sCOMM)
+      App.SetValue("tmSOQS",    mnMaxQty)
+      '
+      ' Reduce from label what's already picked
+      For iCnt = 1 To mnCnt
+        vArray = Split(Ext(msValCache,1, iCnt),";")
+        If vArray(2) = Trim(App.GetValue("tmDOCO")) And vArray(3) = Trim(App.GetValue("tmDCTO")) And vArray(4) = Trim(App.GetValue("tmLNID")) Then
+          mnMaxQty = mnMaxQty - Val(Ext(msValCache, 5, iCnt))
+        End If
+      Next iCnt
+
+      msHardLOTN = Trim(sLot)
+      '
+      If Len(Trim(sLocn)) > 0 Then
+        sMCU = App.GetValue("tmMCU")
+        msHardLOCN = sLocn
+        Call Validate_Locn(msHardLOCN, sMCU, sLocn)
+      End If
+
+      If (Val(DB.Extract(sColsItems, sRowsItems, x, "TotalQty")) > mnMaxQty) Then
+        App.MsgBox("Error: There is too much of item " & Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLITM")))
+        Cancel = True
+        Exit Sub
+      End If
+
+      'Check if there is enough quantity in JDE inventory for each ITEM, LOT, LOCN on the F55102
+      'Check if there is enough quantity in JDE to accomodate the new additions
+
+    Next x
+
+    'Get the total quantity by LITM, LOTN, LOCN for the current item being processed
+
+    'sSqlItems = "Select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) as TotalQty from F55101 inner Join F55102 On LMLPID = LDLPID where LMPALP = '" & Trim(Rsp) & "' or LDLPID = '" & Trim(Rsp) & "' group by LDLITM, LMLOCN, LDLOTN order by LDLITM, LDLOTN "
+
+'    sSqlItems = "Select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) As TotalQTY from" & _
+'                  " (Select LDLITM, LMLOCN, LDLOTN, LDUORG" & _
+'                  " from F55102" & _
+'                  " inner Join F55101 On LMLPID = LDLPID" & _
+'                  " where LMPALP = '" & Trim(Rsp) & "'" & _
+'                  " union All" & _
+'                  " Select LDLITM, LMLOCN, LDLOTN, LDUORG" & _
+'                  " from F55101" & _
+'                  " inner Join F55102 On LMLPID = LDLPID" & _
+'                  " where LDLPID = '" & Trim(Rsp) & "') as x" & _
+'                  " group by LDLITM, LMLOCN, LDLOTN" & _
+'                  " order by LDLITM, LDLOTN"
+
+
+
+'    sSqlItems = "Select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) As TotalQTY" & _
+'                " from F55102" & _
+'                " inner Join F55101 On LMLPID = LDLPID" & _
+'                " where (LMPALP = '" & Trim(Rsp) & "' or " & "LDLPID = '" & Trim(Rsp) & "')" & _
+'                " group by LDLITM, LMLOCN, LDLOTN" & _
+'                " order by LDLITM, LDLOTN"
+
+    sSqlItems = "with TEST as (Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                " where LMPALP = '" & Trim(Rsp) & "'" & _
+                " union All" & _
+                " Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                " where LDLPID = '" & Trim(Rsp) & "')" & _
+                " Select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) as TotalQty from TEST" & _
+                " group by LDLITM, LMLOCN, LDLOTN order by LDLITM, LDLOTN"
+
+    DB.Execute(sSqlItems, sColsItems, sRowsItems)
+
+    For x = 1 To DB.Count(sRowsItems)
+      App.SetValue("tmLITM", Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLITM")))
+      App.SetValue("tmDspLOCN", Trim(DB.Extract(sColsItems, sRowsItems, x, "LMLOCN")))
+      App.SetValue("tmLOTN", Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLOTN")))
+      nOnLP = Val(DB.Extract(sColsItems, sRowsItems, x, "TotalQty"))
+
+      'Get the ITM from the Item Master
+      sSqlITM = "select IMITM from F4101 where IMLITM = '" & App.GetValue("tmLITM") & "'"
+      DB.Execute(sSqlITM, sColsITM, sRowsITM)
+
+      App.SetValue("tmITM", Trim(DB.Extract(sColsITM, sRowsITM, 1, "IMITM")))
+
+
+      'This tallys the count of the LITM, LOTN, LOCN that are currently on the cache for the LITM, DspLOCN, and LOTN currently set.
+      For iCnt = 1 To mnCnt
+        If Ext(msValCache,02, iCnt) = App.GetValue("tmLITM") And Ext(msValCache,04, iCnt) = App.GetValue("tmDspLOCN") And Ext(msValCache,07, iCnt) = App.GetValue("tmLOTN") Then
+          nOnCache = nOnCache + CCur(Ext(msValCache,05, iCnt))
+        End If
+      Next iCnt
+
+      'Check nOnCache + TotalQty on LP against the available JDE qty for the LITM (ITM), LOCN, LOTN
+
+      sSqlITM = "select sum(LIPQOH) as Avail from F41021 where LIMCU = '%tmMCU' and LIITM = %tmITM and LILOCN = '%tmDspLOCN' and LILOTN = '%tmLOTN'"
+      DB.Execute(sSqlITM, sColsITM, sRowsITM)
+
+      nAvailable = ConvDecimalsFromSQL("PQOH", DB.Extract(sColsITM, sRowsITM, 1, "Avail"))
+
+      If (nOnCache + nOnLP) > nAvailable Then
+        App.MsgBox("JDE Inventory Does Not Match LP Inventory.  Can Not Add This License Plate.  Contact IT Manager")
+        Cancel = True
+        Exit Sub
+      End If
+
+    Next x
+
+    If Trim(App.User) = "wlg1" Then Stop
+
+    If Not mbCheckOldestLots Then GoTo SKIPLOTCHECK
+
+
+    'Check to make sure picking oldest lots
+
+    Dim sSqlLP  As String
+    Dim sColsLP As String
+    Dim sRowsLP As String
+
+    Dim sSqlConv   As String
+    Dim sColsConv  As String
+    Dim sRowsConv  As String
+
+    Dim sSqlInv   As String
+    Dim sColsInv  As String
+    Dim sRowsInv  As String
+
+    Dim sQty          As Long
+    Dim i             As Integer
+    Dim iCaseCount    As Long
+    Dim sOldLotsArr() As String
+    Dim sLOTN         As String
+    Dim sCatCode      As String
+    Dim sSqlCatCode   As String
+    Dim sColsCatCode  As String
+    Dim sRowsCatCode  As String
+    Dim lCacheIndex   As Long
+    Dim lDeleteCount  As Long
+    Dim sOrigLOTN    As String
+
+    Dim sSqlLOCN    As String
+    Dim sRowsLOCN   As String
+    Dim sColsLOCN   As String
+    Dim lCounter    As Long
+    Dim lLocnCount  As Long
+    Dim lTotalCount As Long
+
+    Dim sSqlCaseQty  As String
+    Dim sColsCaseQty As String
+    Dim sRowsCaseQty As String
+    Dim lPalletQty   As Long
+    Dim bOldestOnLpIsPalletQty As Boolean
+
+    Dim lOldestLotQty As Long
+    Dim bPalletQty    As Boolean
+    Dim lAdjustedQty  As Long
+    Dim c             As Long
+    Dim arrAdjustedQty()   As Long
+    Dim lSolutionPallet    As Long
+    Dim bNotCaseControlled As Boolean
+
+    bPalletQty = False
+
+    If Trim(App.User) = "wlg1" Then Stop
+
+    'check for pallet qty of oldest lot.
+    sSqlCaseQty = "with CTE as (" & _
+                    " select LDLITM, LDUORG from F55101 inner join F55102 on LMLPID = LDLPID" & _
+                    " where LMPALP = '" & Trim(Rsp) & "' and LDLOTN <> ' '" & _
+                    " union All" & _
+                    " Select LDLITM, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                    " where LDLPID = '" & Trim(Rsp) & "' and LDLOTN <> ' ')" & _
+                  " select LDLITM, SUM(LDUORG) as LDUORG from CTE" & _
+                  " group by LDLITM"
+    DB.Execute(sSqlCaseQty, sColsCaseQty, sRowsCaseQty)
+
+    For i = 1 To DB.Count(sRowsCaseQty)
+      sLITM = Trim(DB.Extract(sColsCaseQty,sRowsCaseQty, i, "LDLITM"))
+      sQty  = DB.Extract(sColsCaseQty,sRowsCaseQty, i, "LDUORG")
+
+      sSqlConv = "Select UMCONV/10000000  *" & _
+                 " (Select UMCONV/10000000 from F41002" & _
+                 " where UMITM = (Select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                 " and UMUM = 'CA' and UMRUM = 'EA') as Qty" & _
+                 " from F41002 where UMITM = (select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                 " And UMUM = 'PL'" & _
+                 " And UMRUM = 'CA'"
+      DB.Execute(sSqlConv, sColsConv, sRowsConv)
+
+      If DB.Count(sRowsConv) = 0 Then
+        sSqlConv = "Select UMCONV/10000000 as Qty" & _
+                 " from F41002 where UMITM = (select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                 " And UMUM = 'PL'" & _
+                 " And UMRUM = 'EA'"
+        DB.Execute(sSqlConv, sColsConv, sRowsConv)
+      End If
+
+      lPalletQty = DB.Extract(sColsConv, sRowsConv, 1, "Qty")
+
+      ' if item has a full pallet qty
+      If sQty >= lPalletQty And lPalletQty > 0 Then
+        bPalletQty = True
+
+'        sSqlLP = "with z as (Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner join F55102 on LMLPID = LDLPID" & _
+'             " where LMPALP = '" & Trim(Rsp) & "'" & _
+'             " union All" & _
+'             " Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+'             " where LDLPID = '" & Trim(Rsp) & "')," & _
+'             " CTE As ( Select LDLOTN As OrigProductNumber,CAST(LDLOTN As VARCHAR(100)) As LDLOTN," & _
+'             " LDLITM, LDUORG, LMLOCN from z" & _
+'             " UNION All" & _
+'             " Select OrigProductNumber,CAST(STUFF(LDLOTN, PATINDEX('%[^0-9]%',LDLOTN), 1, '')" & _
+'             " AS VARCHAR(100)) AS LDLOTN, LDLITM, LDUORG, LMLOCN FROM CTE WHERE PATINDEX('%[^0-9]%', LDLOTN) > 0)" & _
+'             " SELECT OrigProductNumber, LDLOTN, LDLITM, LMLOCN, SUM(LDUORG) as LDUORG" & _
+'             " FROM CTE WHERE PATINDEX('%[^0-9]%', LDLOTN) = 0 And cast(LDLOTN As BIGINT) > 0 and LDLITM = '" & sLITM & "'" & _
+'             " group by LMLOCN, LDLITM, OrigProductNumber, LDLOTN" & _
+'             " order by LDLITM, LDLOTN
+        sSqlLP = "with CTE as (Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner join F55102 on LMLPID = LDLPID" & _
+                 " where LMPALP = '" & Trim(Rsp) & "'" & _
+                 " union All" & _
+                 " Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                 " where LDLPID = '" & Trim(Rsp) & "')" & _
+                 " SELECT LDLITM, LMLOCN, SUM(LDUORG) as LDUORG, (case when isNumeric(LDLOTN) = 1  then  CAST(LDLOTN as FLOAT)  else 0 end) as LDLOTN" & _
+                 " FROM CTE WHERE (case when isNumeric(LDLOTN) = 1 then 1 else 0 end) = 1  and LDLITM = '" & sLITM & "'" & _
+                 " group by LMLOCN, LDLITM, LDLOTN" & _
+                 " order by LDLITM, LDLOTN
+        DB.Execute(sSqlLP, sColsLP, sRowsLP)
+Debug.Print(sSqlLP)
+        'first is oldest lot on pallet
+        sOrigLOTN = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LDLOTN"))
+        sLOTN     = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LDLOTN"))
+        bOldestOnLpIsPalletQty = CLng(DB.Extract(sColsLP, sRowsLP, 1, "LDUORG")) >= lPalletQty
+        lOldestLotQty = DB.Extract(sColsLP, sRowsLP, 1, "LDUORG")
+        sLocn = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LMLOCN"))
+
+        If getOldestLotINV(App.GetValue("tmMCU"), sLITM, sLOTN, lPalletQty-1, "") Then
+          For i = 1 To UBound(sOlderLots)
+            sSqlInv = "With CTE As(" & _
+                         " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
+                         " (Select LMLOCN, LDLOTN, LMMCU, LDLITM, LDUORG from F55102 inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LMPALP =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN = '" & sOlderLots(i,1) & "'" & _
+                         " UNION ALL" & _
+                         " Select LMLOCN, LDLOTN, LMMCU , LDLITM, LDUORG from F55102" & _
+                         " inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LDLPID =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN =  '" & sOlderLots(i,1) & "'" & _
+                         " ) As t1  group by LMLOCN, LDLOTN, LMMCU, LDLITM" & _
+                         " )" & _
+                     " Select IMLITM,  LILOCN, IMUOM1, LILOTN,  LILOTS" & _
+                     " , (LIPQOH - LIPCOM - LIHCOM -  IsNull(LDUORG,0)*10000) As Count from F41021" & _
+                     " inner Join F4101 On IMITM = LIITM" & _
+                     " Left Join CTE On LILOCN = LMLOCN And LILOTN = LDLOTN" & _
+                     " And LIMCU = LMMCU And IMLITM = LDLITM" & _
+                     " where LILOTN = '" & sOlderLots(i,1) & "'" & _
+                     " and IMLITM = '" & sLITM & "'" & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) >= " & lPalletQty * 10000 & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) > 0"  & _
+                     " and LIMCU = '%tmMCU'" & _
+                     " order by LILOTN, Count desc"
+            DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+            If DB.Count(sRowsInv) = 0 Then
+              GoTo OLDEST_ON_PALLET1
+            End If
+
+            'get count, subtract whats cached...is still pallet qty? If no try next one
+
+            ' if there is a result, then there is location with older lot and pallet qty robb
+
+            ReDim arrAdjustedQty(DB.Count(sRowsInv),1)
+            lSolutionPallet = 0
+
+            For c = 1 To DB.Count(sRowsInv)
+
+              lAdjustedQty = DB.Extract(sColsInv, sRowsInv, c, "Count")
+              lDeleteCount = 0
+
+              For lCacheIndex = 1 To mnCnt
+                If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
+                And Trim(Ext(msValCache,07, lCacheIndex)) = sOlderLots(i,1) _
+                  And Trim(Ext(msValCache,04, lCacheIndex)) = Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) Then
+                  lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+                End If
+              Next
+
+              lAdjustedQty = lAdjustedQty - lDeleteCount
+              arrAdjustedQty(c, 1) = lAdjustedQty/10000
+
+              If lAdjustedQty/10000 >= lPalletQty And lSolutionPallet = 0 Then
+                lSolutionPallet = c
+              End If
+
+            Next
+
+
+            If arrAdjustedQty(lSolutionPallet, 1) >= lPalletQty Then
+              c = lSolutionPallet
+
+              sSqlCatCode = " Select I0AC29 from F554101C inner Join F4101 On I0ITM = IMITM where IMLITM = '" & sLITM & "'"
+              DB.Execute(sSqlCatCode,sColsCatCode, sRowsCatCode)
+              sCatCode = Trim(DB.Extract(sColsCatCode, sRowsCatCode, 1, "I0AC29"))
+
+              If sCatCode = "Y" Then
+                App.MsgBox("Error: Older lot " & sOlderLots(i,1) & " has a full pallet qty of " & _
+                            arrAdjustedQty(c, 1) & " for item " & sLITM & _
+                            " in location " & Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) & _
+                            " This lot must be picked first.")
+                Exit Sub
+              End If
+
+              vRsp = App.MsgBox("Warning: Older lot " & sOlderLots(i,1) & " has a full pallet qty of " & _
+                            arrAdjustedQty(c, 1) & " for item " & sLITM & _
+                            " in location " & Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) & ".",vbCustom, 2, "[Ignore][Cancel]")
+              If vRsp = "Cancel" Then
+                Cancel = True
+                appendOrDeleteLogs("D")
+                Exit Sub
+
+              Else
+
+                For lCounter = 1 To DB.Count(sRowsInv)
+
+                  If arrAdjustedQty(lCounter, 1) < lPalletQty Then GoTo CONTINUE1
+
+                  sSqlCatCode = "insert into RFOverride VALUES" & _
+                            " ((select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                            ", '" & sOrigLOTN & "'" & _
+                            ", '" & sLocn & "'" & _
+                            ", " & lOldestLotQty & _
+                            ", %tmDOCO" & _
+                            ", '" & sOlderLots(i,1) & "'" & _
+                            ", '" & Trim(DB.Extract(sColsInv, sRowsInv, lCounter, "LILOCN")) & "'" & _
+                            ", " & arrAdjustedQty(lCounter,1) & _
+                            ", ' '" & _
+                            ", " & ConvDatetoJDE(Format(Now(),"MM/DD/YYYY")) & _
+                            ", " & Format(Now(),"hhmmss")  & _
+                            ", '" & App.User & "'" & _
+                            ", 'ST-PICK-P')"
+                  DB.Execute(sSqlCatCode)
+                  appendOrDeleteLogs("A")
+
+                  CONTINUE1:
+                Next
+
+              End If
+            End If
+            OLDEST_ON_PALLET1:
+          Next
+        End If
+
+        If Not bOldestOnLpIsPalletQty Then
+
+            sSqlInv = "With CTE As(" & _
+                         " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
+                         " (Select LMLOCN, LDLOTN, LMMCU, LDLITM, LDUORG from F55102 inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LMPALP =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN = '" & sOrigLOTN & "'" & _
+                         " UNION ALL" & _
+                         " Select LMLOCN, LDLOTN, LMMCU , LDLITM, LDUORG from F55102" & _
+                         " inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LDLPID =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN =  '" & sOrigLOTN & "'" & _
+                         " ) As t1  group by LMLOCN, LDLOTN, LMMCU, LDLITM" & _
+                         " )" & _
+                     " Select IMLITM,  LILOCN, IMUOM1, LILOTN,  LILOTS" & _
+                     " , (LIPQOH - LIPCOM - LIHCOM -  IsNull(LDUORG,0)*10000) As Count from F41021" & _
+                     " inner Join F4101 On IMITM = LIITM" & _
+                     " Left Join CTE On LILOCN = LMLOCN And LILOTN = LDLOTN" & _
+                     " And LIMCU = LMMCU And IMLITM = LDLITM" & _
+                     " where LILOTN = '" & sOrigLOTN & "'" & _
+                     " and IMLITM = '" & sLITM & "'" & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) >= " & lPalletQty * 10000 & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) > 0"  & _
+                     " and LIMCU = '%tmMCU'" & _
+                     " order by LILOTN, Count desc"
+            DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+            If DB.Count(sRowsInv) = 0 Then
+              GoTo OLDEST_ON_PALLET2
+            End If
+
+            ReDim arrAdjustedQty(DB.Count(sRowsInv),1)
+            lSolutionPallet = 0
+
+            For c = 1 To DB.Count(sRowsInv)
+
+              lAdjustedQty = DB.Extract(sColsInv, sRowsInv, c, "Count")
+              lDeleteCount = 0
+
+              For lCacheIndex = 1 To mnCnt
+                If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
+                And Trim(Ext(msValCache,07, lCacheIndex)) = sOrigLOTN _
+                  And Trim(Ext(msValCache,04, lCacheIndex)) = Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) Then
+                  lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+                End If
+              Next
+
+              lAdjustedQty = lAdjustedQty - lDeleteCount
+              arrAdjustedQty(c, 1) = lAdjustedQty/10000
+
+              If lAdjustedQty/10000 >= lPalletQty And lSolutionPallet = 0 Then
+                lSolutionPallet = c
+              End If
+
+            Next
+
+            ' if there is a result, then there is location with older lot and pallet qty
+            If arrAdjustedQty(lSolutionPallet, 1) >= lPalletQty Then
+              c = lSolutionPallet
+
+              sSqlCatCode = " Select I0AC29 from F554101C inner Join F4101 On I0ITM = IMITM where IMLITM = '" & sLITM & "'"
+              DB.Execute(sSqlCatCode,sColsCatCode, sRowsCatCode)
+              sCatCode = Trim(DB.Extract(sColsCatCode, sRowsCatCode, 1, "I0AC29"))
+
+              If sCatCode = "Y" Then
+                App.MsgBox("Error: Older lot " & sOlderLots(i,1) & " has a full pallet qty of " & _
+                            arrAdjustedQty(c, 1) & " for item " & sLITM & _
+                            " in location " & Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) & _
+                            " This lot must be picked first.")
+                Exit Sub
+              End If
+
+              vRsp = App.MsgBox("Warning: Oldest lot on pallet " & sOrigLOTN & " has a full pallet qty of " & _
+                            arrAdjustedQty(c, 1) & " for item " & sLITM & _
+                            " in location " & Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) & ".",vbCustom, 2, "[Ignore][Cancel]")
+              If vRsp = "Cancel" Then
+                Cancel = True
+                appendOrDeleteLogs("D")
+                Exit Sub
+              Else
+
+                For lCounter = 1 To DB.Count(sRowsInv)
+                  If arrAdjustedQty(lCounter, 1) < lPalletQty Then GoTo CONTINUE2
+
+                  sSqlCatCode = "insert into RFOverride VALUES" & _
+                            " ((select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                            ", '" & sOrigLOTN & "'" & _
+                            ", '" & sLocn & "'" & _
+                            ", " & lOldestLotQty & _
+                            ", %tmDOCO" & _
+                            ", '" & sOrigLOTN & "'" & _
+                            ", '" & Trim(DB.Extract(sColsInv, sRowsInv, lCounter, "LILOCN")) & "'" & _
+                            ", " & arrAdjustedQty(lCounter, 1) & _
+                            ", ' '" & _
+                            ", " & ConvDatetoJDE(Format(Now(),"MM/DD/YYYY")) & _
+                            ", " & Format(Now(),"hhmmss")  & _
+                            ", '" & App.User & "'" & _
+                            ", 'ST-PICK-P')"
+                  DB.Execute(sSqlCatCode)
+                  appendOrDeleteLogs("A")
+
+                  CONTINUE2:
+                Next
+              End If
+            End If
+          OLDEST_ON_PALLET2:
+          End If
+      End If
+
+    Next
+
+'If Trim(App.User) = "wlg1" Then Exit Sub
+
+
+    If bPalletQty Then GoTo SKIPCASEVALIDATION
+
+
+    'Get all lot controlled items on LP and order by item, oldestLot
+'    sSqlLP = "with z as (Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner join F55102 on LMLPID = LDLPID" & _
+'             " where LMPALP = '" & Trim(Rsp) & "'" & _
+'             " union All" & _
+'             " Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+'             " where LDLPID = '" & Trim(Rsp) & "')," & _
+'             " CTE As ( Select LDLOTN As OrigProductNumber,CAST(LDLOTN As VARCHAR(100)) As LDLOTN," & _
+'             " LDLITM, LDUORG, LMLOCN from z" & _
+'             " UNION All" & _
+'             " Select OrigProductNumber,CAST(STUFF(LDLOTN, PATINDEX('%[^0-9]%',LDLOTN), 1, '')" & _
+'             " AS VARCHAR(100)) AS LDLOTN, LDLITM, LDUORG, LMLOCN FROM CTE WHERE PATINDEX('%[^0-9]%', LDLOTN) > 0)" & _
+'             " SELECT distinct * FROM CTE WHERE PATINDEX('%[^0-9]%', LDLOTN) = 0 And cast(LDLOTN As BIGINT) > 0" & _
+'             " order by LDLITM, LDLOTN, LDUORG
+
+    sSqlLP = "with CTE as (Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner join F55102 on LMLPID = LDLPID" & _
+                 " where LMPALP = '" & Trim(Rsp) & "'" & _
+                 " union All" & _
+                 " Select LDLITM, LMLOCN, LDLOTN, LDUORG from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+                 " where LDLPID = '" & Trim(Rsp) & "')" & _
+                 " SELECT LDLITM, LMLOCN, SUM(LDUORG) as LDUORG, (case when isNumeric(LDLOTN) = 1  then  CAST(LDLOTN as FLOAT)  else 0 end) as LDLOTN" & _
+                 " FROM CTE WHERE (case when isNumeric(LDLOTN) = 1 then 1 else 0 end) = 1  and LDLITM = '" & sLITM & "'" & _
+                 " group by LMLOCN, LDLITM, LDLOTN" & _
+                 " order by LDLITM, LDLOTN, LDUORG desc
+
+    DB.Execute(sSqlLP, sColsLP, sRowsLP)
+
+    sLocn = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LMLOCN"))
+
+    For x = 1 To DB.Count(sRowsLP)
+      sQty      = DB.Extract(sColsLP, sRowsLP, x, "LDUORG")
+      sLOTN     = Trim(DB.Extract(sColsLP, sRowsLP, x, "LDLOTN"))
+      sLITM     = Trim(DB.Extract(sColsLP, sRowsLP, x, "LDLITM"))
+      sOrigLOTN = Trim(DB.Extract(sColsLP, sRowsLP, x, "LDLOTN"))
+      bNotCaseControlled = False
+
+      If sLITM <> sLastItem Then
+        sLastItem = sLITM
+        sLotFilterLP = ""
+
+        sSqlConv = "select UMCONV from F41002 where UMUM = 'CA' and UMRUM = 'EA'" & _
+                " and UMITM = (select IMITM from F4101 where IMLITM = '" & sLITM & "')"
+        DB.Execute(sSqlConv, sColsConv, sRowsConv)
+
+        iCaseCount = DB.Extract(sColsConv, sRowsConv, 1, "UMCONV") / 10000000
+
+        If DB.Count(sRowsConv) = 0 Then bNotCaseControlled = True
+      End If
+
+      If sQty < iCaseCount Or bNotCaseControlled Then
+        If getOldestLotINV(App.GetValue("tmMCU"), sLITM, sLOTN,,sLotFilterLP) Then
+          For i = 1 To UBound(sOlderLots)
+
+            sSqlInv = "With CTE As(" & _
+                         " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
+                         " (Select LMLOCN, LDLOTN, LMMCU, LDLITM, LDUORG from F55102 inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LMPALP =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN = '" & sOlderLots(i,1) & "'" & _
+                         " UNION ALL" & _
+                         " Select LMLOCN, LDLOTN, LMMCU , LDLITM, LDUORG from F55102" & _
+                         " inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LDLPID =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN =  '" & sOlderLots(i,1) & "'" & _
+                         " ) As t1  group by LMLOCN, LDLOTN, LMMCU, LDLITM" & _
+                         " )" & _
+                     " Select IMLITM,  LILOCN, IMUOM1, LILOTN,  LILOTS" & _
+                     " , (LIPQOH - LIPCOM - LIHCOM -  IsNull(LDUORG,0)*10000) As Count from F41021" & _
+                     " inner Join F4101 On IMITM = LIITM" & _
+                     " Left Join CTE On LILOCN = LMLOCN And LILOTN = LDLOTN" & _
+                     " And LIMCU = LMMCU And IMLITM = LDLITM" & _
+                     " where LILOTN = '" & sOlderLots(i,1) & "'" & _
+                     " and IMLITM = '" & sLITM & "'" & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) > 0"  & _
+                     " and LIMCU = '%tmMCU'" & _
+                     " order by LILOTN, Count desc"
+            DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+            If DB.Count(sRowsInv) = 0 Then
+              GoTo OLDEST_ON_PALLET3
+            End If
+
+            lTotalCount = 0
+            lLocnCount = DB.Count(sRowsInv)
+
+            For lCacheIndex = 1 To lLocnCount
+              lTotalCount = lTotalCount + DB.Extract(sColsInv, sRowsInv, lCacheIndex, "Count")
+            Next
+
+            ' Delete count of cached picks
+            lDeleteCount = 0
+            For lCacheIndex = 1 To mnCnt
+              If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
+              And Trim(Ext(msValCache,07, lCacheIndex)) = sOlderLots(i,1) Then
+                lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+              End If
+            Next
+
+            sOlderLots(i,2) = CStr(lTotalCount - lDeleteCount)
+
+            sSqlCatCode = " Select I0AC29 from F554101C inner Join F4101 On I0ITM = IMITM where IMLITM = '" & sLITM & "'"
+            DB.Execute(sSqlCatCode,sColsCatCode, sRowsCatCode)
+            sCatCode = Trim(DB.Extract(sColsCatCode, sRowsCatCode, 1, "I0AC29"))
+
+            If CLng(sOlderLots(i,2))/10000 > 0 Then
+              If sCatCode = "Y" Then
+                App.MsgBox("Error: Older lot " & sOlderLots(i,1) & " has a qty of " & _
+                            CLng(sOlderLots(i,2))/10000 & " for item " & sLITM & " This lot must be picked first.")
+                Exit Sub
+              End If
+
+              vRsp = App.MsgBox("Warning: Older lot " & sOlderLots(i,1) & " has a qty of " & _
+                            CLng(sOlderLots(i,2))/10000 & " for item " & sLITM & " in " & lLocnCount & " locations.",vbCustom, 2, "[Ignore][Cancel][Find Lot]")
+              If vRsp = "Cancel" Then
+                appendOrDeleteLogs("D")
+                Cancel = True
+                Exit Sub
+              ElseIf vRsp = "FindLot" Then
+                appendOrDeleteLogs("D")
+                App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
+                           " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
+                           " -valLPID=" & Trim(Rsp) & " -valCASE=FALSE",True, True,True)
+                Exit Sub
+              Else
+                sLotFilterLP = sLotFilterLP & sOlderLots(i,1) & " "
+
+                For lCounter = 1 To DB.Count(sRowsInv)
+
+                  lAdjustedQty = DB.Extract(sColsInv, sRowsInv, lCounter, "Count")
+
+                  For lCacheIndex = 1 To mnCnt
+                    If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
+                        And Trim(Ext(msValCache,07, lCacheIndex)) = sOlderLots(i,1) _
+                        And Trim(Ext(msValCache,04, lCacheIndex)) = Trim(DB.Extract(sColsInv, sRowsInv, lCounter, "LILOCN")) Then
+                      lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+                    End If
+                  Next
+
+                  lAdjustedQty = lAdjustedQty - lDeleteCount
+
+                  If lAdjustedQty < 0 Then GoTo CONTINUE3
+
+                  sSqlCatCode = "insert into RFOverride VALUES" & _
+                            " ((select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                            ", '" & sOrigLOTN & "'" & _
+                            ", '" & sLocn & "'" & _
+                            ", " & sQty & _
+                            ", %tmDOCO" & _
+                            ", '" & sOlderLots(i,1) & "'" & _
+                            ", '" & Trim(DB.Extract(sColsInv, sRowsInv, lCounter, "LILOCN")) & "'" & _
+                            ", " & lAdjustedQty/10000 & _
+                            ", ' '" & _
+                            ", " & ConvDatetoJDE(Format(Now(),"MM/DD/YYYY")) & _
+                            ", " & Format(Now(),"hhmmss")  & _
+                            ", '" & App.User & "'" & _
+                            ", 'ST-PICK')"
+                  DB.Execute(sSqlCatCode)
+                  appendOrDeleteLogs("A")
+
+                  CONTINUE3:
+                Next
+
+              End If
+            End If
+            OLDEST_ON_PALLET3:
+          Next
+        End If
+      Else
+        'check for oldest lot with case qty
+        If getOldestLotINV(App.GetValue("tmMCU"), sLITM, sLOTN,sQty -1, sLotFilterLP) Then 'minus one because in query > sqty
+          For i = 1 To UBound(sOlderLots)
+
+           sSqlInv = "With CTE As(" & _
+                         " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
+                         " (Select LMLOCN, LDLOTN, LMMCU, LDLITM, LDUORG from F55102 inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LMPALP =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN = '" & sOlderLots(i,1) & "'" & _
+                         " UNION ALL" & _
+                         " Select LMLOCN, LDLOTN, LMMCU , LDLITM, LDUORG from F55102" & _
+                         " inner Join F55101 On LDLPID = LMLPID" & _
+                         " where LDLPID =  '" & Trim(Rsp) & "'" & _
+                         " and LDLITM = '" & sLITM & "'" & _
+                         " and LDLOTN =  '" & sOlderLots(i,1) & "'" & _
+                         " ) As t1  group by LMLOCN, LDLOTN, LMMCU, LDLITM" & _
+                         " )" & _
+                     " Select IMLITM,  LILOCN, IMUOM1, LILOTN,  LILOTS" & _
+                     " , (LIPQOH - LIPCOM - LIHCOM -  IsNull(LDUORG,0)*10000) As Count from F41021" & _
+                     " inner Join F4101 On IMITM = LIITM" & _
+                     " Left Join CTE On LILOCN = LMLOCN And LILOTN = LDLOTN" & _
+                     " And LIMCU = LMMCU And IMLITM = LDLITM" & _
+                     " where LILOTN = '" & sOlderLots(i,1) & "'" & _
+                     " and IMLITM = '" & sLITM & "'" & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) >= " & iCaseCount * 10000 & _
+                     " and  (LIPQOH - LIPCOM - LIHCOM -  isnull(LDUORG,0)*10000) > 0"  & _
+                     " and LIMCU = '%tmMCU'" & _
+                     " order by LILOTN, Count desc"
+            DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+            If DB.Count(sRowsInv) = 0 Then
+              GoTo OLDEST_ON_PALLET4
+            End If
+
+            lTotalCount = 0
+            lLocnCount = DB.Count(sRowsInv)
+
+            For lCacheIndex = 1 To lLocnCount
+              lTotalCount = lTotalCount + DB.Extract(sColsInv, sRowsInv, lCacheIndex, "Count")
+            Next
+
+            ' delete cached picks count
+'            For lCacheIndex = 1 To mnCnt
+'              If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
+'              And Trim(Ext(msValCache,07, lCacheIndex)) = sOlderLots(i,1) Then
+'                lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+'              End If
+'            Next
+
+
+
+            ReDim arrAdjustedQty(DB.Count(sRowsInv),1)
+            lSolutionPallet = 0
+
+            For c = 1 To DB.Count(sRowsInv)
+
+              lAdjustedQty = DB.Extract(sColsInv, sRowsInv, c, "Count")
+              lDeleteCount = 0
+
+              For lCacheIndex = 1 To mnCnt
+                If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
+                And Trim(Ext(msValCache,07, lCacheIndex)) = sOlderLots(i,1) _
+                  And Trim(Ext(msValCache,04, lCacheIndex)) = Trim(DB.Extract(sColsInv, sRowsInv, c, "LILOCN")) Then
+                  lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+                  lTotalCount = lTotalCount - CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
+                End If
+              Next
+
+              lAdjustedQty = lAdjustedQty - lDeleteCount
+              arrAdjustedQty(c, 1) = lAdjustedQty/10000
+
+              If lAdjustedQty/10000 >= iCaseCount And lSolutionPallet = 0 Then
+                lSolutionPallet = c
+              End If
+
+            Next
+
+            sOlderLots(i,2) = CStr(arrAdjustedQty(lSolutionPallet, 1))
+
+            sSqlCatCode = " Select I0AC29 from F554101C inner Join F4101 On I0ITM = IMITM where IMLITM = '" & sLITM & "'"
+            DB.Execute(sSqlCatCode,sColsCatCode, sRowsCatCode)
+            sCatCode = Trim(DB.Extract(sColsCatCode, sRowsCatCode, 1, "I0AC29"))
+
+            If CLng(sOlderLots(i,2)) >= iCaseCount Then
+              If sCatCode = "Y" Then
+                App.MsgBox("Error: Older lot " & sOlderLots(i,1) & " has a qty of " & _
+                            lTotalCount/10000 & " for item " & sLITM & " This lot must be picked first.")
+                Exit Sub
+              End If
+
+              vRsp = App.MsgBox("Warning: Older lot " & sOlderLots(i,1) & " has a qty of " & _
+                            lTotalCount/10000 & " for item " & sLITM & " in " & lLocnCount & " locations.",vbCustom, 2, "[Ignore][Cancel][Find Lot]")
+              If vRsp = "Cancel" Then
+                appendOrDeleteLogs("D")
+                Cancel = True
+                Exit Sub
+              ElseIf vRsp = "FindLot" Then
+                appendOrDeleteLogs("D")
+                App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
+                           " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
+                           " -valLPID=" & Trim(Rsp) & " -valCASE=TRUE",True, True,True)
+                Exit Sub
+              Else
+                sLotFilterLP = sLotFilterLP & sOlderLots(i,1) & " "
+
+                For lCounter = 1 To DB.Count(sRowsInv)
+
+                  If arrAdjustedQty(lCounter, 1) < iCaseCount Then GoTo CONTINUE4
+
+                  sSqlCatCode = "insert into RFOverride VALUES" & _
+                            " ((select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
+                            ", '" & sOrigLOTN & "'" & _
+                            ", '" & sLocn & "'" & _
+                            ", " & sQty & _
+                            ", %tmDOCO" & _
+                            ", '" & sOlderLots(i,1) & "'" & _
+                            ", '" & Trim(DB.Extract(sColsInv, sRowsInv, lCounter, "LILOCN")) & "'" & _
+                            ", " & arrAdjustedQty(lCounter, 1) & _
+                            ", ' '" & _
+                            ", " & ConvDatetoJDE(Format(Now(),"MM/DD/YYYY")) & _
+                            ", " & Format(Now(),"hhmmss")  & _
+                            ", '" & App.User & "'" & _
+                            ", 'ST-PICK')"
+                  DB.Execute(sSqlCatCode)
+                  appendOrDeleteLogs("A")
+
+                  CONTINUE4:
+                Next
+
+              End If
+            End If
+            OLDEST_ON_PALLET4:
+          Next
+        End If
+
+      End If
+    Next
+
+    SKIPCASEVALIDATION:
+    SKIPLOTCHECK:
+
+
+    'If successful utilize existing functionality to add every single F55102 record to the cache in EA quantities.
+    'sSqlItems = "Select * from F55101 inner Join F55102 On LMLPID = LDLPID where LMPALP = '" & Trim(Rsp) & "' or LDLPID = '" & Trim(Rsp) & "'"
+    sSqlItems = "Select * from F55101 inner Join F55102 On LMLPID = LDLPID where LMPALP = '" & Trim(Rsp) & "'" & _
+                " UNION ALL" & _
+                " Select * from F55101 inner Join F55102 On LMLPID = LDLPID where LDLPID = '" & Trim(Rsp) & "'"
+    DB.Execute(sSqlItems, sColsItems, sRowsItems) 'optimized
+
+    For x=1 To DB.Count(sRowsItems)
+      sSql = "select * from  F4211" & _
+           " where SDDOCO = %tmDOCO  and SDDCTO = '%tmDCTO' and SDLITM = '" & Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLITM")) & "' and SDSOQS <> 0 " & _
+           " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU'"
+
+      DB.Execute(sSql,sCols,sRows)
+      '
+      sDesc    = DB.Extract(sCols, sRows, 1, "SDDSC1")
+      sLot     = Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLOTN"))
+      sLocn    = Trim(DB.Extract(sColsItems, sRowsItems, x, "LMLOCN"))
+      sCOMM    = Trim(DB.Extract(sCols, sRows, 1, "SDCOMM"))
+      nSOBK    = ConvDecimalsFromSQL("SOBK", DB.Extract(sCols,sRows,1,"SDSOBK"))
+      nSOCN    = ConvDecimalsFromSQL("SOCN", DB.Extract(sCols,sRows,1,"SDSOCN"))
+      nLNID    = ConvDecimalsFromSQL("LNID", DB.Extract(sCols,sRows,1,"SDLNID"))
+      mnMaxQty = ConvDecimalsFromSQL("SOQS", DB.Extract(sCols,sRows,1,"SDSOQS"))
+
+      '
+      lblItemDesc.Caption = sDesc
+      App.SetValue("tmLNID",    nLNID)
+      App.SetValue("tmUOM",     DB.Extract(sCols,sRows,1,"SDUOM"))
+      App.SetValue("tmITM",     DB.Extract(sCols, sRows, 1, "SDITM"))
+      App.SetValue("tmLNTY",    DB.Extract(sCols, sRows, 1, "SDLNTY"))
+      App.SetValue("tmShipTo",  DB.Extract(sCols, sRows, 1, "SDSHAN"))
+      App.SetValue("tmCarrier", DB.Extract(sCols, sRows, 1, "SDCARS"))
+      App.SetValue("tmCO",      DB.Extract(sCols, sRows, 1, "SDKCOO"))  ' INS RBR 01/08/2007
+      App.SetValue("tmSOBK",    nSOBK)
+      App.SetValue("tmSOCN",    nSOCN)
+      App.SetValue("SelCOMM",   sCOMM)
+      App.SetValue("tmCOMM",    sCOMM)
+      App.SetValue("tmSOQS",    mnMaxQty)
+      App.SetValue("tmQty",     Val(DB.Extract(sColsItems, sRowsItems, x, "LDUORG")))
+
+      App.SetValue("tmLOTN", sLot)
+      App.SetValue("tmDspLOCN", sLocn)
+      App.SetValue("tmLITM",    Trim(DB.Extract(sColsItems, sRowsItems, x, "LDLITM")))
+
+      Call CumValues()
+
+    Next x
+
+
+    'Update the LP NXTR to 545 so it can not be picked again.
+
+    sSql = "update F55101 set LMRNXTR = '545' where LMPALP = '" & Trim(Rsp) & "' or LMLPID = '" & Trim(Rsp) & "'"
+    DB.Execute(sSql)
+
+    'Add the license plate to the List.Data of added license plates for the cache.
+
+    msLPList = msLPList + " " + Trim(Rsp)
+
+    mnCounter = mnCounter + 1
+    lblScanCnt.Caption = "Pick Counter: " & mnCounter
+    App.SetFocus("txtLITM")
+  End If
+
+  sSql = "select SDDOCO, SDDCTO from  F4211" & _
+         " where SDDOCO = " & Trim(App.GetValue("tmDOCO")) & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' " & _
+         " order by SDDOCO, SDDCTO "
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  lblSOQty.Caption = "Open ST Lines: " & DB.Count(sRows)
+  lblFKey.Caption = "F2-Execute F5-Show"
+
+End Sub
+
+Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim vDOCO As Variant
+  Dim sDCTO As String
+  Dim sLNID As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  vDOCO = App.GetValue("tmDOCO")
+  sDCTO = App.GetValue("tmDCTO")
+  '
+'  Cancel = Not Search_F4211_LITM(Rsp, Rsp, sMCU, vDOCO, sDCTO, msStatusF, msStatusT, sLNID)
+
+' --------------------------------------------------------
+'ByRef Rsp As String, ByVal sFindLITM As String, ByVal sMCU As String, ByVal vDOCO As Variant, ByVal sDCTO As String,
+'ByVal vStatusF As Variant, ByVal vStatusT As Variant, ByRef sLineID As String
+
+  Dim iDecLNID As Integer
+  Dim iDecSOQS As Integer
+  Dim sSql     As String
+  Dim sLike    As String
+  Dim sValue   As String
+  Dim oList    As New SearchList
+  '
+  ' lookup using "Like%" ?
+  '
+  If (Len(Rsp)>0) Then
+    If (Len(Rsp) < giMinSearchLen) Then
+      App.MsgBox (giMinSearchLen & GetMsg(15))
+      Exit Sub
+    End If
+    '
+    sLike = " and SDLITM Like ('" & Trim(UCase(Rsp)) & "%%')"
+  End If
+  '
+  sSql = "Select SDLITM, SDUOM, SDSOQS, SDDSC1 from  F4211 " & _
+         " where SDMCU = '" & sMCU & "' and SDDOCO = " & vDOCO & " and SDDCTO = '" & sDCTO & "' " & _
+         " and SDSOQS <> 0 and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "'" & sLike & " order by SDLITM"
+  '
+  Select Case App.GetValue("tmCISY")  ' Get what Item number is used
+    Case 1
+      sSql = Replace(sSql,"SDLITM","SDITM")
+    Case 3
+      sSql = Replace(sSql,"SDLITM","SDAITM")
+    Case Else
+  End Select
+  '
+  Call GetDecimals("LNID", iDecLNID)
+  Call GetDecimals("SOQS", iDecSOQS)
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "Item", giLenItem, CenterLeft, True)
+'  oList.SetColumn(2, "Line",         6, CenterRight, True, iDecLNID)
+  oList.SetColumn(2, "UOM",          3, CenterLeft, True)
+  oList.SetColumn(3, "Qty",   giLenQTY, CenterRight, True, iDecSOQS)
+  oList.SetColumn(4, "Desc",        30, CenterLeft, True)
+  oList.SQL = sSql
+  '
+  sValue = oList.ShowList
+  '
+  Rsp     = LField(sValue, Chr(3), 1)
+'  sLineID = LField(sValue, Chr(3), 2)
+
+
+
+
+'----------------------------------------------------------
+
+
+'  If Not Cancel Then App.SetValue("tmSearchLNID", sLNID)
+End Sub
+
+Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+   App.SetValue("tmLOTN", "")
+
+End Sub
+
+Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim iCnt    As Integer
+  Dim vArray  As Variant
+
+  Dim sOldestLotINV    As String
+  Dim sLotFilterINV    As String
+  Dim vRsp             As Variant
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel=True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  ' Validate if hardcommited in SO
+  If cForceLOTN And (Len(msHardLOTN)>0) Then
+    If (Rsp <> msHardLOTN) Then
+      App.MsgBox(GetMsg(212))
+      Exit Sub
+    End If
+  End If
+  '
+  ' Validate
+  sSql = "select count(*) from  F4108" & _
+         " where IOLOTN = '" & Rsp & "' and IOLITM = '%tmLITM' and IOMCU = '%tmMCU'"
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(78))
+    Exit Sub
+  End If
+  '
+  ' Validate it
+  sSql = "select LIPQOH from  F41021" & _
+         " where LILOCN = '%tmLOCN' and LIMCU = '%tmMCU' and LIITM = %tmITM and LILOTN = '" & Rsp & "'"
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(75))
+    Exit Sub
+  End If
+
+  App.SetValue("tmLOTN", Rsp)
+  App.SetValue("tmPQOH", DB.Extract(sCols,sRows,1,1))
+
+  ' check if serialized lot number was already scanned.
+  If mbSerialized Then
+    For iCnt = 1 To mnCnt
+      vArray = Split(Ext(msValCache,1, iCnt),";")
+      If Trim(vArray(5)) = Rsp Then
+        App.MsgBox(GetMsg(251))
+        Exit Sub
+      End If
+    Next iCnt
+  ' Default Qty to 1 if item is serialized
+    txtQTY.Text = "1"
+    txtQTY.DisplayOnly = True
+  Else
+    txtQTY.Text = ""
+    txtQTY.DisplayOnly = False
+  End If
+  txtQTY.Visible = True
+  '
+  Cancel=False
+
+End Sub
+
+Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sITM  As String
+  Dim sLocn As String
+  Dim bAvail As Boolean
+  '
+  ' Allow search only when not hardcommited in SO
+  If cForceLOTN And (Len(msHardLOTN)>0) Then
+    App.MsgBox GetMsg(123)
+    Exit Sub
+  End If
+
+  sMCU  = App.GetValue("tmMCU")
+  sITM  = App.GetValue("tmITM")
+  sLocn = App.GetValue("tmLOCN")
+
+  bAvail = GetProcOpt(msPgm,msVersion,"4;1") = "1"
+  bAvail = True
+  Cancel = Not Search_F41021_LOTN_LOCAL(Rsp, "", sMCU, sITM, sLocn, bAvail)
+End Sub
+
+Private Sub txtLOCN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLOCN", "")
+
+End Sub
+
+Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim sLocn As String
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  sMCU = App.GetValue("tmMCU")
+
+  If Not Validate_Locn(Rsp, sMCU, sLocn) Then Exit Sub
+  '
+  ' Validate if hardcommited in SO
+  If cForceLOCN And (Len(msHardLOCN)>0) Then
+    If (Rsp <> msHardLOCN) Then
+      App.MsgBox(GetMsg(114))
+      Exit Sub
+    End If
+  End If
+  '
+  ' Validate it
+  sSql = "select LIPQOH from  F41021" & _
+         " where LILOCN = '" & sLocn & "' and LIMCU = '%tmMCU' and LIITM = %tmITM "
+  '
+
+  DB.Execute(sSql, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(74))
+    Exit Sub
+  End If
+
+  If mbHasLots Then
+    txtLOTN.Visible = True
+  Else
+    txtQTY.Visible = True
+  End If
+
+  '
+  App.SetValue("tmLOCN", sLocn)
+  App.SetValue("tmDspLOCN", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  Dim sITM As String
+  Dim sLOTN As String
+  Dim bAvail As Boolean
+  '
+  ' Allow search only when not hardcommited in SO
+  If cForceLOCN And (Len(msHardLOCN)>0) Then
+    App.MsgBox GetMsg(115)
+    Exit Sub
+  End If
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  sLOTN = App.GetValue("tmLOTN")
+  '
+  bAvail = GetProcOpt(msPgm,msVersion,"4;1") = "1"
+  bAvail = True
+  Cancel = Not Search_F41021_LOCN(Rsp, "", sMCU, sITM, sLOTN, bAvail)
+End Sub
+
+Private Sub txtQTY_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmQTY", "")
+
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nQty    As Currency
+  Dim nOnHand As Currency
+  Dim nAvail  As Currency
+  Dim nUsed   As Currency
+  Dim sHold   As String
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sMCU    As String
+  Dim vRsp    As Variant
+  Dim iCnt    As Integer
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel=True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+  '
+  ' Serialized Item?
+  nQty = Val(Rsp)
+
+  If (mbSerialized And nQty <> 1) Then
+    App.MsgBox(GetMsg(177))
+    Exit Sub
+  End If
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+
+  If (nQty <= 0) Then
+    App.MsgBox GetMsg(180)
+    Exit Sub
+  End If
+  '
+  ' Exceeds Order Qty?
+  If GetProcOpt(msPgm,msVersion,"4;3") = "1" Then
+    If (nQty > mnMaxQty) Then
+      App.MsgBox(GetMsg(36))
+      Exit Sub
+    End If
+  End If
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  sMCU = App.GetValue("tmMCU")
+
+  GetItemQty(sMCU,App.GetValue("tmITM"),App.GetValue("tmLOTN"),App.GetValue("tmLOCN"),"1",nOnHand,nAvail,sHold)
+  '
+  ' reduce what's already scanned
+  nUsed = 0
+
+  For iCnt = 1 To mnCnt
+    If Ext(msValCache,02, iCnt) = App.GetValue("tmLITM") And Ext(msValCache,04, iCnt) = App.GetValue("tmDspLOCN") And Ext(msValCache,07, iCnt) = App.GetValue("tmLOTN") Then
+      nUsed = nUsed + CCur(Ext(msValCache,05, iCnt))
+    End If
+  Next iCnt
+
+  nOnHand = nOnHand - nUsed
+  nAvail  = nAvail  - nUsed
+  '
+  ' Exceeds QOH?
+  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
+    If (nQty > nOnHand)  Then
+      App.MsgBox(GetMsg(35))
+      Exit Sub
+    End If
+  End If
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+  '
+  ' Exceeds Avail?
+  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
+    If App.GetValue("SelCOMM") <> "C" And  App.GetValue("SelCOMM") <> "H" Then  'hardcommitted before, so ignore (SDCOMM)
+      If (nQty > nAvail)  Then
+        App.MsgBox(GetMsg(37))
+        Exit Sub
+      End If
+    End If
+  End If
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+  '
+  ' Splitlines allowed when remaining rest?
+  If nQty < mnMaxQty  Then
+    If GetProcOpt(msPgm,msVersion,"5;3") = "1" Then
+        vRsp = App.MsgBox(GetMsg(191), vbYesNo, vbNo)
+        If vRsp = vbNo Then Exit Sub
+    End If
+    If gbPOError Then
+      App.ExitForm
+      Exit Sub
+    End If
+  End If
+  '
+  App.SetValue("tmQTY", Rsp)
+
+  'Accumulate the Values and loop until F2
+  Call CumValues()
+
+  App.SetFocus("txtLITM")
+
+  mnCounter = mnCounter + 1
+  lblScanCnt.Caption = "Pick Counter: " & mnCounter
+  Cancel=False
+  Screen.Bell(2)
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If mbAddFr Then lblFKey.Caption = ""
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  If mbAddFr Then lblFKey.Caption = "F2-Execute F5-Show"
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+End Sub
+
+Public Sub CumValues()
+  On Error Resume Next
+  '
+  Dim iFnd  As Integer
+  Dim sKey  As String
+  Dim nQty  As Currency
+  Dim sLOTN As String
+  Dim sLocn As String
+
+  sLOTN = Trim(App.GetValue("tmLOTN"))
+  If Len(sLOTN) = 0 Then sLOTN = " "
+
+  If gbOracleJDE And Len(sLOTN) = 0 Then sLOTN = " "
+
+  sLocn = App.GetValue("tmDspLOCN")
+
+  If Len(sLocn) = 0 Then sLocn = " "
+  '
+  '                  Company                    Plant                           Order Number                       Doctype                             Line Number        Lot Number     Location
+  sKey = App.GetValue("tmCO") & ";" & App.GetValue("tmMCU") & ";" &Trim(App.GetValue("tmDOCO")) & ";" & Trim(App.GetValue("tmDCTO")) & ";" &  Trim(App.GetValue("tmLNID")) & ";" &  sLOTN & ";" &  sLocn & ";"
+  '
+  iFnd = Locate(sKey, msValCache,1)
+  '
+  If (iFnd <> 0) Then     'add qty
+    nQty  = Val(Ext(msValCache, 5, iFnd))
+    nQty = nQty + App.GetValue("tmQty")
+    msValCache = Rep(msValCache, 5, iFnd, nQty)
+  Else
+    msValCache = Rep(msValCache, 01, -1, sKey)                      'unique key
+    msValCache = Rep(msValCache, 02, -1, App.GetValue("tmLITM"))    'long Item Number
+    msValCache = Rep(msValCache, 03, -1, App.GetValue("tmITM"))     'short Item Number
+    msValCache = Rep(msValCache, 04, -1, sLocn)                     'Location
+    msValCache = Rep(msValCache, 05, -1, App.GetValue("tmQty"))     'Picked Qty.
+    msValCache = Rep(msValCache, 06, -1, App.GetValue("tmUOM"))     'Transaction UOM
+    msValCache = Rep(msValCache, 07, -1, sLOTN)                     'Lot - / Serial number
+    msValCache = Rep(msValCache, 08, -1, App.GetValue("tmCOMM"))    'Commitment Flag S/H
+    msValCache = Rep(msValCache, 09, -1, App.GetValue("tmSOBK"))    'Backorder Qty.
+    msValCache = Rep(msValCache, 10, -1, App.GetValue("tmSOCN"))    'Canceled Qty
+    msValCache = Rep(msValCache, 11, -1, App.GetValue("tmSOQS"))    'Line Qty.
+    msValCache = Rep(msValCache, 12, -1, App.GetValue("tmLNTY"))    'Line Type
+    msValCache = Rep(msValCache, 13, -1, App.GetValue("tmLNID"))    'Line Number
+    msValCache = Rep(msValCache, 14, -1, App.GetValue("tmShipTo"))  'Ship To
+    msValCache = Rep(msValCache, 15, -1, App.GetValue("tmCarrier")) 'Carrier
+    mnCnt = mnCnt +1
+  End If
+
+  gsValP4205 = msValCache   'save to globals for later re use
+
+  mnMaxQty = mnMaxQty - App.GetValue("tmQty")
+'  mnCounter = mnCounter + 1
+  lblScanCnt.Caption = "Pick Counter: " & mnCounter
+  txtLITM.List.Clear
+  txtLOCN.List.Clear
+  txtLOTN.List.Clear
+  txtQTY.List.Clear
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmLOCN", "")
+  App.SetValue("tmLOTN", "")
+  App.SetValue("tmQty", "")
+  txtLOCN.Visible = False
+  txtLOTN.Visible = False
+  txtQTY.Visible = False
+
+'  lblSOQty.Caption = "Open SO Qty:" & CStr(mnMaxQty) & " " & App.GetValue("tmUOM")
+  '
+End Sub
+
+Public Function ExecuteTM As Boolean
+  On Error Resume Next
+
+  Dim nSOBK   As Currency
+  Dim nSOCN   As Currency
+  Dim iCnt    As Integer
+  Dim iLblMax As Integer
+  Dim iFnd    As Integer
+  Dim vArray  As Variant
+  Dim sKey    As String
+  Dim nQty    As Currency
+  Dim iRow    As Integer
+  Dim emProc  As New EmbeddedProc
+
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim sSql2 As String
+  Dim sCols2 As String
+  Dim sRows2 As String
+
+  Dim vArrayLPList As Variant
+
+  Dim x As Integer
+  Dim y As Integer
+  Dim z As Integer
+
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+  ExecuteTM = False
+  '
+  iRow = txtAccept.Label.Top
+  gbProcessing = True
+
+  Screen.Print 0, iRow, "Processing...", False, True, True
+  '
+  ' Build listbox and sort
+  BuildListBox
+  '
+  ' Build Datastructure from Listbox (List.Sorted by Line)
+  msValCache = ""                 ' clear datastructure
+  mnCnt      = 0                  ' reset counter
+
+  iLblMax = lstScanned.List.Count                                           'max line
+
+  If iLblMax = 0 Then
+    App.MsgBox(GetMsg(138))
+    Screen.Clear
+    gbProcessing = False
+    Exit Function
+  End If
+
+  For iCnt = 1 To iLblMax
+    lstScanned.List.Index = iCnt
+    vArray = Split(lstScanned.Text,"|")
+    '                  Company                    Plant                Order Number            Doctype            Line Number        Lot Number         Location
+    sKey = App.GetValue("tmCO") & ";" & App.GetValue("tmMCU") & ";" & Trim(vArray(0)) & ";" & Trim(vArray(1)) & ";" &  vArray(2) & ";" &  vArray(8) & ";" &  vArray(5) & ";"
+    iFnd = Locate(sKey, msValCache,1)
+    If (iFnd <> 0) Then     'add qty RBR 03/07/2007
+      nQty  = Val(Ext(msValCache, 06, iFnd))
+      nQty = nQty + vArray(06)
+      msValCache = Rep(msValCache, 06, iFnd, nQty)
+    Else
+      msValCache = Rep(msValCache, 01, -1, sKey)                    'unique key
+      msValCache = Rep(msValCache, 02, -1, vArray(03))    'long Item Number
+      msValCache = Rep(msValCache, 03, -1, vArray(04))    'short Item Number
+      msValCache = Rep(msValCache, 04, -1, vArray(05))    'Location
+      msValCache = Rep(msValCache, 05, -1, vArray(06))    'Picked Qty.
+      msValCache = Rep(msValCache, 06, -1, vArray(07))    'Transaction UOM
+      msValCache = Rep(msValCache, 07, -1, vArray(08))    'Lot - / Serial number
+      msValCache = Rep(msValCache, 08, -1, vArray(09))    'Commitment Flag S/H
+      msValCache = Rep(msValCache, 09, -1, vArray(10))    'Backorder Qty.
+      msValCache = Rep(msValCache, 10, -1, vArray(11))    'Canceled Qty
+      msValCache = Rep(msValCache, 11, -1, vArray(12))    'Line Qty.
+      msValCache = Rep(msValCache, 12, -1, vArray(13))    'Line Type
+      msValCache = Rep(msValCache, 13, -1, vArray(14))    'Line Number
+      msValCache = Rep(msValCache, 14, -1, vArray(15))    'Ship To
+      msValCache = Rep(msValCache, 15, -1, vArray(16))    'Carrier
+      mnCnt = mnCnt +1
+    End If
+  Next iCnt
+
+  emProc.Name                = "TSOSC0200"
+  emProc.DataSource          = gsDataSource
+  emProc.Param("tmCO")       = App.GetValue("tmCO")
+  emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+  emProc.Param("tmDOCO")     = App.GetValue("tmDOCO")
+  emProc.Param("tmDCTO")     = App.GetValue("tmDCTO")
+  emProc.Param("tmValCache") = msValCache
+  emProc.Param("tmCnt")      = mnCnt
+  emProc.Param("tmUSER")     = App.User
+  emProc.Param("tmPGM")      = msPgm
+  emProc.Param("tmVERSION")  = msVersion
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  If gbQueueProcessing Then
+    If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
+
+    If Not emProc.Queue Then
+      App.MsgBox GetMsg(222) & vbCrLf & SysErr.Description
+      App.SetFocus(1)
+      Exit Function
+    End If
+  Else
+    If Not emProc.Execute Then
+      gbProcessing = False
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      App.SetFocus(1)
+      Exit Function
+    End If
+  End If
+
+  'Update the RDOCO, RDCTO, RNXTR for F55101 and F55102 & Write History Record for All LP's on the LPList.
+
+  vArrayLPList = Split(msLPList)
+
+  For x=1 To UBound(vArrayLPList)
+    'sSql = "select * from F55101 where LMPALP = '" & Trim(vArrayLPList(x)) & "' or LMLPID = '" & Trim(vArrayLPList(x)) & "'"
+    sSql = "Select * from F55101 where LMPALP = '" & Trim(vArrayLPList(x)) & "'" & _
+           " UNION ALL" & _
+           " Select * from F55101 where LMLPID = '" & Trim(vArrayLPList(x)) & "'"
+    DB.Execute(sSql, sCols, sRows)
+
+    For y=1 To DB.Count(sRows)
+      Call LP101_Reset(uLP101)
+      uLP101.sLMLPID = Trim(DB.Extract(sCols, sRows, y, "LMLPID"))
+      X_LP101("I",uLP101)
+      uLP101.sLMRNXTR = "560"
+      uLP101.sLMRDOCO = Trim(App.GetValue("tmDOCO"))
+      uLP101.sLMRDCTO = Trim(App.GetValue("tmDCTO"))
+      If Not X_LP101("C",uLP101) Then
+        App.MsgBox("Error in LP Update - New LP Work Order and Status Could Not Be Committed - Contact IT Manager")
+      End If
+
+      'Get each F55102 Record under the F55101 record being processed:
+      sSql2 = "select * from F55102 where LDLPID = '" & Trim(DB.Extract(sCols, sRows, y, "LMLPID")) & "'"
+      DB.Execute(sSql2, sCols2, sRows2)
+
+      For z = 1 To DB.Count(sRows2)
+        Call LP102_Reset(uLP102)
+        uLP102.sLDLPID = Trim(DB.Extract(sCols2, sRows2, z, "LDLPID"))
+        uLP102.nLDLNID = Val(DB.Extract(sCols2, sRows2, z, "LDLNID"))
+        X_LP102("I",uLP102)
+        uLP102.sLDRNXTR = "560"
+        uLP102.sLDRDOCO = Trim(App.GetValue("tmDOCO"))
+        uLP102.sLDRDCTO = Trim(App.GetValue("tmDCTO"))
+        If Not X_LP102("C",uLP102) Then
+          App.MsgBox("Error in LP Update - New LP Work Order and Status Could Not Be Committed - Contact IT Manager")
+        End If
+      Next z
+
+    Next y
+
+  Next x
+
+  '
+  sSql = "select SDDOCO, SDDCTO from  F4211" & _
+         " where SDDOCO = " & Trim(App.GetValue("tmDOCO")) & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' " & _
+         " order by SDDOCO, SDDCTO "
+  '
+  DB.Execute(sSql, sCols, sRows)
+
+  lblSOQty.Caption = "ST Lines Open: " & DB.Count(sRows)
+
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  lblScanCnt.Caption = ""
+  lblFKey.Caption = ""
+  '
+  mnCounter     = 0
+  mnMaxQty      = 0
+  mnMaxQoH      = 0
+  msHardLOTN    = ""
+  msHardLOCN    = ""
+  mbHasLots     = False
+  mbSerialized  = False
+  gsValP4205    = ""   'clear
+  msValCache    = ""   'clear
+  mnCnt = 0
+  lblItemDesc.Caption = ""
+  txtLITM.Visible = False
+
+  msLPList = ""
+
+  Screen.Refresh
+  gbProcessing = False
+
+  ExecuteTM = True
+
+End Function
+
+Public Sub BuildListBox
+  On Error Resume Next
+  '
+  Dim sDsp    As String
+  Dim iCnt    As Integer
+  Dim vArray  As Variant
+
+  lstScanned.List.Clear
+
+  For iCnt = 1 To mnCnt
+    vArray = Split(Ext(msValCache,1, iCnt),";")
+    If iCnt = 1 Then
+      lstScanned.Caption = "Scanned Items for Company: " & CStr(vArray(0)) & " , Plant: " & vArray(1)
+    End If
+    sDsp =        FixRight(vArray(02),8," ")                      & "|"
+    sDsp = sDsp & FixLeft(vArray(03),2," ")                       & "|"
+    sDsp = sDsp & FixRight(Format(vArray(04), "##0.000"),7," ")   & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,02,  iCnt),giLenItem," ") & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,03, iCnt),10," ")       & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,04,  iCnt),giLenLOCN," ") & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,05, iCnt),10," ")       & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,06,  iCnt),03," ")       & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,07,  iCnt),giLenLOTN," ") & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,08,  iCnt),01," ")       & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,09, iCnt),10," ")       & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,10, iCnt),10," ")       & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,11, iCnt),10," ")       & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,12,  iCnt),01," ")       & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,13, iCnt),07," ")       & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,14, iCnt),08," ")       & "|"
+    sDsp = sDsp & FixRight(Ext(msValCache,15, iCnt),08," ")       & "|"
+    lstScanned.List.AddItem sDsp, sDsp
+  Next iCnt
+    '
+  ' sort listbox to make sure all SO lines are in sequence
+  lstScanned.List.Sorted = True
+
+End Sub
+
+Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, ByVal sLOTN As String, Optional ByVal iCnt As Long, Optional ByVal sLotFilter) As Boolean
+  Dim nLotValue  As Long
+  Dim sLotParts() As String
+  Dim sSqlItem   As String
+  Dim sColsItem  As String
+  Dim sRowsItem  As String
+  Dim sITM       As String
+  Dim cOldestLot As Currency
+  Dim vRsp       As Variant
+  Dim sNotIn     As String
+  Dim sArr       As Variant
+  Dim i          As Long
+  Dim sReturnArr() As String
+
+  sMCU = FixRight(Trim(sMCU), 12)
+
+  If iCnt > 0 Then
+    iCnt = iCnt * 10000
+  End If
+
+  ReDim sOlderLots(0,0)
+  sLotFilter = Trim(sLotFilter)
+
+  If Trim(sLotFilter) <> "" Then
+    sNotIn = " and LILOTN not in ("
+    sArr = Split(sLotFilter," ")
+    For i = 0 To UBound(sArr)
+      sNotIn = sNotIn & "'" & sArr(i) & "'"
+      If i <> UBound(sArr) Then
+        sNotIn = sNotIn & ","
+      End If
+    Next
+    sNotIn = sNotIn & ") "
+  End If
+
+    sSqlItem = "select IMITM from F4101 where IMLITM = '" & sITEM & "'"
+    DB.Execute(sSqlItem, sColsItem, sRowsItem)
+    If DB.Count(sRowsItem) > 0 Then
+      sITM = Trim(DB.Extract(sColsItem, sRowsItem, 1, "IMITM"))
+    End If
+
+'      sSqlItem = "With CTE As (Select LILOTN As OrigProductNumber,CAST(LILOTN As VARCHAR(100))" & _
+'                 " As LILOTN FROM F41021 WHERE LIMCU = '" & sMCU & "' and LIITM = " & _
+'                   sITM & " and (LIPQOH -LIPCOM -LIHCOM) > " & iCnt   & sNotIn & _
+'                 " UNION All Select OrigProductNumber,CAST(STUFF(LILOTN, PATINDEX('%[^0-9]%',LILOTN), 1, '')" & _
+'                 " AS VARCHAR(100) ) AS LILOTN FROM CTE WHERE PATINDEX('%[^0-9]%', LILOTN) > 0)" & _
+'                 " SELECT distinct * FROM CTE" & _
+'                 " WHERE PATINDEX('%[^0-9]%', LILOTN) = 0" & _
+'                 " And cast(LILOTN As BIGINT) > 0 and cast(LILOTN As DECIAML) < " & sLOTN & " order by LILOTN"
+
+      sSqlItem = "select DISTINCT LILOTN, (case when isNumeric(LILOTN) = 1 then CAST(LILOTN as FLOAT) else 0 end) as LOTN FROM F41021" & _
+                 " WHERE LIMCU = '" & sMCU & "'" & _
+                 " and LIITM = " & sITM & _
+                 " and (LIPQOH -LIPCOM -LIHCOM) > " & iCnt & _
+                 " and (case when isNumeric(LILOTN) = 1 then 1 else 0 end) = 1 " & _
+                 " and (case when isNumeric(LILOTN) = 1 then CAST(LILOTN as FLOAT) else 0 end)  < " & sLOTN & _
+                  sNotIn & _
+                 " order by LOTN"
+      DB.Execute(sSqlItem, sColsItem, sRowsItem)
+Debug.Print(sSqlItem)
+      If(DB.Count(sRowsItem)) = 0 Then
+        getOldestLotINV = False
+        Exit Function
+      End If
+
+
+      ReDim sOlderLots(DB.Count(sRowsItem),2)
+
+      For i = 1 To DB.Count(sRowsItem)
+        sOlderLots(i, 1) = Trim(DB.Extract(sColsItem,sRowsItem, i,"LILOTN"))
+      Next
+
+      getOldestLotINV = True
+
+End Function
+
+Public Function Search_F41021_LOTN_LOCAL(ByRef Rsp As String, ByVal sFindLOTN As String, ByVal sMCU As String, ByVal vITM As Variant, Optional ByRef sLocn As String, Optional ByRef bAvail As Boolean) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql     As String
+  Dim sWhere   As String
+  Dim sSQLStr  As String
+  Dim sValue   As String
+  Dim iDecPQOH As Integer
+  Dim oList    As New SearchList
+  '
+  ' In case DB is Oracle
+  If gbOracleJDE Then
+    If Len(sLocn) = 0 Then sLocn = " "
+  End If
+
+  Call GetDecimals("PQOH", iDecPQOH)
+  '
+  If (Len(sMCU)>0) Then
+    If (Len(sWhere)>0) Then sWhere = sWhere & " and"
+    sWhere = sWhere & " LIMCU = '" & sMCU & "'"
+  End If
+  '
+  If (Len(vITM)>0) Then
+    If (Len(sWhere)>0) Then sWhere = sWhere & " and"
+    sWhere = sWhere & " LIITM = " & vITM
+  End If
+  '
+  If (Len(sLocn)>0) Then
+    If (Len(sWhere)>0) Then sWhere = sWhere & " and"
+    sWhere = sWhere & " LILOCN = '" & sLocn & "' "
+  End If
+  '
+  If (Len(sFindLOTN)>0) Then
+    If (Len(sFindLOTN) < giMinSearchLen) Then
+      App.MsgBox (giMinSearchLen & GetMsg(15))
+      Search_F41021_LOTN_LOCAL = True
+      Exit Function
+    End If
+    '
+    If (Len(sWhere)>0) Then sWhere = sWhere & " and"
+    sWhere = sWhere & " LILOTN Like ('" & Trim(UCase(sFindLOTN)) & "%%')"
+  End If
+  '
+  If (Len(sWhere)>0) Then sWhere = " where" & sWhere
+
+  If bAvail Then
+    Call GetItemAvailSQL(sMCU, sSQLStr)
+    sSql = "select LILOTN, LILOCN, " & sSQLStr & ", IMUOM1, LILOTS from F41021 inner join F4101 on LIITM = IMITM " & sWhere & " and " & sSQLStr & " <> 0 order by LILOTN, LILOCN"
+  Else
+    sSql = "select LILOTN, LILOCN, LIPQOH, IMUOM1, LILOTS from F41021 inner join F4101 on LIITM = IMITM " & sWhere & " and LIPQOH <> 0 group by LILOTN, LILOCN, LIPQOH, IMUOM1, LILOTS order by LILOTN, LILOCN"
+  End If
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SetColumn(1, "Lot", giLenLOTN,  CenterLeft, True)
+  oList.SetColumn(2, "Locn", giLenLOCN, CenterLeft, True)
+  oList.SetColumn(3, "Qty", giLenQTY,   CenterRight, True, iDecPQOH)
+  oList.SetColumn(4, "UM",        2,    CenterLeft, True)
+  oList.SetColumn(5, "S",         1,    CenterLeft, True)
+  oList.SQL = sSql
+  sValue = oList.ShowList
+
+  Rsp   = LField(sValue, Chr(3), 1)
+  sLocn = LField(sValue, Chr(3), 2)
+
+  Search_F41021_LOTN_LOCAL = (Len(Rsp) > 0)
+
+
+  If Not gbDemoMode Then
+    sLocn = ""
+    Rsp = ""
+  End If
+ '
+End Function
+
+Private Function appendOrDeleteLogs(ByVal sKey As String)
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  If sKey = "D" And Trim(msDeleteLogs) = "" Then Exit Function
+
+  If Trim(UCase(sKey)) = "A" Then
+
+    sSql = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
+    DB.Execute(sSql, sCols, sRows)
+
+    If Trim(msDeleteLogs) = "" Then
+      msDeleteLogs = DB.Extract(sCols, sRows, 1, "IEID")
+    Else
+      msDeleteLogs = msDeleteLogs & ", " &  DB.Extract(sCols, sRows, 1, "IEID")
+    End If
+    Exit Function
+
+  ElseIf Trim(UCase(sKey)) = "D" Then
+    sSql = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
+    DB.Execute(sSql)
+    msDeleteLogs = ""
+  End If
+End Function
+</Code>

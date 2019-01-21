@@ -1,0 +1,4 @@
+﻿<Record FileDesc="Human Resources" FileVersion="5.0.8.0" Desc="Human Resources" Heading="Time entry">
+<MenuItem Id="FHRTE0100" Desc="1-HR - Time Entry (Single Line)" />
+<MenuItem Id="FHRTE0200" Desc="2-HR - Time Entry (Mass Data)" Options="-Pgm=P051121 -Vers=ZJDE0001" />
+</Record>

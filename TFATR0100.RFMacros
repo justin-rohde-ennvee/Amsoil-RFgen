@@ -1,0 +1,423 @@
+﻿<Record FileDesc="FA - Transfer Location" FileVersion="5.0.8.0" Desc="FA - Transfer Location">
+<Param Name="sItem" />
+<Param Name="sNewLocn" />
+<Param Name="sCurLocn" />
+<Param Name="sDate" />
+<Param Name="sTime" />
+<Param Name="sQty" />
+<Param Name="sStatus" />
+<Param Name="tmErrText" />
+<Param Name="tmErrId" />
+<Param Name="tmUser" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: FA - TRANSFER LOCATION
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId = "TFATR0100"
+
+Private Function Transaction(ByRef sItem As Variant, ByRef sNewLocn As Variant, ByRef sCurLocn As Variant, ByRef sDate As Variant, ByRef sTime As Variant, ByRef sQty As Variant, ByRef sStatus As Variant, ByRef tmErrText As Variant, ByRef tmErrId As Variant, ByRef tmUser As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sErrId      As String
+  Dim sErrDesc    As String
+  Dim vFMTRNN     As String
+  Dim vFMNNBR     As Double
+  Dim sFMEFTB     As String
+  Dim vDate       As String
+  Dim vsDate      As String
+  Dim vdblDate    As Double
+  Dim sNN2        As String
+  Dim sFlagCH     As String
+  '
+  Dim emGetAuditInfo            As EmbeddedProc
+  Dim emX0010GetNextNumber      As EmbeddedProc
+  Dim emF1302RetrieveDefaults   As EmbeddedProc
+  Dim emF1305RetrieveDefaults   As EmbeddedProc
+  Dim emF1204Update             As EmbeddedProc
+  Dim emF1204TransferChildren   As EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Transaction = False
+  '
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
+    tmErrText = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  ' Run in Demomode -> GLDate is 06/01/2005
+  If SYS.EnvironmentProperty("DemoMode Y/N") = "Y" Then
+    App.SetValue("GLDate", "06/01/2005")
+  Else
+    Dim dDate As String
+    dDate = Format(Date, "MM") & "/" & Format(Date, "DD") & "/" & Format(Date, "YYYY")
+    App.SetValue("GLDate", dDate)
+  End If
+
+  If Not gbIsE1 Then GoTo World
+  '
+  ' Verify that JDE connection is available
+  If Not ERP.BeginTrans Then
+    TM.AbortTrans
+    GoTo ExitE1
+  End If
+
+  ' Format sDate
+  sDate = Format(sDate, "MM") & "/" & Format(sDate, "DD") & "/" & Format(sDate, "YYYY")
+  '
+  ' Get transaction number from old record
+  sSQL = "select FMTRNN,FMNNBR, FMEFTB from F1204 where FMNUMB = " & sItem & " and FMLOC = '" & sCurLocn & "' "
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Len(sRows) = 0 Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSQL
+    GoTo ExitE1
+  End If
+
+  vFMTRNN = DB.Extract(sCols,sRows,1,"FMTRNN")
+  vFMNNBR = DB.Extract(sCols,sRows,1,"FMNNBR")
+  sFMEFTB = ConvJDEtoDate(DB.Extract(sCols,sRows,1,"FMEFTB"))
+
+  vDate = ConvDatetoJDE(CStr(Date))     ' convert todays date to seriell
+  vsDate = ConvDatetoJDE(CStr(sDate))   ' convert transaction date to seriell
+
+  If vsDate <= vDate Then sFlagCH = "H"   '*** Historic Data
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  Set emGetAuditInfo = New EmbeddedProc
+  '
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  emGetAuditInfo.Param("UserName")              = " "
+  emGetAuditInfo.Param("Date")                  = " "
+  emGetAuditInfo.Param("Time")                  = " "
+  emGetAuditInfo.Param("Workstation_UserId")    = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+  '
+  If Not emGetAuditInfo.Execute Then  ' Function call failed!
+    sErrDesc = emGetAuditInfo.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  Set emX0010GetNextNumber = New EmbeddedProc
+  '
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "12"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = "4"
+  emX0010GetNextNumber.Param("CompanyKey")              = ""
+  emX0010GetNextNumber.Param("Century")                 = ""
+  emX0010GetNextNumber.Param("FiscalYear1")             = ""
+  emX0010GetNextNumber.Param("SameAsDocumentType")      = ""
+  emX0010GetNextNumber.Param("NextNumber001")           = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+  '
+  If Not emX0010GetNextNumber.Execute Then  ' Function call failed!
+    sErrDesc = emX0010GetNextNumber.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  sNN2 = CStr(emX0010GetNextNumber.Param("NextNumber001"))
+  sNN2 = FixRight(sNN2, 12, " ")
+
+  '-----------------------'
+  ' F1302RetrieveDefaults '
+  '-----------------------'
+  Set emF1302RetrieveDefaults = New EmbeddedProc
+  '
+  emF1302RetrieveDefaults.Name       = "F1302RetrieveDefaults"
+  emF1302RetrieveDefaults.LogMode = LogNever
+  emF1302RetrieveDefaults.DebugLog   = cJDELogPath
+  '
+  emF1302RetrieveDefaults.Param("CostCenterLocation")     = sNewLocn
+  emF1302RetrieveDefaults.Param("EquipmentRateCode")      = " "
+  emF1302RetrieveDefaults.Param("TimeBeginningDefault")   = 0
+  emF1302RetrieveDefaults.Param("TimeEndingDefault")      = 0
+  emF1302RetrieveDefaults.Param("RentalThreshold")        = 0
+  emF1302RetrieveDefaults.Param("EverestEventPoint01")    = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1302RetrieveDefaults.Name, "", emF1302RetrieveDefaults)
+  '
+  If Not emF1302RetrieveDefaults.Execute Then  ' Function call failed!
+    sErrDesc = emF1302RetrieveDefaults.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1302RetrieveDefaults.Name, "", emF1302RetrieveDefaults, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-----------------------'
+  ' F1305RetrieveDefaults '
+  '-----------------------'
+  Set emF1305RetrieveDefaults = New EmbeddedProc
+  '
+  emF1305RetrieveDefaults.Name       = "F1305RetrieveDefaults"
+  emF1305RetrieveDefaults.LogMode = LogNever
+  emF1305RetrieveDefaults.DebugLog   = cJDELogPath
+  '
+  emF1305RetrieveDefaults.Param("CostCenterLocation")     = sNewLocn
+  emF1305RetrieveDefaults.Param("AssetItemNumber")        = sItem
+  emF1305RetrieveDefaults.Param("TransferActionCode")     = " "
+  emF1305RetrieveDefaults.Param("CostCenter")             = " "
+  emF1305RetrieveDefaults.Param("ObjectAccount")          = " "
+  emF1305RetrieveDefaults.Param("Subsidiary")             = " "
+  emF1305RetrieveDefaults.Param("Subledger")              = " "
+  emF1305RetrieveDefaults.Param("SubledgerType")          = " "
+  emF1305RetrieveDefaults.Param("EverestEventPoint01")    = " "
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1305RetrieveDefaults.Name, "", emF1305RetrieveDefaults)
+  '
+  If Not emF1305RetrieveDefaults.Execute Then  ' Function call failed!
+    sErrDesc = emF1305RetrieveDefaults.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1305RetrieveDefaults.Name, "", emF1305RetrieveDefaults, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '-------------'
+  ' F1204Update '
+  '-------------'
+  Set emF1204Update = New EmbeddedProc
+  '
+  emF1204Update.Name       = "F1204Update"
+  emF1204Update.LogMode = LogNever
+  emF1204Update.DebugLog   = cJDELogPath
+  '
+  emF1204Update.Param("NextNumberValue")            = vFMNNBR
+  emF1204Update.Param("LocationHistOrSched")        = "C"
+  If sFlagCH = "H" Then
+    emF1204Update.Param("DateBeginningEffective")   = sDate
+    emF1204Update.Param("CostCenterLocation")       = sNewLocn
+    emF1204Update.Param("DateEnding")               = ""
+  Else
+    emF1204Update.Param("DateBeginningEffective")   = sFMEFTB
+    emF1204Update.Param("CostCenterLocation")       = sCurLocn
+    emF1204Update.Param("DateEnding")               = sDate
+  End If
+  emF1204Update.Param("ProgramId")                  = "EP12115"
+  emF1204Update.Param("ProcessingMode")             = " "
+  emF1204Update.Param("AssetItemNumber")            = sItem
+  emF1204Update.Param("NameRemark")                 = " "
+  emF1204Update.Param("DtLastChanged")              = emGetAuditInfo.Param("Date")
+  emF1204Update.Param("UserId")                     = emGetAuditInfo.Param("UserName")
+  emF1204Update.Param("WorkStationId")              = emGetAuditInfo.Param("Workstation_UserId")
+  emF1204Update.Param("TransferNumber")             = vFMTRNN
+  emF1204Update.Param("EquipmentRateCode")          = emF1302RetrieveDefaults.Param("EquipmentRateCode")
+  emF1204Update.Param("Quantity")                   = ConvDecimalsToSQL("ARCQ",sQty)
+  emF1204Update.Param("EquipmentStatus")            = sStatus
+  emF1204Update.Param("CostCenter")                 = emF1305RetrieveDefaults.Param("CostCenter")
+  emF1204Update.Param("Subsidiary")                 = emF1305RetrieveDefaults.Param("Subsidiary")
+  emF1204Update.Param("ObjectAccount")              = emF1305RetrieveDefaults.Param("ObjectAccount")
+  emF1204Update.Param("TimeStampBeginning")         = 0
+  emF1204Update.Param("TimeStampEnding")            = 0
+  emF1204Update.Param("MeterOriginalReading")       = 0
+  emF1204Update.Param("MeterCurrentReading")        = 0
+  emF1204Update.Param("EquipmentRateTable")         = " "
+  emF1204Update.Param("EquipmentRateGroup")         = " "
+  emF1204Update.Param("AmountActualBilled")         = 0
+  emF1204Update.Param("AisleLocation")              = " "
+  emF1204Update.Param("BinLocation")                = " "
+  emF1204Update.Param("Subledger")                  = " "
+  emF1204Update.Param("SubledgerType")              = " "
+  emF1204Update.Param("TransferActionCode")         = "1"
+  emF1204Update.Param("TimeLastUpdated")            = emGetAuditInfo.Param("Time")
+  emF1204Update.Param("AddressNumber")              = 0
+  emF1204Update.Param("DocumentOrderInvoiceE")      = 0
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1204Update.Name, "", emF1204Update)
+  '
+  If Not emF1204Update.Execute Then  ' Function call failed!
+    sErrDesc = emF1204Update.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1204Update.Name, "", emF1204Update, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  '--------------------'
+  ' X0010GetNextNumber '
+  '--------------------'
+  emX0010GetNextNumber.Name       = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog   = cJDELogPath
+  '
+  emX0010GetNextNumber.Param("SystemCode")              = "12"
+  emX0010GetNextNumber.Param("NextNumberingIndexNo")    = "3"
+  emX0010GetNextNumber.Param("CompanyKey")              = ""
+  emX0010GetNextNumber.Param("Century")                 = ""
+  emX0010GetNextNumber.Param("FiscalYear1")             = ""
+  emX0010GetNextNumber.Param("SameAsDocumentType")      = ""
+  emX0010GetNextNumber.Param("NextNumber001")           = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+  '
+  If Not emX0010GetNextNumber.Execute Then  ' Function call failed!
+    sErrDesc = emX0010GetNextNumber.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  ' Create Location Record
+  If sFlagCH = "H" Then
+    sSQL = "INSERT INTO F1204 VALUES (" & sItem & ",'H','" & sCurLocn & "', " & vsDate & " ,' ', " _
+    & " " & vDate & ",'" & emGetAuditInfo.Param("UserName") & "','EP12115', " _
+    & " '" & emGetAuditInfo.Param("Workstation_UserId") & "','" & sNN2 & "','" & emF1302RetrieveDefaults.Param("EquipmentRateCode") & "', " _
+    & " " & sQty & ",'" & sStatus & "'," & emX0010GetNextNumber.Param("NextNumber001") & ",'" & sCurLocn & "'," & sFMEFTB & ", " _
+    & " '" & emF1305RetrieveDefaults.Param("Subsidiary") & "','" & emF1305RetrieveDefaults.Param("ObjectAccount") & " ',0.000000, " _
+    & " 0.000000,0.000000,0.000000,' ',' ',0.000000,' ',' ',' ',' ','1'," & emGetAuditInfo.Param("Time") & ",0.000000,0.000000)"
+  Else
+    sSQL = "INSERT INTO F1204 VALUES (" & sItem & ",'P','" & sNewLocn & "', NULL ,' ', " _
+    & " " & vDate & ",'" & emGetAuditInfo.Param("UserName") & "','EP12115', " _
+    & " '" & emGetAuditInfo.Param("Workstation_UserId") & "','" & sNN2 & "','" & emF1302RetrieveDefaults.Param("EquipmentRateCode") & "', " _
+    & " " & sQty & ",'" & sStatus & "'," & emX0010GetNextNumber.Param("NextNumber001") & ",'" & sCurLocn & "'," & vsDate & ", " _
+    & " '" & emF1305RetrieveDefaults.Param("Subsidiary") & "','" & emF1305RetrieveDefaults.Param("ObjectAccount") & " ',0.000000, " _
+    & " 0.000000,0.000000,0.000000,' ',' ',0.000000,' ',' ',' ',' ','1'," & emGetAuditInfo.Param("Time") & ",0.000000,0.000000)"
+  End If
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", "F1204", Replace(sSQL, "'", "`"))                             
+  '
+  If Len(SysErr.Description) <> 0 Then                                                                                         
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F1204", Replace(sSQL, "'", "`"))           
+  End If
+
+  ' Create Location History
+  sSQL = "INSERT INTO F1210 VALUES (" & emX0010GetNextNumber.Param("NextNumber001") & ",0.&H10000,' ','" & emGetAuditInfo.Param("UserName") & "', " _
+  & " " & vDate & ",'EP12115','" & emGetAuditInfo.Param("Workstation_UserId") & "'," & emGetAuditInfo.Param("Time") & ") "
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", "F1210", Replace(sSQL, "'", "`"))                             
+  '
+  If Len(SysErr.Description) <> 0 Then                                                                                         
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F1210", Replace(sSQL, "'", "`"))           
+  End If
+
+  ' Update  F1201
+  If sFlagCH = "H" Then
+    sSQL = "UPDATE F1201 SET FALOC = '" & sNewLocn & "', FAUSER = '" & emGetAuditInfo.Param("UserName") & "', FALCT = " & vDate & ", " _
+    & " FAEFTB = " & vsDate & " WHERE FANUMB = " & sItem & " "
+    DB.Execute(sSQL, sCols, sRows)
+    If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "", "F1201", Replace(sSQL, "'", "`"))
+    If Len(SysErr.Description) <> 0 Then
+      If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F1201", Replace(sSQL, "'", "`"))           
+    End If
+  End If
+
+  '-----------------------'
+  ' F1204TransferChildren '
+  '-----------------------'
+  Set emF1204TransferChildren = New EmbeddedProc
+  '
+  emF1204TransferChildren.Name       = "F1204TransferChildren"
+  emF1204TransferChildren.LogMode = LogNever
+  emF1204TransferChildren.DebugLog   = cJDELogPath
+  '
+  emF1204TransferChildren.Param("AssetItemNumber")          = sItem
+  emF1204TransferChildren.Param("TransferNumber")           = sNN2
+  emF1204TransferChildren.Param("ProgramId")                = "EP12115"
+  emF1204TransferChildren.Param("NewLocation")              = sNewLocn
+  emF1204TransferChildren.Param("DateBeginningEffective")   = sDate
+  emF1204TransferChildren.Param("TimeStampBeginning")       = sTime
+  emF1204TransferChildren.Param("EquipmentRateCode")        = emF1302RetrieveDefaults.Param("EquipmentRateCode")
+  emF1204TransferChildren.Param("EquipmentStatus")          = ""
+  emF1204TransferChildren.Param("CostCenter")               = sNewLocn
+  emF1204TransferChildren.Param("ObjectAccount")            = ""
+  emF1204TransferChildren.Param("Subsidiary")               = ""
+  emF1204TransferChildren.Param("MeterOriginalReading")     = 0
+  emF1204TransferChildren.Param("MeterCurrentReading")      = 0
+  emF1204TransferChildren.Param("AmountActualBilled")       = 0
+  emF1204TransferChildren.Param("AisleLocation")            = ""
+  emF1204TransferChildren.Param("BinLocation")              = ""
+  emF1204TransferChildren.Param("Subledger")                = ""
+  emF1204TransferChildren.Param("SubledgerType")            = ""
+  emF1204TransferChildren.Param("TransferActionCode")       = ""
+  emF1204TransferChildren.Param("UpdateRateCode")           = ""
+  emF1204TransferChildren.Param("UpdateBillingAmount")      = ""
+  emF1204TransferChildren.Param("OldLocation")              = sCurLocn
+  emF1204TransferChildren.Param("nChildrenTransferred")     = ""
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF1204TransferChildren.Name, "", emF1204TransferChildren)
+  '
+  If Not emF1204TransferChildren.Execute Then  ' Function call failed!
+    sErrDesc = emF1204TransferChildren.Name
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF1204TransferChildren.Name, "", emF1204TransferChildren, tmUser, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  Set emGetAuditInfo            = Nothing
+  Set emX0010GetNextNumber      = Nothing
+  Set emF1302RetrieveDefaults   = Nothing
+  Set emF1305RetrieveDefaults   = Nothing
+  Set emF1204Update             = Nothing
+  Set emF1204TransferChildren   = Nothing
+
+  GoTo ExitE1
+
+'-------'
+' Exits '
+'-------'
+World:
+  SM.GoToScreen("HFATR0100")
+  SM.SendTextAlt 20, 5, sCurLocn
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 37, 5, sNewLocn
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 2, 9, "2"
+  SM.SendTextAlt 4, 9, sItem
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 31, 9, Format(sDate,"mmddyy")
+  SM.SendKey KeyFieldExit
+  SM.SendTextAlt 40, 9, Left(sTime,4)
+  SM.SendKey KeyFieldExit
+  SM.SendKey KeyTab
+  SM.SendKey KeyTab
+  SM.SendKey KeyTab
+  SM.SendTextAlt 54, 9, sQty
+  SM.SendKey KeyEnter
+  '
+ExitE1:
+  If Len(Trim(sErrDesc)) > 0 Then
+    tmErrText = sErrDesc
+    ERP.RollbackTrans
+    Exit Function
+  End If
+  '
+  ERP.CommitTrans
+
+  Transaction = True
+
+End Function
+</Code>

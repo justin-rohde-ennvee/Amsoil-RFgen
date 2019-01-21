@@ -1,0 +1,370 @@
+﻿<Record FileDesc="SO - Ship Confirm (Multiple Lines)" FileVersion="5.0.8.0" Desc="SO - Ship Confirm (Multiple Lines)">
+<Param Name="tmCO" />
+<Param Name="tmMCU" />
+<Param Name="tmDOCO" />
+<Param Name="tmDCTO" />
+<Param Name="tmValCache" />
+<Param Name="tmCnt" />
+<Param Name="tmUSER" />
+<Param Name="tmPGM" />
+<Param Name="tmVERSION" />
+<Param Name="tmERRID" />
+<Param Name="tmERRTEXT" />
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: SO - SHIP CONFIRM (MULTIPLE LINES)
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'      WLG01 8/26/2013 KMD:  Jim Wagner added code to adjust the multiloc parent order quantity and multiloc ship variance to resolve the partial backorder problem.
+
+Option Explicit
+
+Private Const cFailOnWarnings = False
+Private Const cTNId           = "TSOSC0200"
+
+Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRef tmDOCO As Variant, ByRef tmDCTO As Variant, ByRef tmValCache As Variant, ByRef tmCnt As Variant, ByRef tmUSER As Variant, ByRef tmPGM As Variant, ByRef tmVERSION As Variant, ByRef tmERRID As Variant, ByRef tmERRTEXT As Variant) As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  Dim bSuccess      As Boolean
+  Dim nITM          As Long
+  Dim nJobNo        As Long
+  Dim nType         As Long
+  Dim nShip         As Long
+  Dim nCarr         As Long
+  Dim nLNID         As Currency
+  Dim nQty          As Currency
+  Dim nSOBK         As Currency
+  Dim nSOCN         As Currency
+  Dim nSOQS         As Currency
+  Dim nLine         As Currency
+  Dim nBatchNo      As Currency
+  Dim nQty2         As Currency
+  Dim nQtyTot       As Currency
+  Dim nMLSQSV       As Currency
+  Dim nMLSOQ        As Currency
+  Dim iCnt          As Integer
+  Dim iCnt2         As Integer
+  Dim sLITM         As String
+  Dim sLOCN         As String
+  Dim sUOM          As String
+  Dim sLOTN         As String
+  Dim sCOMM         As String
+  Dim sLNTY         As String
+  Dim sErrDesc      As String
+  Dim sGLDate       As String
+  Dim sTNDate       As String
+  Dim sSQL          As String
+  Dim sCols         As String
+  Dim sRows         As String
+  Dim sITM          As String
+  Dim sAITM         As String
+  Dim sUOM2         As String
+  Dim sErrID        As String
+  Dim sErrText      As String
+  Dim sDsc1         As String
+  Dim sSHPN         As String
+  Dim bHasLot       As Boolean
+  Dim bSerialized   As Boolean
+  Dim sUOMCheck     As String
+
+  Dim nExCost As Double
+  Dim nExPrice As Double
+
+  Dim emF42UI05EditLine     As New EmbeddedProc
+  Dim emGetAuditInfo        As New EmbeddedProc
+  Dim emShipConfirmEndDoc   As New EmbeddedProc
+  Dim emNothing             As New EmbeddedProc
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  Call SetEnvironment()  ' in case macro is running in TM
+  '
+  If Not gbIsE1 Then GoTo World
+  '
+  If Not ERP.BeginTrans Then  ' Force all business functions to use the same connection
+    TM.AbortTrans
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUSER, TM.QueueName, TM.SeqNo)
+    tmERRTEXT = "No ERP Handle - retry!"
+    Exit Function
+  End If
+  '
+  sTNDate = Format(Date, "mm/dd/yyyy")
+  sGLDate = cDemoGLDate
+  '
+  If (Len(sGLDate)=0) Then sGLDate = Format(Date, "mm/dd/yyyy")
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name       = "GetAuditInfo"
+  emGetAuditInfo.LogMode = LogNever
+  emGetAuditInfo.DebugLog   = cJDELogPath
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+
+  ' Loop data structure
+  nJobNo  = 0
+
+  For iCnt = 1 To tmCnt
+    ' extract values from data structure
+    sLITM = Trim(Ext(tmValCache,02, iCnt))          'long Item Number
+    nITM  = CLng(Ext(tmValCache,03, iCnt))    'short Item Number
+    sLOCN = Trim(Ext(tmValCache,04, iCnt))          'Location
+    nQty  = CCur(Ext(tmValCache,05, iCnt))    'Picked Qty.
+    sUOM  = Ext(tmValCache,06, iCnt)          'Transaction UOM
+    sLOTN = Trim(Ext(tmValCache,07, iCnt))          'Lot - / Serial number
+    sCOMM = Ext(tmValCache,08, iCnt)          'Commitment Flag S/H
+    nSOBK = CCur(Ext(tmValCache,09, iCnt))    'Backorder Qty.
+    nSOCN = CCur(Ext(tmValCache,10, iCnt))    'Canceled Qty
+    nSOQS = CCur(Ext(tmValCache,11, iCnt))    'Full Line Qty.
+    sLNTY = Ext(tmValCache,12, iCnt)          'Line Type
+    nLNID = CCur(Ext(tmValCache,13, iCnt))    'Line Number
+    nShip = CLng(Ext(tmValCache,14, iCnt))    'Ship To
+    nCarr = CLng(Ext(tmValCache,15, iCnt))    'Carrier
+
+
+    ' Get the shipment number
+    nLine = ConvDecimalsToSQL("LNID", nLNID)
+    sSQL = "select SDSHPN, SDAEXP, SDECST from F4211" & _
+           " where SDDOCO = " & tmDOCO & " and SDDCTO = '" & tmDCTO & "' and SDLNID = " & nLine
+    DB.Execute(sSQL, sCols, sRows)
+
+    sSHPN = DB.Extract(sCols, sRows, 1, "SDSHPN")   'Shipment Number
+    nExCost = ConvDecimalsFromSQL("ECST", DB.Extract(sCols, sRows, 1, "SDECST"))
+    nExPrice = ConvDecimalsFromSQL("AEXP", DB.Extract(sCols, sRows, 1, "SDAEXP"))
+
+
+    ' Get default information for this item
+    GetItemInfo(tmMCU, sLITM, cTNId, nITM, sAITM, sUOM, sUOM2, nQty, nQty2)
+    sUOMCheck = sUOM
+    Validate_Item(tmMCU, sLITM, CStr(nITM), sLITM,sAITM, sDsc1, sUOMCheck, nType, bHasLot, bSerialized, False, True)
+
+    nMLSQSV = 0
+    nMLSOQ  = 0
+    '-----------------'
+    ' F42UI05EditLine '
+    '-----------------'
+    'C/2
+    emF42UI05EditLine.Name = "F42UI05EditLine"
+    emF42UI05EditLine.Param("RecordWritten")                  = "1"
+    emF42UI05EditLine.Param("OrderNumber")                    = tmDOCO
+    emF42UI05EditLine.Param("OrderType")                      = tmDCTO
+    emF42UI05EditLine.Param("OrderCompany")                   = tmCO
+    emF42UI05EditLine.Param("LineNumber")                     = nLNID
+    emF42UI05EditLine.Param("BranchPlant")                    = tmMCU
+    emF42UI05EditLine.Param("EnteredShipQuantity")            = nSOQS + nSOBK + nSOCN 'Full Line Qty
+    emF42UI05EditLine.Param("EnteredBackorderQuantity")       = nSOBK
+    emF42UI05EditLine.Param("EnteredCancelQuantity")          = nSOCN
+    emF42UI05EditLine.Param("EnteredLineType")                = sLNTY
+    emF42UI05EditLine.Param("ActualDeliveryDate")             = sTNDate
+    emF42UI05EditLine.Param("ProgramID")                      = "EP4205"
+    emF42UI05EditLine.Param("WriteIfWarning")                 = "1"
+    emF42UI05EditLine.Param("Description")                    = sDsc1
+    emF42UI05EditLine.Param("JobnumberA")                     = nJobNo
+    emF42UI05EditLine.Param("UserId")                         = tmUSER
+    emF42UI05EditLine.Param("Version")                        = tmVERSION
+    emF42UI05EditLine.Param("ActionCode")                     = "C"
+    emF42UI05EditLine.Param("ModeProcessing")                 = "2"
+    emF42UI05EditLine.Param("BULK_TransactionTime")           = 0
+    emF42UI05EditLine.Param("Original_CompanyKeyOrderNo")     = tmCO
+    emF42UI05EditLine.Param("Original_OrderType2")            = tmDCTO
+    emF42UI05EditLine.Param("Original_OrderNumber")           = tmDOCO
+    emF42UI05EditLine.Param("Original_LineNumber_3")          = nLNID
+    emF42UI05EditLine.Param("UnitOfMeasureAsInput")           = sUOM
+    emF42UI05EditLine.Param("AddressNumberShipTo")            = nShip
+    emF42UI05EditLine.Param("Carrier")                        = nCarr
+    emF42UI05EditLine.Param("LineType_2")                     = sLNTY
+    emF42UI05EditLine.Param("ComputerID")                     = emGetAuditInfo.Param("Workstation_UserId")
+    emF42UI05EditLine.Param("UnitOfMeasureSecondary")         = sUOM2
+    emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = nMLSQSV
+    emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = nMLSOQ
+    emF42UI05EditLine.Param("CheckExpirationDate")            = "0"
+    emF42UI05EditLine.Param("CheckSellByDate")                = "0"
+    emF42UI05EditLine.Param("CheckBestBeforeDate")            = "0"
+
+    emF42UI05EditLine.Param("UnitsSecondaryQtyOr") = nQty2
+
+    ' Added
+'    emF42UI05EditLine.Param("ExtendedCost")            = CStr(nExCost)
+'    emF42UI05EditLine.Param("ExtendedPrice")            = CStr(nExPrice)
+
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF42UI05EditLine.Name, "", emF42UI05EditLine)
+    If Not emF42UI05EditLine.Execute Then
+      sErrDesc = "emF42UI05EditLine  C/2"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF42UI05EditLine.Name, "", emF42UI05EditLine, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+    If emF42UI05EditLine.Param("ErrorConditions") = "2" Then
+      sErrDesc = "emF42UI05EditLine  C/2 - Function returned Error condition 2"
+      GoTo ExitE1
+    End If
+    nJobNo = emF42UI05EditLine.Param("JobnumberA")
+    ' find total qty. confirmed
+    nQtyTot = 0
+    Dim nMultiCount As Long
+    nMultiCount = 0
+    For iCnt2 = 1 To tmCnt
+      If CCur(Ext(tmValCache,13, iCnt2)) = nLNID Then     'Line Number
+        nQtyTot  = nQtyTot + CCur(Ext(tmValCache,05, iCnt2))    'Picked Qty.
+        nMultiCount = nMultiCount + 1
+      End If
+    Next iCnt2
+    nMLSQSV = (nQtyTot - (nSOQS) )
+
+    If nMultiCount > 1 Then
+      nMLSOQ = ((nQty + nSOBK + nSOCN) - nMLSQSV)
+
+    Else
+      nMLSOQ = (nQtyTot + nSOBK + nSOCN) - nMLSQSV
+    End If
+
+'    If nMLSQSV = 0 Then
+''      nMLSOQ = nQty
+'      nMLSOQ = nSOQS + nSOBK + nSOCN
+'    Else
+''      nMLSOQ = (nSOQS -nQtyTot +1)
+'      nMLSOQ = nSOBK + nSOCN + nQty
+'    End If
+    If sLOCN = "" Then
+      sLOCN = " "
+    End If
+    'P/1
+    emF42UI05EditLine.Param("Location")                       = sLOCN
+    emF42UI05EditLine.Param("Lot")                            = sLOTN
+    emF42UI05EditLine.Param("EnteredShipQuantity")            = nQty    'Picked Qty.
+    emF42UI05EditLine.Param("ActionCode")                     = "P"
+    emF42UI05EditLine.Param("ModeProcessing")                 = "1"
+
+    emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = nMLSQSV
+    emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = nMLSOQ
+
+    emF42UI05EditLine.Param("TRAN_ShipmentNumber")            = sSHPN
+    If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF42UI05EditLine.Name, "", emF42UI05EditLine)
+    If Not emF42UI05EditLine.Execute Then
+      sErrDesc = "emF42UI05EditLine  P/1"
+      If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF42UI05EditLine.Name, "", emF42UI05EditLine, tmUSER, TM.QueueName, TM.SeqNo)
+      GoTo ExitE1
+    End If
+    If emF42UI05EditLine.Param("ErrorConditions") = "2" Then
+      sErrDesc = "emF42UI05EditLine  P/1 - Function returned Error condition 2"
+      GoTo ExitE1
+    End If
+    ' Check if next items belongs to same SO line
+    If iCnt < tmCnt Then
+      Do While CCur(Ext(tmValCache,13, iCnt +1))  = nLNID  'same Line Number in next element?
+        iCnt = iCnt +1
+        sLOCN = Ext(tmValCache,04, iCnt)          'Location
+        nQty  = CCur(Ext(tmValCache,05, iCnt))    'Picked Qty.
+        sLOTN = Ext(tmValCache,07, iCnt)          'Lot - / Serial number
+        'S/1
+        emF42UI05EditLine.Param("LineNumber")                     = Val(emF42UI05EditLine.Param("LineNumber")) + .001
+        emF42UI05EditLine.Param("Location")                       = sLOCN
+        emF42UI05EditLine.Param("Lot")                            = sLOTN
+        emF42UI05EditLine.Param("EnteredShipQuantity")            = nQty    'Picked Qty.
+        emF42UI05EditLine.Param("ActionCode")                     = "S"
+        emF42UI05EditLine.Param("ModeProcessing")                 = "1"
+        emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = 0 'nMLSQSV
+        emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = 0 'nMLSOQ
+        emF42UI05EditLine.Param("EnteredBackorderQuantity")       = 0 '(ADDED)
+        emF42UI05EditLine.Param("EnteredCancelQuantity")          = 0 '(ADDED KMD 8/26/2013)
+'        emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = 0
+'        emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = 0
+        If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF42UI05EditLine.Name, "", emF42UI05EditLine)
+        If Not emF42UI05EditLine.Execute Then
+          sErrDesc = "emF42UI05EditLine  S/1 Loop " & CStr(iCnt)
+          If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF42UI05EditLine.Name, "", emF42UI05EditLine, tmUSER, TM.QueueName, TM.SeqNo)
+          GoTo ExitE1
+        End If
+        If emF42UI05EditLine.Param("ErrorConditions") = "2" Then
+          sErrDesc = "emF42UI05EditLine S/1 Loop " & CStr(iCnt) & " - Function returned Error condition 2"
+          GoTo ExitE1
+        End If
+        If iCnt +1 > tmCnt Then Exit Do
+      Loop
+    End If
+  Next iCnt
+
+  '-------------------'
+  ' ShipConfirmEndDoc '
+  '-------------------'
+  emShipConfirmEndDoc.Name       = "ShipConfirmEndDoc"
+  emShipConfirmEndDoc.LogMode = LogNever
+  emShipConfirmEndDoc.DebugLog   = cJDELogPath
+  '
+  emShipConfirmEndDoc.Param("JobNumber")          = emF42UI05EditLine.Param("JobnumberA")
+  emShipConfirmEndDoc.Param("ComputerId")         = emGetAuditInfo.Param("Workstation_UserId")
+  emShipConfirmEndDoc.Param("ErrorCondition")     = " "
+  emShipConfirmEndDoc.Param("UserId")             = emGetAuditInfo.Param("UserName")
+  emShipConfirmEndDoc.Param("R42565Version")      = GetProcOpt(tmPGM,tmVERSION, "8;2")
+  emShipConfirmEndDoc.Param("TRANSyncEndDoc")     = " "
+  emShipConfirmEndDoc.Param("mTRANJobsNumber")    = 0
+  emShipConfirmEndDoc.Param("P4205Version")       = tmVERSION
+  '
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emShipConfirmEndDoc.Name, "", emShipConfirmEndDoc)
+
+'  If Not emShipConfirmEndDoc.Execute Then
+'    sErrDesc = "ShipConfirmEndDoc"
+'    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emShipConfirmEndDoc.Name, "", emShipConfirmEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+'    GoTo ExitE1
+'  End If
+
+  ' Ignore XPI Error Version >= 8.12
+  emShipConfirmEndDoc.Execute
+  If Len(Trim(emShipConfirmEndDoc.Param("ErrorCondition"))) > 0 Then
+    sErrDesc = "ShipConfirmEndDoc"
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emShipConfirmEndDoc.Name, "", emShipConfirmEndDoc, tmUSER, TM.QueueName, TM.SeqNo)
+    GoTo ExitE1
+  End If
+  '
+  bSuccess = True
+
+'-------'
+' Exits '
+'-------'
+ExitE1:
+  Set emGetAuditInfo        = Nothing
+  Set emF42UI05EditLine     = Nothing
+  Set emShipConfirmEndDoc   = Nothing
+  '
+  tmERRTEXT = sErrDesc
+  '
+  If Not bSuccess Then
+    ERP.RollbackTrans
+  Else
+    ERP.CommitTrans
+  End If
+
+  ' Offline inventory
+  If gbOfflineEnabled Then
+    If bSuccess Then
+      DeleteOI(TM.QueueName,TM.SeqNo)
+    Else
+      DeleteOI(TM.QueueName,TM.SeqNo, tmUSER, "Unable to execute " & cTNId & "; reason: " & vbCrLf & sErrDesc, Format(Date, "YYYYMMDD") & Format(Time, "HHNNSS"))
+    End If
+  End If
+  '
+  Transaction = bSuccess
+
+  Exit Function
+  '
+  '
+World:
+
+End Function
+</Code>

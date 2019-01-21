@@ -1,0 +1,14 @@
+﻿<Record FileDesc="Picker Main Menu" FileVersion="5.0.8.0" Desc="Picker Main Menu" Heading="[Picker Main Menu]">
+<MenuItem Id="-" Desc="-- Basics --" />
+<MenuItem Id="FLPCP0100" Desc="1-Create Plate" Options="-TranferYN=N" />
+<MenuItem Id="FLPAI0100" Desc="2-Attach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPDI0100" Desc="3-Detach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPTL0100" Desc="4-Transfer Location" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="-" Desc="-- Daily  --" />
+<MenuItem Id="FLPPC0100" Desc="6-Pick to Plate" Options="-Pgm=P4205 -Vers=ZJDE0001 -PgmIT=P4113 -VersIT=ZJDE0001" />
+<MenuItem Id="FLPSC0100" Desc="7-Ship Confirm" Options="-Pgm=P4205 -Vers=ZJDE0002" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQI0100" Desc="8-LP - Inquiry" />
+<MenuItem Id="FLPHI0900" Desc="9-History Inquiry" />
+</Record>

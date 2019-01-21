@@ -1,0 +1,780 @@
+﻿<Record FileDesc="LP - Unpick LP" FileVersion="5.0.8.0" Desc="LP - Unpick LP" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;lblLPQty&vm;lblLPLOTN&vm;lblLPLocn&vm;txtQty&vm;txtAccept" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="3" Name="lblLPDesc" />
+<SchemaParam Linked="0" Attr="4" Name="lblLPQty" />
+<SchemaParam Linked="0" Attr="5" Name="lblLPLOTN" />
+<SchemaParam Linked="0" Attr="6" Name="lblLPLocn" />
+<SchemaParam Linked="0" Attr="7" Name="txtQty" />
+<SchemaParam Linked="0" Attr="8" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="151" Height="22" AnchorRight="41" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="127" Height="22" AnchorRight="65" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPDesc" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="79" Height="22" AnchorRight="113" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPQty" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="71" Height="22" AnchorRight="121" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPLOTN" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="132" Width="79" Height="22" AnchorRight="113" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPLOTN" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPLocn" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="79" Height="22" AnchorRight="113" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPLocn" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQty" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="154" Width="39" Height="22" AnchorRight="185" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="87" Height="22" AnchorRight="105" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="215" Height="22" AnchorRight="17" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="&lt;Press Enter To Unpick LP&gt;" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="176" Width="0" Height="22" AnchorRight="168" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Unpick]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: UNPICK LP
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC = "LP Unpick"
+Private Const cTNId     = "FLPUP0100"
+'
+Private msPgm        As String
+Private msVersion    As String
+Private msDOCTYPE    As String
+Private msAllowHold  As String
+Private gsLPSource   As String
+Private miMoveCtr    As Integer
+Private msMoveItems  As String
+Private msMoveQtys   As String
+Private msMoveUoms   As String
+Private msMoveLotn   As String
+Private msLocn       As String
+Private msToLocn     As String
+Private mnQtyOnLP    As Long
+Private sQtyList     As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sHeader As String
+  Dim sLocn   As String
+  '
+  Call SetDisplay()
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+
+  txtMCU.Visible = True
+  txtLPID.Visible = False
+  txtAccept.Visible = False
+
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLPQty.Caption = ""
+
+  lblLPDesc.Caption = ""
+  lblLPDesc.Label.BackColor1 = cFieldDefaultBC
+  lblLPDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblLPLocn.Caption = ""
+  lblLPLocn.Label.BackColor1 = cFieldDefaultBC
+  lblLPLocn.Label.ForeColor = cFieldDefaultFC
+  '
+  lblLPQty.Caption = ""
+  lblLPQty.Label.BackColor1 = cFieldDefaultBC
+  lblLPQty.Label.ForeColor = cFieldDefaultFC
+
+  lblLPLOTN.Caption = ""
+  lblLPLOTN.Label.BackColor1 = cFieldDefaultBC
+  lblLPLOTN.Label.ForeColor = cFieldDefaultFC
+
+  txtQty.Visible = False
+  '
+'  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+'  msPgm     = App.GetValue("Pgm")
+'  msVersion = App.GetValue("Vers")
+  '
+  ' get DocType from Proc.Opt.
+'  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+
+'  If gbPOError Then
+'    App.ExitForm
+'    Exit Sub
+'  End If
+  '
+  ' Default location if required from Menu
+  '
+'  sLocn = Trim(UCase(App.GetValue("From")))
+'  If sLocn <> "NONE" And sLocn <> "" Then
+'    msLocn = sLocn
+'  End If
+'  sLocn = Trim(UCase(App.GetValue("To")))
+'  If sLocn <> "NONE" And sLocn <> "" Then
+'    msToLocn = sLocn
+'  End If
+  '
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sITEM    As String
+  Dim sLPArray As String
+  Dim iArray   As Integer
+  Dim iRow As Integer
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim sSql102 As String
+  Dim sCols102 As String
+  Dim sRows102 As String
+
+  Dim sSqlLNID As String
+  Dim sColsLNID As String
+  Dim sRowsLNID As String
+
+  Dim x As Integer
+  Dim y As Integer
+  '
+  iRow = 9
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+  '
+  '--------------------------------------------------------------------------
+  ' Transfer LP
+  '
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+  '
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+  '
+  uLP101.sLMLPID = App.GetValue("tmLPID")
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    App.MsgBox(GetMsg(104))
+    If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+  End If
+
+'  	Clear LMRDOCO, LMRDCTO, LMRNXTR For All F55101 records
+
+  uLP101.sLMRDOCO = ""
+  uLP101.sLMRDCTO = ""
+  uLP101.sLMRNXTR = ""
+  uLP101.sLMPALP = ""
+  X_LP101("C",uLP101)
+
+'	If pallet, clear from children records As well
+  If Trim(App.GetValue("tmTYPE") = "L") Then
+    sSQL = "Select LMLPID from F55101 where LMPALP = '" & Trim(uLP101.sLMLPID) & "' or LMLPID = '" & Trim(uLP101.sLMLPID) & "'"
+    DB.Execute(sSQL, sCols, sRows)
+    For x = 1 To DB.Count(sRows)
+      Call LP101_Reset(uLP101)
+
+      uLP101.sLMLPID = Trim(DB.Extract(sCols, sRows, x, "LMLPID"))
+      X_LP101("I",uLP101)
+      uLP101.sLMRDOCO = ""
+      uLP101.sLMRDCTO = ""
+      uLP101.sLMRNXTR = ""
+      X_LP101("C",uLP101)
+
+      ' Get all LNID's from the Pallet if there were items directly on it.
+
+      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "' and LDRDCTO like 'S%'
+      DB.Execute(sSqlLNID, sColsLNID, sRowsLNID)
+
+      For y = 1 To DB.Count(sRowsLNID)
+        Call LP102_Reset(uLP102)
+        uLP102.sLDLPID = Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID"))
+        uLP102.nLDLNID = Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID"))
+
+        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "' and LDLNID = " & Trim(uLP102.nLDLNID) & " and LDRDCTO like 'S%' order by LDDATE DESC, LDTIME DESC"
+        DB.Execute(sSql102, sCols102, sRows102)
+
+        If Trim(DB.Extract(sCols102, sRows102, 1, "LDRDCTO")) = "ST" Then
+          X_LP102("I",uLP102)
+          uLP102.sLDRDOCO = ""
+          uLP102.sLDRDCTO = ""
+          uLP102.sLDRNXTR = ""
+          X_LP102("C",uLP102)
+        Else
+          uLP102.sLDUOM = Trim(DB.Extract(sCols102, sRows102, 1, "LDUOM"))
+          uLP102.nLDUORG = Val(DB.Extract(sCols102, sRows102, 1, "LDUORG"))
+          uLP102.sLDLOTN = Trim(DB.Extract(sCols102, sRows102, 1, "LDLOTN"))
+          uLP102.sLDLITM = Trim(DB.Extract(sCols102, sRows102, 1, "LDLITM"))
+          X_LP102("A",uLP102)
+        End If
+      Next
+    Next
+  Else
+    uLP102.sLDLPID = uLP101.sLMLPID
+    sSql102 = "Select * from F55102 where LDLPID = '" & Trim(uLP101.sLMLPID) & "'"
+    DB.Execute(sSql102, sCols102, sRows102)
+    If DB.Count(sRows102) = 0 Then
+      Call LP102_Reset(uLP102)
+      sSql102 = "Select * from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "'"
+      DB.Execute(sSql102, sCols102, sRows102)
+      uLP102.sLDLPID = Trim(DB.Extract(sCols102, sRows102, 1, "LDLPID"))
+      uLP102.nLDLNID = Trim(DB.Extract(sCols102, sRows102, 1, "LDLNID"))
+      uLP102.sLDUOM = Trim(DB.Extract(sCols102, sRows102, 1, "LDUOM"))
+      uLP102.nLDUORG = Val(App.GetValue("tmQty"))
+      uLP102.sLDLOTN = Trim(DB.Extract(sCols102, sRows102, 1, "LDLOTN"))
+      uLP102.sLDLITM = Trim(DB.Extract(sCols102, sRows102, 1, "LDLITM"))
+      X_LP102("A",uLP102)
+    Else
+      Call LP102_Reset(uLP102)
+      uLP102.sLDLPID = Trim(DB.Extract(sCols102, sRows102, 1, "LDLPID"))
+      X_LP102("I", uLP102)
+      If (App.GetValue("tmSTYPE") <> "ST") Then
+        uLP102.nLDUORG = uLP102.nLDUORG + Val(App.GetValue("tmQty"))
+      End If
+      uLP102.sLDRDOCO = ""
+      uLP102.sLDRDCTO = ""
+      uLP102.sLDRNXTR = ""
+      X_LP102("C",uLP102)
+    End If
+  End If
+  '
+  Screen.Bell(1)
+
+  mnQtyOnLP = 0
+  txtQty.Visible = False
+  txtMCU.Visible = True
+  txtLPID.Visible = False
+  txtAccept.Visible = False
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLPQty.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLPLOTN.Caption = ""
+End Sub
+
+Private Sub txtAccept_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",   "")
+  App.SetValue("tmMCU",  "")
+  App.SetValue("tmNMCU", "")
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  '
+  txtLPID.Visible = True
+  Cancel = False
+  '
+
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLPID",  "")
+  App.SetValue("tmTYPE",  "")
+  App.SetValue("tmMCU",   "")         ' Parent MCU
+  App.SetValue("tmLOCN",  "")         ' Parent Location
+  '
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLPQty.Caption  = ""
+  lblLPLocn.Caption = ""
+
+  txtLPID.Visible = False
+
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL    As String
+  Dim sSql2   As String
+  Dim sSqlDetail  As String
+  Dim sCols   As String
+  Dim sCols2  As String
+  Dim sColsDetail As String
+  Dim sRows   As String
+  Dim sRows2  As String
+  Dim sRowsDetail As String
+
+  Dim sSqlInv As String
+  Dim sColsInv As String
+  Dim sRowsInv As String
+  Dim bInventoryExists As Boolean
+  Dim sSqlJDEInv As String
+  Dim sColsJDEInv As String
+  Dim sRowsJDEInv As String
+
+  Dim sSqlItem As String
+  Dim sColsItem As String
+  Dim sRowsItem As String
+
+  Dim sSqlLNID As String
+  Dim sColsLNID As String
+  Dim sRowsLNID As String
+
+  Dim sSql102 As String
+  Dim sCols102 As String
+  Dim sRows102 As String
+
+  Dim sMCU    As String
+  Dim sOwner  As String
+  Dim sLocn   As String
+  Dim x As Integer
+  Dim y As Integer
+  Dim z As Integer
+  Dim sItemList As String
+  Dim nNumItems As Integer
+  Dim nTotalUnits As Integer
+  Dim sDirectItems As String
+  Dim nPos As Long
+  Dim sFirstItem As String
+
+  Dim nCount As Long
+  Dim sLOTN As String
+  Dim nNumUniques As Long
+  Dim sKey As String
+  Dim iFnd As Long
+  Dim nQty As Long
+  Dim nAvail As Long
+
+  Dim uLP101    As LP101Data       ' create LP101 Structure
+  '
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  '
+  uLP101.sLMLPID = Rsp
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    App.MsgBox(GetMsg(104))
+    Cancel = True
+    Exit Sub
+  End If
+
+  sSQL = "select * from F55101 where LMLPID = '"& Rsp & "' and LMRDCTO like 'S%'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (DB.Count(sRows) = 0) Then
+    sSQL = "select * from F55101H where LMLPID = '"& Rsp & "' and LMRDCTO like 'S%'"
+    DB.Execute(sSQL, sCols, sRows)
+    If DB.Count(sRows) = 0 Then
+      App.MsgBox("Can Not Unpick LP: LP Was Never Picked From.  Use create/attach if you are unpicking to a different LP.")
+      Cancel = True
+      Exit Sub
+    End If
+  End If
+  If uLP101.sLMTYPE = "P" Then
+    sSqlDetail = "select * from F55102 where LDLPID = '"& Rsp & "' and LDRDCTO like 'S%'"
+    DB.Execute(sSqlDetail, sColsDetail, sRowsDetail)
+
+    If DB.Count(sRowsDetail) = 0 Then
+      nCount = 0
+      sSqlDetail = "select * from F55102H where LDLPID = '"& Rsp & "' and LDRDCTO like 'S%'"
+      DB.Execute(sSqlDetail, sColsDetail, sRowsDetail)
+      If DB.Count(sRowsDetail) = 0 Then
+        App.MsgBox("Record of Previous Lot Number Unavailable")
+      End If
+    Else
+      nCount = Val(DB.Extract(sColsDetail, sRowsDetail, 1, "LDUORG"))
+    End If
+    sLOTN = Trim(DB.Extract(sColsDetail,sRowsDetail, 1,"LDLOTN"))
+    lblLPLOTN.Caption = "Lot: " & sLOTN
+  End If
+  '
+  lblLPLocn.Caption = "Locn: " & uLP101.sLMLOCN
+
+  '
+  App.SetValue("tmLPID",  Rsp)
+  App.SetValue("tmTYPE",  uLP101.sLMTYPE)
+  App.SetValue("tmMCU",  uLP101.slmMCU)          ' Parent MCU
+  App.SetValue("tmLOCN", uLP101.sLMLOCN)         ' Parent Location
+  App.SetValue("tmSTYPE", uLP101.sLMRDCTO)
+  '
+
+  '
+  sMCU = App.GetValue("tmMCU")
+  sLocn = uLP101.sLMLOCN
+  '
+  lblLPLocn.Caption = "Locn: " & FormatLocnDisplay(sLocn, sMCU)
+  '
+
+  ' If it is a pallet "L" type - check to make sure inventory exists in JDE to transfer.
+
+  If uLP101.sLMRDCTO = "ST" Then
+    bInventoryExists = True
+    sSqlInv = " select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) as RFGQTY from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & Rsp & "' or LMPALP = '" & Rsp & "' group by LDLITM, LMLOCN, LDLOTN"
+
+    DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+    For x=1 To DB.Count(sRowsInv)
+      sSqlItem = "select IMITM from F4101 where IMLITM = '" & Trim(DB.Extract(sColsInv,sRowsInv,x,"LDLITM")) & "'"
+      DB.Execute(sSqlItem, sColsItem, sRowsItem)
+
+      sSqlJDEInv = "select sum(LIPQOH) as JDEQTY from F41021 where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
+                  " and LILOCN = '" & Trim(DB.Extract(sColsInv, sRowsInv, x, "LMLOCN")) & "' and " & _
+                  "LILOTN = '" & Trim(DB.Extract(sColsInv, sRowsInv, x, "LDLOTN")) & "'"
+      DB.Execute(sSqlJDEInv, sColsJDEInv, sRowsJDEInv)
+      If Val(DB.Extract(sColsInv, sRowsInv, x, "RFGQTY")) > Val(DB.Extract(sColsJDEInv, sRowsJDEInv, 1, "JDEQTY")) Then
+        bInventoryExists = False
+      End If
+    Next
+
+    If Not bInventoryExists Then
+      App.MsgBox("Not enough JDE Inventory to Unpick. Cancel the Line in JDE before attempting to Unpick License Plate")
+      Cancel = True
+      Exit Sub
+    End If
+  Else 'If it is a sales order type
+
+    sSQL = "Select LMLPID from F55101 where LMPALP = '" & Trim(uLP101.sLMLPID) & "' or LMLPID = '" & Trim(uLP101.sLMLPID) & "'"
+    DB.Execute(sSQL, sCols, sRows)
+    For x = 1 To DB.Count(sRows)
+
+      ' Get all LNID's from the Pallet if there were items directly on it.
+
+      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(DB.Extract(sCols, sRows, x, "LMLPID")) & "' and LDRDCTO like 'S%'
+      DB.Execute(sSqlLNID, sColsLNID, sRowsLNID)
+
+      For y = 1 To DB.Count(sRowsLNID)
+
+
+        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID")) & "' and LDLNID = " & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID")) & " and LDRDCTO like 'S%' order by LDDATE DESC, LDTIME DESC"
+        DB.Execute(sSql102, sCols102, sRows102)
+        sQtyList = ""
+        nNumUniques = 0
+        sKey = Trim(DB.Extract(sCols102, sRows102, 1, "LDLITM")) & ";" & Trim(DB.Extract(sCols102, sRows102, 1, "LDLOTN")) & ";"
+  '
+        iFnd = Locate(sKey, sQtyList,1)
+        '
+        If (iFnd <> 0) Then     'add qty
+          nQty = CCur(Ext(sQtyList, 4, iFnd))
+          nQty = nQty + Val(DB.Extract(sCols102, sRows102, 1, "LDUORG"))
+          sQtyList = Rep(sQtyList, 4, iFnd, nQty)
+        Else
+          sQtyList = Rep(sQtyList, 1, -1, sKey)                      'unique key
+          sQtyList = Rep(sQtyList, 2, -1, Trim(DB.Extract(sCols102, sRows102, 1, "LDLITM")))
+          sQtyList = Rep(sQtyList, 3, -1, Trim(DB.Extract(sCols102, sRows102, 1, "LDLOTN")))
+          sQtyList = Rep(sQtyList, 4, -1, Val(DB.Extract(sCols102, sRows102, 1, "LDUORG")))     'Picked Qty.
+          nNumUniques = nNumUniques + 1
+        End If
+      Next y
+    Next x
+
+    For x = 1 To nNumUniques
+      sSqlItem = "select IMITM from F4101 where IMLITM = '" & Ext(sQtyList, 2, x) & "'"
+      DB.Execute(sSqlItem, sColsItem, sRowsItem)
+
+      sSqlJDEInv = "select sum(LIPQOH) as JDEQTY from F41021 where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
+                  " and LILOCN = '" & App.GetValue("tmLOCN") & "' and " & _
+                  "LILOTN = '" & Ext(sQtyList, 3, x) & "'"
+      DB.Execute(sSqlJDEInv, sColsJDEInv, sRowsJDEInv)
+
+      nAvail = Val(DB.Extract(sColsJDEInv, sRowsJDEInv, 1, "JDEQTY"))
+
+      If nAvail < Val(Ext(sQtyList, 4, x)) Then
+        App.MsgBox("Inventory does not exist in JDE to restore this pallet.  Cancel the sales order lines before continuing")
+        Cancel = True
+        Exit Sub
+      End If
+
+    Next
+
+    sSQL = "select * from F55101 inner join F55102 on LDLPID = LMLPID where LDLPID = '" & Trim(Rsp) & "' or LMPALP = '" & Trim(Rsp) & "'"
+
+    DB.Execute(sSQL, sCols, sRows)
+    If DB.Count(sRows) > 0 Then
+      App.MsgBox("This Pallet Has Already Been Unpicked or Was Never Fully Picked.")
+      Cancel = True
+      Exit Sub
+    End If
+
+  End If
+
+
+  '  Calculate and Display inventory info about the Pallet
+  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
+  DB.Execute(sSql2, sCols2, sRows2)
+  If (DB.Count(sRows2) > 0 ) Then
+    If uLP101.sLMTYPE = "L" Then
+      sDirectItems = "+ Items On Pallet.
+    Else
+      sDirectItems = Trim(DB.Extract(sCols2, sRows2, 1, "EachSum"))
+    End If
+  End If
+
+  For x = 1 To DB.Count(sRows2)
+    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+      nNumItems = nNumItems + 1
+    End If
+  Next x
+
+  sSQL = "select LMLPID from F55101 where LMPALP = '" & Rsp & "' or LMLPID = '" & Rsp & "'"
+
+  DB.Execute(sSQL, sCols, sRows)
+  nTotalUnits = DB.Count(sRows)
+  For y = 1 To DB.Count(sRows)
+    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
+    DB.Execute(sSql2, sCols2, sRows2)
+
+    For x = 1 To DB.Count(sRows2)
+      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+        nNumItems = nNumItems + 1
+      End If
+    Next x
+  Next y
+
+'  App.MsgBox(sItemList & " " & nNumItems)
+
+  '
+  If nNumItems > 1 Or nNumUniques > 1 Then
+    lblLPDesc.Caption = "Item: Mixed"
+    lblLPQty.Caption = "Count: " & nTotalUnits & " Units " ' & sDirectItems
+    txtQty.DisplayOnly = True
+    txtAccept.Visible = True
+    App.SetFocus("txtAccept", True)
+  Else
+    nPos = InStr(sItemList, "***") - 1
+    sFirstItem = Trim(Mid(sItemList, 1, nPos))
+'    sSQL = "select LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & Rsp & "' "
+'    DB.Execute(sSQL, sCols, sRows)
+    lblLPDesc.Caption = "Item: " & sFirstItem
+    If (Trim(Ext(sQtyList, 2, 1)) <> "" ) Then
+      lblLPDesc.Caption = "Item: " & Trim(Ext(sQtyList, 2, 1))
+    End If
+    If uLP101.sLMTYPE = "L" Then
+      lblLPQty.Caption = "Count: " & nTotalUnits & " Units " ' & sDirectItems
+      txtQty.DisplayOnly = True
+      txtAccept.Visible = True
+      App.SetFocus("txtAccept", True)
+    Else
+      If sDirectItems = "" Then
+        sDirectItems = "0"
+      End If
+      lblLPQty.Caption = "Qty: " & sDirectItems & " EA"
+      mnQtyOnLP = Val(sDirectItems)
+      If (App.GetValue("tmSTYPE") <> "ST") Then
+        txtQty.DisplayOnly = False
+        txtQty.Visible = True
+      Else
+        txtQty.DisplayOnly = True
+        txtAccept.Visible = True
+        App.SetFocus("txtAccept", True)
+      End If
+    End If
+  End If
+
+  Cancel = False
+End Sub
+
+Private Sub txtLPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  Dim oList As New SearchList
+
+  sSQL = "Select LMLPID, LMTYPE, LMPSTB, LMDSC1 from F55101" & _
+         " where LMMCU = '"& App.GetValue("tmMCU") &"' and LMPALP = '' order by LMLPID"
+  '
+
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "LPID", 11, CenterRight, True)
+  oList.SetColumn(2, "Type",  4, CenterLeft, True)
+  oList.SetColumn(3, "Sts",  03, CenterLeft, True)
+  oList.SetColumn(4, "Desc", 20, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+End Sub
+
+
+Private Sub txtQty_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim sSqlItem As String
+  Dim sColsItem As String
+  Dim sRowsItem As String
+
+  Dim sSqlJDEInv As String
+  Dim sColsJDEInv As String
+  Dim sRowsJDEInv As String
+
+  Dim nMax As Long
+  Dim nCurrent As Long
+  Dim nAvail As Long
+
+  If Val(Rsp) <= 0 Then
+    Cancel = True
+    Exit Sub
+  End If
+
+  sSQL = "Select max(LDUORG) as QtyMax from F55102H where ldlpid = '" & Trim(App.GetValue("tmLPID")) & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  nMax = Val(DB.Extract(sCols, sRows, 1, "QtyMax"))
+
+  sSQL = "Select * from F55101 inner join F55102 on LMLPID = LDLPID where LDLPID = '" & Trim(App.GetValue("tmLPID")) & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    nCurrent = 0
+  Else
+    nCurrent = Val(DB.Extract(sCols, sRows, 1, "LDUORG"))
+  End If
+
+  sSqlItem = "select IMITM from F4101 where IMLITM = '" & Trim(DB.Extract(sCols,sRows,1,"LDLITM")) & "'"
+  DB.Execute(sSqlItem, sColsItem, sRowsItem)
+
+  sSqlJDEInv = "select sum(LIPQOH) as JDEQTY from F41021 where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
+              " and LILOCN = '" & Trim(DB.Extract(sCols, sRows, 1, "LMLOCN")) & "' and " & _
+              "LILOTN = '" & Trim(DB.Extract(sCols, sRows, 1, "LDLOTN")) & "'"
+  DB.Execute(sSqlJDEInv, sColsJDEInv, sRowsJDEInv)
+
+  nAvail = Val(DB.Extract(sColsJDEInv, sRowsJDEInv, 1, "JDEQTY"))
+
+  If (nCurrent + Val(Rsp) > nAvail) And (DB.Count(sRows) > 0) Then
+    App.MsgBox("Cancel the line in JDE before unpicking the case")
+    Cancel = True
+    Exit Sub
+  End If
+
+  If nCurrent + Val(Rsp) > nMax Then
+    App.MsgBox("Cannot unpick to exceed the original case maximum for this item")
+    Cancel = True
+    Exit Sub
+  End If
+  App.SetValue("tmQty", Val(Rsp))
+End Sub
+</Code>

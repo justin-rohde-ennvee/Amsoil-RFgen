@@ -1,0 +1,69 @@
+﻿<Record FileDesc="RFQueue Load Balancing" FileVersion="5.0.8.0" Desc="RFQueue Load Balancing" Group="RFGEN" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Unlinked1&vm;Unlinked2">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Unlinked1" />
+<SchemaParam Linked="0" Attr="2" Name="Unlinked2" />
+</Schema>
+<Displays>
+<Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="Unlinked1" Attr="1" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="71" Height="22" AnchorRight="169" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Unlinked" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="87" Height="22" AnchorRight="81" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="Unlinked2" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="71" Height="22" AnchorRight="169" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Unlinked" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="44" Width="87" Height="22" AnchorRight="81" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Sub Unlinked1_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Call RFQBalance(Rsp, "In")
+  '
+End Sub
+'
+Public Function RFQBalance(ByRef sQName As String, ByRef sInOut As String)
+  On Error Resume Next
+  '
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If Trim(UCase(sInOut)) = "IN" Then
+    sSql = "select QName from RFBalance order by Counter"
+    DB.Execute(sSql,sCols,sRows)
+    '
+    sQName = DB.Extract(sCols,sRows,1,1)
+    '
+    sSql = "update RFBalance set Counter = (Counter +1) where QName = '" & sQName & "' "
+    DB.Execute(sSql)
+  Else
+    '
+    sSql = "update RFBalance set Counter = (Counter -1) where QName = '" & sQName & "' "
+    DB.Execute(sSql)
+
+  End If
+
+End Function
+</Code>

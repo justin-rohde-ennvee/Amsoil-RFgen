@@ -1,0 +1,688 @@
+﻿<Record FileDesc="WD - Manual Replenishment " FileVersion="5.0.8.0" Desc="WD - Manual Replenishment " Group="WD" LinkTo="No Links" LinkType="0" PromptList="txtMCU&vm;txtLocn&vm;lblItem&vm;lblItemDesc&vm;lstJobs&vm;lblReorder&vm;lblQty&vm;txHidden&vm;txtAccept" Depends="WM.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLocn" />
+<SchemaParam Linked="0" Attr="3" Name="lblItem" />
+<SchemaParam Linked="0" Attr="4" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="5" Name="lstJobs" />
+<SchemaParam Linked="0" Attr="6" Name="lblReorder" />
+<SchemaParam Linked="0" Attr="7" Name="lblQty" />
+<SchemaParam Linked="0" Attr="8" Name="txHidden" />
+<SchemaParam Linked="0" Attr="9" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="784" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="672" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLocn" Attr="2" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="47" Height="22" AnchorRight="792" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="183" Height="22" AnchorRight="608" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItem" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="63" Height="22" AnchorRight="776" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItem" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="95" Height="22" AnchorRight="744" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lstJobs" Attr="5" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="63" Height="22" AnchorRight="776" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="110" Width="839" Height="110" AnchorRight="0" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblReorder" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="242" Width="87" Height="22" AnchorRight="752" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblReorder" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQty" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="55" Height="22" AnchorRight="784" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txHidden" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="839" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="286" Width="0" Height="22" AnchorRight="775" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="151" Height="22" AnchorRight="688" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="0" Height="0" AnchorRight="839" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="839" FormHeight="330" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[ Man. Replenishment ]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: TRANSFER LOCATION
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC = "LP Put Away"
+Private Const cTNId     = "FWDMR0100"
+Private Const cPSTB      = "320" ' Default request status
+'
+Private msPgm        As String
+Private msVersion    As String
+Private msDOCTYPE    As String
+Private msAllowHold  As String
+Private gsLPSource   As String
+Private miMoveCtr    As Integer
+Private mnTransit    As Integer
+Private msMoveItems  As String
+Private msMoveQtys   As String
+Private msMoveUoms   As String
+Private msMoveLotn   As String
+Private msTYFL       As String
+Private msAction     As String
+Private mbPut        As Boolean
+Private mbPick       As Boolean
+Private mbRepl       As Boolean
+Private mbUnlock     As Boolean
+Private msPutZone   As String    ' Put away zone ID (LMPZON)
+Private msPickZone  As String    ' Pick zone ID (LMKZON)
+Private msReplZone  As String    ' Replenishment zone ID (LMZONR)
+Private mbLMW       As Boolean   ' Load Management Workbench (LMW) is used instead of F4211 for the pick source
+Private msChk       As String    ' Checkboxes from WM Configuration
+Private sPrioRepl   As String    ' default priority for replenishment
+Private sPrioPut    As String    ' default priority for replenishment
+Private sPrioPick   As String    ' default priority for replenishment
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sHeader As String
+  Dim sLOCN   As String
+  '
+  Call SetDisplay()
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  lblItem.Caption = ""
+  lblItem.Label.BackColor1 = cFieldDefaultBC
+  lblItem.Label.ForeColor = cFieldDefaultFC
+  '
+  lblQty.Caption = ""
+  lblQty.Label.BackColor1 = cFieldDefaultBC
+  lblQty.Label.ForeColor = cFieldDefaultFC
+  '
+  lblReorder.Caption = ""
+  lblReorder.Label.BackColor1 = cFieldDefaultBC
+  lblReorder.Label.ForeColor = cFieldDefaultFC
+  '
+  txtAccept.Visible = False
+  '
+  '
+  If Len(SYS.getProperty("WD", "PrioPut")) > 0 Then
+    sPrioPut  = SYS.getProperty("WD", "PrioPut")
+  Else
+    sPrioPut  = "5"
+  End If
+  '
+  If Len(SYS.getProperty("WD", "PrioPick")) > 0 Then
+    sPrioPick  = SYS.getProperty("WD", "PrioPick")
+  Else
+    sPrioPick  = "5"
+  End If
+  '
+  If Len(SYS.getProperty("WD", "PrioRepl")) > 0 Then
+    sPrioRepl  = SYS.getProperty("WD", "PrioRepl")
+  Else
+    sPrioRepl  = "5"
+  End If
+  '
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  '
+  Dim iCnt        As Integer
+  Dim iLoop       As Integer
+  Dim nLine       As Integer
+  Dim vArray      As Variant
+
+  Dim iLblMax     As Integer
+  Dim sVal        As String
+  Dim sDsp        As String
+  Dim nSGBT       As Long
+  Dim sUPMJ       As String
+  Dim sTDAY       As String
+  Dim nErrNo      As Long
+  '
+  If msAction = "CRT" Then
+    '
+    Call Replenish()
+    '
+  Else
+    sUPMJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+    sTDAY = Format(Time, "hhnnss")
+    '
+    iLblMax = (lstJobs.List.Count -1)                     'max line
+
+    For iCnt = 1 To iLblMax
+      lstJobs.List.Index = iCnt
+      sVal = lstJobs.Text                                'get current value
+      vArray = Split(sVal,"|")
+
+      If vArray(0) = "1" Then
+        nSGBT = CLng(vArray(10))
+        '
+        sSql = "update WDJOBS set " & _
+               "R2USER = '" & App.User  & "', " & _
+               "R2PID  = '" & cTNId      & "', " & _
+               "R2UPMJ = '" & sUPMJ     & "', " & _
+               "R2TDAY = '" & sTDAY     & "', " & _
+               "R2PRITY = '1' where R2SGBT = " & nSGBT
+        nErrNo = DB.Execute(sSql)
+
+        If nErrNo <> 0 Then
+          App.LogError(cTNId, GetMsg(45))
+        End If
+
+        '
+        ' Update List.Data Box
+        '
+        vArray(0) = "*"
+        sDsp = ""
+        '
+        For iLoop = 1 To UBound(vArray)
+          sDsp = sDsp & vArray( iLoop -1) & "|"
+        Next iLoop
+        '
+        sVal = ""
+        '
+        For iLoop = 1 To UBound(vArray)
+          sVal = sVal & vArray( iLoop -1) & "|"
+        Next iLoop
+
+        lstJobs.List.RemoveItem iCnt                   'remove line
+        lstJobs.List.InsertItem sDsp, sVal, iCnt          'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+      End If
+    Next iCnt
+    '
+  End If
+  '
+End Sub
+
+Private Sub lstJobs_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iLbCurr   As Integer
+  Dim vRsp      As Variant
+  Dim bCancel   As Boolean
+  Dim iLoop     As Integer
+  '
+  iLbCurr = lstJobs.List.Index                   'current line
+  '
+  If Left(Rsp,1)  = "1" Then                                ' delesect
+    Mid$(Rsp,1,1) = " "
+  Else                                                      ' select
+    If Left(Rsp,1)  <> "*" Then
+      Mid$(Rsp,1,1) = "1"
+    End If
+  End If
+  '
+  lstJobs.List.RemoveItem iLbCurr                  'remove line
+  lstJobs.List.InsertItem(Rsp, Rsp, iLbCurr)         'replace line   ' todo - upgrade: 'InsertLocn' is now first parameter
+  lstJobs.List.Index = iLbCurr
+  '
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  App.SetValue("tmNMCU", sMCU)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSql        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sMCU        As String
+  Dim sLOCN       As String
+  Dim sITM        As String
+  Dim sItem       As String
+  Dim sLITM       As String
+  Dim sAITM       As String
+  Dim sDSC1       As String
+  Dim sUOM        As String
+  Dim bHasLots    As Boolean
+  Dim bSerialized As Boolean
+  Dim nType       As Long
+  Dim nPQOH       As Currency
+  Dim nHCOM       As Currency
+  '
+  Cancel = True
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  sMCU = App.GetValue("tmMCU")
+  If Not Validate_Locn(Rsp, sMCU, sLOCN) Then Exit Sub
+  '
+  App.SetValue("tmLOCN", sLOCN)
+  '
+  sSql = "select LIITM, LIPQOH, LIHCOM from F41021 where LIMCU = '%tmMCU' and LILOCN = '" & sLOCN & "' and LIPBIN = 'P'"
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If Len(sRows) = 0 Then
+    App.MsgBox("No Item found for this Primary Location")
+    Exit Sub
+  End If
+  '
+  sITM = DB.Extract(sCols,sRows,1,1)
+  nPQOH = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols, sRows, 1, "LIPQOH"))
+  nHCOM = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols, sRows, 1, "LIHCOM"))
+  '
+  sSql = "select IBLITM, IBROQI, IBROPI from F4102 where IBMCU = '%tmMCU' and IBITM = " & sITM
+  DB.Execute(sSql,sCols,sRows)
+  '
+  sItem = DB.Extract(sCols,sRows,1,1)
+  '
+  ' Validate Item Master / get Item Branch
+  '
+  If Not Validate_Item(App.GetValue("tmMCU"), sItem, sITM, sLITM, sAITM, sDSC1, _
+                       sUOM, nType, bHasLots, bSerialized) Then Exit Sub
+  '
+  lblItem.Caption     = sLITM
+  lblItemDesc.Caption = sDSC1
+  lblReorder.Caption  = " Reorder Pnt: " & CStr(ConvDecimalsFromSQL("ROQI", DB.Extract(sCols, sRows, 1, "IBROPI"))) & " Reo.Qty: " & CStr(ConvDecimalsFromSQL("ROQI", DB.Extract(sCols, sRows, 1, "IBROQI"))) & " " & sUOM
+  lblQty.Caption      = " Qty.on Location: " & CStr(nPQOH - nHCOM) & " " & sUOM
+  '
+  App.SetValue("tmLITM", sLITM)
+  '
+  Call CreateList
+  '
+  Cancel = False
+  '
+End Sub
+
+Private Function CreateList()
+  On Error Resume Next
+  '
+  Dim sDsp    As String
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim iRcd    As Integer
+  Dim iCnt    As Integer
+  '
+  lstJobs.List.Clear
+  '
+  sSql = "select * from WDJOBS where R2TYFL = '3' and R2PSTB in ('320','321') and R2MCU = '%tmMCU' " & _
+         "and R2LITM = '%tmLITM' and R2TLOC = '%tmLOCN' " & _
+         " order by R2PRITY, R2LPID"
+  DB.Execute(sSql,sCols,sRows)
+  '
+  iRcd = DB.Count(sRows)
+  '
+  For iCnt = 1 To iRcd
+    '
+    sDsp = " " & "|" & Trim(DB.Extract(sCols,sRows,iCnt,"R2PRITY")) & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2FLOC"), giLenLOCN, " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2TLOC"), giLenLOCN, " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2LITM"), giLenItem, " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2URRF"),        10, " ") & "|"
+    sDsp = sDsp & FixRight(ConvDecimalsFromSQL("PQOH",DB.Extract(sCols,sRows,iCnt,"R2TQTY")), giLenQTY , " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2UOM1"), 2, " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2FLOT"), giLenLOTN, " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2LPID"), giLenLP, " ") & "|"
+    sDsp = sDsp & FixLeft(DB.Extract(sCols,sRows,iCnt,"R2DSC1"), 25, " ")
+    sDsp = sDsp & FixRight(DB.Extract(sCols,sRows,iCnt,"R2SGBT"), 9, " ")
+    '
+    lstJobs.List.AddItem(sDsp, sDsp)
+  Next
+  '
+  If iRcd = 0 Then
+    lstJobs.List.AddItem("", "press enter to create ")
+    lstJobs.List.AddItem("", "a new repl.order!")
+    lstJobs.List.AddItem("", "")
+    lstJobs.List.InsertItem("", Format(Now,"hh:nn:ss"))   ' todo - upgrade: 'InsertLocn' is now first parameter
+    msAction = "CRT"
+    App.SetFocus("txtHidden")
+  Else
+    lstJobs.List.AddItem("", "")
+    lstJobs.List.AddItem("", "select a line and press enter")
+    lstJobs.List.AddItem("", "to speed up repl.order!")
+    lstJobs.List.AddItem("", "")
+    lstJobs.List.InsertItem("", "end of data....." & Format(Now,"hh:nn:ss"))   ' todo - upgrade: 'InsertLocn' is now first parameter
+    msAction = "CHG"
+  End If
+
+End Function
+
+
+Private Function Replenish As Boolean
+  On Error Resume Next
+
+  Dim sSql     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sColsInv As String
+  Dim sRowsInv As String
+  Dim sColsJB  As String
+  Dim sRowsJB  As String
+  Dim sColsWM  As String
+  Dim sRowsWM  As String
+  Dim sColsLI  As String
+  Dim sRowsLI  As String
+  Dim sTYFL    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sLOCN    As String
+  Dim sFLOC    As String
+  Dim sFLOT    As String
+  Dim sTLOC    As String
+  Dim sTLOT    As String
+  Dim sUOM     As String
+  Dim sRCDJ    As String
+  Dim sTRDJ    As String
+  Dim sDRQJ    As String
+  Dim sUser    As String
+  Dim sPID     As String
+  Dim sUPMJ    As String
+  Dim sTDAY    As String
+  Dim sDSC1    As String
+  Dim sDSC2    As String
+  Dim sSKLocn  As String
+  Dim sMCU     As String
+  Dim sReplZone As String
+  Dim sPutZone As String
+  Dim sSqlStrg As String
+  Dim sPrio    As String
+  Dim sXPDT    As String
+
+  Dim nSGSQ    As Currency
+  Dim nSGBT    As Currency
+  Dim nQTY     As Currency
+  Dim nFQTY    As Currency
+  Dim nPQOH    As Currency
+  Dim nOutb    As Currency
+  Dim nQtyI    As Currency
+  Dim nHCOM    As Currency
+  Dim nQtyOpen As Currency
+  Dim nQtyReor As Currency
+  Dim nQtyRepl As Currency
+
+  Dim iRowCnt  As Integer
+  Dim iCnt     As Integer
+  Dim iRowCnt2 As Integer
+  Dim iCnt2    As Integer
+  Dim iRowCnt3 As Integer
+  Dim iCnt3    As Integer
+  Dim iFind    As Integer
+
+  Dim nErrNo   As Long
+
+  '
+  sReplZone = SYS.getProperty("WD", "ZoneRepl")
+  sPutZone  = SYS.getProperty("WD", "ZonePut")
+
+  ' Fetch demanding locations
+  sSql = "select IMITM, IMLITM, LILOCN, LILOTN, LIPQOH, LIHCOM, IMUOM1, IMDSC1, IMDSC2, LIMCU, LIITM, IBROPI, IBROQI from F41021" & _
+         " inner join F4100 on LIMCU = LMMCU and LILOCN = LMLOCN" & _
+         " inner join F4101 on LIITM = IMITM" & _
+         " inner join F4102 on IBMCU = LMMCU and IBITM = IMITM" & _
+         " where LIMCU = '%tmMCU' and LMZONR = '" & sReplZone & "' and IBROQI <> 0 and IBROQI <> 0  and (LIPQOH - LIHCOM) < IBROPI " & _
+         " and IMLITM = '%tmLITM' order by LILOCN, IMLITM"
+  DB.Execute(sSql, sCols, sRows)
+
+  iRowCnt = DB.Count(sRows)
+
+  For iCnt = 1 To iRowCnt
+
+    ' Location has fallen to minimum level?
+    sITM    = DB.Extract(sCols, sRows, iCnt, "IMITM")
+    sUOM    = DB.Extract(sCols, sRows, iCnt, "IMUOM1")
+    sMCU    = DB.Extract(sCols, sRows, iCnt, "LIMCU")
+    sLOCN   = DB.Extract(sCols, sRows, iCnt, "LILOCN")
+    '
+    nQtyRepl  = ConvDecimalsFromSQL("ROQI", DB.Extract(sCols, sRows, iCnt, "IBROQI"))     ' repl.qty
+    nQtyReor  = ConvDecimalsFromSQL("ROPI", DB.Extract(sCols, sRows, iCnt, "IBROPI"))     ' reorder point
+    sSql = "select sum(LIPQOH), sum(LIHCOM) from F41021 where LIMCU = '" & sMCU & "' and LILOCN = '" & sLOCN & "' and LIITM = " & sITM
+    DB.Execute(sSql,sColsLI, sRowsLI)
+    nPQOH     = ConvDecimalsFromSQL("PQOH", DB.Extract(sColsLI, sRowsLI, 1, 1))     ' qty on hand
+    nHCOM     = ConvDecimalsFromSQL("HCOM", DB.Extract(sColsLI, sRowsLI, 1, 2))     ' hard commited SO
+    sTLOC = DB.Extract(sCols, sRows, iCnt, "LILOCN")
+    '
+    ' reduce repl.quantity with qty. onHand
+    '
+
+'    If Not ConvUOM(sITM, nPQOH, cPLUom, sUOM) Then
+'      msErrDesc = GetMsg(220)
+'      Exit Function
+'    End If
+
+    '
+    ' Check if there is a replenishment in WDJOBS already
+    '
+    sSql = "select sum(R2TQTY) from WDJOBS" & _
+           " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
+           " and R2TLOC = '" & sTLOC & "' and R2PSTB in ('320','321')"
+    DB.Execute(sSql, sColsJB, sRowsJB)
+    nQtyI = CCur(DB.Extract(sColsJB, sRowsJB, 1 ,1))
+    '
+    If (nPQOH - nHCOM) <= nQtyReor Then       'needs replenishment
+      '
+      sTYFL = "3"
+      sLITM = DB.Extract(sCols, sRows, iCnt, "IMLITM")
+      sRCDJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+      sTRDJ = "0"
+      sDRQJ = sRCDJ
+      sUser = App.User
+      sPID  = cTNId
+      sUPMJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
+      sTDAY = Format(Time, "hhnnss")
+      sDSC1 = Replace(DB.Extract(sCols, sRows, iCnt, "IMDSC1"), "'", "`")
+      sDSC2 = Replace(DB.Extract(sCols, sRows, iCnt, "IMDSC2"), "'", "`")
+      sMCU  = DB.Extract(sCols, sRows, iCnt, "LIMCU")
+      '
+      ' Find locations to replenish from
+      '
+      Call GetItemAvailSQL(sMCU, sSqlStrg)
+      sSqlStrg = Replace(sSqlStrg,")"," -LIQTRO)")       ' reduce Outbound Qty from prior replenishment
+
+      sSql = "select LILOCN, LILOTN, " & sSqlStrg & " , IOMMEJ from F41021" & _
+           " inner join F4100 on LIMCU = LMMCU and LILOCN = LMLOCN" & _
+           " left join F4108 on LILOTN = IOLOTN and LIITM = IOITM and LIMCU = LMMCU " & _
+           " where LIMCU = '" & sMCU & "' and LIITM = " & sITM & " and " & sSqlStrg & " > 0" & _
+           " and LILOTS in(' ', '') and LMZONR <> '" & sReplZone & "' and LMPZON <> '" & sPutZone & "' " & _
+           " order by IOMMEJ, IOLOTN"                    ' exclude Put Away Zone
+      '
+      DB.Execute(sSql, sColsInv, sRowsInv)
+      '
+      iRowCnt2 = DB.Count(sRowsInv)
+      nQtyOpen = nQtyRepl
+      '
+      ' loop to get repl. from bulk warehouse
+      '
+      For iCnt2 = 1 To iRowCnt2
+
+        sFLOC = DB.Extract(sColsInv, sRowsInv, iCnt2, "LILOCN")
+        sFLOT = Trim(DB.Extract(sColsInv, sRowsInv, iCnt2, "LILOTN"))
+        sXPDT = ConvJDEtoDate(DB.Extract(sColsInv, sRowsInv, iCnt2, "IOMMEJ"))
+        nPQOH = ConvDecimalsFromSQL("PQOH",DB.Extract(sColsInv, sRowsInv, iCnt2, 3))
+
+        If nQtyOpen <= nPQOH Then
+          nFQTY = nQtyOpen
+        Else
+          nFQTY = nPQOH
+        End If
+
+        nSGBT = WDNN()
+        '
+        ' Check if there is a replenishment already
+        '
+        sSql = "select sum(R2TQTY) from WDJOBS" & _
+               " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
+               " and R2TLOC = '" & sTLOC & "' and R2PSTB in ('320','321')"
+        DB.Execute(sSql, sColsJB, sRowsJB)
+
+        If Val(sRowsJB) < nQtyOpen Then     ' loop till full filled
+
+        ' Create replenishment request
+          sSql = "insert into WDJOBS" & _
+                 " (R2TYFL, R2SGBT, R2SGSQ, R2MCU, R2ITM, R2LITM, R2UOM1, R2TQTY, R2FLOC," & _
+                 " R2FLOT, R2TLOC, R2TLOT, R2DSC1, R2DSC2, R2RCDJ, R2TRDJ, R2DRQJ,R2URRF," & _
+                 " R2USER, R2PID, R2UPMJ, R2TDAY, R2PRITY, R2PSTB)" & _
+                 " values(" & _
+                 "'" & sTYFL & "'" & "," & _
+                       nSGBT       & "," & _
+                       nSGSQ       & "," & _
+                 "'" & sMCU  & "'" & "," & _
+                       sITM        & "," & _
+                 "'" & sLITM & "'" & "," & _
+                 "'" & sUOM  & "'" & "," & _
+                       nFQTY       & "," & _
+                 "'" & sFLOC & "'" & "," & _
+                 "'" & sFLOT & "'" & "," & _
+                 "'" & sTLOC & "'" & "," & _
+                 "'" & sTLOT & "'" & "," & _
+                 "'" & sDSC1 & "'" & "," & _
+                 "'" & sDSC2 & "'" & "," & _
+                       sRCDJ       & "," & _
+                       sTRDJ       & "," & _
+                       sDRQJ       & "," & _
+                 "'" & sXPDT & "'" & "," & _
+                 "'" & sUser & "'" & "," & _
+                 "'" & sPID  & "'" & "," & _
+                       sUPMJ       & "," & _
+                       sTDAY       & "," & _
+                       "1"         & "," & _
+                 "'" & cPSTB & "'" & ")"
+          nErrNo = DB.Execute(sSql)
+
+          If nErrNo <> 0 Then
+            App.LogError(cTNId, GetMsg(45))
+            Exit Function
+          End If
+          '
+          sSql = "update F41021 set LIQTRO = LIQTRO + " & ConvDecimalsToSQL("QTRO",nFQTY) & _
+                 " where LIITM = " & sITM & " and LIMCU = '" & sMCU & "' and  LILOCN = '" & sFLOC & "' and LILOTN = '" & sFLOT & "' "
+          DB.Execute(sSql)
+
+        End If
+
+        nQtyOpen = nQtyOpen - nFQTY
+
+      Next iCnt2
+      '
+    End If
+  Next iCnt
+
+  Replenish = True
+
+End Function
+</Code>

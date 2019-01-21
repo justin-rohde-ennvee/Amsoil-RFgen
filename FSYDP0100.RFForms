@@ -1,0 +1,1023 @@
+﻿<Record FileDesc="SYS - Set Up Fiscal Date Pattern" FileVersion="5.0.8.0" Desc="SYS - Set Up Fiscal Date Pattern" Group="SYS" LinkTo="No Links" LinkType="0" PromptList="frmBorder&vm;txtDTPN&vm;txtDFY&vm;txtD01&vm;txtD02&vm;txtD03&vm;txtD04&vm;txtD05&vm;txtD06&vm;txtD07&vm;txtD08&vm;txtD09&vm;txtD10&vm;txtD11&vm;txtD12&vm;txtD13&vm;txtD14&vm;lblPeriod1&vm;lblEndDate1&vm;lblPeriod2&vm;lblEndDate2&vm;txtAccept">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="frmBorder" />
+<SchemaParam Linked="0" Attr="2" Name="txtDTPN" />
+<SchemaParam Linked="0" Attr="3" Name="txtDFY" />
+<SchemaParam Linked="0" Attr="4" Name="txtD01" />
+<SchemaParam Linked="0" Attr="5" Name="txtD02" />
+<SchemaParam Linked="0" Attr="6" Name="txtD03" />
+<SchemaParam Linked="0" Attr="7" Name="txtD04" />
+<SchemaParam Linked="0" Attr="8" Name="txtD05" />
+<SchemaParam Linked="0" Attr="9" Name="txtD06" />
+<SchemaParam Linked="0" Attr="10" Name="txtD07" />
+<SchemaParam Linked="0" Attr="11" Name="txtD08" />
+<SchemaParam Linked="0" Attr="12" Name="txtD09" />
+<SchemaParam Linked="0" Attr="13" Name="txtD10" />
+<SchemaParam Linked="0" Attr="14" Name="txtD11" />
+<SchemaParam Linked="0" Attr="15" Name="txtD12" />
+<SchemaParam Linked="0" Attr="16" Name="txtD13" />
+<SchemaParam Linked="0" Attr="17" Name="txtD14" />
+<SchemaParam Linked="0" Attr="18" Name="lblPeriod1" />
+<SchemaParam Linked="0" Attr="19" Name="lblEndDate1" />
+<SchemaParam Linked="0" Attr="20" Name="lblPeriod2" />
+<SchemaParam Linked="0" Attr="21" Name="lblEndDate2" />
+<SchemaParam Linked="0" Attr="22" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="2480" Height="7700" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="12" FieldId="frmBorder" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="311" Height="220" AnchorRight="0" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDTPN" Attr="2" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="40" Top="44" Width="167" Height="22" AnchorRight="104" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Fiscal Date Pattern:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="44" Width="39" Height="22" AnchorRight="72" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDFY" Attr="3" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="199" Height="22" AnchorRight="104" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Date Fiscal Year Begins:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="66" Width="87" Height="22" AnchorRight="24" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD01" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="39" Height="22" AnchorRight="264" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="132" Width="87" Height="22" AnchorRight="160" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD02" Attr="5" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="39" Height="22" AnchorRight="264" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   2" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="154" Width="87" Height="22" AnchorRight="160" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD03" Attr="6" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="39" Height="22" AnchorRight="264" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   3" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="176" Width="87" Height="22" AnchorRight="160" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD04" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="198" Width="39" Height="22" AnchorRight="264" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   4" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="198" Width="87" Height="22" AnchorRight="160" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD05" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="39" Height="22" AnchorRight="264" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   5" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="220" Width="87" Height="22" AnchorRight="160" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD06" Attr="9" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="39" Height="22" AnchorRight="264" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   6" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="242" Width="87" Height="22" AnchorRight="160" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD07" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="264" Width="39" Height="22" AnchorRight="264" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   7" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="264" Width="87" Height="22" AnchorRight="160" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD08" Attr="11" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="132" Width="39" Height="22" AnchorRight="112" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   8" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="132" Width="87" Height="22" AnchorRight="8" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD09" Attr="12" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="154" Width="39" Height="22" AnchorRight="112" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="   9" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="154" Width="87" Height="22" AnchorRight="8" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD10" Attr="13" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="176" Width="39" Height="22" AnchorRight="112" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  10" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="176" Width="87" Height="22" AnchorRight="8" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD11" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="198" Width="39" Height="22" AnchorRight="112" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  11" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="198" Width="87" Height="22" AnchorRight="8" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD12" Attr="15" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="220" Width="39" Height="22" AnchorRight="112" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  12" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="220" Width="87" Height="22" AnchorRight="8" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD13" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="242" Width="39" Height="22" AnchorRight="112" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  13" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="242" Width="87" Height="22" AnchorRight="8" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtD14" Attr="17" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="0">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="264" Width="39" Height="22" AnchorRight="112" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="  14" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="264" Width="87" Height="22" AnchorRight="8" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPeriod1" Attr="18">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="55" Height="22" AnchorRight="248" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Period" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEndDate1" Attr="19">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="110" Width="71" Height="22" AnchorRight="168" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="End Date" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPeriod2" Attr="20">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="110" Width="55" Height="22" AnchorRight="96" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Period" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblEndDate2" Attr="21">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="224" Top="110" Width="71" Height="22" AnchorRight="16" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="End Date" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="22" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="308" Width="151" Height="22" AnchorRight="152" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="0" AnchorRight="311" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="311" FormHeight="330" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[Set Up Fiscal Date Pattern]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                              |
+' -------------------------------------------------------------------------------
+'
+' SYSTEM: SET UP FISCAL DATE PATTERN
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTNId = "FSYDP0100"
+
+Private miCN     As Integer
+Private mbToggle As Boolean
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Call SetDisplay()
+
+  txtAccept.Visible = False
+
+  App.TimerInterval = 300
+
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  miCN = App.PromptNo
+
+  If Left(RFPrompt(miCN).FieldId, 3) = "frm" Then Exit Sub
+
+  RFPrompt(miCN).BorderStyle = DisplayStandard
+  RFPrompt(miCN).BackColor1 = &H80FFFF&
+  RFPrompt(miCN).ForeColor = cFieldFocusFC
+
+  mbToggle = True
+
+  App.TimerEnabled = mbToggle
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+
+  miCN = App.PromptNo
+
+  If Left(RFPrompt(miCN).FieldId, 3) = "frm" Then Exit Sub
+
+  RFPrompt(miCN).BorderStyle = DisplayTransparent
+
+  RFPrompt(miCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(miCN).ForeColor = cFieldDefaultFC
+
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim iPrompt            As Integer
+  Dim sThisPromptText    As String
+  Dim sLastPromptText    As String
+  Dim bSameText          As Boolean
+  Dim sSameText          As String
+  Dim emGetAuditInfo     As New EmbeddedProc
+  Dim sUserName          As String
+  Dim nUPMJ              As Long
+  Dim sWorkStationUserID As String
+  Dim nUPMT              As Long
+  Dim sSQL               As String
+  Dim nErrNo             As Long
+
+  For iPrompt = 5 To 17
+    sThisPromptText = RFPrompt(iPrompt).Text
+    sLastPromptText = RFPrompt(iPrompt-1).Text
+    If bSameText Then
+      If sThisPromptText <> sSameText Then
+        App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+        App.SetFocus(RFPrompt(iPrompt).FieldId)
+        Exit Sub
+      End If
+    End If
+    If sThisPromptText = sLastPromptText Then
+      bSameText = True
+      sSameText = sThisPromptText
+    End If
+  Next iPrompt
+
+  If Not ERP.BeginTrans Then
+    ERP.SetHardRelease
+    App.MsgBox("No ERP Handle - retry!")
+    Exit Sub
+  End If
+
+  '--------------'
+  ' GetAuditInfo '
+  '--------------'
+  emGetAuditInfo.Name = "GetAuditInfo"
+
+  emGetAuditInfo.Param("UserName")           = ""
+  emGetAuditInfo.Param("Date")               = ""
+  emGetAuditInfo.Param("Time")               = ""
+  emGetAuditInfo.Param("Workstation_UserId") = ""
+
+  If Ext(gsLog,3) = "1" Then
+    Call TranLog(cTNId, "3", emGetAuditInfo.Name, "", emGetAuditInfo)
+  End If
+
+  If Not emGetAuditInfo.Execute Then
+    If Ext(gsLog,4) = "1" Then
+      Call TranLog(cTNId, "4", emGetAuditInfo.Name, "", emGetAuditInfo, UCase(App.User))
+    End If
+      App.MsgBox(emGetAuditInfo.Name & " failed to execute.")
+    Exit Sub
+  End If
+
+  ERP.CommitTrans
+
+  sUserName          = UCase(emGetAuditInfo.Param("UserName"))
+  nUPMJ              = CLng(ConvDatetoJDE(CStr(emGetAuditInfo.Param("Date"))))
+  sWorkStationUserID = UCase(emGetAuditInfo.Param("Workstation_UserId"))
+  nUPMT              = CLng(emGetAuditInfo.Param("Time"))
+
+  sSQL = "INSERT INTO F0008 VALUES ("                               & _
+                                   "'%tmDTPN', "                    & _
+                                   "%tmFY, "                        & _
+                                   "%tmDFYJ, "                      & _
+                                   "'', "                           & _
+                                   "%tmD01J, "                      & _
+                                   "%tmD02J, "                      & _
+                                   "%tmD03J, "                      & _
+                                   "%tmD04J, "                      & _
+                                   "%tmD05J, "                      & _
+                                   "%tmD06J, "                      & _
+                                   "%tmD07J, "                      & _
+                                   "%tmD08J, "                      & _
+                                   "%tmD09J, "                      & _
+                                   "%tmD10J, "                      & _
+                                   "%tmD11J, "                      & _
+                                   "%tmD12J, "                      & _
+                                   "%tmD13J, "                      & _
+                                   "%tmD14J, "                      & _
+                                   "'', "                           & _
+                                   "'" & sUserName & "', "          & _
+                                   "'EP0008', "                     & _
+                                     nUPMJ & ", "                   & _
+                                   "'" & sWorkStationUserID & "', " & _
+                                    nUPMT & ", "                    & _
+                                   "%tmCTRY"                        & _
+                                   ")"
+  nErrNo = DB.Execute(sSQL)
+
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F0008", Replace(sSQL, "'", "`"))
+
+  If nErrNo <> 0 Then
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNId, "6", "F0008", Replace(sSQL, "'", "`"))
+    App.MsgBox(nErrNo & " | Could not insert record into F0008." )
+  End If
+
+  Set emGetAuditInfo = Nothing
+
+End Sub
+
+Private Sub txtDTPN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmDTPN", "")
+
+End Sub
+
+Private Sub txtDTPN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  If Not Search_UDC(Rsp, "H00", "DP") Then Cancel = True
+
+End Sub
+
+Private Sub txtDTPN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+
+  Cancel = True
+
+  Rsp = UCase(Trim(Rsp))
+
+  If Len(Rsp) <> 1 Then Exit Sub
+
+  Rsp = FixRight(Rsp, 10)
+
+  If Not Validate_UDC(Rsp, "H00", "DP", sDRDL01, sDRDL02) Then Exit Sub
+
+  App.SetValue("tmDTPN", Rsp)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtDFY_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  If App.GetValue("tmDFYJ") <> "" Then Exit Sub
+
+  Rsp = "MM/DD/YYYY"
+
+  AllowChange = True
+
+End Sub
+
+Private Sub txtDFY_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmDFYJ", "")
+
+End Sub
+
+Private Sub txtDFY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nDFYJ As Long
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim iCnt  As Integer
+  Dim sDate As String
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nDFYJ = CLng(ConvDatetoJDE(Rsp))
+
+  sSQL = "select count(*) " & _
+         "from   F0008 " & _
+         "where  CDDTPN = '%tmDTPN' " & _
+         "and    CDDFYJ = " & nDFYJ
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) > 0 Then
+    App.MsgBox("A date pattern already exists for date pattern " & App.GetValue("tmDTPN") & " with start date " & Rsp & ".")
+    Exit Sub
+  End If
+
+  App.SetValue("tmDFYJ", nDFYJ)
+
+  Cancel = False
+  '
+  sDate = "01/31/" & Format(Rsp,"YYYY")
+  For iCnt = 1 To 12
+    RFPrompt((iCnt +3)).Text = DateAdd("m",(iCnt -1),sDate)
+  Next
+
+  'App.SetFocus("txtAccept")
+
+End Sub
+
+Private Sub txtD01_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmFY", "")
+  App.SetValue("tmCTRY", "")
+  App.SetValue("tmD01J", "")
+
+End Sub
+
+Private Sub txtD01_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD01J As Long
+  Dim iFY   As Integer
+  Dim iCTRY As Integer
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD01J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD01J <= CLng(App.GetValue("tmDFYJ")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  iFY   = Mid(Rsp, 9, 2)
+  iCTRY = Mid(Rsp, 7, 2)
+
+  App.SetValue("tmFY", iFY)
+  App.SetValue("tmCTRY", iCTRY)
+  App.SetValue("tmD01J", nD01J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD02_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD02J", "")
+
+End Sub
+
+Private Sub txtD02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD02J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD01.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD02J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD02J < CLng(App.GetValue("tmD01J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD02J", nD02J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD03_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD03J", "")
+
+End Sub
+
+Private Sub txtD03_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD03J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD02.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD03J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD03J < CLng(App.GetValue("tmD02J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD03J", nD03J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD04_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD04J", "")
+
+End Sub
+
+Private Sub txtD04_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD04J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD03.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD04J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD04J < CLng(App.GetValue("tmD03J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD04J", nD04J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD05_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD05J", "")
+
+End Sub
+
+Private Sub txtD05_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD05J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD04.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD05J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD05J < CLng(App.GetValue("tmD04J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD05J", nD05J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD06_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD06J", "")
+
+End Sub
+
+Private Sub txtD06_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD06J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD05.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD06J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD06J < CLng(App.GetValue("tmD05J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD06J", nD06J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD07_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD07J", "")
+
+End Sub
+
+Private Sub txtD07_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD07J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD06.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD07J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD07J < CLng(App.GetValue("tmD06J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD07J", nD07J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD08_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD08J", "")
+
+End Sub
+
+Private Sub txtD08_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD08J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD07.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD08J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD08J < CLng(App.GetValue("tmD07J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD08J", nD08J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD09_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD09J", "")
+
+End Sub
+
+Private Sub txtD09_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD09J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD08.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD09J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD09J < CLng(App.GetValue("tmD08J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD09J", nD09J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD10_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD10J", "")
+
+End Sub
+
+Private Sub txtD10_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD10J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD09.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD10J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD10J < CLng(App.GetValue("tmD09J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD10J", nD10J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD11_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD11J", "")
+
+End Sub
+
+Private Sub txtD11_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD11J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD10.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD11J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD11J < CLng(App.GetValue("tmD10J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD11J", nD11J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD12_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD12J", "")
+
+End Sub
+
+Private Sub txtD12_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD12J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD11.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD12J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD12J < CLng(App.GetValue("tmD11J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD12J", nD12J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD13_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  If App.GetValue("tmD13J") <> "" Then Exit Sub
+
+  Rsp = "MM/DD/YYYY"
+
+  AllowChange = True
+
+End Sub
+
+Private Sub txtD13_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD13J", "")
+
+End Sub
+
+Private Sub txtD13_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD13J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD12.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD13J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD13J < CLng(App.GetValue("tmD12J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD13J", nD13J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtD14_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  If App.GetValue("tmD14J") <> "" Then Exit Sub
+
+  Rsp = "MM/DD/YYYY"
+
+  AllowChange = True
+
+End Sub
+
+Private Sub txtD14_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmD14J", "")
+
+End Sub
+
+Private Sub txtD14_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nD14J As Long
+
+  Cancel = True
+
+  Rsp = Trim(Rsp)
+
+  If Len(Rsp) = 0 Or Rsp = "MM/DD/YYYY" Then Rsp = txtD13.Text
+
+  If Not(IsDate(Rsp)) Then Exit Sub
+
+  Rsp = Format(Rsp, "MM/DD/YYYY")
+
+  nD14J = CLng(ConvDatetoJDE(Rsp))
+
+  If nD14J < CLng(App.GetValue("tmD13J")) Then
+    App.MsgBox("Enter a date that does not overlap with the prior/next year.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmD14J", nD14J)
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub Form_OnTimer()
+  On Error Resume Next
+
+  mbToggle = Not(mbToggle)
+
+  If Not mbToggle Then
+    RFPrompt(miCN).Text = ""
+    App.TimerEnabled = mbToggle
+  End If
+
+End Sub
+</Code>

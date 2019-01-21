@@ -1,0 +1,13 @@
+﻿<Record FileDesc="Fixed Assets" FileVersion="5.0.8.0" Desc="Fixed Assets" Heading="[Fixed Assets]">
+<MenuItem Id="-" Desc="-- Daily --" />
+<MenuItem Id="FFACR0100" Desc="1-Create Asset" Options="-Pgm=P1201 -Vers=ZJDE0001 " />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Periodic --" />
+<MenuItem Id="FFATR0100" Desc="2-Location Transfer" Options="-Pgm=P12215" />
+<MenuItem Id="FFACC0100" Desc="3-Cycle Count" />
+<MenuItem Id="FFADI0100" Desc="4-Asset Disposal" Options="-Pgm=P1204 -Vers=ZJDE0007" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FFAQI0100" Desc="5-Asset Location" />
+<MenuItem Id="-" />
+</Record>

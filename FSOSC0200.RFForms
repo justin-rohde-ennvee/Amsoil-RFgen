@@ -1,0 +1,560 @@
+﻿<Record FileDesc="SO - Proof of Delivery" FileVersion="5.0.8.0" Desc="SO - Proof of Delivery" Group="SO" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDOCO&vm;txtDCTO&vm;lbxSO&vm;SgnBox&vm;ImgSign&vm;txtProof&vm;txtAccept" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="4" Name="lbxSO" />
+<SchemaParam Linked="0" Attr="5" Name="SgnBox" />
+<SchemaParam Linked="0" Attr="6" Name="ImgSign" />
+<SchemaParam Linked="0" Attr="7" Name="txtProof" />
+<SchemaParam Linked="0" Attr="8" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="528" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="119" Height="22" AnchorRight="416" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="39" Height="22" AnchorRight="528" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="SO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="103" Height="22" AnchorRight="432" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDCTO" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="44" Width="47" Height="22" AnchorRight="384" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="44" Width="39" Height="22" AnchorRight="352" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxSO" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="79" Height="22" AnchorRight="504" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Del. Note" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="583" Height="176" AnchorRight="0" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000000" DisplayOnly="1" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="11" FieldId="SgnBox" Attr="5" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="103" Height="22" AnchorRight="480" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Please sign:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="239" Height="66" AnchorRight="344" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="6" FieldId="ImgSign" Attr="6" Style="2">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="159" Height="22" AnchorRight="424" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Captured Signature:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="239" Height="66" AnchorRight="344" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtProof" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="396" Width="87" Height="22" AnchorRight="496" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Type Name:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="418" Width="239" Height="22" AnchorRight="344" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="462" Width="151" Height="22" AnchorRight="432" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="583" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="583" FormHeight="484" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[SO - Confirmation]" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' PURCHASE ORDERS: RECEIPTS BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cForceLOTN    = False     ' True = force User to confirm same Lot Number
+Private Const cForceLOCN    = False     ' True = force User to confirm same Location
+Private Const cTNId         = "FSOSC0200"
+Private Const cPath         = "C:\Temp\Signature\"
+Private msPgm               As String
+Private msVersion           As String
+Private msStatusF           As String
+Private msStatusT           As String
+Private msRelInv            As Boolean
+Private msAddFr             As Boolean
+Private mnMaxQty            As Currency
+Private mnMaxQoH            As Currency
+Private msHardLOCN          As String
+Private msHardLOTN          As String
+Private mbSerialized        As Boolean
+Private mbFkey3             As Boolean
+Private msResKey            As String
+Private msResKeySav         As String
+Private msAppl              As String
+Private mnUKID              As Long
+Private msOrderBy           As String
+Private msBitmap            As String
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  Dim sFieldId As String
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+  '
+  If Left(RFPrompt(iCN).FieldId,3) = "txt" Then RFPrompt(Replace(RFPrompt(iCN).FieldId,"txt","lbl")).Label.Font.Underline = True
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim sHeader As String
+  Dim I As Integer
+  '
+  Call SetDisplay()
+  '
+  ' Initialize the RFGen recordset with extra fields
+  App.SetValue("tmCO",      "")
+  App.SetValue("tmMCU",     "")
+  App.SetValue("tmDOCO",    "")
+  App.SetValue("tmDCTO",    "")
+  App.SetValue("tmLITM",    "")
+  App.SetValue("tmLOTN",    "")
+  App.SetValue("tmLOCN",    "")
+  App.SetValue("tmQTY",     "")
+  App.SetValue("tmUOM",     "")
+  App.SetValue("tmLNID",    "")
+  App.SetValue("tmSHIPTO",  "")
+  App.SetValue("tmCARRIER", "")
+  App.SetValue("tmLNTY",    "")
+  '
+  txtAccept.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  ' get Status From from Proc.Opt. and Header
+  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If  App.ClientType = "GUI" Then
+    Form.Caption = Left(sHeader,29)
+  Else
+    Form.Caption = Left(sHeader,20)
+  End If
+
+  ' get Status To from Proc.Opt. and Header
+  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Does Version relieve Inv?  from Proc.Opt.
+  msRelInv = True
+
+  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Does Version allow Add Freight?  from Proc.Opt.
+  msAddFr = False
+
+  If GetProcOpt(msPgm,msVersion,"3;1") = "1" Then msAddFr = True
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' get line "1" defaults from Proc.Options
+  mbFkey3 = False
+
+  If GetProcOpt(msPgm,msVersion,"3;5") = "1" Then mbFkey3 = True
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' get order sequence from menu
+  msOrderBy = App.GetValue("OrderBy")
+
+  If Trim(msOrderBy) = "" Then
+    msOrderBy = "SDLNID"
+  Else
+    msOrderBy = Trim(UCase(msOrderBy))
+  End If
+
+  'App.SetOption(ShowHorizontalScrollBar, True)   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  '
+  RFPrompt(Replace(RFPrompt(iCN).FieldId,"txt","lbl")).Label.Font.Underline = False
+
+End Sub
+
+Private Sub SgnBox_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  If SgnBox.Visible  = False Then Exit Sub
+  '
+  Cancel = True
+  If Len(Rsp) = 0 Then
+    App.MsgBox("Please get customers signature!")
+    Exit Sub
+  End If
+
+  Cancel = False
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+
+Private Sub txtDOCO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDOCO", "")
+
+End Sub
+
+Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(276)
+    Exit Sub
+  End If
+  
+  sSQL = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
+         " where SDDOCO = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' " & _
+         " order by SDDOCO, SDDCTO "
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox GetMsg(198)
+    Exit Sub
+  End If
+  '
+  ' If Ordernumber is unique default DocType
+  If (DB.Count(sRows) = 1) Then
+    txtDCTO.Text = DB.Extract(sCols,sRows,1,"SDDCTO")
+  End If
+  '
+  App.SetValue("tmDOCO", Rsp)
+  '
+  Cancel = False
+
+End Sub
+
+Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sDocType As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  Cancel = Not Search_F4211_DOCO(Rsp, sMCU, msStatusF, msStatusT, sDocType)
+  If Not Cancel Then txtDCTO.Text = sDocType
+End Sub
+
+Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmDCTO", "")
+End Sub
+
+Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL      As String
+  Dim sCols     As String
+  Dim sRows     As String
+  Dim sLocn     As String
+  Dim sItem     As String
+  Dim sITM      As String
+  Dim sAITM     As String
+  Dim sLotn     As String
+  Dim sSoqs     As String
+  Dim sUOM      As String
+  Dim sLnid     As String
+  Dim sLnty     As String
+  Dim sDsc1     As String
+  Dim slbx      As String
+  Dim sXUser    As String
+  Dim sHeader   As String
+  Dim sCOMM     As String
+  Dim I         As Integer
+  Dim bImage()  As Byte
+  Dim sFS       As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  '
+  Rsp = UCase(Rsp)
+  '
+  sSQL = "select count(*) from  F4211" & _
+         " where SDDCTO = '" & Rsp & "' and SDDOCO = %tmDOCO and SDMCU = '%tmMCU'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox GetMsg(197)
+    Exit Sub
+  End If
+
+  ' check if SO is on Hold
+  sSQL = "select SHHOLD from  F4201" & _
+         " where SHDCTO = '" & Rsp & "' and SHDOCO = %tmDOCO and SHMCU = '%tmMCU'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Trim(DB.Extract(sCols,sRows,1,1)) <> "" Then
+    App.MsgBox GetMsg(214)
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmDCTO", Rsp)
+  '
+  ' Build Listbox
+  lbxSO.List.Clear
+
+  ' Headerline
+  'sHeader = "O|" & FixLeft("Locn",giLenLOCN," ") & "|" & FixLeft("Item#",giLenItem," ") & "|" & FixLeft("Qty",giLenQTY," ") & "|" & "UOM"
+  'sHeader = sHeader & "|" & FixLeft("Lotn",giLenLOTN," ") & "|" & FixLeft("Line",7," ") & "|" & "L " & "|" & FixLeft("Desc",25," ")
+  sHeader = FixLeft("Line",7," ") & "|" & FixLeft("Item#",giLenItem," ") & "|" & FixLeft("Desc",25," ") & "|" & FixLeft("Qty",giLenQTY," ") & "|" & "UOM" & "|" & FixLeft("Lotn",giLenLOTN," ")
+
+  lbxSO.Caption = sHeader
+  '
+  sSQL = "Select SDLITM, SDLNID, SDUOM, SDSOQS, SDDSC1, SDLOCN, SDLOTN, SDLNTY, SDDSC1, SDITM, SDAITM, SDCOMM " & _
+       " from  F4211 where SDDOCO = %tmDOCO and SDDCTO = '%tmDCTO' and SDSOQS <> 0 and" & _
+       " SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' order by " & msOrderBy & " "
+
+  DB.Execute(sSQL,sCols,sRows)
+  '
+  If Len(sRows) = 0 Then
+    App.MsgBox(GetMsg(130))
+    Exit Sub
+  End If
+  '
+  For I = 1 To DB.Count(sRows)
+    sLocn = FormatLocnDisplay(DB.Extract(sCols,sRows,I,6), App.GetValue("tmMCU"))
+    sItem = FixLeft(DB.Extract(sCols,sRows,I,"SDLITM"),giLenItem," ")
+    sLotn = FixLeft(DB.Extract(sCols,sRows,I,"SDLOTN"),giLenLOTN," ")
+    sSoqs = CStr(ConvDecimalsFromSQL("SOQS",DB.Extract(sCols,sRows,I,"SDSOQS")))
+    sSoqs = FixRight(sSoqs,giLenQTY," ")
+    sUOM  = FixLeft(DB.Extract(sCols,sRows,I,"SDUOM"),3," ")
+    sLnid = CStr(ConvDecimalsFromSQL("LNID",DB.Extract(sCols,sRows,I,"SDLNID")))
+    sLnid = Format(sLnid,"  #.000")
+    sLnty = FixLeft(DB.Extract(sCols,sRows,I,"SDLNTY"),2," ")
+    sDsc1 = FixLeft(DB.Extract(sCols,sRows,I,"SDDSC1"),25," ")
+    sITM  = CStr(DB.Extract(sCols,sRows,I,"SDITM"))
+    sITM  = FixRight(sITM,8," ")
+    sAITM = CStr(DB.Extract(sCols,sRows,I,"SDAITM"))
+    sAITM = FixRight(sAITM,giLenItem," ")
+    sCOMM = DB.Extract(sCols,sRows,I,"SDCOMM")
+    'slbx = sLocn & "|" & sItem & "|" & sSoqs & "|" & sUOM & "|" & sLotn & "|"  & sLnid & "|" & sLnty & "|"  & sDsc1 & "|"  & sITM & "|"  & sAITM & "|" & sCOMM
+    slbx = sLnid & "|" & sItem & "|"  & sDsc1 & "|" & sSoqs & "|" & sUOM & "|" & sLotn
+    lbxSO.List.AddItem "", slbx
+  Next I
+  '
+  Cancel = False
+
+  msBitmap = Trim(App.GetValue("tmMCU")) & "-" & Trim(App.GetValue("tmDOCO")) & "-" & Trim(App.GetValue("tmDCTO")) & ".BMP"
+
+  sFS = Dir$(cPath)
+  While sFS <> ""
+    If Trim(sFS) = msBitmap Then
+      Open cPath & msBitmap For Binary Access Read As #1
+      ReDim bImage(LOF(1))
+      Get #1,,bImage
+      Close #1
+      Exit While
+    End If
+    sFS = Dir$()
+  Wend
+
+  If Len(bImage) = 0 Then
+    ImgSign.Visible   = False
+    txtProof.Visible  = True
+    SgnBox.Visible    = True
+  Else
+    ImgSign.Image.Bitmap    = bImage
+    ImgSign.Visible   = True
+    txtProof.Visible  = False
+    SgnBox.Visible    = False
+    Screen.Refresh
+  End If
+
+End Sub
+
+Private Sub txtDCTO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU  As String
+  Dim vDOCO As String
+  '
+  sMCU  = App.GetValue("tmMCU")
+  vDOCO = App.GetValue("tmDOCO")
+  '
+  Cancel = Not Search_F4211_DCTO(Rsp, sMCU, vDOCO, msStatusF, msStatusT)
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+
+  Screen.Refresh
+
+  lbxSO.List.Clear
+  txtDOCO.Text = ""
+  txtDCTO.Text = ""
+  App.SetFocus(2)
+
+End Sub
+
+Private Sub txtProof_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim bImage() As Byte
+  '
+  If txtProof.Visible  = False Then Exit Sub
+
+  Cancel = True
+
+  If Len(Trim(Rsp)) = 0 Then
+    App.MsgBox("Please enter name!")
+    Exit Sub
+  End If
+
+  bImage = SgnBox.Image.Bitmap
+
+  Open cPath & msBitmap For Binary Access Write As #1
+    Put #1,,bImage
+  Close #1
+
+  Cancel = False
+
+End Sub
+</Code>

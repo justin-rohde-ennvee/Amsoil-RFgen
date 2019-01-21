@@ -1,0 +1,13 @@
+﻿<Record FileVersion="5.0.8.0">
+<Attr Value="MCU&vm;ZonePut&vm;ZonePick&vm;StatusF&vm;StatusT&vm;ZoneRepl&vm;LastUpd&vm;Boxes&vm;PrioPut&vm;PrioPick&vm;PrioRepl&am;          30|Eastern Distribution Center;          33|Milacron Distribution Center;         115|Cheyenne Service Depot;" />
+<Attr Value="RFPUT" />
+<Attr Value="RFPICK" />
+<Attr Value="520" />
+<Attr Value="560" />
+<Attr Value="RFREPL" />
+<Attr Value="JDE  11/02/2011 10:10:51 127.0.0.1" />
+<Attr Value="0&am;1&am;0&am;1&am;0&am;0&am;1&am;0&am;1&am;0&am;1" />
+<Attr Value="5" />
+<Attr Value="5" />
+<Attr Value="4" />
+</Record>

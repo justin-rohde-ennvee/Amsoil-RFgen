@@ -1,0 +1,236 @@
+﻿<Record FileDesc="User Module: EPM.bas" FileVersion="5.0.8.0" Desc="User Module: EPM.bas" LoadModule="1" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' MODULES: EPM.BAS
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+Option Explicit
+
+Public Function ValidateAsset(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  sSQL = "select count(*) from F1201 where FANUMB = " & Rsp
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Val(sRows) = 0 Then
+    ValidateAsset = False
+    App.MsgBox(GetMsg(63))
+    Exit Function
+  End If
+
+  ValidateAsset = True
+
+End Function
+
+Public Function ValidateBU(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  Rsp = Trim(UCase(Rsp))
+  sSQL = "select count(*) from F0006 where MCMCU = '" & FixRight(Rsp,12," ") & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Val(sRows) = 0 Then
+    ValidateBU = False
+    App.MsgBox GetMsg(29)
+    Exit Function
+  End If
+  
+  ValidateBU = True
+
+End Function
+
+Public Function ValidateCO(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  sSQL = "select count(*) from F0010 where CCCO = '" & FixRight(Rsp,5,"0") & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If Val(sRows) = 0 Then
+    ValidateCO = False
+    App.MsgBox(GetMsg(53))
+    Exit Function
+  End If
+
+  ValidateCO = True
+
+End Function
+
+Public Function ValidateDate(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim i        As Integer
+  Dim sDelim   As String
+  Dim iDelim1  As Integer
+  Dim iDelim2  As Integer
+  Dim sMM      As String
+  Dim sDD      As String
+  Dim sYY      As String
+  Dim sNewDate As String
+  '
+  If Len(Rsp) = 0 Then
+    ValidateDate = False
+    Exit Function
+  End If
+  '
+  For i = 1 To Len(Rsp)
+    sDelim = Mid(Rsp, i, 1)
+    '
+    If Asc(sDelim) < 48 Or Asc(sDelim) > 57 Then
+      Exit For
+    Else
+      sDelim = ""
+    End If
+  Next i
+  '
+  If sDelim = "" Then ' no delimiters used - must be fixed Width
+    If Len(Rsp) = 6 Or Len(Rsp) = 8 Then   ' must be MM/DD/YY(YY)
+      sMM = Left(Rsp, 2)
+      sDD = Mid(Rsp, 3, 2)
+      sYY = Mid(Rsp, 5)
+    Else
+      ValidateDate = False
+      App.MsgBox(GetMsg(57))
+      Exit Function
+    End If
+  Else                ' a delimiter is used
+    iDelim1 = InStr(1, Rsp, sDelim)
+    iDelim2 = InStr(iDelim1 + 1, Rsp, sDelim)
+    '
+    sMM = Left(Rsp, iDelim1 - 1)
+    sDD = Mid(Rsp, iDelim1 + 1, iDelim2 - iDelim1 - 1)
+    sYY = Mid(Rsp, iDelim2 + 1)
+  End If
+    '
+  sNewDate = sMM & "/" & sDD & "/" & sYY
+  '
+  If Not IsDate(sNewDate) Then
+    ValidateDate = False
+    App.MsgBox(GetMsg(57))
+    Exit Function
+  End If
+  '
+  Rsp = sNewDate
+  ValidateDate = True
+  
+End Function
+
+Public Function Search_F1201_NUMB(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim sLike  As String
+  Dim oList  As New SearchList
+  '
+  ' lookup using "Like%" ?
+  '
+  If (Len(Rsp)>0) Then
+    If (Len(Rsp) < giMinSearchLen) Then
+      App.MsgBox (giMinSearchLen & GetMsg(15))
+      Exit Function
+    End If
+    '
+    sLike = " where FANUMB Like ('" & Trim(UCase(Rsp)) & "%%')"
+  End If
+
+  sSQL = "select FANUMB, FADL01 from F1201" & sLike & _
+         " order by FANUMB"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Item",         8, CenterLeft, True)
+  oList.SetColumn(2, "Description", 15, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  Search_F1201_NUMB = (Len(Rsp) = 0)
+End Function
+
+Public Function Search_F1204_NUMB(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sLike As String
+  Dim oList As New SearchList
+  '
+  ' lookup using "Like%" ?
+  '
+  If (Len(Rsp)>0) Then
+    If (Len(Rsp) < giMinSearchLen) Then
+      App.MsgBox (giMinSearchLen & GetMsg(15))
+      Search_F1204_NUMB = False
+      Exit Function
+    End If
+    '
+    sLike = " and FMNUMB Like ('" & Trim(UCase(Rsp)) & "%%')"
+  End If
+  '
+  sSQL = "select FMNUMB, FMLOC from F1204" & _
+         " where FMAL = 'C'" & sLike & _
+         " order by FMNUMB"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Item",      8, CenterLeft, True)
+  oList.SetColumn(2, "Location", 12, CenterLeft, True)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  Search_F1204_NUMB = (Len(Rsp) = 0)
+End Function
+
+Public Function Search_F1204_LOC(ByRef Rsp As String) As Boolean
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sLike As String
+  Dim oList As New SearchList
+  '
+  ' lookup using "Like%" ?
+  '
+  If (Len(Rsp)>0) Then
+    If (Len(Rsp) < giMinSearchLen) Then
+      App.MsgBox (giMinSearchLen & GetMsg(15))
+      Search_F1204_LOC = False
+      Exit Function
+    End If
+    '
+    sLike = " and FMLOC Like ('" & Trim(UCase(Rsp)) & "%%')"
+  End If
+
+  sSQL = "select FMLOC, FMAL, FMQTY from F1204" & _
+         " where FMNUMB = %tmNUMB and FMAL = 'C'" & sLike & _
+         " order by FMLOC"
+  '
+  oList.MaxRows = giMaxSearchRows
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = False
+  oList.SetColumn(1, "Location", 12, CenterLeft, True)
+  oList.SetColumn(2, "Code",      4, CenterLeft, True)
+  oList.SetColumn(3, "Qty",       7, CenterRight, True, 2)
+  oList.SQL = sSQL
+  '
+  Rsp = oList.ShowList
+  Search_F1204_LOC = (Len(Rsp) = 0)
+End Function
+</Code>

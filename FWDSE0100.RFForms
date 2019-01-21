@@ -1,0 +1,760 @@
+﻿<Record FileDesc="WD - Setup" FileVersion="5.0.8.0" Desc="WD - Setup" Group="WD" LinkTo="No Links" LinkType="0" PromptList="Frame2&vm;Frame1&vm;Frame3&vm;txtMCU&vm;lbxMCU&vm;chkPut&vm;txtPrioPut&vm;txtZonePut&vm;lblPutAway&vm;chkPutPOLP&vm;chkPutPOJDE&vm;chkPutWOLP&vm;chkPutWOJDE&vm;chkPick&vm;txtPrioPick&vm;txtZonePick&vm;lblPick&vm;chkPickLMW&vm;chkPickJDE&vm;txtStatusF&vm;txtStatusT&vm;chkRepl&vm;txtPrioRepl&vm;txtZoneRepl&vm;lblRepl&vm;chkReplLP&vm;chkReplJDE&vm;btnSave&vm;lblSave">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Frame2" />
+<SchemaParam Linked="0" Attr="2" Name="Frame1" />
+<SchemaParam Linked="0" Attr="3" Name="Frame3" />
+<SchemaParam Linked="0" Attr="4" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="5" Name="lbxMCU" />
+<SchemaParam Linked="0" Attr="6" Name="chkPut" />
+<SchemaParam Linked="0" Attr="7" Name="txtPrioPut" />
+<SchemaParam Linked="0" Attr="8" Name="txtZonePut" />
+<SchemaParam Linked="0" Attr="9" Name="lblPutAway" />
+<SchemaParam Linked="0" Attr="10" Name="chkPutPOLP" />
+<SchemaParam Linked="0" Attr="11" Name="chkPutPOJDE" />
+<SchemaParam Linked="0" Attr="12" Name="chkPutWOLP" />
+<SchemaParam Linked="0" Attr="13" Name="chkPutWOJDE" />
+<SchemaParam Linked="0" Attr="14" Name="chkPick" />
+<SchemaParam Linked="0" Attr="15" Name="txtPrioPick" />
+<SchemaParam Linked="0" Attr="16" Name="txtZonePick" />
+<SchemaParam Linked="0" Attr="17" Name="lblPick" />
+<SchemaParam Linked="0" Attr="18" Name="chkPickLMW" />
+<SchemaParam Linked="0" Attr="19" Name="chkPickJDE" />
+<SchemaParam Linked="0" Attr="20" Name="txtStatusF" />
+<SchemaParam Linked="0" Attr="21" Name="txtStatusT" />
+<SchemaParam Linked="0" Attr="22" Name="chkRepl" />
+<SchemaParam Linked="0" Attr="23" Name="txtPrioRepl" />
+<SchemaParam Linked="0" Attr="24" Name="txtZoneRepl" />
+<SchemaParam Linked="0" Attr="25" Name="lblRepl" />
+<SchemaParam Linked="0" Attr="26" Name="chkReplLP" />
+<SchemaParam Linked="0" Attr="27" Name="chkReplJDE" />
+<SchemaParam Linked="0" Attr="28" Name="btnSave" />
+<SchemaParam Linked="0" Attr="29" Name="lblSave" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Controls>
+<Control Type="12" FieldId="Frame2" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Put Away  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="479" Height="154" AnchorRight="0" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame1" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Picking  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="352" Width="479" Height="154" AnchorRight="0" AnchorBottom="176" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="12" FieldId="Frame3" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="  Replenishment  ">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="506" Width="479" Height="154" AnchorRight="0" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtMCU" Attr="4" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="63" Height="22" AnchorRight="416" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plants:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="87" Height="22" AnchorRight="328" AnchorBottom="638" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxMCU" Attr="5" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ExtendCol="-1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="0" Height="22" AnchorRight="479" AnchorBottom="616" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="319" Height="110" AnchorRight="160" AnchorBottom="528" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+<Columns />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPut" Attr="6" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="111" Height="22" AnchorRight="352" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Run Put Away:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="198" Width="31" Height="31" AnchorRight="208" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPrioPut" Attr="7" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="280" Top="198" Width="79" Height="22" AnchorRight="120" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Priority:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="198" Width="23" Height="22" AnchorRight="104" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtZonePut" Attr="8" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="220" Width="63" Height="22" AnchorRight="400" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Zone..:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="220" Width="87" Height="22" AnchorRight="216" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPutAway" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="242" Width="87" Height="22" AnchorRight="216" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="80FFFF" Caption="lblPutAway" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPutPOLP" Attr="10" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="264" Width="111" Height="22" AnchorRight="352" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="PO Source: LP" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="264" Width="31" Height="31" AnchorRight="320" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPutPOJDE" Attr="11" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="208" Top="264" Width="39" Height="22" AnchorRight="232" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="264" Width="31" Height="31" AnchorRight="208" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPutWOLP" Attr="12" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="286" Width="111" Height="22" AnchorRight="352" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="WO Source: LP" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="286" Width="31" Height="31" AnchorRight="320" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPutWOJDE" Attr="13" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="208" Top="286" Width="39" Height="22" AnchorRight="232" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="286" Width="31" Height="31" AnchorRight="208" AnchorBottom="374" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPick" Attr="14" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="374" Width="87" Height="22" AnchorRight="368" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Run Pick.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="374" Width="31" Height="31" AnchorRight="208" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPrioPick" Attr="15" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="280" Top="374" Width="79" Height="22" AnchorRight="120" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Priority:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="374" Width="23" Height="22" AnchorRight="104" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtZonePick" Attr="16" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="396" Width="63" Height="22" AnchorRight="392" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Zone..:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="396" Width="87" Height="22" AnchorRight="216" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPick" Attr="17">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="418" Width="63" Height="22" AnchorRight="240" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="80FFFF" Caption="lblPick" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPickLMW" Attr="18" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="440" Width="103" Height="22" AnchorRight="360" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Source: LMW:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="440" Width="31" Height="31" AnchorRight="320" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPickJDE" Attr="19" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="440" Width="39" Height="22" AnchorRight="240" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="440" Width="31" Height="31" AnchorRight="208" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtStatusF" Attr="20" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="462" Width="79" Height="22" AnchorRight="384" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Sts From:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="96" Top="462" Width="47" Height="22" AnchorRight="336" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtStatusT" Attr="21" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="462" Width="71" Height="22" AnchorRight="256" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Sts. To:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="462" Width="47" Height="22" AnchorRight="216" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkRepl" Attr="22" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="528" Width="87" Height="22" AnchorRight="368" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Run Repl.:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="528" Width="31" Height="31" AnchorRight="208" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPrioRepl" Attr="23" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="280" Top="528" Width="79" Height="22" AnchorRight="120" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Priority:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="352" Top="528" Width="23" Height="22" AnchorRight="104" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtZoneRepl" Attr="24" KeyField="0" MaskInput="0" Required="0">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="550" Width="63" Height="22" AnchorRight="392" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Zone..:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="550" Width="87" Height="22" AnchorRight="216" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblRepl" Attr="25">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="572" Width="63" Height="22" AnchorRight="240" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="80FFFF" Caption="lblRepl" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkReplLP" Attr="26" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="594" Width="63" Height="22" AnchorRight="392" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Use LP:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="594" Width="31" Height="31" AnchorRight="320" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkReplJDE" Attr="27" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="594" Width="39" Height="22" AnchorRight="240" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="JDE:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="240" Top="594" Width="31" Height="31" AnchorRight="208" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnSave" Attr="28">
+<Layouts>
+<Layout PageNo="1" Visible="1" Caption="Save" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="660" Width="47" Height="22" AnchorRight="424" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSave" Attr="29">
+<Layouts>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="660" Width="63" Height="22" AnchorRight="344" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="80FFFF" Caption="lblSave" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout Visible="1" FormWidth="479" FormHeight="682" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="-- Warehouse Director Setup --" />
+<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: WAREHOUSE DIRECTOR, Setup Utility
+'
+' NOTES:
+
+' VALID STATUS CODES
+' 320 = New request
+' 321 = Work in process
+' 391 = Request canceled
+' 399 = Request completed
+
+' JOB TYPES (TYFL)
+' 1 = Put Away
+' 2 = Pick
+' 3 = Replenishment
+
+'
+' MODIFICATION HISTORY:
+'
+' 09/16/2011 Created Rainer Brueggemann
+'
+'
+
+Option Explicit
+Private sSql    As String
+Private sCols   As String
+Private sRows   As String
+Private msChk   As String
+'
+Private Sub btnSave_Click()
+  On Error Resume Next
+  '
+  Call GetChkBoxes
+  SYS.SetProperty("WD", "Boxes", msChk)
+  Call GetScreen
+  '
+End Sub
+
+Private Sub chkPutPOJDE_Click()
+  On Error Resume Next
+  '
+  If chkPutPOJDE.Checked = True Then
+    chkPutPOLP.Checked = False
+  Else
+    chkPutPOLP.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkPutPOLP_Click()
+  On Error Resume Next
+  '
+  If chkPutPOLP.Checked = True Then
+    chkPutPOJDE.Checked = False
+  Else
+    chkPutPOJDE.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkPutWOJDE_Click()
+  On Error Resume Next
+  '
+  If chkPutWOJDE.Checked = True Then
+    chkPutWOLP.Checked = False
+  Else
+    chkPutWOLP.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkPutWOLP_Click()
+  On Error Resume Next
+  '
+  If chkPutWOLP.Checked = True Then
+    chkPutWOJDE.Checked = False
+  Else
+    chkPutWOJDE.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkPickJDE_Click()
+  On Error Resume Next
+  '
+  If chkPickJDE.Checked = True Then
+    chkPickLMW.Checked = False
+  Else
+    chkPickLMW.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkPickLMW_Click()
+  On Error Resume Next
+  '
+  If chkPickLMW.Checked = True Then
+    chkPickJDE.Checked = False
+  Else
+    chkPickJDE.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkReplJDE_Click()
+  On Error Resume Next
+  '
+  If chkReplJDE.Checked = True Then
+    chkReplLP.Checked = False
+  Else
+    chkReplLP.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+Private Sub chkReplLP_Click()
+  On Error Resume Next
+  '
+  If chkReplLP.Checked = True Then
+    chkReplJDE.Checked = False
+  Else
+    chkReplJDE.Checked = True
+  End If
+  '
+  Screen.Refresh
+  '
+End Sub
+
+'Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+'  On Error Resume Next
+'  '
+'  If Left(RFPrompt(App.PromptNo). FieldId, 3) <> "txt" Then Exit Sub
+'  RFPrompt(App.PromptNo).BorderStyle = DisplayStandard
+'  RFPrompt(App.PromptNo).BackColor1 = vbWhite
+'  RFPrompt(App.PromptNo).ForeColor = vbBlack
+'
+'End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  Dim sUDC    As String
+  '
+  Dim vArray  As Variant
+  Dim iCnt    As Integer
+  '
+  Call SetDisplay()
+  '
+  ' Initialize special controls
+  '
+  lblPutAway.Caption = ""
+  lblPutAway.Label.BackColor1 = cFieldDefaultBC
+  lblPutAway.Label.ForeColor = cFieldDefaultFC
+  '
+  lblPick.Caption = ""
+  lblPick.Label.BackColor1 = cFieldDefaultBC
+  lblPick.Label.ForeColor = cFieldDefaultFC
+  '
+  lblRepl.Caption = ""
+  lblRepl.Label.BackColor1 = cFieldDefaultBC
+  lblRepl.Label.ForeColor = cFieldDefaultFC
+  '
+  lblSave.Caption = ""
+  lblSave.Label.BackColor1 = cFieldDefaultBC
+  lblSave.Label.ForeColor = cFieldDefaultFC
+  '
+  Call SetChkBoxes
+  '
+  lbxMCU.List.Clear
+  vArray = Split(SYS.GetProperty("WD", "MCU"),";")
+  For iCnt = 0 To UBound(vArray)
+    lbxMCU.List.InsertItem(vArray(iCnt),vArray(iCnt), -1)   ' todo - upgrade: 'InsertLocn' is now first parameter
+  Next iCnt
+  ' Put
+  txtPrioPut.Text  = SYS.GetProperty("WD", "PrioPut")
+  txtZonePut.Text  = SYS.GetProperty("WD", "ZonePut")
+  sUDC = FixRight(FixLeft(Trim(UCase(txtZonePut.Text)), 6, " "), 10, " ")
+  Validate_UDC(sUDC, "46", "ZN", sDRDL01, sDRDL02)
+  lblPutAway.Caption = sDRDL01
+  ' Pick
+  txtPrioPick.Text  = SYS.GetProperty("WD", "PrioPick")
+  txtZonePick.Text = SYS.GetProperty("WD", "ZonePick")
+  sUDC = FixRight(FixLeft(Trim(UCase(txtZonePick.Text)), 6, " "), 10, " ")
+  Validate_UDC(sUDC, "46", "ZN", sDRDL01, sDRDL02)
+  lblPick.Caption = sDRDL01
+  txtStatusF.Text  = SYS.GetProperty("WD", "StatusF")
+  txtStatusT.Text  = SYS.GetProperty("WD", "StatusT")
+  ' Repl.
+  txtPrioRepl.Text  = SYS.GetProperty("WD", "PrioRepl")
+  txtZoneRepl.Text = SYS.GetProperty("WD", "ZoneRepl")
+  sUDC = FixRight(FixLeft(Trim(UCase(txtZoneRepl.Text)), 6, " "), 10, " ")
+  Validate_UDC(sUDC, "46", "ZN", sDRDL01, sDRDL02)
+  lblRepl.Caption = sDRDL01
+  '
+  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, True   ' todo - upgrade: App.SetOption removed
+  '
+End Sub
+
+'Private Sub Form_LostFocus()
+'  On Error Resume Next
+'  '
+'  If Left(RFPrompt(App.PromptNo). FieldId, 3) <> "txt" Then Exit Sub
+'  RFPrompt(App.PromptNo).BorderStyle = DisplayTransparent
+'  RFPrompt(App.PromptNo).BackColor1 = 1
+'  RFPrompt(App.PromptNo).ForeColor = vbYellow
+'
+'End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  'App.SetOption ShowHorizontalScrollBar, False   ' todo - upgrade: App.SetOption removed
+  'App.SetOption ShowVerticalScrollBar, False   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  Dim sVal     As String
+  Dim sDsc     As String
+  Dim sDsp     As String
+  '
+  Dim I       As Integer
+  Dim nLine   As Integer
+  Dim vArray  As Variant
+  Dim iLblMax As Integer
+  Dim bDel    As Boolean
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  Cancel = True
+  '
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany, sDsc) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  '
+  iLblMax = lbxMCU.List.Count                                           'max line
+  bDel = False
+  sDsp = sMCU & "|" & sDsc
+  '
+  If iLblMax = 0 Then
+      lbxMCU.List.InsertItem(sDsp,sDsp, -1)   ' todo - upgrade: 'InsertLocn' is now first parameter
+      Exit Sub
+  End If
+  '
+  For I = 1 To iLblMax
+    lbxMCU.List.Index = I
+    sVal = lbxMCU.Text                                                 'get current value
+    vArray = Split(sVal,"|")
+    If Trim(vArray(0)) = Trim(Rsp) Then
+      lbxMCU.List.RemoveItem(I)                  'remove line
+      bDel = True
+      Exit For
+    End If
+    Next I
+  '
+    If Not bDel Then lbxMCU.List.InsertItem(sDsp,sDsp, -1)   ' todo - upgrade: 'InsertLocn' is now first parameter
+    lbxMCU.List.Sorted = True
+    Screen.Refresh
+    '
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtStatusF_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 3, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "40", "AT", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmDRKY", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtStatusF_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "40", "AT") Then Cancel = True
+End Sub
+
+Private Sub txtStatusT_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 3, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "40", "AT", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmDRKY", Rsp)
+  Cancel = False
+End Sub
+
+Private Sub txtStatusT_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "40", "AT") Then Cancel = True
+End Sub
+
+Private Sub txtZonePut_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 6, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "46", "ZN", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmDRKY", Rsp)
+  lblPutAway.Caption = sDRDL01
+  Cancel = False
+  '
+  End Sub
+  '
+Private Sub txtZonePut_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "46", "ZN") Then Cancel = True
+End Sub
+
+Private Sub txtZonePick_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 6, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "46", "ZN", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmDRKY", Rsp)
+  lblPick.Caption = sDRDL01
+  Cancel = False
+  '
+  End Sub
+  '
+Private Sub txtZonePick_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "46", "ZN") Then Cancel = True
+End Sub
+
+Private Sub txtZoneRepl_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sDRDL01 As String
+  Dim sDRDL02 As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = FixRight(FixLeft(Trim(UCase(Rsp)), 6, " "), 10, " ")
+  If Not Validate_UDC(Rsp, "46", "ZN", sDRDL01, sDRDL02) Then Exit Sub
+  '
+  App.SetValue("tmDRKY", Rsp)
+  lblRepl.Caption = sDRDL01
+  Cancel = False
+  '
+  End Sub
+  '
+Private Sub txtZoneRepl_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_UDC(Rsp, "46", "ZN") Then Cancel = True
+End Sub
+Private Sub SetChkBoxes()
+  On Error Resume Next
+  '
+  msChk = Trim(SYS.getProperty("WD", "Boxes"))
+  '
+  chkPut.Checked        = (Ext(msChk, 1)  = "1")
+  chkPutPOLP.Checked    = (Ext(msChk, 2)  = "1")
+  chkPutPOJDE.Checked   = (Ext(msChk, 3)  = "1")
+  chkPutWOLP.Checked    = (Ext(msChk, 4)  = "1")
+  chkPutWOJDE.Checked   = (Ext(msChk, 5)  = "1")
+  '
+  chkPick.Checked       = (Ext(msChk, 6)  = "1")
+  chkPickLMW.Checked    = (Ext(msChk, 7)  = "1")
+  chkPickJDE.Checked    = (Ext(msChk, 8)  = "1")
+  '
+  chkRepl.Checked       = (Ext(msChk, 9)  = "1")
+  chkReplLP.Checked     = (Ext(msChk,10)  = "1")
+  chkReplJDE.Checked    = (Ext(msChk,11)  = "1")
+  '
+End Sub
+
+Private Sub GetChkBoxes()
+  On Error Resume Next
+  '
+  msChk = ""
+  '
+  msChk = Rep(msChk, 1,  -1, CStr(Abs(CInt(chkPut.Checked))))
+  msChk = Rep(msChk, 2,  -1, CStr(Abs(CInt(chkPutPOLP.Checked))))
+  msChk = Rep(msChk, 3,  -1, CStr(Abs(CInt(chkPutPOJDE.Checked))))
+  msChk = Rep(msChk, 4,  -1, CStr(Abs(CInt(chkPutWOLP.Checked))))
+  msChk = Rep(msChk, 5,  -1, CStr(Abs(CInt(chkPutWOJDE.Checked))))
+  '
+  msChk = Rep(msChk, 6,  -1, CStr(Abs(CInt(chkPick.Checked))))
+  msChk = Rep(msChk, 7,  -1, CStr(Abs(CInt(chkPickLMW.Checked))))
+  msChk = Rep(msChk, 8,  -1, CStr(Abs(CInt(chkPickJDE.Checked))))
+  '
+  msChk = Rep(msChk, 9, -1, CStr(Abs(CInt(chkRepl.Checked))))
+  msChk = Rep(msChk, 10, -1, CStr(Abs(CInt(ChkReplLP.Checked))))
+  msChk = Rep(msChk, 11, -1, CStr(Abs(CInt(chkReplJDE.Checked))))
+  '
+End Sub
+
+Public Sub GetScreen()
+  On Error Resume Next
+  '
+  Dim I       As Integer
+  Dim nLine   As Integer
+  Dim vArray  As Variant
+  Dim iLblMax As Integer
+  Dim sVal    As String
+  '
+  iLblMax = lbxMCU.List.Count                                           'max line
+  '
+  If iLblMax > 0 Then
+    '
+    For I = 1 To iLblMax
+      lbxMCU.List.Index = I
+      If Len(Trim(lbxMCU.Text)) > 0 Then
+        sVal = sVal & lbxMCU.Text & ";"                                    'get current value
+      End If
+    Next I
+  End If
+  '
+  SYS.SetProperty("WD", "MCU", sVal)
+  '
+  SYS.SetProperty("WD", "ZonePut",  txtZonePut.Text)
+  SYS.SetProperty("WD", "PrioPut",  txtPrioPut.Text)
+  SYS.SetProperty("WD", "ZonePick", txtZonePick.Text)
+  SYS.SetProperty("WD", "PrioPick", txtPrioPick.Text)
+  SYS.SetProperty("WD", "StatusF" , txtStatusF.Text)
+  SYS.SetProperty("WD", "StatusT",  txtStatusT.Text)
+  SYS.SetProperty("WD", "ZoneRepl", txtZoneRepl.Text)
+  SYS.SetProperty("WD", "PrioRepl", txtPrioRepl.Text)
+  '
+  ' Last updated
+  '
+  SYS.SetProperty("WD", "LastUpd",  Trim(UCase(App.User)) & "  " & Format(Date,"MM/DD/YYYY") & " " & _
+            Format(Time,"hh:nn:ss") & " " & Trim(App.IpAddress))
+  LblSave.Caption  = "Last Update: " & SYS.getProperty("WD", "LastUpd")
+End Sub
+</Code>

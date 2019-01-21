@@ -1,0 +1,53 @@
+﻿<Record FileDesc="Move Transaction Queues" FileVersion="5.0.8.0" Desc="Move Transaction Queues" />
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' TRANSACTION: MOVE TRANSACTION QUEUES
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Function Transaction() As Boolean
+  On Error Resume Next
+
+  '---------------'
+  '  Declarations '
+  '---------------'
+  ' on the Transaction Server this function is called by Transaction Manager on a timer event
+  Dim sFrom       As String
+  Dim sTo         As String
+  Dim sConName    As String
+  Dim vArray      As Variant
+  Dim vQueName    As Variant
+  Dim nMin        As Integer
+  Dim iCnt        As Integer
+  Dim iCon        As Integer
+
+  '----------------'
+  ' Initialization '
+  '----------------'
+  ' MonitorTM
+  vArray = Split(SYS.GetProperty("Config", "MonTM"), "|")
+  '
+  vQueName  = Split(vArray(0),";")        ' Names of Queues to monitor
+  nMin      = CInt(vArray(1))             ' Minutes for alert
+  iCon      = CInt(vArray(2))             ' RFgen Connector (see RFgen Setup and Configuration (ADM))
+  sConName  = SYS.ConnectionProperty(iCon,dcSourceId)' Name of the Connector pointing to Central Queue
+  '
+  For iCnt = 0 To UBound(vArray)
+    sFrom = Trim(vQueName(iCnt))          ' Name local Queue
+    sTo   = sConName & "." & sFrom          ' Name of Connection, Name of Remote Queue
+    If Not TM.MoveQueue (sFrom, sTo) Then
+      Screen.Print -1, -1 ,"Move Queue from " & sFrom & " To " & sTo & "/" & SysErr.Number & " / " & SysErr.Description
+    End If
+  Next
+
+End Function
+</Code>
