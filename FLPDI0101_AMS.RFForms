@@ -1,4 +1,4 @@
-﻿<Record FileDesc="LP - Unpick Item" FileVersion="5.0.8.0" Desc="LP - Unpick Item" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;Frame1&vm;txtLPID&vm;lblLPLocn&vm;lblLPDesc&vm;lblNumUnits&vm;Frame2&vm;txtITEM&vm;lblItemDesc&vm;txtLOTN&vm;lblItemQty&vm;txtQTY&vm;txtTOLOCN&vm;txtAccept&vm;btnDetachAll" Depends="JDE.bas">
+﻿<Record FileDesc="LP - Unpick Item" FileVersion="5.0.8.0" Desc="LP - Unpick Item" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;Frame1&vm;txtLPID&vm;lblLPLocn&vm;lblLPDesc&vm;lblNumUnits&vm;Frame2&vm;txtITEM&vm;lblItemDesc&vm;txtLOTN&vm;lblItemQty&vm;txtQTY&vm;txtTOLOCN&vm;txtAccept&vm;btnDetachAll" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="Frame1" />
@@ -19,125 +19,125 @@
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
 </Displays>
-<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
 <Controls>
-<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="55" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Plant:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="151" Height="22" AnchorRight="41" AnchorBottom="276" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="57" Height="22" AnchorRight="185" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="22" Width="151" Height="22" AnchorRight="41" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="12" FieldId="Frame1" Attr="2">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Unpick From:" Style="2">
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="223" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Unpick From:" Style="2">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="223" Height="22" AnchorRight="9" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtLPID" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1">
+<Control Type="1" FieldId="txtLPID" Attr="3" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="39" Height="22" AnchorRight="193" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="LP#:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="66" Width="127" Height="22" AnchorRight="49" AnchorBottom="232" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="41" Height="22" AnchorRight="193" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="66" Width="127" Height="22" AnchorRight="49" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblLPLocn" Attr="4">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="88" Width="79" Height="22" AnchorRight="97" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPLocn" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="88" Width="81" Height="22" AnchorRight="97" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLPLocn" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblLPDesc" Attr="5">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="88" Width="79" Height="22" AnchorRight="17" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblLPDesc" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="144" Top="88" Width="81" Height="22" AnchorRight="17" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLPDesc" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblNumUnits" Attr="6">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="110" Width="95" Height="22" AnchorRight="81" AnchorBottom="188" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblNumUnits" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="110" Width="97" Height="22" AnchorRight="81" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblNumUnits" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="12" FieldId="Frame2" Attr="7">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Item to Unpick:" Style="2">
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="223" Height="22" AnchorRight="9" AnchorBottom="166" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="1" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Item to Unpick:" Style="2">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="223" Height="22" AnchorRight="9" AnchorBottom="166" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtITEM" Attr="8" KeyField="0" MaskInput="0" Required="1">
+<Control Type="1" FieldId="txtITEM" Attr="8" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="63" Height="22" AnchorRight="169" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Itm/LP:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="154" Width="111" Height="22" AnchorRight="65" AnchorBottom="144" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="154" Width="65" Height="22" AnchorRight="169" AnchorBottom="144" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Itm/LP:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="154" Width="111" Height="22" AnchorRight="65" AnchorBottom="144" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblItemDesc" Attr="9">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="95" Height="22" AnchorRight="129" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemDesc" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="198" Width="97" Height="22" AnchorRight="129" AnchorBottom="100" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblItemDesc" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtLOTN" Attr="10" KeyField="0" MaskInput="0" Required="0">
+<Control Type="1" FieldId="txtLOTN" Attr="10" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="47" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="176" Width="95" Height="22" AnchorRight="81" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="49" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="176" Width="95" Height="22" AnchorRight="81" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblItemQty" Attr="11">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="198" Width="87" Height="22" AnchorRight="25" AnchorBottom="100" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblItemQty" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="198" Width="89" Height="22" AnchorRight="25" AnchorBottom="100" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblItemQty" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="1">
+<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="39" Height="22" AnchorRight="193" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Qty:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="220" Width="87" Height="22" AnchorRight="89" AnchorBottom="78" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="41" Height="22" AnchorRight="193" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="220" Width="87" Height="22" AnchorRight="89" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtTOLOCN" Attr="13" KeyField="0" MaskInput="0" Required="1">
+<Control Type="1" FieldId="txtTOLOCN" Attr="13" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="47" Height="22" AnchorRight="185" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Locn:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="242" Width="87" Height="22" AnchorRight="89" AnchorBottom="56" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="49" Height="22" AnchorRight="185" AnchorBottom="56" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="242" Width="87" Height="22" AnchorRight="89" AnchorBottom="56" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtAccept" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Control Type="1" FieldId="txtAccept" Attr="14" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="151" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Enter to accept..." />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="153" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="240" AnchorBottom="320" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnDetachAll" Attr="15">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Detach All" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="184" Top="154" Width="55" Height="44" AnchorRight="1" AnchorBottom="122" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Detach All" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="184" Top="154" Width="55" Height="44" AnchorRight="1" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 </Controls>
 <Layouts>
-<Layout Visible="1" FormWidth="240" FormHeight="320" Scrollbars="0">
-<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="[LP - Unpick Item]" />
-<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" Caption="[LP - Unpick Item]" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Form>
@@ -164,7 +164,7 @@ Private msVersion    As String
 Private msDOCTYPE    As String
 Private msAllowHold  As String
 Private mnMaxQty     As Currency
-Private gsLPSource   As String
+'Private gsLPSource   As String 
 Private mbIsPlate    As Boolean
 Private mbSerialized As Boolean
 Private miMoveCtr    As Integer

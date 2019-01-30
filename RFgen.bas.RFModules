@@ -1,4 +1,4 @@
-﻿<Record FileDesc="RFgen Base Module" FileVersion="5.0.8.0" Desc="RFgen Base Module" />
+﻿<Record FileDesc="RFgen Base Module" FileVersion="5.0.8.0" Desc="RFgen Base Module" RunAt="1" />
 <Code>
 ' -------------------------------------------------------------------------------
 ' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|

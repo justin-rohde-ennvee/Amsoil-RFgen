@@ -1,0 +1,11 @@
+﻿<Record FileDesc="Motorola MC55" FileVersion="5.0.8.0" Desc="Motorola MC55" BatchFailover="0" CaptureKeys="1" ScaleFactor="1" Language="1033" FullScreen="1" PreLoadedModules="Win32.bas&vm;RFgen.bas&vm;LP.bas">
+<Security AuthMode="0" Encryption="0" ProviderName="0" />
+<Database Type="0" Provider="SQL.Embedded.4" Path="(Storage Card)\UserData.xdb" />
+<Files />
+<Servers>
+<Server ServerName="RFgen" ConnectionMode="0" GPRS="0" VPN="0" />
+</Servers>
+<Properties />
+<Tables />
+<Exports />
+</Record>

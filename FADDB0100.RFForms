@@ -1,4 +1,4 @@
-﻿<Record FileDesc="ADM - Sync. Rfgen DB" FileVersion="5.0.8.0" Desc="ADM - Sync. Rfgen DB" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame1&vm;chkForms&vm;chkMacros&vm;chkFiles&vm;chkHosts&vm;chkGlobal&vm;Frame2&vm;chkUsers&vm;chkMenus&vm;lblTarget&vm;lblSource&vm;Label3&vm;Label4&vm;txtSource&vm;btnDone&vm;lblForms&vm;lblMacros&vm;lblFiles&vm;lblHosts&vm;lblGlobal&vm;lblUsers&vm;lblMenus&vm;btnSource&vm;txtLoop&vm;Label12&vm;txtHidden&vm;btnRun&vm;lblProc&vm;btnConnect">
+﻿<Record FileDesc="ADM - Sync. Rfgen DB" FileVersion="5.0.8.0" Desc="ADM - Sync. Rfgen DB" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame1&vm;chkForms&vm;chkMacros&vm;chkFiles&vm;chkHosts&vm;chkGlobal&vm;Frame2&vm;chkUsers&vm;chkMenus&vm;lblTarget&vm;lblSource&vm;Label3&vm;Label4&vm;txtSource&vm;btnDone&vm;lblForms&vm;lblMacros&vm;lblFiles&vm;lblHosts&vm;lblGlobal&vm;lblUsers&vm;lblMenus&vm;btnSource&vm;txtLoop&vm;Label12&vm;txtHidden&vm;btnRun&vm;lblProc&vm;btnConnect" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="Frame1" />
 <SchemaParam Linked="0" Attr="2" Name="chkForms" />
@@ -33,226 +33,226 @@
 <Displays>
 <Display Name="Default" Type="1" Width="1920" Height="7040" Locale="1033" />
 </Displays>
-<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
 <Controls>
 <Control Type="12" FieldId="Frame1" Attr="1">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="  Programming  ">
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="22" Width="327" Height="154" AnchorRight="48" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="  Programming  " Style="0">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="22" Width="327" Height="154" AnchorRight="48" AnchorBottom="396" BackColor1="1" BackColor2="1" ForeColor="ffff" DisplayOnly="1" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkForms" Attr="2" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="47" Height="22" AnchorRight="320" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Forms" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="44" Width="31" Height="31" AnchorRight="224" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="44" Width="49" Height="22" AnchorRight="320" AnchorBottom="506" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Forms" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="44" Width="31" Height="31" AnchorRight="224" AnchorBottom="506" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkMacros" Attr="3" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="55" Height="22" AnchorRight="312" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Macros" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="66" Width="31" Height="31" AnchorRight="224" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="66" Width="57" Height="22" AnchorRight="312" AnchorBottom="484" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Macros" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="66" Width="31" Height="31" AnchorRight="224" AnchorBottom="484" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkFiles" Attr="4" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="103" Height="22" AnchorRight="264" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="File Schemas" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="88" Width="31" Height="31" AnchorRight="224" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="88" Width="105" Height="22" AnchorRight="264" AnchorBottom="462" BackColor1="1" BackColor2="1" ForeColor="1" Caption="File Schemas" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="88" Width="31" Height="31" AnchorRight="224" AnchorBottom="462" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkHosts" Attr="5" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="119" Height="22" AnchorRight="248" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="SM Hostscreens" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="110" Width="31" Height="31" AnchorRight="224" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="121" Height="22" AnchorRight="248" AnchorBottom="440" BackColor1="1" BackColor2="1" ForeColor="1" Caption="SM Hostscreens" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="110" Width="31" Height="31" AnchorRight="224" AnchorBottom="440" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkGlobal" Attr="6" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="63" Height="22" AnchorRight="304" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Modules" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="132" Width="31" Height="31" AnchorRight="224" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="132" Width="65" Height="22" AnchorRight="304" AnchorBottom="418" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Modules" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="132" Width="31" Height="31" AnchorRight="224" AnchorBottom="418" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="12" FieldId="Frame2" Attr="7">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="  User / Menus  ">
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="327" Height="88" AnchorRight="48" AnchorBottom="308" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" DisplayOnly="1" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="  User / Menus  " Style="0">
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="327" Height="88" AnchorRight="48" AnchorBottom="308" BackColor1="1" BackColor2="1" ForeColor="ffff" DisplayOnly="1" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkUsers" Attr="8" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="198" Width="47" Height="22" AnchorRight="320" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Users" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="198" Width="31" Height="31" AnchorRight="224" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="198" Width="49" Height="22" AnchorRight="320" AnchorBottom="352" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Users" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="198" Width="31" Height="31" AnchorRight="224" AnchorBottom="352" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="7" FieldId="chkMenus" Attr="9" Check="0" CanFocus="1">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="47" Height="22" AnchorRight="320" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Menus" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="31" Height="31" AnchorRight="224" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="49" Height="22" AnchorRight="320" AnchorBottom="330" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Menus" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="31" Height="31" AnchorRight="224" AnchorBottom="330" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblTarget" Attr="10">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="286" Width="79" Height="22" AnchorRight="248" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblTarget" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="286" Width="81" Height="22" AnchorRight="248" AnchorBottom="264" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblTarget" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblSource" Attr="11">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="264" Width="79" Height="22" AnchorRight="248" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="lblSource" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="264" Width="81" Height="22" AnchorRight="248" AnchorBottom="286" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblSource" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="Label3" Attr="12">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="47" Height="22" AnchorRight="328" AnchorBottom="286" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="From:" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="49" Height="22" AnchorRight="328" AnchorBottom="286" BackColor1="1" BackColor2="1" ForeColor="1" Caption="From:" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="Label4" Attr="13">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="47" Height="22" AnchorRight="328" AnchorBottom="264" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="To..:" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="49" Height="22" AnchorRight="328" AnchorBottom="264" BackColor1="1" BackColor2="1" ForeColor="1" Caption="To..:" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtSource" Attr="14" KeyField="0" MaskInput="0" Required="0">
+<Control Type="1" FieldId="txtSource" Attr="14" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="207" Height="22" AnchorRight="168" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Path to Source RFgen.mdb:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="327" Height="44" AnchorRight="48" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="209" Height="22" AnchorRight="168" AnchorBottom="242" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Path to Source RFgen.mdb:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="330" Width="327" Height="44" AnchorRight="48" AnchorBottom="198" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnDone" Attr="15">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Save Settings" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="484" Width="143" Height="22" AnchorRight="64" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Save Settings" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="484" Width="143" Height="22" AnchorRight="64" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblForms" Attr="16">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="44" Width="71" Height="22" AnchorRight="144" AnchorBottom="506" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblForms" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="44" Width="73" Height="22" AnchorRight="144" AnchorBottom="506" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblForms" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblMacros" Attr="17">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="66" Width="79" Height="22" AnchorRight="136" AnchorBottom="484" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblMacros" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="66" Width="81" Height="22" AnchorRight="136" AnchorBottom="484" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblMacros" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblFiles" Attr="18">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="88" Width="71" Height="22" AnchorRight="144" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblFiles" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="88" Width="73" Height="22" AnchorRight="144" AnchorBottom="462" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblFiles" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblHosts" Attr="19">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="110" Width="71" Height="22" AnchorRight="144" AnchorBottom="440" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblHosts" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="110" Width="73" Height="22" AnchorRight="144" AnchorBottom="440" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblHosts" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblGlobal" Attr="20">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="132" Width="79" Height="22" AnchorRight="136" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblGlobal" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="132" Width="81" Height="22" AnchorRight="136" AnchorBottom="418" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblGlobal" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblUsers" Attr="21">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="198" Width="71" Height="22" AnchorRight="144" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblUsers" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="198" Width="73" Height="22" AnchorRight="144" AnchorBottom="352" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblUsers" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblMenus" Attr="22">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="220" Width="71" Height="22" AnchorRight="144" AnchorBottom="330" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="lblMenus" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="220" Width="73" Height="22" AnchorRight="144" AnchorBottom="330" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblMenus" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnSource" Attr="23">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Change Source" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="167" Height="22" AnchorRight="208" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Change Source" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="167" Height="22" AnchorRight="208" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtLoop" Attr="24" KeyField="0" MaskInput="0" Required="0">
+<Control Type="1" FieldId="txtLoop" Attr="24" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="396" Width="175" Height="22" AnchorRight="200" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Run every xx minutes:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="396" Width="39" Height="22" AnchorRight="160" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="396" Width="177" Height="22" AnchorRight="200" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Run every xx minutes:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="176" Top="396" Width="39" Height="22" AnchorRight="160" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="Label12" Attr="25">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="224" Top="396" Width="151" Height="22" AnchorRight="0" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="( 0 = don't run. )" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="224" Top="396" Width="153" Height="22" AnchorRight="0" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" Caption="( 0 = don't run. )" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtHidden" Attr="26" KeyField="0" MaskInput="0" Required="0">
+<Control Type="1" FieldId="txtHidden" Attr="26" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="0" Height="22" AnchorRight="375" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="0" Height="22" AnchorRight="375" AnchorBottom="44" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="484" Width="0" Height="22" AnchorRight="375" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="0" Height="22" AnchorRight="375" AnchorBottom="44" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnRun" Attr="27">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Run Now" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="528" Width="311" Height="22" AnchorRight="64" AnchorBottom="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Run Now" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="528" Width="311" Height="22" AnchorRight="64" AnchorBottom="22" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblProc" Attr="28">
 <Layouts>
-<Layout PageNo="1" Visible="1">
-<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="550" Width="215" Height="22" AnchorRight="160" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Processing................" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="550" Width="217" Height="22" AnchorRight="160" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Processing................" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnConnect" Attr="29">
 <Layouts>
-<Layout PageNo="1" Visible="1" Caption="Connect " ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="440" Width="311" Height="22" AnchorRight="64" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Connect " Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="440" Width="311" Height="22" AnchorRight="64" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 </Controls>
 <Layouts>
-<Layout Visible="1" FormWidth="375" FormHeight="572" Scrollbars="0">
-<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000000" BackColor2="000000" ForeColor="000001" Caption="[ Maintain RFgen Auto Update ]" />
-<Field AutoSize="0" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000000" BackColor2="000000" ForeColor="000001" />
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="375" FormHeight="572" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="375" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="0" BackColor2="0" ForeColor="1" Caption="[ Maintain RFgen Auto Update ]" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="375" Height="572" AnchorRight="0" AnchorBottom="0" BackColor1="0" BackColor2="0" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Form>
@@ -271,31 +271,31 @@
 '
 Option Explicit
 
-Public Const REG_SZ As Long = 1
-Public Const REG_DWORD As Long = 4
-
-Public Const HKEY_CLASSES_ROOT = &H80000000
-Public Const HKEY_CURRENT_USER = &H80000001
-Public Const HKEY_LOCAL_MACHINE = &H80000002
-Public Const HKEY_USERS = &H80000003
-
-Public Const ERROR_NONE = 0
-Public Const ERROR_BADDB = 1
-Public Const ERROR_BADKEY = 2
-Public Const ERROR_CANTOPEN = 3
-Public Const ERROR_CANTREAD = 4
-Public Const ERROR_CANTWRITE = 5
-Public Const ERROR_OUTOFMEMORY = 6
-Public Const ERROR_ARENA_TRASHED = 7
-Public Const ERROR_ACCESS_DENIED = 8
-Public Const ERROR_INVALID_PARAMETERS = 87
-Public Const ERROR_NO_MORE_ITEMS = 259
-
-Public Const KEY_QUERY_VALUE = &H1
-Public Const KEY_SET_VALUE = &H2
-Public Const KEY_ALL_ACCESS = &H3F
-
-Public Const REG_OPTION_NON_VOLATILE = 0
+'Public Const REG_SZ As Long = 1
+'Public Const REG_DWORD As Long = 4
+'
+'Public Const HKEY_CLASSES_ROOT = &H80000000
+'Public Const HKEY_CURRENT_USER = &H80000001
+'Public Const HKEY_LOCAL_MACHINE = &H80000002
+'Public Const HKEY_USERS = &H80000003
+'
+'Public Const ERROR_NONE = 0
+'Public Const ERROR_BADDB = 1
+'Public Const ERROR_BADKEY = 2
+'Public Const ERROR_CANTOPEN = 3
+'Public Const ERROR_CANTREAD = 4
+'Public Const ERROR_CANTWRITE = 5
+'Public Const ERROR_OUTOFMEMORY = 6
+'Public Const ERROR_ARENA_TRASHED = 7
+'Public Const ERROR_ACCESS_DENIED = 8
+'Public Const ERROR_INVALID_PARAMETERS = 87
+'Public Const ERROR_NO_MORE_ITEMS = 259
+'
+'Public Const KEY_QUERY_VALUE = &H1
+'Public Const KEY_SET_VALUE = &H2
+'Public Const KEY_ALL_ACCESS = &H3F
+'
+'Public Const REG_OPTION_NON_VOLATILE = 0
 
 Private msChk      As String
 Private bConnect   As Boolean
