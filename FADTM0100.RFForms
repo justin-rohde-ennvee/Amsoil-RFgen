@@ -161,7 +161,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="488" Top="0" Width="55" Height="22" AnchorRight="296" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Failed" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="544" Top="0" Width="31" Height="31" AnchorRight="264" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="544" Top="0" Width="22" Height="22" AnchorRight="264" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -169,7 +169,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="584" Top="0" Width="87" Height="22" AnchorRight="168" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="in Process" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="0" Width="31" Height="31" AnchorRight="136" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="0" Width="22" Height="22" AnchorRight="136" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -177,7 +177,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="720" Top="0" Width="79" Height="22" AnchorRight="40" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Completed" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="800" Top="0" Width="31" Height="31" AnchorRight="8" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="800" Top="0" Width="22" Height="22" AnchorRight="8" AnchorBottom="770" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>

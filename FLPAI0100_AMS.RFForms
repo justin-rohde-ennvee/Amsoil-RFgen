@@ -637,6 +637,7 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     App.SetFocus("txtPALPLocn", True)
     txtPALP.DisplayOnly = True
   Else
+    txtLITM.Visible = True
     App.SetFocus("txtLITM", True)
   End If
   '
@@ -1521,7 +1522,7 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
                  " FROM F41021 WHERE LIMCU = '" & sMCU & "'" & _
                  " and LIITM = " & sITM & _
                  " and (LIPQOH -LIPCOM -LIHCOM) > " & iCnt & _
-                 " and LILOTN like '%.%'" & _
+                 " and LILOTN like '%.%%'" & _
                  " And (Case when IsNumeric(LILOTN) = 1 Then 1 Else 0 End) = 1" & _
                  " And  (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, 1, charindex('.', LILOTN)-1) as INT) else 0 end) <= " & sBeginLOT & _
                  " And (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, charindex('.', LILOTN)+1, LEN(LILOTN)) as INT) else 0 end) < " & sEndLOT & _

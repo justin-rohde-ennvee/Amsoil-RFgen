@@ -58,7 +58,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="66" Width="143" Height="22" AnchorRight="400" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Proc. Opt. tables" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="31" Height="31" AnchorRight="544" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="22" Height="22" AnchorRight="544" AnchorBottom="550" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -73,7 +73,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="154" Width="151" Height="22" AnchorRight="392" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen Log Files   " />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="31" Height="31" AnchorRight="544" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="22" Height="22" AnchorRight="544" AnchorBottom="462" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -81,7 +81,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="223" Height="22" AnchorRight="320" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Offline Inventory tables   " />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="31" Height="31" AnchorRight="544" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="22" Height="22" AnchorRight="544" AnchorBottom="418" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -89,7 +89,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="264" Width="175" Height="22" AnchorRight="368" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="License Plate tables " />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="31" Height="31" AnchorRight="544" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="22" Height="22" AnchorRight="544" AnchorBottom="352" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -97,7 +97,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="418" Width="151" Height="22" AnchorRight="392" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Warehouse Director" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="418" Width="31" Height="31" AnchorRight="544" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="418" Width="22" Height="22" AnchorRight="544" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -105,7 +105,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="374" Width="167" Height="22" AnchorRight="376" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Queue Load Balancing" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="374" Width="31" Height="31" AnchorRight="544" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="374" Width="22" Height="22" AnchorRight="544" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -113,7 +113,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="462" Width="199" Height="22" AnchorRight="344" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="WO Time Entry Start/Stop" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="462" Width="31" Height="31" AnchorRight="544" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="462" Width="22" Height="22" AnchorRight="544" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -121,7 +121,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="220" Width="191" Height="22" AnchorRight="352" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Is this the Txn server?" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="31" Height="31" AnchorRight="544" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="220" Width="22" Height="22" AnchorRight="544" AnchorBottom="396" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -136,7 +136,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="506" Width="223" Height="22" AnchorRight="320" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Pay For Performance (Voice)" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="31" Height="31" AnchorRight="544" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="506" Width="22" Height="22" AnchorRight="544" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -151,7 +151,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1">
 <Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="550" Width="159" Height="22" AnchorRight="384" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="RFgen User Profiles" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="550" Width="31" Height="31" AnchorRight="544" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="550" Width="22" Height="22" AnchorRight="544" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>

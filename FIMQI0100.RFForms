@@ -49,7 +49,7 @@
 </Control>
 <Control Type="3" FieldId="lbxLOCN" Attr="5" Sorted="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="0" AltColor="0" HeadBackColor1="0" HeadBackColor2="0" HeadBackFill="0" HeadForeColor="0" HeadPadding="0" HeadVisible="0">
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="0" HeadVisible="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="0" Height="22" AnchorRight="375" AnchorBottom="144" BackColor1="1" BackColor2="1" ForeColor="1" />
 <Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="375" Height="154" AnchorRight="0" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>

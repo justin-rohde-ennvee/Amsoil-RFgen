@@ -1,4 +1,4 @@
-﻿<Record FileDesc="LP - Nuke Pallet" FileVersion="5.0.8.0" Desc="LP - Nuke Pallet" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;Frame1&vm;txtLPID&vm;lblLPLocn&vm;lblLPDesc&vm;lblNumUnits&vm;Frame2&vm;txtITEM&vm;lblItemDesc&vm;lblItemQty&vm;txtAccept&vm;btnDetachAll" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
+﻿<Record FileDesc="LP - Detach Item" FileVersion="5.0.8.0" Desc="LP - Detach Item" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;Frame1&vm;txtLPID&vm;lblLPLocn&vm;lblLPDesc&vm;lblNumUnits&vm;Frame2&vm;txtITEM&vm;lblItemDesc&vm;txtLOTN&vm;lblItemQty&vm;txtQTY&vm;txtTOLOCN&vm;txtAccept&vm;btnDetachAll" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="Frame1" />
@@ -9,9 +9,12 @@
 <SchemaParam Linked="0" Attr="7" Name="Frame2" />
 <SchemaParam Linked="0" Attr="8" Name="txtITEM" />
 <SchemaParam Linked="0" Attr="9" Name="lblItemDesc" />
-<SchemaParam Linked="0" Attr="10" Name="lblItemQty" />
-<SchemaParam Linked="0" Attr="11" Name="txtAccept" />
-<SchemaParam Linked="0" Attr="12" Name="btnDetachAll" />
+<SchemaParam Linked="0" Attr="10" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="11" Name="lblItemQty" />
+<SchemaParam Linked="0" Attr="12" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="13" Name="txtTOLOCN" />
+<SchemaParam Linked="0" Attr="14" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="15" Name="btnDetachAll" />
 </Schema>
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
@@ -84,14 +87,38 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblItemQty" Attr="10">
+<Control Type="1" FieldId="txtLOTN" Attr="10" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="176" Width="49" Height="22" AnchorRight="185" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="176" Width="95" Height="22" AnchorRight="81" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemQty" Attr="11">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="198" Width="89" Height="22" AnchorRight="25" AnchorBottom="100" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblItemQty" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtAccept" Attr="11" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtQTY" Attr="12" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="220" Width="41" Height="22" AnchorRight="193" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="220" Width="87" Height="22" AnchorRight="89" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTOLOCN" Attr="13" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="49" Height="22" AnchorRight="185" AnchorBottom="56" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="242" Width="87" Height="22" AnchorRight="89" AnchorBottom="56" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="14" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="153" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to accept..." />
@@ -99,7 +126,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnDetachAll" Attr="12">
+<Control Type="9" FieldId="btnDetachAll" Attr="15">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Detach All" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="184" Top="154" Width="55" Height="44" AnchorRight="1" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />

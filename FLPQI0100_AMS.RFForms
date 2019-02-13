@@ -55,7 +55,7 @@
 </Control>
 <Control Type="3" FieldId="lstInquiry" Attr="6" Sorted="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="0" AltColor="0" HeadBackColor1="0" HeadBackColor2="0" HeadBackFill="0" HeadForeColor="0" HeadPadding="0" HeadVisible="0">
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="0" HeadBackColor2="0" HeadBackFill="0" HeadForeColor="0" HeadPadding="0" HeadVisible="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="0" Height="22" AnchorRight="247" AnchorBottom="166" BackColor1="1" BackColor2="1" ForeColor="1" />
 <Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="239" Height="154" AnchorRight="8" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 <Columns>
@@ -229,6 +229,12 @@ Private Sub Form_LostFocus()
   RFPrompt(iCN).ForeColor = cFieldDefaultFC
 End Sub
 
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+
 Private Sub Form_Unload()
   On Error Resume Next
   gsInquiryLPID = ""
@@ -369,7 +375,7 @@ End Sub
 Private Sub txtHidden_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
   '
-  App.SetFocus("txtLPID")
+  'App.SetFocus("txtLPID")
 End Sub
 
 Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
