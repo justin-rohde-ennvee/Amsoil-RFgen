@@ -104,7 +104,6 @@ Private Function Transaction() As Boolean
     Exit Function
   End If
 
-  Stop
   For i=1 To DB.Count(sRows)
     sSql3 = "delete from RFIC where ICDOCO = " & DB.Extract(sCols, sRows, i, "ICDOCO") & " and ICLPID = '" & DB.Extract(sCols, sRows, i, "ICLPID") & "' and ICPALP = '" & DB.Extract(sCols, sRows, i, "ICPALP") & "'"
     DB.Execute(sSql3)
