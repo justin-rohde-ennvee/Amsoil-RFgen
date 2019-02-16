@@ -314,11 +314,9 @@ Private Sub Form_Load()
   If DB.Count(sRows) = 0 Then
     App.MsgBox("Failed to load DB Schema from UDC table")
   Else
-    msSchema = Trim(DB.Extract(sCols, sRows, 1, "DRDL01"))
+    msSchema = trim(DB.Extract(sCols, sRows, 1, "DRDL01"))
   End If
 
-  ' JR 2019-02-16: for test only, this schema is cleared so the query works.
-  msSchema = ""
 End Sub
 
 Private Sub Form_LostFocus()
