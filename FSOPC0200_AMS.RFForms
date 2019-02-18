@@ -308,17 +308,15 @@ Private Sub Form_Load()
   Dim sCols As String
   Dim sRows As String
 
-  sSql = "select DRDL01 from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='SCHEMA'"
-  DB.Execute(sSql, sCols, sRows)
-
-  If DB.Count(sRows) = 0 Then
-    App.MsgBox("Failed to load DB Schema from UDC table")
-  Else
-    msSchema = Trim(DB.Extract(sCols, sRows, 1, "DRDL01"))
-  End If
-
-  ' JR 2019-02-16: for test only, this schema is cleared so the query works.
-  msSchema = ""
+  ' No longer use UDC for schema; leave blank
+'  sSql = "select DRDL01 from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='SCHEMA'"
+'  DB.Execute(sSql, sCols, sRows)
+'
+'  If DB.Count(sRows) = 0 Then
+'    App.MsgBox("Failed to load DB Schema from UDC table")
+'  Else
+'    msSchema = Trim(DB.Extract(sCols, sRows, 1, "DRDL01"))
+'  End If
 End Sub
 
 Private Sub Form_LostFocus()
