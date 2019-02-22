@@ -2226,10 +2226,10 @@ Public Sub CumValues()
   mnMaxQty = mnMaxQty - App.GetValue("tmQty")
 '  mnCounter = mnCounter + 1
   lblScanCnt.Caption = "Pick Counter: " & mnCounter
-  txtLITM.List.Clear
-  txtLOCN.List.Clear
-  txtLOTN.List.Clear
-  txtQTY.List.Clear
+  txtLITM.Text = ""
+  txtLOCN.Text = ""
+  txtLOTN.Text = ""
+  txtQTY.Text = ""
   App.SetValue("tmLITM", "")
   App.SetValue("tmLOCN", "")
   App.SetValue("tmLOTN", "")

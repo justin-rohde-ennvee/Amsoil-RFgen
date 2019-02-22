@@ -409,12 +409,12 @@ Private Sub Form_OnFkey(ByRef Fkey As Long)
           lblItemDesc.Caption = ""
           lblLPID = ""
           lblFKey.Visible = True
-          txtDCTO.List.Clear
-          txtLITM.List.Clear
-          txtLOCN.List.Clear
-          txtLOTN.List.Clear
-          txtQTY.List.Clear
-          txtDOCO.List.Clear
+          txtDCTO.Text = ""
+          txtLITM.Text = ""
+          txtLOCN.Text = ""
+          txtLOTN.Text = ""
+          txtQTY.Text = ""
+          txtDOCO.Text = ""
           txtLITM.Visible = False
           txtLOCN.Visible = False
           txtLOCN.DisplayOnly = False
@@ -438,12 +438,12 @@ Private Sub Form_OnFkey(ByRef Fkey As Long)
           lblItemDesc.Caption = ""
           lblLPID = ""
           lblFKey.Visible = True
-          txtDCTO.List.Clear
-          txtLITM.List.Clear
-          txtLOCN.List.Clear
-          txtLOTN.List.Clear
-          txtQTY.List.Clear
-          txtDOCO.List.Clear
+          txtDCTO.Text = ""
+          txtLITM.Text = ""
+          txtLOCN.Text = ""
+          txtLOTN.Text = ""
+          txtQTY.Text = ""
+          txtDOCO.Text = ""
           txtLITM.Visible = False
           txtLOCN.Visible = False
           txtLOCN.DisplayOnly = False
@@ -463,11 +463,11 @@ Private Sub Form_OnFkey(ByRef Fkey As Long)
       lblItemDesc.Caption = ""
       lblLPID = ""
       lblFKey.Visible = True
-      txtLITM.List.Clear
-      txtLOCN.List.Clear
-      txtLOTN.List.Clear
-      txtQTY.List.Clear
-      txtDOCO.List.Clear
+      txtLITM.Text = ""
+      txtLOCN.Text = ""
+      txtLOTN.Text = ""
+      txtQTY.Text = ""
+      txtDOCO.Text = ""
       txtLITM.Visible = False
       txtLOCN.Visible = False
       txtLOCN.DisplayOnly = False
@@ -3626,9 +3626,9 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     If (Len(sRows) = 0) Then
       'error, clear all prompts after LOCN, set focus to LOCN'
       App.MsgBox(GetMsg(74))
-      txtLOCN.List.Clear
-      txtLOTN.List.Clear
-      txtQTY.List.Clear
+      txtLOCN.Text = ""
+      txtLOTN.Text = ""
+      txtQTY.Text = ""
       App.SetValue("tmLOCN","")
       App.SetValue("tmLOTN","")
       App.SetFocus("txtLOCN")
@@ -3646,8 +3646,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
       If (Val(sRows) = 0) Then
         App.MsgBox(GetMsg(78))
-          txtLOTN.List.Clear
-          txtQTY.List.Clear
+          txtLOTN.Text = ""
+          txtQTY.Text = ""
           App.SetValue("tmLOTN","")
           App.SetFocus("txtLOTN")
         Exit Sub
@@ -3661,8 +3661,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
       If (Len(sRows) = 0) Then
         App.MsgBox(GetMsg(75))
-          txtLOTN.List.Clear
-          txtQTY.List.Clear
+          txtLOTN.Text = ""
+          txtQTY.Text = ""
           App.SetValue("tmLOTN","")
           App.SetFocus("txtLOTN")
         Exit Sub
@@ -4049,10 +4049,18 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
     lblFKey.Visible = True
 
-    txtLITM.List.Clear
-    txtLOCN.List.Clear
-    txtLOTN.List.Clear
-    txtQTY.List.Clear
+    txtLITM.Text = ""
+    Call txtLITM_OnBackup(False)
+
+    txtLOCN.Text = ""
+    Call txtLOCN_OnBackup(False)
+
+    txtLOTN.Text = ""
+    Call txtLOTN_OnBackup(False)
+
+    txtQTY.Text = ""
+    Call txtQTY_OnBackup(False)
+
     txtLOCN.Visible = False
     txtLOCN.DisplayOnly = False
     txtLOTN.Visible = False
@@ -4373,12 +4381,12 @@ Public Function ExecuteTM(ByVal bBackOrder As Boolean) As Boolean
       lblItemDesc.Caption = ""
       lblLPID = ""
       lblFKey.Visible = True
-      txtLITM.List.Clear
-      txtLOCN.List.Clear
-      txtLOTN.List.Clear
-      txtQTY.List.Clear
-      txtDOCO.List.Clear
-      txtDCTO.List.Clear
+      txtLITM.Text = ""
+      txtLOCN.Text = ""
+      txtLOTN.Text = ""
+      txtQTY.Text = ""
+      txtDOCO.Text = ""
+      txtDCTO.Text = ""
       txtLITM.Visible = False
       txtLOCN.Visible = False
       txtLOCN.DisplayOnly = False

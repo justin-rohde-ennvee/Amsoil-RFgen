@@ -245,7 +245,7 @@ Public Function X_LP101(ByRef sAction As String, ByRef uLP101 As LP101Data) As B
   emLP101.Name = "LP101"
   '
   If cFormatJDE And sAction <> "I" Then
-    sLOCN = uLP101.slmlocn
+    sLOCN = uLP101.sLMLOCN
     If Validate_Locn(sLOCN, App.GetValue("tmMCU"), sLocnJDE, False) Then
       uLP101.sLMLOCN = sLocnJDE
     End If
@@ -293,6 +293,7 @@ Public Function X_LP101(ByRef sAction As String, ByRef uLP101 As LP101Data) As B
     '
     If (Trim(uLP101.sLMLPID) = "") Then
       sSql = "select ENUPFX,ENNNUM from LP002 where ENCO = '%tmENTITY'"
+      sSql = Replace(sSql, "%tmENTITY", App.GetValue("tmENTITY"))
       nErrNo = DB.Execute(sSql, sCols, sRows)
       '
       If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP002", Replace(sSql, "'", "`"))
@@ -314,6 +315,7 @@ Public Function X_LP101(ByRef sAction As String, ByRef uLP101 As LP101Data) As B
       sSql = "update  LP002" & _
              " set ENNNUM = " & nCtr & _
              " where ENCO = '%tmENTITY'"
+      sSql = Replace(sSql, "%tmENTITY", App.GetValue("tmENTITY"))
       nErrNo = DB.Execute(sSql)
       '
       If Ext(gsLog,5) = "1" Then Call TranLog(msTNID, "5", "LP002", Replace(sSql, "'", "`"))
@@ -1259,7 +1261,7 @@ Public Function LP_ValidateEntity(ByVal sMCU As String, ByRef sEntity As String)
   '
   gbLPPrePrnt = Trim(UCase(DB.Extract(sCols,sRows,1,"ENPRE"))) = "YES"
   gsLPLead    = Trim(UCase(DB.Extract(sCols,sRows,1,"ENLEAD")))
-  gilenlp     = Val(DB.Extract(sCols,sRows,1,"ENLEN"))
+  giLenLP     = Val(DB.Extract(sCols,sRows,1,"ENLEN"))
   '
   LP_ValidateEntity = True
   '
