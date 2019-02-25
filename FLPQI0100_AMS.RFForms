@@ -1,4 +1,4 @@
-﻿<Record FileDesc="LP - Inquiry" FileVersion="5.0.8.0" Desc="LP - Inquiry" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;lblLPLocn&vm;lblParent&vm;lstInquiry&vm;txtHidden&vm;lblStatus&vm;lblLOTS&vm;lblUnits" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
+﻿<Record FileDesc="LP - Inquiry" FileVersion="5.0.8.0" Desc="LP - Inquiry" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;lblLPLocn&vm;lblParent&vm;lstInquiry&vm;lblStatus&vm;lblLOTS&vm;lblUnits" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="txtLPID" />
@@ -6,10 +6,9 @@
 <SchemaParam Linked="0" Attr="4" Name="lblLPLocn" />
 <SchemaParam Linked="0" Attr="5" Name="lblParent" />
 <SchemaParam Linked="0" Attr="6" Name="lstInquiry" />
-<SchemaParam Linked="0" Attr="7" Name="txtHidden" />
-<SchemaParam Linked="0" Attr="8" Name="lblStatus" />
-<SchemaParam Linked="0" Attr="9" Name="lblLOTS" />
-<SchemaParam Linked="0" Attr="10" Name="lblUnits" />
+<SchemaParam Linked="0" Attr="7" Name="lblStatus" />
+<SchemaParam Linked="0" Attr="8" Name="lblLOTS" />
+<SchemaParam Linked="0" Attr="9" Name="lblUnits" />
 </Schema>
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
@@ -65,29 +64,21 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtHidden" Attr="7" KeyField="0" MaskInput="0" Required="0" SipMode="0">
-<Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="247" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="286" Width="0" Height="22" AnchorRight="175" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-</Layouts>
-</Control>
-<Control Type="10" FieldId="lblStatus" Attr="8">
+<Control Type="10" FieldId="lblStatus" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="104" Top="110" Width="81" Height="22" AnchorRight="64" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="ff" Caption="lblStatus" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblLOTS" Attr="9">
+<Control Type="10" FieldId="lblLOTS" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="184" Top="110" Width="65" Height="22" AnchorRight="0" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="ff" Caption="lblLOTS" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblUnits" Attr="10">
+<Control Type="10" FieldId="lblUnits" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="73" Height="22" AnchorRight="168" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblUnits" />
@@ -372,11 +363,12 @@ Private Sub txtLPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   Cancel = Not Search_LP101(Rsp, App.GetValue("tmMCU"))
 End Sub
 
-Private Sub txtHidden_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-  '
-  'App.SetFocus("txtLPID")
-End Sub
+'Private Sub txtHidden_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+'  On Error Resume Next
+'  '
+'  Stop
+'  App.SetFocus("txtLPID")
+'End Sub
 
 Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
   On Error Resume Next
