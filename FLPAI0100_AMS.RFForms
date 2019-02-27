@@ -217,6 +217,7 @@ Private Sub Form_Load()
   Call SetDisplay()
   '
   Dim sHeader As String
+  Log("Form_Load")
   '
   '
   lblItemDesc.Caption = ""
@@ -278,6 +279,8 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   '
   Dim bDettach As Boolean
   '
+  Log("Form_OnUpdate")
+  '
   App.SetValue("LPITVersion", msVersion)
   '
   '--------------------------------------------------------------------------
@@ -291,6 +294,8 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Call LP101_Reset(uLP101)      ' init LP101 Structure
   Call LP102_Reset(uLP102)      ' init LP102 Structure
   '
+
+  Log("Structures initialized.")
 
   If App.GetValue("tmFromMCU") = "" Then
     App.SetValue("tmFromMCU", App.GetValue("tmMCU"))
@@ -331,12 +336,18 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
     '
   End If
   '
+
+  Log("Start attach: LPID = " & uLPOper.sLPID & ", PALP = " & uLPOper.sPalp & ", LITM = " & uLP102.sLDLITM & ", QTY = " & uLP102.nLDUORG)
+
   If Not LP_AttachDetach(uLPOper, uLP102) Then
+    Log("Attach failed: " & GetMsg(40))
     App.MsgBox(GetMsg(40))
     If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
     GoTo LPDone
   End If
   '
+  Log("Attach succeeded.")
+
   If gbCommitCtl Then DB.CommitTrans(gsLPSource)
   LPDone:
   '
@@ -346,21 +357,91 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   '
   txtLOCN.Visible = False
   txtLOCN.Required = False
-  txtLOCN.List.Clear
+  txtLOCN.Text = ""
 
   txtLOTN.Required = False
   txtLOTN.Visible = False
-  txtLOTN.List.Clear
+  txtLOTN.Text = ""
 
   txtQTY.Required = False
   txtQTY.Visible = False
-  txtQTY.List.Clear
+  txtQTY.Text = ""
 
   '
   mnMaxQty = 0
   mbSerialized = False
   mbIsPlate = False
+
+  Log("State reset.")
   Screen.Bell(1)
+  Log("Sound played.")
+
+
+'  Calculate and Display inventory info about the Pallet
+  Dim sSQL As String
+  Dim sSql2     As String
+  Dim sRows     As String
+  Dim sRows2    As String
+  Dim sCols     As String
+  Dim sCols2    As String
+  Dim sItemList As String
+  Dim nNumItems As Long
+  Dim nTotalUnits As Long
+  Dim sDirectItems  As String
+  Dim x As Integer
+  Dim y As Integer
+  Dim nPos As Integer
+  Dim sFirstItem As String
+
+  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '%tmLPID' group by LDLITM"
+  DB.Execute(sSql2, sCols2, sRows2)
+  If (DB.Count(sRows2) > 0 ) Then
+    sDirectItems = "+ Items On Pallet.
+  End If
+
+  For x = 1 To DB.Count(sRows2)
+    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+      nNumItems = nNumItems + 1
+    End If
+
+  Next x
+
+  ' Update count of items
+  sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '%tmPALP'"
+
+  DB.Execute(sSQL, sCols, sRows)
+  nTotalUnits = DB.Count(sRows)
+  For y = 1 To DB.Count(sRows)
+    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
+    DB.Execute(sSql2, sCols2, sRows2)
+
+    For x = 1 To DB.Count(sRows2)
+      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM") & "***") > 0) Then
+        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+        nNumItems = nNumItems + 1
+      End If
+    Next x
+  Next y
+
+  Log("Number of items (update): " & nNumItems)
+
+  If nNumItems = 0 And Trim(sDirectItems) = "" Then
+    lblNumItems.Caption = "Pallet is Empty"
+
+  ElseIf nNumItems > 1 Then
+    lblNumItems.Caption = nNumItems & " Items"
+    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
+  Else
+    nPos = InStr(sItemList, "***") - 1
+    sFirstItem = Trim(Mid(sItemList, 1, nPos))
+    sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '%tmPALP'"
+    DB.Execute(sSQL, sCols, sRows)
+    lblNumItems.Caption = sFirstItem
+    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
+  End If
+
+  Log("Form_OnUpdate end.")
 End Sub
 
 Private Sub txtLITM_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
@@ -523,6 +604,7 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim nPos As Integer
   Dim sFirstItem As String
 
+  Log("txtPALP_OnEnter")
 
   '
   Rsp = UCase(Trim(Rsp))
@@ -574,6 +656,7 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Else
     txtPALPLocn.DisplayOnly = False
   End If
+
 '  Calculate and Display inventory info about the Pallet
 
   sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
@@ -613,6 +696,8 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
     Next x
   Next y
+
+  Log("Number of items: " & nNumItems)
 
 '  App.MsgBox(sItemList & " " & nNumItems)
 
@@ -1345,16 +1430,16 @@ Private Sub txtPALPLocn_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, By
   End If
 
   If mbIsNew Then
-    sSql = "Select * from F4100 where LMMCU = '" & App.GetValue("tmMCU") & "' and LMLOCN = '" & Rsp & "'"
-    DB.Execute(sSql, sCols, sRows)
+    sSQL = "Select * from F4100 where LMMCU = '" & App.GetValue("tmMCU") & "' and LMLOCN = '" & Rsp & "'"
+    DB.Execute(sSQL, sCols, sRows)
     If (DB.Count(sRows) = 0) Then
       App.MsgBox("Location Invalid")
       Cancel = True
       Exit Sub
     End If
 
-    sSql = "select LMLOCN from F55101 where LMLPID = '" & App.GetValue("tmPALP") & "'"
-    DB.Execute(sSql, sCols, sRows)
+    sSQL = "select LMLOCN from F55101 where LMLPID = '" & App.GetValue("tmPALP") & "'"
+    DB.Execute(sSQL, sCols, sRows)
     sLOCN = Trim(DB.Extract(sCols, sRows, 1, "LMLOCN"))
     If (sLOCN <> "" And sLOCN <> Rsp) Then
       vRsp = App.MsgBox("The Location Has Already Been Set to " & sLOCN &".  Are You Sure You Want To Change It?", , , "[Yes] [No]")
@@ -1617,9 +1702,9 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
 
     If bAvail Then
       Call GetItemAvailSQL(sMCU, sSQLStr)
-      sSQL = "Select LILOCN, " & sSQLStr & ", LILOTN, LILOTS from F41021 where LIMCU = '" & sMCU & "' and LIITM = " & vITM & " and " & sSQLStr & " <> 0 and LILOTN = '" & sLot & "' order by LILOCN"
+      sSql = "Select LILOCN, " & sSQLStr & ", LILOTN, LILOTS from F41021 where LIMCU = '" & sMCU & "' and LIITM = " & vITM & " and " & sSQLStr & " <> 0 and LILOTN = '" & sLot & "' order by LILOCN"
     Else
-      sSQL = "select LILOCN, LIPQOH, LILOTN, LILOTS" & _
+      sSql = "select LILOCN, LIPQOH, LILOTN, LILOTS" & _
              " from  F41021 where LIMCU = '" & sMCU & "' and LIITM = " & vITM & " " & _
              " and LIPQOH <> 0" & sLike & "  order by LILOCN"
     End If
@@ -1632,7 +1717,7 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
   oList.SetColumn(2, "Qty",       giLenQTY, CenterRight,True, iDecPQOH)
   oList.SetColumn(3, "Lot",      giLenLOTN, CenterLeft,True)
   oList.SetColumn(4, "Sts",              2, CenterLeft,True)
-  oList.SQL = sSQL
+  oList.SQL = sSql
   '
   sValue = oList.ShowList
   '
@@ -1642,8 +1727,8 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
   Search_F41021_LOCN_LOCAL = (Len(Rsp) > 0)
 
   If gbOfflineEnabled Then
-    sSQL = "If OBJECT_ID('" & sIPAdr & "') is not null drop table " & sIPAdr
-    DB.Execute sSQL
+    sSql = "If OBJECT_ID('" & sIPAdr & "') is not null drop table " & sIPAdr
+    DB.Execute sSql
   End If
   '
   If Not gbDemoMode Then
@@ -1654,7 +1739,7 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
 End Function
 
 Private Function appendOrDeleteLogs(ByVal sKey As String)
-  Dim sSQL  As String
+  Dim sSql  As String
   Dim sCols As String
   Dim sRows As String
 
@@ -1662,8 +1747,8 @@ Private Function appendOrDeleteLogs(ByVal sKey As String)
 
   If Trim(UCase(sKey)) = "A" Then
 
-    sSQL = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
-    DB.Execute(sSQL, sCols, sRows)
+    sSql = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
+    DB.Execute(sSql, sCols, sRows)
 
     If Trim(msDeleteLogs) = "" Then
       msDeleteLogs = DB.Extract(sCols, sRows, 1, "IEID")
@@ -1673,9 +1758,19 @@ Private Function appendOrDeleteLogs(ByVal sKey As String)
     Exit Function
 
   ElseIf Trim(UCase(sKey)) = "D" Then
-    sSQL = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
-    DB.Execute(sSQL)
+    sSql = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
+    DB.Execute(sSql)
     msDeleteLogs = ""
   End If
 End Function
+
+Private Sub Log(ByVal sText As String)
+  On Error Resume Next
+
+  Dim sFile As String
+  sFile = "D:\RFgen\Log.txt"
+  Open sFile For Append As #1
+  Print #1, Format(Now, "hh:nn:ss") & " " & sText
+  Close #1
+End Sub
 </Code>
