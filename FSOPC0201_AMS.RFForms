@@ -4050,17 +4050,9 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     lblFKey.Visible = True
 
     txtLITM.Text = ""
-    Call txtLITM_OnBackup(False)
-
     txtLOCN.Text = ""
-    Call txtLOCN_OnBackup(False)
-
     txtLOTN.Text = ""
-    Call txtLOTN_OnBackup(False)
-
     txtQTY.Text = ""
-    Call txtQTY_OnBackup(False)
-
     txtLOCN.Visible = False
     txtLOCN.DisplayOnly = False
     txtLOTN.Visible = False
@@ -4639,7 +4631,7 @@ Public Function Search_F41021_LOTN_LOCAL(ByRef Rsp As String, ByVal sFindLOTN As
 End Function
 
 Private Function appendOrDeleteLogs(ByVal sKey As String)
-  Dim sSQL  As String
+  Dim sSql  As String
   Dim sCols As String
   Dim sRows As String
 
@@ -4647,8 +4639,8 @@ Private Function appendOrDeleteLogs(ByVal sKey As String)
 
   If Trim(UCase(sKey)) = "A" Then
 
-    sSQL = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
-    DB.Execute(sSQL, sCols, sRows)
+    sSql = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
+    DB.Execute(sSql, sCols, sRows)
 
     If Trim(msDeleteLogs) = "" Then
       msDeleteLogs = DB.Extract(sCols, sRows, 1, "IEID")
@@ -4658,8 +4650,8 @@ Private Function appendOrDeleteLogs(ByVal sKey As String)
     Exit Function
 
   ElseIf Trim(UCase(sKey)) = "D" Then
-    sSQL = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
-    DB.Execute(sSQL)
+    sSql = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
+    DB.Execute(sSql)
     msDeleteLogs = ""
   End If
 End Function
