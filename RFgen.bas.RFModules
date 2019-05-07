@@ -3647,11 +3647,16 @@ Public Function CrtDDCache(ByVal sDTAI As String)
   Dim sFormat As String
   Dim iDecCnt As Integer
   Dim nDecMult As Currency
+  Dim nErrNo As Long
+  Dim bDidRetry As Boolean
+
+  Log("RFgen.bas", "CrtDDCache", "Test message")
   '
   sDTAI = Trim(UCase(sDTAI))
   '
   ' lookup in data dictionary
   '
+Retry1:
   If gbIsE1 Or gsJDEVers = "A9.2" Then
     sSql = "select FRCDEC, FRCLAS from  F9210 " & _
            " where FRDTAI = '" & sDTAI & "'"
@@ -3660,10 +3665,25 @@ Public Function CrtDDCache(ByVal sDTAI As String)
            " where FRDTAI = '" & sDTAI & "'
   End If
   '
-  DB.Execute(sSql, sCols, sRows)
+  nErrNo = DB.Execute(sSql, sCols, sRows)
+
+  If nErrNo <> 0 Then
+    Log("RFgen.bas", "CrtDDCache", "DB.Execute error on first query (retry = " & bDidRetry & ") = " & nErrNo)
+  End If
+
+  'If Len(sRows) = 0 Then
+    Log("RFgen.bas", "CrtDDCache", "No rows returned by first query (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
+
+    ' Retry at most once
+    If Not bDidRetry Then
+      bDidRetry = True
+      GoTo Retry1
+    End If
+  'End If
 
   sClas = DB.Extract(sCols, sRows, 1, 2)
 
+Retry2:
   If Len(Trim(sClas)) <> 0 Then   ' if DD is overriden by a Data Item Class
     If gbIsE1 Or gsJDEVers = "A9.2" Then
      sSql = "select FRCDEC from  F9210 " & _
@@ -3673,7 +3693,21 @@ Public Function CrtDDCache(ByVal sDTAI As String)
             " where FRDTAI = '" & sClas & "'"
     End If
     '
-    DB.Execute(sSql, sCols, sRows)
+    nErrNo = DB.Execute(sSql, sCols, sRows)
+
+    If nErrNo <> 0 Then
+      Log("RFgen.bas", "CrtDDCache", "DB.Execute error on second query, (retry = " & bDidRetry & ") = " & nErrNo)
+    End If
+
+    'If Len(sRows) = 0 Then
+      Log("RFgen.bas", "CrtDDCache", "No rows returned by second query, (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
+
+      ' Retry at most once
+      If Not bDidRetry Then
+        bDidRetry = True
+        GoTo Retry2
+      End If
+    'End If
   End If
   '
   iDecCnt = Val(DB.Extract(sCols, sRows, 1, 1))
