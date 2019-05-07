@@ -1,0 +1,87 @@
+﻿<Record FileDesc="Logging Functions" FileVersion="5.0.8.0" Desc="Logging Functions" />
+<Code>
+Option Explicit
+
+Private Const cLogPath = "D:\RFgen\Log.txt"
+
+' Structure to be filled by "GetSystemTime" kernel function
+Private Type SYSTEMTIME
+  wYear As Integer
+  wMonth As Integer
+  wDayOfWeek As Integer
+  wDay As Integer
+  wHour As Integer
+  wMinute As Integer
+  wSecond As Integer
+  wMilliseconds As Integer
+End Type
+
+' Fills struct with system time
+Private Declare Sub GetSystemTime Lib "kernel32" (lpSystemTime As SYSTEMTIME)
+
+' Retrieves tick count since system has been up
+Private Declare Function GetTickCount64 Lib "kernel32" () As Long
+
+'
+' Returns: The formatted date and time
+'
+Private Function DateAndTimeFormatted() As String
+  On Error Resume Next
+
+  Dim dtNow As Date
+
+  dtNow = Now()
+
+  DateAndTimeFormatted = _
+    Format(Year(dtNow), "0000") & "-" & _
+    Format(Month(dtNow), "00") & "-" & _
+    Format(Day(dtNow), "00") & "T" & _
+    Format(Hour(dtNow), "00") & ":" & _
+    Format(Minute(dtNow), "00") & ":" & _
+    Format(Second(dtNow), "00") & "Z"
+End Function
+
+'
+' Adds a new entry to the custom log file.
+'
+' Parameters:
+'   - sModule: The code module being logged.
+'   - sEvent: The event, sub, or function being logged.
+'   - sText:  The text to enter in the log.
+'   - nRowCount: (Optional) The row count reported by a query result.
+'   - nErrNo: (Optional) The error number reported by a SQL statement, if any.
+'   - nStartTick: (Optional) The start tick count used for computing duration between events.
+'
+' Returns:
+'   - The tick count at the time of log entry.
+'
+Public Function Log( _
+  ByVal sModule As String, _
+  ByVal sEvent As String, _
+  ByVal sText As String, _
+  Optional ByVal nRowCount As Long = -1, _
+  Optional ByVal nErrNo As Long = -1, _
+  Optional ByVal nStartTick As Long = -1) As Long
+
+  On Error Resume Next
+
+  Dim sFile As String
+  Dim nTickCount As Long
+
+  nTickCount = GetTickCount64
+
+  Open cLogPath For Append As #1
+  Print #1, DateAndTimeFormatted() & vbTab & _
+    nTickCount & vbTab & _
+    UCase(Trim(App.User)) & vbTab & _
+    sModule & vbTab & _
+    sEvent & vbTab & _
+    sText & vbTab & _
+    IIf(nRowCount <> -1, CStr(nRowCount), "") & vbTab & _
+    IIf(nErrNo <> -1, CStr(nErrNo), "") & vbTab & _
+    IIf(nStartTick <> -1, CStr(nTickCount - nStartTick), "")
+  Close #1
+
+  Log = nTickCount
+End Function
+</Code>
