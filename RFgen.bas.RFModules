@@ -3650,7 +3650,7 @@ Public Function CrtDDCache(ByVal sDTAI As String)
   Dim nErrNo As Long
   Dim bDidRetry As Boolean
 
-  Log("RFgen.bas", "CrtDDCache", "Test message")
+  LogText("RFgen.bas", "CrtDDCache", "Test message")
   '
   sDTAI = Trim(UCase(sDTAI))
   '
@@ -3668,18 +3668,18 @@ Retry1:
   nErrNo = DB.Execute(sSql, sCols, sRows)
 
   If nErrNo <> 0 Then
-    Log("RFgen.bas", "CrtDDCache", "DB.Execute error on first query (retry = " & bDidRetry & ") = " & nErrNo)
+    LogText("RFgen.bas", "CrtDDCache", "DB.Execute error on first query (retry = " & bDidRetry & ") = " & nErrNo)
   End If
 
-  'If Len(sRows) = 0 Then
-    Log("RFgen.bas", "CrtDDCache", "No rows returned by first query (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
+  If Len(sRows) = 0 Then
+    LogText("RFgen.bas", "CrtDDCache", "No rows returned by first query (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
 
     ' Retry at most once
     If Not bDidRetry Then
       bDidRetry = True
       GoTo Retry1
     End If
-  'End If
+  End If
 
   sClas = DB.Extract(sCols, sRows, 1, 2)
 
@@ -3696,18 +3696,18 @@ Retry2:
     nErrNo = DB.Execute(sSql, sCols, sRows)
 
     If nErrNo <> 0 Then
-      Log("RFgen.bas", "CrtDDCache", "DB.Execute error on second query, (retry = " & bDidRetry & ") = " & nErrNo)
+      LogText("RFgen.bas", "CrtDDCache", "DB.Execute error on second query, (retry = " & bDidRetry & ") = " & nErrNo)
     End If
 
-    'If Len(sRows) = 0 Then
-      Log("RFgen.bas", "CrtDDCache", "No rows returned by second query, (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
+    If Len(sRows) = 0 Then
+      LogText("RFgen.bas", "CrtDDCache", "No rows returned by second query, (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
 
       ' Retry at most once
       If Not bDidRetry Then
         bDidRetry = True
         GoTo Retry2
       End If
-    'End If
+    End If
   End If
   '
   iDecCnt = Val(DB.Extract(sCols, sRows, 1, 1))

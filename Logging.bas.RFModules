@@ -55,7 +55,7 @@ End Function
 ' Returns:
 '   - The tick count at the time of log entry.
 '
-Public Function Log( _
+Public Function LogText( _
   ByVal sModule As String, _
   ByVal sEvent As String, _
   ByVal sText As String, _
@@ -82,6 +82,6 @@ Public Function Log( _
     IIf(nStartTick <> -1, CStr(nTickCount - nStartTick), "")
   Close #1
 
-  Log = nTickCount
+  LogText = nTickCount
 End Function
 </Code>
