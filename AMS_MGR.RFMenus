@@ -2,9 +2,7 @@
 <MenuItem Id="-" Desc="-- Warehousing --" />
 <MenuItem Id="DECIMAL_TEST" Desc="Decimal Test" />
 <MenuItem Id="-" />
-<MenuItem Id="FLPAI0100_AMS_ORIG" Desc="1-Create / Attach Item - Original" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPAI0100_AMS" Desc="1-Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
-<MenuItem Id="FLPAI0100_AMS_NoUpdate" Desc="1-Create / Attach Item - MOD #1" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="-" />
 <MenuItem Id="FLPDI0100_AMS" Desc="2-Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPTL0100_AMS" Desc="3-Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
