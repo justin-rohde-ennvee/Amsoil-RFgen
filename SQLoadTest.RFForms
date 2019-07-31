@@ -1,0 +1,140 @@
+﻿<Record FileDesc="SQLoadTest" FileVersion="5.0.8.0" Desc="SQLoadTest" LinkTo="No Links" LinkType="0" PromptList="TextBox1&vm;lblStatus&vm;btnGo&vm;btnTimer" ImageList="0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="TextBox1" />
+<SchemaParam Linked="0" Attr="2" Name="lblStatus" />
+<SchemaParam Linked="0" Attr="3" Name="btnGo" />
+<SchemaParam Linked="0" Attr="4" Name="btnTimer" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="TextBox1" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="186" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="62" Top="22" Width="170" Height="22" AnchorRight="8" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="54" Height="22" AnchorRight="186" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="62" Top="22" Width="80" Height="22" AnchorRight="170" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblStatus" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="119" Width="49" Height="22" AnchorRight="186" AnchorBottom="179" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="86" Width="49" Height="22" AnchorRight="186" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnGo" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Run Once" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="60" Top="44" Width="80" Height="22" AnchorRight="100" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="80" Height="44" AnchorRight="232" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnTimer" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="StartTimer" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="60" Top="66" Width="100" Height="33" AnchorRight="80" AnchorBottom="221" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="80" Height="44" AnchorRight="232" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Option Explicit
+
+Private Sub btnGo_Click()
+	On Error Resume Next
+
+	RunTest
+End Sub
+
+Private Sub RunTest()
+	On Error Resume Next
+	Dim sSQL As String
+	Dim sCols As String
+	Dim sRows As String
+	Dim sTableName As String
+	Dim iRet As Integer
+	Dim i As Integer
+  Dim iCnt As Integer
+  Dim iRowCnt As Integer
+
+
+
+  sTableName = "F4211"
+  iRowCnt = 250
+
+  iCnt = 10
+	For i = 1 To iCnt
+    sSQL = "SELECT TOP(" & iRowCnt & ") * FROM " & sTableName
+    lblStatus.Caption = "Performing " & i & " of " & iCnt & " selects on table " & sTableName
+    Screen.Refresh
+    
+	  iRet = DB.Execute(sSQL, sCols, sRows)
+    If iRet <> 0 Or Len (sRows) = 0 Then
+      lblStatus.Caption = "Error executing SQL statement"
+  		App.MsgBox "Error selecting data into from table " &sTableName & vbCrLf & "Reason: " & SysErr.Description
+		  Exit Sub
+  	End If
+
+	Next i
+  lblStatus.Caption = "Pass complete"
+
+End Sub
+
+Private Sub btnTimer_Click()
+	On Error Resume Next
+
+
+	If App.TimerEnabled  = False Then
+		App.TimerInterval = 10
+		App.TimerEnabled  = True
+
+	Else
+		App.TimerEnabled  = False
+		
+	End If
+
+
+
+End Sub
+
+Private Sub Form_OnTimer()
+	On Error Resume Next
+
+	App.TimerEnabled  = False
+
+	RunTest
+
+	App.TimerEnabled  = True
+End Sub
+
+</Code>

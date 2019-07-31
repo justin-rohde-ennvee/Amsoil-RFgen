@@ -111,7 +111,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     sKUORG  = CStr(ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "WMUORG")))
     sKTRQT  = CStr(ConvDecimalsFromSQL("TRQT", DB.Extract(sCols, sRows, 1, "WMTRQT")))
     sSQL = "select WASRST,WAITM,WADRQJ,WATRDJ from  F4801" & _
-           " where WADOCO = " & tmDOCO & " and WMDCTO = '" & tmDCTO & "' and WAMCU = '" & tmMCU & "'"
+           " where WADOCO = " & tmDOCO & " and WADCTO = '" & tmDCTO & "' and WAMCU = '" & tmMCU & "'"
     DB.Execute(sSQL,sCols,sRows)
     If Ext(gsLog,5) = "1" Then Call TranLog(cTNId, "5", "F4801", Replace(sSQL, "'", "`"))
     If (Len(sRows) = 0) Then

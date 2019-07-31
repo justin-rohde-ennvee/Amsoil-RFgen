@@ -1,0 +1,631 @@
+﻿<Record FileDesc="IM - Location Inquiry by Item" FileVersion="5.0.8.0" Desc="IM - Location Inquiry by Item" Group="IM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLITM&vm;lblItemDesc&vm;txtLOTN&vm;lbxLOCN&vm;txtSetFocus&vm;cbxAllBranch&vm;cbxAllLot&vm;cbxDetail&vm;cbxAvail" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="3" Name="lblItemDesc" />
+<SchemaParam Linked="0" Attr="4" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="5" Name="lbxLOCN" />
+<SchemaParam Linked="0" Attr="6" Name="txtSetFocus" />
+<SchemaParam Linked="0" Attr="7" Name="cbxAllBranch" />
+<SchemaParam Linked="0" Attr="8" Name="cbxAllLot" />
+<SchemaParam Linked="0" Attr="9" Name="cbxDetail" />
+<SchemaParam Linked="0" Attr="10" Name="cbxAvail" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="57" Height="22" AnchorRight="320" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="44" Width="119" Height="22" AnchorRight="208" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="57" Height="22" AnchorRight="320" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="66" Width="183" Height="22" AnchorRight="144" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblItemDesc" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="88" Width="97" Height="22" AnchorRight="232" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblItemDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="49" Height="22" AnchorRight="320" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="110" Width="183" Height="22" AnchorRight="144" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxLOCN" Attr="5" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="0" AltColor="0" HeadBackColor1="0" HeadBackColor2="0" HeadBackFill="0" HeadForeColor="0" HeadPadding="0" HeadVisible="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="0" Height="22" AnchorRight="375" AnchorBottom="144" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="375" Height="154" AnchorRight="0" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtSetFocus" Attr="6" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="375" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="286" Width="0" Height="22" AnchorRight="375" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="cbxAllBranch" Attr="7" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="0" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="241" Height="22" AnchorRight="136" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Show All B/P- Lot- Dt.- Avail" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="22" Width="31" Height="31" AnchorRight="272" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="cbxAllLot" Attr="8" Check="1" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="0" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="0" Height="22" AnchorRight="375" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="112" Top="22" Width="31" Height="31" AnchorRight="232" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="cbxDetail" Attr="9" Check="1" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="0" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="0" Height="22" AnchorRight="375" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="22" Width="31" Height="31" AnchorRight="192" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="cbxAvail" Attr="10" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="0" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="22" Width="0" Height="22" AnchorRight="367" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="22" Width="31" Height="31" AnchorRight="152" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="375" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="375" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="375" Height="320" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' INVENTORY: LOCATION INQUIRY BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private miLastCN As Integer
+Private mbSerialized As Boolean
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN>4) Then Exit Sub
+  '
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  ' Initialize special controls
+  '
+  lblItemDesc.Caption = ""
+  lblItemDesc.Label.BackColor1 = cFieldDefaultBC
+  lblItemDesc.Label.ForeColor = cFieldDefaultFC
+  '
+  txtLOTN.Required = False
+  txtLOTN.Visible = False
+  '
+  'App.SetOption(ShowHorizontalScrollBar, True)   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If (iCN>4) Then Exit Sub
+  '
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+  '
+  miLastCN = iCN
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus("txtLITM")
+  Cancel = True
+End Sub
+
+Private Sub cbxAllBranch_Click()
+  On Error Resume Next
+  '
+  Call SetSearchOptions
+End Sub
+
+Private Sub cbxAllBranch_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus(miLastCN)
+End Sub
+
+Private Sub cbxAllLot_Click()
+  On Error Resume Next
+  '
+  Call SetSearchOptions
+End Sub
+
+Private Sub cbxAllLot_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus(miLastCN)
+End Sub
+
+Private Sub cbxAvail_Click()
+  On Error Resume Next
+  '
+  Call SetSearchOptions
+End Sub
+
+Private Sub cbxAvail_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus(miLastCN)
+End Sub
+
+Private Sub cbxDetail_Click()
+  On Error Resume Next
+  '
+  Call SetSearchOptions
+End Sub
+
+Private Sub cbxDetail_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus(miLastCN)
+End Sub
+
+Private Sub Form_Unload()
+  On Error Resume Next
+  '
+  'App.SetOption(ShowHorizontalScrollBar, False)   ' todo - upgrade: App.SetOption removed
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("tmCO",  "")
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sCompany As String
+  Dim sMCU     As String
+  '
+  If (Len(Trim(Rsp))=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLITM_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLITM", "")
+  App.SetValue("tmITM", "")
+  App.SetValue("tmUOM", "")
+  '
+  lblItemDesc.Caption =  ""
+  '
+  txtLOTN.Visible = False
+  txtLOTN.Required = False
+End Sub
+
+Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim nType    As Long
+  Dim sSQL     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sAITM    As String
+  Dim sDSC1    As String
+  Dim sUOM     As String
+  Dim bHasLots As Boolean
+  '
+  If (Len(Rsp) = 0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  ' Validate Item Master / get Item Branch
+  If cbxAllBranch.Checked = False Then
+    If Not Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, bHasLots, mbSerialized) Then Exit Sub
+  Else
+    If Not Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, bHasLots, mbSerialized, True) Then Exit Sub
+  End If
+
+  App.SetValue("tmITM", sITM)
+  App.SetValue("tmUOM", sUOM)
+  App.SetValue("tmLITM", Rsp)
+  App.SetValue("tmLOTN", "")
+  '
+  lblItemDesc.Caption = sDSC1
+  '
+  txtLOTN.Visible = bHasLots
+  txtLOTN.Required = bHasLots
+  '
+  Call SetSearchOptions
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  If Not Search_F4101(Rsp, Rsp, sMCU) Then Cancel = True
+End Sub
+
+Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+   App.SetValue("tmLOTN", "")
+End Sub
+
+Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim sWhere As String
+  Dim sMCU   As String
+  Dim sITM  As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  '
+  If (Len(sITM)>0) Then sWhere = sWhere & " and IOITM = " & sITM
+  If (Len(sMCU)>0) Then sWhere = sWhere & " and IOMCU = '" & sMCU & "'"
+  '
+  ' Validate
+  sSQL = "select count(*) from  F4108" & _
+         " where IOLOTN = '" & Rsp & "'" & sWhere
+  '
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(78))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmLOTN", Rsp)
+  '
+  Call SetSearchOptions
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  Dim sITM As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  '
+  Cancel = Not Search_F41021_LOTN(Rsp, "", sMCU, sITM)
+End Sub
+
+Private Sub SetSearchOptions()
+  On Error Resume Next
+  '
+  Dim i           As Integer
+  Dim j           As Integer
+  Dim iCnt        As Integer
+  Dim iLines      As Integer
+  Dim nQOH        As Currency
+  Dim nSub        As Currency
+  Dim nTot        As Currency
+  Dim sMCU        As String
+  Dim sITM        As String
+  Dim sLOCN       As String
+  Dim sLOTN       As String
+  Dim sLOTS       As String
+  Dim sLOT1       As String
+  Dim sLOT2       As String
+  Dim sUOM        As String
+  Dim sTQOH       As String
+  Dim sSQL        As String
+  Dim sCols       As String
+  Dim sRows       As String
+  Dim sLotCols    As String
+  Dim sLotRows    As String
+  Dim sWhere      As String
+  Dim sLine       As String
+  Dim sLines      As String
+  Dim sBreakOn    As String
+  Dim sGroupOn    As String
+  Dim bAvailOnly  As Boolean
+  Dim bShowDetail As Boolean
+  Dim sLikOI      As String
+  Dim sIPAdr      As String
+  Dim sWhereOI    As String
+  '
+  If cbxAvail.Checked Then
+    cbxAllBranch.Caption = "Show All B/P- Lot- Dt.- Avail"
+  Else
+    cbxAllBranch.Caption = "Show All B/P- Lot- Dt.- OnHnd"
+  End If
+  '
+  ' Include all branchplants?
+  '
+  If cbxAllBranch.Checked Then
+    txtMCU.Required = False
+    txtMCU.Visible  = False
+    txtMCU.Text = ""
+    App.SetValue("tmMCU", "")
+  Else
+    txtMCU.Required = True
+    txtMCU.Visible  = True
+  End If
+  '
+  ' Include all Lots?
+  '
+  If cbxAllLot.Checked Then
+    txtLOTN.Required = False
+    txtLOTN.Visible  = False
+    txtLOTN.Text = ""
+     App.SetValue("tmLOTN", "")
+  Else
+    txtLOTN.Required = True
+    txtLOTN.Visible  = True
+  End If
+  '
+  ' Check to see if we should update the search
+  '
+  sMCU  = App.GetValue("tmMCU")
+  sITM  = App.GetValue("tmITM")
+  sLOTN = App.GetValue("tmLOTN")
+  '
+  bAvailOnly  = cbxAvail.Checked
+  bShowDetail = cbxDetail.Checked
+  '
+  lbxLOCN.List.Clear
+  '
+  If Not cbxAllBranch.Checked And (Len(sMCU)=0) Then
+    App.SetFocus("txtMCU", True)
+    Exit Sub
+  End If
+  '
+  If (Len(sITM)=0) Then
+    App.SetFocus("txtLITM", True)
+    Exit Sub
+  End If
+  '
+  If txtLOTN.Visible And (Len(sLOTN)=0) Then
+    App.SetFocus("txtLOTN", True)
+    Exit Sub
+  End If
+  '
+  ' Requery
+  '
+  ' Build Where Statement
+  '
+  sWhere = " where LIITM = " & sITM & " and LIPQOH <> 0"
+  If (Len(sLOTN)>0) Then sWhere = sWhere & " and LILOTN = '" & sLOTN & "'"
+  If (Len(sMCU)>0)  Then sWhere = sWhere & " and LIMCU = '" & sMCU & "'"
+  '
+  If bAvailOnly Then
+    GetItemAvailSQL(sMCU,sTQOH)
+    sTQOH = sTQOH & " as TQOH"
+    'sTQOH = "LIPQOH-LIHCOM-LIPCOM-LIFCOM-LIQOWO as TQOH"
+  Else
+    sTQOH = "LIPQOH as TQOH"
+  End If
+  '
+  If gbOfflineEnabled Then
+    '
+    ' Build Where Statement for Offline Inventory
+    '
+    sWhereOI = " where ILITM = " & sITM & "
+    If (Len(sLOTN)>0) Then sWhereOI = sWhereOI & " and ILLOTN = '" & sLOTN & "'"
+    If (Len(sMCU)>0)  Then sWhereOI = sWhereOI & " and ILMCU = '" & sMCU & "'"
+    '
+    sIPAdr = "#Temp" & App.IpAddress      ' # = Temp File unique for each user
+    sIPAdr = Replace (sIPAdr, ".", "")
+
+    sSQL = "If OBJECT_ID('" & sIPAdr & "') is not null drop table " & sIPAdr     ' if already exists by accident
+    DB.Execute (sSQL)
+
+    sSQL = "select LIMCU, LILOCN, IMUOM1, LILOTN, " & sTQOH & " INTO " & sIPAdr & " from  F41021" & _
+          " inner join  F4101 on LIITM = IMITM" & _
+          sWhere & " order by LIMCU,LILOCN,LILOTN"
+    DB.Execute (sSQL)
+
+    sSQL = "insert into " & sIPAdr & " Select ILMCU, ILLOCN, ILUOM1, ILLOTN, ILQTY1 from OI001 " _
+          & " inner join  F4101 on ILITM = IMITM"& _
+          sWhereOI & "
+    DB.Execute (sSQL)
+
+    sSQL = "select LIMCU, LILOCN, IMUOM1, LILOTN, sum(TQOH) from " & sIPAdr & " " _
+           & " group by LIMCU, LILOCN, IMUOM1, LILOTN order by LIMCU, LILOCN, IMUOM1, LILOTN "
+    DB.Execute(sSQL,sCols,sRows)
+
+    sSQL = "If OBJECT_ID('" & sIPAdr & "') is not null drop table " & sIPAdr
+  Else
+    sSQL = "select LIMCU, LILOCN, IMUOM1, LILOTS, " & sTQOH & ", LILOTN from  F41021" & _
+           " inner join  F4101 on LIITM = IMITM" & _
+           sWhere & " order by LIMCU,LILOCN,LILOTN"
+    DB.Execute(sSQL,sCols,sRows)
+  End If
+  '
+  iCnt = DB.Count(sRows)
+  '
+  For i=1 To iCnt
+    sMCU  = DB.Extract(sCols, sRows, i, "LIMCU")
+    sLOCN = DB.Extract(sCols, sRows, i, "LILOCN")
+    sUOM  = DB.Extract(sCols, sRows, i, "IMUOM1")
+    sLOTN = DB.Extract(sCols, sRows, i, "LILOTN")
+    sLOTS = DB.Extract(sCols, sRows, i, "LILOTS")
+    nQOH = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols, sRows, i, 5))
+
+    If (i=1) Then sBreakOn = sMCU
+
+    If sMCU <> sBreakOn Then
+'      sTQOH = FormatDecimals("PQOH", nSub)
+      sTQOH = CStr(nSub)
+      sLine = "Tot.B/P: " & FixRight(Trim(sBreakOn), 3, " ") & FixRight(sTQOH, 12, " ")
+      '
+      lbxLOCN.List.AddItem "", sLine
+      '
+      iLines = DB.Count(sLines)
+
+      For j=1 To iLines
+        lbxLOCN.List.AddItem "", Ext(sLines, j)   ' todo - upgrade: 'InsertLocn' is now first parameter 
+      Next j
+
+      lbxLOCN.List.AddItem "", String(27, "-")   ' todo - upgrade: 'InsertLocn' is now first parameter 
+      '
+      nSub = 0
+      sBreakOn = sMCU
+      sLines = ""
+    End If
+
+    nSub = nSub + nQOH
+    nTot = nTot + nQOH
+
+'    sTQOH = FormatDecimals("PQOH", nQOH)
+    sTQOH = CStr(nQOH)
+
+    sLine = FixLeft(sLOCN, 10, " ") & " " & _
+            FixRight(sTQOH, 13, " ") & " " & _
+            sUOM
+
+    If bShowDetail And Len(sLOTN)>0 Then
+      sSQL = "select IOLOT1, IOLOT2 from  F4108" & _
+             " where IOMCU = '" & sMCU & "' and IOLITM = '%tmLITM' and IOLOTN = '" & sLOTN & "'
+      '
+      DB.Execute(sSQL,sLotCols,sLotRows)
+      '
+      If (Len(sRows)>0) Then
+        sLine = sLine & "   " & Trim(sLOTN) & "  "
+        If (Len(Trim(sLOTS))>0) Then sLine = sLine & FixRight(sLOTS, 10, " ") & ": "
+        sLOT1 = Trim(DB.Extract(sLotCols, sLotRows, 1, "IOLOT1"))
+        sLOT2 = Trim(DB.Extract(sLotCols, sLotRows, 1, "IOLOT2"))
+        If (Len(sLOT1)>0) Or (Len(sLOT2)>0) Then sLine = sLine & sLOT1 & "/" & sLOT2
+'        If (Len(Trim(sLine))>0) Then sLines = Rep(sLines, -1, sLine)
+      End If
+    End If
+
+    sLines = Rep(sLines, -1, sLine)
+
+
+  Next i
+  '
+'  sTQOH = FormatDecimals("PQOH", nSub)
+  sTQOH = CStr(nSub)
+
+  sLine = "Tot.B/P: " & FixRight(Trim(sMCU), 3, " ") & FixRight(sTQOH, 12, " ")
+  '
+  lbxLOCN.List.AddItem "", sLine
+  '
+  iLines = DB.Count(sLines)
+  '
+  For j=1 To iLines
+    lbxLOCN.List.AddItem "", Ext(sLines, j)   ' todo - upgrade: 'InsertLocn' is now first parameter 
+  Next j
+  '
+  lbxLOCN.List.AddItem "", String(27, "-")   ' todo - upgrade: 'InsertLocn' is now first parameter 
+  '
+'  sTQOH = FormatDecimals("PQOH", nTot)
+  sTQOH = CStr(nTot)
+
+  sLine = "Grand Total: " & FixRight(sTQOH, 12, " ")
+  '
+  lbxLOCN.List.AddItem "", sLine
+End Sub
+
+Private Sub txtSetFocus_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  App.SetFocus("txtLITM")
+  App.SetValue("txtLITM","")
+  lblItemDesc.Caption = ""
+  App.SetValue("txtLotn","")
+  lbxLOCN.List.Clear
+End Sub
+</Code>

@@ -85,6 +85,9 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   Dim emShipConfirmEndDoc   As New EmbeddedProc
   Dim emNothing             As New EmbeddedProc
 
+  Dim sText As String
+
+  Log("TSOSC0200", "Transaction", "function start")
   '----------------'
   ' Initialization '
   '----------------'
@@ -122,6 +125,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   nJobNo  = 0
 
   For iCnt = 1 To tmCnt
+    Log("TSOSC0200", "Transaction", "iteration " & iCnt & " start")
     ' extract values from data structure
     sLITM = Trim(Ext(tmValCache,02, iCnt))          'long Item Number
     nITM  = CLng(Ext(tmValCache,03, iCnt))    'short Item Number
@@ -138,22 +142,62 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     nShip = CLng(Ext(tmValCache,14, iCnt))    'Ship To
     nCarr = CLng(Ext(tmValCache,15, iCnt))    'Carrier
 
+    sText = "sLITM: " & sLITM & _
+      ", nITM: " & nITM & _
+      ", sLOCN: " & sLOCN & _
+      ", nQty: " & nQty & _
+      ", sUOM: " & sUOM & _
+      ", sLOTN: " & sLOTN & _
+      ", sCOMM: " & sCOMM & _
+      ", nSOBK: " & nSOBK & _
+      ", nSOCN: " & nSOCN & _
+      ", nSOQS: " & nSOQS & _
+      ", sLNTY: " & sLNTY & _
+      ", nLNID: " & nLNID & _
+      ", nShip: " & nShip & _
+      ", nCarr: " & nCarr
+    Log("TSOSC0200", "Transaction", "extracted values: " & sText)
 
     ' Get the shipment number
     nLine = ConvDecimalsToSQL("LNID", nLNID)
     sSQL = "select SDSHPN, SDAEXP, SDECST from F4211" & _
            " where SDDOCO = " & tmDOCO & " and SDDCTO = '" & tmDCTO & "' and SDLNID = " & nLine
     DB.Execute(sSQL, sCols, sRows)
+    Log("TSOSC0200", "Transaction", "Line: " & nLine)
 
     sSHPN = DB.Extract(sCols, sRows, 1, "SDSHPN")   'Shipment Number
     nExCost = ConvDecimalsFromSQL("ECST", DB.Extract(sCols, sRows, 1, "SDECST"))
     nExPrice = ConvDecimalsFromSQL("AEXP", DB.Extract(sCols, sRows, 1, "SDAEXP"))
 
+    Log("TSOSC0200", "Transaction", "sSHPN: " & sSHPN)
+    Log("TSOSC0200", "Transaction", "nExCost: " & nExCost)
+    Log("TSOSC0200", "Transaction", "nExPrice: " & nExPrice)
 
     ' Get default information for this item
     GetItemInfo(tmMCU, sLITM, cTNId, nITM, sAITM, sUOM, sUOM2, nQty, nQty2)
+
+    sText = "tmMCU: " & tmMCU & _
+      ", sLITM: " & sLITM & _
+      ", cTNId: " & cTNId & _
+      ", nITM: " & nITM & _
+      ", sAITM: " & sAITM & _
+      ", sUOM: " & sUOM & _
+      ", sUOM2: " & sUOM2 & _
+      ", nQty: " & nQty & _
+      ", nQty2: " & nQty2
+
+    Log("TSOSC0200", "Transaction", "Item info: " & sText)
+
     sUOMCheck = sUOM
     Validate_Item(tmMCU, sLITM, CStr(nITM), sLITM,sAITM, sDsc1, sUOMCheck, nType, bHasLot, bSerialized, False, True)
+
+    sText = "sDSC1: " & sDsc1 & _
+      ", sUOMCheck: " & sUOMCheck & _
+      ", nType: " & nType & _
+      ", bHasLot: " & bHasLot & _
+      ", nType: " & nType
+
+    Log("TSOSC0200", "Transaction", "Validate_Item output: " & sText)
 
     nMLSQSV = 0
     nMLSOQ  = 0
@@ -234,6 +278,8 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       nMLSOQ = (nQtyTot + nSOBK + nSOCN) - nMLSQSV
     End If
 
+    Log("TSOSC0200", "Transaction", "nMultiCount: " & nMultiCount & ", nQty: " & nQty & ", nMLSQSV: " & nMLSQSV & ", nMLSOQ: " & nMLSOQ)
+
 '    If nMLSQSV = 0 Then
 ''      nMLSOQ = nQty
 '      nMLSOQ = nSOQS + nSOBK + nSOCN
@@ -267,11 +313,15 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     End If
     ' Check if next items belongs to same SO line
     If iCnt < tmCnt Then
+      Log("TSOSC0200", "Transaction", "loop 1 start")
       Do While CCur(Ext(tmValCache,13, iCnt +1))  = nLNID  'same Line Number in next element?
+        Log("TSOSC0200", "Transaction", "left: " & CCur(Ext(tmValCache,13, iCnt +1)) & ", right: " & nLNID)
         iCnt = iCnt +1
+        Log("TSOSC0200", "Transaction", "iCnt: " & iCnt)
         sLOCN = Ext(tmValCache,04, iCnt)          'Location
         nQty  = CCur(Ext(tmValCache,05, iCnt))    'Picked Qty.
         sLOTN = Ext(tmValCache,07, iCnt)          'Lot - / Serial number
+        Log("TSOSC0200", "Transaction", "sLOCN: " & sLOCN & ", nQty: " & nQty & ", sLOTN: " & sLOTN)
         'S/1
         emF42UI05EditLine.Param("LineNumber")                     = Val(emF42UI05EditLine.Param("LineNumber")) + .001
         emF42UI05EditLine.Param("Location")                       = sLOCN
@@ -297,7 +347,9 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
         End If
         If iCnt +1 > tmCnt Then Exit Do
       Loop
+      Log("TSOSC0200", "Transaction", "loop 1 end")
     End If
+    Log("TSOSC0200", "Transaction", "iteration " & iCnt & " end")
   Next iCnt
 
   '-------------------'
@@ -334,6 +386,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   '
   bSuccess = True
 
+  Log("TSOSC0200", "Transaction", "function end")
 '-------'
 ' Exits '
 '-------'

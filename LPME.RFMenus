@@ -10,4 +10,5 @@
 <MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Work Order Manual Completion --" />
 <MenuItem Id="FLPTC0100M_AMS" Desc="5. Line Processing (Manual) " Options="-Pgm=P31114 -Vers=RGN0001" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

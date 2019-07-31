@@ -1,0 +1,3 @@
+﻿<Record FileDesc="DBTest menu" FileVersion="5.0.8.0" Desc="DBTest menu">
+<MenuItem Id="SQLoadTest" Desc="SQLoadTest" />
+</Record>

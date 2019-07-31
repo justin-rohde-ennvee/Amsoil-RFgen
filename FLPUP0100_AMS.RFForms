@@ -274,7 +274,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
       ' Get all LNID's from the Pallet if there were items directly on it.
 
-      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "' and LDRDCTO like 'S%'
+      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "' and LDRDCTO like 'S%%'
       DB.Execute(sSqlLNID, sColsLNID, sRowsLNID)
 
       For y = 1 To DB.Count(sRowsLNID)
@@ -282,7 +282,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
         uLP102.sLDLPID = Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID"))
         uLP102.nLDLNID = Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID"))
 
-        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "' and LDLNID = " & Trim(uLP102.nLDLNID) & " and LDRDCTO like 'S%' order by LDDATE DESC, LDTIME DESC"
+        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(uLP101.sLMLPID) & "' and LDLNID = " & Trim(uLP102.nLDLNID) & " and LDRDCTO like 'S%%' order by LDDATE DESC, LDTIME DESC"
         DB.Execute(sSql102, sCols102, sRows102)
 
         If Trim(DB.Extract(sCols102, sRows102, 1, "LDRDCTO")) = "ST" Then
@@ -477,11 +477,11 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     Exit Sub
   End If
 
-  sSQL = "select * from F55101 where LMLPID = '"& Rsp & "' and LMRDCTO like 'S%'"
+  sSQL = "select * from F55101 where LMLPID = '"& Rsp & "' and LMRDCTO like 'S%%'"
   DB.Execute(sSQL, sCols, sRows)
 
   If (DB.Count(sRows) = 0) Then
-    sSQL = "select * from F55101H where LMLPID = '"& Rsp & "' and LMRDCTO like 'S%'"
+    sSQL = "select * from F55101H where LMLPID = '"& Rsp & "' and LMRDCTO like 'S%%'"
     DB.Execute(sSQL, sCols, sRows)
     If DB.Count(sRows) = 0 Then
       App.MsgBox("Can Not Unpick LP: LP Was Never Picked From.  Use create/attach if you are unpicking to a different LP.")
@@ -490,12 +490,12 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     End If
   End If
   If uLP101.sLMTYPE = "P" Then
-    sSqlDetail = "select * from F55102 where LDLPID = '"& Rsp & "' and LDRDCTO like 'S%'"
+    sSqlDetail = "select * from F55102 where LDLPID = '"& Rsp & "' and LDRDCTO like 'S%%'"
     DB.Execute(sSqlDetail, sColsDetail, sRowsDetail)
 
     If DB.Count(sRowsDetail) = 0 Then
       nCount = 0
-      sSqlDetail = "select * from F55102H where LDLPID = '"& Rsp & "' and LDRDCTO like 'S%'"
+      sSqlDetail = "select * from F55102H where LDLPID = '"& Rsp & "' and LDRDCTO like 'S%%'"
       DB.Execute(sSqlDetail, sColsDetail, sRowsDetail)
       If DB.Count(sRowsDetail) = 0 Then
         App.MsgBox("Record of Previous Lot Number Unavailable")
@@ -558,13 +558,13 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
       ' Get all LNID's from the Pallet if there were items directly on it.
 
-      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(DB.Extract(sCols, sRows, x, "LMLPID")) & "' and LDRDCTO like 'S%'
+      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(DB.Extract(sCols, sRows, x, "LMLPID")) & "' and LDRDCTO like 'S%%'
       DB.Execute(sSqlLNID, sColsLNID, sRowsLNID)
 
       For y = 1 To DB.Count(sRowsLNID)
 
 
-        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID")) & "' and LDLNID = " & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID")) & " and LDRDCTO like 'S%' order by LDDATE DESC, LDTIME DESC"
+        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID")) & "' and LDLNID = " & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID")) & " and LDRDCTO like 'S%%' order by LDDATE DESC, LDTIME DESC"
         DB.Execute(sSql102, sCols102, sRows102)
         sQtyList = ""
         nNumUniques = 0

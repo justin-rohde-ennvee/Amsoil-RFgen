@@ -1,4 +1,4 @@
-﻿<Record FileDesc="LP - Attach Item" FileVersion="5.0.8.0" Desc="LP - Attach Item" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame2&vm;txtMCU&vm;txtPALP&vm;btnNew&vm;txtPALPLocn&vm;lblNumItems&vm;lblNumUnits&vm;btnInfo&vm;txtNumLabels&vm;Frame1&vm;txtLITM&vm;lblItemDesc&vm;txtLOTN&vm;txtLOCN&vm;txtQTY" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
+﻿<Record FileDesc="LP - Attach Item" FileVersion="5.0.8.0" Desc="LP - Attach Item" Group="AMS_OLD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="Frame2&vm;txtMCU&vm;txtPALP&vm;btnNew&vm;txtPALPLocn&vm;lblNumItems&vm;lblNumUnits&vm;btnInfo&vm;txtNumLabels&vm;Frame1&vm;txtLITM&vm;lblItemDesc&vm;txtLOTN&vm;txtLOCN&vm;txtQTY" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="Frame2" />
 <SchemaParam Linked="0" Attr="2" Name="txtMCU" />

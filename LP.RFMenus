@@ -38,4 +38,5 @@
 <MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Setup &amp; Advanced LP (non-custom setup)" />
 <MenuItem Id="LP_Adv" Desc="K-L -Menu 2" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

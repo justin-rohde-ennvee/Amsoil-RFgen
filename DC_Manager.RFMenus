@@ -17,4 +17,5 @@
 <MenuItem Id="FLPUP0100_AMS" Desc="F Unpick License Plate" />
 <MenuItem Id="FLPCC0100_AMS" Desc="G LP Cycle Count" Options="-Pgm=P41240 -Vers=RGN0001 " />
 <MenuItem Id="FLPQI0300_AMS" Desc="H LP - History Inquiry" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

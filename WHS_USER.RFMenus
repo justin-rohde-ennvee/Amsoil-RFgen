@@ -21,4 +21,9 @@
 <MenuItem Id="-" />
 <MenuItem Id="-" Desc="--- System ---" />
 <MenuItem Id="FADRL010" Desc="B Record Lock Maintainence" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="--- SO - Sales Orders ---" />
+<MenuItem Id="FSOPC0201_AMS" Desc="C Sales Order Picking" Options="-Pgm=P4205 -Vers=RGN0003 -BOVers=RGN0004" />
+<MenuItem Id="FSOSC0101_AMS" Desc="D Sales Order Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0005" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

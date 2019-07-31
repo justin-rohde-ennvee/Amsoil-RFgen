@@ -2173,8 +2173,8 @@ Public Function LP_AttachDetach(ByRef uLPoper As LPOper, ByRef uLP102 As LP102Da
     End If
     '
     ' run IT only if Location and / or Plant is different
-    If FormatLocnDisplay((uLPoper.sFLOCN),uLPoper.sFMCU) <> FormatLocnDisplay(uLPoper.sTLOCN,uLPoper.sFMCU) And uLP102.nLDuorg <> 0 Or _
-      uLPoper.sFMCU <> uLPoper.sTMCU And uLP102.nLDuorg <> 0 Then
+    If FormatLocnDisplay((uLPoper.sFLOCN),uLPoper.sFMCU) <> FormatLocnDisplay(uLPoper.sTLOCN,uLPoper.sFMCU) And uLP102.nLDUORG <> 0 Or _
+      uLPoper.sFMCU <> uLPoper.sTMCU And uLP102.nLDUORG <> 0 Then
       '
       'check if item exists in ToMCU
       If Not Validate_Item(uLPoper.sTMCU,uLP102.sLDLITM, sITM, sLITM, sAITM, sDSC1, _

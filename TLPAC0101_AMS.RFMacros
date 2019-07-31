@@ -24,6 +24,16 @@ Option Explicit
 Private Const cFailOnWarnings = False
 Private Const cTNId           = "TLPAC0100"
 
+Declare Function GetCurrentProcessId Lib "kernel32" () As Long
+
+Function GetMemUsage()
+  Dim oServices As Object
+
+  Set oServices = GetObject("winmgmts:")
+  GetMemUsage = oServices.Get("Win32_Process.Handle='" & GetCurrentProcessId & "'").WorkingSetSize / 1024
+  Set oServices = Nothing
+End Function
+
 Private Function Transaction() As Boolean
 
   Dim sSql As String
@@ -64,6 +74,8 @@ Private Function Transaction() As Boolean
   Dim sColsOPSQ As String
   Dim sRowsOPSQ As String
 
+  LogText("TLPAC0101_AMS", "Transaction", "Memory/start (KB): " & GetMemUsage())
+
   sTime = Format(Time, "nn:ss")
   sTimes = Split(sTime, ":")
   nMinutes = CLng(sTimes(0))
@@ -78,7 +90,7 @@ Private Function Transaction() As Boolean
       If Not ERP.BeginTrans Then
         TM.AbortTrans
         If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", "ERP.BeginTrans failed" , "", Nothing, tmUser, TM.QueueName, TM.SeqNo)
-        Exit Function
+        GoTo LPDone
       End If
       emGetAuditInfo.Name       = "GetAuditInfo"
       emGetAuditInfo.LogMode    = LogFailure
@@ -101,7 +113,7 @@ Private Function Transaction() As Boolean
   If (DB.Count(sRows) = 0) Then
     'Still waiting for entries - this is still a good condition.
     Transaction = True
-    Exit Function
+    GoTo LPDone
   End If
 
   For i=1 To DB.Count(sRows)
@@ -125,26 +137,6 @@ Private Function Transaction() As Boolean
     nPalletMax = Val(DB.Extract(sCols, sRows, i, "ICPMAX"))
     tmLPID = DB.Extract(sCols, sRows, i, "ICLPID")
     tmPALP = DB.Extract(sCols, sRows, i, "ICPALP")
-
-    
-'    emProc.Name       = "TWOCM0100"
-'    '
-'    emProc.Param("tmCO")       = tmCO
-'    emProc.Param("tmMCU")      = tmMCU
-'    emProc.Param("tmDOCO")     = tmDOCO
-'    emProc.Param("tmDCTO")     = tmDCTO
-'    emProc.Param("tmLITM")     = tmLITM
-'    emProc.Param("tmLOTN")     = tmLOTN
-'    emProc.Param("tmXPDT")     = ""
-'    emProc.Param("tmLOCN")     = tmLOCN
-'    emProc.Param("tmQTY")      = nCompletionQuantity
-'    emProc.Param("tmSCRAP")    = 0
-'    emProc.Param("tmUOM")      = tmUOM
-'    emProc.Param("tmDRKY")     = ""
-'    emProc.Param("tmDRKYDESC") = ""
-'    emProc.Param("tmUSER")     = tmUser
-'    emProc.Param("tmZVERSION") = msVersion
-'    emProc.Param("tmPGM")      = msPgm
 
     sSqlOPSQ = "select WLOPSQ from F3112" & _
                " where WLDOCO = " & tmDOCO & _
@@ -218,5 +210,6 @@ Private Function Transaction() As Boolean
     Transaction = False
   End If
 
+  LogText("TLPAC0101_AMS", "Transaction", "Memory/end   (KB): " & GetMemUsage())
 End Function
 </Code>

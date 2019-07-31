@@ -18,4 +18,5 @@
 <MenuItem Id="FIMQI0100" Desc="9-Item Location Inquiry" />
 <MenuItem Id="-" />
 <MenuItem Id="FLPLB0100_AMS" Desc="0-Label Reprint" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

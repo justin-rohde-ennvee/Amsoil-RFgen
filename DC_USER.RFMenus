@@ -13,4 +13,5 @@
 <MenuItem Id="FSOPC0200_AMS" Desc="B ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />
 <MenuItem Id="FSOSC0100_AMS" Desc="C ST Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
 <MenuItem Id="FLPCC0100_AMS" Desc="D LP Cycle Count" Options="-Pgm=P41240 -Vers=RGN0001" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

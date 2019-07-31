@@ -11,6 +11,7 @@
 
 Option Explicit
 Global gbProcessing           As Boolean
+
 Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal sFromUOM As String, ByVal sToUOM As String) As Boolean
   On Error Resume Next
   '
@@ -153,6 +154,7 @@ Public Function PrintCaseLabel(ByVal nPrinterNumber As Integer, _
   'Create output file in printing directory (filename is unique by item and time)
   sFile = "C:\Program Files (x86)\Loftware Labeling\WDDrop\CartonLabel" & Trim(sLITM) & sLPID & sDateTime & ".pas"
 
+  'sFile = "\\VGRFGENPD01\WDDrop\CartonLabel" & Trim(sLITM) & sLPID & sDateTime & ".pas"
   'Write label info to file
   Open sFile For Output As #1
 
@@ -192,6 +194,7 @@ Public Function PrintPalletLabel(ByVal nPrinterNumber As Integer, _
   'Create output file in printing directory (filename is unique by item and time)
   sFile = "C:\Program Files (x86)\Loftware Labeling\WDDrop\PalletLabel" & sLPID & sDateTime & ".pas"
 
+  'sFile = "\\VGRFGENPD01\WDDrop\PalletLabel" & sLPID & sDateTime & ".pas"
   'Write label info to file
   Open sFile For Output As #1
 
@@ -207,4 +210,14 @@ Public Function PrintPalletLabel(ByVal nPrinterNumber As Integer, _
   PrintPalletLabel = True
 
 End Function
+
+'Public Sub Log(ByVal sText As String)
+'  On Error Resume Next
+'
+'  Dim sFile As String
+'  sFile = "D:\RFgen\Log.txt"
+'  Open sFile For Append As #1
+'  Print #1, Format(Now, "hh:nn:ss") & " " & sText
+'  Close #1
+'End Sub
 </Code>

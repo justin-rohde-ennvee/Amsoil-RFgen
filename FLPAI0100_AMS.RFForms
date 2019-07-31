@@ -173,9 +173,15 @@ Private mbIsNew      As Boolean
 Private sOlderLots() As String
 Private msDeleteLogs As String
 Private mbCheckOldestLots As Boolean
+Private mbScan As Boolean
+Private Const mbLog = False
 
 Private Sub btnInfo_Click()
   On Error Resume Next
+
+
+
+
 
   Dim sCallString As String
 
@@ -186,20 +192,31 @@ Private Sub btnInfo_Click()
   '& "-MCU=" & Trim(App.GetValue("tmMCU")) & " -LPID=" & Trim(App.GetValue("tmPALP"))
 
   App.CallForm(sCallString, True)
+
+
 End Sub
 
 Private Sub btnNew_Click()
   On Error Resume Next
+
+
+
+
 '  txtPALP.Text = "NEW"
 '  App.SetFocus("txtPALP", False, True)
   Call txtPALP_OnEnter("NEW", False, "")
   txtPALP.Text = App.GetValue("tmPALP")
+
+
 End Sub
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
   '
   Dim iCN As Integer
+
+
+
   '
   iCN = App.PromptNo
 
@@ -209,15 +226,18 @@ Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
     RFPrompt(iCN).ForeColor = cFieldFocusFC
   End If
 
+
 End Sub
 
 Private Sub Form_Load()
   On Error Resume Next
+
+
   '
+
   Call SetDisplay()
   '
   Dim sHeader As String
-  Log("Form_Load")
   '
   '
   lblItemDesc.Caption = ""
@@ -259,27 +279,36 @@ Private Sub Form_Load()
     App.ExitForm
     Exit Sub
   End If
+
+
 End Sub
 
 Private Sub Form_LostFocus()
   On Error Resume Next
   '
+
   Dim iCN As Integer
   '
+
+
   iCN = App.PromptNo
   If iCN <> 4 And iCN <> 8 Then
     RFPrompt(iCN).BorderStyle = DisplayTransparent
     RFPrompt(iCN).BackColor1 = cFieldDefaultBC
     RFPrompt(iCN).ForeColor = cFieldDefaultFC
   End If
+
+
 End Sub
 
 Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   On Error Resume Next
   '
   Dim bDettach As Boolean
+
+
   '
-  Log("Form_OnUpdate")
+
   '
   App.SetValue("LPITVersion", msVersion)
   '
@@ -294,8 +323,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Call LP101_Reset(uLP101)      ' init LP101 Structure
   Call LP102_Reset(uLP102)      ' init LP102 Structure
   '
-
-  Log("Structures initialized.")
 
   If App.GetValue("tmFromMCU") = "" Then
     App.SetValue("tmFromMCU", App.GetValue("tmMCU"))
@@ -337,18 +364,21 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   End If
   '
 
-  Log("Start attach: LPID = " & uLPOper.sLPID & ", PALP = " & uLPOper.sPalp & ", LITM = " & uLP102.sLDLITM & ", QTY = " & uLP102.nLDUORG)
+  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "LP_AttachDetach start LPID: " & uLPOper.sLPID & ", PALP: " & uLPOper.sPalp)
 
   If Not LP_AttachDetach(uLPOper, uLP102) Then
-    Log("Attach failed: " & GetMsg(40))
+    If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "LP_AttachDetach end (fail): " & GetMsg(40))
     App.MsgBox(GetMsg(40))
     If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
     GoTo LPDone
   End If
+  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "LP_AttachDetach end (success)")
   '
-  Log("Attach succeeded.")
 
+  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "CommitTrans begin")
   If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "CommitTrans end")
+
   LPDone:
   '
   '--------------------------------------------------------------------------
@@ -372,81 +402,132 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   mbSerialized = False
   mbIsPlate = False
 
-  Log("State reset.")
-  Screen.Bell(1)
-  Log("Sound played.")
-
+  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "Screen.Bell start")
+  Screen.Bell(0)
+  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "Screen.Bell end")
 
 '  Calculate and Display inventory info about the Pallet
-  Dim sSQL As String
-  Dim sSql2     As String
-  Dim sRows     As String
-  Dim sRows2    As String
-  Dim sCols     As String
-  Dim sCols2    As String
-  Dim sItemList As String
-  Dim nNumItems As Long
-  Dim nTotalUnits As Long
-  Dim sDirectItems  As String
-  Dim x As Integer
-  Dim y As Integer
-  Dim nPos As Integer
-  Dim sFirstItem As String
+'  Dim sSQL As String
+'  Dim sSql2     As String
+'  Dim sRows     As String
+'  Dim sRows2    As String
+'  Dim sCols     As String
+'  Dim sCols2    As String
+'  Dim sItemList As String
+'  Dim nNumItems As Long
+'  Dim nTotalUnits As Long
+'  Dim sDirectItems  As String
+'  Dim x As Integer
+'  Dim y As Integer
+'  Dim nPos As Integer
+'  Dim sFirstItem As String
+'
+'  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '%tmLPID' group by LDLITM"
+'  DB.Execute(sSql2, sCols2, sRows2)
+'  If (DB.Count(sRows2) > 0 ) Then
+'    sDirectItems = "+ Items On Pallet.
+'  End If
+'
+'  For x = 1 To DB.Count(sRows2)
+'    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+'      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+'      nNumItems = nNumItems + 1
+'    End If
+'
+'  Next x
 
-  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '%tmLPID' group by LDLITM"
-  DB.Execute(sSql2, sCols2, sRows2)
-  If (DB.Count(sRows2) > 0 ) Then
-    sDirectItems = "+ Items On Pallet.
-  End If
+'  ' Update count of items
+'  sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '%tmPALP'"
+'
+'  DB.Execute(sSQL, sCols, sRows)
+'  nTotalUnits = DB.Count(sRows)
+'  For y = 1 To DB.Count(sRows)
+'    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
+'    DB.Execute(sSql2, sCols2, sRows2)
+'
+'    For x = 1 To DB.Count(sRows2)
+'      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM") & "***") > 0) Then
+'        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+'        nNumItems = nNumItems + 1
+'      End If
+'    Next x
+'  Next y
+'
+'  If nNumItems = 0 And Trim(sDirectItems) = "" Then
+'    lblNumItems.Caption = "Pallet is Empty"
+'
+'  ElseIf nNumItems > 1 Then
+'    lblNumItems.Caption = nNumItems & " Items"
+'    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
+'  Else
+'    nPos = InStr(sItemList, "***") - 1
+'    sFirstItem = Trim(Mid(sItemList, 1, nPos))
+'    sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '%tmPALP'"
+'    DB.Execute(sSQL, sCols, sRows)
+'    lblNumItems.Caption = sFirstItem
+'    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
+'  End If
 
-  For x = 1 To DB.Count(sRows2)
-    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
-      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
-      nNumItems = nNumItems + 1
-    End If
 
-  Next x
-
-  ' Update count of items
-  sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '%tmPALP'"
-
-  DB.Execute(sSQL, sCols, sRows)
-  nTotalUnits = DB.Count(sRows)
-  For y = 1 To DB.Count(sRows)
-    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
-    DB.Execute(sSql2, sCols2, sRows2)
-
-    For x = 1 To DB.Count(sRows2)
-      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM") & "***") > 0) Then
-        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
-        nNumItems = nNumItems + 1
-      End If
-    Next x
-  Next y
-
-  Log("Number of items (update): " & nNumItems)
-
-  If nNumItems = 0 And Trim(sDirectItems) = "" Then
-    lblNumItems.Caption = "Pallet is Empty"
-
-  ElseIf nNumItems > 1 Then
-    lblNumItems.Caption = nNumItems & " Items"
-    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
-  Else
-    nPos = InStr(sItemList, "***") - 1
-    sFirstItem = Trim(Mid(sItemList, 1, nPos))
-    sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '%tmPALP'"
-    DB.Execute(sSQL, sCols, sRows)
-    lblNumItems.Caption = sFirstItem
-    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
-  End If
-
-  Log("Form_OnUpdate end.")
 End Sub
 
 Private Sub txtLITM_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
+
+
+
   Frame1.Visible = True
+
+End Sub
+
+Public Sub txtLITM_LostFocus()
+  On Error Resume Next
+
+
+
+
+
+End Sub
+
+Public Sub txtLITM_OnScan(ByRef ScanData As String)
+  On Error Resume Next
+
+
+
+  mbScan = True
+
+End Sub
+
+Public Sub txtLOCN_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+
+
+
+End Sub
+
+Public Sub txtLOCN_LostFocus()
+  On Error Resume Next
+
+
+
+
+End Sub
+
+Public Sub txtLOTN_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+
+
+
+End Sub
+
+Public Sub txtLOTN_LostFocus()
+  On Error Resume Next
+
+
+
+
 End Sub
 
 Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
@@ -460,6 +541,9 @@ End Sub
 Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
   '
+
+
+
   If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
   If Len(Rsp) > 0 Then AllowChange = False
   btnInfo.Visible = False
@@ -470,6 +554,16 @@ Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   Frame1.Visible = False
   lblNumItems.Caption = ""
   lblNumUnits.Caption = ""
+
+
+End Sub
+
+Public Sub txtMCU_LostFocus()
+  On Error Resume Next
+
+
+
+
 End Sub
 
 Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -481,9 +575,11 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sMCU     As String
   Dim sCompany As String
 
+
   Rsp = UCase(Trim(Rsp))
   '
   If (Len(Rsp)=0) Then Exit Sub
+
   Cancel = True
   '
   If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
@@ -493,14 +589,18 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   App.SetValue("tmNMCU", sMCU)
 
     ' get Entity from MCU
+  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 1 start")
   sSQL = "select EBCO from LP005 where EBMCU = '%tmMCU' "
   DB.Execute(sSQL, sCols, sRows)
+  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 1 end", DB.Count(sRows))
   App.SetValue("tmEntity", DB.Extract(sCols,sRows,1,1))
   txtPALP.Visible = True
   btnNew.Visible = True
 
+  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 2 start")
   sSQL = "select DRKY from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='" & Trim(sMCU) & "'"
   DB.Execute(sSQL, sCols, sRows)
+  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 2 end", DB.Count(sRows))
 
   If DB.Count(sRows) = 0 Then
     mbCheckOldestLots = False
@@ -509,6 +609,7 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   End If
 
   Cancel = False
+
 End Sub
 
 Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -517,8 +618,28 @@ Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   If Not Search_BranchPlant(Rsp) Then Cancel = True
 End Sub
 
+Public Sub txtNumLabels_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+
+
+
+
+End Sub
+
+Public Sub txtNumLabels_LostFocus()
+  On Error Resume Next
+
+
+
+
+
+End Sub
+
 Private Sub txtNumLabels_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
+
+
 
   Dim iYN As Integer
   If Len(Rsp) = 0 Then
@@ -552,6 +673,9 @@ End Sub
 
 Private Sub txtPALP_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
+
+
+
   btnNew.Visible = True
   txtPALPLocn.Visible = False
   lblNumItems.Caption = ""
@@ -569,7 +693,10 @@ End Sub
 
 Private Sub txtPALP_LostFocus()
   On Error Resume Next
+
+
   btnNew.Visible = False
+
 End Sub
 
 Private Sub txtPALP_OnBackup(ByRef Cancel As Boolean)
@@ -604,38 +731,49 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim nPos As Integer
   Dim sFirstItem As String
 
-  Log("txtPALP_OnEnter")
-
   '
+
+
   Rsp = UCase(Trim(Rsp))
   If Trim(Rsp) = "NEW" Then
 
   End If
   Cancel = True
   If (Len(Rsp)=0) Then Exit Sub
+
   '
   Call LP101_Reset(uLP101)      ' init LP101 Structure
   '
   uLP101.sLMLPID = Rsp
   sLPID = Rsp
+
+  If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "X_LP101/I start")
   If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "X_LP101/I end (failed)")
     mbIsNew = True
     If Trim(Rsp) = "NEW" Then
+      If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "LP_CreatePlate start")
       If Not LP_CreatePlate(sLPID,"L","LP created " & Format(Date, "MM/DD/YYYY") & " " & Format(Time, "hh:nn:ss"),"DOCK",False,App.GetValue("tmDOCO"), App.GetValue("tmDCTO"),"") Then
+          If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "LP_CreatePlate end (failed)")
           App.MsgBox(GetMsg(270))
           Cancel = True
+          If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "event exit 1")
           Exit Sub
       End If
+      If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "LP_CreatePlate end (success)")
       Rsp = sLPID
     Else
       App.MsgBox("That License Plate Does Not Exist")
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "event exit 2")
       Exit Sub
     End If
   Else
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "X_LP101/I end (success)")
     If (Val(Trim(uLP101.sLMRNXTR)) >= 545) Then
       App.MsgBox("Can not attach items to a picked license plate")
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "event exit 3")
       Exit Sub
     End If
     mbIsNew = False
@@ -648,6 +786,7 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   If (Trim(uLP101.sLMMCU) <> Trim(App.GetValue("tmMCU"))) Then
     App.MsgBox("The Entered License Plate Is Not In The Selected Branch Plant")
     Cancel = True
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "event exit 4")
     Exit Sub
   End If
 
@@ -657,51 +796,11 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     txtPALPLocn.DisplayOnly = False
   End If
 
-'  Calculate and Display inventory info about the Pallet
 
-  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
-  DB.Execute(sSql2, sCols2, sRows2)
-  If (DB.Count(sRows2) > 0 ) Then
-    sDirectItems = "+ Items On Pallet.
-  End If
 
-  For x = 1 To DB.Count(sRows2)
-    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
-      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
-      nNumItems = nNumItems + 1
-    End If
+  'CountPallet_Old(Rsp, nNumItems, nTotalUnits, sDirectItems)
+  CountPallet(Rsp, nNumItems, nTotalUnits, sDirectItems)
 
-  Next x
-
-'    sSQL = "select CIMCU, ABALPH from  F41001" & _
-'         " inner join  F0101 on CIAN8 = ABAN8 order by CIMCU"
-
-  '
-
-'WLG01 START'
-  'sSQL = "select LMLPID from F55101 where LMPALP = '" & Rsp & "'"
-  sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '" & Trim(Rsp) & "'"
-'WLG01 END
-
-  DB.Execute(sSQL, sCols, sRows)
-  nTotalUnits = DB.Count(sRows)
-  For y = 1 To DB.Count(sRows)
-    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
-    DB.Execute(sSql2, sCols2, sRows2)
-
-    For x = 1 To DB.Count(sRows2)
-      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM") & "***") > 0) Then
-        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
-        nNumItems = nNumItems + 1
-      End If
-    Next x
-  Next y
-
-  Log("Number of items: " & nNumItems)
-
-'  App.MsgBox(sItemList & " " & nNumItems)
-
-  '
   If nNumItems = 0 And Trim(sDirectItems) = "" Then
     lblNumItems.Caption = "Pallet is Empty"
 
@@ -711,8 +810,14 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Else
     nPos = InStr(sItemList, "***") - 1
     sFirstItem = Trim(Mid(sItemList, 1, nPos))
+
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "query 4 start")
+
     sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & Rsp & "' "
     DB.Execute(sSQL, sCols, sRows)
+
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALP_OnEnter", "query 4 end", DB.Count(sRows))
+
     lblNumItems.Caption = sFirstItem
     lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
   End If
@@ -733,10 +838,12 @@ Private Sub txtPALP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   App.SetValue("tmTYPE",  uLP101.sLMTYPE)
   App.SetValue("tmNMCU",  uLP101.slmMCU)          ' Parent MCU
   App.SetValue("tmNLOCN", uLP101.sLMLOCN)         ' Parent Location
+
   txtPALPLocn.Text = Trim(uLP101.sLMLOCN)
 
   btnInfo.Visible = True
   Cancel = False
+
 End Sub
 
 Private Sub txtPALP_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -794,6 +901,11 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   msDeleteLogs = ""
 
   If (Len(Rsp) = 0) Then Exit Sub
+
+
+  If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "text: " & Rsp & ", scan: " & mbScan)
+  mbScan = False
+
   Cancel = True
 
   txtLOCN.DisplayOnly = False
@@ -801,7 +913,10 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   '
   ' Inventory Item?
   '
+  If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "Validate_Item start")
+
   If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDESC, sUOM, nType, bHasLots, mbSerialized, False, True ) Then
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "Validate_Item end (is item)")
     mbIsPlate = False
     '
     ' default From Lot & Location when Proc.Opt. = 1
@@ -814,6 +929,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     '
     If gbPOError Then
       App.ExitForm
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 1")
       Exit Sub
     End If
     '
@@ -822,12 +938,14 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     txtLOCN.Required = True
     '
   Else ' scanned item is a license plate
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "Validate_Item end (is LP)")
     '
     sPALP = App.GetValue("tmPALP")
     '
     If sPALP = Trim(Rsp) Then
       App.MsgBox GetMsg(201)
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 2")
       Exit Sub
     End If
     '
@@ -840,26 +958,32 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     '
     uLP101.sLMLPID = Rsp          ' Assign LMLPID Value
     '
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "X_LP101/I start")
     If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
       App.MsgBox("Item or License Plate Entered Does Not Exist.")
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 3")
       Exit Sub
     End If
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "X_LP101/I end")
 
     If (uLP101.sLMTYPE <> "P") Then
       App.MsgBox("Cannot Attach Pallets to Other License Plates.")
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 4")
       Exit Sub
     End If
 
     If (uLP101.sLMTYPE = "P" And App.GetValue("tmTYPE") = "P") Then
       App.MsgBox("Cannot Attach a Case to a Case.")
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 5")
       Exit Sub
     End If
 
     If (Val(Trim(uLP101.sLMRNXTR)) >= 545) Then
       App.MsgBox("Cannot Attach a Picked License Plate to a Pallet")
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 6")
       Exit Sub
     End If
 
@@ -869,6 +993,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
         'Continue Normally
       Else
         Cancel = True
+        If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 7")
         Exit Sub
       End If
     End If
@@ -876,31 +1001,41 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     ' Check if there is enough quantity in the current LP location to change it.
 'LP_FindItem(ByRef sLPID As String, ByRef nLNID As Long, ByRef sLITM As String, ByRef sLOTN As String, ByRef nLQty As Currency, ByRef sUOM As String, ByRef sLOCN As String, ByRef bMixedLP As Boolean, Optional ByRef sDOCO As String, Optional ByRef sDCTO As String, Optional ByRef sSN As String) As Boolean
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 1 start")
 
     Dim sSqlGetLITM, sColsGetLITM, sRowsGetLITM As String
     sSqlGetLITM = "select LDLITM, LDLOTN, LDUORG from F55102 where LDLPID = '" & uLP101.sLMLPID & "'"
     DB.Execute(sSqlGetLITM, sColsGetLITM, sRowsGetLITM)
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 1 end", DB.Count(sRowsGetLITM))
+
     Dim nLPQty1 As Long
     nLPQty1 = Val(DB.Extract(sColsGetLITM, sRowsGetLITM, 1, "LDUORG"))
+
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 2 start")
 
     Dim sSqlGetItem, sColsGetItem, sRowsGetItem As String
     sSqlGetItem = "select IMITM from F4101 where IMLITM = '" & Trim(DB.Extract(sColsGetLITM, sRowsGetLITM, 1, "LDLITM")) & "'"
     DB.Execute(sSqlGetItem, sColsGetItem, sRowsGetItem)
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 2 end", DB.Count(sRowsGetItem))
+
     Dim sSqlValidateQty, sColsValidateQty, sRowsValidateQty As String
+
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 3 start")
+
     sSqlValidateQty = "select LIPQOH from F41021 where LIMCU = '" & uLP101.sLMMCU & "' and LIITM = " & DB.Extract(sColsGetItem, sRowsGetItem, 1, "IMITM") & _
       " and LILOCN = '" & Trim(uLP101.sLMLOCN) & "' and LILOTN = '" & Trim(DB.Extract(sColsGetLITM, sRowsGetLITM, 1, "LDLOTN")) & "'"
     DB.Execute(sSqlValidateQty, sColsValidateQty, sRowsValidateQty)
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 3 end", DB.Count(sRowsValidateQty))
+
     If ConvDecimalsFromSQL("PQOH",(DB.Extract(sColsValidateQty, sRowsValidateQty, 1, "LIPQOH"))) < nLPQty1 Then
       App.MsgBox("LP Inventory Does Not Match JDE Inventory. Contact IT Manager")
       Cancel = True
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 8")
       Exit Sub
     End If
-
-
-
 
     If Not mbCheckOldestLots Then GoTo SKIPLOTCHECK
 
@@ -937,22 +1072,31 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     Dim lTotalCount   As Long
     Dim k             As Long
     Dim bNotCaseControlled As Boolean
+    Dim nErrNo As Long
 
     sLITM = ""
     sLOTN = ""
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 4 start")
+
     sSqlLP = "select LDLITM, LDLOTN, LDUORG, LMLOCN from F55102 inner join F55101 on LDLPID = LMLPID" & _
              " where LDLPID = '" & Trim(Rsp) & "'
     DB.Execute(sSqlLP, sColsLP, sRowsLP)
+
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 4 end", DB.Count(sRowsLP))
 
     sQty  = DB.Extract(sColsLP, sRowsLP, 1, "LDUORG")
     sLITM = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LDLITM"))
     sLOTN = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LDLOTN"))
     sLOCN = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LMLOCN"))
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 5 start")
+
     sSqlConv = "select UMCONV from F41002 where UMUM = 'CA' and UMRUM = 'EA'" & _
               " and UMITM = (select IMITM from F4101 where IMLITM = '" & sLITM & "')"
     DB.Execute(sSqlConv, sColsConv, sRowsConv)
+
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 5 end", DB.Count(sRowsConv))
 
     If DB.Count(sRowsConv) = 0 Then bNotCaseControlled = True
 
@@ -962,6 +1106,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       If getOldestLotINV(App.GetValue("tmMCU"), sLITM, sLOTN) Then
 
         For i = 1 To UBound(sOlderLots)
+
+          If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 6 start")
 
           sSqlInv = "With CTE As(" & _
                          " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
@@ -988,6 +1134,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                      " and LIMCU = '%tmMCU'" & _
                      " order by LILOTN, Count desc"
           DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+          If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 6 end", DB.Count(sRowsInv))
 
           If DB.Count(sRowsInv) = 0 Then
             GoTo OLDEST_ON_PALLET:
@@ -1018,16 +1166,19 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
             If vRsp = "Cancel" Then
               Cancel = True
               appendOrDeleteLogs("D")
+              If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 9")
               Exit Sub
             ElseIf vRsp = "FindLot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
                            " -valLPID=" & App.GetValue("tmPALP") & " -valCASE=FALSE",True, True,True)
+                If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 10")
                 Exit Sub
             Else
 
                 For lCounter = 1 To lLocnCount
+                  If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 7 start")
                   sSqlCatCode = "insert into RFOverride VALUES" & _
                             " ((select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
                             ", '" & sLOTN & "'" & _
@@ -1042,7 +1193,10 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                             ", " & Format(Now(),"hhmmss")  & _
                             ", '" & App.User & "'" & _
                             ", 'LP-Attach')"
-                  DB.Execute(sSqlCatCode)
+                  nErrNo = DB.Execute(sSqlCatCode)
+
+                  If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 7 end", , nErrNo)
+
                   appendOrDeleteLogs("A")
                 Next
             End If
@@ -1054,6 +1208,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       'check for oldest lot with qty of 12
       If getOldestLotINV(App.GetValue("tmMCU"), sLITM, sLOTN,sQty -1) Then 'minus one because in query > sqty
         For i = 1 To UBound(sOlderLots)
+
+          If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 8 start")
 
           sSqlInv = "With CTE As(" & _
                          " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
@@ -1080,6 +1236,9 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                      " and LIMCU = '%tmMCU'" & _
                      " order by LILOTN, Count desc"
           DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
+          If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 8 end", DB.Count(sRowsInv))
+
 'Debug.Print(sSqlInv)
           If DB.Count(sRowsInv) = 0 Then
             GoTo OLDEST_ON_PALLET2
@@ -1109,16 +1268,20 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
             If vRsp = "Cancel" Then
               Cancel = True
               appendOrDeleteLogs("D")
+              If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 11")
               Exit Sub
             ElseIf vRsp = "FindLot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
                            " -valLPID=" & App.GetValue("tmPALP") & " -valCASE=TRUE",True, True,True)
+                If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 12")
                 Exit Sub
             Else
 
                 For lCounter = 1 To DB.Count(sRowsInv)
+                  If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 9 start")
+
                   sSqlCatCode = "insert into RFOverride VALUES" & _
                             " ((select IMITM from F4101 where IMLITM = '" & sLITM & "')" & _
                             ", '" & sLOTN & "'" & _
@@ -1133,7 +1296,10 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                             ", " & Format(Now(),"hhmmss")  & _
                             ", '" & App.User & "'" & _
                             ", 'LP-Attach')"
-                  DB.Execute(sSqlCatCode)
+                  nErrNo = DB.Execute(sSqlCatCode)
+
+                  If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "query 9 end", , nErrNo)
+
                   appendOrDeleteLogs("A")
                 Next
             End If
@@ -1160,11 +1326,15 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       uLPOper.bIsPlate   = True                      ' Plate or Item
       uLPOper.bDetach    = True                      ' remove from LP
 
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "LP_AttachDetach start")
       If Not LP_AttachDetach(uLPOper, uLP102) Then
+        If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "LP_AttachDetail end (fail)")
         App.MsgBox(GetMsg(40))
         Cancel = True
+        If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 13")
         Exit Sub
       End If
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "LP_AttachDetach end (success)")
     End If
 
     App.SetValue("tmFromMCU", uLP101.sLMMCU)
@@ -1212,6 +1382,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   End If
   '
   Cancel = False
+
+
 End Sub
 
 Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -1235,7 +1407,7 @@ End Sub
 Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
   On Error Resume Next
   '
-   App.SetValue("tmLOTN", "")
+  App.SetValue("tmLOTN", "")
 End Sub
 
 Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -1247,18 +1419,24 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sOldestLotINV As String
   Dim sLotFilterINV As String
   Dim vRsp          As Variant
+  Dim nStart As Long
+
 
   If (Len(Trim(Rsp))=0) Then Exit Sub
+
   Cancel = True
   Rsp = Trim(UCase(Rsp))
   '
   ' Validate
+  If mbLog Then LogText("FLPAI0100_AMS", "txtLOTN_OnEnter", "query 1 start")
   sSQL = "select count(*) from  F4108" & _
          " where IOLOTN = '" & Trim(Rsp) & "' and IOITM = '%tmITM' and IOMCU = '%tmMCU'"
   DB.Execute(sSQL, sCols, sRows)
+  If mbLog Then LogText("FLPAI0100_AMS", "txtLOTN_OnEnter", "query 1 end", DB.Count(sRows))
   '
   If (Val(sRows) = 0) Then
     App.MsgBox(GetMsg(78))
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLOTN_OnEnter", "event exit 1")
     Exit Sub
   End If
 
@@ -1281,6 +1459,7 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   App.SetValue("tmLOTN", Rsp)
   Cancel = False
+
 End Sub
 
 Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -1314,9 +1493,11 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim nOnHand As Currency
   Dim nAvail  As Currency
   Dim sHold   As String
+
   '
   If (Len(Rsp)=0) Then Exit Sub
   '
+
   Cancel = True
 
   If mbIsPlate Then
@@ -1327,7 +1508,9 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   If sMCU = "" Then
     sMCU = App.GetValue("tmMCU")
   End If
+  If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "Validate_Locn start")
   If Not Validate_Locn(Rsp, sMCU, sLOCN, True) Then Exit Sub
+  If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "Validate_Locn end")
   '
   Cancel = True
   '
@@ -1339,13 +1522,17 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     '
     If gbPOError Then
       App.ExitForm
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "event exit 1")
       Exit Sub
     End If
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "GetItemQty start")
     Call GetItemQty(sMCU,App.GetValue("tmITM"),App.GetValue("tmLOTN"),sLOCN,msAllowHold,nOnHand,nAvail,sHold)
+    If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "GetItemQty end")
 
     If msAllowHold = "" And sHold <> "" Then
       App.MsgBox(GetMsg(121))
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "event exit 2")
       Exit Sub
     End If
 
@@ -1373,6 +1560,7 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     '
     If gbPOError Then
       App.ExitForm
+      If mbLog Then LogText("FLPAI0100_AMS", "txtLOCN_OnEnter", "event exit 3")
       Exit Sub
     End If
   End If
@@ -1385,6 +1573,7 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   txtQTY.Visible = True
   '
   Cancel = False
+
 End Sub
 
 Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -1403,6 +1592,24 @@ Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   End If
 End Sub
 
+Public Sub txtPALPLocn_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+
+  If Rsp = "" Then Rsp = "DOCK"
+
+
+
+End Sub
+
+Public Sub txtPALPLocn_LostFocus()
+  On Error Resume Next
+
+
+
+
+End Sub
+
 Private Sub txtPALPLocn_OnBackup(ByRef Cancel As Boolean)
   On Error Resume Next
   txtPALPLocn.Visible = False
@@ -1418,7 +1625,10 @@ Private Sub txtPALPLocn_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, By
   Dim sLOCN As String
   Dim vRsp As Variant
 
+  Dim nErrNo As Long
   Rsp = Trim(Rsp)
+
+
 
   If Rsp = "" Then
     Rsp = " "
@@ -1430,18 +1640,22 @@ Private Sub txtPALPLocn_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, By
   End If
 
   If mbIsNew Then
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALPLocn_OnEnter", "query 1 start")
     sSQL = "Select * from F4100 where LMMCU = '" & App.GetValue("tmMCU") & "' and LMLOCN = '" & Rsp & "'"
     DB.Execute(sSQL, sCols, sRows)
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALPLocn_OnEnter", "query 1 end", DB.Count(sRows))
     If (DB.Count(sRows) = 0) Then
       App.MsgBox("Location Invalid")
       Cancel = True
       Exit Sub
     End If
 
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALPLocn_OnEnter", "query 2 start")
     sSQL = "select LMLOCN from F55101 where LMLPID = '" & App.GetValue("tmPALP") & "'"
     DB.Execute(sSQL, sCols, sRows)
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALPLocn_OnEnter", "query 2 end", DB.Count(sRows))
     sLOCN = Trim(DB.Extract(sCols, sRows, 1, "LMLOCN"))
-    If (sLOCN <> "" And sLOCN <> Rsp) Then
+    If (sLOCN <> "" And sLOCN <> Rsp)  Then
       vRsp = App.MsgBox("The Location Has Already Been Set to " & sLOCN &".  Are You Sure You Want To Change It?", , , "[Yes] [No]")
       If vRsp = "No" Then
         Cancel = True
@@ -1449,9 +1663,10 @@ Private Sub txtPALPLocn_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, By
       End If
     End If
 
-    sSql = "update F55101 set LMLOCN = '" & Rsp & "' where LMLPID = '" & App.GetValue("tmPALP") & "'"
-    DB.Execute(sSql)
-
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALPLocn_OnEnter", "query 3 start")
+    sSQL = "update F55101 set LMLOCN = '" & Rsp & "' where LMLPID = '" & App.GetValue("tmPALP") & "'"
+    nErrNo = DB.Execute(sSQL)
+    If mbLog Then LogText("FLPAI0100_AMS", "txtPALPLocn_OnEnter", "query 3 end", , nErrNo)
     App.SetValue("tmPALPLocn", Rsp)
     App.SetValue("tmNLOCN", Rsp)
     txtNumLabels.Defaults = Val(GetUserInfo("PalletPrinter")) & ";O"
@@ -1460,6 +1675,7 @@ Private Sub txtPALPLocn_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, By
   Else
     txtPALPLocn.DisplayOnly = True
   End If
+
 End Sub
 
 Private Sub txtPALPLocn_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -1471,11 +1687,22 @@ End Sub
 Private Sub txtQTY_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
   '
+
+
   If Not mbIsPlate Then Exit Sub
   If (Len(Rsp)>0) Then  Exit Sub
   '
   Rsp = "1"
   AllowChange = False
+
+End Sub
+
+Public Sub txtQTY_LostFocus()
+  On Error Resume Next
+
+
+
+
 End Sub
 
 Private Sub txtQTY_OnBackup(ByRef Cancel As Boolean)
@@ -1493,8 +1720,10 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sRows As String
   Dim sId   As String
   Dim nAvail As Long
+
   '
   If (Len(Rsp)=0) Then Exit Sub
+
   Cancel = True
   '
   ' Numeric?
@@ -1531,6 +1760,7 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   App.SetValue("tmQTY", Rsp)
   '
   Cancel = False
+
 End Sub
 
 '
@@ -1562,6 +1792,9 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
   Dim sEndLOT    As String
   Dim nPeriodPos As Integer
 
+
+
+
 '  sLotFilter = Trim(sLotFilter)
 '
 '  If Trim(sLotFilter) <> "" Then
@@ -1581,8 +1814,13 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
 
     ReDim sOlderLots(0,0) 'clear
 
+    If mbLog Then LogText("FLPAI0100_AMS", "getOldestLotINV", "query 1 start")
+
     sSqlItem = "select IMITM from F4101 where IMLITM = '" & sITEM & "'"
     DB.Execute(sSqlItem, sColsItem, sRowsItem)
+
+    If mbLog Then LogText("FLPAI0100_AMS", "getOldestLotINV", "query 1 end", DB.Count(sRowsItem))
+
     If DB.Count(sRowsItem) > 0 Then
       sITM = Trim(DB.Extract(sColsItem, sRowsItem, 1, "IMITM"))
 
@@ -1592,6 +1830,8 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
   nPeriodPos = InStr( 1,sLOTN, ".")
   sBeginLOT = Mid(sLOTN, 1, nPeriodPos - 1)
   sEndLOT = Mid(sLOTN, nPeriodPos + 1, Len(sLOTN))
+
+  If mbLog Then LogText("FLPAI0100_AMS", "getOldestLotINV", "query 2 start")
 
 '      sSqlItem = "With CTE As (Select LILOTN As OrigProductNumber,CAST(LILOTN As VARCHAR(100))" & _
 '                 " As LILOTN FROM F41021 WHERE LIMCU = '" & sMCU & "' and LIITM = " & _
@@ -1616,6 +1856,8 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
 
       DB.Execute(sSqlItem, sColsItem, sRowsItem)
 
+      If mbLog Then LogText("FLPAI0100_AMS", "getOldestLotINV", "query 2 end", DB.Count(sRowsItem))
+
       If(DB.Count(sRowsItem)) = 0 Then
         getOldestLotINV = False
         Exit Function
@@ -1630,11 +1872,15 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
 
       getOldestLotINV = True
 
+
 End Function
 
 Private Function StripLOTN(ByVal sLOTN As String) As Currency
   Dim sTemp As String
   Dim i     As Long
+
+
+
 
   For i = 1 To Len(sLOTN)
     If IsNumeric(Mid(sLOTN, i, 1)) Then
@@ -1643,13 +1889,14 @@ Private Function StripLOTN(ByVal sLOTN As String) As Currency
   Next
 
   StripLOTN = CCur(sTemp)
+
 End Function
 
 Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As String, ByVal sMCU As String, ByVal vITM As Variant, ByRef sLot As String, Optional ByRef bAvail As Boolean) As Boolean
   On Error Resume Next
   '
   Dim iDecPQOH As Integer
-  Dim sSql     As String
+  Dim sSQL     As String
   Dim sCols    As String
   Dim sRows    As String
   Dim sLike    As String
@@ -1702,9 +1949,9 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
 
     If bAvail Then
       Call GetItemAvailSQL(sMCU, sSQLStr)
-      sSql = "Select LILOCN, " & sSQLStr & ", LILOTN, LILOTS from F41021 where LIMCU = '" & sMCU & "' and LIITM = " & vITM & " and " & sSQLStr & " <> 0 and LILOTN = '" & sLot & "' order by LILOCN"
+      sSQL = "Select LILOCN, " & sSQLStr & ", LILOTN, LILOTS from F41021 where LIMCU = '" & sMCU & "' and LIITM = " & vITM & " and " & sSQLStr & " <> 0 and LILOTN = '" & sLot & "' order by LILOCN"
     Else
-      sSql = "select LILOCN, LIPQOH, LILOTN, LILOTS" & _
+      sSQL = "select LILOCN, LIPQOH, LILOTN, LILOTS" & _
              " from  F41021 where LIMCU = '" & sMCU & "' and LIITM = " & vITM & " " & _
              " and LIPQOH <> 0" & sLike & "  order by LILOCN"
     End If
@@ -1717,7 +1964,7 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
   oList.SetColumn(2, "Qty",       giLenQTY, CenterRight,True, iDecPQOH)
   oList.SetColumn(3, "Lot",      giLenLOTN, CenterLeft,True)
   oList.SetColumn(4, "Sts",              2, CenterLeft,True)
-  oList.SQL = sSql
+  oList.SQL = sSQL
   '
   sValue = oList.ShowList
   '
@@ -1727,8 +1974,8 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
   Search_F41021_LOCN_LOCAL = (Len(Rsp) > 0)
 
   If gbOfflineEnabled Then
-    sSql = "If OBJECT_ID('" & sIPAdr & "') is not null drop table " & sIPAdr
-    DB.Execute sSql
+    sSQL = "If OBJECT_ID('" & sIPAdr & "') is not null drop table " & sIPAdr
+    DB.Execute sSQL
   End If
   '
   If Not gbDemoMode Then
@@ -1739,16 +1986,23 @@ Public Function Search_F41021_LOCN_LOCAL(ByRef Rsp As String, ByVal sFindLOCN As
 End Function
 
 Private Function appendOrDeleteLogs(ByVal sKey As String)
-  Dim sSql  As String
+  Dim sSQL  As String
   Dim sCols As String
   Dim sRows As String
 
+  Dim nErrNo As Long
+
   If sKey = "D" And Trim(msDeleteLogs) = "" Then Exit Function
+
 
   If Trim(UCase(sKey)) = "A" Then
 
-    sSql = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
-    DB.Execute(sSql, sCols, sRows)
+    If mbLog Then LogText("FLPAI0100_AMS", "appendOrDeleteLogs", "query 1 start")
+
+    sSQL = "select MAX(IEID) as IEID from RFOverride where IEUSER = '" & App.User & "'"
+    DB.Execute(sSQL, sCols, sRows)
+
+    If mbLog Then LogText("FLPAI0100_AMS", "appendOrDeleteLogs", "query 1 end", DB.Count(sRows))
 
     If Trim(msDeleteLogs) = "" Then
       msDeleteLogs = DB.Extract(sCols, sRows, 1, "IEID")
@@ -1758,19 +2012,116 @@ Private Function appendOrDeleteLogs(ByVal sKey As String)
     Exit Function
 
   ElseIf Trim(UCase(sKey)) = "D" Then
-    sSql = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
-    DB.Execute(sSql)
+    If mbLog Then LogText("FLPAI0100_AMS", "appendOrDeleteLogs", "query 2 start")
+    sSQL = "delete from RFOverride where IEID in (" & msDeleteLogs & ")"
+    nErrNo = DB.Execute(sSQL)
+    If mbLog Then LogText("FLPAI0100_AMS", "appendOrDeleteLogs", "query 2 end", , nErrNo)
     msDeleteLogs = ""
   End If
+
 End Function
 
-Private Sub Log(ByVal sText As String)
+' Count the number of unique items and total units on the pallet, as well as whether direct items exist.
+'
+' Parameters:
+'   - sPALP         [IN]  Parent LP ID.
+'   - nNumItems     [OUT] The number of unique items on the pallet, including within child LPs
+'   - nTotalUnits   [OUT] The number of child LPs on the parent LP.
+'   - sDirectITems  [OUT] Filled with text if direct items exist on the parent LP (not in child LPs).
+'
+Private Sub CountPallet_Old( _
+  ByVal sPALP As String, _
+  ByRef nNumItems As Long, _
+  ByRef nTotalUnits As Long, _
+  ByRef sDirectItems As String)
+
   On Error Resume Next
 
-  Dim sFile As String
-  sFile = "D:\RFgen\Log.txt"
-  Open sFile For Append As #1
-  Print #1, Format(Now, "hh:nn:ss") & " " & sText
-  Close #1
+  Dim sSQL, sSql2, sCols, sCols2, sRows, sRows2 As String
+
+  Dim x, y As Integer
+  Dim sItemList As String
+
+
+
+'  Calculate and Display inventory info about the Pallet
+
+  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & sPALP & "' group by LDLITM"
+  DB.Execute(sSql2, sCols2, sRows2)
+
+  If (DB.Count(sRows2) > 0 ) Then
+    sDirectItems = "+ Items On Pallet.
+  End If
+
+  For x = 1 To DB.Count(sRows2)
+    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
+      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+      nNumItems = nNumItems + 1
+    End If
+  Next x
+
+  sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '" & sPALP & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  nTotalUnits = DB.Count(sRows)
+
+  For y = 1 To DB.Count(sRows)
+    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
+    DB.Execute(sSql2, sCols2, sRows2)
+
+    For x = 1 To DB.Count(sRows2)
+      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM") & "***") > 0) Then
+        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+        nNumItems = nNumItems + 1
+      End If
+    Next x
+  Next y
+
+
+End Sub
+
+' Count the number of unique items and total units on the pallet, as well as whether direct items exist.
+'
+' Parameters:
+'   - sPALP         [IN]  Parent LP ID.
+'   - nNumItems     [OUT] The number of unique items on the pallet, including within child LPs
+'   - nTotalUnits   [OUT] The number of child LPs on the parent LP.
+'   - sDirectITems  [OUT] Filled with text if direct items exist on the parent LP (not in child LPs).
+'
+Private Sub CountPallet( _
+  ByVal sPALP As String, _
+  ByRef nNumItems As Long, _
+  ByRef nTotalUnits As Long, _
+  ByRef sDirectItems As String)
+
+  On Error Resume Next
+
+  Dim sSQL, sCols, sRows As String
+
+  Dim bDirectItems As Boolean
+
+
+
+'  ' Count the total number of units on the pallet
+'  sSQL = "select count(*) from F55101 where LMPALP = '" & sPALP & "'"
+'  DB.Execute(sSQL, , sRows)
+'
+'  nTotalUnits = Val(sRows)
+
+  sSQL = "select sum(a.ITEMS), sum(a.UNITS), sum(a.DIRECT) from (" & _
+    " select count(distinct LDLITM) ITEMS, count(LMLPID) UNITS, 0 DIRECT from F55101 inner join F55102 On LDLPID = LMLPID" & _
+    " where LMPALP = '" & sPALP & "'" & _
+    " union all" & _
+    " select count(distinct LDLITM) ITEMS, 0 UNITS, 1 DIRECT from F55101 inner join F55102 On LDLPID = LMLPID" & _
+    " where LDLPID = '" & sPALP & "') a"
+  DB.Execute(sSQL, sCols, sRows)
+
+  nNumItems = Val(DB.Extract(sCols, sRows, 1, 1))
+  nTotalUnits = Val(DB.Extract(sCols, sRows, 1, 2))
+  bDirectItems = Val(DB.Extract(sCols, sRows, 1, 3)) > 0
+
+  If bDirectItems Then sDirectItems = "+ Items On Pallet."
+
+
 End Sub
 </Code>

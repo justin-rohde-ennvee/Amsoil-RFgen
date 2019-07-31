@@ -1,17 +1,22 @@
 ﻿<Record FileDesc="AMSOIL MGR" FileVersion="5.0.8.0" Desc="AMSOIL MGR" Heading="[AMSOIL MGR]">
 <MenuItem Id="-" Desc="-- Warehousing --" />
+<MenuItem Id="DECIMAL_TEST" Desc="Decimal Test" />
+<MenuItem Id="-" />
+<MenuItem Id="FLPAI0100_AMS_ORIG" Desc="1-Create / Attach Item - Original" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPAI0100_AMS" Desc="1-Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPAI0100_AMS_NoUpdate" Desc="1-Create / Attach Item - MOD #1" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
 <MenuItem Id="FLPDI0100_AMS" Desc="2-Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPTL0100_AMS" Desc="3-Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPLB0100_AMS" Desc="4-Label Reprint" />
 <MenuItem Id="FIMIT0100_AMS" Desc="5-Transfer Non-Lot" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="SCAN_TEST" Desc="Scan Test" />
 <MenuItem Id="-" />
 <MenuItem Id="-" Desc="--ST Pick/Ship--" />
 <MenuItem Id="FSOPC0200_AMS" Desc="6-ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />
 <MenuItem Id="FSOSC0100_AMS" Desc="7-ST Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
 <MenuItem Id="FLPUP0100_AMS" Desc="8-Unpick LP" />
 <MenuItem Id="FLPDI0101_AMS" Desc="9-Unpick Item" Options="-Pgm=P4113 -Vers=RGN0001" />
-<MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Receiving --" />
 <MenuItem Id="FPORC101_AMS" Desc="0-OT Receiving" Options="-Pgm=P4312 -Vers=RGN0001" />
 <MenuItem Id="-" />
@@ -35,4 +40,5 @@
 <MenuItem Id="FLPAS0100_AMS" Desc="Y-LP Adjust Status" />
 <MenuItem Id="FADRL010" Desc="Z-Record Lock Maintainence" />
 <MenuItem Id="FWOSB0100" Desc="SUPER BACKFLUSH" Options="-Pgm=P31123 -Vers=PMW0001" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>

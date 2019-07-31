@@ -24,6 +24,16 @@ Option Explicit
 Private Const cFailOnWarnings = False
 Private Const cTNId           = "TLPAC0100"
 
+Declare Function GetCurrentProcessId Lib "kernel32" () As Long
+
+Function GetMemUsage()
+  Dim oServices As Object
+
+  Set oServices = GetObject("winmgmts:")
+  GetMemUsage = oServices.Get("Win32_Process.Handle='" & GetCurrentProcessId & "'").WorkingSetSize / 1024
+  Set oServices = Nothing
+ End Function
+
 Private Function Transaction() As Boolean
   Dim nQty        As Currency
   Dim nScrap      As Currency
@@ -107,6 +117,8 @@ Private Function Transaction() As Boolean
 
   Dim bProcessed          As Boolean
 
+  LogText("TLPAC0100_AMS", "Transaction", "Memory/start (KB): " & GetMemUsage())
+
   msPgm = "P31123"
   msVersion = "RGN0001"
 
@@ -119,15 +131,8 @@ Private Function Transaction() As Boolean
   If (nNumRecords = 0) Then
     'Still waiting for entries - this is still a good condition.
     Transaction = True
-    Exit Function
+    GoTo LPDone
   End If
-
-'  sFile = "C:\test\debug.txt"
-'  Open sFile For Append As #1
-'
-'  Print #1, "Transaction Started, " & nNumRecords
-'
-'  Close #1
 
   For i = 1 To nNumRecords
     nUKID = Val(DB.Extract(sCols, sRows, i, "UKID"))
@@ -361,43 +366,11 @@ Private Function Transaction() As Boolean
           " ('" & tmCO & "','" & tmMCU & "'," & tmDOCO & ",'" & tmDCTO & "','" & tmLITM & "','" & tmLOTN & "','" & tmLOCN & "'," & nCompletionQuantity & ",'" & tmUOM & "','" & tmUser & "','" & msVersion & "','" & msPgm & "','" & tmLPID & "','" & App.GetValue("tmPALP") & "'," & nPalletMax & ")"
 
       DB.Execute(sSqlCompletion)
-
-
-
     End If
+    
     DeleteRec:
-
-'    sFile = "C:\test\debug.txt"
-'    Open sFile For Append As #1
-'
-'    Print #1, "Case Number, " & uLP102.sLDLPID
-'    Print #1, "Number Attached, " & nCalculatedAttach
-'    Print #1, "String count, " & sCount
-'    Print #1, "Count, " & nCount
-'    Print #1, "Timestamp, " & Format(Time, "mmss")
-'    Print #1, "UKID, " & nUKID
-'    Print #1, "WCU, " & sWCU
-'    Print #1, "Error?: " & sErrMsg
-'    Print #1, " "
-'
-'    Close #1
-
-
-'    sSql3 = "delete from INTERRUPT_SQL where UKID = " & nUKID
-'    DB.Execute(sSql3)
-'    If (Trim(sErrMsg) <> "") Then
-'      ' PRINT ERROR LABEL HERE:
-'      PrintPalletLabel(nPalletPrinterNumber, sPalletFormat, sErrMsg, 1)
-'    End If
     skip_execute:
   Next i
-
-'  sFile = "C:\test\debug.txt"
-'  Open sFile For Append As #1
-'
-'  Print #1, "Transaction Ended, " & Timer - nStopwatch
-'
-'  Close #1
 
   LPDone:
   If (Trim(sErrMsg) = "") Then
@@ -407,5 +380,6 @@ Private Function Transaction() As Boolean
     Transaction = False
   End If
 
+  LogText("TLPAC0101_AMS", "Transaction", "Memory/end   (KB): " & GetMemUsage())
 End Function
 </Code>

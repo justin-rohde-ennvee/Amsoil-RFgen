@@ -1,0 +1,63 @@
+﻿<Record FileDesc="Decimal Test" FileVersion="5.0.8.0" Desc="Decimal Test" Group="AMS-DEV" LinkTo="No Links" LinkType="0" PromptList="Label1&vm;TextBox1" ImageList="0&vm;0" AuthTableList="0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="Label1" />
+<SchemaParam Linked="0" Attr="2" Name="TextBox1" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="10" FieldId="Label1" Attr="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="33" Width="289" Height="77" AnchorRight="181" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Expected decimals:&svm;Actual decimals:" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="49" Height="22" AnchorRight="191" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="TextBox1" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="110" Width="153" Height="22" AnchorRight="77" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="0" Height="0" AnchorRight="87" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Decimal Test" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  Dim iDecCnt As Integer
+  Call GetDecimals("UORG", iDecCnt)
+
+  Label1.Caption = "Expected decimals: 4" & vbNewLine & "Actual decimals: " & iDecCnt
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+</Code>
