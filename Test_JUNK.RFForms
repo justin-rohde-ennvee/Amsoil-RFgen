@@ -493,7 +493,7 @@ Debug.Print(sSqlLP)
             ' Delete count of cached picks
             lDeleteCount = 0
             For lCacheIndex = 1 To mnCnt
-              If Trim(Ext(msValCache,02, lCacheIndex)) = slitm _
+              If Trim(Ext(msValCache,02, lCacheIndex)) = sLITM _
               And Trim(Ext(msValCache,07, lCacheIndex)) = sOlderLots(i,1) Then
                 lDeleteCount = lDeleteCount + CLng(Ext(msValCache, 05, lCacheIndex)) * 10000
               End If
@@ -501,14 +501,14 @@ Debug.Print(sSqlLP)
 
             sOlderLots(i,2) = CStr(lTotalCount - lDeleteCount)
 
-            sSqlCatCode = " Select I0AC29 from F554101C inner Join F4101 On I0ITM = IMITM where IMLITM = '" & slitm & "'"
+            sSqlCatCode = " Select I0AC29 from F554101C inner Join F4101 On I0ITM = IMITM where IMLITM = '" & sLITM & "'"
             DB.Execute(sSqlCatCode,sColsCatCode, sRowsCatCode)
             sCatCode = Trim(DB.Extract(sColsCatCode, sRowsCatCode, 1, "I0AC29"))
 
             If CLng(sOlderLots(i,2))/10000 > 0 Then
               If sCatCode = "Y" Then
                 App.MsgBox("Error: Older lot " & sOlderLots(i,1) & " has a qty of " & _
-                            CLng(sOlderLots(i,2))/10000 & " for item " & slitm & " This lot must be picked first.")
+                            CLng(sOlderLots(i,2))/10000 & " for item " & sLITM & " This lot must be picked first.")
                 Exit Sub
               End If
 
@@ -518,7 +518,7 @@ Debug.Print(sSqlLP)
                 appendOrDeleteLogs("D")
                 Cancel = True
                 Exit Sub
-              ElseIf vRsp = "FindLot" Then
+              ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
@@ -660,7 +660,7 @@ Debug.Print(sSqlLP)
                 appendOrDeleteLogs("D")
                 Cancel = True
                 Exit Sub
-              ElseIf vRsp = "FindLot" Then
+              ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _

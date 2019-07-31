@@ -166,22 +166,15 @@ Private msVersion    As String
 Private msDOCTYPE    As String
 Private msAllowHold  As String
 Private mnMaxQty     As Currency
-'Private gsLPSource   As String '
 Private mbSerialized As Boolean
 Private mbIsPlate    As Boolean
 Private mbIsNew      As Boolean
 Private sOlderLots() As String
 Private msDeleteLogs As String
 Private mbCheckOldestLots As Boolean
-Private mbScan As Boolean
-Private Const mbLog = False
 
 Private Sub btnInfo_Click()
   On Error Resume Next
-
-
-
-
 
   Dim sCallString As String
 
@@ -189,35 +182,21 @@ Private Sub btnInfo_Click()
   gsInquiryLPID = App.GetValue("tmPALP")
 
   sCallString = "FLPQI0100_AMS"
-  '& "-MCU=" & Trim(App.GetValue("tmMCU")) & " -LPID=" & Trim(App.GetValue("tmPALP"))
-
   App.CallForm(sCallString, True)
-
-
 End Sub
 
 Private Sub btnNew_Click()
   On Error Resume Next
 
-
-
-
-'  txtPALP.Text = "NEW"
-'  App.SetFocus("txtPALP", False, True)
   Call txtPALP_OnEnter("NEW", False, "")
   txtPALP.Text = App.GetValue("tmPALP")
-
-
 End Sub
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
-  '
+
   Dim iCN As Integer
 
-
-
-  '
   iCN = App.PromptNo
 
   If iCN <> 4 And iCN <> 8 Then
@@ -225,21 +204,15 @@ Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
     RFPrompt(iCN).BackColor1 = cFieldFocusBC
     RFPrompt(iCN).ForeColor = cFieldFocusFC
   End If
-
-
 End Sub
 
 Private Sub Form_Load()
   On Error Resume Next
 
-
-  '
+  Dim sHeader As String
 
   Call SetDisplay()
-  '
-  Dim sHeader As String
-  '
-  '
+
   lblItemDesc.Caption = ""
   lblItemDesc.Label.BackColor1 = cFieldDefaultBC
   lblItemDesc.Label.ForeColor = cFieldDefaultFC
@@ -255,7 +228,6 @@ Private Sub Form_Load()
   txtLOTN.Required = False
   txtLOTN.Visible = False
   '
-
   txtPALP.Visible = False
   txtPALPLocn.Visible = False
   btnNew.Visible = False
@@ -273,23 +245,17 @@ Private Sub Form_Load()
 
   ' get DocType from Proc.Opt. for Inv. Transfer
   msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-
   '
   If gbPOError Then
     App.ExitForm
     Exit Sub
   End If
-
-
 End Sub
 
 Private Sub Form_LostFocus()
   On Error Resume Next
-  '
 
   Dim iCN As Integer
-  '
-
 
   iCN = App.PromptNo
   If iCN <> 4 And iCN <> 8 Then
@@ -297,8 +263,6 @@ Private Sub Form_LostFocus()
     RFPrompt(iCN).BackColor1 = cFieldDefaultBC
     RFPrompt(iCN).ForeColor = cFieldDefaultFC
   End If
-
-
 End Sub
 
 Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
@@ -306,10 +270,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   '
   Dim bDettach As Boolean
 
-
-  '
-
-  '
   App.SetValue("LPITVersion", msVersion)
   '
   '--------------------------------------------------------------------------
@@ -323,7 +283,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Call LP101_Reset(uLP101)      ' init LP101 Structure
   Call LP102_Reset(uLP102)      ' init LP102 Structure
   '
-
   If App.GetValue("tmFromMCU") = "" Then
     App.SetValue("tmFromMCU", App.GetValue("tmMCU"))
   End If
@@ -362,22 +321,14 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
     uLPOper.bDetach    = False                     ' remove item
     '
   End If
-  '
-
-  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "LP_AttachDetach start LPID: " & uLPOper.sLPID & ", PALP: " & uLPOper.sPalp)
 
   If Not LP_AttachDetach(uLPOper, uLP102) Then
-    If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "LP_AttachDetach end (fail): " & GetMsg(40))
     App.MsgBox(GetMsg(40))
     If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
     GoTo LPDone
   End If
-  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "LP_AttachDetach end (success)")
   '
-
-  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "CommitTrans begin")
   If gbCommitCtl Then DB.CommitTrans(gsLPSource)
-  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "CommitTrans end")
 
   LPDone:
   '
@@ -402,132 +353,13 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   mbSerialized = False
   mbIsPlate = False
 
-  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "Screen.Bell start")
   Screen.Bell(0)
-  If mbLog Then LogText("FLPAI0100_AMS", "Form_OnUpdate", "Screen.Bell end")
-
-'  Calculate and Display inventory info about the Pallet
-'  Dim sSQL As String
-'  Dim sSql2     As String
-'  Dim sRows     As String
-'  Dim sRows2    As String
-'  Dim sCols     As String
-'  Dim sCols2    As String
-'  Dim sItemList As String
-'  Dim nNumItems As Long
-'  Dim nTotalUnits As Long
-'  Dim sDirectItems  As String
-'  Dim x As Integer
-'  Dim y As Integer
-'  Dim nPos As Integer
-'  Dim sFirstItem As String
-'
-'  sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '%tmLPID' group by LDLITM"
-'  DB.Execute(sSql2, sCols2, sRows2)
-'  If (DB.Count(sRows2) > 0 ) Then
-'    sDirectItems = "+ Items On Pallet.
-'  End If
-'
-'  For x = 1 To DB.Count(sRows2)
-'    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
-'      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
-'      nNumItems = nNumItems + 1
-'    End If
-'
-'  Next x
-
-'  ' Update count of items
-'  sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '%tmPALP'"
-'
-'  DB.Execute(sSQL, sCols, sRows)
-'  nTotalUnits = DB.Count(sRows)
-'  For y = 1 To DB.Count(sRows)
-'    sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
-'    DB.Execute(sSql2, sCols2, sRows2)
-'
-'    For x = 1 To DB.Count(sRows2)
-'      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM") & "***") > 0) Then
-'        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
-'        nNumItems = nNumItems + 1
-'      End If
-'    Next x
-'  Next y
-'
-'  If nNumItems = 0 And Trim(sDirectItems) = "" Then
-'    lblNumItems.Caption = "Pallet is Empty"
-'
-'  ElseIf nNumItems > 1 Then
-'    lblNumItems.Caption = nNumItems & " Items"
-'    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
-'  Else
-'    nPos = InStr(sItemList, "***") - 1
-'    sFirstItem = Trim(Mid(sItemList, 1, nPos))
-'    sSQL = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '%tmPALP'"
-'    DB.Execute(sSQL, sCols, sRows)
-'    lblNumItems.Caption = sFirstItem
-'    lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
-'  End If
-
-
 End Sub
 
 Private Sub txtLITM_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
 
-
-
   Frame1.Visible = True
-
-End Sub
-
-Public Sub txtLITM_LostFocus()
-  On Error Resume Next
-
-
-
-
-
-End Sub
-
-Public Sub txtLITM_OnScan(ByRef ScanData As String)
-  On Error Resume Next
-
-
-
-  mbScan = True
-
-End Sub
-
-Public Sub txtLOCN_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-
-
-
-
-End Sub
-
-Public Sub txtLOCN_LostFocus()
-  On Error Resume Next
-
-
-
-
-End Sub
-
-Public Sub txtLOTN_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-
-
-
-
-End Sub
-
-Public Sub txtLOTN_LostFocus()
-  On Error Resume Next
-
-
-
-
 End Sub
 
 Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
@@ -554,16 +386,6 @@ Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   Frame1.Visible = False
   lblNumItems.Caption = ""
   lblNumUnits.Caption = ""
-
-
-End Sub
-
-Public Sub txtMCU_LostFocus()
-  On Error Resume Next
-
-
-
-
 End Sub
 
 Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -574,7 +396,6 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sRows  As String
   Dim sMCU     As String
   Dim sCompany As String
-
 
   Rsp = UCase(Trim(Rsp))
   '
@@ -589,18 +410,14 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   App.SetValue("tmNMCU", sMCU)
 
     ' get Entity from MCU
-  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 1 start")
   sSQL = "select EBCO from LP005 where EBMCU = '%tmMCU' "
   DB.Execute(sSQL, sCols, sRows)
-  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 1 end", DB.Count(sRows))
   App.SetValue("tmEntity", DB.Extract(sCols,sRows,1,1))
   txtPALP.Visible = True
   btnNew.Visible = True
 
-  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 2 start")
   sSQL = "select DRKY from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='" & Trim(sMCU) & "'"
   DB.Execute(sSQL, sCols, sRows)
-  If mbLog Then LogText("FLPAI0100_AMS", "txtMCU_OnEnter", "query 2 end", DB.Count(sRows))
 
   If DB.Count(sRows) = 0 Then
     mbCheckOldestLots = False
@@ -609,7 +426,6 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   End If
 
   Cancel = False
-
 End Sub
 
 Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -618,28 +434,8 @@ Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   If Not Search_BranchPlant(Rsp) Then Cancel = True
 End Sub
 
-Public Sub txtNumLabels_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-
-
-
-
-
-End Sub
-
-Public Sub txtNumLabels_LostFocus()
-  On Error Resume Next
-
-
-
-
-
-End Sub
-
 Private Sub txtNumLabels_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
-
-
 
   Dim iYN As Integer
   If Len(Rsp) = 0 Then
@@ -653,22 +449,7 @@ Private Sub txtNumLabels_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, B
     Exit Sub
   End If
 
-'  If Trim(Rsp) = "Y" Then
-'    iYN = 1
-'  ElseIf Trim(Rsp) = "N" Then
-'    iYN = 0
-'  Else
-'    App.MsgBox("Please enter Y or N")
-'    Cancel = True
-'    Exit Sub
-'  End If
-'  If iYN > 0 Then
-'    Dim nPrinterNumber As Integer
-'    nPrinterNumber = Val(GetUserInfo("PalletPrinter"))
-'    PrintPalletLabel(nPrinterNumber, GetUserInfo("PalletFormat"), App.GetValue("tmPALP"), iYN)
-'  End If
   PrintPalletLabel(Val(Rsp), GetUserInfo("PalletFormat"), App.GetValue("tmPALP"), 1)
-
 End Sub
 
 Private Sub txtPALP_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
@@ -1168,7 +949,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
               appendOrDeleteLogs("D")
               If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 9")
               Exit Sub
-            ElseIf vRsp = "FindLot" Then
+            ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
@@ -1270,7 +1051,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
               appendOrDeleteLogs("D")
               If mbLog Then LogText("FLPAI0100_AMS", "txtLITM_OnEnter", "event exit 11")
               Exit Sub
-            ElseIf vRsp = "FindLot" Then
+            ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _

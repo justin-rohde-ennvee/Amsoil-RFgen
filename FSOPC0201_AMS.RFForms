@@ -1701,7 +1701,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                 Cancel = True
                 appendOrDeleteLogs("D")
                 Exit Sub
-              ElseIf vRsp = "FindLot" Then
+              ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
@@ -1846,7 +1846,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                 appendOrDeleteLogs("D")
                 Cancel = True
                 Exit Sub
-              ElseIf vRsp = "FindLot" Then
+              ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
@@ -2739,7 +2739,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                 Cancel = True
                 appendOrDeleteLogs("D")
                 Exit Sub
-              ElseIf vRsp = "FindLot" Then
+              ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
@@ -2884,7 +2884,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                 appendOrDeleteLogs("D")
                 Cancel = True
                 Exit Sub
-              ElseIf vRsp = "FindLot" Then
+              ElseIf vRsp = "Find Lot" Then
                 appendOrDeleteLogs("D")
                 App.CallForm("FIMQI0101_AMS -valITEM=" & sLITM  & _
                            " -valLOTN=" & sOlderLots(i,1) & " -valMCU=" & App.GetValue("tmMCU") & _
