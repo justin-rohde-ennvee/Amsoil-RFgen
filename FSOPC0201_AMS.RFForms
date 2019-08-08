@@ -4417,12 +4417,14 @@ Public Function ExecuteTM(ByVal bBackOrder As Boolean) As Boolean
 
     Screen.Clear
     Screen.Refresh
-    App.Balloon("", 0)
+'    App.Balloon("", 0)
   End If
 '****************************************
 'WLG End
 '****************************************
 
+  App.Balloon("", 0)
+  
   'Screen.Bell(1)
   Screen.Bell(0)
 
