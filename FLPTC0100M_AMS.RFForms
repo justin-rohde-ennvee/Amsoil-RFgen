@@ -1096,6 +1096,10 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
   Dim sColsXref As String
   Dim sRowsXref As String
 
+  Dim sLITM As String
+  Dim sMCU As String
+  Dim sStockingType As String
+
   Rsp = Trim(Rsp)
   If Len(Rsp) = 0 Or Rsp = "0" Then
     Cancel = True
@@ -1120,10 +1124,17 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
 
   sSqlXref = "select Z5MCU from F5548001 where Z5WCU = '" & App.GetValue("tmWC") & "'"
   DB.Execute(sSqlXref, sColsXref, sRowsXref)
-'************************************************
-'WLG01 START
-'************************************************
-  sSqlIB = "Select * from F4102 where IBLITM = '" & Trim(DB.Extract(sCols,sRows,1,"WALITM")) & "' and IBMCU = '" & FixRight(Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5MCU")),12) & "'"
+
+  sLITM = Trim(DB.Extract(sCols, sRows, 1, "WALITM"))
+  sMCU = FixRight(Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5MCU")), 12)
+
+  '************************************************
+  'WLG01 START
+  '************************************************
+  sSqlIB = "select *" & _
+    " from F4102" & _
+    " where IBLITM = '" & sLITM & "'" & _
+    " and IBMCU = '" & sMCU & "'"
   DB.Execute(sSqlIB, sColsIB, sRowsIB)
 
   If DB.Count(sRowsIB) = 0 Then
@@ -1131,9 +1142,17 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
     Cancel = True
     Exit Sub
   End If
-'************************************************
-'WLG01 END
-'************************************************
+  '************************************************
+  'WLG01 END
+  '************************************************
+
+  ' Check for obsolete branch/plant
+  sStockingType = Trim(DB.Extract(sColsIB, sRowsIB, 1, "IBSTKT"))
+  If sStockingType = "O" Then
+    App.MsgBox("Cannot complete item to obsolete branch/plant: " & Trim(sMCU))
+    Cancel = True
+    Exit Sub
+  End If
 
   Item.Visible = True
   WOQty.Visible = True
@@ -1156,7 +1175,11 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
 
   App.SetValue("tmMCU", Trim(DB.Extract(sCols, sRows, 1, "WAMMCU")))
 
-  sSqlWO = "Select UMCONV/10000000 as PalletQty from F41002 where UMITM = '" & Trim(DB.Extract(sCols, sRows, 1, "WAITM")) & "' And UMUM = 'PL' and UMRUM = '" & DB.Extract(sCols, sRows, 1, "WAUOM") & "'"
+  sSqlWO = "Select UMCONV/10000000 as PalletQty" & _
+    " from F41002" & _
+    " where UMITM = '" & Trim(DB.Extract(sCols, sRows, 1, "WAITM")) & "'" & _
+    " and UMUM = 'PL'" & _
+    " and UMRUM = '" & DB.Extract(sCols, sRows, 1, "WAUOM") & "'"
 
   DB.Execute(sSqlWO, sColsWO, sRowsWO)
 
