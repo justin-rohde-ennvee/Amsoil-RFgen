@@ -1,0 +1,290 @@
+﻿<Record FileDesc="Reclass Finished Goods" FileVersion="5.0.8.0" Desc="Reclass Finished Goods" Group="AMS" LinkTo="No Links" LinkType="0" PromptList="txtLPID&vm;txtDOCO&vm;txtLITM&vm;txtUOM&vm;txtAccept&vm;lbxItems" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="4" Name="txtUOM" />
+<SchemaParam Linked="0" Attr="5" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="6" Name="lbxItems" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtLPID" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="25" Width="33" Height="22" AnchorRight="197" AnchorBottom="268" BackColor1="1" BackColor2="1" ForeColor="1" Caption="LP#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="60" Top="25" Width="170" Height="22" AnchorRight="10" AnchorBottom="278" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="50" Width="33" Height="22" AnchorRight="197" AnchorBottom="247" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="60" Top="50" Width="170" Height="22" AnchorRight="10" AnchorBottom="247" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="28" Top="55" Width="65" Height="22" AnchorRight="147" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="101" Top="55" Width="80" Height="22" AnchorRight="131" AnchorBottom="243" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="75" Width="41" Height="22" AnchorRight="189" AnchorBottom="224" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="60" Top="75" Width="170" Height="22" AnchorRight="10" AnchorBottom="224" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="18" Top="71" Width="65" Height="22" AnchorRight="157" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="91" Top="71" Width="80" Height="22" AnchorRight="141" AnchorBottom="227" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUOM" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="100" Width="33" Height="22" AnchorRight="197" AnchorBottom="203" BackColor1="1" BackColor2="1" ForeColor="1" Caption="UOM" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="60" Top="100" Width="170" Height="22" AnchorRight="10" AnchorBottom="201" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="14" Top="100" Width="65" Height="22" AnchorRight="161" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="87" Top="100" Width="80" Height="22" AnchorRight="145" AnchorBottom="198" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="5" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="125" Width="153" Height="22" AnchorRight="77" AnchorBottom="174" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="90" Top="125" Width="0" Height="22" AnchorRight="150" AnchorBottom="174" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="110" Width="80" Height="22" AnchorRight="159" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxItems" Attr="6" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="15" Top="150" Width="65" Height="22" AnchorRight="160" AnchorBottom="145" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="150" Width="219" Height="128" AnchorRight="11" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="239" Height="166" AnchorRight="232" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Reclass Finished Goods" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private batchCode As String
+Private lotNumbers() As String
+Private Const branch = "          41"
+
+Private Type LineItem
+  item As String
+  lotNumber As String
+  batchCode As String
+  quantity As Currency
+  unitOfMeasure As String
+  errorMessage As String
+End Type
+
+Private Type Order
+  number As Long
+  item As String
+  unitOfMeasure As String
+  errorMessage As String
+End Type
+
+Public Sub Form_Load()
+  txtAccept.Caption = ""
+
+  lbxItems.List.SetColumn(1, "Lot", -1)
+  lbxItems.List.SetColumn(2, "Itm", -1)
+  lbxItems.List.SetColumn(3, "Qty", -1)
+  lbxItems.List.SetColumn(4, "UM", -1)
+End Sub
+
+Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  txtAccept.Caption = "Enter to Accept..."
+End Sub
+
+Public Sub txtAccept_LostFocus()
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  ClearFields()
+End Sub
+
+Private Sub ClearFields()
+  batchCode = ""
+  txtDOCO.Text = ""
+  txtLITM.Text = ""
+  txtUOM.Text = ""
+  lbxItems.List.Clear()
+End Sub
+
+Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  Cancel = True
+  Rsp = UCase(Trim(Rsp))
+
+  ClearFields()
+
+  Dim lineItems() As LineItem
+  lineItems = FetchLineItems(Rsp)
+
+  If UBound(lineItems) = 0 Then
+    App.MsgBox("LP is empty or invalid.")
+    Exit Sub
+  End If
+
+  Dim index As Long
+  For index = 1 To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+
+    If theLineItem.errorMessage <> "" Then
+      App.MsgBox(theLineItem.errorMessage)
+      Exit Sub
+    End If
+
+    If index = 1 Then
+      batchCode = theLineItem.batchCode
+    ElseIf theLineItem.batchCode <> batchCode Then
+      App.MsgBox("Reclass not allowed for mixed batch codes.")
+      Exit Sub
+    End If
+
+    lbxItems.List.AddItem( _
+      "", _
+      theLineItem.lotNumber, _
+      theLineItem.Item, _
+      theLineItem.quantity, _
+      theLineItem.unitOfMeasure _
+    )
+  Next
+
+  Dim theOrder As Order
+  theOrder = FetchOrder(branch, batchCode)
+
+  If theOrder.errorMessage <> "" Then
+    App.MsgBox(theOrder.errorMessage)
+    Exit Sub
+  End If
+
+  txtDOCO.Text = theOrder.Number
+  txtLITM.Text = theOrder.Item
+  txtUOM.Text = theOrder.unitOfMeasure
+
+  Cancel = False
+End Sub
+
+Private Function FetchLineItems(ByVal sPALP As String) As LineItem()
+  Dim sql As String
+  sql = "select *" & _
+    " from F55101" & _
+    " inner join F55102" & _
+    "   on LDLPID = LMLPID" & _
+    " where LMPALP = '" & sPALP & "'"
+
+  Dim columns, rows As String
+  DB.Execute(sql, columns, rows)
+
+  Dim count As Long
+  count = DB.Count(rows)
+
+  Dim theLineItems() As LineItem
+  If count = 0 Then
+    ReDim theLineItems(0)
+    GoTo Done
+  End If
+
+  ReDim theLineItems(1 To count)
+
+  Dim index As Integer
+  For index = 1 To count
+    theLineItems(index) = FetchLineItem(columns, rows, index)
+  Next
+
+Done:
+  FetchLineItems = theLineItems
+End Function
+
+Private Function FetchLineItem(ByVal columns As String, ByVal rows As String, ByVal index As Integer) As LineItem
+  Dim theLineItem As LineItem
+  theLineItem.lotNumber = Trim(DB.Extract(columns, rows, index, "LDLOTN"))
+
+  Dim components() As String
+  components = Split(theLineItem.lotNumber, ".")
+
+  If UBound(components) - LBound(components) <> 1 Then
+    theLineItem.errorMessage = "Lot # is not in correct format: '" & theLineItem.lotNumber & "'"
+    GoTo Done
+  End If
+
+  theLineItem.batchCode = components(0)
+  theLineItem.quantity = DB.Extract(columns, rows, index, "LDUORG")
+  theLineItem.unitOfMeasure = Trim(DB.Extract(columns, rows, index, "LDUOM"))
+
+Done:
+  FetchLineItem = theLineItem
+End Function
+
+Private Function FetchOrder(ByVal branch As String, ByVal number As String) As Order
+  Dim sql As String
+  sql = "select *" & _
+    " from F4801" & _
+    " where WAMCU = '" & branch & "'" & _
+    "   and WADOCO = '" & number & "'"
+
+  Dim columns, rows As String
+  DB.Execute(sql, columns, rows)
+
+  Dim theOrder As Order
+  If DB.Count(rows) = 0 Then
+    theOrder.errorMessage = "Order not found: " & number
+    GoTo Done
+    Exit Function
+  End If
+
+  theOrder.Number = number
+  theOrder.Item = Trim(DB.Extract(columns, rows, 1, "WALITM"))
+  theOrder.unitOfMeasure = DB.Extract(columns, rows, 1, "WAUOM")
+
+Done:
+  FetchOrder = theOrder
+End Function
+</Code>

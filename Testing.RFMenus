@@ -1,3 +1,3 @@
 ﻿<Record FileDesc="Testing Menu" FileVersion="5.0.8.0" Desc="Testing Menu" Heading="TEST">
-<MenuItem Id="TEST_JUNK" Desc="TEST" />
+<MenuItem Id="FIMIR0200_AMS" Desc="Reclass Finished Goods" Options="-PgmIA=? -VersIA=?" />
 </Record>
