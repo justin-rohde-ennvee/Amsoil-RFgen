@@ -76,7 +76,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="15" Top="150" Width="65" Height="22" AnchorRight="160" AnchorBottom="145" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="150" Width="219" Height="128" AnchorRight="11" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="150" Width="239" Height="128" AnchorRight="1" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
@@ -108,17 +108,17 @@
 <Code>
 Option Explicit
 
-Private batchCode As String
-Private lotNumbers() As String
-Private Const branch = "          41"
-
 Private Type LineItem
+  parentId As String
+  id As String
+  shortItem As Long
   item As String
   lotNumber As String
   batchCode As String
   quantity As Currency
   unitOfMeasure As String
   errorMessage As String
+  toQuantity As Currency
 End Type
 
 Private Type Order
@@ -128,6 +128,10 @@ Private Type Order
   errorMessage As String
 End Type
 
+Private Const branch = "          41"
+Private lineItems() As LineItem
+Private theOrder As Order
+
 Public Sub Form_Load()
   txtAccept.Caption = ""
 
@@ -135,6 +139,33 @@ Public Sub Form_Load()
   lbxItems.List.SetColumn(2, "Itm", -1)
   lbxItems.List.SetColumn(3, "Qty", -1)
   lbxItems.List.SetColumn(4, "UM", -1)
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+
+  App.Balloon("Processing...", -1)
+
+  Dim index As Long
+  For index = LBound(lineItems) To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+
+    Stop
+
+    Dim errorMessage As String
+    If Not DetachItem(theLineItem, errorMessage) Then
+      App.MsgBox(errorMessage)
+      Exit Sub
+    End If
+
+    ' If Not ReclassItem(theLineItem, theOrder) Then Exit Sub
+  Next
+
+  Cancel = False
+  App.Balloon("", 0)
 End Sub
 
 Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
@@ -150,7 +181,6 @@ Public Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
 End Sub
 
 Private Sub ClearFields()
-  batchCode = ""
   txtDOCO.Text = ""
   txtLITM.Text = ""
   txtUOM.Text = ""
@@ -158,58 +188,19 @@ Private Sub ClearFields()
 End Sub
 
 Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
-  Cancel = True
   Rsp = UCase(Trim(Rsp))
+  Cancel = True
 
-  ClearFields()
-
-  Dim lineItems() As LineItem
   lineItems = FetchLineItems(Rsp)
+  If Not ValidateLineItems(lineItems) Then Exit Sub
 
-  If UBound(lineItems) = 0 Then
-    App.MsgBox("LP is empty or invalid.")
-    Exit Sub
-  End If
+  theOrder = FetchOrder(branch, lineItems(LBound(lineItems)).batchCode)
+  If Not ValidateOrder(theOrder) Then Exit Sub
 
-  Dim index As Long
-  For index = 1 To UBound(lineItems)
-    Dim theLineItem As LineItem
-    theLineItem = lineItems(index)
-
-    If theLineItem.errorMessage <> "" Then
-      App.MsgBox(theLineItem.errorMessage)
-      Exit Sub
-    End If
-
-    If index = 1 Then
-      batchCode = theLineItem.batchCode
-    ElseIf theLineItem.batchCode <> batchCode Then
-      App.MsgBox("Reclass not allowed for mixed batch codes.")
-      Exit Sub
-    End If
-
-    lbxItems.List.AddItem( _
-      "", _
-      theLineItem.lotNumber, _
-      theLineItem.Item, _
-      theLineItem.quantity, _
-      theLineItem.unitOfMeasure _
-    )
-  Next
-
-  Dim theOrder As Order
-  theOrder = FetchOrder(branch, batchCode)
-
-  If theOrder.errorMessage <> "" Then
-    App.MsgBox(theOrder.errorMessage)
-    Exit Sub
-  End If
-
-  txtDOCO.Text = theOrder.Number
-  txtLITM.Text = theOrder.Item
-  txtUOM.Text = theOrder.unitOfMeasure
+  If Not DoUnitConversions(lineItems, theOrder.unitOfMeasure) Then Exit Sub
 
   Cancel = False
+  Update()
 End Sub
 
 Private Function FetchLineItems(ByVal sPALP As String) As LineItem()
@@ -218,6 +209,8 @@ Private Function FetchLineItems(ByVal sPALP As String) As LineItem()
     " from F55101" & _
     " inner join F55102" & _
     "   on LDLPID = LMLPID" & _
+    " inner join F4101" & _
+    "   on IMLITM = LDLITM" & _
     " where LMPALP = '" & sPALP & "'"
 
   Dim columns, rows As String
@@ -255,7 +248,11 @@ Private Function FetchLineItem(ByVal columns As String, ByVal rows As String, By
     GoTo Done
   End If
 
+  theLineItem.parentId = DB.Extract(columns, rows, index, "LMPALP")
+  theLineItem.Id = DB.Extract(columns, rows, index, "LMLPID")
   theLineItem.batchCode = components(0)
+  theLineItem.shortItem = DB.Extract(columns, rows, index, "IMITM")
+  theLineItem.Item = Trim(DB.Extract(columns, rows, index, "LDLITM"))
   theLineItem.quantity = DB.Extract(columns, rows, index, "LDUORG")
   theLineItem.unitOfMeasure = Trim(DB.Extract(columns, rows, index, "LDUOM"))
 
@@ -263,28 +260,139 @@ Done:
   FetchLineItem = theLineItem
 End Function
 
-Private Function FetchOrder(ByVal branch As String, ByVal number As String) As Order
+Private Function ValidateLineItems(ByVal lineItems() As LineItem) As Boolean
+  ValidateLineItems = False
+
+  If UBound(lineItems) = 0 Then
+    App.MsgBox("LP is empty or invalid.")
+    Exit Function
+  End If
+
+  Dim index As Long
+  Dim batchCode As String
+  For index = 1 To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+
+    If theLineItem.errorMessage <> "" Then
+      App.MsgBox(theLineItem.errorMessage)
+      Exit Function
+    End If
+
+    If index = 1 Then
+      batchCode = theLineItem.batchCode
+    ElseIf theLineItem.batchCode <> batchCode Then
+      App.MsgBox("Reclass not allowed for mixed batch codes.")
+      Exit Function
+    End If
+  Next
+
+  ValidateLineItems = True
+End Function
+
+Private Function FetchOrder(ByVal branch As String, ByVal orderNumber As String) As Order
   Dim sql As String
   sql = "select *" & _
     " from F4801" & _
     " where WAMCU = '" & branch & "'" & _
-    "   and WADOCO = '" & number & "'"
+    "   and WADOCO = '" & orderNumber & "'"
 
-  Dim columns, rows As String
+  Dim columns As String
+  Dim rows As String
   DB.Execute(sql, columns, rows)
 
   Dim theOrder As Order
   If DB.Count(rows) = 0 Then
-    theOrder.errorMessage = "Order not found: " & number
+    theOrder.errorMessage = "Order not found: " & orderNumber
     GoTo Done
-    Exit Function
   End If
 
-  theOrder.Number = number
+  theOrder.Number = orderNumber
   theOrder.Item = Trim(DB.Extract(columns, rows, 1, "WALITM"))
   theOrder.unitOfMeasure = DB.Extract(columns, rows, 1, "WAUOM")
 
 Done:
   FetchOrder = theOrder
+End Function
+
+Private Function ValidateOrder(ByVal theOrder As Order) As Boolean
+  ValidateOrder = False
+
+  If theOrder.errorMessage <> "" Then
+    App.MsgBox(theOrder.errorMessage)
+    Exit Function
+  End If
+
+  ValidateOrder = True
+End Function
+
+Private Sub Update()
+  ClearFields()
+
+  Dim index As Long
+  For index = 1 To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+    lbxItems.List.AddItem( _
+      "", _
+      theLineItem.lotNumber, _
+      theLineItem.Item, _
+      theLineItem.quantity, _
+      theLineItem.unitOfMeasure _
+    )
+  Next
+
+  txtDOCO.Text = theOrder.Number
+  txtLITM.Text = theOrder.Item
+  txtUOM.Text = theOrder.unitOfMeasure
+End Sub
+
+Private Function DoUnitConversions(ByVal lineItems() As LineItem, ByVal toUnitOfMeasure) As Boolean
+  DoUnitConversions = False
+
+  Dim index As Long
+  For index = LBound(lineItems) To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+    theLineItem.toQuantity = theLineItem.quantity
+
+    If Not ConvUOM( _
+      CStr(theLineItem.shortItem), _
+      theLineItem.toQuantity, _
+      theLineItem.unitOfMeasure, _
+      toUnitOfMeasure _
+    ) Then Exit Function
+  Next
+
+  DoUnitConversions = True
+End Function
+
+Private Function DetachItem(ByVal theLineItem As LineItem, errorMessage As String) As Boolean
+  DetachItem = False
+
+  Dim uLPOper As LPOper
+  uLPOper.sLPID = theLineItem.Id
+  uLPOper.sPALP = theLineItem.parentId
+  uLPOper.sFMCU = branch
+  uLPOper.sTMCU = branch
+  uLPOper.nQty = theLineItem.quantity
+  uLPOper.bIsPlate = True
+  uLPOper.bDetach = True
+
+  Dim uLP102 As LP102Data
+  Call LP102_Reset(uLP102)
+
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+
+  If Not LP_AttachDetach(uLPOper, uLP102) Then
+    errorMessage = GetMsg(40)
+    If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+    GoTo LPDone
+  End If
+
+  DetachItem = True
+
+LPDone:
+  If gbCommitCtl Then DB.CommitTrans(gsLPSource)
 End Function
 </Code>
