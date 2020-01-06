@@ -1,30 +1,27 @@
-﻿<Record FileDesc="LP - WO Setup Manual Completion" FileVersion="5.0.8.0" Desc="LP - WO Setup Manual Completion" Group="AMS" LinkTo="No Links" LinkType="0" PromptList="txtWC&vm;lblWC&vm;txtWO&vm;txtITEM&vm;txtBatch&vm;lblLITM&vm;lblWOQty&vm;lblOpenQty&vm;lblCurrentPL&vm;Item&vm;WOQty&vm;OpenQty&vm;CurrentPL&vm;btnChange&vm;btnInquiry&vm;lblProcessing&vm;btnExit&vm;txtHidden&vm;lblBLITM&vm;lblUOM1&vm;lblUOM2&vm;PLCount&vm;lblPalletCount&vm;lbxITEM&vm;lblItemCount" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="LP - WO Setup Manual Completion" FileVersion="5.0.8.0" Desc="LP - WO Setup Manual Completion" Group="AMS" LinkTo="No Links" LinkType="0" PromptList="txtWC&vm;lblWC&vm;txtWO&vm;txtBatch&vm;lblLITM&vm;lblWOQty&vm;lblOpenQty&vm;lblCurrentPL&vm;Item&vm;WOQty&vm;OpenQty&vm;CurrentPL&vm;btnChange&vm;btnInquiry&vm;lblProcessing&vm;btnExit&vm;txtHidden&vm;lblBLITM&vm;lblUOM1&vm;lblUOM2&vm;PLCount&vm;lblPalletCount" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtWC" />
 <SchemaParam Linked="0" Attr="2" Name="lblWC" />
 <SchemaParam Linked="0" Attr="3" Name="txtWO" />
-<SchemaParam Linked="0" Attr="4" Name="txtITEM" />
-<SchemaParam Linked="0" Attr="5" Name="txtBatch" />
-<SchemaParam Linked="0" Attr="6" Name="lblLITM" />
-<SchemaParam Linked="0" Attr="7" Name="lblWOQty" />
-<SchemaParam Linked="0" Attr="8" Name="lblOpenQty" />
-<SchemaParam Linked="0" Attr="9" Name="lblCurrentPL" />
-<SchemaParam Linked="0" Attr="10" Name="Item" />
-<SchemaParam Linked="0" Attr="11" Name="WOQty" />
-<SchemaParam Linked="0" Attr="12" Name="OpenQty" />
-<SchemaParam Linked="0" Attr="13" Name="CurrentPL" />
-<SchemaParam Linked="0" Attr="14" Name="btnChange" />
-<SchemaParam Linked="0" Attr="15" Name="btnInquiry" />
-<SchemaParam Linked="0" Attr="16" Name="lblProcessing" />
-<SchemaParam Linked="0" Attr="17" Name="btnExit" />
-<SchemaParam Linked="0" Attr="18" Name="txtHidden" />
-<SchemaParam Linked="0" Attr="19" Name="lblBLITM" />
-<SchemaParam Linked="0" Attr="20" Name="lblUOM1" />
-<SchemaParam Linked="0" Attr="21" Name="lblUOM2" />
-<SchemaParam Linked="0" Attr="22" Name="PLCount" />
-<SchemaParam Linked="0" Attr="23" Name="lblPalletCount" />
-<SchemaParam Linked="0" Attr="24" Name="lbxITEM" />
-<SchemaParam Linked="0" Attr="25" Name="lblItemCount" />
+<SchemaParam Linked="0" Attr="4" Name="txtBatch" />
+<SchemaParam Linked="0" Attr="5" Name="lblLITM" />
+<SchemaParam Linked="0" Attr="6" Name="lblWOQty" />
+<SchemaParam Linked="0" Attr="7" Name="lblOpenQty" />
+<SchemaParam Linked="0" Attr="8" Name="lblCurrentPL" />
+<SchemaParam Linked="0" Attr="9" Name="Item" />
+<SchemaParam Linked="0" Attr="10" Name="WOQty" />
+<SchemaParam Linked="0" Attr="11" Name="OpenQty" />
+<SchemaParam Linked="0" Attr="12" Name="CurrentPL" />
+<SchemaParam Linked="0" Attr="13" Name="btnChange" />
+<SchemaParam Linked="0" Attr="14" Name="btnInquiry" />
+<SchemaParam Linked="0" Attr="15" Name="lblProcessing" />
+<SchemaParam Linked="0" Attr="16" Name="btnExit" />
+<SchemaParam Linked="0" Attr="17" Name="txtHidden" />
+<SchemaParam Linked="0" Attr="18" Name="lblBLITM" />
+<SchemaParam Linked="0" Attr="19" Name="lblUOM1" />
+<SchemaParam Linked="0" Attr="20" Name="lblUOM2" />
+<SchemaParam Linked="0" Attr="21" Name="PLCount" />
+<SchemaParam Linked="0" Attr="22" Name="lblPalletCount" />
 </Schema>
 <Displays>
 <Display Name="(Default)" Type="1" Width="1920" Height="7040" Locale="1033" />
@@ -54,165 +51,138 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtITEM" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtBatch" Attr="4" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="121" Height="22" AnchorRight="200" AnchorBottom="308" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Scan next item" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="110" Width="87" Height="22" AnchorRight="112" AnchorBottom="308" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="73" Height="22" AnchorRight="419" AnchorBottom="468" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Batch #:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="110" Width="79" Height="22" AnchorRight="349" AnchorBottom="468" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtBatch" Attr="5" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="10" FieldId="lblLITM" Attr="5">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="242" Width="73" Height="22" AnchorRight="248" AnchorBottom="176" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Batch #:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="79" Height="22" AnchorRight="176" AnchorBottom="176" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="132" Width="65" Height="22" AnchorRight="307" AnchorBottom="446" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblLITM" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblLITM" Attr="6">
+<Control Type="10" FieldId="lblWOQty" Attr="6">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="264" Width="65" Height="22" AnchorRight="136" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblLITM" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="154" Width="73" Height="22" AnchorRight="299" AnchorBottom="424" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblWOQty" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblWOQty" Attr="7">
+<Control Type="10" FieldId="lblOpenQty" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="286" Width="73" Height="22" AnchorRight="128" AnchorBottom="132" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblWOQty" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="176" Width="89" Height="22" AnchorRight="283" AnchorBottom="402" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblOpenQty" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblOpenQty" Attr="8">
+<Control Type="10" FieldId="lblCurrentPL" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="308" Width="89" Height="22" AnchorRight="112" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblOpenQty" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="198" Width="105" Height="22" AnchorRight="267" AnchorBottom="380" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblCurrentPL" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblCurrentPL" Attr="9">
+<Control Type="10" FieldId="Item" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="330" Width="105" Height="22" AnchorRight="96" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblCurrentPL" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="132" Width="49" Height="22" AnchorRight="419" AnchorBottom="446" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item:" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="Item" Attr="10">
+<Control Type="10" FieldId="WOQty" Attr="10">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="264" Width="49" Height="22" AnchorRight="248" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item:" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="154" Width="65" Height="22" AnchorRight="403" AnchorBottom="424" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO Qty:" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="WOQty" Attr="11">
+<Control Type="10" FieldId="OpenQty" Attr="11">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="286" Width="65" Height="22" AnchorRight="232" AnchorBottom="132" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO Qty:" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="176" Width="89" Height="22" AnchorRight="379" AnchorBottom="402" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Comp. Qty:" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="OpenQty" Attr="12">
+<Control Type="10" FieldId="CurrentPL" Attr="12">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="308" Width="89" Height="22" AnchorRight="208" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Comp. Qty:" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="97" Height="22" AnchorRight="371" AnchorBottom="380" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Current PL:" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="CurrentPL" Attr="13">
-<Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="330" Width="97" Height="22" AnchorRight="200" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Current PL:" />
-</Layout>
-</Layouts>
-</Control>
-<Control Type="9" FieldId="btnChange" Attr="14">
+<Control Type="9" FieldId="btnChange" Attr="13">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="End WO" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="88" Width="79" Height="22" AnchorRight="88" AnchorBottom="330" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnInquiry" Attr="15">
+<Control Type="9" FieldId="btnInquiry" Attr="14">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Show Units" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="330" Width="87" Height="22" AnchorRight="24" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="198" Width="87" Height="22" AnchorRight="197" AnchorBottom="380" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblProcessing" Attr="16">
+<Control Type="10" FieldId="lblProcessing" Attr="15">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="396" Width="161" Height="22" AnchorRight="136" AnchorBottom="22" BackColor1="1" BackColor2="1" ForeColor="1" Caption="&lt;Enter To Complete&gt;" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="264" Width="161" Height="22" AnchorRight="307" AnchorBottom="314" BackColor1="1" BackColor2="1" ForeColor="1" Caption="&lt;Enter To Complete&gt;" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnExit" Attr="17">
+<Control Type="9" FieldId="btnExit" Attr="16">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Exit" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="418" Width="79" Height="22" AnchorRight="120" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="286" Width="79" Height="22" AnchorRight="293" AnchorBottom="292" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtHidden" Attr="18" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtHidden" Attr="17" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="374" Width="41" Height="22" AnchorRight="256" AnchorBottom="44" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="374" Width="87" Height="22" AnchorRight="168" AnchorBottom="44" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="242" Width="41" Height="22" AnchorRight="427" AnchorBottom="336" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="242" Width="87" Height="22" AnchorRight="341" AnchorBottom="336" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblBLITM" Attr="19">
+<Control Type="10" FieldId="lblBLITM" Attr="18">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="242" Width="73" Height="22" AnchorRight="96" AnchorBottom="176" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblBLITM" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="110" Width="73" Height="22" AnchorRight="267" AnchorBottom="468" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblBLITM" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblUOM1" Attr="20">
+<Control Type="10" FieldId="lblUOM1" Attr="19">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="286" Width="65" Height="22" AnchorRight="64" AnchorBottom="132" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblUOM1" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="154" Width="65" Height="22" AnchorRight="235" AnchorBottom="424" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblUOM1" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblUOM2" Attr="21">
+<Control Type="10" FieldId="lblUOM2" Attr="20">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="308" Width="65" Height="22" AnchorRight="64" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblUOM2" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="200" Top="176" Width="65" Height="22" AnchorRight="235" AnchorBottom="402" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblUOM2" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="PLCount" Attr="22">
+<Control Type="10" FieldId="PLCount" Attr="21">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="352" Width="81" Height="22" AnchorRight="216" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" Caption="PL Count:" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="220" Width="81" Height="22" AnchorRight="387" AnchorBottom="358" BackColor1="1" BackColor2="1" ForeColor="1" Caption="PL Count:" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblPalletCount" Attr="23">
+<Control Type="10" FieldId="lblPalletCount" Attr="22">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="352" Width="121" Height="22" AnchorRight="80" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblPalletCount" />
-</Layout>
-</Layouts>
-</Control>
-<Control Type="3" FieldId="lbxITEM" Attr="24" Sorted="0">
-<Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="0" HeadBackColor2="0" HeadBackFill="0" HeadForeColor="0" HeadPadding="0" HeadVisible="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="209" Height="22" AnchorRight="120" AnchorBottom="286" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Component#    Description" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="8" FontStyle="0" MultiLine="1" Left="0" Top="126" Width="247" Height="90" AnchorRight="80" AnchorBottom="224" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
-<Columns>
-<Column Caption="1" />
-<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
-</Columns>
-</Layout>
-</Layouts>
-</Control>
-<Control Type="10" FieldId="lblItemCount" Attr="25">
-<Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="232" Top="132" Width="0" Height="22" AnchorRight="95" AnchorBottom="286" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="128" Top="220" Width="121" Height="22" AnchorRight="251" AnchorBottom="358" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblPalletCount" />
 </Layout>
 </Layouts>
 </Control>
@@ -409,8 +379,6 @@ Private Sub btnChange_Click()
   OpenQty.Visible = False
   CurrentPL.Visible = False
   PLCount.Visible = False
-  lbxITEM.Visible = False
-  txtITEM.Visible = False
   btnInquiry.Visible = False
   txtHidden.Visible = False
 
@@ -483,8 +451,6 @@ Private Sub Form_Load()
   OpenQty.Visible = False
   CurrentPL.Visible = False
   PLCount.Visible = False
-  txtITEM.Visible = False
-  lbxITEM.Visible = False
   txtHidden.Visible = False
   lblProcessing.Visible = False
 
@@ -517,7 +483,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   delay = 2.5
 
   sSql = "update WC_SQL set WCMODE = 'A' where WCWCU = '" & App.GetValue("tmWC") & "'"
-  nErrNo = DB.Execute(sSql) 'JR
+  nErrNo = DB.Execute(sSql)
 
   If (Val(App.GetValue("tmNUMREC")) > 0) Then
     numToInsert =Val(App.GetValue("tmNUMREC"))
@@ -525,35 +491,25 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
     Cancel = True
     Exit Sub
   End If
-'  App.MsgBox(numToInsert & " record(s) will be entered as '" & App.GetValue("tmWCU") & "'")
   sProc = "PROCESSING (" & CInt((numToInsert * delay)) + 4 & " seconds remaining)"
-  'Screen.Print(3,12,sProc,False,False,True)
+
   App.Balloon(sProc, -1)
   For i = 1 To numToInsert
     sSql = "insert into INTERRUPT_SQL (WCU, URRF, URAB, AUDT, AUTM) values ('" & Trim(App.GetValue("tmWC")) & "', 0, '', " & Format(Date, "MMdd") & ", " & Format(Date, "mmss") & ")"
-    nErrNo = DB.Execute(sSql) ' JR
+    nErrNo = DB.Execute(sSql)
     Wait(delay)
-'    If Len(sProc) < 15 Then
+
     If (CInt((numToInsert - i) * delay) = (numToInsert - i) * delay) Then
       sProc = "PROCESSING (" & ((numToInsert - i) * delay) + 4 & " seconds remaining)"
-      'Screen.Refresh
-      'Screen.Print(3,12,sProc,False,False,True)
       App.Balloon(sProc, -1)
-'    Else
-'      sProc = "PROCESSING."
-'      Screen.Refresh
-'      Screen.Print(1,12,sProc,False,False,True)
-'    End If
     End If
   Next i
   For i = 1 To 4
     sProc = "PROCESSING (" & (5 - i) & " seconds remaining)"
-    'Screen.Print(3,12,sProc,False,False,True)
     App.Balloon(sProc, -1)
     Wait(1)
   Next
 
-  'Screen.Clear
   App.Balloon("", 0)
 End Sub
 
@@ -563,21 +519,12 @@ Private Sub Form_Unload()
   Dim nErrNo As Long 'JR
 
   sSql = "update WC_SQL set WCMODE = '' where WCWCU = '" & App.GetValue("tmWC") & "'"
-  nErrNo = DB.Execute(sSql) ' JR
-
 End Sub
 
 Private Sub txtBatch_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
 
   txtBatch.Visible = True
-End Sub
-
-Private Sub txtBatch_OnBackup(ByRef Cancel As Boolean)
-  On Error Resume Next
-
-  lbxITEM.Visible   = False
-  txtITEM.Visible   = False
 End Sub
 
 Private Sub txtBatch_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -737,105 +684,6 @@ Private Sub txtHidden_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRe
   App.SetValue("tmNUMREC", Rsp)
 End Sub
 
-Private Sub txtITEM_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-
-  txtITEM.Visible = True
-  lbxITEM.Visible = True
-  lbxITEM.Caption = "Component#    Description"
-
-End Sub
-
-Private Sub txtITEM_OnBackup(ByRef Cancel As Boolean)
-  On Error Resume Next
-
-  txtITEM.Visible = False
-  lbxITEM.Visible = False
-End Sub
-
-Private Sub txtITEM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
-  On Error Resume Next
-
-  Dim sSql As String
-  Dim i As Integer
-  Dim j As Integer
-  Dim itemNum As String
-  Dim litmNum As String
-  Dim currentSpotTemp As Integer
-  Dim itemFound As Boolean
-  Cancel = True
-  itemFound = False
-  Rsp = UCase(Trim(Rsp))
-  If Len(Rsp) = 0 Then
-    Exit Sub
-  End If
-
-  For j = 1 To UBound(doneItems) 'check to see if Item has already been scanned
-    If Rsp = doneItems(j) Or Rsp = doneLitms(j) Then
-      App.MsgBox("Item Already Scanned")
-      Exit Sub
-    End If
-  Next
-
-  For i = 1 To UBound(currentItems)
-    If Rsp = currentItems(i) Or Rsp = currentLitms(i) Then ' if input matches an item on the List.Data
-      itemFound = True
-      itemNum = currentItems(i)
-      litmNum = currentLitms(i)
-      doneItems(UBound(doneItems)) = itemNum
-      doneLitms(UBound(doneLitms)) = litmNum
-
-      'deletes entered item from currentItems and places item in doneItems(above)
-      ReDim tempArray(UBound(currentItems)-1) As String
-      currentSpotTemp = 1
-      For j = 1 To UBound(currentItems)
-        If (currentItems(j) <> itemNum) And (currentLitms(j) <> litmNum)  Then
-          tempArray(currentSpotTemp) = currentItems(j)
-          currentSpotTemp = currentSpotTemp + 1
-        End If
-      Next
-      currentItems = tempArray
-
-      'deletes litm from current litm's
-      currentSpotTemp = 1
-      For j = 1 To UBound(currentLitms)
-        If (currentItems(j) <> itemNum) And (currentLitms(j) <> litmNum) Then
-          tempArray(currentSpotTemp) = currentLitms(j)
-          currentSpotTemp = currentSpotTemp + 1
-        End If
-      Next
-      currentLitms = tempArray
-
-      lblItemCount.Caption = UBound(currentItems)
-      lbxITEM.List.RemoveItem(i)
-      ReDim Preserve doneItems(UBound(doneItems)+1)
-      ReDim Preserve doneLitms(UBound(doneLitms)+1)
-      Exit For
-    End If
-  Next
-
-  If Not itemFound Then
-    App.MsgBox("Invalid Item")
-  End If
-
-  If (UBound(currentItems) = 0) Then
-    sSql = "UPDATE F4801 SET WAWR06 = '1' WHERE WADOCO = %tmDOCO and WADCTO ='WO'"
-    DB.Execute(sSql)
-    lbxITEM.Caption = "Parts List Validated"
-    txtITEM.Text = ""
-    Cancel = False
-  End If
-
-End Sub
-
-Private Sub txtWC_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-
-  lblItemCount.Caption = ""
-  lbxItem.List.Clear 'when user selects work order that has not had parts List.Data validated, the table fills up but is
-                ' not cleared if the user then uses the txtOnbackUp to go up to the txtWC
-End Sub
-
 Private Sub txtWC_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
 
@@ -940,9 +788,6 @@ Private Sub txtWC_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
     OpenQty.Visible = True
     CurrentPL.Visible = True
     PLCount.Visible = True
-    lbxITEM.Visible = True
-    txtITEM.Visible = True
-    lbxITEM.Caption = "Parts List Validated"
 
     txtBatch.Visible = True
     txtBatch.Text = Trim(DB.Extract(sCols, sRows, 1, "WCLOTN"))
@@ -1008,10 +853,6 @@ End Sub
 Private Sub txtWO_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
 
-  lbxItem.List.Clear ' Even if txtWO_onEnter receives bad input, lostFocus and gotFocus still fire
-                ' causing table to be filled in. This fixes that
-  lblItemCount.Caption = ""
-
   PLCount.Visible   = False
   txtBatch.Visible  = False
   btnChange.Visible = False
@@ -1024,49 +865,7 @@ Private Sub txtWO_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   lblPalletCount.Caption = ""
   lblLITM.Caption        = ""
   lblWOQty.Caption       = ""
-  lblItemCount           = ""
   bPartsValidated = False
-
-End Sub
-
-Private Sub txtWO_LostFocus()
-  On Error Resume Next
-
-  Dim sSql As String
-  Dim sCols As String
-  Dim sRows As String
-  Dim i As Integer
-  Dim sItemNumber As String
-  Dim sItemDesc As String
-  Dim sAdd As String
-
-  If (Len(App.GetValue("tmDOCO"))=0 Or bPartsValidated) Then ' handles error thrown when query executes with empty tmDOCO
-    Exit Sub
-  End If
-
-  sSql = "select WMCPIL, WMDSC1, WMCPIA from F3111 where WMDOCO = %tmDOCO"
-  DB.Execute(sSql, sCols, sRows)
-  If(DB.Count(sRows)=0) Then
-    'throw error? if no results
-    Exit Sub
-  End If
-
-  ReDim currentItems(DB.Count(sRows))
-  ReDim currentLitms(DB.Count(sRows))
-  ReDim doneItems(1)
-  ReDim doneLitms(1)
-
-  For i = 1 To DB.Count(sRows) 'fills List.Data box
-    sItemNumber = DB.Extract(sCols, sRows, i , "WMCPIL")
-    currentItems(i) = Trim(DB.Extract(sCols, sRows, i , "WMCPIA"))
-    currentLitms(i) = Trim(sItemNumber)
-    sItemDesc = DB.Extract(sCols, sRows, i , "WMDSC1")
-    sAdd = FixLeft(sItemNumber, 13,"")
-    sAdd = sAdd + "     " + FixLeft(sItemDesc, 15," ")
-    lbxITEM.List.AddItem(sAdd)
-  Next
-
-  lblItemCount.Caption = UBound(currentItems) 'caption to display amount of rows
 
 End Sub
 
@@ -1106,11 +905,9 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
     Exit Sub
   End If
 
-  sSql = "select WADCTO, WADCTO, WALITM, WAWR06 from  F4801" & _
-       " where WADOCO = " & Rsp
-
+  sSql = "select WADCTO, WADCTO, WALITM, WAWR06 from F4801 where WADOCO = " & Rsp
   DB.Execute(sSql, sCols, sRows)
-  '
+
   If (Len(sRows) = 0) Then
     App.MsgBox(GetMsg(228))
     Cancel = True
@@ -1161,10 +958,8 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
   PLCount.Visible = True
 
   App.SetValue("tmDOCO", Rsp)
-
   App.SetValue("tmDCTO", DB.Extract(sCols, sRows, 1, "WADCTO"))
   App.SetValue("tmMCU", DB.Extract(sCols, sRows, 1, "WAMMCU"))
-
 
   sSql = "select * from F4801 where WADOCO = " & App.GetValue("tmDOCO")
   DB.Execute(sSql, sCols, sRows)
@@ -1175,15 +970,14 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
 
   App.SetValue("tmMCU", Trim(DB.Extract(sCols, sRows, 1, "WAMMCU")))
 
-  sSqlWO = "Select UMCONV/10000000 as PalletQty" & _
+  sSqlWO = "select UMCONV/10000000 as PalletQty" & _
     " from F41002" & _
     " where UMITM = '" & Trim(DB.Extract(sCols, sRows, 1, "WAITM")) & "'" & _
     " and UMUM = 'PL'" & _
     " and UMRUM = '" & DB.Extract(sCols, sRows, 1, "WAUOM") & "'"
-
   DB.Execute(sSqlWO, sColsWO, sRowsWO)
 
-  If (DB.Count(sRowsWO) = 0 ) Then
+  If DB.Count(sRowsWO) = 0 Then
     App.MsgBox("Pallet Max Not Set Up For This Item, Can Not Process")
     Cancel = True
     Exit Sub
@@ -1191,13 +985,7 @@ Private Sub txtWO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Er
 
   App.SetValue("tmPalletMax", Trim(DB.Extract(sColsWO, sRowsWO, 1, "PalletQty")))
 
-  If (bPartsValidated) Then
-    lbxITEM.Visible = True
-    lbxITEM.Caption = "Parts List Validated"
-    txtWO.Text = Rsp 'Not sure why this is necessary, but txtWO.text is lost after focus is set
-    App.SetFocus("txtBatch")
-  End If
-
+  txtBatch.Visible = True
 End Sub
 
 Private Sub txtWO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
