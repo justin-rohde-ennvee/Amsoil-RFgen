@@ -113,6 +113,8 @@ Private Type LineItem
   id As String
   shortItem As Long
   item As String
+  branch As String
+  location As String
   lotNumber As String
   batchCode As String
   quantity As Currency
@@ -122,12 +124,16 @@ Private Type LineItem
 End Type
 
 Private Type Order
+  branch As String
+  location As String
   number As Long
+  shortItem As Long
   item As String
   unitOfMeasure As String
   errorMessage As String
 End Type
 
+Private Const company = "00002"
 Private Const branch = "          41"
 Private lineItems() As LineItem
 Private theOrder As Order
@@ -146,22 +152,71 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
   Cancel = True
 
+  Dim index As Long
+  Dim theLineItem As LineItem
+  Dim errorMessage As String
+
   App.Balloon("Processing...", -1)
 
-  Dim index As Long
+  If Not DetachAllItems( _
+    lineItems(1).parentId, _
+    lineItems(1).branch, _
+    branch, _
+    lineItems(1).location, _
+    " ", _
+    errorMessage _
+  ) Then
+    App.MsgBox(errorMessage)
+    Exit Sub
+  End If
+
+  Dim consolidatedLineItems() As LineItem
+  ReDim consolidatedLineItems(-1)
+
+  Dim upperBound As Long
+  upperBound = -1
+
   For index = LBound(lineItems) To UBound(lineItems)
-    Dim theLineItem As LineItem
     theLineItem = lineItems(index)
 
-    Stop
+    Dim exists As Boolean
+    exists = False
 
-    Dim errorMessage As String
-    If Not DetachItem(theLineItem, errorMessage) Then
+    Dim consolidatedIndex As Integer
+    For consolidatedIndex = 0 To upperBound
+      Dim consolidatedLineItem As LineItem
+      consolidatedLineItem = consolidatedLineItems(consolidatedIndex)
+
+      Dim isMatch As Boolean
+      isMatch = _
+        consolidatedLineItem.Item = theLineItem.Item _
+        And consolidatedLineItem.lotNumber = theLineItem.lotNumber _
+        And consolidatedLineItem.unitOfMeasure = theLineItem.unitOfMeasure
+
+      If isMatch Then
+        consolidatedLineItems(consolidatedIndex).quantity += theLineItem.quantity
+        consolidatedLineItems(consolidatedIndex).toQuantity += theLineItem.toQuantity
+        exists = True
+      End If
+    Next
+
+    If Not exists Then
+      upperBound += 1
+      ReDim Preserve consolidatedLineItems(0 To upperBound)
+      consolidatedLineItems(upperBound) = theLineItem
+    End If
+  Next
+
+  For index = LBound(consolidatedLineItems) To UBound(consolidatedLineItems)
+    theLineItem = consolidatedLineItems(index)
+
+    App.Balloon("Processing " & (index + 1) & "/" & (UBound(consolidatedLineItems) + 1), -1)
+
+    If Not ReclassItem(theLineItem, theOrder, errorMessage) Then
       App.MsgBox(errorMessage)
+      App.Balloon("", 0)
       Exit Sub
     End If
-
-    ' If Not ReclassItem(theLineItem, theOrder) Then Exit Sub
   Next
 
   Cancel = False
@@ -197,11 +252,60 @@ Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   theOrder = FetchOrder(branch, lineItems(LBound(lineItems)).batchCode)
   If Not ValidateOrder(theOrder) Then Exit Sub
 
-  If Not DoUnitConversions(lineItems, theOrder.unitOfMeasure) Then Exit Sub
+  Dim errorMessage As String
+
+  Dim index As Long
+  For index = LBound(lineItems) To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+
+    Dim conversionFactor As Currency
+
+    If Not GetConversionFactor( _
+      theLineItem.shortItem, _
+      theLineItem.unitOfMeasure, _
+      theOrder.unitOfMeasure, _
+      conversionFactor _
+    ) Then
+      App.MsgBox( _
+        "Conversion from '" & theLineItem.unitOfMeasure & "'" & _
+        " to '" & theOrder.unitOfMeasure & "'" & _
+        " not found for item: " & theLineItem.Item _
+      )
+      Exit Sub
+    End If
+
+    theLineItem.toQuantity = theLineItem.quantity * conversionFactor
+    lineItems(index) = theLineItem
+  Next
 
   Cancel = False
   Update()
 End Sub
+
+Private Function GetConversionFactor( _
+  ByVal shortItem As Long, _
+  ByVal fromUnitOfMeasure As String, _
+  ByRef toUnitOfMeasure As String, _
+  ByRef conversionFactor As Currency _
+) As Boolean
+  ' TODO dictionary of checked conversions?
+  Dim sql As String
+  sql = "select UMCONV" & _
+    " from F41002" & _
+    " where UMITM = " & shortItem & _
+    " and UMUM = '" & fromUnitOfMeasure & "'" & _
+    " and UMRUM = '" & toUnitOfMeasure & "'"
+
+  Dim columns, rows As String
+  DB.Execute(sql, columns, rows)
+
+  If Len(rows) = 0 Then Exit Function
+
+  conversionFactor = ConvDecimalsFromSQL("CONV", DB.Extract(columns, rows, 1, 1))
+
+  GetConversionFactor = True
+End Function
 
 Private Function FetchLineItems(ByVal sPALP As String) As LineItem()
   Dim sql As String
@@ -211,7 +315,10 @@ Private Function FetchLineItems(ByVal sPALP As String) As LineItem()
     "   on LDLPID = LMLPID" & _
     " inner join F4101" & _
     "   on IMLITM = LDLITM" & _
-    " where LMPALP = '" & sPALP & "'"
+    " where (" & _
+    "   LMPALP = '" & sPALP & "'" & _
+    "   or LMLPID = '" & sPALP & "'" & _
+    " )"
 
   Dim columns, rows As String
   DB.Execute(sql, columns, rows)
@@ -250,6 +357,8 @@ Private Function FetchLineItem(ByVal columns As String, ByVal rows As String, By
 
   theLineItem.parentId = DB.Extract(columns, rows, index, "LMPALP")
   theLineItem.Id = DB.Extract(columns, rows, index, "LMLPID")
+  theLineItem.branch = DB.Extract(columns, rows, index, "LMMCU")
+  theLineItem.location = DB.Extract(columns, rows, index, "LMLOCN")
   theLineItem.batchCode = components(0)
   theLineItem.shortItem = DB.Extract(columns, rows, index, "IMITM")
   theLineItem.Item = Trim(DB.Extract(columns, rows, index, "LDLITM"))
@@ -261,8 +370,6 @@ Done:
 End Function
 
 Private Function ValidateLineItems(ByVal lineItems() As LineItem) As Boolean
-  ValidateLineItems = False
-
   If UBound(lineItems) = 0 Then
     App.MsgBox("LP is empty or invalid.")
     Exit Function
@@ -295,7 +402,7 @@ Private Function FetchOrder(ByVal branch As String, ByVal orderNumber As String)
   sql = "select *" & _
     " from F4801" & _
     " where WAMCU = '" & branch & "'" & _
-    "   and WADOCO = '" & orderNumber & "'"
+    " and WADOCO = '" & orderNumber & "'"
 
   Dim columns As String
   Dim rows As String
@@ -307,7 +414,10 @@ Private Function FetchOrder(ByVal branch As String, ByVal orderNumber As String)
     GoTo Done
   End If
 
+  theOrder.branch = DB.Extract(columns, rows, 1, "WAMCU")
+  theOrder.location = DB.Extract(columns, rows, 1, "WALOCN")
   theOrder.Number = orderNumber
+  theOrder.shortItem = DB.Extract(columns, rows, 1, "WAITM")
   theOrder.Item = Trim(DB.Extract(columns, rows, 1, "WALITM"))
   theOrder.unitOfMeasure = DB.Extract(columns, rows, 1, "WAUOM")
 
@@ -316,8 +426,6 @@ Done:
 End Function
 
 Private Function ValidateOrder(ByVal theOrder As Order) As Boolean
-  ValidateOrder = False
-
   If theOrder.errorMessage <> "" Then
     App.MsgBox(theOrder.errorMessage)
     Exit Function
@@ -347,44 +455,97 @@ Private Sub Update()
   txtUOM.Text = theOrder.unitOfMeasure
 End Sub
 
-Private Function DoUnitConversions(ByVal lineItems() As LineItem, ByVal toUnitOfMeasure) As Boolean
-  DoUnitConversions = False
+Private Function DetachAllItems( _
+  ByVal plateId As String, _
+  ByVal fromBranch As String, _
+  ByVal toBranch As String, _
+  ByVal fromLocation As String, _
+  ByVal toLocation As String, _
+  errorMessage As String _
+) As Boolean
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
 
-  Dim index As Long
-  For index = LBound(lineItems) To UBound(lineItems)
-    Dim theLineItem As LineItem
-    theLineItem = lineItems(index)
-    theLineItem.toQuantity = theLineItem.quantity
+  Dim sLPArray As String
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
 
-    If Not ConvUOM( _
-      CStr(theLineItem.shortItem), _
-      theLineItem.toQuantity, _
-      theLineItem.unitOfMeasure, _
-      toUnitOfMeasure _
-    ) Then Exit Function
-  Next
+  uLP101.sLMLPID = plateId
 
-  DoUnitConversions = True
+  App.SetValue("tmMCU", fromBranch)
+
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    errorMessage = GetMsg(104)
+    Exit Function
+  End If
+
+  App.SetValue("LMCO", company)
+  App.SetValue("LMMCU", fromBranch)
+  App.SetValue("tmNMCU", toBranch)
+  App.SetValue("LMLOCN", fromLocation)
+  App.SetValue("tmNLOCN", toLocation)
+
+  uLPOper.sLPID      = plateId
+  uLPOper.sPALP      = plateId
+  uLPOper.sFMCU      = fromBranch
+  uLPOper.sTMCU      = toBranch
+  uLPOper.sFLOCN     = fromLocation
+  uLPOper.sTLOCN     = toLocation
+'  uLPOper.nQty       = quantity
+  uLPOper.bIsPlate   = True
+  uLPOper.bDetach    = False
+
+  If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+    errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+    If gbCommitCtl Then DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+
+  Const transactionDescription = "Reclass Finished Goods - Detach"
+
+  App.SetValue("LPITVersion", "AMS0001")
+  App.SetValue("tmMCU", fromBranch)
+  App.SetValue("tmCISY", 2)
+  App.SetValue("tmCO", company)
+  
+  If Not LP_MoveExecute(uLPOper, uLP101, False, transactionDescription, sLPArray) Then
+    errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+    Call LP_MoveExecute(uLPOper, uLP101, True, transactionDescription, sLPArray)
+    If gbCommitCtl Then DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+
+  LP_DetachAllItems(plateId)
+
+  DetachAllItems = True
 End Function
 
-Private Function DetachItem(ByVal theLineItem As LineItem, errorMessage As String) As Boolean
-  DetachItem = False
+Private Function DetachItem(ByVal theLineItem As LineItem, theOrder As Order, errorMessage As String) As Boolean
+  Dim operation As LPOper
+  operation.sLPID = theLineItem.Id
+  operation.sPALP = theLineItem.parentId
+  operation.sFMCU = theLineItem.branch
+  operation.sTMCU = theOrder.branch
+  operation.sFLOCN = theLineItem.location
+  operation.sTLOCN = " "
+  operation.sTMCU = branch
+  operation.nQty = theLineItem.quantity
+  operation.bIsPlate = True
+  operation.bDetach = True
 
-  Dim uLPOper As LPOper
-  uLPOper.sLPID = theLineItem.Id
-  uLPOper.sPALP = theLineItem.parentId
-  uLPOper.sFMCU = branch
-  uLPOper.sTMCU = branch
-  uLPOper.nQty = theLineItem.quantity
-  uLPOper.bIsPlate = True
-  uLPOper.bDetach = True
-
-  Dim uLP102 As LP102Data
-  Call LP102_Reset(uLP102)
+  Dim detail As LP102Data
+  Call LP102_Reset(detail)
 
   If gbCommitCtl Then DB.BeginTrans(gsLPSource)
 
-  If Not LP_AttachDetach(uLPOper, uLP102) Then
+  App.SetValue("LPITVersion", "AMS0001")
+  App.SetValue("tmMCU", operation.sFMCU)
+  App.SetValue("tmCISY", 2)
+  App.SetValue("tmCO", company)
+
+  If Not LP_AttachDetach(operation, detail) Then
     errorMessage = GetMsg(40)
     If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
     GoTo LPDone
@@ -394,5 +555,127 @@ Private Function DetachItem(ByVal theLineItem As LineItem, errorMessage As Strin
 
 LPDone:
   If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+End Function
+
+Private Function ReclassItem(ByVal theLineItem As LineItem, ByVal theOrder As Order, errorMessage As String) As Boolean
+  Dim emProc As New EmbeddedProc
+
+  emProc.Name       = "TIMIR0100_AMS"
+  emProc.DataSource = gsDataSource
+
+  ' NOTE: transfer will already have occurred; therefore the
+  ' location and branch are that of the order.
+
+  emProc.Param("tmCO")       = company
+  emProc.Param("tmMCU")      = theOrder.branch
+  emProc.Param("tmLITM")     = theLineItem.Item
+  emProc.Param("tmQTY")      = theLineItem.quantity
+  emProc.Param("tmUOM")      = theLineItem.unitOfMeasure
+  emProc.Param("tmLOCN")     = " "
+  emProc.Param("tmLOTN")     = theLineItem.lotNumber
+  emProc.Param("tmTOCO")     = company
+  emProc.Param("tmTOMCU")    = branch
+  emProc.Param("tmTOLITM")   = theOrder.Item
+  emProc.Param("tmTODSC1")   = "" ' TODO?
+  emProc.Param("tmTOLOCN")   = " "
+  emProc.Param("tmTOLOTN")   = theLineItem.batchCode
+  emProc.Param("tmTOQTY")    = theLineItem.toQuantity
+  emProc.Param("tmTOUOM")    = theOrder.unitOfMeasure
+  emProc.Param("tmMMEJ")     = "" ' TODO?
+  emProc.Param("tmLOTS")     = " "
+  emProc.Param("tmDCTO")     = "IT"
+  emProc.Param("tmDRKY")     = ""
+  emProc.Param("tmTDSC")     = theLineItem.parentId ' TODO?
+  emProc.Param("tmZVERSION") = "AMS0002"
+  emProc.Param("tmPGM")      = "P4116"
+  emProc.Param("tmExpDtVal") = "" ' TODO?
+  emProc.Param("tmUser")     = App.User
+
+  Debug.Print("tmCO: " & emProc.Param("tmCO"))
+  Debug.Print("tmMCU: " & emProc.Param("tmMCU"))
+  Debug.Print("tmLITM: " & emProc.Param("tmLITM"))
+  Debug.Print("tmQTY: " & emProc.Param("tmQTY"))
+  Debug.Print("tmUOM: " & emProc.Param("tmUOM"))
+  Debug.Print("tmLOCN: " & emProc.Param("tmLOCN"))
+  Debug.Print("tmLOTN: " & emProc.Param("tmLOTN"))
+  Debug.Print("tmTOCO: " & emProc.Param("tmTOCO"))
+  Debug.Print("tmTOMCU: " & emProc.Param("tmTOMCU"))
+  Debug.Print("tmTOLITM: " & emProc.Param("tmTOLITM"))
+  Debug.Print("tmTODSC1: " & emProc.Param("tmTODSC1"))
+  Debug.Print("tmTOLOCN: " & emProc.Param("tmTOLOCN"))
+  Debug.Print("tmTOLOTN: " & emProc.Param("tmTOLOTN"))
+  Debug.Print("tmTOQTY: " & emProc.Param("tmTOQTY"))
+  Debug.Print("tmTOUOM: " & emProc.Param("tmTOUOM"))
+  Debug.Print("tmMMEJ: " & emProc.Param("tmMMEJ"))
+  Debug.Print("tmLOTS: " & emProc.Param("tmLOTS"))
+  Debug.Print("tmDCTO: " & emProc.Param("tmDCTO"))
+  Debug.Print("tmDRKY: " & emProc.Param("tmDRKY"))
+  Debug.Print("tmTDSC: " & emProc.Param("tmTDSC"))
+  Debug.Print("tmZVERSION: " & emProc.Param("tmZVERSION"))
+  Debug.Print("tmPGM: " & emProc.Param("tmPGM"))
+  Debug.Print("tmExpDtVal: " & emProc.Param("tmExpDtVal"))
+  Debug.Print("tmUser: " & emProc.Param("tmUser"))
+
+  If Not emProc.Execute Then
+    errorMessage = GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    Exit Function
+  End If
+
+  ReclassItem = True
+End Function
+' This local version of the same funcion found in RFgen.bas will suppress the error message
+' that is raised normally by skipping unit conversions. This can be safely bypassed to
+' process the reclass because the conversion is done elsewhere.
+Private Function GetItemInfoLocal( _
+  ByVal sMCU As String, _
+  ByVal sLITM As String, _
+  ByRef cTNID As String, _
+  ByRef nITM As Long, _
+  ByRef sAITM As String, _
+  ByRef sUOM As String, _
+  ByRef nQty As Currency _
+) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  GetItemInfoLocal = False
+  '
+  ' Get default information for this item
+  '
+  sSql = "select IBITM, IBAITM from  F4102" & _
+         " where IBLITM = '" & sLITM & "' and IBMCU = '" & sMCU & "'"
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNID, "5", "F4102", Replace(sSql, "'", "`"))
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSql
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNID, "6", "F4102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  nITM  = DB.Extract(sCols,sRows,1,"IBITM")
+  sAITM = DB.Extract(sCols,sRows,1,"IBAITM")
+  '
+  ' Get UOM2 for this item
+  '
+  sSql = "select IMUOM2 from F4101" & _
+         " where IMLITM = '" & sLITM & "' "
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNID, "5", "F4101", Replace(sSql, "'", "`"))
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSql
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNID, "6", "F4101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+
+  GetItemInfoLocal = True
 End Function
 </Code>
