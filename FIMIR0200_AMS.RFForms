@@ -158,17 +158,118 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
   App.Balloon("Processing...", -1)
 
-  If Not DetachAllItems( _
-    lineItems(1).parentId, _
-    lineItems(1).branch, _
-    branch, _
-    lineItems(1).location, _
-    " ", _
-    errorMessage _
-  ) Then
-    App.MsgBox(errorMessage)
-    Exit Sub
-  End If
+  For index = LBound(lineItems) To UBound(lineItems)
+    theLineItem = lineItems(index)
+
+    If Trim(theLineItem.parentId) = "" Then
+      Dim sSQL, sCols, sRows As String
+      Dim nErrNo As Long
+
+      ' Get Next LP Number
+      sSQL = "select ENNNUM from LP002 where ENCO = '00002'"
+      DB.Execute(sSQL, sCols, sRows)
+
+      Dim nCtr As Long
+      nCtr = Val(DB.Extract(sCols, sRows, 1, "ENNNUM"))
+
+      Dim parentId As String
+      parentId = "P" & FixRight(nCtr, (giLenLP - 1), "0")
+
+      sSQL = "update LP002 set ENNNUM = " & (nCtr + 1) & " where ENCO = '00002'"
+      nErrNo = DB.Execute(sSQL)
+
+      Dim uLP101 As LP101Data
+      LP101_Reset(uLP101)
+
+      uLP101.sLMLPID = parentId
+      uLP101.sLMMCU = theLineItem.branch
+      uLP101.sLMDSC1 = "TEMP PARENT FOR " & theLineItem.Id
+      uLP101.sLMTYPE = "L"
+      uLP101.sLMLOCN = theLineItem.location
+      uLP101.sLMRDOCO = CStr(theOrder.Number)
+      uLP101.sLMRDCTO = "WO"
+
+      sSQL = _
+        " INSERT INTO F55101" & _
+        " (LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRNXTR,LMPSTB,LMPALP,LMSHAN," & _
+        " LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT,LMRLNU,LMIR01,LMIR02,LMIR03,LMIR04," & _
+        " LMVUOM,LMCUBE,LMWUOM,LMWEIG,LMPATH,LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF,LMUSER,LMDATE,LMTIME)" & _
+        " VALUES('" & uLP101.sLMLPID  & "'," & _
+                 "'" & uLP101.sLMMCU   & "'," & _
+                 "'" & uLP101.sLMDSC1  & "'," & _
+                 "'" & uLP101.sLMTYPE  & "'," & _
+                 "'" & uLP101.sLMTRAI  & "'," & _
+                 "'" & uLP101.sLMLOCN  & "'," & _
+                 "'" & uLP101.sLMRDOCO & "'," & _
+                 "'" & uLP101.sLMRDCTO & "'," & _
+                 "'" & uLP101.sLMRNXTR & "'," & _
+                 "'" & uLP101.sLMPSTB  & "'," & _
+                 "'" & uLP101.sLMPALP  & "'," & _
+                       uLP101.nLMSHAN  & ","       & _
+                 "'" & uLP101.sLMMMCU  & "'," & _
+                 "'" & uLP101.sLMALPH  & "'," & _
+                 "'" & uLP101.sLMROUT  & "'," & _
+                 "'" & uLP101.sLMSTOP  & "'," & _
+                 "'" & uLP101.sLMZONE  & "'," & _
+                 "'" & uLP101.sLMCNID  & "'," & _
+                       uLP101.nLMCARS  & ","  & _
+                 "'" & uLP101.sLMPDAT  & "'," & _
+                 "'" & uLP101.sLMRLNU  & "'," & _
+                 "'" & uLP101.sLMIR01  & "'," & _
+                 "'" & uLP101.sLMIR02  & "'," & _
+                 "'" & uLP101.sLMIR03  & "'," & _
+                 "'" & uLP101.sLMIR04  & "'," & _
+                 "'" & uLP101.sLMVUOM  & "'," & _
+                       uLP101.nLMCUBE  & ","        & _
+                 "'" & uLP101.sLMWUOM  & "'," & _
+                       uLP101.nLMWEIG  & ","  & _
+                 "'" & uLP101.sLMPATH  & "'," & _
+                 "'" & uLP101.sLMVR01  & "'," & _
+                 "'" & uLP101.sLMVR02  & "'," & _
+                       uLP101.nLMSGBT  & ","  & _
+                 "'" & uLP101.sLMPRIO  & "'," & _
+                       uLP101.nLMURAT  & ","  & _
+                 "'" & uLP101.sLMURRF  & "'," & _
+                 "'" & App.User & "'," & _
+                 "'" & Format(Date,"YYYYMMDD") & "'," & _
+                 "'" & Format(Time,"hhmmss")  & "')"
+
+      nErrNo = DB.Execute(sSQL)
+      LP101Hist(uLP101)
+
+      If nErrNo <> 0 Then
+        App.MsgBox("Error on temp parent LP insert: " & nErrNo)
+      End If
+
+      sSQL = "update F55101 set LMPALP = '" & parentId & "' where LMLPID = '" & theLineItem.Id & "'"
+      nErrNo = DB.Execute(sSQL)
+
+      If nErrNo <> 0 Then
+        App.MsgBox("Error on LP parent update: " & nErrNo)
+      End If
+
+      theLineItem.parentId = parentId
+    End If
+
+    App.SetValue("tmPALP", theLineItem.Id)
+    App.SetValue("tmLITM", theLineItem.Item)
+    App.SetValue("tmLOTN", theLineItem.lotNumber)
+
+    If Not DetachAllItems2( _
+      theLineItem.Id, _
+      theLineItem.parentId, _
+      theLineItem.branch, _
+      branch, _
+      theLineItem.location, _
+      " ", _
+      errorMessage _
+      ) _
+    Then
+      App.MsgBox(errorMessage)
+      Exit Sub
+    End If
+    'End If
+  Next
 
   Dim consolidatedLineItems() As LineItem
   ReDim consolidatedLineItems(-1)
@@ -218,6 +319,17 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
       Exit Sub
     End If
   Next
+
+  ' Update individual LP status
+  For index = LBound(lineItems) To UBound(lineItems)
+    theLineItem = lineItems(index)
+    DB.Execute("update F55101 set LMRNXTR = '620' where LMLPID = '" & theLineItem.Id & "'")
+  Next
+
+  ' Update parent LP status, if exists
+  If theLineItem.parentId <> "" Then
+    DB.Execute("update F55101 set LMRNXTR = '620' where LMLPID = '" & theLineItem.parentId & "'")
+  End If
 
   Cancel = False
   App.Balloon("", 0)
@@ -456,7 +568,8 @@ Private Sub Update()
 End Sub
 
 Private Function DetachAllItems( _
-  ByVal plateId As String, _
+  ByVal id As String, _
+  ByVal parentId As String, _
   ByVal fromBranch As String, _
   ByVal toBranch As String, _
   ByVal fromLocation As String, _
@@ -472,7 +585,7 @@ Private Function DetachAllItems( _
   Call LP101_Reset(uLP101)      ' init LP101 Structure
   Call LP102_Reset(uLP102)      ' init LP102 Structure
 
-  uLP101.sLMLPID = plateId
+  uLP101.sLMLPID = id
 
   App.SetValue("tmMCU", fromBranch)
 
@@ -487,8 +600,8 @@ Private Function DetachAllItems( _
   App.SetValue("LMLOCN", fromLocation)
   App.SetValue("tmNLOCN", toLocation)
 
-  uLPOper.sLPID      = plateId
-  uLPOper.sPALP      = plateId
+  uLPOper.sLPID      = id
+  uLPOper.sPALP      = parentId
   uLPOper.sFMCU      = fromBranch
   uLPOper.sTMCU      = toBranch
   uLPOper.sFLOCN     = fromLocation
@@ -517,9 +630,134 @@ Private Function DetachAllItems( _
     Exit Function
   End If
 
-  LP_DetachAllItems(plateId)
+  LP_DetachAllItems(id)
 
   DetachAllItems = True
+End Function
+
+Private Function DetachAllItems2( _
+  ByVal id As String, _
+  ByVal parentId As String, _
+  ByVal fromBranch As String, _
+  ByVal toBranch As String, _
+  ByVal fromLocation As String, _
+  ByVal toLocation As String, _
+  errorMessage As String _
+) As Boolean
+  On Error Resume Next
+
+  App.SetValue("LPITVersion", "AMS0001")
+  App.SetValue("tmMCU", fromBranch)
+  App.SetValue("tmCISY", 2)
+  App.SetValue("tmCO", company)
+  '
+  '--------------------------------------------------------------------------
+  ' attach full LP or item.
+  '
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+  '
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim sLPArray As String
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+  Dim isPlate As Boolean
+  isPlate = Trim(parentId) <> ""
+
+  Const cTNID = "FIMIR0200"
+  Const cTranDesc = "Reclass"
+
+  If isPlate Then
+
+    uLP101.sLMLPID = parentId
+
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      errorMessage = GetMsg(104)
+      Exit Function
+    End If
+
+    'Set the value for variables
+    App.SetValue("LMCO", company)
+    App.SetValue("LMMCU", fromBranch)
+    App.SetValue("tmNMCU", toBranch)
+    App.SetValue("LMLOCN", fromLocation)
+    App.SetValue("tmNLOCN", toLocation)
+
+    'Public Type LPOper
+    uLPOper.sLPID      = parentId    ' LP ID Child
+    uLPOper.sPALP      = parentId    ' LP ID Parent
+    uLPOper.sFMCU      = fromBranch     ' from Plant
+    uLPOper.sTMCU      = toBranch    ' to Plant
+    uLPOper.sFLOCN     = fromLocation   ' from Location
+    uLPOper.sTLOCN     = toLocation   ' to Location
+    uLPOper.nQty       = 1     ' Operation Qty.
+    uLPOper.bIsPlate   = isPlate                      ' Plate or Item
+    uLPOper.bDetach    = False                     ' remove item
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNID, "1", "LP_MoveItems", "")
+    If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+      errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", "LP_MoveItems", "")
+      If gbCommitCtl Then DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNID, "1", "LP_MoveExecute", "")
+    If Not LP_MoveExecute(uLPOper,uLP101,False , cTranDesc, sLPArray) Then
+      errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", "LP_MoveExecute", "")
+      Call LP_MoveExecute(uLPOper,uLP101,True , cTranDesc, sLPArray)
+      If gbCommitCtl Then DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+
+    LP_DetachAllItems(parentId)
+    GoTo LPDone
+
+  Else 'If it isn't a plate
+    sSql = "select * from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & App.GetValue("tmPALP") & "' and LDLITM = '" & App.GetValue("tmLITM") & "' and LDLOTN = '" & App.GetValue("tmLOTN") & "'"
+    DB.Execute(sSql, sCols, sRows)
+    App.SetValue("tmLNID", DB.Extract(sCols,sRows,1,"LDLNID"))
+    '
+    uLP101.sLMLPID    = id    ' Parent LP
+    '
+    uLP102.sLDLPID    = uLP101.sLMLPID            ' LP Line Details
+    uLP102.nLDLNID    = App.GetValue("tmLNID")    ' LP Line
+    '
+    If Not X_LP102("I",uLP102) Then   ' Inquiry on LP102
+      errorMessage = GetMsg(104)
+      If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+      GoTo LPDone
+    End If
+    '
+      'Public Type LPOper
+    uLPOper.sLPID      = id                        ' LP ID Child
+    uLPOper.sPALP      = id    ' LP ID Parent
+    uLPOper.sFMCU      = fromBranch     ' from Plant
+    uLPOper.sTMCU      = toBranch     ' to Plant
+    uLPOper.sFLOCN     = fromLocation    ' from Location
+    uLPOper.sTLOCN     = toLocation   ' to Location
+    uLPOper.nQty       = 1     ' Operation Qty.
+    uLPOper.bIsPlate   = isPlate                 ' Plate or Item
+    uLPOper.bDetach    = True                      ' remove from LP
+    '
+  End If 'If mbIsPlate
+  '
+  If Not LP_AttachDetach(uLPOper, uLP102) Then
+    errorMessage = GetMsg(40)
+    If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+    GoTo LPDone
+  End If
+  '
+  If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+  LPDone:
+
+  DetachAllItems2 = True
 End Function
 
 Private Function DetachItem(ByVal theLineItem As LineItem, theOrder As Order, errorMessage As String) As Boolean
@@ -560,11 +798,18 @@ End Function
 Private Function ReclassItem(ByVal theLineItem As LineItem, ByVal theOrder As Order, errorMessage As String) As Boolean
   Dim emProc As New EmbeddedProc
 
+  Const sVersion = "AMS0002"
+  Const sPgm = "P4116"
+
   emProc.Name       = "TIMIR0100_AMS"
   emProc.DataSource = gsDataSource
 
   ' NOTE: transfer will already have occurred; therefore the
   ' location and branch are that of the order.
+
+  Dim sTDSC As String
+  sTDSC = Trim(theLineItem.parentId)
+  If Len(sTDSC) = 0 Then sTDSC = Trim(theLineItem.Id)
 
   emProc.Param("tmCO")       = company
   emProc.Param("tmMCU")      = theOrder.branch
@@ -583,11 +828,11 @@ Private Function ReclassItem(ByVal theLineItem As LineItem, ByVal theOrder As Or
   emProc.Param("tmTOUOM")    = theOrder.unitOfMeasure
   emProc.Param("tmMMEJ")     = "" ' TODO?
   emProc.Param("tmLOTS")     = " "
-  emProc.Param("tmDCTO")     = "IT"
+  emProc.Param("tmDCTO")     = GetProcOpt(sPgm, sVersion, "1;1")
   emProc.Param("tmDRKY")     = ""
-  emProc.Param("tmTDSC")     = theLineItem.parentId ' TODO?
-  emProc.Param("tmZVERSION") = "AMS0002"
-  emProc.Param("tmPGM")      = "P4116"
+  emProc.Param("tmTDSC")     = sTDSC ' theLineItem.parentId ' TODO?
+  emProc.Param("tmZVERSION") = sVersion
+  emProc.Param("tmPGM")      = sPgm
   emProc.Param("tmExpDtVal") = "" ' TODO?
   emProc.Param("tmUser")     = App.User
 
