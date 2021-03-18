@@ -1,0 +1,149 @@
+﻿<Record FileDesc="MFG WO Processing - Reprint Custom Label" FileVersion="5.0.8.0" Desc="MFG WO Processing - Reprint Custom Label" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLOTN&vm;btnSubmit&vm;txtDummy" ImageList="0&vm;0&vm;0" AuthTableList="0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="3" Name="btnSubmit" />
+<SchemaParam Linked="0" Attr="4" Name="txtDummy" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtDOCO" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="33" Width="33" Height="22" AnchorRight="197" AnchorBottom="265" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="123" Top="33" Width="110" Height="22" AnchorRight="7" AnchorBottom="265" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="66" Width="33" Height="22" AnchorRight="166" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Lot" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="82" Top="66" Width="150" Height="22" AnchorRight="8" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="88" Width="80" Height="22" AnchorRight="159" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnSubmit" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Submit" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="150" Top="99" Width="80" Height="33" AnchorRight="10" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="80" Height="44" AnchorRight="232" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDummy" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="121" Width="65" Height="22" AnchorRight="175" AnchorBottom="177" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="121" Width="0" Height="22" AnchorRight="87" AnchorBottom="177" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Reprint Custom Label" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Const cTNID = "REPRINT"
+
+Public Sub btnSubmit_Click()
+  On Error Resume Next
+
+  Dim emGetAuditInfo As New EmbeddedProc
+  '
+  emGetAuditInfo.Name = "GetAuditInfo"
+  emGetAuditInfo.DataSource = "JDE"
+  '
+'  emGetAuditInfo.Param("UserName") = ""
+'  emGetAuditInfo.Param("Date") =
+'  emGetAuditInfo.Param("Time") =
+'  emGetAuditInfo.Param("Workstation_UserId") =
+'  emGetAuditInfo.Param("MachineKey") =
+  '
+  If Not emGetAuditInfo.Execute Then
+    Debug.Print("GetAuditInfo failed.")
+  End If
+  '
+
+  App.Balloon("Creating Custom Label...", -1)
+
+  Dim emCreateCustomLabelWrapper As New EmbeddedProc
+  '
+  emCreateCustomLabelWrapper.Name = "CreateCustomLabelWrapper"
+  emCreateCustomLabelWrapper.DataSource = "JDE"
+  '
+  emCreateCustomLabelWrapper.Param("WorkOrderNumber_DOCO") = Trim(txtDOCO.Text)
+  emCreateCustomLabelWrapper.Param("LabelType_Z55LBTY") = "PL"
+  emCreateCustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
+  emCreateCustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = " "
+  emCreateCustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0
+  emCreateCustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
+  emCreateCustomLabelWrapper.Param("FFCreate_YN") = " "
+  emCreateCustomLabelWrapper.Param("FFDataFormat_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDelimiter_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
+  emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
+  emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = Trim(txtLOTN.Text)
+  emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = 1
+
+  '
+  If Not emCreateCustomLabelWrapper.Execute Then
+    If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emCreateCustomLabelWrapper.Name, "", emCreateCustomLabelWrapper)
+    App.MsgBox("Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description)
+    GoTo Done
+  End If
+
+  If emCreateCustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
+    App.MsgBox(emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED"))
+    GoTo Done
+  End If
+  '
+  '
+'   = emCreateCustomLabelWrapper.Param("ErrorFound_YN")
+'   = emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED")
+'   = emCreateCustomLabelWrapper.Param("ErrorDataItem_DTAI")
+'   = emCreateCustomLabelWrapper.Param("FromLabelBatch_Z55LBCB")
+'   = emCreateCustomLabelWrapper.Param("ThruLabelBatch_Z55LBCB")
+
+Done:
+  App.Balloon("", 0)
+  txtDOCO.Text = ""
+  txtLOTN.Text = ""
+  App.SetFocus(txtDOCO.FieldId)
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+</Code>

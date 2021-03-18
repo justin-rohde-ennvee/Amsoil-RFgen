@@ -1,0 +1,282 @@
+﻿<Record FileDesc="MFG WO Processing - Select Items to Issue - Scan LPs" FileVersion="5.0.8.0" Desc="MFG WO Processing - Select Items to Issue - Scan LPs" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLITM&vm;txtQTY&vm;lbxItems&vm;btnRemove&vm;btnRemoveAll&vm;txtDummy&vm;btnBack" ImageList="0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="3" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="4" Name="lbxItems" />
+<SchemaParam Linked="0" Attr="5" Name="btnRemove" />
+<SchemaParam Linked="0" Attr="6" Name="btnRemoveAll" />
+<SchemaParam Linked="0" Attr="7" Name="txtDummy" />
+<SchemaParam Linked="0" Attr="8" Name="btnBack" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtDOCO" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="27" Width="41" Height="22" AnchorRight="634" AnchorBottom="651" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="75" Top="27" Width="140" Height="22" AnchorRight="465" AnchorBottom="651" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="52" Width="65" Height="22" AnchorRight="610" AnchorBottom="626" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item #:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="75" Top="52" Width="140" Height="22" AnchorRight="465" AnchorBottom="626" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="77" Width="41" Height="22" AnchorRight="634" AnchorBottom="601" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="75" Top="77" Width="140" Height="22" AnchorRight="465" AnchorBottom="601" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="66" Width="80" Height="22" AnchorRight="159" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxItems" Attr="4" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="103" Width="193" Height="22" AnchorRight="482" AnchorBottom="575" BackColor1="1" BackColor2="1" ForeColor="1" Caption="License Plate: P0000000" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="125" Width="229" Height="121" AnchorRight="447" AnchorBottom="454" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Caption="To Be Issued" Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="65" Height="22" AnchorRight="615" AnchorBottom="678" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="256" Height="220" AnchorRight="672" AnchorBottom="348" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnRemove" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Remove Selected" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="101" Top="248" Width="133" Height="22" AnchorRight="446" AnchorBottom="430" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="352" Width="80" Height="44" AnchorRight="672" AnchorBottom="304" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnRemoveAll" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Remove All" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="6" Top="248" Width="93" Height="22" AnchorRight="579" AnchorBottom="430" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="236" Top="325" Width="80" Height="44" AnchorRight="436" AnchorBottom="331" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDummy" Attr="7" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="15" Top="308" Width="65" Height="22" AnchorRight="600" AnchorBottom="370" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="93" Top="308" Width="0" Height="22" AnchorRight="67" AnchorBottom="-10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="308" Width="80" Height="22" AnchorRight="159" AnchorBottom="-10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnBack" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="5" Top="277" Width="230" Height="33" AnchorRight="445" AnchorBottom="390" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="264" Width="80" Height="44" AnchorRight="232" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Scan LPs" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private msDOCO As Long
+Private msPALP As String
+
+Private Const cMCU = "          85"
+
+Public Sub btnBack_Click()
+  On Error Resume Next
+
+  App.ExitForm
+End Sub
+
+Public Sub btnRemove_Click()
+  On Error Resume Next
+
+  Dim nIndex As Long
+  nIndex = lbxItems.List.Index
+
+  Dim sLPID As String
+  sLPID = lbxItems.List.Cell(nIndex, 1).Value
+
+  Dim sSQL, sCols, sRows As String
+  sSQL = _
+    " select count(*)" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where PALP = '" & msPALP & "'" & _
+    " and DOCO = " & msDOCO & _
+    " and LPID = '" & sLPID & "'" & _
+    " and STATUS = 'S'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) = 0 Then
+    App.MsgBox("Case must be at status 'S' to remove.")
+    Exit Sub
+  End If
+
+  If App.MsgBox("Remove case '" & sLPID & "'?", vbYesNo) = vbNo Then Exit Sub
+
+  sSQL = _
+    " delete" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where PALP = '" & msPALP & "'" & _
+    " and DOCO = " & msDOCO & _
+    " and LPID = '" & sLPID & "'"
+
+  Dim nErrNo As Long
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    App.MsgBox("Failed to remove LP from pallet: " & nErrNo)
+    Exit Sub
+  End If
+
+  Refresh()
+End Sub
+
+Public Sub btnRemoveAll_Click()
+  On Error Resume Next
+
+  If App.MsgBox("Remove all?", vbYesNo) = vbNo Then Exit Sub
+
+  Dim nIndex As Long
+  For nIndex = 1 To lbxItems.List.Count
+    Dim sLPID As String
+    sLPID = lbxItems.List.Cell(nIndex, 1).Value
+
+    Dim sSQL, sCols, sRows As String
+    sSQL = _
+      " select count(*)" & _
+      " from RFgenCustom.ToBeIssued" & _
+      " where PALP = '" & msPALP & "'" & _
+      " and DOCO = " & msDOCO & _
+      " and LPID = '" & sLPID & "'" & _
+      " and STATUS = 'S'"
+    DB.Execute(sSQL, sCols, sRows)
+
+    If Val(sRows) = 0 Then
+      App.MsgBox("Case must be at status 'S' to remove.")
+      Exit Sub
+    End If
+
+    sSQL = _
+      " delete" & _
+      " from RFgenCustom.ToBeIssued" & _
+      " where PALP = '" & msPALP & "'" & _
+      " and DOCO = " & msDOCO & _
+      " and LPID = '" & sLPID & "'"
+
+    Dim nErrNo As Long
+    nErrNo = DB.Execute(sSQL)
+
+    If nErrNo <> 0 Then
+      App.MsgBox("Failed to remove LP from pallet: " & nErrNo)
+      Exit Sub
+    End If
+  Next
+
+  Refresh()
+End Sub
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  msDOCO = Val(App.GetValue("DOCO"))
+  msPALP = App.GetValue("PALP")
+
+  If msDOCO = 0 Then
+    App.MsgBox("WO# not specified!")
+    App.ExitForm
+    Exit Sub
+  End If
+
+  If msPALP = "" Then
+    App.MsgBox("Parent LP# not specified!")
+    App.ExitForm
+    Exit Sub
+  End If
+
+  txtDOCO.Text = msDOCO
+
+  Dim sSQL, sCols, sRows As String
+  sSQL = "select WALITM, WAUORG from F4801 where WADOCO = " & msDOCO
+  DB.Execute(sSQL, sCols, sRows)
+
+  txtLITM.Text = Trim(DB.Extract(sCols, sRows, 1, "WALITM"))
+  txtQTY.Text = CStr(ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "WAUORG")))
+
+  lbxItems.Caption = "License Plate: " & msPALP
+  Refresh()
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+
+Private Sub Refresh()
+  lbxItems.List.Clear
+
+  Dim sSQL, sCols, sRows
+  sSQL = "select LPID from RFgenCustom.ToBeIssued where PALP = '" & msPALP & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  Dim i As Integer
+  For i=1 To DB.Count(sRows)
+    lbxItems.List.AddItem("", Trim(DB.Extract(sCols, sRows, i, "LPID")))
+  Next
+
+  btnRemove.Visible = lbxItems.List.Count > 0
+  btnRemoveAll.Visible = lbxItems.List.Count > 0
+End Sub
+</Code>

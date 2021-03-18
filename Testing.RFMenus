@@ -1,3 +1,9 @@
-﻿<Record FileDesc="Testing Menu" FileVersion="5.0.8.0" Desc="Testing Menu" Heading="TEST">
-<MenuItem Id="FIMIR0200_AMS" Desc="Reclass Finished Goods" Options="-PgmIA=? -VersIA=?" />
+﻿<Record FileDesc="Testing" FileVersion="5.0.8.0" Desc="Testing" Heading="Testing">
+<MenuItem Id="FIMIR0200_AMS" Desc="Reclass Finished Goods" />
+<MenuItem Id="FIMIR0300_AMS" Desc="Reclass to Bright Stock" />
+<MenuItem Id="MFG_WO_ENTER_WO" Desc="MFG WO Processing" />
+<MenuItem Id="MFG_WO_REPRINT_LABEL" Desc="MFG WO Reprint Custom Label" />
+<MenuItem Id="FIMIA0100" Desc="Adjustments" Options="-Pgm=P4114 -Vers=AMS0001" />
+<MenuItem Id="FIMIR0100" Desc="Reclassifications" Options="-Pgm=P4116 -Vers=AMS0002" />
+<MenuItem Id="ERP_TEST" Desc="ERP Connection Test" />
 </Record>

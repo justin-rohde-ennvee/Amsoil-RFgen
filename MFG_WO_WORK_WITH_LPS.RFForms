@@ -1,0 +1,220 @@
+﻿<Record FileDesc="MFG WO Processing - Select Items to Issue - Scan LPs" FileVersion="5.0.8.0" Desc="MFG WO Processing - Select Items to Issue - Scan LPs" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLITM&vm;txtQTY&vm;btnCreateNewLP&vm;btnDetachItem&vm;btnTransfer&vm;txtDummy&vm;btnBack" ImageList="0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="3" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="4" Name="btnCreateNewLP" />
+<SchemaParam Linked="0" Attr="5" Name="btnDetachItem" />
+<SchemaParam Linked="0" Attr="6" Name="btnTransfer" />
+<SchemaParam Linked="0" Attr="7" Name="txtDummy" />
+<SchemaParam Linked="0" Attr="8" Name="btnBack" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtDOCO" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="27" Width="41" Height="22" AnchorRight="165" AnchorBottom="271" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="27" Width="140" Height="22" AnchorRight="20" AnchorBottom="271" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="52" Width="65" Height="22" AnchorRight="165" AnchorBottom="246" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item #:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="52" Width="140" Height="22" AnchorRight="20" AnchorBottom="246" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="77" Width="41" Height="22" AnchorRight="165" AnchorBottom="221" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="77" Width="140" Height="22" AnchorRight="20" AnchorBottom="221" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="66" Width="80" Height="22" AnchorRight="159" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnCreateNewLP" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Create New LP" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="143" Width="200" Height="33" AnchorRight="460" AnchorBottom="524" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="88" Width="80" Height="44" AnchorRight="672" AnchorBottom="568" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnDetachItem" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Detach Item" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="187" Width="200" Height="33" AnchorRight="460" AnchorBottom="480" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="80" Height="44" AnchorRight="672" AnchorBottom="524" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnTransfer" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Transfer LP Location" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="231" Width="200" Height="33" AnchorRight="460" AnchorBottom="436" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="176" Width="80" Height="44" AnchorRight="672" AnchorBottom="480" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDummy" Attr="7" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="20" Top="308" Width="65" Height="22" AnchorRight="155" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="93" Top="308" Width="0" Height="22" AnchorRight="67" AnchorBottom="-10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="308" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="308" Width="80" Height="22" AnchorRight="159" AnchorBottom="-10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnBack" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="275" Width="200" Height="33" AnchorRight="460" AnchorBottom="392" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="264" Width="80" Height="44" AnchorRight="232" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Work With LPs" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private msDOCO As Long
+Private Const cMCU = "          85"
+
+Public Sub btnBack_Click()
+  On Error Resume Next
+
+  App.ExitForm
+End Sub
+
+Public Sub btnCreateNewLP_Click()
+  On Error Resume Next
+
+  Dim uLP101 As LP101Data
+
+  Call LP101_Reset(uLP101)
+
+  uLP101.sLMMCU = cMCU
+  uLP101.sLMDSC1 = "Created " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS")
+  uLP101.sLMRDOCO = CStr(msDOCO)
+  uLP101.sLMTYPE = "P"
+
+  App.SetValue("tmMCU", cMCU)
+  If Not X_LP101("A", uLP101) Then
+    App.MsgBox("Failed to create pallet.")
+    Exit Sub
+  End If
+
+  Dim nErrNo As Long
+  nErrNo = DB.Execute("insert into RFgenCustom.WO_LP(DOCO, LPID) values (" & msDOCO & ",'" & Trim(uLP101.sLMLPID) & "')")
+
+  If nErrNo <> 0 Then
+    App.MsgBox("Failed to create WO/LP record: " & nErrNo)
+    Exit Sub
+  End If
+
+  ' TODO Label Print
+  App.MsgBox("Pallet Label Printed: " & uLP101.sLMLPID)
+End Sub
+
+Public Sub btnDetachItem_Click()
+  On Error Resume Next
+
+  Dim sSQL As String
+  sSQL = "select LPID from RFgenCustom.WO_LP where DOCO = " & msDOCO
+
+  Dim oList As New SearchList
+  oList.SQL = sSQL
+  oList.ShowEmptyList = True
+  oList.SetColumn(1, "Choose LP#", -1)
+
+  Dim sSelection As String
+  sSelection = oList.ShowList
+
+  If sSelection <> "" Then App.CallForm("FLPDI0100_AMS -Pgm=P4113 -Vers=RGN0001 -LPID=" & sSelection, True)
+End Sub
+
+Public Sub btnTransfer_Click()
+  On Error Resume Next
+
+  Dim sSQL As String
+  sSQL = "select LPID from RFgenCustom.WO_LP where DOCO = " & msDOCO
+
+  Dim oList As New SearchList
+  oList.SQL = sSQL
+  oList.ShowEmptyList = True
+  oList.SetColumn(1, "Choose LP#", -1)
+
+  Dim sSelection As String
+  sSelection = oList.ShowList
+
+  If sSelection <> "" Then App.CallForm("FLPTL0100_AMS -Pgm=P4113 -Vers=AMS0001 -LPID=" & sSelection, True)
+End Sub
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  msDOCO = Val(App.GetValue("DOCO"))
+
+  If msDOCO = 0 Then
+    App.MsgBox("WO# not specified!")
+    App.ExitForm
+    Exit Sub
+  End If
+
+  txtDOCO.Text = msDOCO
+
+  Dim sSQL, sCols, sRows As String
+  sSQL = "select WALITM, WAUORG from F4801 where WADOCO = " & msDOCO
+  DB.Execute(sSQL, sCols, sRows)
+
+  txtLITM.Text = Trim(DB.Extract(sCols, sRows, 1, "WALITM"))
+  txtQTY.Text = CStr(ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "WAUORG")))
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+</Code>

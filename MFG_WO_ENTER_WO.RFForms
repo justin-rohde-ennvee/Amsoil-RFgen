@@ -1,0 +1,183 @@
+﻿<Record FileDesc="MFG WO Processing - Enter WO" FileVersion="5.0.8.0" Desc="MFG WO Processing - Enter WO" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtAccept" ImageList="0&vm;0" AuthTableList="0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtDOCO" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="44" Width="81" Height="22" AnchorRight="149" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter WO:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="93" Top="44" Width="90" Height="22" AnchorRight="57" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="77" Width="153" Height="22" AnchorRight="77" AnchorBottom="221" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="0" Height="22" AnchorRight="87" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO Processing - Enter WO" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Const cMMCU = "          85"
+Private Const cStatusFrom = "40"
+Private Const cStatusTo = "89"
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub Form_OnReturn(ByVal FormName As String)
+  On Error Resume Next
+
+  ' Assuming we are coming back from completion, so clear the current WO text
+  txtDOCO.Text = ""
+End Sub
+
+Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Enter to Accept..."
+End Sub
+
+Public Sub txtAccept_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+
+  Dim sSQL, sCols, sRows As String
+  sSQL = _
+    " select WAMMCU, (WAUORG-WASOQS) REMAINING" & _
+    " from F4801" & _
+    " where WADOCO = " & Rsp
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    App.MsgBox("Work order not found.")
+    Exit Sub
+  End If
+
+  Dim nRemaining As Long
+  nRemaining = Val(DB.Extract(sCols, sRows, 1, "REMAINING"))
+
+  If nRemaining <= 0 Then
+    App.MsgBox("All quantity has been completed for this WO.")
+    Exit Sub
+  End If
+
+  Dim sMMCU As String
+  sMMCU = DB.Extract(sCols, sRows, 1, "WAMMCU")
+
+  If sMMCU <> cMMCU Then
+    App.MsgBox("Work order is for incorrect B/P: " & sMMCU)
+    Exit Sub
+  End If
+
+  sSQL = _
+    " select count(*)" & _
+    " from F3111" & _
+    " where WMDOCO = " & Rsp & _
+    " and WMCMCU <> '" & cMMCU & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) > 0 Then
+    App.MsgBox("Invalid cost center on parts list; must be 85.")
+    Exit Sub
+  End If
+
+  sSQL = _
+    " select count(*)" & _
+    " from F3111" & _
+    " where WMDOCO = " & Rsp & _
+    " and WMMMCU <> '" & cMMCU & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) > 0 Then
+    App.MsgBox("Invalid B/P on parts list; must be 85.")
+    Exit Sub
+  End If
+
+  sSQL = _
+    " select WASTRT" & _
+    " from F4801" & _
+    " where WAMMCU = '" & cMMCU & "'" & _
+    " and WADOCO = " & Rsp & _
+    " and WASRST between '" & cStatusFrom & "' and '" & cStatusTo & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  Dim dtStartDate As Date
+  dtStartDate = ConvJDEtoDate(DB.Extract(sCols, sRows, 1, "WASTRT"))
+
+  Dim nDayDiff As Long
+  nDayDiff = DateDiff("d", Date(), dtStartDate)
+
+  If nDayDiff > 7 Then
+    App.MsgBox("Work order's start date is more than a week away.")
+    Exit Sub
+  End If
+
+  Cancel = False
+
+  App.SetValue("tmDOCO", Rsp)
+  App.CallForm("MFG_WO_PROCESS_STEPS -DOCO=" & Rsp, True)
+End Sub
+
+Public Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+
+  sSQL = _
+    " select WADOCO" & _
+    " from F4801" & _
+    " where WAMMCU = '" & cMMCU & "'" & _
+    " and WASRST between '" & cStatusFrom & "' and '" & cStatusTo & "'" & _
+    " and WAUORG > WASOQS"
+
+  Dim oList As New SearchList
+  oList.SetColumn(1, "WO#", -1)
+  oList.ShowEmptyList = True
+  oList.SQL = sSQL
+
+  Rsp = oList.ShowList
+  Cancel = Rsp = ""
+End Sub
+</Code>

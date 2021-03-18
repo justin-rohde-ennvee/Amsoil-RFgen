@@ -1,0 +1,214 @@
+﻿<Record FileDesc="MFG WO Processing - Label Finished Goods" FileVersion="5.0.8.0" Desc="MFG WO Processing - Label Finished Goods" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtLPID&vm;txtLabel&vm;lblScanned&vm;btnBack" ImageList="0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="2" Name="txtLabel" />
+<SchemaParam Linked="0" Attr="3" Name="lblScanned" />
+<SchemaParam Linked="0" Attr="4" Name="btnBack" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtLPID" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="33" Width="65" Height="22" AnchorRight="605" AnchorBottom="645" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Scan LP" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="13" Top="55" Width="220" Height="22" AnchorRight="447" AnchorBottom="623" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLabel" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="88" Width="129" Height="22" AnchorRight="541" AnchorBottom="590" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Scan Cust Label" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="13" Top="110" Width="220" Height="22" AnchorRight="447" AnchorBottom="568" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblScanned" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="124" Top="137" Width="113" Height="22" AnchorRight="443" AnchorBottom="541" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Scanned: 1/10" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="47" Top="105" Width="49" Height="22" AnchorRight="584" AnchorBottom="678" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnBack" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="264" Width="200" Height="33" AnchorRight="460" AnchorBottom="403" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="264" Width="80" Height="44" AnchorRight="232" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label Finished Goods" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private msLPID As String
+Private mnDOCO As Long
+Private msLITM As String
+
+Public Sub btnBack_Click()
+  On Error Resume Next
+
+  App.ExitForm
+End Sub
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  mnDOCO = Val(App.GetValue("DOCO"))
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = "select WALITM from F4801 where WADOCO = " & mnDOCO
+  DB.Execute(sSQL, sCols, sRows)
+
+  msLITM = Trim(DB.Extract(sCols, sRows, 1, "WALITM"))
+
+  Refresh()
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim nErrNo As Long
+
+  ' Update table with matching label
+  sSQL = _
+    " update RFgenCustom.ToBeIssued" & _
+    " set LABEL_MATCH = 'Y'," & _
+    "     LABEL = '" & txtLabel.Text & "'" & _
+    " where LPID = '" & msLPID & "'" & _
+    " and DOCO = " & mnDOCO
+  nErrNo =DB.Execute(sSQL)
+
+  Cancel = (nErrNo <> 0)
+
+  Refresh()
+End Sub
+
+Private Sub Refresh()
+  txtLPID.Text = ""
+  txtLabel.Text = ""
+  
+  Dim sSQL, sCols, sRows As String
+  sSQL = _
+    " select count(*)" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where DOCO = " & mnDOCO
+  DB.Execute(sSQL, sCols, sRows)
+
+  Dim nTotal As Long
+  nTotal = Val(sRows)
+
+  sSQL &= " and LABEL_MATCH = 'Y'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  Dim nMatched As Long
+  nMatched = Val(sRows)
+
+  If nTotal = nMatched Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  lblScanned.Caption = "Scanned: " & nMatched & "/" & nTotal
+End Sub
+
+Public Sub txtLabel_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Rsp = UCase(Trim(Rsp))
+  If Rsp <> msLITM Then
+    App.MsgBox("Invalid label. Expecting " & msLITM)
+    Cancel = True
+    Exit Sub
+  End If
+End Sub
+
+Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Rsp = UCase(Trim(Rsp))
+
+  Cancel = True
+
+  ' Verify LP is case, not parent
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = _
+    " select LMTYPE" & _
+    " from F55101" & _
+    " where LMLPID = '" & Rsp & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  Dim sType As String
+  sType = Trim(DB.Extract(sCols, sRows, 1, "LMTYPE"))
+
+  If sType <> "P" Then
+    App.MsgBox("Case LP not valid.")
+    Exit Sub
+  End If
+
+  ' Validate case LP is to be issued
+
+  sSQL = _
+    "select LABEL_MATCH" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where LPID = '" & Rsp & "'" & _
+    " and DOCO = " & mnDOCO
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    App.MsgBox("Case LP is not associated with this WO.")
+    Exit Sub
+  End If
+
+  ' Verify label has not already been scanned
+
+  Dim sLabelMatch As String
+  sLabelMatch = Trim(DB.Extract(sCols, sRows, 1, "LABEL_MATCH"))
+
+  If sLabelMatch = "Y" Then
+    App.MsgBox("Label has already been scanned for this case.")
+    Exit Sub
+  End If
+
+  Cancel = False
+
+  msLPID = Rsp
+End Sub
+</Code>
