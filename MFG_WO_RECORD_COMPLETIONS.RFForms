@@ -208,23 +208,29 @@ Public Sub btnSubmit_Click()
       " and LDLOTN = '" & sLOTN & "'"
     DB.Execute(sSQL)
 
-    ' Update location in LP header table
+    ' Update location & WO# on LP header; remove pallet association, if any
+'    sSQL = _
+'      " update F55101" & _
+'      " set LMLOCN = '" & sCompletedLOCN & "'," & _
+'      "     LMRDOCO = '" & mnDOCO & "'," & _
+'      "     LMPALP = '" & sPALP & "'" & _
+'      " where LMLPID = '" & sLPID & "'"
     sSQL = _
       " update F55101" & _
       " set LMLOCN = '" & sCompletedLOCN & "'," & _
       "     LMRDOCO = '" & mnDOCO & "'," & _
-      "     LMPALP = '" & sPALP & "'" & _
+      "     LMPALP = ' '" & _
       " where LMLPID = '" & sLPID & "'"
     DB.Execute(sSQL)
 
-    ' Update location on parent LP
-    sSQL = _
-      " update F55101" & _
-      " set LMLOCN = '" & sCompletedLOCN & "'" & _
-      " where LMLPID = '" & sPALP & "'"
-    DB.Execute(sSQL)
-
-    ' TODO: Update ToBeIssued status?
+    ' Update location on pallet, if used
+    If sPALP <> "" Then
+      sSQL = _
+        " update F55101" & _
+        " set LMLOCN = '" & sCompletedLOCN & "'" & _
+        " where LMLPID = '" & sPALP & "'"
+      DB.Execute(sSQL)
+    End If
   Next
 
   App.Balloon("Processing Complete.", 2)

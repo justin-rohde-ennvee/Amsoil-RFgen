@@ -216,11 +216,19 @@ Public Sub txtFROM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   If DB.Count(sRows) > 0 Then
     Dim sPALP As String
     sPALP = Trim(DB.Extract(sCols, sRows, 1, "PALP"))
-    App.MsgBox("Case LP is already assigned to this WO (LP " & sPALP & ")")
+    If Len(sPALP) > 0 Then
+      App.MsgBox("Case LP is already assigned to this WO (LP " & sPALP & ")")
+    Else
+      App.MsgBox("Case LP is already assigned to this WO (no pallet)")
+    End If
+
     Exit Sub
   End If
 
   App.Balloon("Processing...", -1)
+
+  Dim bPallet As Boolean
+  bPallet = App.GetValue("tmTO") <> " "
 
   ' Find the amount currently on the pallet
   sSQL = "select LPID from RFgenCustom.ToBeIssued where PALP = '%tmTO'"
@@ -253,17 +261,19 @@ Public Sub txtFROM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
       Exit Sub
     End If
 
-    If Not PalletQtyForCase(Rsp, nCaseQty, sError) Then
-      App.Balloon("", 0)
-      App.MsgBox(sError)
-      Exit Sub
-    End If
-
-    nPalletQty += nCaseQty
-    If nPalletQty > 1 Then
-      If App.MsgBox("This would exceed the pallet capacity, do you wish to override?") = vbNo Then
+    If bPallet Then
+      If Not PalletQtyForCase(Rsp, nCaseQty, sError) Then
         App.Balloon("", 0)
+        App.MsgBox(sError)
         Exit Sub
+      End If
+
+      nPalletQty += nCaseQty
+      If nPalletQty > 1 Then
+        If App.MsgBox("This would exceed the pallet capacity, do you wish to override?") = vbNo Then
+          App.Balloon("", 0)
+          Exit Sub
+        End If
       End If
     End If
   Else
@@ -281,17 +291,19 @@ Public Sub txtFROM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
         Exit Sub
       End If
 
-      If Not PalletQtyForCase(sLPID, nCaseQty, sError) Then
-        App.Balloon("", 0)
-        App.MsgBox(sError)
-        Exit Sub
-      End If
-
-      nPalletQty += nCaseQty
-      If nPalletQty > 1 Then
-        If App.MsgBox("This would exceed the pallet capacity, do you wish to override?") = vbNo Then
+      If bPallet Then
+        If Not PalletQtyForCase(sLPID, nCaseQty, sError) Then
           App.Balloon("", 0)
+          App.MsgBox(sError)
           Exit Sub
+        End If
+
+        nPalletQty += nCaseQty
+        If nPalletQty > 1 Then
+          If App.MsgBox("This would exceed the pallet capacity, do you wish to override?") = vbNo Then
+            App.Balloon("", 0)
+            Exit Sub
+          End If
         End If
       End If
     Next
@@ -334,6 +346,12 @@ Public Sub txtTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Err
 
   Rsp = UCase(Trim(Rsp))
 
+  If Rsp = "" Then
+    ' This is allowed: pallet ID is optional
+    Rsp = " "
+    GoTo Done
+  End If
+
   Cancel = True
 
   ' Verify the LP exists
@@ -366,6 +384,7 @@ Public Sub txtTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Err
 
   Cancel = False
 
+Done:
   App.SetValue("tmTO", Rsp)
   Refresh()
 End Sub
