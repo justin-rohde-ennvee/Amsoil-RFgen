@@ -225,12 +225,14 @@ Private Sub Refresh()
   Dim sSQL, sCols, sRows As String
 
   ' If all quantity is completed, exit automatically to WO entry
-  
   sSQL = _
-    " select (WAUORG - WASOQS) REMAINING" & _
+    " select WAUORG, (WAUORG - WASOQS) REMAINING" & _
     " from F4801" & _
     " where WADOCO = " & msDOCO
   DB.Execute(sSQL, sCols, sRows)
+
+  Dim nOrdered As Long
+  nOrdered = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "WAUORG"))
 
   Dim nRemaining As Long
   nRemaining = Val(DB.Extract(sCols, sRows, 1, "REMAINING"))
@@ -271,7 +273,7 @@ Private Sub Refresh()
   Dim nIssueStatusCount As Long
   nIssueStatusCount = Val(sRows)
 
-  If nIssueStatusCount >= nCount Then
+  If nIssueStatusCount >= nCount And nCount >= nOrdered Then
     btnLabelFinishedGoods.Visible = True
     btnCreateNewLP.Visible = False
     btnSelectItems.Visible = False

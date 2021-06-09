@@ -131,7 +131,11 @@ Private Sub Refresh()
   Dim nTotal As Long
   nTotal = Val(sRows)
 
-  sSQL &= " and LABEL_MATCH = 'Y'"
+  sSQL = _
+    " select count(*)" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where DOCO = " & mnDOCO & _
+    " and LABEL_MATCH = 'Y'"
   DB.Execute(sSQL, sCols, sRows)
 
   Dim nMatched As Long

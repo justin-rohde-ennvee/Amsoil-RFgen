@@ -1,13 +1,14 @@
-﻿<Record FileDesc="MFG WO Processing - Select Items to Issue - Scan LPs" FileVersion="5.0.8.0" Desc="MFG WO Processing - Select Items to Issue - Scan LPs" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLITM&vm;txtQTY&vm;txtTO&vm;txtFROM&vm;lblQtySelected&vm;btnViewList&vm;btnBack" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="MFG WO Processing - Select Items to Issue - Scan LPs" FileVersion="5.0.8.0" Desc="MFG WO Processing - Select Items to Issue - Scan LPs" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLITM&vm;txtQTY&vm;txtTO&vm;txtFROM&vm;lblScanned&vm;lblQtySelected&vm;btnViewList&vm;btnBack" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
 <SchemaParam Linked="0" Attr="2" Name="txtLITM" />
 <SchemaParam Linked="0" Attr="3" Name="txtQTY" />
 <SchemaParam Linked="0" Attr="4" Name="txtTO" />
 <SchemaParam Linked="0" Attr="5" Name="txtFROM" />
-<SchemaParam Linked="0" Attr="6" Name="lblQtySelected" />
-<SchemaParam Linked="0" Attr="7" Name="btnViewList" />
-<SchemaParam Linked="0" Attr="8" Name="btnBack" />
+<SchemaParam Linked="0" Attr="6" Name="lblScanned" />
+<SchemaParam Linked="0" Attr="7" Name="lblQtySelected" />
+<SchemaParam Linked="0" Attr="8" Name="btnViewList" />
+<SchemaParam Linked="0" Attr="9" Name="btnBack" />
 </Schema>
 <Displays>
 <Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
@@ -53,8 +54,8 @@
 <Control Type="1" FieldId="txtTO" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="110" Width="219" Height="22" AnchorRight="451" AnchorBottom="568" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Transfer to License Plate" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="132" Width="140" Height="22" AnchorRight="462" AnchorBottom="546" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="6" Top="105" Width="239" Height="22" AnchorRight="-5" AnchorBottom="193" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Transfer to Pallet (Optional)" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="127" Width="140" Height="22" AnchorRight="22" AnchorBottom="171" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="330" Width="65" Height="22" AnchorRight="615" AnchorBottom="678" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -65,8 +66,8 @@
 <Control Type="1" FieldId="txtFROM" Attr="5" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="187" Width="219" Height="22" AnchorRight="451" AnchorBottom="491" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Transfer from License Plate" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="209" Width="140" Height="22" AnchorRight="462" AnchorBottom="469" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="0" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="176" Width="219" Height="22" AnchorRight="11" AnchorBottom="122" BackColor1="1" BackColor2="1" ForeColor="1" Caption="LP to Issue" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="198" Width="140" Height="22" AnchorRight="22" AnchorBottom="100" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="330" Width="65" Height="22" AnchorRight="615" AnchorBottom="678" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -74,30 +75,40 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblQtySelected" Attr="6">
+<Control Type="10" FieldId="lblScanned" Attr="6">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="70" Top="154" Width="153" Height="22" AnchorRight="457" AnchorBottom="524" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty Selected: 0 EA" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="110" Top="220" Width="89" Height="22" AnchorRight="41" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Scanned: 0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="352" Width="49" Height="22" AnchorRight="191" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblQtySelected" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="70" Top="149" Width="153" Height="22" AnchorRight="17" AnchorBottom="149" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty Selected: 0 EA" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="374" Width="49" Height="22" AnchorRight="631" AnchorBottom="678" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnViewList" Attr="7">
+<Control Type="9" FieldId="btnViewList" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="View List" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="242" Width="200" Height="22" AnchorRight="460" AnchorBottom="436" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="246" Width="200" Height="33" AnchorRight="20" AnchorBottom="41" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="396" Width="80" Height="44" AnchorRight="672" AnchorBottom="260" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnBack" Attr="8">
+<Control Type="9" FieldId="btnBack" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="275" Width="200" Height="33" AnchorRight="460" AnchorBottom="392" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="282" Width="200" Height="33" AnchorRight="20" AnchorBottom="5" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="264" Width="80" Height="44" AnchorRight="232" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -122,6 +133,7 @@ Option Explicit
 
 Private msDOCO As Long
 Private msTO As String
+Private mnScannedCount As Long
 
 Private Const cMCU = "          85"
 
@@ -145,6 +157,7 @@ Public Sub Form_Load()
   btnViewList.Visible = False
 
   msDOCO = Val(App.GetValue("DOCO"))
+  mnScannedCount = 0
 
   If msDOCO = 0 Then
     App.Balloon("", 0)
@@ -167,8 +180,12 @@ Public Sub Form_Load()
 
   If DB.Count(sRows) = 1 Then
     txtTO.Text = Trim(DB.Extract(sCols, sRows, 1, "LMLPID"))
+  Else
+    txtTO.Text = " "
   End If
 
+  App.SetValue("tmTO", txtTO.Text)
+  App.SetFocus(txtFROM.FieldId)  
   App.Balloon("", 0)
 End Sub
 
@@ -251,6 +268,7 @@ Public Sub txtFROM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     End If
 
     nPalletQty += nCaseQty
+    mnScannedCount += nCaseQty
   Next
 
   If sType = "P" Then
@@ -427,6 +445,8 @@ Private Sub Refresh()
   lblQtySelected.Caption = "Qty Selected: " & Val(sRows)
 
   btnViewList.Visible = Val(sRows) > 0
+
+  lblScanned.Caption = "Scanned: " & mnScannedCount
 End Sub
 
 Private Function ValidateAndAddCase(ByVal Rsp As String, sError As String) As Boolean
@@ -477,7 +497,7 @@ Private Function ValidateAndAddCase(ByVal Rsp As String, sError As String) As Bo
   ' Verify that adding this case will not cause the qty in the To Be Issued table
   ' to exceed the qty ordered for this lot #
   sSQL = _
-    " select WMUORG" & _
+    " select sum(WMUORG) WMUORG" & _
     " from F3111" & _
     " where WMDOCO = " & msDOCO & _
     " and WMITC = 'I'" & _
@@ -516,6 +536,7 @@ Private Function ValidateAndAddCase(ByVal Rsp As String, sError As String) As Bo
   End If
 
   ValidateAndAddCase = True
+  mnScannedCount += 1
 End Function
 
 Private Function PalletQtyForCase(ByVal sLPID, nQty As Currency, sError As String) As Boolean

@@ -23,8 +23,8 @@
 <Control Type="1" FieldId="txtDOCO" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="27" Width="41" Height="22" AnchorRight="165" AnchorBottom="271" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="27" Width="140" Height="22" AnchorRight="20" AnchorBottom="271" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="23" Width="41" Height="22" AnchorRight="189" AnchorBottom="275" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="23" Width="140" Height="22" AnchorRight="20" AnchorBottom="275" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -35,8 +35,8 @@
 <Control Type="1" FieldId="txtLITM" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="52" Width="65" Height="22" AnchorRight="165" AnchorBottom="246" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item #:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="52" Width="140" Height="22" AnchorRight="460" AnchorBottom="626" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="46" Width="65" Height="22" AnchorRight="165" AnchorBottom="252" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item #:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="46" Width="140" Height="22" AnchorRight="20" AnchorBottom="252" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -47,8 +47,8 @@
 <Control Type="1" FieldId="txtQTY" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="77" Width="41" Height="22" AnchorRight="165" AnchorBottom="221" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="77" Width="140" Height="22" AnchorRight="20" AnchorBottom="221" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="69" Width="41" Height="22" AnchorRight="189" AnchorBottom="229" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="80" Top="69" Width="140" Height="22" AnchorRight="20" AnchorBottom="229" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -59,7 +59,7 @@
 <Control Type="9" FieldId="btnViewItems" Attr="4">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="View Items to Issue" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="110" Width="200" Height="22" AnchorRight="460" AnchorBottom="568" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="93" Width="200" Height="33" AnchorRight="20" AnchorBottom="194" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="308" Width="80" Height="44" AnchorRight="672" AnchorBottom="348" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -69,7 +69,7 @@
 <Control Type="9" FieldId="btnSelectItems" Attr="5">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Select Items to Issue" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="137" Width="200" Height="22" AnchorRight="460" AnchorBottom="541" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="131" Width="200" Height="33" AnchorRight="20" AnchorBottom="156" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="308" Width="80" Height="44" AnchorRight="672" AnchorBottom="348" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -79,7 +79,7 @@
 <Control Type="9" FieldId="btnIssueMaterial" Attr="6">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Issue Material and&svm;Print Labels" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="170" Width="200" Height="44" AnchorRight="460" AnchorBottom="486" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="169" Width="200" Height="33" AnchorRight="20" AnchorBottom="118" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="352" Width="80" Height="44" AnchorRight="672" AnchorBottom="304" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -89,7 +89,7 @@
 <Control Type="9" FieldId="btnViewTransfers" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="View Transfers to LP" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="229" Width="200" Height="22" AnchorRight="20" AnchorBottom="69" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="207" Width="200" Height="33" AnchorRight="20" AnchorBottom="80" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="396" Width="80" Height="44" AnchorRight="672" AnchorBottom="260" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -99,7 +99,7 @@
 <Control Type="9" FieldId="btnWorkWithLPs" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Work With LPs" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="255" Width="200" Height="22" AnchorRight="20" AnchorBottom="43" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="245" Width="200" Height="33" AnchorRight="20" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="396" Width="80" Height="44" AnchorRight="672" AnchorBottom="260" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -109,7 +109,7 @@
 <Control Type="9" FieldId="btnBack" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="291" Width="200" Height="22" AnchorRight="460" AnchorBottom="387" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="285" Width="200" Height="33" AnchorRight="20" AnchorBottom="2" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="264" Width="80" Height="44" AnchorRight="232" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -267,7 +267,8 @@ Public Sub btnIssueMaterial_Click()
       "   WMUM, WMMTST, WMLOTN, WMLOCN, WMUORG, WMDRQJ" & _
       " from F3111" & _
       " where WMDOCO = " & mnDOCO & _
-      " and WMLOTN = '" & sLOTN & "'"
+      " and WMLOTN = '" & sLOTN & "'" & _
+      " and WMLOCN = '" & sLOCN & "'"
 
     Dim sCols2, sRows2 As String
     DB.Execute(sSQL, sCols2, sRows2)
@@ -446,6 +447,7 @@ Private Sub Refresh()
       " from RFgenCustom.ToBeIssued" & _
       " where DOCO = " & mnDOCO & _
       " and LOTN = '" & sLOTN & "'" & _
+      " and LOCN = '" & sLOCN & "'" & _
       " and STATUS = 'S'"
 
     Dim sCols2, sRows2 As String
@@ -488,5 +490,21 @@ Private Sub Refresh()
     nQTY = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, i, "QTY"))
     lbxTransfer.List.AddItem("", sPALP, nQTY)
   Next
+
+  ' Only show the LP-related buttons if there are any LPs being used
+  sSQL = _
+    " select count(*)" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where DOCO = " & mnDOCO & _
+    " and PALP <> ' '"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) > 0 Then
+    btnViewTransfers.Visible = True
+    btnWorkWithLPs.Visible = True
+  Else
+    btnViewTransfers.Visible = False
+    btnWorkWithLPs.Visible = False
+  End If
 End Sub
 </Code>

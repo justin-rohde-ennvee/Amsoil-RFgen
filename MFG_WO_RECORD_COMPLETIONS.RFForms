@@ -112,6 +112,8 @@ Option Explicit
 Private mnDOCO As Long
 Private Const cMCU = "          85"
 Private Const cTNId = "MFG_WO"
+Private Const cPartialVersion = "AMS0001"
+Private Const cFullVersion = "AMS0002"
 
 Public Sub btnBack_Click()
   On Error Resume Next
@@ -145,9 +147,13 @@ Public Sub btnSubmit_Click()
   DB.Execute(sSQL, sCols, sRows)
 
   ' Version will differ between partial and full completions
-  ' TODO need actual complete version to use!
   Dim sVersion As String
-  sVersion = IIf(nSOQS + DB.Count(sRows) < nUORG, "AMS0001", "AMS0001")
+
+  If nSOQS + DB.Count(sRows) < nUORG Then
+    sVersion = cPartialVersion
+  Else
+    sVersion = cFullVersion
+  End If
 
   Dim i As Long
   For i=1 To DB.Count(sRows)
@@ -219,9 +225,10 @@ Public Sub btnSubmit_Click()
       " update F55101" & _
       " set LMLOCN = '" & sCompletedLOCN & "'," & _
       "     LMRDOCO = '" & mnDOCO & "'," & _
-      "     LMPALP = ' '" & _
       " where LMLPID = '" & sLPID & "'"
     DB.Execute(sSQL)
+
+    '  "     LMPALP = ' '" & _
 
     ' Update location on pallet, if used
     If sPALP <> "" Then
