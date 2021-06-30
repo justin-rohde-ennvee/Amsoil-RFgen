@@ -225,6 +225,7 @@ Private Sub Refresh()
   Dim sSQL, sCols, sRows As String
 
   ' If all quantity is completed, exit automatically to WO entry
+  
   sSQL = _
     " select WAUORG, (WAUORG - WASOQS) REMAINING" & _
     " from F4801" & _
@@ -262,6 +263,7 @@ Private Sub Refresh()
   If nCount = 0 Then Exit Sub
 
   ' Only show the Label Finished Goods button and hide the previous ones when everything is issued
+  ' AND no more to be selected
 
   sSQL = _
     " select count(*)" & _

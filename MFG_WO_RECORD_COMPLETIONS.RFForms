@@ -165,6 +165,7 @@ Public Sub btnSubmit_Click()
     sLOCN = Trim(DB.Extract(sCols, sRows, i, "LOCN"))
     sLPID = Trim(DB.Extract(sCols, sRows, i, "LPID"))
     sPALP = Trim(DB.Extract(sCols, sRows, i, "PALP"))
+    If sPALP = "" Then sPALP = " "
 
     Dim sNewLOTN As String
     sNewLOTN = Split(sLOTN, ".")(0) & "." & CStr(mnDOCO)
@@ -214,24 +215,24 @@ Public Sub btnSubmit_Click()
       " and LDLOTN = '" & sLOTN & "'"
     DB.Execute(sSQL)
 
-    ' Update location & WO# on LP header; remove pallet association, if any
-'    sSQL = _
-'      " update F55101" & _
-'      " set LMLOCN = '" & sCompletedLOCN & "'," & _
-'      "     LMRDOCO = '" & mnDOCO & "'," & _
-'      "     LMPALP = '" & sPALP & "'" & _
-'      " where LMLPID = '" & sLPID & "'"
+    ' Update location & WO# on LP header
     sSQL = _
       " update F55101" & _
       " set LMLOCN = '" & sCompletedLOCN & "'," & _
       "     LMRDOCO = '" & mnDOCO & "'," & _
+      "     LMPALP = '" & sPALP & "'" & _
       " where LMLPID = '" & sLPID & "'"
+'    sSQL = _
+'      " update F55101" & _
+'      " set LMLOCN = '" & sCompletedLOCN & "'," & _
+'      "     LMRDOCO = '" & mnDOCO & "'" & _
+'      " where LMLPID = '" & sLPID & "'"
     DB.Execute(sSQL)
 
     '  "     LMPALP = ' '" & _
 
     ' Update location on pallet, if used
-    If sPALP <> "" Then
+    If sPALP <> " " Then
       sSQL = _
         " update F55101" & _
         " set LMLOCN = '" & sCompletedLOCN & "'" & _

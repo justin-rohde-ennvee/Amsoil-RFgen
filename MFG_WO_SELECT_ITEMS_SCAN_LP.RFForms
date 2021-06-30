@@ -479,6 +479,20 @@ Private Function ValidateAndAddCase(ByVal Rsp As String, sError As String) As Bo
     Exit Function
   End If
 
+  ' Verify the location matches the WO parts list for this lot #
+  sSQL = _
+    " select count(*)" & _
+    " from F3111" & _
+    " where WMDOCO = " & msDOCO & _
+    " and WMLOTN = '" & sLOTN & "'" & _
+    " and WMLOCN = '" & sLOCN & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) = 0 Then
+    sError = "Case location (" & sLOCN & ") does not match parts list for this lot #."
+    Exit Function
+  End If
+
   ' Verify that this case is not already in the To Be Issued table
   sSQL = _
     " select PALP" & _
