@@ -318,6 +318,11 @@ Private msDOCTYPE    As String
 Private mnMaxQty     As Currency
 Private mbSerialized As Boolean
 Private msAllowHold  As String
+Private moProcOpt As New JDEProcOpt
+Private msDefaultFromPrimaryLocation As String
+Private msDefaultToPrimaryLocation As String
+Private msLotGroup As String
+Private msAllowOverQtyAvailable As String
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
@@ -356,8 +361,45 @@ Private Sub Form_Load()
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
 
-  ' get DocType from Proc.Opt.
+  ' Get processing options
   msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
+
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
+  msDOCTYPE = moProcOpt.Value("Documenttype")
+  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
+
+  msDefaultFromPrimaryLocation = GetProcOpt(msPgm,msVersion,"1;2")
+  Debug.Print("msDefaultFromPrimaryLocation old: " & msDefaultFromPrimaryLocation)
+
+  msDefaultFromPrimaryLocation = moProcOpt.Value("DefaultFROMPrimLocation")
+  Debug.Print("msDefaultFromPrimaryLocation new: " & msDefaultFromPrimaryLocation)
+
+  msDefaultToPrimaryLocation = GetProcOpt(msPgm,msVersion,"1;3")
+  Debug.Print("msDefaultToPrimaryLocation old: " & msDefaultToPrimaryLocation)
+
+  msDefaultToPrimaryLocation = moProcOpt.Value("DefaultTOPrimLocation")
+  Debug.Print("msDefaultToPrimaryLocation new: " & msDefaultToPrimaryLocation)
+
+  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+  Debug.Print("msAllowHold old: " & msAllowHold)
+
+  msAllowHold = moProcOpt.Value("AllowHeldLots")
+  Debug.Print("msAllowHold new: " & msAllowHold)
+
+  msLotGroup = GetProcOpt(msPgm,msVersion,"3;4")
+  Debug.Print("msLotGroup old: " & msLotGroup)
+
+  msLotGroup = moProcOpt.Value("LotGroup")
+  Debug.Print("msLotGroup new: " & msLotGroup)
+
+  msAllowOverQtyAvailable = GetProcOpt(msPgm,msVersion,"3;5")
+  Debug.Print("msAllowOverQtyAvailable old: " & msAllowOverQtyAvailable)
+
+  msAllowOverQtyAvailable = moProcOpt.Value("AllowOverQtyAvailable")
+  Debug.Print("msAllowOverQtyAvailable new: " & msAllowOverQtyAvailable)
 
   If gbPOError Then
     App.ExitForm
@@ -374,14 +416,14 @@ Private Sub Form_Load()
   '
   ' Default location if required from Menu
   '
-  sLOCN = Trim(UCase(App.GetValue("From")))
-  If sLOCN <> "NONE" And sLOCN <> "" Then
-    txtLOCN.Defaults = sLOCN
+  sLocn = Trim(UCase(App.GetValue("From")))
+  If sLocn <> "NONE" And sLocn <> "" Then
+    txtLOCN.Defaults = sLocn
     txtLOCN.DisplayOnly = True
   End If
-  sLOCN = Trim(UCase(App.GetValue("To")))
-  If sLOCN <> "NONE" And sLOCN <> "" Then
-    txtNLOCN.Defaults = sLOCN
+  sLocn = Trim(UCase(App.GetValue("To")))
+  If sLocn <> "NONE" And sLocn <> "" Then
+    txtNLOCN.Defaults = sLocn
     txtNLOCN.DisplayOnly = True
   End If
   '
@@ -525,7 +567,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sRows    As String
   Dim sDesc    As String
   Dim sLotn    As String
-  Dim sLocn    As String
+  Dim sLOCN    As String
   Dim sITM     As String
   Dim sLITM    As String
   Dim sAITM    As String
@@ -553,9 +595,10 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   txtLOTN.Required = bHasLots
   '
   ' default Lot & Location when Proc.Opt. = 1
-  If GetProcOpt(msPgm,msVersion,"1;2") = "1" And Not txtLOCN.DisplayOnly Then
-    If GetItemPrimary(App.GetValue("tmMCU"),App.GetValue("tmITM"),sLotn,sLocn) Then
-      txtLOCN.Defaults = sLocn & ";O"                                       ' default Location
+'  If GetProcOpt(msPgm,msVersion,"1;2") = "1" And Not txtLOCN.DisplayOnly Then
+  If msDefaultFromPrimaryLocation = "1" And Not txtLOCN.DisplayOnly Then
+    If GetItemPrimary(App.GetValue("tmMCU"),App.GetValue("tmITM"),sLotn,sLOCN) Then
+      txtLOCN.Defaults = sLOCN & ";O"                                       ' default Location
       If bHasLots And Len(sLotn) > 0 Then txtLOTN.Defaults = sLotn & ";O"   ' default Lot Number if lot controlled
     End If
   End If
@@ -633,7 +676,7 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   On Error Resume Next
   '
   Dim sMCU    As String
-  Dim sLocn   As String
+  Dim sLOCN   As String
   Dim sSQL    As String
   Dim sCols   As String
   Dim sRows   As String
@@ -645,17 +688,17 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Cancel = True
   '
   sMCU = App.GetValue("tmMCU")
-  If Not Validate_Locn(Rsp, sMCU, sLocn, True) Then Exit Sub
+  If Not Validate_Locn(Rsp, sMCU, sLOCN, True) Then Exit Sub
   '
-  ' check Proc.Opt.if Lots on Hold are allowed
-  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+'  ' check Proc.Opt.if Lots on Hold are allowed
+'  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
   '
   If gbPOError Then
     App.ExitForm
     Exit Sub
   End If
 
-  Call GetItemQty(sMCU,App.GetValue("tmITM"),App.GetValue("tmLOTN"),sLocn,msAllowHold,nOnHand,nAvail,sHold)
+  Call GetItemQty(sMCU,App.GetValue("tmITM"),App.GetValue("tmLOTN"),sLOCN,msAllowHold,nOnHand,nAvail,sHold)
 
   If msAllowHold = "" And sHold <> "" Then
     App.MsgBox(GetMsg(121))
@@ -663,7 +706,8 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   End If
 
   ' check Proc.Opt.to default ToLots
-  If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+'  If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+  If msAllowOverQtyAvailable <> "1" Then
     txtLOTS.Text = sHold
     txtLOTS.DisplayOnly = True
   Else
@@ -679,7 +723,7 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   ' show adjustable Qty. regarding Proc.Opt.
   txtOnHand.Visible = True
 
-  Select Case GetProcOpt(msPgm,msVersion,"3;4")
+  Select Case msLotGroup ' GetProcOpt(msPgm,msVersion,"3;4")
     Case ""   'Disallow neg.qty available
       If nAvail < 0 Then
         mnMaxQty = 0
@@ -708,7 +752,7 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     Exit Sub
   End If
 
-  App.SetValue("tmLOCN", sLocn)
+  App.SetValue("tmLOCN", sLOCN)
   App.SetValue("tmLOTS", sHold)
   '
   Cancel = False
@@ -826,7 +870,8 @@ Private Sub txtNMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   End If
   '
   ' default Lot & Location when Proc.Opt. = 1
-  If GetProcOpt(msPgm,msVersion,"1;3") = "1" And Not txtNLOCN.DisplayOnly Then
+  'If GetProcOpt(msPgm,msVersion,"1;3") = "1" And Not txtNLOCN.DisplayOnly Then
+  If msDefaultToPrimaryLocation = "1" And Not txtNLOCN.DisplayOnly Then
     If GetItemPrimary(sMCU,App.GetValue("tmITM"),sLotn,sLocn) Then
       txtNLOCN.Defaults = sLocn & ";O"                  ' default Location
     End If

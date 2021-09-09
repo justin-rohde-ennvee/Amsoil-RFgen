@@ -173,6 +173,14 @@ Private msMoveQtys   As String
 Private msMoveUoms   As String
 Private msMoveLots   As String
 Private mbDetachAll  As Boolean
+Private moProcOpt As New JDEProcOpt
+Private msLotGroup As String
+
+Private msAllowOverQtyAvailable As String
+Public Sub btnDetachAll_AfterCellEdit(ByVal Row As Long, ByVal Col As Long, ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+End Sub
 
 Private Sub btnDetachAll_Click()
   On Error Resume Next
@@ -260,12 +268,55 @@ Private Sub Form_Load()
     Exit Sub
   End If
 
-  ' get DocType from Proc.Opt. for Inv. Transfer
+  ' Get processing options
   msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-  '
+  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
+
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
+  msDOCTYPE = moProcOpt.Value("Documenttype")
+  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
+
+'  msDefaultFromPrimaryLocation = GetProcOpt(msPgm,msVersion,"1;2")
+'  Debug.Print("msDefaultFromPrimaryLocation old: " & msDefaultFromPrimaryLocation)
+'
+'  msDefaultFromPrimaryLocation = moProcOpt.Value("DefaultFROMPrimLocation")
+'  Debug.Print("msDefaultFromPrimaryLocation new: " & msDefaultFromPrimaryLocation)
+
+  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+  Debug.Print("msAllowHold old: " & msAllowHold)
+
+  msAllowHold = moProcOpt.Value("AllowHeldLots")
+  Debug.Print("msAllowHold new: " & msAllowHold)
+
+  msLotGroup = GetProcOpt(msPgm,msVersion,"3;4")
+  Debug.Print("msLotGroup old: " & msLotGroup)
+
+  msLotGroup = moProcOpt.Value("LotGroup")
+  Debug.Print("msLotGroup new: " & msLotGroup)
+
+  msAllowOverQtyAvailable = GetProcOpt(msPgm,msVersion,"3;5")
+  Debug.Print("msAllowOverQtyAvailable old: " & msAllowOverQtyAvailable)
+
+  msAllowOverQtyAvailable = moProcOpt.Value("AllowOverQtyAvailable")
+  Debug.Print("msAllowOverQtyAvailable new: " & msAllowOverQtyAvailable)
+
   If gbPOError Then
     App.ExitForm
     Exit Sub
+  End If
+
+  Dim sLPID As String
+  sLPID = Trim(App.GetValue("LPID"))
+  
+  If sLPID <> "" Then
+    Dim sSQL, sCols, sRows As String
+    sSQL = "select LMMCU from F55101 where LMLPID = '" & sLPID & "'"
+    DB.Execute(sSQL, sCols, sRows)
+
+    If DB.Count(sRows) > 0 Then txtMCU.Text = DB.Extract(sCols, sRows, 1, "LMMCU")
+    txtLPID.Text = sLPID
   End If
 End Sub
 
@@ -295,7 +346,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   '
   If gbCommitCtl Then DB.BeginTrans(gsLPSource)
   '
-  Dim sSql As String
+  Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
 
@@ -496,7 +547,9 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     App.SetValue("tmLPQty", nLQty)
 
     ' check Proc.Opt.if Lots on Hold are allowed
-    msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+    'msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+    msAllowHold = moProcOpt.Value("AllowHeldLots")
+
     If gbPOError Then
       App.ExitForm
       Exit Sub
@@ -511,7 +564,8 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     End If
 
     ' check Proc.Opt.to default ToLots
-    If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+    'If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+    If msAllowOverQtyAvailable <> "1" Then
       App.SetValue("tmLOTS", sHold)  ' 09/15/05 RBR
     End If
     If gbPOError Then
@@ -521,7 +575,7 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     ' show adjustable Qty. regarding Proc.Opt.
 
-    Select Case GetProcOpt(msPgm,msVersion,"3;4")
+    Select Case msLotGroup 'GetProcOpt(msPgm,msVersion,"3;4")
       Case ""   'Disallow neg.qty available
         If nAvail < 0 Then
           mnMaxQty = 0

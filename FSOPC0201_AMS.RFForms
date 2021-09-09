@@ -202,6 +202,9 @@ Private sOlderLots()        As String
 Private msDeleteLogs        As String
 Private msSchema            As String
 Private mbCheckOldestLots   As Boolean
+Private moProcOpt           As New JDEProcOpt
+Private msCheckAvailability As String
+Private msPreventNegativeShip As String
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
@@ -265,59 +268,61 @@ Private Sub Form_Load()
   '
   txtAccept.Visible = False
 
-  ' Get Proc.Opt. Version from Menu
+  ' Get processing options
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
   msBOVersion = App.GetValue("BOVers")
 
-  ' Get Status From from Proc.Opt. and Header
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
   msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+  Debug.Print("msStatusF old: " & msStatusF)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  msStatusF = moProcOpt.Value("StatusNextFrom")
+  Debug.Print("msStatusF new: " & msStatusF)
 
-'  If  App.ClientType = "GUI" Then
-'    Form.Caption = Left(sHeader,29)
-'  Else
-'    Form.Caption = Left(sHeader,20)
-'  End If
-
-  ' get Status To from Proc.Opt. and Header
   msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+  Debug.Print("msStatusT old: " & msStatusT)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  msStatusT = moProcOpt.Value("StatusNextThru")
+  Debug.Print("msStatusT new: " & msStatusT)
 
-  ' Does Version relieve Inv?  from Proc.Opt.
+   msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
+  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
+
+  msCheckAvailability = moProcOpt.Value("CheckAvailability")
+  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
+
+  msPreventNegativeShip = GetProcOpt(msPgm,msVersion,"4;2")
+  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
+
+  msPreventNegativeShip = moProcOpt.Value("PreventNegativeShip")
+  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
+
+'  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
+'  Debug.Print("msPreventOvership old: " & msPreventOvership)
+'
+'  msPreventOvership = moProcOpt.Value("PreventOvership")
+'  Debug.Print("msPreventOvership new: " & msPreventOvership)
+
   msRelInv = True
+'  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
+'  If moProcOpt.Value("AllowReliefofInventory") = "1" Then msRelInv = False
 
-  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
-
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
-
-  ' Does Version allow Add Freight?  from Proc.Opt.
-  mbAddFr = False
-
+  mbAddFr = True
   If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+  Debug.Print("mbAddFr old: " & mbAddFr)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  mbAddFr = True
+  If moProcOpt.Value("AllowAddLineEntry") <> "1" Then mbAddFr = False
+  Debug.Print("mbAddFr new: " & mbAddFr)
 
   txtDCTO.Visible = False
   txtLITM.Visible = False
   txtLOCN.Visible = False
   txtLOTN.Visible = False
   txtQTY.Visible = False
-
 
   lblFKey.Visible = mbAddFr
 
@@ -3318,9 +3323,9 @@ Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   oList.MaxRows = giMaxSearchRows
   oList.ShowEmptyList = True
   oList.ReturnAllRows = True
-  oList.SetColumn(1, "Item", giLenItem, CenterLeft, True)
-  oList.SetColumn(2, "Qty",   giLenQTY, CenterRight, True, iDecSOQS)
-  oList.SetColumn(3, "UOM",          3, CenterLeft, True)
+  oList.SetColumn(1, "Item", -1, CenterLeft, True)
+  oList.SetColumn(2, "Qty", -1, CenterRight, True, iDecSOQS)
+  oList.SetColumn(3, "UOM", -1, CenterLeft, True)
   oList.SQL = sSQL
   '
   sValue = oList.ShowList
@@ -3432,7 +3437,6 @@ Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   sITM  = App.GetValue("tmITM")
   sLocn = App.GetValue("tmLOCN")
   '
-  bAvail = GetProcOpt(msPgm,msVersion,"4;1") = "1"
   bAvail = True
   Cancel = Not Search_F41021_LOTN_LOCAL(Rsp, "", sMCU, sITM, sLocn, bAvail)
 End Sub
@@ -3520,7 +3524,6 @@ Private Sub txtLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   sITM = App.GetValue("tmITM")
   sLotn = App.GetValue("tmLOTN")
   '
-  bAvail = GetProcOpt(msPgm,msVersion,"4;1") = "1"
   bAvail = True
   Cancel = Not Search_F41021_LOCN(Rsp, "", sMCU, sITM, sLotn, bAvail)
 End Sub
@@ -3729,7 +3732,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   nAvail  = nAvail  - nUsed
   '
   ' Exceeds QOH?
-  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
+  If msPreventNegativeShip = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
     If (nQty > nOnHand)  Then
       App.MsgBox(GetMsg(35))
       Exit Sub
@@ -3742,7 +3746,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   End If
   '
   ' Exceeds Avail?
-  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
+  If msCheckAvailability = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
     If App.GetValue("SelCOMM") <> "C" And  App.GetValue("SelCOMM") <> "H" Then  'hardcommitted before, so ignore (SDCOMM)
       If (nQty > nAvail)  Then
         App.MsgBox(GetMsg(37))
@@ -4302,7 +4307,7 @@ Public Function ExecuteTM(ByVal bBackOrder As Boolean) As Boolean
 
 '  If mnCnt > 1 Then
     emProc.Clear
-    emProc.Name                = "TSOSC0200"
+    emProc.Name                = "TSOSC0200_NEW"
     emProc.DataSource          = gsDataSource
     emProc.Param("tmCO")       = App.GetValue("tmCO")
     emProc.Param("tmMCU")      = App.GetValue("tmMCU")
@@ -4450,12 +4455,12 @@ Public Sub BuildListBox
     sDsp =        FixRight(vArray(02),8," ")                      & "|"
     sDsp = sDsp & FixLeft(vArray(03),2," ")                       & "|"
     sDsp = sDsp & FixRight(Format(vArray(04), "##0.000"),7," ")   & "|"
-    sDsp = sDsp & FixLeft(Ext(msValCache,02,  iCnt),giLenItem," ") & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,02,  iCnt),25," ")       & "|"
     sDsp = sDsp & FixRight(Ext(msValCache,03, iCnt),10," ")       & "|"
-    sDsp = sDsp & FixLeft(Ext(msValCache,04,  iCnt),giLenLOCN," ") & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,04,  iCnt),20," ")       & "|"
     sDsp = sDsp & FixRight(Ext(msValCache,05, iCnt),20," ")       & "|"
     sDsp = sDsp & FixLeft(Ext(msValCache,06,  iCnt),03," ")       & "|"
-    sDsp = sDsp & FixLeft(Ext(msValCache,07,  iCnt),giLenLOTN," ") & "|"
+    sDsp = sDsp & FixLeft(Ext(msValCache,07,  iCnt),30," ")       & "|"
     sDsp = sDsp & FixLeft(Ext(msValCache,08,  iCnt),01," ")       & "|"
     sDsp = sDsp & FixRight(Ext(msValCache,09, iCnt),10," ")       & "|"
     sDsp = sDsp & FixRight(Ext(msValCache,10, iCnt),10," ")       & "|"
@@ -4623,11 +4628,11 @@ Public Function Search_F41021_LOTN_LOCAL(ByRef Rsp As String, ByVal sFindLOTN As
   oList.MaxRows = giMaxSearchRows
   oList.ShowEmptyList = True
   oList.ReturnAllRows = True
-  oList.SetColumn(1, "Lot", giLenLOTN,  CenterLeft, True)
-  oList.SetColumn(2, "Locn", giLenLOCN, CenterLeft, True)
-  oList.SetColumn(3, "Qty", giLenQTY,   CenterRight, True, iDecPQOH)
-  oList.SetColumn(4, "UM",        2,    CenterLeft, True)
-  oList.SetColumn(5, "S",         1,    CenterLeft, True)
+  oList.SetColumn(1, "Lot", -1, CenterLeft, True)
+  oList.SetColumn(2, "Locn", -1, CenterLeft, True)
+  oList.SetColumn(3, "Qty", -1,   CenterRight, True, iDecPQOH)
+  oList.SetColumn(4, "UM", -1,    CenterLeft, True)
+  oList.SetColumn(5, "S", -1,    CenterLeft, True)
   oList.SQL = sSql
   sValue = oList.ShowList
 

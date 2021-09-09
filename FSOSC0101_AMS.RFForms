@@ -1,11 +1,12 @@
-﻿<Record FileDesc="SO - Ship Confirm" FileVersion="5.0.8.0" Desc="SO - Ship Confirm" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtDOCO&vm;txtDCTO&vm;txtAccept&vm;lblTotalLines&vm;lblLinesOpen" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0" Depends="X41.bas">
+﻿<Record FileDesc="SO - Ship Confirm" FileVersion="5.0.8.0" Desc="SO - Ship Confirm" Group="AMS" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;btnExecute&vm;txtDOCO&vm;txtDCTO&vm;txtAccept&vm;lblTotalLines&vm;lblLinesOpen" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0" Depends="X41.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
-<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
-<SchemaParam Linked="0" Attr="3" Name="txtDCTO" />
-<SchemaParam Linked="0" Attr="4" Name="txtAccept" />
-<SchemaParam Linked="0" Attr="5" Name="lblTotalLines" />
-<SchemaParam Linked="0" Attr="6" Name="lblLinesOpen" />
+<SchemaParam Linked="0" Attr="2" Name="btnExecute" />
+<SchemaParam Linked="0" Attr="3" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="4" Name="txtDCTO" />
+<SchemaParam Linked="0" Attr="5" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="6" Name="lblTotalLines" />
+<SchemaParam Linked="0" Attr="7" Name="lblLinesOpen" />
 </Schema>
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
@@ -20,7 +21,17 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtDOCO" Attr="2" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Control Type="9" FieldId="btnExecute" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Execute" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="155" Top="259" Width="74" Height="22" AnchorRight="11" AnchorBottom="39" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="165" Top="270" Width="74" Height="44" AnchorRight="67" AnchorBottom="6" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="3" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="44" Width="41" Height="22" AnchorRight="185" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" Caption="SO#:" />
@@ -28,7 +39,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtDCTO" Attr="3" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Control Type="1" FieldId="txtDCTO" Attr="4" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="44" Width="49" Height="22" AnchorRight="41" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Type:" />
@@ -36,7 +47,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtAccept" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtAccept" Attr="5" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="153" Height="22" AnchorRight="89" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to accept..." />
@@ -44,14 +55,14 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblTotalLines" Attr="5">
+<Control Type="10" FieldId="lblTotalLines" Attr="6">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="66" Width="113" Height="22" AnchorRight="97" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblTotalLines" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblLinesOpen" Attr="6">
+<Control Type="10" FieldId="lblLinesOpen" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="88" Width="105" Height="22" AnchorRight="105" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblLinesOpen" />
@@ -111,6 +122,17 @@ Private mnCnt               As Long
 '********************************************
 'WLG05 End
 '********************************************
+Private moProcOpt As New JDEProcOpt
+Private msCheckAvailability As String
+Private msPreventOvership As String
+Private msPreventNegativeShip As String
+Private msBOorCANRemains As String
+
+Public Sub btnExecute_Click()
+  On Error Resume Next
+
+  Form_OnUpdate(False)
+End Sub
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
@@ -161,46 +183,62 @@ Private Sub Form_Load()
   txtAccept.Visible = False
   txtDCTO.Visible = False
 
-  ' Get Proc.Opt. Version from Menu
+  ' Get processing options
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
 
-  ' Get Status From from Proc.Opt. and Header
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
   msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+  Debug.Print("msStatusF old: " & msStatusF)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  msStatusF = moProcOpt.Value("StatusNextFrom")
+  Debug.Print("msStatusF new: " & msStatusF)
 
-  ' Get Status To from Proc.Opt. and Header
   msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+  Debug.Print("msStatusT old: " & msStatusT)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  msStatusT = moProcOpt.Value("StatusNextThru")
+  Debug.Print("msStatusT new: " & msStatusT)
 
-  ' Does Version relieve Inv?  from Proc.Opt.
+  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
+  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
+
+  msCheckAvailability = moProcOpt.Value("CheckAvailability")
+  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
+
+  msPreventNegativeShip = " " 'GetProcOpt(msPgm,msVersion,"4;2")
+'  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
+'
+'  msPreventNegativeShip = moProcOpt.Value("PreventNegativeShip")
+'  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
+
+  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
+  Debug.Print("msPreventOvership old: " & msPreventOvership)
+
+  msPreventOvership = moProcOpt.Value("PreventOvership")
+  Debug.Print("msPreventOvership new: " & msPreventOvership)
+
+  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
+  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
+
+  msBOorCANRemains = moProcOpt.Value("BOorCANRemains")
+  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
+
   msRelInv = True
+'  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
+'  If moProcOpt.Value("AllowReliefofInventory") = "1" Then msRelInv = False
 
-  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
-
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
-
-  ' Does Version allow Add Freight?  from Proc.Opt.
   mbAddFr = True
-
   If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+  Debug.Print("mbAddFr old: " & mbAddFr)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  mbAddFr = True
+  If moProcOpt.Value("AllowAddLineEntry") <> "1" Then mbAddFr = False
+  Debug.Print("mbAddFr new: " & mbAddFr)
 
+  btnExecute.Visible = False
 End Sub
 
 Private Sub Form_LostFocus()
@@ -263,6 +301,8 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Dim uLP101 As LP101Data       ' create LP101 Structure
   Dim uLP102 As LP102Data       ' create LP102 Structure
 
+  LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") Start function.")
+
   iRow = txtAccept.Label.Top
   '
   Screen.Print 0, iRow, "Processing...", False, True, True
@@ -300,6 +340,9 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 ' Build Datastructure from Listbox (List.Sorted by Line)
   msValCache = ""                 ' clear datastructure
   mnCnt      = 0                  ' reset counter
+
+
+  LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") Start processing.")
 
   For x = 1 To DB.Count(sRows)
     'lstScanned.List.Index = iCnt
@@ -466,6 +509,9 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
         Exit Sub
       End If
     End If
+
+    LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") End processing.")
+
     '
   ' Offline inventory
     If gbOfflineEnabled And msRelInv Then
@@ -495,11 +541,13 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   'WLG03 END
   '**********************************************************
 
-txtDOCO.List.Clear
-txtDCTO.List.Clear
-txtDOCO.Visible = False
-txtDCTO.Visible = False
+  txtDOCO.List.Clear
+  txtDCTO.List.Clear
+  txtDOCO.Visible = False
+  txtDCTO.Visible = False
 
+
+  LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") End function.")
 End Sub
 
 Private Sub Form_Unload()
@@ -611,10 +659,12 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   DB.Execute(sSQL, sCols, sRows)
 
-  If (Len(sRows) <> 0) Then
-    App.MsgBox("Items were backordered during picking.  Reprint pack slip in JD Edwards.")
-  End If
+  Dim vRsp  As Variant
 
+  If (Len(sRows) <> 0) Then
+    vRsp = App.MsgBox("Items were backordered during picking.  Reprint pack slip in JD Edwards.")
+    LogText("FSOSC0101_AMS", "txtDOCO_OnEnter",  "(" & Device.Platform & ") Reprint message acknowledged with response: " & vRsp)
+  End If
 
   '
 
@@ -975,18 +1025,15 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     App.MsgBox GetMsg(180)
     Exit Sub
   End If
+
   '
   ' Exceeds Order Qty?
-  If GetProcOpt(msPgm,msVersion,"4;3") = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;3") = "1" Then
+  If msPreventOvership = "1" Then
     If (nQty > mnMaxQty) Then
       App.MsgBox(GetMsg(36))
       Exit Sub
     End If
-  End If
-
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
   End If
 
   sMCU = App.GetValue("tmMCU")
@@ -994,20 +1041,18 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   '
   ' Exceeds QOH?
-  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
+  If msPreventNegativeShip = "1" Then
     If (nQty > nOnHand)  Then
       App.MsgBox(GetMsg(35))
       Exit Sub
     End If
   End If
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
   '
   ' Exceeds Avail?
-  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
+  If msCheckAvailability = "1" Then
     If App.GetValue("SelCOMM") <> "C" And  App.GetValue("SelCOMM") <> "H" Then  'hardcommitted before, so ignore (SDCOMM)
       If (nQty > nAvail)  Then
         App.MsgBox(GetMsg(37))
@@ -1015,20 +1060,14 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
       End If
     End If
   End If
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+
   '
   ' Splitlines allowed when remaining rest?
   If nQty < mnMaxQty  Then
-    If GetProcOpt(msPgm,msVersion,"5;3") = "1" Then
-        vRsp = App.MsgBox(GetMsg(191), vbYesNo, vbNo)
-        If vRsp = vbNo Then Exit Sub
-    End If
-    If gbPOError Then
-      App.ExitForm
-      Exit Sub
+'    If GetProcOpt(msPgm,msVersion,"5;3") = "1" Then
+    If msBOorCANRemains = "1" Then
+      vRsp = App.MsgBox(GetMsg(191), vbYesNo, vbNo)
+      If vRsp = vbNo Then Exit Sub
     End If
   End If
   '
@@ -1042,14 +1081,14 @@ Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean
   On Error Resume Next
   '
   txtAccept.Visible = True
-
+  btnExecute.Visible = True
 End Sub
 
 Private Sub txtAccept_LostFocus()
   On Error Resume Next
   '
   txtAccept.Visible = False
-
+  btnExecute.Visible = False
 End Sub
 
 Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)

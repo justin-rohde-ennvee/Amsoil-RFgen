@@ -104,6 +104,11 @@ Private msResKey            As String
 Private msResKeySav         As String
 Private msAppl              As String
 Private mnUKID              As Long
+Private moProcOpt As New JDEProcOpt
+Private msCheckAvailability As String
+Private msPreventOvership As String
+Private msPreventNegativeShip As String
+Private msBOorCANRemains As String
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
@@ -157,36 +162,54 @@ Private Sub Form_Load()
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
 
-  ' Get Status From from Proc.Opt. and Header
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
   msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+  Debug.Print("msStatusF old: " & msStatusF)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  msStatusF = moProcOpt.Value("StatusNextFrom")
+  Debug.Print("msStatusF new: " & msStatusF)
 
-  ' Get Status To from Proc.Opt. and Header
   msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+  Debug.Print("msStatusT old: " & msStatusT)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
+  msStatusT = moProcOpt.Value("StatusNextThru")
+  Debug.Print("msStatusT new: " & msStatusT)
 
-  ' Does Version relieve Inv?  from Proc.Opt.
-  msRelInv = True
-
-  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
-
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
-
-  ' Does Version allow Add Freight?  from Proc.Opt.
   mbAddFr = True
-
   If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+  Debug.Print("mbAddFr old: " & mbAddFr)
+
+  mbAddFr = True
+  If moProcOpt.Value("AllowAddLineEntry") <> "1" Then mbAddFr = False
+  Debug.Print("mbAddFr new: " & mbAddFr)
+
+  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
+  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
+
+  msCheckAvailability = moProcOpt.Value("CheckAvailability")
+  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
+
+  msPreventNegativeShip = GetProcOpt(msPgm,msVersion,"4;2")
+  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
+
+  msPreventNegativeShip = moProcOpt.Value("PreventNegativeShip")
+  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
+
+  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
+  Debug.Print("msPreventOvership old: " & msPreventOvership)
+
+  msPreventOvership = moProcOpt.Value("PreventOvership")
+  Debug.Print("msPreventOvership new: " & msPreventOvership)
+
+  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
+  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
+
+  msBOorCANRemains = moProcOpt.Value("BOorCANRemains")
+  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
+
+  msRelInv = True
 
   If gbPOError Then
     App.ExitForm
@@ -844,7 +867,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   End If
   '
   ' Exceeds Order Qty?
-  If GetProcOpt(msPgm,msVersion,"4;3") = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;3") = "1" Then
+  If msPreventOvership = "1" Then
     If (nQty > mnMaxQty) Then
       App.MsgBox(GetMsg(36))
       Exit Sub
@@ -861,7 +885,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   '
   ' Exceeds QOH?
-  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
+  If msPreventNegativeShip = "1" Then
     If (nQty > nOnHand)  Then
       App.MsgBox(GetMsg(35))
       Exit Sub
@@ -874,7 +899,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   End If
   '
   ' Exceeds Avail?
-  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
+'  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
+  If msCheckAvailability = "1" Then
     If App.GetValue("SelCOMM") <> "C" And  App.GetValue("SelCOMM") <> "H" Then  'hardcommitted before, so ignore (SDCOMM)
       If (nQty > nAvail)  Then
         App.MsgBox(GetMsg(37))
@@ -889,7 +915,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   '
   ' Splitlines allowed when remaining rest?
   If nQty < mnMaxQty  Then
-    If GetProcOpt(msPgm,msVersion,"5;3") = "1" Then
+'    If GetProcOpt(msPgm,msVersion,"5;3") = "1" Then
+    If msBOorCANRemains = "1" Then
         vRsp = App.MsgBox(GetMsg(191), vbYesNo, vbNo)
         If vRsp = vbNo Then Exit Sub
     End If

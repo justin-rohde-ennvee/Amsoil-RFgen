@@ -173,6 +173,9 @@ Private msMoveQtys   As String
 Private msMoveUoms   As String
 Private msMoveLots   As String
 Private mbDetachAll  As Boolean
+Private moProcOpt As New JDEProcOpt
+Private msLotGroup As String
+Private msAllowOverQtyAvailable As String
 
 Private Sub btnDetachAll_Click()
   On Error Resume Next
@@ -250,19 +253,37 @@ Private Sub Form_Load()
 
   txtAccept.Visible = False
 
-  ' Get Proc.Opt. Version from Menu
-
+  ' Get processing options
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
-  '
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
 
-  ' get DocType from Proc.Opt. for Inv. Transfer
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
   msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-  '
+  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
+
+  msDOCTYPE = moProcOpt.Value("Documenttype")
+  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
+
+  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+  Debug.Print("msAllowHold old: " & msAllowHold)
+
+  msAllowHold = moProcOpt.Value("AllowHeldLots")
+  Debug.Print("msAllowHold new: " & msAllowHold)
+
+  msLotGroup = GetProcOpt(msPgm,msVersion,"3;4")
+  Debug.Print("msLotGroup old: " & msLotGroup)
+
+  msLotGroup = moProcOpt.Value("LotGroup")
+  Debug.Print("msLotGroup new: " & msLotGroup)
+
+  msAllowOverQtyAvailable = GetProcOpt(msPgm,msVersion,"3;5")
+  Debug.Print("msAllowOverQtyAvailable old: " & msAllowOverQtyAvailable)
+
+  msAllowOverQtyAvailable = moProcOpt.Value("AllowOverQtyAvailable")
+  Debug.Print("msAllowOverQtyAvailable new: " & msAllowOverQtyAvailable)
+
   If gbPOError Then
     App.ExitForm
     Exit Sub
@@ -496,11 +517,11 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     App.SetValue("tmLPQty", nLQty)
 
     ' check Proc.Opt.if Lots on Hold are allowed
-    msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
-    If gbPOError Then
-      App.ExitForm
-      Exit Sub
-    End If
+'    msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+'    If gbPOError Then
+'      App.ExitForm
+'      Exit Sub
+'    End If
     '
     ' check inventory
     Call GetItemQty(App.GetValue("tmMCU"),App.GetValue("tmITM"),Rsp,Trim(App.GetValue("tmLOCN")),msAllowHold,nOnHand,nAvail,sHold)
@@ -511,7 +532,8 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     End If
 
     ' check Proc.Opt.to default ToLots
-    If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+'    If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
+    If msAllowOverQtyAvailable <> "1" Then
       App.SetValue("tmLOTS", sHold)  ' 09/15/05 RBR
     End If
     If gbPOError Then
@@ -521,7 +543,7 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     ' show adjustable Qty. regarding Proc.Opt.
 
-    Select Case GetProcOpt(msPgm,msVersion,"3;4")
+    Select Case msLotGroup 'GetProcOpt(msPgm,msVersion,"3;4")
       Case ""   'Disallow neg.qty available
         If nAvail < 0 Then
           mnMaxQty = 0

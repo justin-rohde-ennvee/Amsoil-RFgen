@@ -172,6 +172,9 @@ Private mbIsNew      As Boolean
 Private sOlderLots() As String
 Private msDeleteLogs As String
 Private mbCheckOldestLots As Boolean
+Private moProcOpt As New JDEProcOpt
+Private msAllowOverQtyAvailable As String
+Private msDefaultFromPrimaryLocation As String
 
 Private Sub btnInfo_Click()
   On Error Resume Next
@@ -245,7 +248,32 @@ Private Sub Form_Load()
 
   ' get DocType from Proc.Opt. for Inv. Transfer
   msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-  '
+  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
+
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
+  msDOCTYPE = moProcOpt.Value("Documenttype")
+  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
+
+  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
+  Debug.Print("msAllowHold old: " & msAllowHold)
+
+  msAllowHold = moProcOpt.Value("AllowHeldLots")
+  Debug.Print("msAllowHold new: " & msAllowHold)
+
+  msAllowOverQtyAvailable = GetProcOpt(msPgm,msVersion,"3;5")
+  Debug.Print("msAllowOverQtyAvailable old: " & msAllowOverQtyAvailable)
+
+  msAllowOverQtyAvailable = moProcOpt.Value("AllowOverQtyAvailable")
+  Debug.Print("msAllowOverQtyAvailable new: " & msAllowOverQtyAvailable)
+
+  msDefaultFromPrimaryLocation = GetProcOpt(msPgm,msVersion,"1;2")
+  Debug.Print("msDefaultFromPrimaryLocation old: " & msDefaultFromPrimaryLocation)
+
+  msDefaultFromPrimaryLocation = moProcOpt.Value("DefaultFROMPrimLocation")
+  Debug.Print("msDefaultFromPrimaryLocation new: " & msDefaultFromPrimaryLocation)
+
   If gbPOError Then
     App.ExitForm
     Exit Sub
@@ -670,7 +698,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     mbIsPlate = False
     '
     ' default From Lot & Location when Proc.Opt. = 1
-    If GetProcOpt(msPgm,msVersion,"1;2") = "1" And Not bHasLots And Not mbSerialized Then
+'    If GetProcOpt(msPgm,msVersion,"1;2") = "1" And Not bHasLots And Not mbSerialized Then
+    If msDefaultFromPrimaryLocation = "1" And Not bHasLots And Not mbSerialized Then
       If GetItemPrimary(App.GetValue("tmMCU"),sITM,sLOTN,sLOCN) Then
         txtLOCN.Defaults = sLOCN & ";O"                                       ' default Location
 '        If bHasLots And Len(sLOTN) > 0 Then txtLOTN.Defaults = sLOTN & ";O"   ' default Lot Number if lot controlled
@@ -1186,7 +1215,6 @@ Private Sub txtLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     mnMaxQty = 1
   Else
     ' check Proc.Opt.if Lots on Hold are allowed
-    msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
     '
     If gbPOError Then
       App.ExitForm
