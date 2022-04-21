@@ -1,4 +1,4 @@
-﻿<Record FileDesc="MFG WO Processing - Select Items to Issue" FileVersion="5.0.8.0" Desc="MFG WO Processing - Select Items to Issue" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLITM&vm;txtQTY&vm;btnViewItems&vm;btnSelectItems&vm;btnIssueMaterial&vm;btnViewTransfers&vm;btnWorkWithLPs&vm;btnBack&vm;txtDummy&vm;lbxIssueFrom&vm;btnBackItems&vm;lbxTransfer&vm;btnBackTransfers" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="MFG WO Processing - Select Items to Issue" FileVersion="5.0.8.0" Desc="MFG WO Processing - Select Items to Issue" Group="AMS-WO" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtLITM&vm;txtQTY&vm;btnViewItems&vm;btnSelectItems&vm;btnIssueMaterial&vm;btnViewTransfers&vm;btnWorkWithLPs&vm;btnBack&vm;btnIssueMaterialNoLabels&vm;txtDummy&vm;lbxIssueFrom&vm;btnBackItems&vm;lbxTransfer&vm;btnBackTransfers" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
 <SchemaParam Linked="0" Attr="2" Name="txtLITM" />
@@ -9,11 +9,12 @@
 <SchemaParam Linked="0" Attr="7" Name="btnViewTransfers" />
 <SchemaParam Linked="0" Attr="8" Name="btnWorkWithLPs" />
 <SchemaParam Linked="0" Attr="9" Name="btnBack" />
-<SchemaParam Linked="0" Attr="10" Name="txtDummy" />
-<SchemaParam Linked="0" Attr="11" Name="lbxIssueFrom" />
-<SchemaParam Linked="0" Attr="12" Name="btnBackItems" />
-<SchemaParam Linked="0" Attr="13" Name="lbxTransfer" />
-<SchemaParam Linked="0" Attr="14" Name="btnBackTransfers" />
+<SchemaParam Linked="0" Attr="10" Name="btnIssueMaterialNoLabels" />
+<SchemaParam Linked="0" Attr="11" Name="txtDummy" />
+<SchemaParam Linked="0" Attr="12" Name="lbxIssueFrom" />
+<SchemaParam Linked="0" Attr="13" Name="btnBackItems" />
+<SchemaParam Linked="0" Attr="14" Name="lbxTransfer" />
+<SchemaParam Linked="0" Attr="15" Name="btnBackTransfers" />
 </Schema>
 <Displays>
 <Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
@@ -59,7 +60,7 @@
 <Control Type="9" FieldId="btnViewItems" Attr="4">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="View Items to Issue" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="93" Width="200" Height="33" AnchorRight="20" AnchorBottom="194" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="93" Width="200" Height="28" AnchorRight="20" AnchorBottom="205" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="308" Width="80" Height="44" AnchorRight="672" AnchorBottom="348" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -69,7 +70,7 @@
 <Control Type="9" FieldId="btnSelectItems" Attr="5">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Select Items to Issue" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="131" Width="200" Height="33" AnchorRight="20" AnchorBottom="156" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="125" Width="200" Height="28" AnchorRight="20" AnchorBottom="162" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="308" Width="80" Height="44" AnchorRight="672" AnchorBottom="348" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -78,8 +79,8 @@
 </Control>
 <Control Type="9" FieldId="btnIssueMaterial" Attr="6">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Issue Material and&svm;Print Labels" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="169" Width="200" Height="33" AnchorRight="20" AnchorBottom="118" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Issue Material and Print Labels" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="158" Width="200" Height="33" AnchorRight="20" AnchorBottom="129" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="352" Width="80" Height="44" AnchorRight="672" AnchorBottom="304" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -89,7 +90,7 @@
 <Control Type="9" FieldId="btnViewTransfers" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="View Transfers to LP" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="207" Width="200" Height="33" AnchorRight="20" AnchorBottom="80" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="196" Width="200" Height="28" AnchorRight="20" AnchorBottom="96" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="396" Width="80" Height="44" AnchorRight="672" AnchorBottom="260" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -99,7 +100,7 @@
 <Control Type="9" FieldId="btnWorkWithLPs" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Work With LPs" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="245" Width="200" Height="33" AnchorRight="20" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="229" Width="200" Height="28" AnchorRight="20" AnchorBottom="63" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="396" Width="80" Height="44" AnchorRight="672" AnchorBottom="260" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -109,14 +110,24 @@
 <Control Type="9" FieldId="btnBack" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="285" Width="200" Height="33" AnchorRight="20" AnchorBottom="2" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="295" Width="200" Height="28" AnchorRight="20" AnchorBottom="-3" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="264" Width="80" Height="44" AnchorRight="232" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtDummy" Attr="10" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="9" FieldId="btnIssueMaterialNoLabels" Attr="10">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Issue Material No Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="20" Top="262" Width="200" Height="28" AnchorRight="20" AnchorBottom="30" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="352" Width="80" Height="44" AnchorRight="672" AnchorBottom="304" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDummy" Attr="11" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="20" Top="308" Width="65" Height="22" AnchorRight="155" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
@@ -128,7 +139,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="3" FieldId="lbxIssueFrom" Attr="11" Sorted="0">
+<Control Type="3" FieldId="lbxIssueFrom" Attr="12" Sorted="0">
 <Layouts>
 <Layout PageNo="2" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="6" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="22" Width="145" Height="22" AnchorRight="525" AnchorBottom="656" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Issue Items From:" />
@@ -152,7 +163,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnBackItems" Attr="12">
+<Control Type="9" FieldId="btnBackItems" Attr="13">
 <Layouts>
 <Layout PageNo="2" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="11" Top="275" Width="216" Height="33" AnchorRight="452" AnchorBottom="392" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -162,7 +173,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="3" FieldId="lbxTransfer" Attr="13" Sorted="0">
+<Control Type="3" FieldId="lbxTransfer" Attr="14" Sorted="0">
 <Layouts>
 <Layout PageNo="3" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="22" Width="217" Height="22" AnchorRight="453" AnchorBottom="656" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Transfer to License Plate:" />
@@ -183,7 +194,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnBackTransfers" Attr="14">
+<Control Type="9" FieldId="btnBackTransfers" Attr="15">
 <Layouts>
 <Layout PageNo="3" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="11" Top="275" Width="216" Height="33" AnchorRight="453" AnchorBottom="392" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -236,126 +247,15 @@ Public Sub btnIssueMaterial_Click()
   On Error Resume Next
 
   If App.MsgBox("Confirm Material Issue?", vbYesNo) = vbNo Then Exit Sub
+  IssueMaterial()
+End Sub
 
-  App.Balloon("Processing...", -1)
 
-  Dim sSQL, sCols, sRows As String
-  sSQL = _
-    " select LOTN, LOCN, QTY, LPID" & _
-    " from RFgenCustom.ToBeIssued" & _
-    " where DOCO = " & mnDOCO & _
-    " and STATUS = 'S'"
-  DB.Execute(sSQL, sCols, sRows)
+Public Sub btnIssueMaterialNoLabels_Click()
+  On Error Resume Next
 
-  Dim i As Integer
-  Dim emProc As New EmbeddedProc
-  Dim emCreateCustomLabelWrapper As New EmbeddedProc
-
-  For i=1 To DB.Count(sRows)
-    App.Balloon("Processing " & i & " / " & DB.Count(sRows), -1)
-
-    Dim sLPID, sLITM, sLOTN, sLOCN As String
-    Dim nQTY As Currency
-
-    sLPID = Trim(DB.Extract(sCols, sRows, i, "LPID"))
-    sLOTN = Trim(DB.Extract(sCols, sRows, i, "LOTN"))
-    sLOCN = Trim(DB.Extract(sCols, sRows, i, "LOCN"))
-    nQTY = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, i, "QTY"))
-
-    sSQL = _
-      " select WMDCTO, WMMCU, WMCMCU, WMOPSQ, WMUKID, WMCPIL," & _
-      "   WMUM, WMMTST, WMLOTN, WMLOCN, WMUORG, WMDRQJ" & _
-      " from F3111" & _
-      " where WMDOCO = " & mnDOCO & _
-      " and WMLOTN = '" & sLOTN & "'" & _
-      " and WMLOCN = '" & sLOCN & "'"
-
-    Dim sCols2, sRows2 As String
-    DB.Execute(sSQL, sCols2, sRows2)
-
-    Dim oProcOpt As New JDEProcOpt
-    oProcOpt.ProgramId = "P31113"
-    oProcOpt.Version = "AMS0001"
-
-    emProc.Clear
-    emProc.Name                  = "TWOCI0100_AMS"
-    emProc.DataSource            = gsDataSource
-    emProc.Param("tmCO")         = "00002"
-    emProc.Param("tmMCU")        = DB.Extract(sCols2, sRows2, 1, "WMMCU")
-    emProc.Param("tmDOCO")       = mnDOCO
-    emProc.Param("tmDCTO")       = DB.Extract(sCols2, sRows2, 1, "WMDCTO")
-    emProc.Param("tmLITM")       = DB.Extract(sCols2, sRows2, 1, "WMCPIL")
-    emProc.Param("tmLOTN")       = sLOTN
-    emProc.Param("tmLOCN")       = sLOCN
-    emProc.Param("tmQTY")        = nQTY
-    emProc.Param("tmSCRAP")      = 0
-    emProc.Param("tmUOM")        = DB.Extract(sCols2, sRows2, 1, "WMUM")
-    emProc.Param("tmCMCU")       = DB.Extract(sCols2, sRows2, 1, "WMCMCU")
-    emProc.Param("tmOPSQ")       = ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols2, sRows2, 1, "WMOPSQ"))
-    emProc.Param("tmUKID")       = DB.Extract(sCols2, sRows2, 1, "WMUKID")
-    emProc.Param("tmSTATUS")     = DB.Extract(sCols2, sRows2, 1, "WMMTST")
-    emProc.Param("tmEDITACT")    = "1"
-    emProc.Param("tmOrgLOTN")    = DB.Extract(sCols2, sRows2, 1, "WMLOTN")
-    emProc.Param("tmOrgLOCN")    = DB.Extract(sCols2, sRows2, 1, "WMLOCN")
-    emProc.Param("tmOrgUORG")    = ConvDecimalsFromSQL("UORG", DB.Extract(sCols2, sRows2, 1, "WMUORG"))
-    emProc.Param("tmOrgDRQJ")    = DB.Extract(sCols2, sRows2, 1, "WMDRQJ")
-    emProc.Param("tmDOCTYPE")    = oProcOpt.Value("IssuesDCT") 'GetProcOpt("P31113", "AMS0001", "1;1")
-    emProc.Param("tmUSER")       = UCase(App.User)
-    emProc.Param("tmPGM")        = "P31113"
-    emProc.Param("tmZVERSION")   = "AMS0001"
-
-    If Ext(gsLog,1) = "1" Then Call TranLog(cTNID, "1", emProc.Name, "", emProc)
-
-    If Not emProc.Execute Then
-      App.Balloon("", 0)
-      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
-      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emProc.Name, "", emProc)
-      Exit Sub
-    End If
-
-    ' Update status to I
-    sSQL = _
-      " update RFgenCustom.ToBeIssued" & _
-      " set STATUS = 'I'" & _
-      " where DOCO = " & mnDOCO & _
-      " and LPID = '" & sLPID & "'"
-    DB.Execute(sSQL)
-
-    emCreateCustomLabelWrapper.Clear
-    emCreateCustomLabelWrapper.Name = "CreateCustomLabelWrapper"
-    emCreateCustomLabelWrapper.DataSource = "JDE"
-
-    emCreateCustomLabelWrapper.Param("WorkOrderNumber_DOCO") = mnDOCO
-    emCreateCustomLabelWrapper.Param("LabelType_Z55LBTY") = "PL"
-    emCreateCustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
-    emCreateCustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = " "
-    emCreateCustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0
-    emCreateCustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
-    emCreateCustomLabelWrapper.Param("FFCreate_YN") = " "
-    emCreateCustomLabelWrapper.Param("FFDataFormat_EV01") = " "
-    emCreateCustomLabelWrapper.Param("FFDelimiter_EV01") = " "
-    emCreateCustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
-    emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
-    emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
-    emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = sLOTN
-    emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQTY
-
-    If Not emCreateCustomLabelWrapper.Execute Then
-      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emCreateCustomLabelWrapper.Name, "", emCreateCustomLabelWrapper)
-      App.MsgBox("Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description)
-      GoTo Done
-    End If
-
-    If emCreateCustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
-      App.MsgBox(emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED"))
-      GoTo Done
-    End If
-  Next
-
-Done:
-  App.Balloon("", 0)
-  mbDidIssue = True
-  Refresh()
+  If App.MsgBox("This will skip label printing. Confirm Material Issue?", vbYesNo) = vbNo Then Exit Sub
+  IssueMaterial(False)
 End Sub
 
 Public Sub btnSelectItems_Click()
@@ -510,5 +410,138 @@ Private Sub Refresh()
     btnViewTransfers.Visible = False
     btnWorkWithLPs.Visible = False
   End If
+End Sub
+
+Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
+
+  App.Balloon("Processing...", -1)
+
+  Dim sSQL, sCols, sRows As String
+  sSQL = _
+    " select LOTN, LOCN, QTY, LPID" & _
+    " from RFgenCustom.ToBeIssued" & _
+    " where DOCO = " & mnDOCO & _
+    " and STATUS = 'S'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  Dim i As Integer
+  Dim emProc As New EmbeddedProc
+  Dim emCreateCustomLabelWrapper As New EmbeddedProc
+
+  For i=1 To DB.Count(sRows)
+    App.Balloon("Processing " & i & " / " & DB.Count(sRows), -1)
+
+    Dim sLPID, sLITM, sLOTN, sLOCN As String
+    Dim nQTY As Currency
+
+    sLPID = Trim(DB.Extract(sCols, sRows, i, "LPID"))
+    sLOTN = Trim(DB.Extract(sCols, sRows, i, "LOTN"))
+    sLOCN = Trim(DB.Extract(sCols, sRows, i, "LOCN"))
+    nQTY = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, i, "QTY"))
+
+    sSQL = _
+      " select WMDCTO, WMMCU, WMCMCU, WMOPSQ, WMUKID, WMCPIL," & _
+      "   WMUM, WMMTST, WMLOTN, WMLOCN, WMUORG, WMDRQJ" & _
+      " from F3111" & _
+      " where WMDOCO = " & mnDOCO & _
+      " and WMLOTN = '" & sLOTN & "'" & _
+      " and WMLOCN = '" & sLOCN & "'"
+
+    Dim sCols2, sRows2 As String
+    DB.Execute(sSQL, sCols2, sRows2)
+
+    Dim oProcOpt As New JDEProcOpt
+    oProcOpt.ProgramId = "P31113"
+    oProcOpt.Version = "AMS0001"
+
+    emProc.Clear
+    emProc.Name                  = "TWOCI0100_AMS"
+    emProc.DataSource            = gsDataSource
+    emProc.Param("tmCO")         = "00002"
+    emProc.Param("tmMCU")        = DB.Extract(sCols2, sRows2, 1, "WMMCU")
+    emProc.Param("tmDOCO")       = mnDOCO
+    emProc.Param("tmDCTO")       = DB.Extract(sCols2, sRows2, 1, "WMDCTO")
+    emProc.Param("tmLITM")       = DB.Extract(sCols2, sRows2, 1, "WMCPIL")
+    emProc.Param("tmLOTN")       = sLOTN
+    emProc.Param("tmLOCN")       = sLOCN
+    emProc.Param("tmQTY")        = nQTY
+    emProc.Param("tmSCRAP")      = 0
+    emProc.Param("tmUOM")        = DB.Extract(sCols2, sRows2, 1, "WMUM")
+    emProc.Param("tmCMCU")       = DB.Extract(sCols2, sRows2, 1, "WMCMCU")
+    emProc.Param("tmOPSQ")       = ConvDecimalsFromSQL("OPSQ", DB.Extract(sCols2, sRows2, 1, "WMOPSQ"))
+    emProc.Param("tmUKID")       = DB.Extract(sCols2, sRows2, 1, "WMUKID")
+    emProc.Param("tmSTATUS")     = DB.Extract(sCols2, sRows2, 1, "WMMTST")
+    emProc.Param("tmEDITACT")    = "1"
+    emProc.Param("tmOrgLOTN")    = DB.Extract(sCols2, sRows2, 1, "WMLOTN")
+    emProc.Param("tmOrgLOCN")    = DB.Extract(sCols2, sRows2, 1, "WMLOCN")
+    emProc.Param("tmOrgUORG")    = ConvDecimalsFromSQL("UORG", DB.Extract(sCols2, sRows2, 1, "WMUORG"))
+    emProc.Param("tmOrgDRQJ")    = DB.Extract(sCols2, sRows2, 1, "WMDRQJ")
+    emProc.Param("tmDOCTYPE")    = oProcOpt.Value("IssuesDCT") 'GetProcOpt("P31113", "AMS0001", "1;1")
+    emProc.Param("tmUSER")       = UCase(App.User)
+    emProc.Param("tmPGM")        = "P31113"
+    emProc.Param("tmZVERSION")   = "AMS0001"
+
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNID, "1", emProc.Name, "", emProc)
+
+    If Not emProc.Execute Then
+      App.Balloon("", 0)
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emProc.Name, "", emProc)
+      Exit Sub
+    End If
+
+    ' Update status to I
+    sSQL = _
+      " update RFgenCustom.ToBeIssued" & _
+      " set STATUS = 'I'" & _
+      " where DOCO = " & mnDOCO & _
+      " and LPID = '" & sLPID & "'"
+    DB.Execute(sSQL)
+
+    If bLabel Then
+      emCreateCustomLabelWrapper.Clear
+      emCreateCustomLabelWrapper.Name = "CreateCustomLabelWrapper"
+      emCreateCustomLabelWrapper.DataSource = "JDE"
+
+      emCreateCustomLabelWrapper.Param("WorkOrderNumber_DOCO") = mnDOCO
+      emCreateCustomLabelWrapper.Param("LabelType_Z55LBTY") = "PL"
+      emCreateCustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
+      emCreateCustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = " "
+      emCreateCustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0
+      emCreateCustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
+      emCreateCustomLabelWrapper.Param("FFCreate_YN") = " "
+      emCreateCustomLabelWrapper.Param("FFDataFormat_EV01") = " "
+      emCreateCustomLabelWrapper.Param("FFDelimiter_EV01") = " "
+      emCreateCustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
+      emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
+      emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
+      emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = sLOTN
+      emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQTY
+
+      If Not emCreateCustomLabelWrapper.Execute Then
+        If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emCreateCustomLabelWrapper.Name, "", emCreateCustomLabelWrapper)
+        App.MsgBox("Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description)
+        GoTo Done
+      End If
+
+      If emCreateCustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
+        App.MsgBox(emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED"))
+        GoTo Done
+      End If
+    Else
+      ' Mark as already labeled
+      sSQL = _
+        " update RFgenCustom.ToBeIssued" & _
+        " set LABEL_MATCH = 'Y'" & _
+        " where DOCO = " & mnDOCO & _
+        " and LPID = '" & sLPID & "'"
+      DB.Execute(sSQL)
+    End If
+  Next
+
+Done:
+  App.Balloon("", 0)
+  mbDidIssue = True
+  Refresh()
 End Sub
 </Code>

@@ -166,7 +166,7 @@ Public Sub btnSubmit_Click()
     sLPID = Trim(DB.Extract(sCols, sRows, i, "LPID"))
     sPALP = Trim(DB.Extract(sCols, sRows, i, "PALP"))
     If sPALP = "" Then sPALP = " "
-
+    
     Dim sNewLOTN As String
     sNewLOTN = Split(sLOTN, ".")(0) & "." & CStr(mnDOCO)
 
@@ -215,7 +215,14 @@ Public Sub btnSubmit_Click()
       " and LDLOTN = '" & sLOTN & "'"
     DB.Execute(sSQL)
 
-    ' Update location & WO# on LP header
+     ' Update location & WO# on LP header
+'    sSQL = _
+'      " update F55101" & _
+'      " set LMLOCN = '" & sCompletedLOCN & "'," & _
+'      "     LMRDOCO = '" & mnDOCO & "'," & _
+'      "     LMPALP = '" & sPALP & "'" & _
+'      " where LMLPID = '" & sLPID & "'"
+'
     sSQL = _
       " update F55101" & _
       " set LMLOCN = '" & sCompletedLOCN & "'" & _
@@ -224,7 +231,6 @@ Public Sub btnSubmit_Click()
     If sPALP <> " " Then sSQL &= ", LMPALP = '" & sPALP & "'"
 
     sSQL &= " where LMLPID = '" & sLPID & "'"
-
     DB.Execute(sSQL)
 
     ' Update location on pallet, if used
