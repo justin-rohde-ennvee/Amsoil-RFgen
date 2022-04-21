@@ -218,18 +218,14 @@ Public Sub btnSubmit_Click()
     ' Update location & WO# on LP header
     sSQL = _
       " update F55101" & _
-      " set LMLOCN = '" & sCompletedLOCN & "'," & _
-      "     LMRDOCO = '" & mnDOCO & "'," & _
-      "     LMPALP = '" & sPALP & "'" & _
-      " where LMLPID = '" & sLPID & "'"
-'    sSQL = _
-'      " update F55101" & _
-'      " set LMLOCN = '" & sCompletedLOCN & "'," & _
-'      "     LMRDOCO = '" & mnDOCO & "'" & _
-'      " where LMLPID = '" & sLPID & "'"
-    DB.Execute(sSQL)
+      " set LMLOCN = '" & sCompletedLOCN & "'" & _
+      " ,   LMRDOCO = '" & mnDOCO & "'"
 
-    '  "     LMPALP = ' '" & _
+    If sPALP <> " " Then sSQL &= ", LMPALP = '" & sPALP & "'"
+
+    sSQL &= " where LMLPID = '" & sLPID & "'"
+
+    DB.Execute(sSQL)
 
     ' Update location on pallet, if used
     If sPALP <> " " Then

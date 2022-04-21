@@ -273,6 +273,10 @@ Public Sub btnIssueMaterial_Click()
     Dim sCols2, sRows2 As String
     DB.Execute(sSQL, sCols2, sRows2)
 
+    Dim oProcOpt As New JDEProcOpt
+    oProcOpt.ProgramId = "P31113"
+    oProcOpt.Version = "AMS0001"
+
     emProc.Clear
     emProc.Name                  = "TWOCI0100_AMS"
     emProc.DataSource            = gsDataSource
@@ -295,7 +299,7 @@ Public Sub btnIssueMaterial_Click()
     emProc.Param("tmOrgLOCN")    = DB.Extract(sCols2, sRows2, 1, "WMLOCN")
     emProc.Param("tmOrgUORG")    = ConvDecimalsFromSQL("UORG", DB.Extract(sCols2, sRows2, 1, "WMUORG"))
     emProc.Param("tmOrgDRQJ")    = DB.Extract(sCols2, sRows2, 1, "WMDRQJ")
-    emProc.Param("tmDOCTYPE")    = GetProcOpt("P31113", "AMS0001", "1;1")
+    emProc.Param("tmDOCTYPE")    = oProcOpt.Value("IssuesDCT") 'GetProcOpt("P31113", "AMS0001", "1;1")
     emProc.Param("tmUSER")       = UCase(App.User)
     emProc.Param("tmPGM")        = "P31113"
     emProc.Param("tmZVERSION")   = "AMS0001"

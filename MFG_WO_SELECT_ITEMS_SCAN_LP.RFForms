@@ -453,11 +453,14 @@ Private Function ValidateAndAddCase(ByVal Rsp As String, sError As String) As Bo
   ValidateAndAddCase = False
 
   Dim sSQL, sCols, sRows As String
-  sSQL = "select LMLOCN from F55101 where LMLPID = '" & Rsp & "'"
+  sSQL = "select LMPALP, LMLOCN from F55101 where LMLPID = '" & Rsp & "'"
   DB.Execute(sSQL, sCols, sRows)
 
   Dim sLOCN As String
   sLOCN = Trim(DB.Extract(sCols, sRows, 1, "LMLOCN"))
+
+  Dim sCurrentPALP As String
+  sCurrentPALP = Trim(DB.Extract(sCols, sRows, 1, "LMPALP"))
 
   ' Fetch lot # on case
   sSQL = "select LDLOTN from F55102 where LDLPID = '" & Rsp & "'"
