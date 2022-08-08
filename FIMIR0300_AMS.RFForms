@@ -1,0 +1,933 @@
+﻿<Record FileDesc="Reclass Finished Goods to Bright Stock" FileVersion="5.0.8.0" Desc="Reclass Finished Goods to Bright Stock" Group="AMS" LinkTo="No Links" LinkType="0" PromptList="txtLPID&vm;txtDOCO&vm;txtLITM&vm;txtUOM&vm;txtAccept&vm;lbxItems" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="2" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="3" Name="txtLITM" />
+<SchemaParam Linked="0" Attr="4" Name="txtUOM" />
+<SchemaParam Linked="0" Attr="5" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="6" Name="lbxItems" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtLPID" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="25" Width="33" Height="22" AnchorRight="197" AnchorBottom="268" BackColor1="1" BackColor2="1" ForeColor="1" Caption="LP#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="25" Width="150" Height="22" AnchorRight="10" AnchorBottom="433" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDOCO" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="50" Width="33" Height="22" AnchorRight="197" AnchorBottom="247" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="50" Width="150" Height="22" AnchorRight="10" AnchorBottom="408" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="28" Top="55" Width="65" Height="22" AnchorRight="147" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="101" Top="55" Width="80" Height="22" AnchorRight="131" AnchorBottom="243" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLITM" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="75" Width="145" Height="22" AnchorRight="189" AnchorBottom="224" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Bright Stock Item" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="75" Width="150" Height="22" AnchorRight="10" AnchorBottom="383" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="18" Top="71" Width="65" Height="22" AnchorRight="157" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="91" Top="71" Width="80" Height="22" AnchorRight="141" AnchorBottom="227" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtUOM" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="100" Width="33" Height="22" AnchorRight="197" AnchorBottom="203" BackColor1="1" BackColor2="1" ForeColor="1" Caption="UOM" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="160" Top="100" Width="150" Height="22" AnchorRight="10" AnchorBottom="358" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="14" Top="100" Width="65" Height="22" AnchorRight="161" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="87" Top="100" Width="80" Height="22" AnchorRight="145" AnchorBottom="198" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="5" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="125" Width="153" Height="22" AnchorRight="77" AnchorBottom="174" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="90" Top="125" Width="0" Height="22" AnchorRight="150" AnchorBottom="174" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="110" Width="80" Height="22" AnchorRight="159" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxItems" Attr="6" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="15" Top="150" Width="65" Height="22" AnchorRight="160" AnchorBottom="145" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="150" Width="299" Height="315" AnchorRight="11" AnchorBottom="15" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="239" Height="166" AnchorRight="232" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="320" FormHeight="480" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Reclass to Bright Stock" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="480" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Type LineItem
+  parentId As String
+  id As String
+  shortItem As Long
+  item As String
+  branch As String
+  location As String
+  lotNumber As String
+  batchCode As String
+  orderNumber As Long
+  quantity As Currency
+  unitOfMeasure As String
+  errorMessage As String
+  toQuantity As Currency
+End Type
+
+Private Type Order
+  branch As String
+  location As String
+  number As Long
+  shortItem As Long
+  item As String
+  unitOfMeasure As String
+  errorMessage As String
+End Type
+
+Private Const company = "00002"
+Private Const branch = "          41"
+Private lineItems() As LineItem
+Private theOrder As Order
+
+Public Sub Form_Load()
+  txtAccept.Caption = ""
+
+  lbxItems.List.SetColumn(1, "Lot", -1)
+  lbxItems.List.SetColumn(2, "Itm", -1)
+  lbxItems.List.SetColumn(3, "Qty", -1)
+  lbxItems.List.SetColumn(4, "UM", -1)
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim index As Long
+  Dim theLineItem As LineItem
+  Dim errorMessage As String
+
+  App.Balloon("Processing...", -1)
+
+  For index = LBound(lineItems) To UBound(lineItems)
+    theLineItem = lineItems(index)
+
+    If Trim(theLineItem.parentId) = "" Then
+      Dim sSQL, sCols, sRows As String
+      Dim nErrNo As Long
+
+      ' Get Next LP Number
+      sSQL = "select ENNNUM from LP002 where ENCO = '00002'"
+      DB.Execute(sSQL, sCols, sRows)
+
+      Dim nCtr As Long
+      nCtr = Val(DB.Extract(sCols, sRows, 1, "ENNNUM"))
+
+      Dim parentId As String
+      parentId = "P" & FixRight(nCtr, (giLenLP - 1), "0")
+
+      sSQL = "update LP002 set ENNNUM = " & (nCtr + 1) & " where ENCO = '00002'"
+      nErrNo = DB.Execute(sSQL)
+
+      Dim uLP101 As LP101Data
+      LP101_Reset(uLP101)
+
+      uLP101.sLMLPID = parentId
+      uLP101.sLMMCU = theLineItem.branch
+      uLP101.sLMDSC1 = "TEMP PARENT FOR " & theLineItem.Id
+      uLP101.sLMTYPE = "L"
+      uLP101.sLMLOCN = theLineItem.location
+      uLP101.sLMRDOCO = CStr(theOrder.Number)
+      uLP101.sLMRDCTO = "WO"
+
+      sSQL = _
+        " INSERT INTO F55101" & _
+        " (LMLPID,LMMCU,LMDSC1,LMTYPE,LMLTYI,LMLOCN,LMRDOCO,LMRDCTO,LMRNXTR,LMPSTB,LMPALP,LMSHAN," & _
+        " LMMMCU,LMALPH,LMROUT,LMSTOP,LMZON,LMCNID,LMCARS,LMPDAT,LMRLNU,LMIR01,LMIR02,LMIR03,LMIR04," & _
+        " LMVUOM,LMCUBE,LMWUOM,LMWEIG,LMPATH,LMVR01,LMVR02,LMSGBT,LMPRIO,LMURAT,LMURRF,LMUSER,LMDATE,LMTIME)" & _
+        " VALUES('" & uLP101.sLMLPID  & "'," & _
+                 "'" & uLP101.sLMMCU   & "'," & _
+                 "'" & uLP101.sLMDSC1  & "'," & _
+                 "'" & uLP101.sLMTYPE  & "'," & _
+                 "'" & uLP101.sLMTRAI  & "'," & _
+                 "'" & uLP101.sLMLOCN  & "'," & _
+                 "'" & uLP101.sLMRDOCO & "'," & _
+                 "'" & uLP101.sLMRDCTO & "'," & _
+                 "'" & uLP101.sLMRNXTR & "'," & _
+                 "'" & uLP101.sLMPSTB  & "'," & _
+                 "'" & uLP101.sLMPALP  & "'," & _
+                       uLP101.nLMSHAN  & ","       & _
+                 "'" & uLP101.sLMMMCU  & "'," & _
+                 "'" & uLP101.sLMALPH  & "'," & _
+                 "'" & uLP101.sLMROUT  & "'," & _
+                 "'" & uLP101.sLMSTOP  & "'," & _
+                 "'" & uLP101.sLMZONE  & "'," & _
+                 "'" & uLP101.sLMCNID  & "'," & _
+                       uLP101.nLMCARS  & ","  & _
+                 "'" & uLP101.sLMPDAT  & "'," & _
+                 "'" & uLP101.sLMRLNU  & "'," & _
+                 "'" & uLP101.sLMIR01  & "'," & _
+                 "'" & uLP101.sLMIR02  & "'," & _
+                 "'" & uLP101.sLMIR03  & "'," & _
+                 "'" & uLP101.sLMIR04  & "'," & _
+                 "'" & uLP101.sLMVUOM  & "'," & _
+                       uLP101.nLMCUBE  & ","        & _
+                 "'" & uLP101.sLMWUOM  & "'," & _
+                       uLP101.nLMWEIG  & ","  & _
+                 "'" & uLP101.sLMPATH  & "'," & _
+                 "'" & uLP101.sLMVR01  & "'," & _
+                 "'" & uLP101.sLMVR02  & "'," & _
+                       uLP101.nLMSGBT  & ","  & _
+                 "'" & uLP101.sLMPRIO  & "'," & _
+                       uLP101.nLMURAT  & ","  & _
+                 "'" & uLP101.sLMURRF  & "'," & _
+                 "'" & App.User & "'," & _
+                 "'" & Format(Date,"YYYYMMDD") & "'," & _
+                 "'" & Format(Time,"hhmmss")  & "')"
+
+      nErrNo = DB.Execute(sSQL)
+      LP101Hist(uLP101)
+
+      If nErrNo <> 0 Then
+        App.MsgBox("Error on temp parent LP insert: " & nErrNo)
+      End If
+
+      sSQL = "update F55101 set LMPALP = '" & parentId & "' where LMLPID = '" & theLineItem.Id & "'"
+      nErrNo = DB.Execute(sSQL)
+
+      If nErrNo <> 0 Then
+        App.MsgBox("Error on LP parent update: " & nErrNo)
+      End If
+
+      theLineItem.parentId = parentId
+    End If
+
+    App.SetValue("tmPALP", theLineItem.Id)
+    App.SetValue("tmLITM", theLineItem.Item)
+    App.SetValue("tmLOTN", theLineItem.lotNumber)
+
+    If Not DetachAllItems2( _
+      theLineItem.Id, _
+      theLineItem.parentId, _
+      theLineItem.branch, _
+      branch, _
+      theLineItem.location, _
+      " ", _
+      errorMessage _
+      ) _
+    Then
+      App.MsgBox(errorMessage)
+      Exit Sub
+    End If
+    'End If
+  Next
+
+  Dim consolidatedLineItems() As LineItem
+  ReDim consolidatedLineItems(-1)
+
+  Dim upperBound As Long
+  upperBound = -1
+
+  For index = LBound(lineItems) To UBound(lineItems)
+    theLineItem = lineItems(index)
+
+    Dim exists As Boolean
+    exists = False
+
+    Dim consolidatedIndex As Integer
+    For consolidatedIndex = 0 To upperBound
+      Dim consolidatedLineItem As LineItem
+      consolidatedLineItem = consolidatedLineItems(consolidatedIndex)
+
+      Dim isMatch As Boolean
+      isMatch = _
+        consolidatedLineItem.Item = theLineItem.Item _
+        And consolidatedLineItem.lotNumber = theLineItem.lotNumber _
+        And consolidatedLineItem.unitOfMeasure = theLineItem.unitOfMeasure
+
+      If isMatch Then
+        consolidatedLineItems(consolidatedIndex).quantity += theLineItem.quantity
+        consolidatedLineItems(consolidatedIndex).toQuantity += theLineItem.toQuantity
+        exists = True
+      End If
+    Next
+
+    If Not exists Then
+      upperBound += 1
+      ReDim Preserve consolidatedLineItems(0 To upperBound)
+      consolidatedLineItems(upperBound) = theLineItem
+    End If
+  Next
+
+  For index = LBound(consolidatedLineItems) To UBound(consolidatedLineItems)
+    theLineItem = consolidatedLineItems(index)
+
+    App.Balloon("Processing " & (index + 1) & "/" & (UBound(consolidatedLineItems) + 1), -1)
+
+    If Not ReclassItem(theLineItem, theOrder, errorMessage) Then
+      App.MsgBox(errorMessage)
+      App.Balloon("", 0)
+      Exit Sub
+    End If
+  Next
+
+  ' Update individual LP status
+  For index = LBound(lineItems) To UBound(lineItems)
+    theLineItem = lineItems(index)
+    DB.Execute("update F55101 set LMRNXTR = '620' where LMLPID = '" & theLineItem.Id & "'")
+  Next
+
+  ' Update parent LP status, if exists
+  If theLineItem.parentId <> "" Then
+    DB.Execute("update F55101 set LMRNXTR = '620' where LMLPID = '" & theLineItem.parentId & "'")
+  End If
+
+  Cancel = False
+  App.Balloon("", 0)
+End Sub
+
+Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  txtAccept.Caption = "Enter to Accept..."
+End Sub
+
+Public Sub txtAccept_LostFocus()
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  ClearFields()
+End Sub
+
+Private Sub ClearFields()
+  txtDOCO.Text = ""
+  txtLITM.Text = ""
+  txtUOM.Text = ""
+  lbxItems.List.Clear()
+End Sub
+
+Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+
+  lineItems = FetchLineItems(Rsp)
+  If Not ValidateLineItems(lineItems) Then Exit Sub
+
+  Dim theLineItem As LineItem
+  theLineItem = lineItems(LBound(lineItems))
+
+  theOrder = FetchOrder(branch, theLineItem.orderNumber, theLineItem.batchCode)
+  If Not ValidateOrder(theOrder) Then Exit Sub
+
+  Dim errorMessage As String
+
+  Dim index As Long
+  For index = LBound(lineItems) To UBound(lineItems)
+    theLineItem = lineItems(index)
+
+    Dim conversionFactor As Currency
+
+    If Not GetConversionFactor( _
+      theLineItem.shortItem, _
+      theLineItem.unitOfMeasure, _
+      theOrder.unitOfMeasure, _
+      conversionFactor _
+    ) Then
+      App.MsgBox( _
+        "Conversion from '" & theLineItem.unitOfMeasure & "'" & _
+        " to '" & theOrder.unitOfMeasure & "'" & _
+        " not found for item: " & theLineItem.Item _
+      )
+      Exit Sub
+    End If
+
+    theLineItem.toQuantity = theLineItem.quantity * conversionFactor
+    lineItems(index) = theLineItem
+  Next
+
+  Cancel = False
+  Update()
+End Sub
+
+Private Function GetConversionFactor( _
+  ByVal shortItem As Long, _
+  ByVal fromUnitOfMeasure As String, _
+  ByRef toUnitOfMeasure As String, _
+  ByRef conversionFactor As Currency _
+) As Boolean
+  Dim sql As String
+  sql = _
+    " select UMCONV" & _
+    " from F41002" & _
+    " where UMITM = " & shortItem & _
+    " and UMUM = '" & fromUnitOfMeasure & "'" & _
+    " and UMRUM = '" & toUnitOfMeasure & "'"
+
+  Dim columns, rows As String
+  DB.Execute(sql, columns, rows)
+
+  If Len(rows) = 0 Then Exit Function
+
+  conversionFactor = ConvDecimalsFromSQL("CONV", DB.Extract(columns, rows, 1, 1))
+
+  GetConversionFactor = True
+End Function
+
+Private Function FetchLineItems(ByVal sPALP As String) As LineItem()
+  Dim sql As String
+  sql = _
+    " select *" & _
+    " from F55101" & _
+    " inner join F55102" & _
+    "   on LDLPID = LMLPID" & _
+    " inner join F4101" & _
+    "   on IMLITM = LDLITM" & _
+    " where (" & _
+    "   LMPALP = '" & sPALP & "'" & _
+    "   or LMLPID = '" & sPALP & "'" & _
+    " )"
+
+  Dim columns, rows As String
+  DB.Execute(sql, columns, rows)
+
+  Dim count As Long
+  count = DB.Count(rows)
+
+  Dim theLineItems() As LineItem
+  If count = 0 Then
+    ReDim theLineItems(0)
+    GoTo Done
+  End If
+
+  ReDim theLineItems(1 To count)
+
+  Dim index As Integer
+  For index = 1 To count
+    theLineItems(index) = FetchLineItem(columns, rows, index)
+  Next
+
+Done:
+  FetchLineItems = theLineItems
+End Function
+
+Private Function FetchLineItem(ByVal columns As String, ByVal rows As String, ByVal index As Integer) As LineItem
+  Dim theLineItem As LineItem
+  theLineItem.lotNumber = Trim(DB.Extract(columns, rows, index, "LDLOTN"))
+
+  Dim components() As String
+  components = Split(theLineItem.lotNumber, ".")
+
+  If UBound(components) - LBound(components) <> 1 Then
+    theLineItem.errorMessage = "Lot # is not in correct format: '" & theLineItem.lotNumber & "'"
+    GoTo Done
+  End If
+
+  theLineItem.parentId = DB.Extract(columns, rows, index, "LMPALP")
+  theLineItem.Id = DB.Extract(columns, rows, index, "LMLPID")
+  theLineItem.branch = DB.Extract(columns, rows, index, "LMMCU")
+  theLineItem.location = DB.Extract(columns, rows, index, "LMLOCN")
+  theLineItem.batchCode = components(0)
+  theLineItem.orderNumber = Val(components(1))
+  theLineItem.shortItem = DB.Extract(columns, rows, index, "IMITM")
+  theLineItem.Item = Trim(DB.Extract(columns, rows, index, "LDLITM"))
+  theLineItem.quantity = DB.Extract(columns, rows, index, "LDUORG")
+  theLineItem.unitOfMeasure = Trim(DB.Extract(columns, rows, index, "LDUOM"))
+
+Done:
+  FetchLineItem = theLineItem
+End Function
+
+Private Function ValidateLineItems(ByVal lineItems() As LineItem) As Boolean
+  If UBound(lineItems) = 0 Then
+    App.MsgBox("LP is empty or invalid.")
+    Exit Function
+  End If
+
+  Dim index As Long
+  Dim batchCode As String
+  For index = 1 To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+
+    If theLineItem.errorMessage <> "" Then
+      App.MsgBox(theLineItem.errorMessage)
+      Exit Function
+    End If
+
+    If index = 1 Then
+      batchCode = theLineItem.batchCode
+    ElseIf theLineItem.batchCode <> batchCode Then
+      App.MsgBox("Reclass not allowed for mixed batch codes.")
+      Exit Function
+    End If
+  Next
+
+  ValidateLineItems = True
+End Function
+
+Private Function FetchOrder(ByVal branch As String, ByVal orderNumber As Long, ByVal batchCode As String) As Order
+  Dim sql As String
+  sql = _
+    " select WMCMCU, WMLOCN, WMCPIT, WMCPIL, WMUM" & _
+    " from F3111" & _
+    " where WMDOCO = " & orderNumber & _
+    " and WMLOTN = '" & batchCode & "'"
+'    " and substring(WMLOTN, 1, charindex('.', WMLOTN) - 1) = '" & batchCode & "'"
+
+  Dim columns As String
+  Dim rows As String
+  DB.Execute(sql, columns, rows)
+
+  Dim theOrder As Order
+  If DB.Count(rows) = 0 Then
+    theOrder.errorMessage = "Order not found: " & orderNumber
+    GoTo Done
+  End If
+
+  theOrder.branch = DB.Extract(columns, rows, 1, "WMCMCU")
+  theOrder.location = DB.Extract(columns, rows, 1, "WMLOCN")
+  theOrder.Number = orderNumber
+  theOrder.shortItem = DB.Extract(columns, rows, 1, "WMCPIT")
+  theOrder.Item = Trim(DB.Extract(columns, rows, 1, "WMCPIL"))
+  theOrder.unitOfMeasure = DB.Extract(columns, rows, 1, "WMUM")
+
+Done:
+  FetchOrder = theOrder
+End Function
+
+Private Function ValidateOrder(ByVal theOrder As Order) As Boolean
+  If theOrder.errorMessage <> "" Then
+    App.MsgBox(theOrder.errorMessage)
+    Exit Function
+  End If
+
+  ValidateOrder = True
+End Function
+
+Private Sub Update()
+  ClearFields()
+
+  Dim index As Long
+  For index = 1 To UBound(lineItems)
+    Dim theLineItem As LineItem
+    theLineItem = lineItems(index)
+    lbxItems.List.AddItem( _
+      "", _
+      theLineItem.lotNumber, _
+      theLineItem.Item, _
+      theLineItem.quantity, _
+      theLineItem.unitOfMeasure _
+    )
+  Next
+
+  txtDOCO.Text = theOrder.Number
+  txtLITM.Text = theOrder.Item
+  txtUOM.Text = theOrder.unitOfMeasure
+End Sub
+
+Private Function DetachAllItems( _
+  ByVal id As String, _
+  ByVal parentId As String, _
+  ByVal fromBranch As String, _
+  ByVal toBranch As String, _
+  ByVal fromLocation As String, _
+  ByVal toLocation As String, _
+  errorMessage As String _
+) As Boolean
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+
+  Dim sLPArray As String
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+  uLP101.sLMLPID = id
+
+  App.SetValue("tmMCU", fromBranch)
+
+  If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+    errorMessage = GetMsg(104)
+    Exit Function
+  End If
+
+  App.SetValue("LMCO", company)
+  App.SetValue("LMMCU", fromBranch)
+  App.SetValue("tmNMCU", toBranch)
+  App.SetValue("LMLOCN", fromLocation)
+  App.SetValue("tmNLOCN", toLocation)
+
+  uLPOper.sLPID      = id
+  uLPOper.sPALP      = parentId
+  uLPOper.sFMCU      = fromBranch
+  uLPOper.sTMCU      = toBranch
+  uLPOper.sFLOCN     = fromLocation
+  uLPOper.sTLOCN     = toLocation
+'  uLPOper.nQty       = quantity
+  uLPOper.bIsPlate   = True
+  uLPOper.bDetach    = False
+
+  If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+    errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+    If gbCommitCtl Then DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+
+  Const transactionDescription = "Reclass Finished Goods - Detach"
+
+  App.SetValue("LPITVersion", "AMS0001")
+  App.SetValue("tmMCU", fromBranch)
+  App.SetValue("tmCISY", 2)
+  App.SetValue("tmCO", company)
+  
+  If Not LP_MoveExecute(uLPOper, uLP101, False, transactionDescription, sLPArray) Then
+    errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+    Call LP_MoveExecute(uLPOper, uLP101, True, transactionDescription, sLPArray)
+    If gbCommitCtl Then DB.RollbackTrans gsLPSource
+    Exit Function
+  End If
+
+  LP_DetachAllItems(id)
+
+  DetachAllItems = True
+End Function
+
+Private Function DetachAllItems2( _
+  ByVal id As String, _
+  ByVal parentId As String, _
+  ByVal fromBranch As String, _
+  ByVal toBranch As String, _
+  ByVal fromLocation As String, _
+  ByVal toLocation As String, _
+  errorMessage As String _
+) As Boolean
+  On Error Resume Next
+
+  App.SetValue("LPITVersion", "AMS0001")
+  App.SetValue("tmMCU", fromBranch)
+  App.SetValue("tmCISY", 2)
+  App.SetValue("tmCO", company)
+  '
+  '--------------------------------------------------------------------------
+  ' attach full LP or item.
+  '
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+  '
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Dim sLPArray As String
+  Dim uLPOper As LPOper         ' LP Operation
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP101 Structure
+  Call LP101_Reset(uLP101)      ' init LP101 Structure
+  Call LP102_Reset(uLP102)      ' init LP102 Structure
+
+  Dim isPlate As Boolean
+  isPlate = Trim(parentId) <> ""
+
+  Const cTNID = "FIMIR0200"
+  Const cTranDesc = "Reclass"
+
+  If isPlate Then
+
+    uLP101.sLMLPID = parentId
+
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      errorMessage = GetMsg(104)
+      Exit Function
+    End If
+
+    'Set the value for variables
+    App.SetValue("LMCO", company)
+    App.SetValue("LMMCU", fromBranch)
+    App.SetValue("tmNMCU", toBranch)
+    App.SetValue("LMLOCN", fromLocation)
+    App.SetValue("tmNLOCN", toLocation)
+
+    'Public Type LPOper
+    uLPOper.sLPID      = parentId    ' LP ID Child
+    uLPOper.sPALP      = parentId    ' LP ID Parent
+    uLPOper.sFMCU      = fromBranch     ' from Plant
+    uLPOper.sTMCU      = toBranch    ' to Plant
+    uLPOper.sFLOCN     = fromLocation   ' from Location
+    uLPOper.sTLOCN     = toLocation   ' to Location
+    uLPOper.nQty       = 1     ' Operation Qty.
+    uLPOper.bIsPlate   = isPlate                      ' Plate or Item
+    uLPOper.bDetach    = False                     ' remove item
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNID, "1", "LP_MoveItems", "")
+    If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+      errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", "LP_MoveItems", "")
+      If gbCommitCtl Then DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNID, "1", "LP_MoveExecute", "")
+    If Not LP_MoveExecute(uLPOper,uLP101,False , cTranDesc, sLPArray) Then
+      errorMessage = GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", "LP_MoveExecute", "")
+      Call LP_MoveExecute(uLPOper,uLP101,True , cTranDesc, sLPArray)
+      If gbCommitCtl Then DB.RollbackTrans gsLPSource
+      Exit Function
+    End If
+
+    LP_DetachAllItems(parentId)
+    GoTo LPDone
+
+  Else 'If it isn't a plate
+    sSql = "select * from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & App.GetValue("tmPALP") & "' and LDLITM = '" & App.GetValue("tmLITM") & "' and LDLOTN = '" & App.GetValue("tmLOTN") & "'"
+    DB.Execute(sSql, sCols, sRows)
+    App.SetValue("tmLNID", DB.Extract(sCols,sRows,1,"LDLNID"))
+    '
+    uLP101.sLMLPID    = id    ' Parent LP
+    '
+    uLP102.sLDLPID    = uLP101.sLMLPID            ' LP Line Details
+    uLP102.nLDLNID    = App.GetValue("tmLNID")    ' LP Line
+    '
+    If Not X_LP102("I",uLP102) Then   ' Inquiry on LP102
+      errorMessage = GetMsg(104)
+      If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+      GoTo LPDone
+    End If
+    '
+      'Public Type LPOper
+    uLPOper.sLPID      = id                        ' LP ID Child
+    uLPOper.sPALP      = id    ' LP ID Parent
+    uLPOper.sFMCU      = fromBranch     ' from Plant
+    uLPOper.sTMCU      = toBranch     ' to Plant
+    uLPOper.sFLOCN     = fromLocation    ' from Location
+    uLPOper.sTLOCN     = toLocation   ' to Location
+    uLPOper.nQty       = 1     ' Operation Qty.
+    uLPOper.bIsPlate   = isPlate                 ' Plate or Item
+    uLPOper.bDetach    = True                      ' remove from LP
+    '
+  End If 'If mbIsPlate
+  '
+  If Not LP_AttachDetach(uLPOper, uLP102) Then
+    errorMessage = GetMsg(40)
+    If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+    GoTo LPDone
+  End If
+  '
+  If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+  LPDone:
+
+  DetachAllItems2 = True
+End Function
+
+Private Function DetachItem(ByVal theLineItem As LineItem, theOrder As Order, errorMessage As String) As Boolean
+  Dim operation As LPOper
+  operation.sLPID = theLineItem.Id
+  operation.sPALP = theLineItem.parentId
+  operation.sFMCU = theLineItem.branch
+  operation.sTMCU = theOrder.branch
+  operation.sFLOCN = theLineItem.location
+  operation.sTLOCN = " "
+  operation.sTMCU = branch
+  operation.nQty = theLineItem.quantity
+  operation.bIsPlate = True
+  operation.bDetach = True
+
+  Dim detail As LP102Data
+  Call LP102_Reset(detail)
+
+  If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+
+  App.SetValue("LPITVersion", "AMS0001")
+  App.SetValue("tmMCU", operation.sFMCU)
+  App.SetValue("tmCISY", 2)
+  App.SetValue("tmCO", company)
+
+  If Not LP_AttachDetach(operation, detail) Then
+    errorMessage = GetMsg(40)
+    If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+    GoTo LPDone
+  End If
+
+  DetachItem = True
+
+LPDone:
+  If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+End Function
+
+Private Function ReclassItem(ByVal theLineItem As LineItem, ByVal theOrder As Order, errorMessage As String) As Boolean
+  Dim emProc As New EmbeddedProc
+
+  Const sVersion = "AMS0002"
+  Const sPgm = "P4116"
+
+  emProc.Name       = "TIMIR0100_AMS"
+  emProc.DataSource = gsDataSource
+
+  ' NOTE: transfer will already have occurred; therefore the
+  ' location and branch are that of the order.
+
+  Dim sTDSC As String
+  sTDSC = Trim(theLineItem.parentId)
+  If Len(sTDSC) = 0 Then sTDSC = Trim(theLineItem.Id)
+
+  emProc.Param("tmCO")       = company
+  emProc.Param("tmMCU")      = theOrder.branch
+  emProc.Param("tmLITM")     = theLineItem.Item
+  emProc.Param("tmQTY")      = theLineItem.quantity
+  emProc.Param("tmUOM")      = theLineItem.unitOfMeasure
+  emProc.Param("tmLOCN")     = " "
+  emProc.Param("tmLOTN")     = theLineItem.lotNumber
+  emProc.Param("tmTOCO")     = company
+  emProc.Param("tmTOMCU")    = branch
+  emProc.Param("tmTOLITM")   = theOrder.Item
+  emProc.Param("tmTODSC1")   = "" ' TODO?
+  emProc.Param("tmTOLOCN")   = " "
+  emProc.Param("tmTOLOTN")   = theLineItem.batchCode
+  emProc.Param("tmTOQTY")    = theLineItem.toQuantity
+  emProc.Param("tmTOUOM")    = theOrder.unitOfMeasure
+  emProc.Param("tmMMEJ")     = "" ' TODO?
+  emProc.Param("tmLOTS")     = " "
+  emProc.Param("tmDCTO")     = GetProcOpt(sPgm, sVersion, "1;1")
+  emProc.Param("tmDRKY")     = ""
+  emProc.Param("tmTDSC")     = sTDSC ' theLineItem.parentId ' TODO?
+  emProc.Param("tmZVERSION") = sVersion
+  emProc.Param("tmPGM")      = sPgm
+  emProc.Param("tmExpDtVal") = "" ' TODO?
+  emProc.Param("tmUser")     = App.User
+
+  Debug.Print("tmCO: " & emProc.Param("tmCO"))
+  Debug.Print("tmMCU: " & emProc.Param("tmMCU"))
+  Debug.Print("tmLITM: " & emProc.Param("tmLITM"))
+  Debug.Print("tmQTY: " & emProc.Param("tmQTY"))
+  Debug.Print("tmUOM: " & emProc.Param("tmUOM"))
+  Debug.Print("tmLOCN: " & emProc.Param("tmLOCN"))
+  Debug.Print("tmLOTN: " & emProc.Param("tmLOTN"))
+  Debug.Print("tmTOCO: " & emProc.Param("tmTOCO"))
+  Debug.Print("tmTOMCU: " & emProc.Param("tmTOMCU"))
+  Debug.Print("tmTOLITM: " & emProc.Param("tmTOLITM"))
+  Debug.Print("tmTODSC1: " & emProc.Param("tmTODSC1"))
+  Debug.Print("tmTOLOCN: " & emProc.Param("tmTOLOCN"))
+  Debug.Print("tmTOLOTN: " & emProc.Param("tmTOLOTN"))
+  Debug.Print("tmTOQTY: " & emProc.Param("tmTOQTY"))
+  Debug.Print("tmTOUOM: " & emProc.Param("tmTOUOM"))
+  Debug.Print("tmMMEJ: " & emProc.Param("tmMMEJ"))
+  Debug.Print("tmLOTS: " & emProc.Param("tmLOTS"))
+  Debug.Print("tmDCTO: " & emProc.Param("tmDCTO"))
+  Debug.Print("tmDRKY: " & emProc.Param("tmDRKY"))
+  Debug.Print("tmTDSC: " & emProc.Param("tmTDSC"))
+  Debug.Print("tmZVERSION: " & emProc.Param("tmZVERSION"))
+  Debug.Print("tmPGM: " & emProc.Param("tmPGM"))
+  Debug.Print("tmExpDtVal: " & emProc.Param("tmExpDtVal"))
+  Debug.Print("tmUser: " & emProc.Param("tmUser"))
+
+  If Not emProc.Execute Then
+    errorMessage = GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    Exit Function
+  End If
+
+  ReclassItem = True
+End Function
+' This local version of the same funcion found in RFgen.bas will suppress the error message
+' that is raised normally by skipping unit conversions. This can be safely bypassed to
+' process the reclass because the conversion is done elsewhere.
+Private Function GetItemInfoLocal( _
+  ByVal sMCU As String, _
+  ByVal sLITM As String, _
+  ByRef cTNID As String, _
+  ByRef nITM As Long, _
+  ByRef sAITM As String, _
+  ByRef sUOM As String, _
+  ByRef nQty As Currency _
+) As Boolean
+  On Error Resume Next
+  '
+  Dim sSql  As String
+  Dim sCols As String
+  Dim sRows As String
+
+  GetItemInfoLocal = False
+  '
+  ' Get default information for this item
+  '
+  sSql = "select IBITM, IBAITM from  F4102" & _
+         " where IBLITM = '" & sLITM & "' and IBMCU = '" & sMCU & "'"
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNID, "5", "F4102", Replace(sSql, "'", "`"))
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSql
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNID, "6", "F4102", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+  '
+  nITM  = DB.Extract(sCols,sRows,1,"IBITM")
+  sAITM = DB.Extract(sCols,sRows,1,"IBAITM")
+  '
+  ' Get UOM2 for this item
+  '
+  sSql = "select IMUOM2 from F4101" & _
+         " where IMLITM = '" & sLITM & "' "
+  '
+  If Ext(gsLog,5) = "1" Then Call TranLog(cTNID, "5", "F4101", Replace(sSql, "'", "`"))
+
+  DB.Execute(sSql,sCols,sRows)
+  '
+  If (Len(sRows) = 0) Then
+    App.LogError "DB.Execute", "SQL call did not return any rows" & vbCrLf & sSql
+    If Ext(gsLog,6) = "1" Then Call TranLog(cTNID, "6", "F4101", Replace(sSql, "'", "`"))
+    Exit Function
+  End If
+
+  GetItemInfoLocal = True
+End Function
+</Code>
