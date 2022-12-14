@@ -6,4 +6,5 @@
 <MenuItem Id="FIMIA0100" Desc="Adjustments" Options="-Pgm=P4114 -Vers=AMS0001" />
 <MenuItem Id="FIMIR0100" Desc="Reclassifications" Options="-Pgm=P4116 -Vers=AMS0002" />
 <MenuItem Id="ERP_TEST" Desc="ERP Connection Test" />
+<MenuItem Id="FLBPR0100_AMS" Desc="Label Print" />
 </Record>

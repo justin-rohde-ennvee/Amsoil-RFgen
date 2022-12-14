@@ -1,0 +1,257 @@
+﻿<Record FileDesc="BP41 Label Print" FileVersion="5.0.8.0" Desc="BP41 Label Print" Group="AMS" LinkTo="No Links" LinkType="0" PromptList="txtDOCO&vm;txtQty&vm;txtPrinter&vm;txtAccept" ImageList="0&vm;0&vm;0&vm;0" AuthTableList="0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtDOCO" />
+<SchemaParam Linked="0" Attr="2" Name="txtQty" />
+<SchemaParam Linked="0" Attr="3" Name="txtPrinter" />
+<SchemaParam Linked="0" Attr="4" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtDOCO" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="22" Width="33" Height="22" AnchorRight="197" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO#" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQty" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="44" Width="33" Height="22" AnchorRight="165" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="87" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="44" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="44" Width="80" Height="22" AnchorRight="159" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPrinter" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="66" Width="65" Height="22" AnchorRight="165" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Printer" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="66" Width="80" Height="22" AnchorRight="87" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="66" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="66" Width="80" Height="22" AnchorRight="159" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="88" Width="153" Height="22" AnchorRight="165" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="143" Top="88" Width="0" Height="22" AnchorRight="87" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="88" Width="80" Height="22" AnchorRight="159" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="BP 41 Label Print" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Private Const cTNID = "FLBPR0100_AMS"
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+
+  Dim emCreatecustomLabelWrapper As New EmbeddedProc
+
+  emCreatecustomLabelWrapper.Clear
+  emCreatecustomLabelWrapper.Name = "CreateCustomLabelWrapper"
+  emCreatecustomLabelWrapper.DataSource = "JDE"
+
+  emCreatecustomLabelWrapper.Param("WorkOrderNumber_DOCO") = App.GetValue("tmDOCO")
+  emCreatecustomLabelWrapper.Param("LabelType_Z55LBTY") = "PL"
+  emCreatecustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
+  emCreatecustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = App.GetValue("tmPrinter")
+  emCreatecustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0 'App.GetValue("tmQTY")
+  emCreatecustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
+  emCreatecustomLabelWrapper.Param("FFCreate_YN") = " "
+  emCreatecustomLabelWrapper.Param("FFDataFormat_EV01") = " "
+  emCreatecustomLabelWrapper.Param("FFDelimiter_EV01") = " "
+  emCreatecustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
+  emCreatecustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
+  emCreatecustomLabelWrapper.Param("SuppressError_YN") = " "
+  emCreatecustomLabelWrapper.Param("LotNumber_LOTN") = " "
+  emCreatecustomLabelWrapper.Param("IssuedQuantity_TRQT") = App.GetValue("tmQTY")
+
+  If Not emCreatecustomLabelWrapper.Execute Then
+    If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emCreatecustomLabelWrapper.Name, "", emCreatecustomLabelWrapper)
+    App.MsgBox("Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description)
+    Exit Sub
+  End If
+
+  If emCreatecustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
+    App.MsgBox(emCreatecustomLabelWrapper.Param("ErrorMessage_Z55LBED"))
+    Exit Sub
+  End If
+
+  Cancel = False
+End Sub
+
+Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  txtAccept.Caption = "Enter to Accept..."
+End Sub
+
+Public Sub txtAccept_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = _
+    " select WAMCU, WAUORG, WAITM, I0Z55LBOR" & _
+    " from F4801" & _
+    " left join F554101C on I0ITM = WAITM" & _
+    " where WADOCO = " & Rsp
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    App.MsgBox("Work order # not found.")
+    Cancel = True
+    Exit Sub
+  End If
+
+  App.SetValue("tmMCU", DB.Extract(sCols, sRows, 1, "WAMCU"))
+  App.SetValue("tmDOCO", Val(Rsp))
+  App.SetValue("tmITM", DB.Extract(sCols, sRows, 1, "WAITM"))
+  App.SetValue("tmLBOR", Trim(DB.Extract(sCols, sRows, 1, "I0Z55LBOR")))
+
+  txtQty.Text = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "WAUORG"))
+End Sub
+
+Public Sub txtPrinter_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmPrinter", "")
+End Sub
+
+Public Sub txtPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  Rsp = UCase(Trim(Rsp))
+
+  sSQL = _
+    " select count(*)" & _
+    " from F0005" & _
+    " where DRSY = '55'" & _
+    " and DRRT = 'LP'" & _
+    " and DRKY = '" & Rsp & "'" & _
+    " and DRSPHD = '" & Trim(App.GetValue("tmMCU")) & "'"
+
+  If App.GetValue("tmLBOR") <> "" Then sSQL &= " and DRDL02 = '%tmLBOR'"
+
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) = 0 Then
+    App.MsgBox("Invalid printer.")
+    Cancel = True
+    Exit Sub
+  End If
+
+  App.SetValue("tmPrinter", Rsp)
+End Sub
+
+Public Sub txtPrinter_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim oList As New SearchList
+
+  sSQL = _
+    " select DRKY, DRDL01" & _
+    " from F0005" & _
+    " where DRSY = '55'" & _
+    " and DRRT = 'LP'" & _
+    " and DRSPHD = '" & Trim(App.GetValue("tmMCU")) & "'"
+
+  If App.GetValue("tmLBOR") <> "" Then sSQL &= " and DRDL02 = '%tmLBOR'"
+
+  oList.SetColumn(1, "Printer", -1)
+  oList.ShowEmptyList = True
+  oList.SQL = sSQL
+
+  Rsp = oList.ShowList
+  Cancel = Rsp = ""
+End Sub
+
+Public Sub txtQty_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmQTY", "")
+End Sub
+
+Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim nQty As Currency
+
+  Cancel = True
+
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+
+  nQty = Val(Rsp)
+
+  If nQty = 0 Then
+    App.MsgBox GetMsg(182)
+    Exit Sub
+  End If
+
+  If nQty < 0 Then
+    App.MsgBox GetMsg(167)
+    Exit Sub
+  End If
+
+  Cancel = False
+  App.SetValue("tmQTY", nQty)
+End Sub
+</Code>
