@@ -268,7 +268,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       emF3111WOIssuesEditLine.Param("IssuesTransactionDate")      = sTNDate
       emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = ConvDecimalsFromSQL("UORG",DB.Extract(sCols,sRows,1,"WMUORG"))
       emF3111WOIssuesEditLine.Param("PartIssuedQuantity")         = ConvDecimalsFromSQL("TRQT",DB.Extract(sCols,sRows,1,"WMTRQT"))
-      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = 0
+      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = emF3111WOIssuesEditLine.Param("PartIssuedQuantity") ' 0
       emF3111WOIssuesEditLine.Param("PartUnitOfMeasure")          = tmUOM
       emF3111WOIssuesEditLine.Param("PartMaterialStatus")         = "20" ' NEW tmSTATUS
       emF3111WOIssuesEditLine.Param("PartBusinessUnit")           = ""
@@ -469,7 +469,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       emF3111WOIssuesEditLine.Param("IssuesTransactionDate")      = sTNDate
       emF3111WOIssuesEditLine.Param("PartOrderQuantity")          = ConvDecimalsFromSQL("UORG",DB.Extract(sCols,sRows,1,"WMUORG"))
       emF3111WOIssuesEditLine.Param("PartIssuedQuantity")         = ConvDecimalsFromSQL("TRQT",DB.Extract(sCols,sRows,1,"WMTRQT"))
-      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = 0
+      emF3111WOIssuesEditLine.Param("PartUnaccDirectLabor")       = emF3111WOIssuesEditLine.Param("PartIssuedQuantity") '0
       emF3111WOIssuesEditLine.Param("PartUnitOfMeasure")          = tmUOM
       emF3111WOIssuesEditLine.Param("PartMaterialStatus")         = tmSTATUS
       emF3111WOIssuesEditLine.Param("PartBusinessUnit")           = ""
