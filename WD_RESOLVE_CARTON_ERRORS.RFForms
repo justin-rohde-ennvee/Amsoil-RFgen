@@ -1,0 +1,371 @@
+﻿<Record FileDesc="Resolve Cartonization Errors" FileVersion="5.0.8.0" Desc="Resolve Cartonization Errors" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtMCU&vm;txtFromSGBT&vm;txtFromSGSQ&vm;chkNewBox&vm;txtEQTY&vm;txtToRQBT&vm;txtToRQSQ&vm;txtAccept" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtFromSGBT" />
+<SchemaParam Linked="0" Attr="3" Name="txtFromSGSQ" />
+<SchemaParam Linked="0" Attr="4" Name="chkNewBox" />
+<SchemaParam Linked="0" Attr="5" Name="txtEQTY" />
+<SchemaParam Linked="0" Attr="6" Name="txtToRQBT" />
+<SchemaParam Linked="0" Attr="7" Name="txtToRQSQ" />
+<SchemaParam Linked="0" Attr="8" Name="txtAccept" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="1">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="26" Width="33" Height="22" AnchorRight="198" AnchorBottom="272" BackColor1="1" BackColor2="1" ForeColor="1" Caption="B/P" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="26" Width="90" Height="22" AnchorRight="2" AnchorBottom="272" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="35" Top="32" Width="65" Height="22" AnchorRight="140" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="108" Top="32" Width="80" Height="22" AnchorRight="124" AnchorBottom="266" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtFromSGBT" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="48" Width="113" Height="22" AnchorRight="118" AnchorBottom="250" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Error Batch #" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="48" Width="90" Height="22" AnchorRight="2" AnchorBottom="250" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="93" Top="53" Width="65" Height="22" AnchorRight="82" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="166" Top="53" Width="73" Height="22" AnchorRight="66" AnchorBottom="245" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtFromSGSQ" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="70" Width="97" Height="22" AnchorRight="134" AnchorBottom="228" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Error Seq #" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="188" Top="70" Width="50" Height="22" AnchorRight="2" AnchorBottom="228" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="93" Top="53" Width="65" Height="22" AnchorRight="82" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="166" Top="53" Width="73" Height="22" AnchorRight="66" AnchorBottom="245" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkNewBox" Attr="4" Check="0" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="92" Width="89" Height="22" AnchorRight="119" AnchorBottom="206" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Create Box" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="7" Top="92" Width="22" Height="22" AnchorRight="211" AnchorBottom="206" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="155" Top="92" Width="73" Height="22" AnchorRight="50" AnchorBottom="206" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="117" Top="92" Width="22" Height="22" AnchorRight="101" AnchorBottom="206" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtEQTY" Attr="5" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="114" Width="41" Height="22" AnchorRight="190" AnchorBottom="182" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Type" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="114" Width="90" Height="22" AnchorRight="2" AnchorBottom="184" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="54" Top="256" Width="65" Height="22" AnchorRight="121" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="127" Top="256" Width="80" Height="22" AnchorRight="105" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtToRQBT" Attr="6" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="136" Width="89" Height="22" AnchorRight="142" AnchorBottom="162" BackColor1="1" BackColor2="1" ForeColor="1" Caption="To Batch #" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="136" Width="90" Height="22" AnchorRight="2" AnchorBottom="162" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtToRQSQ" Attr="7" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="158" Width="73" Height="22" AnchorRight="134" AnchorBottom="140" BackColor1="1" BackColor2="1" ForeColor="1" Caption="To Seq #" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="188" Top="158" Width="50" Height="22" AnchorRight="2" AnchorBottom="140" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="93" Top="53" Width="65" Height="22" AnchorRight="82" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="166" Top="53" Width="73" Height="22" AnchorRight="66" AnchorBottom="245" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="8" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="180" Width="153" Height="22" AnchorRight="78" AnchorBottom="118" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="223" Top="73" Width="0" Height="22" AnchorRight="7" AnchorBottom="225" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="29" Top="88" Width="65" Height="22" AnchorRight="146" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="102" Top="88" Width="80" Height="22" AnchorRight="130" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Resolve Carton Errors" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  txtEQTY.Visible = False
+  txtToRQBT.Visible = False
+  txtToRQSQ.Visible = False
+  txtAccept.Caption = ""
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sEQTY As String
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+  Dim sErrMsg As String
+  Dim nToSGSQ As Long
+
+  If chkNewBox.Checked Then
+    ' Replace the error box type with the new type
+    sSQL = _
+      " update F4611" & _
+      " set R2EQTY = '%tmEQTY'" & _
+      " where R2SGBT = %tmFromSGBT" & _
+      " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", App.GetValue("tmFromSGSQ"))
+    nErrNo = DB.Execute(sSQL, sCols, sRows)
+
+    If nErrNo <> 0 Then
+      App.MsgBox("Error updating box type: " & nErrNo)
+      Cancel = True
+      Exit Sub
+    End If
+  Else
+    ' Get the next sequence # in the destination batch
+    sSQL = _
+      " select max(R2SGSQ)" & _
+      " from F4611" & _
+      " where R2RQBT = %tmToRQBT" & _
+      " and R2RQSQ = " & ConvDecimalsToSQL("RQSQ", App.GetValue("tmToRQSQ"))
+    DB.Execute(sSQL, sCols, sRows)
+
+    nToSGSQ = ConvDecimalsFromSQL("SGSQ", DB.Extract(sCols, sRows, 1, 1)) + 1
+
+    ' Update the 'from' record to include it in the 'to' batch, with
+    ' the same box type as the 'to' batch and next sequence #
+    sSQL = _
+      " update F4611" & _
+      " set R2EQTY = '%tmEQTY'" & _
+      " ,   R2RQBT = %tmToRQBT" & _
+      " ,   R2RQSQ = " & ConvDecimalsToSQL("RQSQ", App.GetValue("tmToRQSQ")) & _
+      " ,   R2SGBT = %tmToRQBT" & _
+      " ,   R2SGSQ = " & ConvDecimalsToSQL("SGSQ", nToSGSQ) & _
+      " where R2RQBT = %tmFromSGBT" & _
+      " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", App.GetValue("tmFromSGSQ"))
+    nErrNo = DB.Execute(sSQL)
+    
+    If nErrNo <> 0 Then
+      App.MsgBox("Error moving item: " & nErrNo)
+      Cancel = True
+      Exit Sub
+    End If
+  End If
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sMCU As String
+  Dim sCompany As String
+  Dim sCategory As String
+  Dim sCart As String
+
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+
+  App.SetValue("tmCO", sCompany)
+  App.SetValue("tmMCU", sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Public Sub txtFromSGBT_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim oList As New SearchList
+  Dim sResult As String
+  Dim sSGSQ As String
+
+  sSQL = _
+    " select R2DOCO, R2LNID/1000, R2LITM, R2TQTY/10000, R2UML1, R2SGBT, R2SGSQ/1000" & _
+    " from F4611" & _
+    " where R2MCU = '%tmMCU'" & _
+    " and R2EQTY = 'ERROR'"
+
+  oList.SetColumn(1, "SO#", -1)
+  oList.SetColumn(2, "Ln", -1)
+  oList.SetColumn(3, "Item", -1, , True)
+  oList.SetColumn(4, "Qty", -1)
+  oList.SetColumn(5, "UM", -1, , True)
+  oList.SetColumn(6, "Batch", 0)
+  oList.SetColumn(7, "Seq", 0)
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SQL = sSQL
+  sResult = oList.ShowList
+
+  Cancel = sResult = ""
+  If Cancel Then Exit Sub
+
+  Rsp = Ext(sResult, 1, 1, 6)
+  txtFromSGBT.text = Rsp
+  App.SetValue("tmFromSGBT", Rsp)
+
+  sSGSQ = Ext(sResult, 1, 1, 7)
+  txtFromSGSQ.text = sSGSQ
+  App.SetValue("tmFromSGSQ", sSGSQ)
+
+  If chkNewBox.Checked Then
+    txtEQTY.Visible = True
+    txtToRQBT.Visible = True
+    txtToRQSQ.Visible = True
+    App.SetFocus(txtEQTY.FieldId)
+  Else
+    txtEQTY.Visible = False
+    txtToRQBT.Visible = True
+    txtToRQSQ.Visible = True
+    App.SetFocus(txtToRQBT.FieldId)
+  End If
+End Sub
+
+Public Sub chkNewBox_Click()
+  On Error Resume Next
+
+  If chkNewBox.Checked Then
+    txtEQTY.Visible = True
+    txtToRQBT.Visible = False
+    txtToRQSQ.Visible = False
+  Else
+    txtEQTY.Visible = False
+    txtToRQBT.Visible = True
+    txtToRQSQ.Visible = True
+  End If
+End Sub
+
+Public Sub txtEQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL As String
+
+  Rsp = UCase(Trim(Rsp))
+  If Len(Rsp) = 0 Then Exit Sub
+
+  sSQL = "select count(*) from F46091 where IDEQTY = '" & Rsp & "'"
+  If Val(FetchFirstResult(sSQL)) = 0 Then
+    App.MsgBox("Invalid Carton Type")
+    Cancel = True
+    Exit Sub
+  End If
+
+  App.SetValue("tmEQTY", Rsp)
+End Sub
+
+Public Sub txtEQTY_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+  sSQL = "select distinct IDEQTY from F46091 order by IDEQTY"
+
+  Dim oList As New SearchList
+  oList.SQL = sSQL
+
+  Rsp = oList.ShowList
+  Cancel = Rsp = ""
+End Sub
+
+Public Sub txtToRQBT_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim oList As New SearchList
+  Dim sResult As String
+  Dim sRQSQ As String
+
+  sSQL = _
+    " select R2RQBT, R2RQSQ/1000, R2EQTY, R2LITM" & _
+    " from F4611" & _
+    " where R2MCU = '%tmMCU'" & _
+    " and R2RQBT = '%tmFromSGBT'" & _
+    " and R2EQTY <> 'ERROR'"
+
+  oList.SetColumn(1, "Batch", -1)
+  oList.SetColumn(2, "Seq", -1)
+  oList.SetColumn(3, "Box", -1)
+  oList.SetColumn(4, "Item", -1)
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+  oList.SQL = sSQL
+  sResult = oList.ShowList
+
+  Cancel = sResult = ""
+  If Cancel Then Exit Sub
+
+  Rsp = Ext(sResult, 1, 1, 1)
+  txtToRQBT.text = Rsp
+  App.SetValue("tmToRQBT", Rsp)
+
+  sRQSQ = Ext(sResult, 1, 1, 2)
+  txtToRQSQ.text = sRQSQ
+  App.SetValue("tmToRQSQ", sRQSQ)
+
+  App.SetValue("tmEQTY", Trim(Ext(sResult, 1, 1, 3)))
+End Sub
+
+Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  txtAccept.Caption = "Enter to Accept..."
+End Sub
+
+Public Sub txtAccept_LostFocus()
+  On Error Resume Next
+
+  txtAccept.Caption = ""
+End Sub
+</Code>

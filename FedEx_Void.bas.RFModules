@@ -1,0 +1,10 @@
+﻿<Record FileDesc="FedEx Void API" FileVersion="5.0.8.0" Desc="FedEx Void API" Group="FedEx" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Function FedEx_VoidShipment(ByVal sLPID As String, sErrMsg As String) As Boolean
+  sErrMsg = "Not yet implemented."
+  Return False
+End Function
+</Code>

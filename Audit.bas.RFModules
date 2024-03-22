@@ -1,0 +1,133 @@
+﻿<Record FileDesc="Auditing Functions" FileVersion="5.0.8.0" Desc="Auditing Functions" />
+<Code>
+Option Explicit
+
+Public Type F554603Record
+  sMCU As String
+  sWAVE As String
+  nPSN As Long
+  sCartID As String
+  sLPID As String
+  sTYFL As String
+  sLITM As String
+  nQty As Currency
+  sUOM As String
+  sRepack As String
+  nStartDateJDE As Long
+  nAST As Long
+  nEndDateJDE As Long
+  nEndTime As Long
+End Type
+
+Public Function WriteTrackingRecord(ByVal trackingRecord As F554603Record, sErrMsg As String) As Boolean
+
+  Dim emGetAuditInfo As New EmbeddedProc
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+
+  emGetAuditInfo.Name = "GetAuditInfo"
+  emGetAuditInfo.DataSource = "JDE"
+  emGetAuditInfo.Execute
+
+  sSQL = _
+  " insert into F554603" & _
+  "  (AEUKID, AEMCU, AE55WAVE, AEPSN, AE55CARTID, AELPID, AETYFL, AELITM, AE55QTY, AEUOM, " & _
+  "   AE55REPACK, AESTRDTJ, AEWWAST, AEENDDTJ, AETMEND, AEUSER, AEUPMJ, AETDAY, AEJOBN, AEPID) " & _
+  " values ($UKID, '$MCU', '$55WAVE', $PSN, '$55CARTID', '$LPID', '$TYFL', '$LITM', $55QTY, '$UOM', " & _
+  "         '$55REPACK', $STRDTJ, $WWAST, $ENDDTJ, $TMEND, '$USER', $UPMJ, $TDAY, '$JOBN', '$PID')"
+
+  sSQL = Replace(sSQL, "$UKID", "(select (isnull(max(AEUKID), 0) + 1) from F554603)")
+  sSQL = Replace(sSQL, "$MCU", trackingRecord.sMCU)
+  sSQL = Replace(sSQL, "$55WAVE", trackingRecord.sWAVE)
+  sSQL = Replace(sSQL, "$PSN", CStr(trackingRecord.nPSN))
+  sSQL = Replace(sSQL, "$55CARTID", trackingRecord.sCartID)
+  sSQL = Replace(sSQL, "$LPID", trackingRecord.sLPID)
+  sSQL = Replace(sSQL, "$TYFL", trackingRecord.sTYFL)
+  sSQL = Replace(sSQL, "$LITM", trackingRecord.sLITM)
+  sSQL = Replace(sSQL, "$55QTY", CStr(ConvDecimalsToSQL("TQTY", trackingRecord.nQty)))
+  sSQL = Replace(sSQL, "$UOM", trackingRecord.sUOM)
+  sSQL = Replace(sSQL, "$55REPACK", trackingRecord.sRepack)
+  sSQL = Replace(sSQL, "$STRDTJ", CStr(trackingRecord.nStartDateJDE))
+  sSQL = Replace(sSQL, "$WWAST", CStr(trackingRecord.nAST))
+  sSQL = Replace(sSQL, "$ENDDTJ", CStr(trackingRecord.nEndDateJDE))
+  sSQL = Replace(sSQL, "$TMEND", CStr(trackingRecord.nEndTime))
+  sSQL = Replace(sSQL, "$USER", UCase(App.User))
+  sSQL = Replace(sSQL, "$PID", "RFGEN")
+  sSQL = Replace(sSQL, "$JOBN", Left(emGetAuditInfo.Param("MachineKey"), 10))
+  sSQL = Replace(sSQL, "$UPMJ", ConvDatetoJDE(emGetAuditInfo.Param("Date")))
+  sSQL = Replace(sSQL, "$TDAY", emGetAuditInfo.Param("Time"))
+
+  nErrNo = DB.Execute(sSQL)
+
+  WriteTrackingRecord = nErrNo = 0
+
+  If Not WriteTrackingRecord Then
+    sErrMsg = "Failed to write tracking record: error code " & nErrNo
+  End If
+End Function
+
+Public Function WritePerformanceRecord( _
+  ByVal sMCU As String, _
+  ByVal sLITM As String, _
+  Optional ByVal nFromQty As Currency = 0, _
+  Optional ByVal nToQty As Currency = 0, _
+  ByVal sUOM As String, _
+  Optional ByVal sFromLPID As String = "", _
+  Optional ByVal sToLPID As String = "", _
+  Optional ByVal sFromLOCN As String = "", _
+  Optional ByVal sToLOCN As String = "", _
+  Optional ByVal sFromEQTY As String = "", _
+  Optional ByVal sToEQTY As String = "", _
+  ByVal sTYFL As String, _
+  sErrMsg As String _
+) As Boolean
+
+  Dim emGetAuditInfo As New EmbeddedProc
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+
+  emGetAuditInfo.Name = "GetAuditInfo"
+  emGetAuditInfo.DataSource = "JDE"
+  emGetAuditInfo.Execute
+
+  sSQL = _
+    " insert into F554604" & _
+    "   (ATUKID, ATMCU, ATLITM, AT55QTYFR, AT55QTYTO, ATUOM, AT55LPIDFR, AT55LPIDTO, ATLOCF," & _
+    "    ATLOCNTO, ATFRMEQTY, ATTOEQTY, ATTYFL, ATUSER, ATUPMJ, ATTDAY, ATJOBN, ATPID)" & _
+    " values ($UKID, '$MCU', '$LITM', $55QTYFR, $55QTYTO, '$UOM', '$55LPIDFR', '$55LPIDTO', '$LOCF'," & _
+    "         '$LOCNTO', '$FRMEQTY', '$TOEQTY', '$TYFL', '$USER', $UPMJ, $TDAY, '$JOBN', '$PID')"
+
+  sSQL = Replace(sSQL, "$UKID", "(select (isnull(max(ATUKID), 0) + 1) from F554604)")
+  sSQL = Replace(sSQL, "$MCU", sMCU)
+  sSQL = Replace(sSQL, "$LITM", sLITM)
+  sSQL = Replace(sSQL, "$55QTYFR", CStr(ConvDecimalsToSQL("TQTY", nFromQty)))
+  sSQL = Replace(sSQL, "$55QTYTO", CStr(ConvDecimalsToSQL("TQTY", nToQty)))
+  sSQL = Replace(sSQL, "$UOM", sUOM)
+  sSQL = Replace(sSQL, "$55LPIDFR", sFromLPID)
+  sSQL = Replace(sSQL, "$55LPIDTO", sToLPID)
+  sSQL = Replace(sSQL, "$LOCF", sFromLOCN)
+  sSQL = Replace(sSQL, "$LOCNTO", sToLOCN)
+  sSQL = Replace(sSQL, "$FRMEQTY", sFromEQTY)
+  sSQL = Replace(sSQL, "$TOEQTY", sToEQTY)
+  sSQL = Replace(sSQL, "$TYFL", sTYFL)
+  sSQL = Replace(sSQL, "$USER", UCase(App.User))
+  sSQL = Replace(sSQL, "$PID", "RFGEN")
+  sSQL = Replace(sSQL, "$JOBN", Left(emGetAuditInfo.Param("MachineKey"), 10))
+  sSQL = Replace(sSQL, "$UPMJ", ConvDatetoJDE(emGetAuditInfo.Param("Date")))
+  sSQL = Replace(sSQL, "$TDAY", emGetAuditInfo.Param("Time"))
+
+  nErrNo = DB.Execute(sSQL)
+
+  'Stop
+
+  WritePerformanceRecord = nErrNo = 0
+
+  If Not WritePerformanceRecord Then
+    sErrMsg = "Failed to write performance record: error code " & nErrNo
+  End If
+End Function
+</Code>

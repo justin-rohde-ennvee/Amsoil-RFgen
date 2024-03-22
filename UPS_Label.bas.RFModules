@@ -1,0 +1,199 @@
+﻿<Record FileDesc="UPS Label API" FileVersion="5.0.8.0" Desc="UPS Label API" Group="UPS" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Const UPS_TEST_TRACKING_NUMBER_LABEL_SUCCESS = "1Z12345E8791315509"
+
+Private Function WriteImage(ByVal sBytes As String, ByVal sFilename As String, sErrMsg As String) As Boolean
+  On Error GoTo OnError
+
+  Dim xml As New MSXML2.DOMDocument60
+  Dim node As IXMLDOMElement
+  Dim outStream As New ADODB.Stream
+
+  WriteImage = False
+
+  Set node = xml.createElement("base64")
+  node.dataType = "bin.base64"
+  node.text = sBytes
+
+  outStream.Type = adTypeBinary
+  outStream.open
+  outStream.Write(node.nodeTypedValue)
+  outStream.SaveToFile(sFilename, adSaveCreateOverWrite)
+  outStream.Close
+
+  WriteImage = True
+
+OnError:
+  ' clean up
+  If Not outStream Is Nothing Then
+    If outStream.State = adStateOpen Then outStream.Close
+  End If
+  Set outStream = Nothing
+
+  If Err.Number <> 0 Then sErrMsg = "Unable to save label image: (" & Err.Number & ") " & Err.Description
+End Function
+
+Public Function UPS_PrintLabel( _
+  ByVal sLPID As String, _
+  ByVal nPrinterNumber As Long, _
+  sErrMsg As String _
+) As Boolean
+  Dim sJobName As String
+  Dim sUser As String
+  Dim sSrc As String
+  Dim sDst As String
+
+  On Error GoTo OnError
+
+  sJobName = "UPS_" & sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
+
+  Open sSrc For Output As #1
+
+  Print #1, "*Format," & "UPS.lwl"
+  Print #1, "*JOBNAME," & sJobName
+  Print #1, "*QUANTITY," & 1
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+'  Print #1, "image_name, " & sLPID & ".gif"
+  Print #1, "*PRINTLABEL"
+
+  Close #1
+
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
+  Return True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = Err.Description
+End Function
+
+Public Function UPS_SaveLabel(ByVal sLPID As String, ByVal sImageBytes As String, sErrMsg As String)
+  Dim sImageFile As String
+
+  sImageFile = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".gif"
+  WriteImage(sImageBytes, sImageFile, sErrMsg)
+
+  sImageFile = SYS.EnvironmentProperty("LPSImagesFolder") & "UPS.gif"
+  If Not WriteImage(sImageBytes, sImageFile, sErrMsg) Then Exit Function
+
+  Return sErrMsg = ""
+End Function
+
+Public Function UPS_RecoverLabel(ByVal sTrackingNumber As String, sErrMsg As String) As String
+  Dim sBody As String
+  Dim sToken As String
+  Dim bSuccess As Boolean
+  Dim sResponseStatus As String
+  Dim sResponseText As String
+  Dim oResponseJson As Scripting.Dictionary
+  Dim jsonParser As New VbsJson
+  Dim sCode As String
+  Dim sMessage As String
+  Dim sImageBytes As String
+
+  On Error GoTo OnError
+
+  App.Balloon("Authorizing...", 1)
+
+  If Not UPS_GetToken(sToken, sErrMsg) Then Return ""
+
+  App.Balloon("Sending shipping request...", -1)
+
+  sBody = UPS_LabelRecoveryJson(sTrackingNumber)
+  bSuccess = UPS_SendLabelRecoveryRequest(sToken, sBody, sResponseStatus, sResponseText)
+
+  App.Balloon("", 0)
+
+  Set oResponseJson = jsonParser.Decode(sResponseText)
+
+  If Not bSuccess Then
+    If Not UPS_ParseResponseError(oResponseJson, sCode, sMessage) Then sErrMsg = "HTTP status code: " & sResponseStatus
+    sErrMsg = "(" & sCode & ") " & sMessage
+    Return ""
+  End If
+
+  If Not UPS_ParseLabelRecoveryResponse(oResponseJson, sCode, sImageBytes, sErrMsg) Then
+    If sErrMsg = "" Then sErrMsg = "Failed to process label image."
+    Return ""
+  End If
+
+  Return sImageBytes
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = "(" & Err.Number & ") " & Err.Description
+  Return ""
+End Function
+
+Private Function UPS_SendLabelRecoveryRequest( _
+  ByVal sToken As String, _
+  ByVal sRequestBody As String, _
+  sResponseStatus As String, _
+  sResponseText As String _
+) As Boolean
+  Dim oHttp As New XMLHTTP60
+  Const sBaseURL As String = SYS.EnvironmentProperty("UPSBaseURL")
+
+  oHttp.open("POST", UPS_BASE_URL & "/api/labels/v1/recovery")
+  oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
+  oHttp.setRequestHeader("Content-Type", "application/json")
+  oHttp.setRequestHeader("Accept", "application/json")
+  oHttp.Send(sRequestBody)
+
+  sResponseStatus = CStr(oHttp.status)
+  sResponseText = oHttp.responseText
+
+  Return oHttp.status = 200
+End Function
+
+Private Function UPS_ParseLabelRecoveryResponse( _
+  ByVal oResponse As Scripting.Dictionary, _
+  sCode As String, _
+  sImageBytes As String, _
+  sErrMsg As String _
+) As Boolean
+  If Not oResponse.Exists("LabelRecoveryResponse") Then
+    sErrMsg = "Missing response component: LabelRecoveryResponse"
+    Return False
+  End If
+
+  sCode = oResponse("LabelRecoveryResponse")("LabelResults")("LabelImage")("LabelImageFormat")("Code")
+  sImageBytes = oResponse("LabelRecoveryResponse")("LabelResults")("LabelImage")("GraphicImage")
+
+  Return True
+End Function
+
+Private Function UPS_LabelRecoveryJson(ByVal sTrackingNumber As String) As String
+  Dim sBody As String
+
+  sBody = _
+    "{" & _
+    "  LabelRecoveryRequest: {" & _
+    "    LabelSpecification: {" & _
+    "      HTTPUserAgent: 'Mozilla/4.5'," & _
+    "      LabelImageFormat: {" & _
+    "        Code: 'ZPL'," & _
+    "        LabelStockSize: {" & _
+    "          Height: '6'," & _
+    "          Width: '4'" & _
+    "        }" & _
+    "      }" & _
+    "    }," & _
+    "    Request: {" & _
+    "      RequestOption: 'Non_Validate'," & _
+    "      SubVersion: '1903'," & _
+    "      TransactionReference: { CustomerContext: '' }" & _
+    "    }," & _
+    "    TrackingNumber: '$TRACKING_NUMBER'" & _
+    "  }" & _
+    "}"
+
+  sBody = Replace(sBody, "$TRACKING_NUMBER", sTrackingNumber)
+
+  Return sBody
+End Function
+</Code>

@@ -1,0 +1,174 @@
+﻿<Record FileDesc="Box Swap" FileVersion="5.0.8.0" Desc="Box Swap" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtLPID&vm;lblDSC1&vm;btnSwapBox&vm;txtBox" ImageList="0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="2" Name="lblDSC1" />
+<SchemaParam Linked="0" Attr="3" Name="btnSwapBox" />
+<SchemaParam Linked="0" Attr="4" Name="txtBox" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+</Displays>
+<Form Type="0" Attr="0" LinkMode="1">
+<Controls>
+<Control Type="1" FieldId="txtLPID" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="33" Width="81" Height="22" AnchorRight="170" AnchorBottom="265" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Carton ID" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="103" Top="33" Width="130" Height="22" AnchorRight="7" AnchorBottom="265" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblDSC1" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="54" Width="65" Height="22" AnchorRight="186" AnchorBottom="244" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblDSC1" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="135" Top="65" Width="49" Height="22" AnchorRight="56" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnSwapBox" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Swap Box" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="140" Top="78" Width="90" Height="22" AnchorRight="10" AnchorBottom="220" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="70" Top="194" Width="80" Height="44" AnchorRight="162" AnchorBottom="82" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtBox" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="54" Top="256" Width="65" Height="22" AnchorRight="121" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="78" Width="120" Height="22" AnchorRight="110" AnchorBottom="220" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="54" Top="256" Width="65" Height="22" AnchorRight="121" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="127" Top="256" Width="80" Height="22" AnchorRight="105" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Box Swap" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+Option Explicit
+
+Public Sub btnSwapBox_Click()
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sFromEQTY As String
+  Dim sLPID As String
+  Dim sLOCN As String
+  Dim sErrMsg As String
+  
+  sSQL = _
+    " select LMDSC1, LMLOCN" & _
+    " from F55102" & _
+    " inner join F55101 on LMLPID = LDLPID" & _
+    " where LDLPID = '%tmLPID'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  sLOCN = DB.Extract(sCols, sRows, 1, "LMLOCN")
+  sFromEQTY = DB.Extract(sCols, sRows, 1, "LMDSC1")
+  sLPID = App.GetValue("tmLPID")
+
+  DB.Execute("update F55101 set LMDSC1 = '%tmEQTY' where LMLPID = '%tmLPID'")
+
+  If Not WritePerformanceRecord( _
+    App.GetValue("tmMCU"), "", 0, 0, "", sLPID, sLPID, sLOCN, sLOCN, _
+    sFromEQTY, App.GetValue("tmEQTY"), "2", sErrMsg _
+  ) Then
+    App.MsgBox(sErrMsg)
+  End If
+
+  App.ExitForm
+End Sub
+
+Public Sub Form_Load()
+  On Error Resume Next
+
+  lblDSC1.Caption = ""
+  txtLPID.text = App.GetValue("LPID")
+  If txtLPID.text <> "" Then txtLPID.DisplayOnly = True
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+
+Public Sub txtBox_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL As String
+
+  Rsp = UCase(Trim(Rsp))
+
+  sSQL = "select count(*) from F46091 where IDEQTY = '" & Rsp & "'"
+  If Val(FetchFirstResult(sSQL)) = 0 Then
+    App.MsgBox("Invalid Carton Type")
+    Cancel = True
+    Exit Sub
+  End If
+
+  App.SetValue("tmEQTY", Rsp)
+End Sub
+
+Public Sub txtBox_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim sSQL As String
+  sSQL = "select distinct IDEQTY from F46091 order by IDEQTY"
+
+  Dim oList As New SearchList
+  oList.SQL = sSQL
+
+  Rsp = oList.ShowList
+  Cancel = Rsp = ""
+End Sub
+
+Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sTrackingNumber As String
+  Dim nCost As Currency
+
+  Rsp = UCase(Trim(Rsp))
+
+  sSQL = "select LMDSC1 from F55101 where LMLPID = '" & Rsp & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    App.MsgBox("Invalid Carton ID")
+    Cancel = True
+    Exit Sub
+  End If
+
+  App.SetValue("tmLPID", Rsp)
+  lblDSC1.Caption = Trim(DB.Extract(sCols, sRows, 1, 1))
+End Sub
+</Code>

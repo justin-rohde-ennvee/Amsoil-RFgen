@@ -1,0 +1,1128 @@
+﻿<Record FileDesc="Pack/Ship Carton" FileVersion="5.0.8.0" Desc="Pack/Ship Carton" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;txtDL02&vm;lblSequence&vm;lblTrackingNumber&vm;lblWeight&vm;lblCost&vm;btnCreateShipment&vm;txtPrinter&vm;btnSwapBox&vm;btnMoveItems&vm;lbxDoco" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="3" Name="lblLPDesc" />
+<SchemaParam Linked="0" Attr="4" Name="txtDL02" />
+<SchemaParam Linked="0" Attr="5" Name="lblSequence" />
+<SchemaParam Linked="0" Attr="6" Name="lblTrackingNumber" />
+<SchemaParam Linked="0" Attr="7" Name="lblWeight" />
+<SchemaParam Linked="0" Attr="8" Name="lblCost" />
+<SchemaParam Linked="0" Attr="9" Name="btnCreateShipment" />
+<SchemaParam Linked="0" Attr="10" Name="txtPrinter" />
+<SchemaParam Linked="0" Attr="11" Name="btnSwapBox" />
+<SchemaParam Linked="0" Attr="12" Name="btnMoveItems" />
+<SchemaParam Linked="0" Attr="13" Name="lbxDoco" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="22" Width="57" Height="22" AnchorRight="179" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="114" Top="22" Width="119" Height="22" AnchorRight="7" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="2" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="44" Width="41" Height="22" AnchorRight="195" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" Caption="LP#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="114" Top="44" Width="119" Height="22" AnchorRight="7" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPDesc" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="114" Top="65" Width="81" Height="22" AnchorRight="45" AnchorBottom="233" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLPDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtDL02" Attr="4" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="84" Width="73" Height="22" AnchorRight="163" AnchorBottom="214" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Carrier:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="114" Top="84" Width="119" Height="22" AnchorRight="7" AnchorBottom="214" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="92" Width="65" Height="22" AnchorRight="27" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="221" Top="92" Width="18" Height="22" AnchorRight="11" AnchorBottom="206" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSequence" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="104" Width="97" Height="22" AnchorRight="139" AnchorBottom="194" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblSequence" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblTrackingNumber" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="122" Width="145" Height="22" AnchorRight="91" AnchorBottom="176" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblTrackingNumber" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblWeight" Attr="7">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="114" Top="104" Width="81" Height="22" AnchorRight="45" AnchorBottom="194" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblWeight" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblCost" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="114" Top="122" Width="65" Height="22" AnchorRight="61" AnchorBottom="176" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblCost" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnCreateShipment" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Create Shipment
+" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="4" Top="142" Width="230" Height="22" AnchorRight="6" AnchorBottom="156" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="684" Top="36" Width="80" Height="44" AnchorRight="163" AnchorBottom="240" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPrinter" Attr="10" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="165" Width="65" Height="22" AnchorRight="171" AnchorBottom="133" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Printer" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="153" Top="165" Width="80" Height="22" AnchorRight="7" AnchorBottom="133" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="34" Top="179" Width="65" Height="22" AnchorRight="141" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="107" Top="179" Width="80" Height="22" AnchorRight="125" AnchorBottom="119" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnSwapBox" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Swap Box" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="4" Top="188" Width="110" Height="22" AnchorRight="126" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="684" Top="36" Width="80" Height="44" AnchorRight="163" AnchorBottom="240" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnMoveItems" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Move Items" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="124" Top="188" Width="110" Height="22" AnchorRight="6" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="684" Top="36" Width="80" Height="44" AnchorRight="163" AnchorBottom="240" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxDoco" Attr="13" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="244" Top="130" Width="65" Height="22" AnchorRight="546" AnchorBottom="168" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="215" Width="230" Height="98" AnchorRight="7" AnchorBottom="7" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="34" Top="108" Width="65" Height="22" AnchorRight="756" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="34" Top="130" Width="256" Height="190" AnchorRight="813" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Pack Confirm - Carton" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2012 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: SHIP CONFIRM LICENSE PLATE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+
+Private Const cTRANDESC = "RFgen WH Pack/Ship"
+Private Const cStatusPickConfirm = "545" ' SO status after pick slip printed
+Private Const cStatusShipConfirm = "560" ' SO status after pack confirm & label created
+Private Const cTNId = "FLPPPC0200_AMS"
+Private Const cDefaultCarrier = "UPS"
+
+Private msPgm       As String
+Private msVersion   As String     ' Pick Confirm
+Private msStatusF   As String     ' Status SDNXTR
+Private msStatusT   As String     ' Status SDNXTR
+Private msStatusLP  As String     ' Status LP after Pick Confirm
+Private msDOCTYPE   As String     ' DocType for Inv.Transfer
+Private mbRelInv    As Boolean    ' True = relieve OnHand inventory
+Private mbAddFr     As Boolean    ' True = allow to add Freight Line
+Private msLPArray   As String
+Private mnPrinter   As Long
+
+Public Sub btnCreateShipment_Click()
+  On Error Resume Next
+
+  Dim nCost As Currency
+  Dim sTrackingNumber As String
+  Dim sErrMsg As String
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nDOCO As Long
+  Dim sLPID As String
+  Dim nAN8 As Long
+  Dim nSHAN As Long
+  Dim nWeight As Currency
+  Dim sAccount As String
+  Dim nSequence As Long
+  Dim nCount As Long
+  Dim tShipmentResponse As ShipmentResponse
+  Dim sDesc As String
+  Dim bCancel As Boolean
+
+  txtPrinter_OnEnter(txtPrinter.text, bCancel, "")
+  If bCancel Then Exit Sub
+
+  App.Balloon("Creating shipment...", -1)
+
+  ' Fetch from and to address numbers and package weight
+  nDOCO = Val(lbxDoco.List.Cell(1, 6).value)
+  sLPID = App.GetValue("tmLPID")
+  sSQL = "select SDAN8, SDSHAN from F4211 where SDDOCO = " & nDOCO
+  DB.Execute(sSQL, sCols, sRows)
+
+  sDesc = "Order #" & nDOCO
+
+  nAN8 = DB.Extract(sCols, sRows, 1, "SDAN8")
+  nSHAN = DB.Extract(sCols, sRows, 1, "SDSHAN")
+
+  nWeight = PackageWeight(App.GetValue("tmLPID"))
+  sAccount = Trim(CStr(App.GetValue("tm55CARS")))
+
+  GetCartonSequence(sLPID, App.GetValue("tmPSN"), nSequence, nCount)
+
+  ' Create shipment
+  Select Case App.GetValue("tmDL02")
+  Case "UPS"
+    tShipmentResponse = UPS_CreateShipment(Val(App.GetValue("tmMCU")), nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID)
+  Case "FedEx"
+    sAccount = SYS.EnvironmentProperty("FedExAccountNumber") ' TODO switch to selected account
+    tShipmentResponse = FedEx_CreateShipment(nAN8, nSHAN, nWeight, sAccount)
+  End Select
+
+  If tShipmentResponse.sErrMsg <> "" Then
+    App.Balloon("", 0)
+    App.MsgBox(tShipmentResponse.sErrMsg)
+    Exit Sub
+  End If
+
+  App.Balloon("Saving package info...", -1)
+  If Not UpdatePackageInformation(sLPID, tShipmentResponse.sTrackingNumber, tShipmentResponse.nCost, sErrMsg) Then
+    App.Balloon("", 0)
+    App.MsgBox(sErrMsg)
+    Exit Sub
+  End If
+
+  App.Balloon("Saving tracking info...", -1)
+  If Not InsertTracking( _
+    App.GetValue("tmPSN"), _
+    App.GetValue("tmDL02"), _
+    sLPID, _
+    tShipmentResponse.nCost, _
+    tShipmentResponse.sTrackingNumber, _
+    nSequence, _
+    sErrMsg _
+  ) Then
+    App.Balloon("", 0)
+    App.MsgBox(sErrMsg)
+    Exit Sub
+  End If
+
+  App.Balloon("Executing JDE Ship Confirm...", -1)
+  If Not ShipEligibleItems(sErrMsg) Then
+    App.Balloon("", 0)
+    App.MsgBox(sErrMsg)
+    Exit Sub
+  End If
+
+  App.Balloon("Printing carton contents label...", 1)
+  If Not PrintCartonContentsLabel(App.GetValue("tmLPID"), mnPrinter, sErrMsg) Then
+    App.MsgBox(sErrMsg)
+  End If
+
+  App.Balloon("Printing shipping label...", 1)
+  If Not UPS_SaveLabel(sLPID, tShipmentResponse.sLabelImageBytes, sErrMsg) Then
+    App.MsgBox("Failed to save label: " & sErrMsg)
+  End If
+
+  If Not UPS_PrintLabel(sLPID, mnPrinter, sErrMsg) Then
+    App.MsgBox(sErrMsg)
+  End If
+
+  App.Balloon("Refreshing statuses...", -1)
+  DB.Execute("update F55101 set LMRNXTR = ' ' where LMLPID = '%tmLPID'")
+  Wait(1)
+
+  txtLPID_OnEnter(txtLPID.text, False, "")
+  txtDL02_OnEnter(txtDL02.text, False, "")
+  App.Balloon("", 0)
+End Sub
+
+Public Sub btnMoveItems_Click()
+  On Error Resume Next
+
+  App.CallForm("WD_BOX_MOVE -LPID=" & App.GetValue("tmLPID"), True)
+End Sub
+
+Public Sub btnResetPack_Click()
+  On Error Resume Next
+
+  DB.Execute("update F55101 set LMRNXTR = '" & cStatusShipConfirm & "', LMVR01 = ' ', LMVR02 = ' ' where LMLPID = '%tmLPID'")
+  DB.Execute("update F55102 set LDRNXTR = '" & cStatusShipConfirm & "' where LDLPID = '%tmLPID'")
+
+  txtLPID_OnEnter(txtLPID.text, False, "")
+End Sub
+
+Public Sub btnShipEligible_Click()
+  On Error Resume Next
+
+  Dim sErrMsg As String
+
+  If Not ShipEligibleItems(sErrMsg) Then
+    App.MsgBox(sErrMsg)
+  End If
+
+  txtLPID_OnEnter(txtLPID.text, False, "")
+End Sub
+
+Public Sub btnSwapBox_Click()
+  On Error Resume Next
+
+  App.CallForm("WD_BOX_SWAP -LPID=" & App.GetValue("tmLPID"), True)
+End Sub
+
+Public Sub Form_OnReturn(ByVal FormName As String)
+  On Error Resume Next
+
+  txtLPID_OnEnter(txtLPID.text, False, "")
+End Sub
+
+Private Function ShipEligibleItems(sErrMsg As String) As Boolean
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+  Dim nDOCO As Long
+  Dim nLNID As Currency
+  Dim nErrNo As Long
+  Dim nPSN As Long
+  Dim sLPID As String
+  Dim sNXTR As String
+
+  nPSN = Val(lbxDoco.List.Cell(1, 10).value)
+
+  ' Are all items on this PSN at least at ship confirm status?
+  ' TODO: what about backordered lines?
+  sSQL = _
+    " select count(*)" & _
+    " from F4211" & _
+    " where SDMCU = '%tmMCU'" & _
+    " and SDPSN = " & nPSN & _
+    " and SDLNTY = 'S'" & _
+    " and SDNXTR = '" & cStatusPickConfirm & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) > 0 Then GoTo Done
+
+  ' Are all boxes containing this PSN closed?
+  sSQL = _
+    " select distinct LDLPID" & _
+    " from F55102" & _
+    " inner join F4211 on SDDOCO = LDRDOCO and SDLNID = LDRLLN" & _
+    " where SDPSN = " & nPSN & _
+    " and SDMCU = '%tmMCU'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i=1 To DB.Count(sRows)
+    sLPID = Trim(DB.Extract(sCols, sRows, i, "LDLPID"))
+
+    ' Check tracking
+    sSQL = "select count(*) from F554602 where CFCNID = '" & sLPID & "' and CFDL01 <> ' '"
+    If Val(FetchFirstResult(sSQL)) = 0 Then GoTo Done
+  Next
+
+  If App.MsgBox("Pick #" & nPSN & " is complete. Ship confirm?", vbYesNo) = vbNo Then GoTo Done
+
+  ' Ship confirm eligible records
+  sSQL = _
+    " select SDDOCO, SDLNID" & _
+    " from F4211" & _
+    " where SDMCU = '%tmMCU'" & _
+    " and SDPSN = " & nPSN & _
+    " and SDLNTY = 'S'" & _
+    " and SDNXTR = '" & cStatusShipConfirm & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i=1 To DB.Count(sRows)
+    nDOCO = DB.Extract(sCols, sRows, i, "SDDOCO")
+    nLNID = ConvDecimalsFromSQL("LNID", DB.Extract(sCols, sRows, i, "SDLNID"))
+
+    App.Balloon("Ship confirm " & i & "/" & DB.Count(sRows), -1)
+
+    If Not ExecuteJDEShipConfirm(nDOCO, nLNID, sErrMsg) Then
+      App.Balloon("", 0)
+      Exit Function
+    End If
+
+    ' Verify the updated status
+    sSQL = _
+      " select SDNXTR" & _
+      " from F4211" & _
+      " where SDMCU = '%tmMCU'" & _
+      " and SDDOCO = " & nDOCO & _
+      " and SDLNID = " & ConvDecimalsToSQL("LNID", nLNID)
+    sNXTR = Trim(FetchFirstResult(sSQL))
+
+    ' Update status in LP detail
+    sSQL = _
+      " update F55102" & _
+      " set LDRNXTR = '" & sNXTR & "'" & _
+      " where LDRDOCO = " & nDOCO & _
+      " and LDRLLN = " & ConvDecimalsToSQL("LNID", nLNID)
+    nErrNo = DB.Execute(sSQL)
+
+    If nErrNo <> 0 Then
+      App.Balloon("", 0)
+      sErrMsg = "Error updating LP detail: " & nErrNo
+      Exit Function
+    End If
+    End_i:
+  Next i
+
+Done:
+  App.Balloon("", 0)
+  ShipEligibleItems = True
+End Function
+
+Function ExecuteJDEShipConfirm(ByVal nDOCO As Long, ByVal nLNID As Currency, sErrMsg As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows
+  Dim emProc  As New EmbeddedProc
+  Dim i As Long
+
+  sSQL = _
+    " select *" & _
+    " from F4211" & _
+    " where SDMCU = '%tmMCU'" & _
+    " and SDDOCO = " & nDOCO & _
+    " and SDLNID = " & ConvDecimalsToSQL("LNID", nLNID)
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    sErrMsg = "Not found: order # " & nDOCO & " line " & nLNID
+    Exit Function
+  End If
+
+  emProc.Name                = "TSOSC0100"
+  emProc.DataSource          = gsDataSource
+  emProc.Param("tmCO")       = DB.Extract(sCols, sRows, 1, "SDCO")
+  emProc.Param("tmMCU")      = DB.Extract(sCols, sRows, 1, "SDMCU")
+  emProc.Param("tmDOCO")     = nDOCO
+  emProc.Param("tmDCTO")     = DB.Extract(sCols, sRows, 1, "SDDCTO")
+  emProc.Param("tmLITM")     = DB.Extract(sCols, sRows, 1, "SDLITM")
+  emProc.Param("tmLOTN")     = DB.Extract(sCols, sRows, 1, "SDLOTN")
+  emProc.Param("tmLOCN")     = DB.Extract(sCols, sRows, 1, "SDLOCN")
+  emProc.Param("tmQTY")      = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "SDUORG"))
+  emProc.Param("tmUOM")      = DB.Extract(sCols, sRows, 1, "SDUOM")
+  emProc.Param("tmLNID")     = nLNID
+  emProc.Param("tmSHIPTO")   = DB.Extract(sCols, sRows, 1, "SDSHAN")
+  emProc.Param("tmCARRIER")  = DB.Extract(sCols, sRows, 1, "SDCARS")
+  emProc.Param("tmLNTY")     = DB.Extract(sCols, sRows, 1, "SDLNTY")
+  emProc.Param("tmUSER")     = App.User
+  emProc.Param("tmPGM")      = "P4205"
+  emProc.Param("tmZVERSION") = "AMS0001" '"RGN0005"
+
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  If Not emProc.Execute Then
+    sErrMsg = GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+    Exit Function
+  End If
+
+  ExecuteJDEShipConfirm = True
+End Function
+
+Function ExecuteJDEShipConfirm2(ByVal nDOCO As Long, sErrMsg As String) As Boolean
+
+  Dim nSOBK   As Currency
+  Dim nSOCN   As Currency
+  Dim emProc  As New EmbeddedProc
+
+  Dim nLNID    As Currency
+  Dim sMCU     As String
+  Dim sLot     As String
+  Dim sLocn    As String
+  Dim sCOMM    As String
+  Dim sITM     As String
+  Dim sLITM    As String
+  Dim sAITM    As String
+  Dim sDesc    As String
+  Dim sDSC1    As String
+  Dim sUOM     As String
+  Dim nType    As Long
+  Dim bHasLots As Boolean
+  Dim sSQL     As String
+  Dim sCols    As String
+  Dim sRows    As String
+  Dim sKey    As String
+  Dim x As Integer
+  Dim iRow As Integer
+  Dim sValCache As String
+  Dim nCnt As Long
+  Dim nMaxQty As Currency
+
+  Dim uLP101 As LP101Data       ' create LP101 Structure
+  Dim uLP102 As LP102Data       ' create LP102 Structure
+
+  App.Balloon("Processing...", -1)
+
+  sSQL = _
+    " select *" & _
+    " from F4211" & _
+    " where SDDOCO = " & nDOCO & _
+    " and SDLNTY = 'S'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    sErrMsg = GetMsg(101)
+    Exit Function
+  End If
+
+  ' Build Datastructure from Listbox (List.Sorted by Line)
+  sValCache = ""                 ' clear datastructure
+  nCnt      = 0                  ' reset counter
+
+  For x = 1 To DB.Count(sRows)
+    sDesc    = DB.Extract(sCols, sRows, x, "SDDSC1")
+    sLot     = Trim(DB.Extract(sCols, sRows, x, "SDLOTN"))
+    sLocn    = Trim(DB.Extract(sCols, sRows, x, "SDLOCN"))
+    sCOMM    = Trim(DB.Extract(sCols, sRows, x, "SDCOMM"))
+    sITM     = Trim(DB.Extract(sCols, sRows, x, "SDITM"))
+    sLITM    = Trim(DB.Extract(sCols, sRows, x, "SDLITM"))
+    nSOBK    = ConvDecimalsFromSQL("SOBK", DB.Extract(sCols,sRows,x,"SDSOBK"))
+    nSOCN    = ConvDecimalsFromSQL("SOCN", DB.Extract(sCols,sRows,x,"SDSOCN"))
+    nLNID    = ConvDecimalsFromSQL("LNID", DB.Extract(sCols,sRows,x,"SDLNID"))
+    nMaxQty = ConvDecimalsFromSQL("SOQS", DB.Extract(sCols,sRows,x,"SDSOQS"))
+
+    App.SetValue("tmDOCO", DB.Extract(sCols, sRows, x, "SDDOCO"))
+    App.SetValue("tmDCTO", DB.Extract(sCols, sRows, x, "SDDCTO"))
+    App.SetValue("tmITM", sITM)
+    App.SetValue("tmLITM", sLITM)
+    App.SetValue("tmLNID", nLNID)
+    App.SetValue("tmUOM",  DB.Extract(sCols, sRows, x, "SDUOM"))
+    App.SetValue("tmITM",  DB.Extract(sCols, sRows, x, "SDITM"))
+    App.SetValue("tmLNTY", DB.Extract(sCols, sRows, x, "SDLNTY"))
+    App.SetValue("tmCO",   DB.Extract(sCols, sRows, x, "SDKCOO"))
+    App.SetValue("tmSOBK", nSOBK)
+    App.SetValue("tmSOCN", nSOCN)
+    App.SetValue("SelCOMM",sCOMM)
+    App.SetValue("tmQTY", nMaxQty)
+    App.SetValue("tmLOTN", sLot)
+    App.SetValue("tmLOCN", sLocn)
+
+    If App.GetValue("tmLOTN") = "" Then App.SetValue("tmLOTN"," ")
+    If App.GetValue("tmLOCN") = "" Then App.SetValue("tmLOCN"," ")
+
+    nSOBK = CCur(App.GetValue("tmSOBK"))
+    nSOCN = CCur(App.GetValue("tmSOCN"))
+
+    If nSOBK <> 0 Then
+      nSOBK = nSOBK - CCur(App.GetValue("tmQTY"))
+    End If
+
+    '                  Company                    Plant                Order Number            Doctype            Line Number        Lot Number         Location
+    sKey = App.GetValue("tmCO") & ";" & App.GetValue("tmMCU") & ";" & App.GetValue("tmDOCO") & ";" & App.GetValue("tmDCTO") & ";" &  App.GetValue("tmLNID") & ";" &  App.GetValue("tmLOTN") & ";" &  App.GetValue("tmLOCN") & ";"
+
+    sValCache = Rep(sValCache, 01, -1, sKey)                    'unique key
+    sValCache = Rep(sValCache, 02, -1, App.GetValue("tmLITM"))    'long Item Number
+    sValCache = Rep(sValCache, 03, -1, App.GetValue("tmITM"))    'short Item Number
+    sValCache = Rep(sValCache, 04, -1, App.GetValue("tmLOCN"))    'Location
+    sValCache = Rep(sValCache, 05, -1, App.GetValue("tmQTY"))    'Picked Qty.
+    sValCache = Rep(sValCache, 06, -1, App.GetValue("tmUOM"))    'Transaction UOM
+    sValCache = Rep(sValCache, 07, -1, App.GetValue("tmLOTN"))    'Lot - / Serial number
+    sValCache = Rep(sValCache, 08, -1, App.GetValue("tmSelComm"))    'Commitment Flag S/H
+    sValCache = Rep(sValCache, 09, -1, App.GetValue("tmSOBK"))    'Backorder Qty.
+    sValCache = Rep(sValCache, 10, -1, App.GetValue("tmSOCN"))    'Canceled Qty
+    sValCache = Rep(sValCache, 11, -1, App.GetValue("tmQTY"))    'Line Qty.
+    sValCache = Rep(sValCache, 12, -1, App.GetValue("tmLNTY"))    'Line Type
+    sValCache = Rep(sValCache, 13, -1, App.GetValue("tmLNID"))    'Line Number
+    sValCache = Rep(sValCache, 14, -1, App.GetValue("tmSHIPTO"))    'Ship To
+    sValCache = Rep(sValCache, 15, -1, App.GetValue("tmCARRIER"))    'Carrier
+    nCnt = nCnt +1
+  Next x
+
+  emProc.Clear
+  emProc.Name                = "TSOSC0200"
+  emProc.DataSource          = gsDataSource
+  emProc.Param("tmCO")       = App.GetValue("tmCO")
+  emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+  emProc.Param("tmDOCO")     = App.GetValue("tmDOCO")
+  emProc.Param("tmDCTO")     = App.GetValue("tmDCTO")
+  emProc.Param("tmValCache") = sValCache
+  emProc.Param("tmCnt")      = nCnt
+  emProc.Param("tmUSER")     = App.User
+  emProc.Param("tmPGM")      = msPgm
+  emProc.Param("tmVERSION")  = msVersion
+
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  If Not emProc.Execute Then
+    sErrMsg = GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+    App.Balloon("", 0)
+    Exit Function
+  End If
+
+  App.Balloon("", 0)
+  ExecuteJDEShipConfirm2 = True
+End Function
+
+Public Sub txtDL02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sDL01 As String
+  Dim s55CARS As String
+  Dim sCNID As String
+
+  sSQL = _
+    " select CFDL01, CF55CARS, CFCNID" & _
+    " from F554602" & _
+    " where CFPSN = " & App.GetValue("tmPSN") & _
+    " and CFDL02 = '" & Rsp & "'" & _
+    " order by case when CFCNID = ' ' then 2 else 1 end"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    App.MsgBox("Invalid carrier.")
+    Cancel = True
+    Exit Sub
+  End If
+
+  s55CARS = DB.Extract(sCols, sRows, 1, "CF55CARS")
+
+  App.SetValue("tmDL02", Rsp)
+  App.SetValue("tm55CARS", s55CARS)
+
+  sSQL = _
+    " select CFDL01, CF55CARS, CFCNID" & _
+    " from F554602" & _
+    " where CFPSN = " & App.GetValue("tmPSN") & _
+    " and CFDL02 = '" & Rsp & "'" & _
+    " and CFCNID = '%tmLPID'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) > 0 Then
+    sDL01 = Trim(DB.Extract(sCols, sRows, 1, "CFDL01"))
+    sCNID = Trim(DB.Extract(sCols, sRows, 1, "CFCNID"))
+
+    App.SetValue("tmDL01", sDL01)
+    App.SetValue("tmCNID", sCNID)
+
+    lblTrackingNumber.Caption = sDL01
+    btnCreateShipment.Visible = False
+    btnMoveItems.Visible = False
+    btnSwapBox.Visible = False
+    txtPrinter.Visible = False
+  Else
+    lblTrackingNumber.Caption = ""
+    btnCreateShipment.Visible = True
+    btnMoveItems.Visible = True
+    btnSwapBox.Visible = True
+    txtPrinter.Visible = True
+  End If
+End Sub
+
+Public Sub txtDL02_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = Not SearchCarriersByPrice(Rsp, App.GetValue("tmPSN"))
+End Sub
+
+Function UpdatePackageInformation( _
+  ByVal sLPID As String, _
+  ByVal sTrackingNumber As String, _
+  ByVal nCost As Currency, _
+  sErrMsg As String _
+) As Boolean
+  Dim sSQL As String
+  Dim nErrNo As Long
+
+  sSQL = _
+    " update F55101" & _
+    " set LMVR01 = '" & sTrackingNumber & "'" & _
+    " ,   LMVR02 = '" & nCost & "'" & _
+    " where LMLPID = '%tmLPID'"
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    sErrMsg = "Error updating tracking and cost: " & nErrNo
+    Exit Function
+  End If
+
+  UpdatePackageInformation = True
+End Function
+
+Private Sub Form_Load()
+  On Error Resume Next
+
+  Dim nPrinter As Integer
+
+  Call SetDisplay()
+
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+
+  lblLPDesc.Caption = ""
+  lblWeight.Caption = ""
+  lblCost.Caption = ""
+  lblSequence.Caption = ""
+  lblTrackingNumber.Caption = ""
+  btnCreateShipment.Visible = False
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+
+  ' get DocType from Proc.Opt.
+  msStatusF = GetProcOpt(msPgm, msVersion, "1;1")
+  msStatusT = GetProcOpt(msPgm, msVersion, "1;2")
+
+  nPrinter = Val(App.UserProperty("PackPrinter"))
+  If nPrinter > 0 Then txtPrinter.text = CStr(nPrinter)
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Does Version relieve Inv?  from Proc.Opt.
+  mbRelInv = True
+  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then mbRelInv = False
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  ' Does Version allow Add Freight?  from Proc.Opt.
+  mbAddFr = True
+  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+
+  If gbPOError Then
+    App.ExitForm
+    Exit Sub
+  End If
+
+  lbxDoco.List.SetColumn(1, "Item", -1)
+  lbxDoco.List.SetColumn(2, "Lot", -1)
+  lbxDoco.List.SetColumn(3, "Qty", -1)
+  lbxDoco.List.SetColumn(4, "UM", -1)
+  lbxDoco.List.SetColumn(5, "Weight (lb)", -1)
+  lbxDoco.List.SetColumn(6, "SO#", -1)
+  lbxDoco.List.SetColumn(7, "Line", -1)
+  lbxDoco.List.SetColumn(8, "LP Sts", -1)
+  lbxDoco.List.SetColumn(9, "JDE Sts", -1)
+  lbxDoco.List.SetColumn(10, "PSN", -1)
+End Sub
+
+Public Sub txtPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  If Val(Rsp) <= 0 Then
+    App.MsgBox("Invalid printer #")
+    Cancel = True
+    Exit Sub
+  End If
+
+  App.UserProperty("PackPrinter") = Rsp
+  mnPrinter = Rsp
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmCO", "")
+  App.SetValue("tmMCU", "")
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sMCU As String
+  Dim sCompany As String
+
+  Rsp = UCase(Trim(Rsp))
+  If (Len(Rsp)=0) Then Exit Sub
+
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+
+  App.SetValue("tmCO", sCompany)
+  App.SetValue("tmMCU", sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  If Not Search_BranchPlant(Rsp) Then Cancel = True
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  App.SetValue("tmLPID", "")
+  App.SetValue("tmNLOCN", "")
+
+  lblLPDesc.Caption = ""
+  lblWeight.Caption = ""
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sPSN As String
+  Dim sCarrierName As String
+  Dim nSequenceNumber As Long
+  Dim nCartonCount As Long
+
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+
+  If Not ValidateCarton(App.GetValue("tmMCU"), Rsp) Then
+    App.MsgBox("Invalid carton ID: does not exist.")
+    Exit Sub
+  End If
+
+  sPSN = PickSlipNumberForCarton(Rsp)
+  If sPSN = "" Then
+    App.MsgBox("Unable to determine pick slip # for carton.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmPSN", sPSN)
+
+  If Not IsCartonFullyPicked(Rsp) Then
+    App.MsgBox("Pick not completed for this carton.")
+    Exit Sub
+  End If
+
+  sCarrierName = GetSelectedCarrierForPSN(sPSN)
+  If sCarrierName = "" Then
+    If HasCarrierForPSN(sPSN, cDefaultCarrier) Then
+      sCarrierName = cDefaultCarrier
+    Else
+      App.MsgBox("No default carrier found: " & cDefaultCarrier)
+      sCarrierName = ""
+    End If
+  End If
+
+  Cancel = False
+
+  App.GetValue("tmLPID", Rsp)
+
+  txtDL02.text = sCarrierName
+
+  If Not GetCartonSequence(Rsp, sPSN, nSequenceNumber, nCartonCount) Then
+    App.MsgBox("Unable to determine carton sequence.")
+    Exit Sub
+  End If
+
+  App.SetValue("tmRQSQ", nSequenceNumber)
+  lblSequence.Caption = "Carton " & nSequenceNumber & " of " & nCartonCount
+
+  ' Display the carton's contents
+  ListItemsInCarton(Rsp)
+End Sub
+
+Private Function IsCartonFullyPicked(ByVal sLPID As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = _
+    " select *" & _
+    " from WDJOBS" & _
+    " where R2LPID = '" & sLPID & "'" & _
+    " and R2PSTB = '321'"
+  DB.UseDataSource("RFgenCustom")
+  DB.Execute(sSQL, sCols, sRows)
+  DB.UseDataSource(0)
+
+  IsCartonFullyPicked = DB.Count(sRows) = 0
+End Function
+
+Private Sub ListItemsInCarton(ByVal sLPID As String)
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+  Dim sLITM As String
+  Dim sLOTN As String
+  Dim nQty As Currency
+  Dim sUOM As String
+  Dim nDOCO As Long
+  Dim nRLLN As Currency
+  Dim sNXTR As String
+  Dim sNXTR_JDE As String
+  Dim sPSN As String
+  Dim nBulkItemWeight As Currency
+  Dim nPackageWeight As Currency
+
+  lbxDoco.List.Clear
+
+  sSQL = _
+    " select *" & _
+    " from F55102" & _
+    " inner join F55101 on LMLPID = LDLPID" & _
+    " left join F4211 on SDMCU = LMMCU and SDDOCO = LDRDOCO and SDLNID = LDRLLN" & _
+    " where LMLPID = '" & sLPID & "'" & _
+    " and SDMCU = '%tmMCU'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  App.SetValue("tmLPID", sLPID)
+  lblLPDesc.Caption = Trim(DB.Extract(sCols, sRows, 1, "LMDSC1"))
+
+  For i=1 To DB.Count(sRows)
+    sLITM = Trim(DB.Extract(sCols, sRows, i, "LDLITM"))
+    sLOTN = Trim(DB.Extract(sCols, sRows, i, "LDLOTN"))
+    nQty = Val(DB.Extract(sCols, sRows, i, "LDUORG"))
+    sUOM = Trim(DB.Extract(sCols, sRows, i, "LDUOM"))
+    nDOCO = DB.Extract(sCols, sRows, i, "LDRDOCO")
+    nRLLN = ConvDecimalsFromSQL("RLLN", DB.Extract(sCols, sRows, i, "LDRLLN"))
+    sNXTR = Trim(DB.Extract(sCols, sRows, i, "LDRNXTR"))
+    sNXTR_JDE = Trim(DB.Extract(sCols, sRows, i, "SDNXTR"))
+    sPSN = Trim(DB.Extract(sCols, sRows, i, "SDPSN"))
+
+    nBulkItemWeight = ItemWeight(sLITM, sUOM) * nQty
+
+    lbxDoco.List.AddItem("", sLITM, sLOTN, nQty, sUOM, nBulkItemWeight, nDOCO, nRLLN, sNXTR, sNXTR_JDE, sPSN)
+    nPackageWeight += nBulkItemWeight
+  Next
+End Sub
+
+Private Function BulkItemWeight(ByVal sLITM As String, ByVal nQty As Currency, ByVal sUOM As String) As Currency
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sITM As String
+
+  ' Fetch short item for conversion
+  sSQL = "select IMITM from F4101 where IMLITM = '" & sLITM & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  sITM = DB.Extract(sCols, sRows, 1, 1)
+
+  If sUOM <> "EA" Then
+    ' First, convert to EA
+    If Not ConvUOM(sITM, nQty, "EA", sUOM) Then Exit Function
+  End If
+
+  ' Convert to pounds
+  If Not ConvUOM(sITM, nQty, "LB", "EA") Then Exit Function
+  BulkItemWeight = nQty
+End Function
+
+Private Function AddTrackingToJDE( _
+  ByVal nCost As Currency, _
+  ByVal sTrackingNumber As String, _
+  sErrMsg As String _
+) As Boolean
+  Dim i As Long
+  Dim nDOCO As Long
+  Dim sPSN As String
+  Dim oCheckedOrders As New Scripting.Dictionary
+  Dim sSQL As String
+  Dim nErrNo As String
+  Dim emGetAuditInfo As New EmbeddedProc
+  Dim sDate As String
+  Dim sTime As String
+  Dim bUpdate As Boolean
+
+  For i=1 To lbxDoco.List.Count
+    nDOCO = lbxDoco.List.Cell(i, 6).value
+    sPSN = lbxDoco.List.Cell(i, 10).value
+
+    sSQL = _
+      " select count(*)" & _
+      " from F554602" & _
+      " where CFDOCO = " & nDOCO & _
+      " and CFPSN = '" & sPSN & "'" & _
+      " and CFCNID = '%tmLPID'"
+    If Val(FetchFirstResult(sSQL)) > 0 Then
+      ' TODO Warninig/error?
+      GoTo End_i
+    End If
+
+    emGetAuditInfo.Name = "GetAuditInfo"
+    emGetAuditInfo.DataSource = "JDE"
+    emGetAuditInfo.Execute
+
+    sDate = ConvDatetoJDE(emGetAuditInfo.Param("Date"))
+    sTime = emGetAuditInfo.Param("Time")
+
+    sSQL = _
+      " insert into F554602" & _
+      " (CFDOCO, CFPSN, CFDL01, CFMCU, CFADDJ, CFECST, CFDL02, CFCARS, CFDOC," & _
+      "  CFRSDJ, CFEDSP, CFCDT, CFCRTM, CFUSER, CFPID, CFJOBN, CFUPMJ, CFTDAY, CFCNID)" & _
+      " values (%DOCO%, '%PSN%', '%DL01%', '%MCU%', CFADDJ, %ECST%, '%DL02%', 0, 0," & _
+      "         0, ' ', %CDT%, %CRTM%, '%USER%', '%PID%', '%JOBN%', %UPMJ%, %TDAY%, '%LPID%')"
+    sSQL = Replace(sSQL, "%DOCO%", CStr(nDOCO))
+    sSQL = Replace(sSQL, "%PSN%", sPSN)
+    sSQL = Replace(sSQL, "%DL01%", sTrackingNumber)
+    sSQL = Replace(sSQL, "%MCU%", App.GetValue("tmMCU"))
+    sSQL = Replace(sSQL, "%ECST%", CStr(ConvDecimalsToSQL("ECST", nCost)))
+    sSQL = Replace(sSQL, "%DL02%", "UPS")
+    sSQL = Replace(sSQL, "%CDT%", sDate)
+    sSQL = Replace(sSQL, "%CRTM%", sTime)
+    sSQL = Replace(sSQL, "%USER%", emGetAuditInfo.Param("UserName"))
+    sSQL = Replace(sSQL, "%PID%", "RFGEN")
+    sSQL = Replace(sSQL, "%JOBN%", Left(emGetAuditInfo.Param("MachineKey"), 10))
+    sSQL = Replace(sSQL, "%UPMJ%", sDate)
+    sSQL = Replace(sSQL, "%TDAY%", sTime)
+    sSQL = Replace(sSQL, "%LPID%", App.GetValue("tmLPID"))
+
+    nErrNo = DB.Execute(sSQL)
+
+    If nErrNo <> 0 Then
+      sErrMsg = "Failed to insert tracking info: " & nErrNo
+      Exit Function
+    End If
+  End_i:
+  Next i
+
+Done:
+  AddTrackingToJDE = True
+End Function
+
+Private Function InsertTracking( _
+  ByVal sPSN As String, _
+  ByVal sCarrierName As String, _
+  ByVal sCNID As String, _
+  ByVal nCost As Currency, _
+  ByVal sTrackingNumber As String, _
+  ByVal nSequence As Long, _
+  sErrMsg As String _
+) As Boolean
+  Dim sSQL As String
+  Dim nErrNo As String
+  Dim emGetAuditInfo As New EmbeddedProc
+  Dim sDate As String
+  Dim sTime As String
+
+  emGetAuditInfo.Name = "GetAuditInfo"
+  emGetAuditInfo.DataSource = "JDE"
+  emGetAuditInfo.Execute
+
+  sDate = ConvDatetoJDE(emGetAuditInfo.Param("Date"))
+  sTime = emGetAuditInfo.Param("Time")
+
+  sSQL = _
+    " insert into F554602 (" & _
+    "   CFDOCO, CFPSN, CFDL01, CFMCU, CFADDJ, CFECST, CFDL02, CF55CARS, CFDOC, CFRSDJ," & _
+    "   CFEDSP, CFCDT, CFCRTM, CFUSER, CFPID, CFJOBN, CFUPMJ, CFTDAY, CFCNID, CFDCT, CFRQSQ)" & _
+    " select" & _
+    "   CFDOCO, CFPSN, '%DL01%', CFMCU, %ADDJ%, %ECST%, '%DL02%', CF55CARS, CFDOC, CFRSDJ," & _
+    "   '1', CFCDT, CFCRTM, '%USER%', '%PID%', '%JOBN%', %UPMJ%, %TDAY%, '%CNID%', CFDCT, %RQSQ%" & _
+    " from F554602" & _
+    " where CFPSN = " & sPSN & _
+    " and CFDL02 = '" & sCarrierName & "'" & _
+    " and CFECST > 0" & _
+    " and CFCNID = ' '"
+
+  sSQL = Replace(sSQL, "%DL01%", sTrackingNumber)
+  sSQL = Replace(sSQL, "%ADDJ%", sDate)
+  sSQL = Replace(sSQL, "%ECST%", CStr(ConvDecimalsToSQL("ECST", nCost)))
+  sSQL = Replace(sSQL, "%DL02%", sCarrierName)
+  sSQL = Replace(sSQL, "%USER%", emGetAuditInfo.Param("UserName"))
+  sSQL = Replace(sSQL, "%PID%", "RFGEN")
+  sSQL = Replace(sSQL, "%JOBN%", Left(emGetAuditInfo.Param("MachineKey"), 10))
+  sSQL = Replace(sSQL, "%UPMJ%", sDate)
+  sSQL = Replace(sSQL, "%TDAY%", sTime)
+  sSQL = Replace(sSQL, "%CNID%", App.GetValue("tmLPID"))
+  sSQL = Replace(sSQL, "%RQSQ%", CStr(ConvDecimalsToSQL("RQSQ", nSequence)))
+
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    sErrMsg = "Failed to insert tracking (" & nErrNo & ")"
+    Exit Function
+  End If
+
+Done:
+  InsertTracking = True
+End Function
+</Code>

@@ -1,0 +1,16 @@
+﻿<Record FileDesc="Warehouse Director" FileVersion="5.0.8.0" Desc="Warehouse Director" Heading="[Warehouse Director]">
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="WD_INQUIRY" Desc="Warehouse Jobs Inquiry - AMS" Options="-StsFr=320 -StsTo=321" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Setup --" />
+<MenuItem Id="WD_CONSOLE" Desc="Warehouse Director Console - AMS" Options="-StsFr=320 -StsTo=321" />
+<MenuItem Id="WD_SETUP" Desc="Warehouse Director Setup - AMS" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Processing --" />
+<MenuItem Id="WD_PICK" Desc="Directed Pick" Options="-Pgm=P4205 -Vers=RGN0003" />
+<MenuItem Id="WD_PACK" Desc="Pack/Ship" Options="-Pgm=P4205 -Vers=RGN0005 -Printer=59" />
+<MenuItem Id="WD_REPLEN_PUTAWAY" Desc="Replenish/Putaway" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="WD_MANAGE_CARTON" Desc="Manage Carton" />
+<MenuItem Id="WD_MOVE_ITEM" Desc="Move Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="WD_MANAGE_PICK_WAVE" Desc="Manage Pick Wave" />
+</Record>

@@ -1,0 +1,10 @@
+﻿<Record FileDesc="FedEx Label API" FileVersion="5.0.8.0" Desc="FedEx Label API" Group="FedEx" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Function FedEx_RecoverLabel(ByVal sTrackingNumber As String, sErrMsg As String) As String
+  sErrMsg = "Not yet implemented."
+  Return ""
+End Function
+</Code>

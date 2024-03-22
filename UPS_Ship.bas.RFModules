@@ -1,0 +1,237 @@
+﻿<Record FileDesc="UPS Shipping API" FileVersion="5.0.8.0" Desc="UPS Shipping API" Group="UPS" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Function UPS_CreateShipment( _
+  ByVal nAN8 As Long, _
+  ByVal nSHAN As Long, _
+  ByVal nWeight As Currency, _
+  ByVal sAccount As String, _
+  ByVal sDesc As String, _
+  ByVal nDOCO As Long, _
+  ByVal sLPID As String _
+) As ShipmentResponse
+  Dim fromAddressInfo As AddressInfo
+  Dim toAddressInfo As AddressInfo
+  Dim sBody As String
+  Dim sToken As String
+  Dim bSuccess As Boolean
+  Dim sErrMsg As String
+  Dim sResponseStatus As String
+  Dim sResponseText As String
+  Dim oResponseJson As Scripting.Dictionary
+  Dim jsonParser As New VbsJson
+  Dim tShipmentResponse As ShipmentResponse
+  Dim sCode As String
+  Dim sMessage As String
+
+  On Error GoTo OnError
+
+  App.Balloon("Authorizing...", 1)
+
+  If Not UPS_GetToken(sToken, sErrMsg) Then
+    tShipmentResponse.sErrMsg = sErrMsg
+    Return tShipmentResponse
+  End If
+
+  App.Balloon("Sending shipping request...", -1)
+
+  fromAddressInfo = GetAddressInfo(nAN8)
+  toAddressInfo = GetAddressInfo(nSHAN)
+  sBody = UPS_ShipmentRequestJson(fromAddressInfo, toAddressInfo, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID)
+  bSuccess = UPS_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
+
+  App.Balloon("", 0)
+
+  Set oResponseJson = jsonParser.Decode(sResponseText)
+
+  If Not bSuccess Then
+    If Not UPS_ParseResponseError(oResponseJson, sCode, sMessage) Then tShipmentResponse.sErrMsg = "HTTP status code: " & sResponseStatus
+    tShipmentResponse.sErrMsg = "(" & sCode & ") " & sMessage
+    If sCode = "120202" Then
+      tShipmentResponse.sErrMsg &= vbNewLine & toAddressInfo.sLine1
+    End If
+    Return tShipmentResponse
+  End If
+
+  tShipmentResponse = UPS_ParseShipmentResponse(oResponseJson)
+  If tShipmentResponse.sErrMsg <> "" Then
+    tShipmentResponse.sErrMsg = "Unable to process shipment response: " & vbNewLine & vbNewLine & tShipmentResponse.sErrMsg
+    Return tShipmentResponse
+  End If
+
+OnError:
+  If Err.Number <> 0 Then tShipmentResponse.sErrMsg = "(" & Err.Number & ") " & Err.Description
+  Return tShipmentResponse
+End Function
+
+Private Function UPS_SendShippingRequest( _
+  ByVal sToken As String, _
+  ByVal sRequestBody As String, _
+  sResponseStatus As String, _
+  sResponseText As String _
+) As Boolean
+  Dim oHttp As New XMLHTTP60
+  Const sBaseURL As String = SYS.EnvironmentProperty("UPSBaseURL")
+
+  oHttp.open("POST", UPS_BASE_URL & "/api/shipments/v1/ship")
+  oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
+  oHttp.setRequestHeader("Content-Type", "application/json")
+  oHttp.setRequestHeader("Accept", "application/json")
+  oHttp.Send(sRequestBody)
+
+  sResponseStatus = CStr(oHttp.status)
+  sResponseText = oHttp.responseText
+
+  Return oHttp.status = 200
+End Function
+
+Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictionary) As ShipmentResponse
+  Dim oShipmentResults As New Scripting.Dictionary
+  Dim tShipmentResponse As ShipmentResponse
+
+  If Not oResponse.Exists("ShipmentResponse") Then
+    tShipmentResponse.sErrMsg = "Missing response element: ShipmentResponse"
+    Return tShipmentResponse
+  End If
+
+  Set oShipmentResults = oResponse("ShipmentResponse")("ShipmentResults")
+
+  tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")(0)("TrackingNumber")
+  tShipmentResponse.nCost = CCur(oShipmentResults("NegotiatedRateCharges")("TotalCharge")("MonetaryValue"))
+  tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")(0)("ShippingLabel")("GraphicImage")
+
+  Return tShipmentResponse
+End Function
+
+Private Function UPS_ShipmentRequestJson( _
+  ByVal fromAddressInfo As AddressInfo, _
+  ByVal toAddressInfo As AddressInfo, _
+  ByVal nWeight As Currency, _
+  ByVal sAccount As String, _
+  ByVal sDesc As String, _
+  ByVal sReference1 As String, _
+  ByVal sReference2 As String _
+) As String
+  Dim sBody As String
+
+  sBody = _
+    "{" & _
+    "    ""ShipmentRequest"":" & _
+    "    {" & _
+    "        ""Request"":" & _
+    "        {" & _
+    "            ""RequestOption"":""validate""" & _
+    "        }," & _
+    "        ""Shipment"":" & _
+    "        {" & _
+    "            ""ShipmentRatingOptions"":" & _
+    "            {" & _
+    "                ""NegotiatedRatesIndicator"": ""X""" & _
+    "            }," & _
+    "            ""Shipper"":" & _
+    "            {" & _
+    "                ""Name"": ""$SHIPPER_NAME""," & _
+    "                ""ShipperNumber"": ""$SHIPPER_NUMBER""," & _
+    "                ""Address"":" & _
+    "                {" & _
+    "                    ""AddressLine"": [""$FROM_ADDRESS_1"", ""$FROM_ADDRESS_2"", ""$FROM_ADDRESS_3""]," & _
+    "                    ""City"": ""$FROM_CITY""," & _
+    "                    ""StateProvinceCode"": ""$FROM_STATE""," & _
+    "                    ""PostalCode"": ""$FROM_ZIP""," & _
+    "                    ""CountryCode"": ""US""" & _
+    "                }" & _
+    "            }," & _
+    "            ""ShipTo"":" & _
+    "            {" & _
+    "                ""Name"": ""$SHIP_TO_NAME""," & _
+    "                ""Address"":" & _
+    "                {" & _
+    "                    ""AddressLine"": [""$TO_ADDRESS_1"", ""$TO_ADDRESS_2"", ""$TO_ADDRESS_3""]," & _
+    "                    ""City"": ""$TO_CITY""," & _
+    "                    ""StateProvinceCode"": ""$TO_STATE""," & _
+    "                    ""PostalCode"": ""$TO_ZIP""," & _
+    "                    ""CountryCode"": ""US""" & _
+    "                }" & _
+    "            }," & _
+    "            ""PaymentInformation"":" & _
+    "            {" & _
+    "                ""ShipmentCharge"":" & _
+    "                {" & _
+    "                    ""Type"": ""01""," & _
+    "                    ""BillShipper"":" & _
+    "                    {" & _
+    "                        ""AccountNumber"": ""$ACCOUNT_NUMBER""" & _
+    "                    }" &  _
+    "                }" & _
+    "            }," & _
+    "            ""Service"":" & _
+    "            {" & _
+    "                ""Code"": ""03""," & _
+    "                ""Description"": ""Ground""" & _
+    "            }," & _
+    "            ""Package"": [" & _
+    "            {" & _
+    "                ""Description"": ""$DESCRIPTION""," & _
+    "                ""Packaging"":" & _
+    "                {" & _
+    "                    ""Code"": ""02""" & _
+    "                }," & _
+    "                ""PackageWeight"":" & _
+    "                {" & _
+    "                    ""UnitOfMeasurement"":" & _
+    "                    {" & _
+    "                        ""Code"": ""LBS""" & _
+    "                    }," & _
+    "                    ""Weight"": ""$WEIGHT""" & _
+    "                }," & _
+    "                ""PackageServiceOptions"": """"," & _
+    "                ""ReferenceNumber"":" & _
+    "                [" & _
+    "                  { ""Value"": ""$REFERENCE_1"" }," & _
+    "                  { ""Value"": ""$REFERENCE_2"" }" & _
+    "                ]" & _
+    "            }]" & _
+    "        }," & _
+    "        ""LabelSpecification"":" & _
+    "        {" & _
+    "            ""LabelImageFormat"":" & _
+    "            {" & _
+    "                ""Code"": ""GIF""" & _
+    "            }," & _
+    "            ""LabelStockSize"":" & _
+    "            {" & _
+    "                ""Height"": ""6""," & _
+    "                ""Width"": ""4""" & _
+    "            }" & _
+    "        }" & _
+    "    }" & _
+    "}"
+
+  sBody = Replace(sBody, "$SHIPPER_NAME", fromAddressInfo.sName)
+  sBody = Replace(sBody, "$SHIPPER_NUMBER", sAccount)
+  sBody = Replace(sBody, "$FROM_ADDRESS_1", fromAddressInfo.sLine1)
+  sBody = Replace(sBody, "$FROM_ADDRESS_2", fromAddressInfo.sLine2)
+  sBody = Replace(sBody, "$FROM_ADDRESS_3", fromAddressInfo.sLine3)
+  sBody = Replace(sBody, "$FROM_CITY", fromAddressInfo.sCity)
+  sBody = Replace(sBody, "$FROM_STATE", fromAddressInfo.sState)
+  sBody = Replace(sBody, "$FROM_ZIP", fromAddressInfo.sZip)
+
+  sBody = Replace(sBody, "$SHIP_TO_NAME", toAddressInfo.sName)
+  sBody = Replace(sBody, "$TO_ADDRESS_1", toAddressInfo.sLine1)
+  sBody = Replace(sBody, "$TO_ADDRESS_2", toAddressInfo.sLine2)
+  sBody = Replace(sBody, "$TO_ADDRESS_3", toAddressInfo.sLine3)
+  sBody = Replace(sBody, "$TO_CITY", toAddressInfo.sCity)
+  sBody = Replace(sBody, "$TO_STATE", toAddressInfo.sState)
+  sBody = Replace(sBody, "$TO_ZIP", toAddressInfo.sZip)
+
+  sBody = Replace(sBody, "$WEIGHT", CStr(nWeight))
+  sBody = Replace(sBody, "$ACCOUNT_NUMBER", sAccount)
+  sBody = Replace(sBody, "$DESCRIPTION", sDesc)
+  sBody = Replace(sBody, "$REFERENCE_1", sReference1)
+  sBody = Replace(sBody, "$REFERENCE_2", sReference2)
+
+  Return sBody
+End Function
+</Code>

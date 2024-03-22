@@ -1,0 +1,49 @@
+﻿<Record FileDesc="UPS Authorization API" FileVersion="5.0.8.0" Desc="UPS Authorization API" Group="UPS" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Function UPS_GetToken(sToken As String, sErrMsg As String) As Boolean
+  Dim sClientID As String
+  Dim sClientSecret As String
+  Dim sBasicAuth As String
+  Dim oHttp As New XMLHTTP60
+  Dim jsonParser As New VbsJson
+  Dim sResponseText As String
+  Dim oResponseJson As Scripting.Dictionary
+  Dim sCode As String
+  Dim sMessage As String
+  
+  sClientID = SYS.EnvironmentProperty("UPSClientID")
+  sClientSecret = SYS.EnvironmentProperty("UPSClientSecret")
+  sBasicAuth = str_to_base64(sClientID & ":" & sClientSecret)
+
+  oHttp.open("POST", UPS_BASE_URL & "/security/v1/oauth/token")
+  oHttp.setRequestHeader("Authorization", "Basic " & sBasicAuth)
+  oHttp.setRequestHeader("Accept", "application/json")
+  oHttp.setRequestHeader("X-Merchant-Id", sClientID)
+  oHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+  oHttp.Send("grant_type=client_credentials")
+
+  If oHttp.status <> 200 Then
+    sErrMsg = "Authorization HTTP error " & oHttp.status & vbNewLine & vbNewLine & oHttp.statusText
+    Return False
+  End If
+
+  sResponseText = oHttp.responseText
+  Set oResponseJson = jsonParser.Decode(sResponseText)
+
+  If UPS_ParseResponseError(oResponseJson, sCode, sMessage) Then
+    sErrMsg = "(" & sCode & ") " & sMessage
+    Exit Function
+  End If
+
+  sToken = oResponseJson("access_token")
+  If sToken = "" Then
+    sErrMsg = "Authorization error: no access token was returned."
+    Exit Function
+  End If
+
+  Return True
+End Function
+</Code>

@@ -8,10 +8,10 @@
 ' Win32.bas
 '
 '
+'#Language "WWB-COM"
 
 Option Explicit
 Global gbProcessing           As Boolean
-
 Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal sFromUOM As String, ByVal sToUOM As String) As Boolean
   On Error Resume Next
   '
@@ -53,7 +53,7 @@ Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal s
     End If
   End If
   '
-  ' Retrive base UOM
+  ' Retrieve base UOM
   '
   sSql = "select IMUOM1 from  F4101 where IMITM = " & sITM
   DB.Execute(sSql,sCols,sRows)
@@ -135,31 +135,31 @@ UOMDone:
   ConvUOMAMS = True
 End Function
 
-Public Function PrintCaseLabel(ByVal nPrinterNumber As Integer, _
-                                 ByVal sLabelFormatName As String, _
-                                 ByVal sLPID As String, _
-                                 ByVal sLITM As String, _
-                                 ByVal sLOTN As String, _
-                                 ByVal nLabelQty As Integer, _
-                                 ByVal sAPI As String) As Boolean
+Public Function PrintCaseLabel( _
+  ByVal nPrinterNumber As Integer, _
+  ByVal sLabelFormatName As String, _
+  ByVal sLPID As String, _
+  ByVal sLITM As String, _
+  ByVal sLOTN As String, _
+  ByVal nLabelQty As Integer, _
+  ByVal sAPI As String _
+) As Boolean
+  On Error GoTo HandleErr
 
-  Dim sDateTime As String 'Timestamp
-  Dim sFile     As String 'Output file path
+  Dim sJobName As String
+  Dim sSrc As String
+  Dim sDst As String
 
   PrintCaseLabel = False
 
-  'Get timestamp
-  sDateTime = Trim(Format(Time, "hhnnss"))
+  sJobName = "CaseLabel" & Trim(sLITM) & sLPID & Format(Time, "hhnnss")
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") &  sJobName & ".pas"
 
-  'Create output file in printing directory (filename is unique by item and time)
-  sFile = "C:\Program Files (x86)\Loftware Labeling\WDDrop\CartonLabel" & Trim(sLITM) & sLPID & sDateTime & ".pas"
-
-  'sFile = "\\VGRFGENPD01\WDDrop\CartonLabel" & Trim(sLITM) & sLPID & sDateTime & ".pas"
-  'Write label info to file
-  Open sFile For Output As #1
+  Open sSrc For Output As #1
 
   Print #1, "*Format," & sLabelFormatName & ".lwl"
-  Print #1, "*JOBNAME,CaseLabel" & Trim(sLITM) & sDateTime
+  Print #1, "*JOBNAME," & sJobName
   Print #1, "*QUANTITY," & nLabelQty
   Print #1, "*PRINTERNUMBER," & nPrinterNumber
   Print #1, "LPID," & UCase(sLPID)
@@ -174,32 +174,37 @@ Public Function PrintCaseLabel(ByVal nPrinterNumber As Integer, _
 
   Close #1
 
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
   PrintCaseLabel = True
 
+HandleErr:
+  If Err.Number <> 0 Then Debug.Print(Err.Description)
 End Function
 
-Public Function PrintPalletLabel(ByVal nPrinterNumber As Integer, _
-                                 ByVal sLabelFormatName As String, _
-                                 ByVal sLPID As String, _
-                                 ByVal nLabelQty As Integer) As Boolean
+Public Function PrintPalletLabel( _
+  ByVal nPrinterNumber As Integer, _
+  ByVal sLabelFormatName As String, _
+  ByVal sLPID As String, _
+  ByVal nLabelQty As Integer _
+) As Boolean
+  On Error GoTo HandleErr
 
-  Dim sDateTime As String 'Timestamp
-  Dim sFile     As String 'Output file path
+  Dim sJobName As String
+  Dim sSrc As String
+  Dim sDst As String
 
   PrintPalletLabel = False
 
-  'Get timestamp
-  sDateTime = Trim(Format(Time, "hhnnss"))
+  sJobName = "PalletLabel" & Trim(sLPID) & Format(Time, "hhnnss")
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") &  sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") &  sJobName & ".pas"
 
-  'Create output file in printing directory (filename is unique by item and time)
-  sFile = "C:\Program Files (x86)\Loftware Labeling\WDDrop\PalletLabel" & sLPID & sDateTime & ".pas"
-
-  'sFile = "\\VGRFGENPD01\WDDrop\PalletLabel" & sLPID & sDateTime & ".pas"
-  'Write label info to file
-  Open sFile For Output As #1
+  Open sSrc For Output As #1
 
   Print #1, "*Format," & sLabelFormatName & ".lwl"
-  Print #1, "*JOBNAME,PalletLabel" & Trim(sLPID) & sDateTime
+  Print #1, "*JOBNAME,
   Print #1, "*QUANTITY," & nLabelQty
   Print #1, "*PRINTERNUMBER," & nPrinterNumber
   Print #1, "LPID," & sLPID
@@ -207,17 +212,197 @@ Public Function PrintPalletLabel(ByVal nPrinterNumber As Integer, _
 
   Close #1
 
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
   PrintPalletLabel = True
 
+HandleErr:
+  If Err.Number <> 0 Then Debug.Print(Err.Description)
 End Function
 
-'Public Sub Log(ByVal sText As String)
-'  On Error Resume Next
-'
-'  Dim sFile As String
-'  sFile = "D:\RFgen\Log.txt"
-'  Open sFile For Append As #1
-'  Print #1, Format(Now, "hh:nn:ss") & " " & sText
-'  Close #1
-'End Sub
+Public Function FetchFirstResult(ByVal sSQL As String) As Variant
+  Dim sCols As String
+  Dim sRows As String
+  DB.Execute(sSQL, sCols, sRows)
+  Return DB.Extract(sCols, sRows, 1, 1)
+End Function
+
+Public Type AddressInfo
+  sName As String
+  sLine1 As String
+  sLine2 As String
+  sLine3 As String
+  sLine4 As String
+  sCity As String
+  sState As String
+  sZip As String
+  sPhone As String
+End Type
+
+Public Function GetAddressInfo(ByVal nAN8 As Long) As AddressInfo
+  Dim addressResult As AddressInfo
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sAreaCode As String
+  Dim sPhoneNumber As String
+
+  sSQL = _
+    " select WWMLNM" & _
+    " from F0111" & _
+    " where WWAN8 = " & nAN8 & _
+    " and WWIDLN = 0"
+  DB.Execute(sSQL, sCols, sRows)
+  addressResult.sName = Trim(DB.Extract(sCols, sRows, 1, "WWMLNM"))
+
+  sSQL = _
+    " select WPAR1, WPPH1" & _
+    " from F0115" & _
+    " where WPAN8 = " & nAN8 & _
+    " and WPRCK7 = 1"
+  DB.Execute(sSQL, sCols, sRows)
+
+  sAreaCode = Format(Val(DB.Extract(sCols, sRows, 1, "WPAR1")), "000")
+  sPhoneNumber = Trim(Replace(DB.Extract(sCols, sRows, 1, "WPPH1"), "-", ""))
+  addressResult.sPhone = sAreaCode & sPhoneNumber
+
+  sSQL = _
+    " select ALADD1, ALADD2, ALADD3, ALADD4, ALCTY1, ALADDS, ALADDZ" & _
+    " from F0116" & _
+    " where ALAN8 = " & nAN8
+  DB.Execute(sSQL, sCols, sRows)
+
+  addressResult.sLine1 = Trim(DB.Extract(sCols, sRows, 1, "ALADD1"))
+  addressResult.sLine2 = Trim(DB.Extract(sCols, sRows, 1, "ALADD2"))
+  addressResult.sLine3 = Trim(DB.Extract(sCols, sRows, 1, "ALADD3"))
+  addressResult.sLine4 = Trim(DB.Extract(sCols, sRows, 1, "ALADD4"))
+  addressResult.sState = Trim(DB.Extract(sCols, sRows, 1, "ALADDS"))
+  addressResult.sCity = Trim(DB.Extract(sCols, sRows, 1, "ALCTY1"))
+  addressResult.sZip = Trim(DB.Extract(sCols, sRows, 1, "ALADDZ"))
+
+  GetAddressInfo = addressResult
+End Function
+
+Public Function CreateNewCarton(ByVal sBoxType As String) As String
+  Dim uLP101 As LP101Data
+
+  Dim sSqlNN As String
+  Dim sColsNN As String
+  Dim sRowsNN As String
+  Dim nNextNumber As Long
+  Dim nNNLength As Long
+  Dim sLPID As String
+  Dim sPrefix As String
+
+  sPrefix = "C"
+
+  ' Get next number
+  sSqlNN = "select * from NN_SQL where NNPREF = '" & sPrefix & "'"
+  DB.Execute(sSqlNN, sColsNN, sRowsNN)
+  nNextNumber = Val(Trim(DB.Extract(sColsNN, sRowsNN, 1, "NNNUMB")))
+  nNNLength = Val(Trim(DB.Extract(sColsNN, sRowsNN, 1, "NNLENG")))
+
+  ' Construct LPID
+  sLPID = FixRight(CStr(nNextNumber), nNNLength - Len(sPrefix), "0")
+  sLPID = sPrefix & sLPID
+
+  ' Update next number table
+  nNextNumber = nNextNumber + 1
+  sSqlNN = "update NN_SQL set NNNUMB = " & nNextNumber & " where NNPREF = '" & sPrefix & "'"
+  DB.Execute(sSqlNN)
+
+  Call LP101_Reset(uLP101)
+
+  uLP101.sLMMCU = App.GetValue("tmMCU")
+  uLP101.sLMLPID = sLPID
+  uLP101.sLMDSC1 = sBoxType ' "Created " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS")
+  uLP101.sLMRNXTR = "545"
+  uLP101.sLMTYPE = "P"
+  uLP101.sLMPALP = "" 'App.GetValue("tmTRIP")
+  uLP101.sLMUSER = UCase(App.User)
+  uLP101.sLMURRF = "WAVE-" & App.GetValue("tmTRIP")
+
+  App.SetValue("tmMCU", App.GetValue("tmMCU"))
+  If Not X_LP101("A", uLP101) Then
+    App.MsgBox("Failed to create carton.")
+    Exit Function
+  End If
+
+  CreateNewCarton = uLP101.sLMLPID
+End Function
+
+Public Function GetOldestLot( _
+  ByVal sMCU As String, _
+  ByVal sITM As String, _
+  ByVal sLOCN As String, _
+  Optional ByVal iCnt As Long, _
+  Optional ByVal sLotFilter _
+) As String
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+
+  sSQL = _
+    " select distinct LILOTN," & _
+    " (" & _
+    "    Case when IsNumeric(LILOTN) = 1" & _
+    "    Then CAST(substring(LILOTN, 1, charindex('.', LILOTN) - 1) as INT)" & _
+    "    else 0 end" & _
+    " ) as BeginLOT," & _
+    " (" & _
+    "   Case when IsNumeric(LILOTN) = 1" & _
+    "   Then CAST(substring(LILOTN, charindex('.', LILOTN) + 1, LEN(LILOTN)) as INT)" & _
+    "   else 0 end" & _
+    " ) as EndLOT" & _
+    " from F41021" & _
+    " where LIMCU = '" & sMCU & "'" & _
+    " and LIITM = " & sITM & _
+    " and LILOCN = '" & sLOCN & "'" & _
+    " and (LIPQOH - LIPCOM - LIHCOM) > " & iCnt & _
+    " and LILOTN like '%.%%'" & _
+    " and (Case when IsNumeric(LILOTN) = 1 Then 1 Else 0 End) = 1" & _
+    " order by BeginLOT, EndLOT"
+
+  DB.Execute(sSQL, sCols, sRows)
+  GetOldestLot = Trim(DB.Extract(sCols, sRows, 1, "LILOTN"))
+End Function
+
+Public Function GetOldestCaseLot( _
+  ByVal sMCU As String, _
+  ByVal sLITM As String, _
+  ByVal sLOCN As String, _
+  Optional ByVal iCnt As Long _
+) As String
+  Dim sSQL   As String
+  Dim sCols  As String
+  Dim sRows  As String
+  Dim i As Long
+
+  sSQL = _
+    " select LDLOTN," & _
+    " (" & _
+    "    Case when IsNumeric(LDLOTN) = 1" & _
+    "    Then CAST(substring(LDLOTN, 1, charindex('.', LDLOTN) - 1) as INT)" & _
+    "    else 0 end" & _
+    " ) as BeginLOT," & _
+    " (" & _
+    "   Case when IsNumeric(LDLOTN) = 1" & _
+    "   Then CAST(substring(LDLOTN, charindex('.', LDLOTN) + 1, LEN(LDLOTN)) as INT)" & _
+    "   else 0 end" & _
+    " ) as EndLOT" & _
+    " from F55101" & _
+    " inner join F55102 on LDLPID = LMLPID" & _
+    " inner join F41021 on LIMCU = LMMCU and LILOTN = LDLOTN" & _
+    " where LMMCU = '" & sMCU & "'" & _
+    " and LDLITM = '" & sLITM & "'" & _
+    " and LMLOCN = '" & sLOCN & "'" & _
+    " and LDUORG >= " & iCnt & _
+    " and LIPQOH >= " & ConvDecimalsToSQL("PQOH", iCnt) & _
+    " order by BeginLOT, EndLOT"
+
+  DB.Execute(sSQL, sCols, sRows)
+  GetOldestCaseLot = Trim(DB.Extract(sCols, sRows, 1, "LDLOTN"))
+End Function
 </Code>

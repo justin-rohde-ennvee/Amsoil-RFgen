@@ -1,0 +1,350 @@
+﻿<Record FileDesc="WD - Warehouse Jobs Inquiry" FileVersion="5.0.8.0" Desc="WD - Warehouse Jobs Inquiry" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;chkNonPickable&vm;chkPut&vm;chkPick&vm;chkRepl&vm;cmdExec&vm;lbxJobs" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="X41.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="chkNonPickable" />
+<SchemaParam Linked="0" Attr="3" Name="chkPut" />
+<SchemaParam Linked="0" Attr="4" Name="chkPick" />
+<SchemaParam Linked="0" Attr="5" Name="chkRepl" />
+<SchemaParam Linked="0" Attr="6" Name="cmdExec" />
+<SchemaParam Linked="0" Attr="7" Name="lbxJobs" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="22" Width="57" Height="22" AnchorRight="173" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="64" Top="22" Width="119" Height="22" AnchorRight="57" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkNonPickable" Attr="2" Check="0" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="175" Top="80" Width="105" Height="22" AnchorRight="320" AnchorBottom="498" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Non-Pickable" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="147" Top="80" Width="22" Height="22" AnchorRight="431" AnchorBottom="498" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="181" Top="91" Width="73" Height="22" AnchorRight="384" AnchorBottom="487" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="143" Top="91" Width="22" Height="22" AnchorRight="435" AnchorBottom="487" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPut" Attr="3" Check="0" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="35" Top="52" Width="65" Height="22" AnchorRight="132" AnchorBottom="246" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Putaway" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="52" Width="22" Height="22" AnchorRight="210" AnchorBottom="246" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="116" Top="63" Width="73" Height="22" AnchorRight="89" AnchorBottom="235" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="63" Width="22" Height="22" AnchorRight="140" AnchorBottom="235" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPick" Attr="4" Check="0" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="36" Top="80" Width="41" Height="22" AnchorRight="131" AnchorBottom="218" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Pick" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="80" Width="22" Height="22" AnchorRight="210" AnchorBottom="218" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="117" Top="102" Width="73" Height="22" AnchorRight="88" AnchorBottom="196" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="79" Top="102" Width="22" Height="22" AnchorRight="139" AnchorBottom="196" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkRepl" Attr="5" Check="0" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="36" Top="109" Width="81" Height="22" AnchorRight="131" AnchorBottom="189" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Replenish" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="109" Width="22" Height="22" AnchorRight="210" AnchorBottom="189" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="115" Top="142" Width="73" Height="22" AnchorRight="90" AnchorBottom="156" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="77" Top="142" Width="22" Height="22" AnchorRight="141" AnchorBottom="156" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="cmdExec" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Execute" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="110" Width="81" Height="22" AnchorRight="11" AnchorBottom="188" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxJobs" Attr="7" Sorted="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="41" Top="155" Width="65" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="138" Width="588" Height="451" AnchorRight="4" AnchorBottom="11" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="41" Top="155" Width="65" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="41" Top="177" Width="198" Height="143" AnchorRight="191" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="600" FormHeight="600" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="600" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" Caption="[WAREHOUSE JOBS INQUIRY]" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="600" Height="600" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 400                               |
+' -------------------------------------------------------------------------------
+'
+' PURCHASE ORDERS: RECEIPTS BY ITEM
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+
+Option Explicit
+'
+Private msStatusF  '  F4611.R2PSTB
+Private msStatusT  '  F4611.R2PSTB
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If Left(RFPrompt(App.PromptNo). FieldId, 3) <> "txt" Then Exit Sub
+  RFPrompt(App.PromptNo).BorderStyle = DisplayStandard
+  RFPrompt(App.PromptNo).BackColor1 = vbWhite
+  RFPrompt(App.PromptNo).ForeColor = vbBlack
+
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Call SetDisplay()
+  '
+  msStatusF = App.GetValue("StsFr")
+  msStatusT = App.GetValue("StsTo")
+
+  lbxJobs.List.SetColumn(1, "T", -1, CenterLeft, True)
+  lbxJobs.List.SetColumn(2, "Locn", -1, CenterLeft, True)
+  lbxJobs.List.SetColumn(3, "Item", -1, CenterLeft, True)
+  lbxJobs.List.SetColumn(4, "Desc", -1, CenterLeft, True)
+  lbxJobs.List.SetColumn(5, "Lot", -1, CenterLeft, True)
+  lbxJobs.List.SetColumn(6, "Qty", -1, CenterRight, True)
+  lbxJobs.List.SetColumn(7, "UOM", -1, CenterLeft, True)
+  lbxJobs.List.SetColumn(8, "DOCO", -1, CenterRight, True)
+  lbxJobs.List.SetColumn(9, "Ty", -1, CenterLeft, True)
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  If Left(RFPrompt(App.PromptNo). FieldId, 3) <> "txt" Then Exit Sub
+  RFPrompt(App.PromptNo).BorderStyle = DisplayTransparent
+  RFPrompt(App.PromptNo).BackColor1 = 1
+  RFPrompt(App.PromptNo).ForeColor = vbYellow
+
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+
+Public Sub txtMCU_LostFocus()
+  On Error Resume Next
+
+  Call txtMCU_OnEnter(txtMCU.text, False, "")
+End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmMCU", "")
+  App.SetValue("Company", "")
+
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  Cancel = False
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub cmdExec_Click()
+  On Error Resume Next
+
+  Dim oList     As New SearchList
+  Dim iDecTQTY  As Integer
+  Dim sSql      As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sColsPick As String
+  Dim sRowsPick As String
+  Dim sList     As String
+  Dim sTypes    As String
+  Dim i As Long
+  Dim j As Long
+  Dim sMCU As String
+  Dim sTYFL As String
+  Dim nSGBT As Long
+  Dim nSGSQ As Long
+
+  If chkPut.Checked Then sTypes = "'1',"
+  If chkPick.Checked Then sTypes &= "'2',"
+  If chkRepl.Checked Then sTypes &= "'3',"
+
+  If Len(sTypes) > 0 Then sTypes = Left(sTypes, Len(sTypes)-1)
+
+  App.Balloon("Fetching jobs...", -1)
+
+  sSql = _
+    " select R2TYFL, R2FLOC, R2LITM, R2DSC1, R2FLOT, R2TQTY, R2UOM1, R2DOCO, R2DCTO, R2SGSQ, R2SGBT"  & _
+    " from WDJOBS" & _
+    " where R2PSTB between '" & msStatusF & "' and '" & msStatusT & "'" & _
+    " and R2TYFL in(" & sTypes & ") " & _
+    " and trim(R2MCU) = '" & Trim(App.GetValue("tmMCU")) & "'" & _
+    " order by R2FLOC, R2LITM"
+  DB.UseDataSource("RFgenCustom")
+  DB.Execute(sSql, sCols, sRows)
+  DB.UseDataSource(0)
+
+  lbxJobs.List.Clear
+
+  Dim nCount As Long
+  nCount = 100
+
+  If DB.Count(sRows) < nCount Then nCount = DB.Count(sRows)
+
+  For i=1 To nCount
+    sTYFL = Trim(DB.Extract(sCols, sRows, i, "R2TYFL"))
+
+    Dim bShowItem As Boolean
+    bShowItem = True
+
+    If sTYFL = "2" Then
+      nSGBT = DB.Extract(sCols, sRows, i, "R2SGBT")
+      nSGSQ = DB.Extract(sCols, sRows, i, "R2SGSQ")
+
+      ' Select all suggestion lines for this container (batch and sequence)
+      sSql = _
+        " select *" & _
+        " from WDJOBS" & _
+        " where R2TYFL = '2'" & _
+        " and R2SGBT = " & nSGBT & _
+        " and R2SGSQ = " & nSGSQ & _
+        " order by R2FLOC, R2FLOT, R2DOCO, R2LNID"
+      DB.UseDataSource("RFgenCustom")
+      DB.Execute(sSql, sColsPick, sRowsPick)
+      DB.UseDataSource(0)
+
+      Dim bBatchIsPickable As Boolean
+      bBatchIsPickable = True
+
+      ' Ensure all suggested locations in this batch/sequence are pickable
+      For j=1 To DB.Count(sRowsPick)
+        Dim sFLOC As String
+        Dim nDOCO As String
+        Dim nLNID As Currency
+        Dim sKZON As String
+        Dim sColsPickable As String
+        Dim sRowsPickable As String
+
+        sFLOC = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOC"))
+        nDOCO = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2DOCO"))
+        nLNID = ConvDecimalsFromSQL("LNID", Trim(DB.Extract(sColsPick, sRowsPick, j, "R2LNID")))
+
+        If Not IsPickableLocation(App.GetValue("tmMCU"), sFLOC, "PICK") Then
+          bBatchIsPickable = False
+          Debug.Print("Not pickable: locn '" & sFLOC & "', batch #" & nSGBT & "")
+          GoTo End_Pickable_Check
+        End If
+      Next
+
+      End_Pickable_Check:
+
+      sFLOC = Trim(DB.Extract(sCols, sRows, i, "R2FLOC"))
+      nDOCO = Trim(DB.Extract(sCols, sRows, i, "R2DOCO"))
+      nLNID = ConvDecimalsFromSQL("LNID", Trim(DB.Extract(sCols, sRows, i, "R2LNID")))
+
+      Dim bItemIsPickable As Boolean
+
+      bItemIsPickable = IsPickableLocation(App.GetValue("tmMCU"), sFLOC, "PICK")
+      bShowItem = (chkNonPickable.Checked And Not bItemIsPickable) Or _
+                  (Not chkNonPickable.Checked And bItemIsPickable And bBatchIsPickable)
+    End If
+
+    If bShowItem Then
+      lbxJobs.List.AddItem( _
+        "", _
+        Trim(DB.Extract(sCols, sRows, i, "R2TYFL")), _
+        sFLOC, _
+        Trim(DB.Extract(sCols, sRows, i, "R2LITM")), _
+        Trim(DB.Extract(sCols, sRows, i, "R2DSC1")), _
+        Trim(DB.Extract(sCols, sRows, i, "R2FLOT")), _
+        Trim(DB.Extract(sCols, sRows, i, "R2TQTY")), _
+        Trim(DB.Extract(sCols, sRows, i, "R2UOM1")), _
+        Trim(DB.Extract(sCols, sRows, i, "R2DOCO")), _
+        Trim(DB.Extract(sCols, sRows, i, "R2DCTO")) _
+      )
+    End If
+
+    End_i:
+  Next
+
+  If nCount = 0 Then lbxJobs.List.AddItem("", "No jobs.")
+
+  App.Balloon("", 0)
+End Sub
+
+Private Function IsPickableLocation(ByVal sMCU As String, ByVal sLOCN As String, ByVal sPickZone As String) As Boolean
+  Dim sSql As String
+  sSql = _
+    " select count(*)" & _
+    " from F4100" & _
+    " where LMMCU = '" & sMCU & "'" & _
+    " and LMLOCN = '" & sLOCN & "'" & _
+    " and LMKZON = '" & sPickZone & "'"
+  IsPickableLocation = Val(FetchFirstResult(sSql)) > 0
+End Function
+</Code>

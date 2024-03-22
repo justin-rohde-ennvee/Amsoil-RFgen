@@ -1,0 +1,353 @@
+﻿<Record FileDesc="Json Encoder &amp; Decoder" FileVersion="5.0.8.0" Desc="Json Encoder &amp; Decoder" />
+<Code>
+Option Explicit
+
+Public Class VbsJson
+    'Author: Demon
+    'Date: 2012/5/3
+    'Website: http://demon.tw
+    ' Modifications and bug fixes by Justin Rohde for Amsoil warehouse implementation.
+    Private Whitespace, NumberRegex, StringChunk
+    Private b, f, r, n, t
+
+    Private Sub Class_Initialize
+        Whitespace = " " & vbTab & vbCr & vbLf
+        b = ChrW(8)
+        f = vbFormFeed
+        r = vbCr
+        n = vbLf
+        t = vbTab
+
+        Set NumberRegex = New RegExp
+        NumberRegex.Pattern = "(-?(?:0|[1-9]\d*))(\.\d+)?([eE][-+]?\d+)?"
+        NumberRegex.Global = False
+        NumberRegex.Multiline = True
+        NumberRegex.IgnoreCase = True
+
+        Set StringChunk = New RegExp
+        StringChunk.Pattern = "([\s\S]*?)([""\\\x00-\x1f])"
+        StringChunk.Global = False
+        StringChunk.Multiline = True
+        StringChunk.IgnoreCase = True
+    End Sub
+
+    'Return a JSON string representation of a VBScript data structure
+    'Supports the following objects and types
+    '+-------------------+---------------+
+    '| VBScript          | JSON          |
+    '+===================+===============+
+    '| Dictionary        | object        |
+    '+-------------------+---------------+
+    '| Array             | array         |
+    '+-------------------+---------------+
+    '| String            | string        |
+    '+-------------------+---------------+
+    '| Number            | number        |
+    '+-------------------+---------------+
+    '| True              | true          |
+    '+-------------------+---------------+
+    '| False             | false         |
+    '+-------------------+---------------+
+    '| Null              | null          |
+    '+-------------------+---------------+
+    Public Function Encode(ByRef obj)
+        Dim buf As New Scripting.Dictionary
+        Dim i
+        Dim c As String
+        Dim g As Long
+
+        Select Case VarType(obj)
+            Case vbNull
+                buf.Add buf.Count, "null"
+            Case vbBoolean
+                If obj Then
+                    buf.Add buf.Count, "true"
+                Else
+                    buf.Add buf.Count, "false"
+                End If
+            Case vbInteger, vbLong, vbSingle, vbDouble
+                buf.Add buf.Count, obj
+            Case vbString
+                buf.Add buf.Count, """"
+                For i = 1 To Len(obj)
+                    c = Mid(obj, i, 1)
+                    Select Case c
+                        Case """"
+                          buf.Add(buf.Count, "\""")
+                        Case "\"
+                          buf.Add buf.Count, "\\"
+                        Case "/"
+                          buf.Add buf.Count, "/"
+                        Case b
+                          buf.Add buf.Count, "\b"
+                        Case f
+                          buf.Add buf.Count, "\f"
+                        Case r
+                          buf.Add buf.Count, "\r"
+                        Case n
+                          buf.Add buf.Count, "\n"
+                        Case t
+                          buf.Add buf.Count, "\t"
+                        Case Else
+                            If AscW(c) >= 0 And AscW(c) <= 31 Then
+                                c = Right("0" & Hex(AscW(c)), 2)
+                                buf.Add buf.Count, "\u00" & c
+                            Else
+                                buf.Add buf.Count, c
+                            End If
+                    End Select
+                Next
+                buf.Add buf.Count, """"
+            Case vbArray + vbVariant
+                g = True
+                buf.Add buf.Count, "["
+                For Each i In obj
+                    If g Then g = False Else buf.Add buf.Count, ","
+                    buf.Add buf.Count, Encode(i)
+                Next
+                buf.Add buf.Count, "]"
+            Case vbObject
+                If TypeName(obj) = "IDictionary" Then
+                    g = True
+                    buf.Add buf.Count, "{"
+                    For Each i In obj.Items
+                        If g Then g = False Else buf.Add buf.Count, ","
+                        buf.Add buf.Count, """" & i & """" & ":" & Encode(obj(i))
+                    Next
+                    buf.Add buf.Count, "}"
+                Else
+                    Err.Raise 8732,,"None dictionary object"
+                End If
+            Case Else
+                buf.Add buf.Count, """" & CStr(obj) & """"
+        End Select
+        Encode = Join(buf.Items, "")
+    End Function
+
+    'Return the VBScript representation of ``str(``
+    'Performs the following translations in decoding
+    '+---------------+-------------------+
+    '| JSON          | VBScript          |
+    '+===============+===================+
+    '| object        | Dictionary        |
+    '+---------------+-------------------+
+    '| array         | Array             |
+    '+---------------+-------------------+
+    '| string        | String            |
+    '+---------------+-------------------+
+    '| number        | Double            |
+    '+---------------+-------------------+
+    '| true          | True              |
+    '+---------------+-------------------+
+    '| false         | False             |
+    '+---------------+-------------------+
+    '| null          | Null              |
+    '+---------------+-------------------+
+    Public Function Decode(ByRef Str)
+        Dim idx
+        idx = SkipWhitespace(Str, 1)
+
+        If Mid(Str, idx, 1) = "{" Then
+            Set Decode = ScanOnce(Str, 1)
+        Else
+            Decode = ScanOnce(Str, 1)
+        End If
+    End Function
+
+    Private Function ScanOnce(ByRef Str, ByRef idx)
+        Dim c, ms
+
+        idx = SkipWhitespace(Str, idx)
+        c = Mid(Str, idx, 1)
+
+        If c = "{" Then
+            idx = idx + 1
+            Set ScanOnce = ParseObject(Str, idx)
+            Exit Function
+        ElseIf c = "[" Then
+            idx = idx + 1
+            ScanOnce = ParseArray(Str, idx)
+            Exit Function
+        ElseIf c = """" Then
+            idx = idx + 1
+            ScanOnce = ParseString(Str, idx)
+            Exit Function
+        ElseIf c = "n" And StrComp("null", Mid(Str, idx, 4)) = 0 Then
+            idx = idx + 4
+            ScanOnce = Null
+            Exit Function
+        ElseIf c = "t" And StrComp("true", Mid(Str, idx, 4)) = 0 Then
+            idx = idx + 4
+            ScanOnce = True
+            Exit Function
+        ElseIf c = "f" And StrComp("false", Mid(Str, idx, 5)) = 0 Then
+            idx = idx + 5
+            ScanOnce = False
+            Exit Function
+        End If
+
+        Set ms = NumberRegex.Execute(Mid(Str, idx))
+        If ms.Count = 1 Then
+            idx = idx + ms(0).length
+            ScanOnce = CDbl(ms(0))
+            Exit Function
+        End If
+
+        Err.Raise 8732,,"No JSON object could be ScanOnced"
+    End Function
+
+    Private Function ParseObject(ByRef Str, ByRef idx)
+        Dim c, key, value
+        Set ParseObject = CreateObject("Scripting.Dictionary")
+        idx = SkipWhitespace(Str, idx)
+        c = Mid(Str, idx, 1)
+
+        idx = idx + 1
+
+        If c = "}" Then
+            Exit Function
+        ElseIf c <> """" Then
+            Err.Raise 8732,,"Expecting property name"
+        End If
+
+        Do
+            key = ParseString(Str, idx)
+            idx = SkipWhitespace(Str, idx)
+            If Mid(Str, idx, 1) <> ":" Then
+                Err.Raise 8732,,"Expecting : delimiter"
+            End If
+
+            idx = SkipWhitespace(Str, idx + 1)
+            If Mid(Str, idx, 1) = "{" Then
+                Set value = ScanOnce(Str, idx)
+            Else
+                value = ScanOnce(Str, idx)
+            End If
+
+            ParseObject.Add key, value
+
+            idx = SkipWhitespace(Str, idx)
+            c = Mid(Str, idx, 1)
+            If c = "}" Then
+                Exit Do
+            ElseIf c <> "," Then
+                Err.Raise 8732,,"Expecting , delimiter"
+            End If
+
+            idx = SkipWhitespace(Str, idx + 1)
+            c = Mid(Str, idx, 1)
+            If c <> """" Then
+                Err.Raise 8732,,"Expecting property name"
+            End If
+
+            idx = idx + 1
+        Loop
+
+        idx = idx + 1
+    End Function
+
+    Private Function ParseArray(ByRef Str, ByRef idx)
+        Dim c, values, value
+
+        Set values = CreateObject("Scripting.Dictionary")
+        idx = SkipWhitespace(Str, idx)
+        c = Mid(Str, idx, 1)
+
+        If c = "]" Then
+            GoTo Done
+        End If
+
+        Do
+            idx = SkipWhitespace(Str, idx)
+            If Mid(Str, idx, 1) = "{" Then
+                Set value = ScanOnce(Str, idx)
+            Else
+                value = ScanOnce(Str, idx)
+            End If
+
+            values.Add values.Count, value
+
+            idx = SkipWhitespace(Str, idx)
+            c = Mid(Str, idx, 1)
+            If c = "]" Then
+                Exit Do
+            ElseIf c <> "," Then
+                Err.Raise 8732,,"Expecting , delimiter"
+            End If
+
+            idx = idx + 1
+        Loop
+
+Done:
+        idx = idx + 1
+        ParseArray = values.Items
+    End Function
+
+    Private Function ParseString(ByRef Str, ByRef idx)
+        Dim chunks, content, terminator, ms, esc, char
+        Set chunks = CreateObject("Scripting.Dictionary")
+
+        Do
+            Set ms = StringChunk.Execute(Mid(Str, idx))
+            If ms.Count = 0 Then
+                Err.Raise 8732,,"Unterminated string starting"
+            End If
+
+            content = ms(0).SubMatches(0)
+            terminator = ms(0).SubMatches(1)
+            If Len(content) > 0 Then
+                chunks.Add chunks.Count, content
+            End If
+
+            idx = idx + ms(0).length
+
+            If terminator = """" Then
+                Exit Do
+            ElseIf terminator <> "\" Then
+                Err.Raise 8732,,"Invalid control character"
+            End If
+
+            esc = Mid(Str, idx, 1)
+
+            If esc <> "u" Then
+                Select Case esc
+                    Case """"
+                      char = """"
+                    Case "\"
+                      char = "\"
+                    Case "/"
+                      char = "/"
+                    Case "b"
+                      char = b
+                    Case "f"
+                      char = f
+                    Case "n"
+                      char = n
+                    Case "r"
+                      char = r
+                    Case "t"
+                      char = t
+                    Case Else
+                      Err.Raise 8732,,"Invalid escape"
+                End Select
+                idx = idx + 1
+            Else
+                char = ChrW("&H" & Mid(Str, idx + 1, 4))
+                idx = idx + 5
+            End If
+
+            chunks.Add chunks.Count, char
+        Loop
+
+        ParseString = Join(chunks.Items, "")
+    End Function
+
+    Private Function SkipWhitespace(ByRef Str, ByVal idx)
+        Do While idx <= Len(Str) And _
+            InStr(Whitespace, Mid(Str, idx, 1)) > 0
+            idx = idx + 1
+        Loop
+        SkipWhitespace = idx
+    End Function
+End Class
+</Code>

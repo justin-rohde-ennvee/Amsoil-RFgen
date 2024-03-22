@@ -1,0 +1,417 @@
+﻿<Record FileDesc="Amsoil Shipping" FileVersion="5.0.8.0" Desc="Amsoil Shipping" />
+<Code>
+'#Language "WWB-COM"
+Option Explicit
+
+Public Type ShipmentRequest
+  sCarrier As String
+  nWeight As Currency
+  sAccount As String
+  fromAddress As AddressInfo
+  toAddress As AddressInfo
+End Type
+
+Public Type ShipmentResponse
+  sTrackingNumber As String
+  nCost As Currency
+  sLabelImageBytes As String
+  sErrMsg As String
+End Type
+
+Public Function PrintCartonIDLabel( _
+  ByVal sLPID As String, _
+  ByVal sEQTY As String, _
+  ByVal nDOCO As String, _
+  ByVal nSequence As Long, _
+  ByVal nCount As Long, _
+  ByVal nPrinterNumber As Long, _
+  sErrMsg As String _
+) As Boolean
+  Dim sDateTime As String
+  Dim sSrc As String
+  Dim sDst As String
+  Dim sJobName As String
+  Dim sUser As String
+
+  On Error GoTo OnError
+
+  'Create job name and output file
+  sDateTime = Trim(Format(Time, "hhnnss"))
+  sUser = UCase(Trim(App.User))
+  sJobName = "CARTON_" & sLPID & "_" & sDateTime & "_" & sUser
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
+
+  Open sSrc For Output As #1
+
+  Print #1, "*Format," & "CARTON.lwl"
+  Print #1, "*JOBNAME," & sJobName
+  Print #1, "*QUANTITY," & 1
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+  Print #1, "CARTON_ID," & sLPID
+  Print #1, "ORDER_NUMBER," & nDOCO
+  Print #1, "CARTON_NAME," & sEQTY
+  Print #1, "NUMBER_COUNT," & nSequence & "/" & nCount
+  Print #1, "USER," & sUser
+  Print #1, "*PRINTLABEL"
+
+  Close #1
+
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
+OnError:
+  If Err.Number <> 0 Then
+    sErrMsg = Err.Description
+    Exit Function
+  End If
+
+  PrintCartonIDLabel = True
+End Function
+
+Private Type CartonContentsLineItem
+  sLITM As String
+  sDSC1 As String
+  nQty As Currency
+  sUOM As String
+End Type
+
+Private Type CartonContents
+  nDOCO As Long
+  nRecordCount As Long
+  bContainsLQItem As Boolean
+  tLineItems() As CartonContentsLineItem
+End Type
+
+Private Function FetchContents(ByVal sLPID) As CartonContents
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+  Dim tContents As CartonContents
+  Dim tContentItem As CartonContentsLineItem
+
+  sSQL = _
+    " select max(LDRDOCO) LDRDOCO, LDLITM, sum(LDUORG) LDUORG," & _
+    "        max(LDUOM) LDUOM, max(IMDSC1) IMDSC1, max(IIUNNA) IIUNNA" & _
+    " from F55102" & _
+    " inner join F4101 on IMLITM = LDLITM" & _
+    " left join F4908 on IIITM = IMITM" & _
+    " where LDLPID = '" & sLPID & "'" & _
+    " group by LDLITM, LDUOM" & _
+    " order by LDLITM, LDUOM"
+  DB.Execute(sSQL, sCols, sRows)
+
+  tContents.nRecordCount = DB.Count(sRows)
+  tContents.nDOCO = DB.Extract(sCols, sRows, 1, "LDRDOCO")
+
+  ReDim tContents.tLineItems(1 To tContents.nRecordCount)
+
+  For i=1 To tContents.nRecordCount
+    tContentItem.sLITM = Trim(DB.Extract(sCols, sRows, i, "LDLITM"))
+    tContentItem.sDSC1 = Trim(DB.Extract(sCols, sRows, i, "IMDSC1"))
+    tContentItem.nQty = Val(DB.Extract(sCols, sRows, i, "LDUORG"))
+    tContentItem.sUOM = Trim(DB.Extract(sCols, sRows, i, "LDUOM"))
+
+    If Trim(DB.Extract(sCols, sRows, i, "IIUNNA")) = "LQ" Then
+      tContents.bContainsLQItem = True
+    End If
+
+    tContents.tLineItems(i) = tContentItem
+  Next
+
+  FetchContents = tContents
+End Function
+
+Public Function PrintCartonContentsLabel( _
+  ByVal sLPID As String, _
+  ByVal nPrinterNumber As Long, _
+  sErrMsg As String _
+) As Boolean
+  On Error GoTo OnError
+
+  Const cMaxLinesPerLabel = 14
+
+  Dim sSrc As String
+  Dim sDst As String
+  Dim sJobName As String
+  Dim i As Long
+  Dim nLabelCount As Long
+  Dim nLabelNumber As Long
+  Dim nLabelLineNumber As Long
+  Dim tContents As CartonContents
+  Dim tLineItem As CartonContentsLineItem
+  Dim nBoxNumber As Long
+  Dim nBoxCount As Long
+
+  sJobName = "CONTENTS_" & sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
+
+  tContents = FetchContents(sLPID)
+  nLabelCount = ((tContents.nRecordCount-1) / cMaxLinesPerLabel) + 1
+  GetCartonNumberAndCount(sLPID, nBoxNumber, nBoxCount)
+
+  Open sSrc For Output As #1
+
+  Print #1, "*Format," & "CONTENTS.lwl"
+  Print #1, "*JOBNAME," & sJobName
+  Print #1, "*QUANTITY," & 1
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+  Print #1, "ORDER_NUMBER," & tContents.nDOCO
+  Print #1, "CARTON_ID," & sLPID
+  Print #1, "LQ," & IIf(tContents.bContainsLQItem, "LQ Label Required", "")
+  Print #1, "BOX_NUMBER_COUNT, Box " & nBoxNumber & "/" & nBoxCount
+
+  If tContents.nRecordCount = 0 Then
+    Print #1, "ITEM_1" & "No items."
+    GoTo Flush
+  End If
+
+  nLabelNumber = 1
+  For i=1 To tContents.nRecordCount
+    nLabelLineNumber += 1
+    tLineItem = tContents.tLineItems(i)
+
+    Print #1, "ITEM_" & nLabelLineNumber & "," & tLineItem.sLITM
+    Print #1, "DESC_" & nLabelLineNumber & "," & tLineItem.sDSC1
+    Print #1, "QTY_" & nLabelLineNumber & "," & tLineItem.nQty
+    Print #1, "UOM_" & nLabelLineNumber & "," & tLineItem.sUOM
+
+    If nLabelLineNumber = cMaxLinesPerLabel Then
+      Print #1, "PAGE_NUMBER_COUNT, Page " & nLabelNumber & "/" & nLabelCount
+      Print #1, "*PRINTLABEL"
+      nLabelLineNumber = 0
+      nLabelNumber += 1
+    End If
+  Next
+
+  If nLabelLineNumber > 1 Then
+    ' Print final partial label
+    Print #1, "NUMBER_COUNT," & nLabelNumber & "/" & nLabelCount
+  End If
+
+Flush:
+  Print #1, "*PRINTLABEL"
+  Close #1
+
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
+  PrintCartonContentsLabel = True
+
+OnError:
+  If Err.Number <> 0 Then
+    sErrMsg = "Error printing carton contents label: " & Err.Description
+    Exit Function
+  End If
+End Function
+
+Public Sub GetCartonNumberAndCount(ByVal sLPID As String, nNumber As Long, nCount As Long)
+  Dim nDOCO As Long
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+
+  nDOCO = FetchFirstResult("select distinct LDRDOCO from F55102 where LDLPID = '" & sLPID & "'")
+
+  sSQL = "select distinct LDLPID from F55102 where LDRDOCO = " & nDOCO & " order by LDLPID"
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i=1 To DB.Count(sRows)
+    If Trim(DB.Extract(sCols, sRows, i, "LDLPID")) = sLPID Then
+      nNumber = i
+      Exit For
+    End If
+  Next
+
+  nCount = DB.Count(sRows)
+End Sub
+
+Public Function ItemWeight(ByVal sLITM As String, ByVal sUOM As String) As Currency
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sITM As String
+  Dim nQty As Currency
+
+  ' Fetch short item for conversion
+  sSQL = "select IMITM from F4101 where IMLITM = '" & sLITM & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  sITM = DB.Extract(sCols, sRows, 1, 1)
+
+  nQty = 1
+
+  If sUOM <> "EA" Then
+    ' First, convert to EA
+    If Not ConvUOM(sITM, nQty, "EA", sUOM) Then Exit Function
+  End If
+
+  ' Convert to pounds
+  If Not ConvUOM(sITM, nQty, "LB", "EA") Then Exit Function
+  ItemWeight = nQty
+End Function
+
+Public Function PackageWeight(ByVal sLPID As String) As Currency
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+  Dim sLITM As String
+  Dim nQty As Currency
+  Dim sUOM As String
+  Dim nItemWeight As Currency
+
+  sSQL = "select LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & sLPID & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i=1 To DB.Count(sRows)
+    sLITM = Trim(DB.Extract(sCols, sRows, i, "LDLITM"))
+    nQty = Val(DB.Extract(sCols, sRows, i, "LDUORG"))
+    sUOM = Trim(DB.Extract(sCols, sRows, i, "LDUOM"))
+
+    nItemWeight = ItemWeight(sLITM, sUOM) * nQty
+    PackageWeight += nItemWeight
+  Next
+End Function
+
+Public Function PickSlipNumberForCarton(ByVal sLPID As String)
+  Dim sSQL As String
+
+  sSQL = _
+    " select distinct SDPSN" & _
+    " from F55101" & _
+    " inner join F55102" & _
+    "   on LDLPID = LMLPID" & _
+    " left join F4211" & _
+    "   on SDMCU = LMMCU" & _
+    "   and SDDOCO = LDRDOCO" & _
+    "   and SDLNID = LDRLLN" & _
+    " where LMLPID = '" & sLPID & "'"
+
+  PickSlipNumberForCarton = FetchFirstResult(sSQL)
+End Function
+
+Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, nSequenceNumber As Long, nCartonCount As Long) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+
+  sSQL = _
+    " select LMLPID" & _
+    " from F55101" & _
+    " inner join F55102 on LDLPID = LMLPID" & _
+    " left join F4211 on SDMCU = LMMCU and SDDOCO = LDRDOCO and SDLNID = LDRLLN" & _
+    " where SDPSN = " & sPSN & _
+    " group by LMLPID" & _
+    " order by LMLPID"
+  DB.Execute(sSQL, sCols, sRows)
+
+  nCartonCount = DB.Count(sRows)
+  GetCartonSequence = nCartonCount > 0
+
+  For i=1 To nCartonCount
+    If sLPID = Trim(DB.Extract(sCols, sRows, i, "LMLPID")) Then
+      nSequenceNumber = i
+      Exit Function
+    End If
+  Next
+End Function
+
+Public Function HasCarrierForPSN(ByVal sPSN As String, ByVal sCarrierName As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = _
+    " select count(*)" & _
+    " from F554602" & _
+    " where CFPSN = " & sPSN & _
+    " and CFDL02 = '" & sCarrierName & "'" & _
+    " and CFCNID = ' '"
+  DB.Execute(sSQL, sCols, sRows)
+
+  HasCarrierForPSN = Val(sRows) > 0
+End Function
+
+Public Function GetSelectedCarrierForPSN(ByVal sPSN As String) As String
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = _
+    " select CFDL02" & _
+    " from F554602" & _
+    " where CFPSN = " & sPSN & _
+    " and CFCNID <> ' '"
+  DB.Execute(sSQL, sCols, sRows)
+
+  GetSelectedCarrierForPSN = Trim(DB.Extract(sCols, sRows, 1, "CFDL02"))
+End Function
+
+Public Function SearchCarriersByPrice(ByVal Rsp As String, ByVal sPSN As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim oList As New SearchList
+  Dim sSelection As String
+
+  sSQL = _
+    " select CFDL02, CFECST" & _
+    " from F554602" & _
+    " where CFPSN = " & sPSN & _
+    " and CFCNID = ' '" & _
+    " and CFECST > 0" & _
+    " order by CFECST"
+
+  oList.SetColumn(1, "Name", -1, TextLeft, True)
+  oList.SetColumn(2, "Price", -1, TextRight, True)
+  oList.SQL = sSQL
+  Rsp = oList.ShowList
+
+  SearchCarriersByPrice = Rsp <> ""
+End Function
+
+Public Function ValidateCarton(ByVal sMCU As String, ByVal sLPID As String) As Boolean
+  Dim sSQL As String
+
+  sSQL = _
+    " select count(*)" & _
+    " from F55101" & _
+    " where LMLPID = '" & sLPID & "'" & _
+    " and LMMCU = '" & sMCU & "'"
+  ValidateCarton = FetchFirstResult(sSQL) > 0
+End Function
+
+Public Function GetTrackingNumber(ByVal sLPID As String) As String
+  Dim sSQL As String
+  sSQL = "select CFDL01 from F554602 where CFCNID = '" & sLPID & "'"
+  GetTrackingNumber = Trim(FetchFirstResult(sSQL))
+End Function
+
+Public Function UpdatePackageInformation( _
+  ByVal sLPID As String, _
+  ByVal sTrackingNumber As String, _
+  ByVal nCost As Currency, _
+  sErrMsg As String _
+) As Boolean
+  Dim sSQL As String
+  Dim nErrNo As Long
+
+  sSQL = _
+    " update F55101" & _
+    " set LMVR01 = '" & sTrackingNumber & "'" & _
+    " ,   LMVR02 = '" & nCost & "'" & _
+    " where LMLPID = '%tmLPID'"
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    sErrMsg = "Error updating tracking and cost: " & nErrNo
+    Exit Function
+  End If
+
+  UpdatePackageInformation = True
+End Function
+</Code>

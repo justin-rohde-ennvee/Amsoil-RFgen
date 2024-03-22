@@ -1,0 +1,1153 @@
+﻿<Record FileDesc="Directed Replenish/Putaway" FileVersion="5.0.8.0" Desc="Directed Replenish/Putaway" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;chkRepl&vm;chkPut&vm;btnList&vm;txtLPID&vm;lblLPLocn&vm;txtLOTN&vm;lblLPDesc&vm;lblLPQty&vm;txtNMCU&vm;lblPrimary&vm;lblPickZone&vm;txtTOLOCN&vm;txtQTY&vm;txtAccept&vm;btnBack&vm;lbxJobs&vm;lblF2" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="chkRepl" />
+<SchemaParam Linked="0" Attr="3" Name="chkPut" />
+<SchemaParam Linked="0" Attr="4" Name="btnList" />
+<SchemaParam Linked="0" Attr="5" Name="txtLPID" />
+<SchemaParam Linked="0" Attr="6" Name="lblLPLocn" />
+<SchemaParam Linked="0" Attr="7" Name="txtLOTN" />
+<SchemaParam Linked="0" Attr="8" Name="lblLPDesc" />
+<SchemaParam Linked="0" Attr="9" Name="lblLPQty" />
+<SchemaParam Linked="0" Attr="10" Name="txtNMCU" />
+<SchemaParam Linked="0" Attr="11" Name="lblPrimary" />
+<SchemaParam Linked="0" Attr="12" Name="lblPickZone" />
+<SchemaParam Linked="0" Attr="13" Name="txtTOLOCN" />
+<SchemaParam Linked="0" Attr="14" Name="txtQTY" />
+<SchemaParam Linked="0" Attr="15" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="16" Name="btnBack" />
+<SchemaParam Linked="0" Attr="17" Name="lbxJobs" />
+<SchemaParam Linked="0" Attr="18" Name="lblF2" />
+</Schema>
+<Displays>
+<Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" Defaults="@LAST" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="6" Top="22" Width="57" Height="22" AnchorRight="776" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="74" Top="22" Width="151" Height="22" AnchorRight="15" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkRepl" Attr="2" Check="1" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="29" Top="44" Width="81" Height="22" AnchorRight="729" AnchorBottom="734" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Replenish" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="44" Width="22" Height="22" AnchorRight="813" AnchorBottom="734" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="62" Top="55" Width="73" Height="22" AnchorRight="742" AnchorBottom="723" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="55" Width="22" Height="22" AnchorRight="793" AnchorBottom="723" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkPut" Attr="3" Check="1" CanFocus="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="138" Top="44" Width="65" Height="22" AnchorRight="628" AnchorBottom="734" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Putaway" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="111" Top="44" Width="22" Height="22" AnchorRight="706" AnchorBottom="734" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="185" Top="61" Width="73" Height="22" AnchorRight="619" AnchorBottom="717" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="147" Top="61" Width="22" Height="22" AnchorRight="670" AnchorBottom="717" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnList" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="List..." Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="145" Top="70" Width="80" Height="22" AnchorRight="15" AnchorBottom="228" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="75" Top="81" Width="80" Height="44" AnchorRight="157" AnchorBottom="195" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLPID" Attr="5" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="96" Width="73" Height="22" AnchorRight="163" AnchorBottom="202" BackColor1="1" BackColor2="1" ForeColor="1" Caption="LP/Item:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="96" Width="151" Height="22" AnchorRight="11" AnchorBottom="202" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPLocn" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="139" Width="81" Height="22" AnchorRight="155" AnchorBottom="159" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLPLocn" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtLOTN" Attr="7" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="116" Width="49" Height="22" AnchorRight="187" AnchorBottom="182" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="118" Width="151" Height="22" AnchorRight="9" AnchorBottom="180" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="63" Height="22" AnchorRight="184" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Charge:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="56" Top="88" Width="183" Height="22" AnchorRight="8" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="79" Height="22" AnchorRight="184" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Porción :" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="72" Top="88" Width="167" Height="22" AnchorRight="24" AnchorBottom="210" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="110" Width="47" Height="22" AnchorRight="360" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Lot#:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="167" Height="22" AnchorRight="240" AnchorBottom="198" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPDesc" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="156" Width="81" Height="22" AnchorRight="155" AnchorBottom="142" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLPDesc" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblLPQty" Attr="9">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="173" Width="73" Height="22" AnchorRight="163" AnchorBottom="125" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLPQty" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtNMCU" Attr="10" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="193" Width="73" Height="22" AnchorRight="163" AnchorBottom="105" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ToPlant:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="193" Width="151" Height="22" AnchorRight="11" AnchorBottom="105" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPrimary" Attr="11">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="214" Width="89" Height="22" AnchorRight="147" AnchorBottom="84" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblPrimary" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblPickZone" Attr="12">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="231" Width="97" Height="22" AnchorRight="139" AnchorBottom="67" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblPickZone" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtTOLOCN" Attr="13" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="252" Width="73" Height="22" AnchorRight="163" AnchorBottom="46" BackColor1="1" BackColor2="1" ForeColor="1" Caption="To Locn:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="78" Top="252" Width="151" Height="22" AnchorRight="11" AnchorBottom="46" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtQTY" Attr="14" KeyField="0" MaskInput="0" Required="1" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="152" Top="275" Width="41" Height="22" AnchorRight="47" AnchorBottom="23" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="275" Width="37" Height="22" AnchorRight="11" AnchorBottom="23" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtAccept" Attr="15" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="4" Top="294" Width="153" Height="22" AnchorRight="83" AnchorBottom="4" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to accept..." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="0" Height="0" AnchorRight="839" AnchorBottom="320" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnBack" Attr="16">
+<Layouts>
+<Layout PageNo="2" Visible="1" ZOrder="0" Caption="Back" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="6" Top="28" Width="80" Height="22" AnchorRight="154" AnchorBottom="270" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="26" Top="39" Width="80" Height="44" AnchorRight="206" AnchorBottom="237" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="3" FieldId="lbxJobs" Attr="17" Sorted="0">
+<Layouts>
+<Layout PageNo="2" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="13" Top="67" Width="65" Height="22" AnchorRight="761" AnchorBottom="711" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="55" Width="226" Height="242" AnchorRight="11" AnchorBottom="23" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="33" Top="67" Width="65" Height="22" AnchorRight="741" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="33" Top="89" Width="256" Height="220" AnchorRight="798" AnchorBottom="11" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Columns>
+<Column Caption="1" />
+<Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
+</Columns>
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblF2" Attr="18">
+<Layouts>
+<Layout PageNo="2" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="13" FontStyle="2" MultiLine="0" Left="260" Top="250" Width="29" Height="26" AnchorRight="550" AnchorBottom="524" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="F2" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Directed Replenish" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2011 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' LICENSE PLATES: TRANSFER LOCATION
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+'
+Option Explicit
+
+Private Const cTRANDESC = "RFgen Inv Transfer"
+Private Const cTNId     = "FWDIT0100"
+'
+Private msPgm        As String
+Private msVersion    As String
+Private msDOCTYPE    As String
+Private msAllowHold  As String
+Private miMoveCtr    As Integer
+Private msMoveItems  As String
+Private msMoveQtys   As String
+Private msMoveUoms   As String
+Private msMoveLotn   As String
+Private msPstb       As String
+Private mbF2Pressed  As Boolean
+Private mbItem       As Boolean
+Private msTLOC As String
+Private moProcOpt As New JDEProcOpt
+Private mnMaxQty As Currency
+Private mbReplChecked As Boolean
+Private mbPutChecked As Boolean
+
+Public Sub btnBack_Click()
+  On Error Resume Next
+
+  btnBack.Visible = False
+  lbxJobs.Visible = False
+  App.SetFocus(btnList.FieldId)
+End Sub
+
+Public Sub btnList_Click()
+  On Error Resume Next
+
+  Dim bCancel As Boolean
+
+  If App.GetValue("tmMCU") <> txtMCU.text Then
+    txtMCU_OnEnter(txtMCU.text, bCancel, "")
+    If bCancel Then Exit Sub
+  End If
+
+  BuildList()
+
+  btnBack.Visible = True
+  lbxJobs.Visible = True
+  App.SetFocus(lbxJobs.FieldId)
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim sHeader As String
+  Dim sLOCN   As String
+  '
+  Call SetDisplay()
+  '
+  gsLPSource = SYS.GetProperty("LP", "SOURCE")
+  '
+  If (Len(gsLPSource)=0) Then
+    App.MsgBox GetMsg(107)
+    App.ExitForm
+  End If
+  '
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLPQty.Caption = ""
+  lblPrimary.Caption = ""
+  lblPickZone.Caption = ""
+  txtAccept.Visible = False
+  lblF2.Visible = False
+  txtLOTN.Visible = False
+  txtLOTN.Required = False
+
+  ' Get Proc.Opt. Version from Menu
+  msPgm     = App.GetValue("Pgm")
+  msVersion = App.GetValue("Vers")
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.version = msVersion
+
+  msDOCTYPE = moProcOpt.value("Documenttype")
+
+  msPstb = "320" ' App.GetValue("WMSts")
+
+  lbxJobs.List.SetColumn(1, "Ty", -1)
+  lbxJobs.List.SetColumn(2, "From", -1)
+  lbxJobs.List.SetColumn(3, "To", -1)
+  lbxJobs.List.SetColumn(4, "Item", -1)
+  lbxJobs.List.SetColumn(5, "Qty", -1)
+  lbxJobs.List.SetColumn(6, "UM", -1)
+
+  btnBack.Visible = False
+  lbxJobs.Visible = False
+End Sub
+
+Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sITEM    As String
+  Dim sLPArray As String
+  Dim iArray   As Integer
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim nErrNo  As Long
+
+  App.Balloon("Processing...", -1)
+
+  Dim emProc As New EmbeddedProc
+
+  If mbItem Then
+    emProc.Name       = "TIMIT0100"
+    emProc.DataSource = gsDataSource
+    '
+    emProc.Param("tmCO")       = App.GetValue("tmCO")
+    emProc.Param("tmMCU")      = App.GetValue("tmMCU")
+    emProc.Param("tmLITM")     = App.GetValue("tmLITM")
+    emProc.Param("tmQTY")      = App.GetValue("tmQTY")
+    emProc.Param("tmUOM")      = App.GetValue("tmUOM")
+    emProc.Param("tmLOCN")     = App.GetValue("tmLOCN")
+    emProc.Param("tmLOTN")     = App.GetValue("tmLOTN")
+    emProc.Param("tmLOTS")     = App.GetValue("tmLOTS")
+    emProc.Param("tmToMCU")    = App.GetValue("tmNMCU")
+    emProc.Param("tmToLOCN")   = App.GetValue("tmNLOCN")
+    emProc.Param("tmTOLOTS")   = App.GetValue("tmTOLOTS")
+    emProc.Param("tmDCTO")     = msDOCTYPE
+    emProc.Param("tmDRKY")     = App.GetValue("tmDRKY")
+    emProc.Param("tmTDSC")     = Left(FixLeft(UCase(App.User),10," ") & cTRANDESC, 30)
+    emProc.Param("tmZVERSION") = msVersion
+    emProc.Param("tmPGM")      = msPgm
+    emProc.Param("tmUSER")     = App.User
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+    If Not emProc.Execute Then
+      App.Balloon("", 0)
+      App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+      Cancel = True
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+  Else
+    '
+    '--------------------------------------------------------------------------
+    ' Transfer LP
+    '
+    If gbCommitCtl Then DB.BeginTrans(gsLPSource)
+    '
+    Dim uLPOper As LPOper         ' LP Operation
+    Dim uLP101 As LP101Data       ' create LP101 Structure
+    Dim uLP102 As LP102Data       ' create LP101 Structure
+    Call LP101_Reset(uLP101)      ' init LP101 Structure
+    Call LP102_Reset(uLP102)      ' init LP102 Structure
+    '
+    uLP101.sLMLPID = App.GetValue("tmLPID")
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      App.MsgBox(GetMsg(104))
+      If gbCommitCtl Then DB.RollbackTrans(gsLPSource)
+      App.Balloon("", 0)
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+    '
+    'Set the value for variables
+    App.SetValue("LMCO"   ,App.GetValue("tmCO"))
+    App.SetValue("LMMCU"  ,App.GetValue("tmMCU"))
+    App.SetValue("tmNMCU" ,App.GetValue("tmNMCU"))
+    App.SetValue("LMLOCN" ,App.GetValue("tmLOCN"))
+    App.SetValue("tmNLOCN",App.GetValue("tmNLOCN"))
+    '
+    'Public Type LPOper
+    uLPOper.sLPID      = App.GetValue("tmLPID")    ' LP ID Child
+    uLPOper.sPALP      = App.GetValue("tmPALP")    ' LP ID Parent
+    uLPOper.sFMCU      = App.GetValue("tmMCU")     ' from Plant
+    uLPOper.sTMCU      = App.GetValue("tmNMCU")    ' to Plant
+    uLPOper.sFLOCN     = App.GetValue("tmLOCN")    ' from Location
+    uLPOper.sTLOCN     = App.GetValue("tmNLOCN")   ' to Location
+    uLPOper.nQty       = App.GetValue("tmQty")     ' Operation Qty.
+    uLPOper.bIsPlate   = True                      ' Plate or Item
+    uLPOper.bDetach    = False                     ' remove item
+    '
+    'set the version for IT in LP_MoveExecute
+    '
+    App.SetValue("LPITVersion",msVersion)
+    '
+    sITEM = App.GetValue("tmLPID")
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", "LP_MoveItems", "")
+    If Not LP_ReadStructure(uLP101.sLMLPID, sLPArray) Then
+      App.Balloon("", 0)
+      App.MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", "LP_MoveItems", "")
+      If gbCommitCtl Then DB.RollbackTrans gsLPSource
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+    '
+    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", "LP_MoveExecute", "")
+    If Not LP_MoveExecute(uLPOper,uLP101,False , cTRANDESC, sLPArray) Then
+      App.Balloon("", 0)
+      App.MsgBox GetMsg(44) & vbCrLf & SysErr.Description
+      If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", "LP_MoveExecute", "")
+      Call LP_MoveExecute(uLPOper,uLP101,True , cTRANDESC, sLPArray)
+      If gbCommitCtl Then DB.RollbackTrans gsLPSource
+      Cancel = True
+      App.SetFocus "txtAccept"
+      Exit Sub
+    End If
+    '
+    If gbCommitCtl Then DB.CommitTrans(gsLPSource)
+    LPDone:
+    '--------------------------------------------------------------------------
+  End If
+
+  sSql = _
+    " update WDJOBS" & _
+    " set R2PSTB = '399'" & _
+    " ,   R2PID = '" & cTNId & "'" & _
+    " ,   R2USER = '" & App.User & "'" & _
+    " ,   R2UPMJ = " & ConvDatetoJDE(Format(Date, "mm/dd/yy")) & _
+    " ,   R2TDAY = " & Format(Time, "hhnnss") & _
+    " where R2SGBT = %tmSGBT" & _
+    " and R2SGSQ = %tmSGSQ"
+  DB.Execute(sSql)
+
+  lblLPDesc.Caption  = ""
+  lblLPLocn.Caption  = ""
+  lblPrimary.Caption = ""
+  lblPickZone.Caption = ""
+  lblLPQty.Caption = ""
+
+  txtLOTN.Visible = False
+  txtLOTN.Required = False
+  '
+  App.Balloon("", 0)
+
+  mbReplChecked = chkRepl.Checked
+  mbPutChecked = chkPut.Checked
+
+End Sub
+
+'Private Sub Form_Unload()
+'  On Error Resume Next
+'  '
+'  Dim sSql As String
+'
+'  If Not (Val(App.GetValue("tmSGBT")) > 0 And Val(App.GetValue("tmSGSQ")) > 0) Then Exit Sub
+'
+'  ' Unlock current record.
+'  sSql = _
+'    " update WDJOBS" & _
+'    " set R2PSTB = '320'" & _
+'    " ,   R2PID = '" & cTNId & "'" & _
+'    " ,   R2USER = '" & App.User & "'" & _
+'    " ,   R2UPMJ = " & ConvDatetoJDE(Format(Date, "mm/dd/yy")) & _
+'    " ,   R2TDAY = " & Format(Time, "hhnnss") & _
+'    " where R2SGBT = %tmSGBT" & _
+'    " and R2SGSQ = %tmSGSQ" & _
+'    " and R2PSTB = '321'"
+'  DB.Execute(sSql)
+'End Sub
+
+'Private Sub txtLPID_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+'  On Error Resume Next
+'
+'  lblF2.Visible = True
+'End Sub
+'
+'Private Sub txtLPID_LostFocus()
+'  On Error Resume Next
+'
+'  lblF2.Visible = False
+'End Sub
+
+Private Function GetJobTypesAsSqlList() As String
+  Dim sList As String
+
+  If chkRepl.Checked Then sList = "'3'"
+  If chkPut.Checked Then
+    If Len(sList) > 0 Then sList &= ","
+    sList &= "'1'"
+  End If
+  GetJobTypesAsSqlList = sList
+End Function
+
+'Private Sub txtLPID_OnFkey(ByRef Fkey As Long)
+'  On Error Resume Next
+
+'  Dim sSql   As String
+'  Dim sCols  As String
+'  Dim sRows  As String
+'  Dim sLITM  As String
+'  Dim sTYFL As String
+'  Dim sJobTypes As String
+'
+'  sJobTypes = GetJobTypesAsSqlList()
+
+  '
+  ' Lock WM record
+  '
+  
+'  If Fkey = 2 Then
+'    If mbF2Pressed Then
+'      ' Unlock current record.
+'      sSql = _
+'        " update WDJOBS" & _
+'        " set R2PSTB = '320'" & _
+'        ",    R2PID = '" & cTNId & "'" & _
+'        ",    R2USER = '" & App.User & "'" & _
+'        ",    R2UPMJ = " & ConvDatetoJDE(Format(Date, "mm/dd/yy")) & _
+'        ",    R2TDAY = " & Format(Time, "hhnnss") & _
+'        " where R2SGBT = %tmSGBT" & _
+'        " and R2SGSQ = %tmSGSQ" & _
+'        " and R2PSTB = '321'"
+'      DB.UseDataSource("RFgenCustom")
+'      DB.Execute(sSql)
+'      DB.UseDataSource(0)
+'
+'      mbF2Pressed = False
+'      lblF2.Label.BackColor1 = 1
+'      lblF2.Label.ForeColor = 65535
+'
+'      BuildList
+'    Else
+'      BuildList
+'
+'      sTYFL = lbxJobs.List.Cell(lbxJobs.List.Index, 1)
+'      sLITM = lbxJobs.List.Cell(lbxJobs.List.Index, 5)
+'
+'      sSql = _
+'        " select R2SGBT, R2SGSQ, R2TLOC, R2FLOC, R2TQTY, R2FLOT" & _
+'        " from WDJOBS" & _
+'        " where R2TYFL = (" & sTYFL & ")" & _
+'        " and R2PSTB = '" & msPstb & "'" & _
+'        " and R2LITM = '" & sLITM & "'" & _
+'        " order by R2PRITY desc, R2SGBT, R2SGSQ"
+'      DB.Execute(sSql, sCols, sRows)
+'
+'      If Len(sRows) > 0 Then
+'        App.SetValue("tmSGBT", DB.Extract(sCols, sRows, 1, "R2SGBT"))
+'        App.SetValue("tmSGSQ", DB.Extract(sCols, sRows, 1, "R2SGSQ"))
+'
+'        sSql = _
+'          " update WDJOBS" & _
+'          " set R2PSTB = '321'" & _
+'          " ,   R2PID = '" & cTNId & "'" & _
+'          " ,   R2USER = '" & App.User & "'" & _
+'          " ,   R2UPMJ = " & ConvDatetoJDE(Format(Date, "mm/dd/yy")) & _
+'          " ,   R2TDAY = " & Format(Time, "hhnnss") & _
+'          " where R2SGBT = %tmSGBT" & _
+'          " and R2SGSQ = %tmSGSQ"
+'        DB.Execute(sSql)
+'      End If
+'
+'      mbF2Pressed = True
+'      lblF2.Label.BackColor1 = 65535
+'      lblF2.Label.ForeColor = 16711680
+'    End If
+'  End If
+
+'End Sub
+
+Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmCO",   "")
+  App.SetValue("tmMCU",  "")
+  App.SetValue("tmNMCU", "")
+End Sub
+
+Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  If (Len(Rsp)=0) Then Rsp = GetDefaultMCU()
+  If Len(Rsp) > 0 Then AllowChange = False
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  '
+  App.SetValue("tmCO",   sCompany)
+  App.SetValue("tmMCU",  sMCU)
+  App.SetValue("tmNMCU", sMCU)
+  '
+  txtNMCU.Defaults = Rsp & ";O"
+  Cancel = False
+
+  BuildList()
+End Sub
+
+Private Sub txtMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Private Sub txtLPID_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmLPID", "")
+  App.SetValue("tmLOCN", "")
+  '
+  lblLPDesc.Caption = ""
+  lblLPLocn.Caption = ""
+  lblLPQty.Caption = ""
+  lblPrimary.Caption = ""
+  lblPickZone.Caption = ""
+End Sub
+
+Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+
+  Dim sSql    As String
+  Dim sCols   As String
+  Dim sRows   As String
+  Dim sMCU    As String
+  Dim sLOCN   As String
+  Dim sLITM   As String
+  Dim sLOTN   As String
+  Dim sUOM    As String
+  Dim sSN     As String
+  Dim sITM    As String
+  Dim sAITM   As String
+  Dim sDSC1   As String
+  Dim nLNID   As Currency
+  Dim nLQty   As Currency
+  Dim nQty As Currency
+  Dim bMixedLP As Boolean
+  Dim uLP101 As LP101Data
+  Dim nCount As Long
+  Dim sOldestLot As String
+  Dim sError As String
+  Dim sTYFL As String
+  Dim sJobTypes As String
+  Dim sFLOC As String
+  Dim bHasLots As Boolean
+
+  Rsp = UCase(Trim(Rsp))
+  Cancel = True
+  If (Len(Rsp)=0) Then Exit Sub
+
+  ' Entry is an item or an LP?
+  If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1,,, bHasLots,,,True) Then
+    mbItem = True
+    txtLOTN.Visible = bHasLots
+    txtLOTN.Required = bHasLots
+  Else
+    Call LP101_Reset(uLP101)      ' init LP101 Structure
+
+    uLP101.sLMLPID = Rsp
+    If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
+      App.MsgBox(GetMsg(104))
+      Exit Sub
+    End If
+
+    ' LP is in the given plant?
+    If Trim(uLP101.sLMMCU) <> Trim(App.GetValue("tmMCU")) Then
+      App.MsgBox GetMsg(103)
+      Exit Sub
+    End If
+
+    ' LP is pallet?
+    sSql = _
+      " select LMLPID, LMLOCN" & _
+      " from F55101" & _
+      " inner join F55102 on LMLPID = LDLPID" & _
+      " where LMPALP = '" & Rsp & "'" & _
+      " and LDUORG > 0"
+    DB.Execute(sSql, sCols, sRows)
+
+    If DB.Count(sRows) > 0 Then
+      ' Validate using child LP
+      Dim sLPID As String
+      sLPID = DB.Extract(sCols, sRows, 1, "LMLPID")
+      sLOCN = Trim(DB.Extract(sCols, sRows, 1, "LMLOCN"))
+
+      ' Show error message if pallet contains mixed items
+      sSql = _
+        " select distinct LDLITM, IMITM" & _
+        " from F55101" & _
+        " inner join F55102 on LMLPID = LDLPID" & _
+        " inner join F4101 on IMLITM = LDLITM" & _
+        " where LMPALP = '" & Rsp & "'" & _
+        " union all" & _
+        " select distinct LDLITM, IMITM" & _
+        " from F55102" & _
+        " inner join F4101 on IMLITM = LDLITM" & _
+        " where LDLPID = '" & Rsp & "'"
+      DB.Execute(sSql, sCols, sRows)
+
+      If DB.Count(sRows) > 1 Then
+        App.MsgBox("Pallet contains mixed items. Please transfer/detach and try again.")
+        Exit Sub
+      End If
+
+      sITM = DB.Extract(sCols, sRows, 1, "IMITM")
+
+      If Not LP_GetItem(sLPID, nLNID, sLITM, sLOTN, nLQty, sUOM, sLOCN, sSN, bMixedLP, True) Then
+        App.MsgBox GetMsg(104)
+        Exit Sub
+      End If
+
+      If chkRepl.Checked Then
+        sOldestLot = GetOldestLot(App.GetValue("tmMCU"), sITM, sLOCN)
+        If sOldestLot <> "" And sOldestLot <> sLOTN Then
+          sError = "Error: older lot '" & sOldestLot & "' for item '" & sLITM & "' exists in location '" & sLOCN & "'. Must transfer older lot first."
+          App.MsgBox(sError)
+          Exit Sub
+        End If
+      End If
+
+      nLQty = 1
+    Else
+      ' LP is case ?
+      If Not LP_GetItem(Rsp, nLNID, sLITM, sLOTN, nLQty, sUOM, sLOCN, sSN, bMixedLP, True) Then
+        App.MsgBox GetMsg(104)
+        Exit Sub
+      End If
+
+      nLQty = 1
+    End If
+
+    sDSC1  = uLP101.sLMDSC1
+    sLOCN  = uLP101.sLMLOCN
+
+    mbItem = False
+  End If
+
+  sJobTypes = GetJobTypesAsSqlList()
+
+  sSql = _
+    " select R2SGBT, R2SGSQ, R2TLOC, R2FLOC, R2TQTY, R2UOM1, R2FLOT, R2LITM, R2TYFL" & _
+    " from WDJOBS" & _
+    " where R2TYFL in (" & sJobTypes & ")" & _
+    " and R2PSTB in ('" & msPstb & "')" & _
+    " and trim(R2LITM) = '" & sLITM & "'" & _
+    " order by R2PRITY desc, R2SGBT, R2SGSQ"
+
+  DB.UseDataSource("RFgenCustom")
+  DB.Execute(sSql,sCols,sRows)
+  DB.UseDataSource(0)
+
+  If Len(sRows) = 0 Then
+    App.MsgBox GetMsg(275)
+    Exit Sub
+  End If
+
+  sFLOC = Trim(DB.Extract(sCols, sRows, 1, "R2FLOC"))
+
+  App.SetValue("tmSGBT", DB.Extract(sCols, sRows, 1, "R2SGBT"))
+  App.SetValue("tmSGSQ", DB.Extract(sCols, sRows, 1, "R2SGSQ"))
+  App.SetValue("tmLITM", DB.Extract(sCols, sRows, 1, "R2LITM"))
+  App.SetValue("tmLOCN", DB.Extract(sCols, sRows, 1, "R2FLOC"))
+  App.SetValue("tmNLOCN", DB.Extract(sCols, sRows, 1, "R2TLOC"))
+  App.SetValue("tmLOTN", DB.Extract(sCols, sRows, 1, "R2FLOT"))
+  App.SetValue("tmQTY", DB.Extract(sCols, sRows, 1, "R2TQTY"))
+  App.SetValue("tmUOM", DB.Extract(sCols, sRows, 1, "R2UOM1"))
+  sTYFL = DB.Extract(sCols, sRows, 1, "R2TYFL")
+
+  msTLOC = App.GetValue("tmNLOCN")
+
+  lblPrimary.Caption = "Suggested locn: " & DB.Extract(sCols,sRows,1,"R2TLOC")
+  If sTYFL = "1" Then lblPickZone.Caption = "Pick Locn: " & PickLocation(App.GetValue("tmMCU"), App.GetValue("tmLITM"))
+  lblLPDesc.Caption = sDSC1
+  lblLPLocn.Caption = sLOCN
+
+  App.SetValue("tmLPID",  Rsp)
+  App.SetValue("tmTYPE",  uLP101.sLMTYPE)
+
+  If (Len(uLP101.sLMPALP)>0) Then
+    App.MsgBox(GetMsg(13) & uLP101.sLMPALP)
+    Exit Sub
+  End If
+  '
+  sMCU = App.GetValue("tmMCU")
+  '
+  If mbItem Then
+    lblLPDesc.Caption = ""
+    lblLPLocn.Caption = ""
+    lblLPQty.Caption = ""
+  Else
+    lblLPDesc.Caption = sDSC1
+    lblLPLocn.Caption = FormatLocnDisplay(sLOCN, sMCU)
+
+    sSql = _
+      " select LDLITM Item, sum(LDUORG) as Qty, max(LDUOM) as UOM" & _
+      " from F55102" & _
+      " inner join F55101 on LMLPID = LDLPID" & _
+      " where (LMPALP = '" & Rsp & "' or LMLPID = '" & Rsp & "')" & _
+      " group by LDLITM"
+    DB.Execute(sSql, sCols, sRows)
+
+    nCount =  DB.Count(sRows)
+    If nCount > 1 Then
+      lblLPQty.Caption = "Mixed Pallet with " & nCount & " Items."
+    Else
+      sLITM = Trim(DB.Extract(sCols, sRows, 1, "Item"))
+      nQty = DB.Extract(sCols, sRows, 1, "Qty")
+      sUOM = Trim(DB.Extract(sCols, sRows, 1, "UOM"))
+      lblLPQty.Caption = sLITM & " (" & nQty & " " & sUOM & ")"
+    End If
+  End If
+
+  sSql = _
+    " select LIPQOH - LIHCOM - LIPCOM" & _
+    " from F41021" & _
+    " inner join F4101 on IMITM = LIITM" & _
+    " where LIMCU = '%tmMCU'" & _
+    " and IMLITM = '%tmLITM'" & _
+    " and LILOCN = '%tmLOCN'" & _
+    " and LILOTN = '%tmLOTN'"
+  DB.Execute(sSql, sCols, sRows)
+  mnMaxQty = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols, sRows, 1, 1))
+
+  If mbItem Then
+    txtQTY.text = IIf(mnMaxQty < App.GetValue("tmQTY"), mnMaxQty, App.GetValue("tmQTY"))
+    txtQTY.DisplayOnly = False
+    txtQTY.Visible = True
+  Else
+    txtQTY.text = nLQty
+    txtQTY.DisplayOnly = True
+    txtQTY.Visible = False
+  End If
+
+  Cancel = False
+End Sub
+Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+   App.SetValue("tmLOTN", "")
+
+   txtLOTN.Visible = False
+   txtLOTN.Required = False
+End Sub
+
+Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sSQL  As String
+  Dim sCols As String
+  Dim sRows As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  Rsp = Trim(UCase(Rsp))
+  '
+  ' Validate
+  sSQL = "select count(*) from  F4108" & _
+         " where IOLOTN = '" & Rsp & "' and IOLITM = '%tmLITM' and IOMCU = '%tmMCU'"
+  '
+  DB.Execute(sSQL, sCols, sRows)
+  '
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(78))
+    Exit Sub
+  End If
+  '
+  App.SetValue("tmLOTN", Rsp)
+  '
+  Cancel = False
+End Sub
+
+Private Sub txtLOTN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  Dim sITM As String
+  '
+  sMCU = App.GetValue("tmMCU")
+  sITM = App.GetValue("tmITM")
+  '
+  Cancel = Not Search_F41021_LOTN(Rsp, "", sMCU, sITM)
+End Sub
+
+Private Sub txtNMCU_OnBackup(ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  App.SetValue("tmNMCU", "")
+End Sub
+
+Private Sub txtNMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  '
+  Rsp = UCase(Trim(Rsp))
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  Cancel = False
+  '
+  App.SetValue("tmNMCU", sMCU)
+End Sub
+
+Private Sub txtNMCU_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Cancel = Not Search_BranchPlant(Rsp)
+End Sub
+
+Public Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  Dim nQty As Currency
+  Cancel = True
+
+   ' Numeric?
+  If Not IsNumeric(Rsp) Then
+    App.MsgBox GetMsg(181)
+    Exit Sub
+  End If
+
+  '
+  ' Not Zero
+  nQty = Val(Rsp)
+  If (nQty = 0) Then
+    App.MsgBox GetMsg(182)
+    Exit Sub
+  End If
+
+  ' Not Negative
+  nQty = Val(Rsp)
+  If (nQty < 0) Then
+    App.MsgBox GetMsg(167)
+    Exit Sub
+  End If
+
+   ' Adjustment down exceeds PQOH?
+  If nQty > mnMaxQty Then
+    App.MsgBox GetMsg(173)
+    Exit Sub
+  End If
+
+  Cancel = False
+  App.SetValue("tmQTY", nQty)
+End Sub
+
+'Private Sub txtTOLOCN_OnBackup(ByRef Cancel As Boolean)
+'  On Error Resume Next
+'  '
+'  Dim sSql As String
+'
+'  App.SetValue("tmNLOCN", "")
+'
+'  ' Unlock current record.
+'  sSql = _
+'    " update WDJOBS" & _
+'    " set R2PSTB = '320'" & _
+'    " ,   R2PID = '" & cTNId & "'" & _
+'    " ,   R2USER = '" & App.User & "'" & _
+'    " ,   R2UPMJ = " & ConvDatetoJDE(Format(Date, "mm/dd/yy")) & _
+'    " ,   R2TDAY = " & Format(Time, "hhnnss") & _
+'    " where R2SGBT = %tmSGBT" & _
+'    " and R2SGSQ = %tmSGSQ" & _
+'    " and R2PSTB = '321'"
+'  DB.Execute(sSql)
+'End Sub
+
+Private Sub txtTOLOCN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU   As String
+  Dim sLocnT As String
+  Dim sLocnF As String
+  Dim sOldestLot As String
+  Dim sWarning As String
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  Cancel = True
+  '
+  sMCU = App.GetValue("tmNMCU")
+  If Not Validate_Locn(Rsp, sMCU, sLocnT) Then Exit Sub
+  '
+  sLocnF = App.GetValue("tmLOCN")
+  '
+  If (sLocnT = sLocnF) Then
+    App.MsgBox GetMsg(216)
+    Exit Sub
+  End If
+
+  If Trim(msTLOC) <> Trim(sLocnT) Then
+    If App.MsgBox("Location is not suggested 'to' location. Override?", vbYesNo) = vbNo Then Exit Sub
+  End If
+
+  Dim sSql As String
+
+'  sSql = "select count(*) from F41021 where LIMCU = '%tmMCU' and LILOCN = '" & sLocnT & "' and LILOTN < '%tmLOTN' and LIPQOH > 0"
+'  If Val(FetchFirstResult(sSql)) > 0 Then
+  sOldestLot = GetOldestLot(sMCU, App.GetValue("tmITM"), sLocnT)
+  If sOldestLot <> "" And sOldestLot <> App.GetValue("tmLOTN") Then
+    sWarning = "Older lot '" & sOldestLot & "' for item '" & App.GetValue("tmLITM") & "' exists in location '" & sLocnT & "'."
+    If App.MsgBox(sWarning, vbCustom, 2, "[Ignore][Cancel]") = "Cancel" Then Exit Sub
+  End If
+
+  App.SetValue("tmNLOCN", sLocnT)
+  Cancel = False
+End Sub
+
+Private Sub txtTOLOCN_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+  '
+  Dim sMCU As String
+  '
+  sMCU = App.GetValue("tmNMCU")
+  Cancel = Not Search_F4100(Rsp, "", sMCU)
+End Sub
+
+Private Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  txtAccept.Visible = True
+End Sub
+
+Private Sub txtAccept_LostFocus()
+  On Error Resume Next
+  '
+  txtAccept.Visible = False
+End Sub
+
+Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim iRow As Integer
+  '
+  iRow = txtAccept.Label.Top
+  '
+  Screen.Print 0, iRow, "Processing...", False, True, True
+End Sub
+
+Public Sub BuildList()
+  On Error Resume Next
+
+  Dim sSql As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim i As Long
+  Dim sFLOC As String
+  Dim sFLOT As String
+  Dim sLITM As String
+  Dim sDSC1 As String
+  Dim nTQTY As Currency
+  Dim sUOM As String
+  Dim sTYFL As String
+  Dim sTypeName As String
+  Dim sJobTypes As String
+
+  lbxJobs.List.Clear
+
+  sJobTypes = GetJobTypesAsSqlList()
+
+  sSql = _
+    " select *" & _
+    " from WDJOBS" & _
+    " where R2TYFL in (" & sJobTypes & ")" & _
+    " and R2PSTB in ('320', '321')" & _
+    " and trim(R2MCU) = '" & Trim(txtMCU.text) & "'" & _
+    " order by R2TYFL desc, R2PRITY desc, R2SGBT, R2SGSQ"
+  DB.UseDataSource("RFgenCustom")
+  DB.Execute(sSql,sCols,sRows)
+  DB.UseDataSource(0)
+
+  If DB.Count(sRows) = 0 Then
+    lbxJobs.List.AddItem("", "No jobs.")
+    Exit Sub
+  End If
+
+  For i=1 To DB.Count(sRows)
+    sTYFL = Trim(DB.Extract(sCols, sRows, i, "R2TYFL"))
+    sFLOC = Trim(DB.Extract(sCols, sRows, i, "R2FLOC"))
+    sFLOT = Trim(DB.Extract(sCols, sRows, i, "R2TLOC"))
+    sLITM = Trim(DB.Extract(sCols, sRows, i, "R2LITM"))
+    sDSC1 = Trim(DB.Extract(sCols, sRows, i, "R2DSC1"))
+    nTQTY = DB.Extract(sCols, sRows, i, "R2TQTY")
+    sUOM = Trim(DB.Extract(sCols, sRows, i, "R2UOM1"))
+
+    Select Case sTYFL
+    Case "1"
+      sTypeName = "P"
+    Case "3"
+      sTypeName = "R"
+    End Select
+
+    lbxJobs.List.AddItem("", sTypeName, sFLOC, sFLOT, sLITM, nTQTY, sUOM)
+  Next
+End Sub
+
+Private Function PickLocation(ByVal sMCU As String, ByVal sLITM As String) As String
+  Dim sSql As String
+
+  Dim sPickZone As String
+  Dim sReplZone As String
+  Dim sPutZone As String
+
+  sPickZone = SYS.GetProperty("WD", "ZonePick")
+  sReplZone = SYS.GetProperty("WD", "ZoneRepl")
+  sPutZone = SYS.GetProperty("WD", "ZonePut")
+
+  sSql = _
+    " select LILOCN" & _
+    " from F41021" & _
+    " inner join F4100" & _
+    "   on LILOCN = LMLOCN" & _
+    "   and LIMCU = LMMCU" & _
+    " inner join F4101" & _
+    "   on IMITM = LIITM" & _
+    " where LIMCU = '" & sMCU & "'" & _
+    "   and IMLITM = '" & sLITM & "'" & _
+    "   and LMKZON = '" & sPickZone & "'" & _
+    " order by case " & _
+    "   when LMZONR = '" & sPickZone & "' then 1" & _
+    "   when LMZONR = '" & sReplZone & "' then 2" & _
+    "   else 3" & _
+    " end"
+
+  PickLocation = Trim(FetchFirstResult(sSql))
+End Function
+</Code>

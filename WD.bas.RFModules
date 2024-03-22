@@ -418,18 +418,18 @@ Public Function WDNN() As Long
   '
   ' Get next batch number
   '
-  sSql = "select R2SGBT from WDNN "    'with(ROWLOCK)"
+  sSql = "select R2SGBT from RFgenCustom.WDNN "    'with(ROWLOCK)"
   DB.Execute(sSql,sCols,sRows)
   '
   If sRows = "" Then
     WDNN = 1
-    sSql = "insert into WDNN values(" & WDNN & ")"
+    sSql = "insert into RFgenCustom.WDNN values(" & WDNN & ")"
     DB.Execute(sSql)
   Else
     WDNN = Val(sRows)
     WDNN = WDNN + 1
     '
-    sSql = "update WDNN set R2SGBT = " & WDNN
+    sSql = "update RFgenCustom.WDNN set R2SGBT = " & WDNN
     DB.Execute(sSql)
   End If
 

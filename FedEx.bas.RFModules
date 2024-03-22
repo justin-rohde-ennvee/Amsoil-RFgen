@@ -1,0 +1,35 @@
+﻿<Record FileDesc="FedEx API" FileVersion="5.0.8.0" Desc="FedEx API" Group="FedEx" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Const FEDEX_BASE_URL As String = SYS.EnvironmentProperty("FedExBaseURL")
+
+Public Function FedEx_ParseResponseError( _
+  ByVal oResponse As Scripting.Dictionary, _
+  sErrMsg As String _
+) As Boolean
+  On Error Resume Next
+
+  Dim oError As Scripting.Dictionary
+  Dim oParameterList As Scripting.Dictionary
+  Dim oParameter As Scripting.Dictionary
+  Dim sCode As String
+  Dim sMessage As String
+
+  If Not oResponse.Exists("errors") Then Return False
+
+  For Each oError In oResponse("errors")
+    sCode = oError("code")
+    sMessage = oError("message")
+    If Len(sErrMsg) > 0 Then sErrMsg &= vbNewLine
+    sErrMsg &= sCode & ": " & sMessage
+
+    For Each oParameter In oError("parameterList")
+      sErrMsg &= vbNewLine & "  - " & oParameter("key") & ": " & oParameter("value")
+    Next
+  Next
+
+  Return True
+End Function
+</Code>

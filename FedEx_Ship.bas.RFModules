@@ -1,0 +1,189 @@
+﻿<Record FileDesc="FedEx Shipping API" FileVersion="5.0.8.0" Desc="FedEx Shipping API" Group="FedEx" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Function FedEx_CreateShipment( _
+  ByVal nAN8 As Long, _
+  ByVal nSHAN As Long, _
+  ByVal nWeight As Currency, _
+  ByVal sAccount As String _
+) As ShipmentResponse
+  Dim fromAddressInfo As AddressInfo
+  Dim toAddressInfo As AddressInfo
+  Dim sBody As String
+  Dim sToken As String
+  Dim bSuccess As Boolean
+  Dim sErrMsg As String
+  Dim sResponseStatus As String
+  Dim sResponseText As String
+  Dim oResponseJson As Scripting.Dictionary
+  Dim jsonParser As New VbsJson
+  Dim tShipmentResponse As ShipmentResponse
+
+  ' Create the request body
+  fromAddressInfo = GetAddressInfo(nAN8)
+  toAddressInfo = GetAddressInfo(nSHAN)
+  sBody = Fedex_ShipmentRequestJson(fromAddressInfo, toAddressInfo, nWeight, sAccount)
+
+  ' Generate bearer token for request
+  App.Balloon("Authorizing...", 1)
+
+  If Not FedEx_GetToken(sToken, sErrMsg) Then
+    tShipmentResponse.sErrMsg = sErrMsg
+    Return tShipmentResponse
+  End If
+
+  App.Balloon("Sending shipping request...", -1)
+
+  bSuccess = FedEx_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
+
+  App.Balloon("", 0)
+
+  Set oResponseJson = jsonParser.Decode(sResponseText)
+
+  If Not bSuccess Then
+    If Not FedEx_ParseResponseError(oResponseJson, tShipmentResponse.sErrMsg) Then
+      tShipmentResponse.sErrMsg = "HTTP error " & sResponseStatus
+    End If
+    Return tShipmentResponse
+  End If
+
+  tShipmentResponse = FedEx_ParseShipmentResponse(oResponseJson)
+  If tShipmentResponse.sErrMsg <> "" Then
+    tShipmentResponse.sErrMsg = "Unable to process shipment response: " & vbNewLine & vbNewLine & tShipmentResponse.sErrMsg
+    Return tShipmentResponse
+  End If
+
+  Return tShipmentResponse
+End Function
+
+Private Function FedEx_SendShippingRequest( _
+  ByVal sToken As String, _
+  ByVal sRequestBody As String, _
+  sResponseStatus As String, _
+  sResponseText As String _
+) As Boolean
+  Dim oHttp As New XMLHTTP60
+
+  oHttp.open("POST", FEDEX_BASE_URL & "/ship/v1/shipments")
+  oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
+  oHttp.setRequestHeader("Content-Type", "application/json")
+  oHttp.setRequestHeader("Accept", "application/json")
+  oHttp.Send(sRequestBody)
+
+  sResponseStatus = CStr(oHttp.status)
+  sResponseText = oHttp.responseText
+
+  Return oHttp.status = 200
+End Function
+
+Private Function FedEx_ParseShipmentResponse(ByVal oResponse As Scripting.Dictionary) As ShipmentResponse
+  Dim oShipmentResults As New Scripting.Dictionary
+  Dim tShipmentResponse As ShipmentResponse
+
+  If Not oResponse.Exists("output") Then
+    tShipmentResponse.sErrMsg = "Missing response component: output"
+    Return tShipmentResponse
+  End If
+
+  Set oShipmentResults = oResponse("output")("transactionShipments")(0)
+
+  tShipmentResponse.sTrackingNumber = oShipmentResults("masterTrackingNumber")
+  tShipmentResponse.nCost = CCur(oShipmentResults("completedShipmentDetail")("shipmentRating")("shipmentRateDetails")(0)("totalNetCharge"))
+  tShipmentResponse.sLabelImageBytes = oShipmentResults("pieceResponses")(0)("packageDocuments")(0)("encodedLabel")
+
+  Return tShipmentResponse
+End Function
+
+Private Function Fedex_ShipmentRequestJson( _
+  ByVal fromAddressInfo As AddressInfo, _
+  ByVal toAddressInfo As AddressInfo, _
+  ByVal nWeight As Currency, _
+  ByVal sAccount As String _
+) As String
+  Dim sBody As String
+
+  sBody = _
+    "{" & _
+    "  ""labelResponseOptions"": ""LABEL""," & _
+    "  ""requestedShipment"": {" & _
+    "    ""shipper"": {" & _
+    "      ""contact"": {" & _
+    "        ""companyName"": ""$FROM_NAME""," & _
+    "        ""phoneNumber"": ""$FROM_PHONE""" & _
+    "      }," & _
+    "      ""address"": {" & _
+    "        ""streetLines"": [" & _
+    "          ""$FROM_ADDRESS""" & _
+    "        ]," & _
+    "        ""city"": ""$FROM_CITY""," & _
+    "        ""stateOrProvinceCode"": ""$FROM_STATE""," & _
+    "        ""postalCode"": ""$FROM_ZIP""," & _
+    "        ""countryCode"": ""US""" & _
+    "      }" & _
+    "    }," & _
+    "    ""recipients"": [" & _
+    "      {" & _
+    "        ""contact"": {" & _
+    "          ""companyName"": ""$TO_NAME""," & _
+    "          ""phoneNumber"": ""$TO_PHONE""" & _
+    "        }," & _
+    "        ""address"": {" & _
+    "          ""streetLines"": [" & _
+    "            ""$TO_ADDRESS""" & _
+    "          ]," & _
+    "          ""city"": ""$TO_CITY""," & _
+    "          ""stateOrProvinceCode"": ""$TO_STATE""," & _
+    "          ""postalCode"": ""$TO_ZIP""," & _
+    "          ""countryCode"": ""US""" & _
+    "        }" & _
+    "      }" & _
+    "    ]," & _
+    "    ""shipDatestamp"": ""$SHIP_DATE""," & _
+    "    ""serviceType"": ""FEDEX_GROUND""," & _
+    "    ""packagingType"": ""YOUR_PACKAGING""," & _
+    "    ""pickupType"": ""USE_SCHEDULED_PICKUP""," & _
+    "    ""blockInsightVisibility"": false," & _
+    "    ""shippingChargesPayment"": {" & _
+    "      ""paymentType"": ""SENDER""" & _
+    "    }," & _
+    "    ""labelSpecification"": {" & _
+    "      ""imageType"": ""PNG""," & _
+    "      ""labelStockType"": ""PAPER_4X6""" & _
+    "    }," & _
+    "    ""requestedPackageLineItems"": [" & _
+    "      {" & _
+    "        ""weight"": {" & _
+    "           ""units"": ""LB""," & _
+    "           ""value"": $WEIGHT" & _
+    "        }" & _
+    "      }" & _
+    "    ]" & _
+    "  }," & _
+    "  ""accountNumber"": {" & _
+    "    ""value"": ""$ACCOUNT_NUMBER""" & _
+    "  }" & _
+    "}"
+
+  sBody = Replace(sBody, "$FROM_NAME", fromAddressInfo.sName)
+  sBody = Replace(sBody, "$FROM_ADDRESS", fromAddressInfo.sLine1 & " " & fromAddressInfo.sLine2 & " " & fromAddressInfo.sLine3 & " " & fromAddressInfo.sLine4)
+  sBody = Replace(sBody, "$FROM_CITY", fromAddressInfo.sCity)
+  sBody = Replace(sBody, "$FROM_STATE", fromAddressInfo.sState)
+  sBody = Replace(sBody, "$FROM_ZIP", fromAddressInfo.sZip)
+  sBody = Replace(sBody, "$FROM_PHONE", fromAddressInfo.sPhone)
+
+  sBody = Replace(sBody, "$TO_NAME", toAddressInfo.sName)
+  sBody = Replace(sBody, "$TO_ADDRESS", toAddressInfo.sLine1 & " " & toAddressInfo.sLine2 & " " & toAddressInfo.sLine3 & " " & toAddressInfo.sLine4)
+  sBody = Replace(sBody, "$TO_CITY", toAddressInfo.sCity)
+  sBody = Replace(sBody, "$TO_STATE", toAddressInfo.sState)
+  sBody = Replace(sBody, "$TO_ZIP", toAddressInfo.sZip)
+  sBody = Replace(sBody, "$TO_PHONE", toAddressInfo.sPhone)
+
+  sBody = Replace(sBody, "$SHIP_DATE", Format(Date, "yyyy-MM-dd"))
+  sBody = Replace(sBody, "$WEIGHT", CStr(nWeight))
+  sBody = Replace(sBody, "$ACCOUNT_NUMBER", sAccount)
+
+  Return sBody
+End Function
+</Code>

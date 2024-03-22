@@ -1,0 +1,184 @@
+﻿<Record FileDesc="WD - Warehouse Director Console" FileVersion="5.0.8.0" Desc="WD - Warehouse Director Console" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtMCU&vm;btnStart&vm;btnInquire" ImageList="0" AuthTableList="0&vm;0&vm;0">
+<Schema>
+<SchemaParam Linked="0" Attr="1" Name="txtMCU" />
+<SchemaParam Linked="0" Attr="2" Name="btnStart" />
+<SchemaParam Linked="0" Attr="3" Name="btnInquire" />
+</Schema>
+<Displays>
+<Display Name="(Default)" Type="1" Width="1920" Height="7040" Locale="1033" />
+</Displays>
+<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
+<Controls>
+<Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="14" Top="33" Width="65" Height="22" AnchorRight="560" AnchorBottom="539" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plants:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="76" Top="33" Width="119" Height="22" AnchorRight="444" AnchorBottom="539" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnStart" Attr="2">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Start" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="14" Top="66" Width="87" Height="22" AnchorRight="538" AnchorBottom="506" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnInquire" Attr="3">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Inquire" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="114" Top="66" Width="80" Height="22" AnchorRight="445" AnchorBottom="506" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="93" Top="75" Width="80" Height="44" AnchorRight="538" AnchorBottom="475" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+</Controls>
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
+<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" Caption="[Warehouse Director Console]" />
+<Field Align="0" Anchor="0" AutoSize="0" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Form>
+</Record>
+<Code>
+' -------------------------------------------------------------------------------
+' | (C)opyright 2003-2009 The DataMAX Software Group, Inc., All Rights Reserved.|
+' | RFgen JD Edwards Integration Suite Vers.# 420                               |
+' -------------------------------------------------------------------------------
+'
+' INVENTORY: WAREHOUSE DIRECTOR CONSOLE
+'
+' NOTES:
+'
+' MODIFICATION HISTORY:
+
+
+Option Explicit
+
+Private Const cTNId = "FWDWC0100"
+
+Private msStatusF  As String  '  R2PSTB
+Private msStatusT  As String  '  R2PSTB
+
+Public Sub btnInquire_Click()
+  On Error Resume Next
+
+  App.CallForm("WD_INQUIRY -StsFr=320 -StsTo=321", True)
+End Sub
+
+Private Sub btnStart_Click()
+  On Error Resume Next
+
+  Process()
+End Sub
+
+Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If Left(RFPrompt(iCN).FieldId, 3) <> "txt" Then Exit Sub
+
+  RFPrompt(iCN).BorderStyle = DisplayStandard
+  RFPrompt(iCN).BackColor1 = cFieldFocusBC
+  RFPrompt(iCN).ForeColor = cFieldFocusFC
+End Sub
+
+Private Sub Form_Load()
+  On Error Resume Next
+  '
+  Dim vArray    As Variant
+  Dim vArray2   As Variant
+  Dim iCnt      As Integer
+  Dim sMCU      As String
+  '
+  Call SetDisplay()
+
+  msStatusF = App.GetValue("StsFr")
+  msStatusT = App.GetValue("StsTo")
+
+  vArray = Split(SYS.GetProperty("WD", "MCU"),";")
+
+  For iCnt = 0 To UBound(vArray)
+    vArray2 = Split(vArray(iCnt),"|")
+    sMCU = sMCU & Trim(vArray2(0)) & ","
+  Next iCnt
+
+  sMCU = Left(sMCU,Len(sMCU) -1)     ' cut last ","
+  '
+  txtMCU.Defaults = sMCU
+End Sub
+
+Private Sub Form_LostFocus()
+  On Error Resume Next
+  '
+  Dim iCN As Integer
+  '
+  iCN = App.PromptNo
+  If Left(RFPrompt(iCN).FieldId, 3) <> "txt" Then Exit Sub
+
+  RFPrompt(iCN).BorderStyle = DisplayTransparent
+  RFPrompt(iCN).BackColor1 = cFieldDefaultBC
+  RFPrompt(iCN).ForeColor = cFieldDefaultFC
+End Sub
+
+Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Cancel = True
+End Sub
+
+Private Sub Process()
+  On Error Resume Next
+
+  Dim emProc As New EmbeddedProc
+
+  emProc.Name       = "TWDXX0100_AMS"
+  emProc.DataSource = gsDataSource
+  emProc.Param("tmPlants") = txtMCU.text
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  App.Balloon("Processing...", -1)
+
+  If Not emProc.Execute Then
+    App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
+    App.Balloon("", 0)
+    Exit Sub
+  End If
+
+  App.Balloon("", 0)
+End Sub
+
+Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
+  On Error Resume Next
+  '
+  Dim sMCU     As String
+  Dim sCompany As String
+  Dim sValue   As String
+  Dim iCnt     As Integer
+  Dim vArray   As Variant
+  '
+  If (Len(Rsp)=0) Then Exit Sub
+  '
+  Cancel = True
+
+  vArray = Split(Rsp, ",")
+  sValue = "'"
+
+  For iCnt = 0 To UBound(vArray)
+    If Not Validate_BranchPlant(vArray(iCnt), sMCU, sCompany) Then Exit Sub
+    sValue = sValue & sMCU & "','"
+  Next
+
+  sValue = Left(sValue, Len(sValue) - 2)
+  App.SetValue("tmMCU", sValue)
+
+  Cancel = False
+End Sub
+</Code>

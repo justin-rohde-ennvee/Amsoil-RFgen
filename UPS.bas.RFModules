@@ -1,0 +1,22 @@
+﻿<Record FileDesc="UPS API" FileVersion="5.0.8.0" Desc="UPS API" Group="UPS" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Const UPS_BASE_URL As String = SYS.EnvironmentProperty("UPSBaseURL_TEST")
+'Public Const UPS_BASE_URL As String = SYS.EnvironmentProperty("UPSBaseURL")
+
+Public Function UPS_ParseResponseError( _
+  ByVal oResponse As Scripting.Dictionary, _
+  sCode As String, _
+  sMessage As String _
+) As Boolean
+  On Error Resume Next
+
+  If Not oResponse.Exists("response") Then Return False
+
+  sCode = oResponse("response")("errors")(0)("code")
+  sMessage = oResponse("response")("errors")(0)("message")
+  Return True
+End Function
+</Code>
