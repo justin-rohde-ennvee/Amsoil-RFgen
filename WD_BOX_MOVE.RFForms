@@ -13,139 +13,97 @@
 <SchemaParam Linked="0" Attr="11" Name="btnMoveItem" />
 </Schema>
 <Displays>
-<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+<Display Name="Mobile" Type="1" Width="320" Height="480" Locale="1033" />
 </Displays>
 <Form Type="0" Attr="0" LinkMode="1">
 <Controls>
 <Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="21" Width="33" Height="22" AnchorRight="202" AnchorBottom="277" BackColor1="1" BackColor2="1" ForeColor="1" Caption="B/P" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="163" Top="21" Width="70" Height="22" AnchorRight="7" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="35" Top="32" Width="65" Height="22" AnchorRight="140" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="108" Top="32" Width="80" Height="22" AnchorRight="124" AnchorBottom="266" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="26" Width="33" Height="22" AnchorRight="277" AnchorBottom="432" BackColor1="1" BackColor2="1" ForeColor="1" Caption="B/P" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="243" Top="26" Width="70" Height="22" AnchorRight="7" AnchorBottom="437" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="1" FieldId="txtFromLPID" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="43" Width="97" Height="22" AnchorRight="138" AnchorBottom="255" BackColor1="1" BackColor2="1" ForeColor="1" Caption="From Carton" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="103" Top="43" Width="130" Height="22" AnchorRight="7" AnchorBottom="255" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="48" Width="97" Height="22" AnchorRight="213" AnchorBottom="410" BackColor1="1" BackColor2="1" ForeColor="1" Caption="From Carton" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="183" Top="48" Width="130" Height="22" AnchorRight="7" AnchorBottom="415" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblFromDSC1" Attr="3">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="65" Width="97" Height="22" AnchorRight="138" AnchorBottom="233" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblFromDSC1" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="135" Top="65" Width="49" Height="22" AnchorRight="56" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="70" Width="97" Height="22" AnchorRight="213" AnchorBottom="388" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblFromDSC1" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="1" FieldId="txtLNID" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="87" Width="41" Height="22" AnchorRight="194" AnchorBottom="211" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Line" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="183" Top="87" Width="50" Height="22" AnchorRight="7" AnchorBottom="211" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="54" Top="256" Width="65" Height="22" AnchorRight="121" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="127" Top="256" Width="80" Height="22" AnchorRight="105" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="92" Width="41" Height="22" AnchorRight="269" AnchorBottom="366" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Line" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="263" Top="92" Width="50" Height="22" AnchorRight="7" AnchorBottom="371" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblItemDesc" Attr="5">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="109" Width="97" Height="22" AnchorRight="138" AnchorBottom="189" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblItemDesc" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="22" Top="118" Width="49" Height="22" AnchorRight="169" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="114" Width="97" Height="22" AnchorRight="213" AnchorBottom="344" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblItemDesc" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="1" FieldId="txtQTY" Attr="6" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="131" Width="33" Height="22" AnchorRight="202" AnchorBottom="167" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="158" Top="131" Width="53" Height="22" AnchorRight="29" AnchorBottom="167" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="143" Top="136" Width="65" Height="22" AnchorRight="32" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="216" Top="136" Width="23" Height="22" AnchorRight="16" AnchorBottom="162" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="136" Width="33" Height="22" AnchorRight="277" AnchorBottom="322" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="230" Top="136" Width="53" Height="22" AnchorRight="37" AnchorBottom="322" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblUOM" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="215" Top="131" Width="33" Height="22" AnchorRight="-8" AnchorBottom="167" BackColor1="1" BackColor2="1" ForeColor="1" Caption="UOM" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="220" Top="142" Width="49" Height="22" AnchorRight="-29" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="287" Top="136" Width="33" Height="22" AnchorRight="0" AnchorBottom="322" BackColor1="1" BackColor2="1" ForeColor="1" Caption="UOM" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnNewCarton" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="New Carton" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="3" Top="210" Width="120" Height="22" AnchorRight="117" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="70" Top="194" Width="80" Height="44" AnchorRight="162" AnchorBottom="82" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="5" Top="271" Width="310" Height="33" AnchorRight="5" AnchorBottom="176" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="1" FieldId="txtToLPID" Attr="9" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="164" Width="81" Height="22" AnchorRight="154" AnchorBottom="134" BackColor1="1" BackColor2="1" ForeColor="1" Caption="To Carton" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="103" Top="164" Width="130" Height="22" AnchorRight="7" AnchorBottom="134" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="54" Top="256" Width="65" Height="22" AnchorRight="121" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="127" Top="256" Width="80" Height="22" AnchorRight="105" AnchorBottom="42" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="169" Width="81" Height="22" AnchorRight="229" AnchorBottom="289" BackColor1="1" BackColor2="1" ForeColor="1" Caption="To Carton" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="183" Top="169" Width="130" Height="22" AnchorRight="7" AnchorBottom="294" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblToDSC1" Attr="10">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="5" Top="187" Width="81" Height="22" AnchorRight="154" AnchorBottom="111" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblToDSC1" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="135" Top="65" Width="49" Height="22" AnchorRight="56" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="192" Width="81" Height="22" AnchorRight="229" AnchorBottom="266" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblToDSC1" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnMoveItem" Attr="11">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Move Item" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="143" Top="210" Width="90" Height="22" AnchorRight="7" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="70" Top="194" Width="80" Height="44" AnchorRight="162" AnchorBottom="82" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="5" Top="232" Width="310" Height="33" AnchorRight="5" AnchorBottom="215" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 </Controls>
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
-<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Box Move" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
-<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="320" FormHeight="480" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Box Move" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="480" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Form>
@@ -224,11 +182,13 @@ End Sub
 Public Sub btnNewCarton_Click()
   On Error Resume Next
 
-  App.CallForm("FWDMC0103_AMS -MCU=" & Trim(App.GetValue("tmMCU")), True)
+  App.CallForm("WD_CREATE_CARTON -MCU=" & Trim(App.GetValue("tmMCU")), True)
 End Sub
 
 Public Sub Form_Load()
   On Error Resume Next
+
+  Dim sDisplay As String
 
   lblFromDSC1.Caption = ""
   lblToDSC1.Caption = ""
@@ -242,6 +202,9 @@ Public Sub Form_Load()
   msPgm = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
 
+  sDisplay = App.GetValue("Display")
+  If sDisplay <> "" Then App.SetDisplay(sDisplay)
+
   If App.GetValue("LPID") <> "" Then
     txtFromLPID.text = App.GetValue("LPID")
     txtFromLPID.DisplayOnly = True
@@ -253,7 +216,7 @@ Public Sub Form_OnReturn(ByVal FormName As String)
 
   If gsLPID <> "" Then
     txtToLPID.text = gsLPID
-    txtToLPID_onenter(gsLPID, False, "")
+    txtToLPID_OnEnter(gsLPID, False, "")
     gsLPID = ""
   End If
 End Sub

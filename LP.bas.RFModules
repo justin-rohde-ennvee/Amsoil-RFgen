@@ -204,9 +204,9 @@ Public Sub LP102_Reset(ByRef uLP102 As LP102Data)
   uLP102.sLDURRF  = ""
   uLP102.sLDLPSN  = ""
   '
-  uLP102.sLdUSER  = App.User
-  uLP102.sLdDATE  = Format(Date,"YYYYMMDD")
-  uLP102.sLdTIME  = Format(Time,"HHMMSS")
+  uLP102.sLDUSER  = App.User
+  uLP102.sLDDATE  = Format(Date,"YYYYMMDD")
+  uLP102.sLDTIME  = Format(Time,"HHMMSS")
   '
 End Sub
 
@@ -239,6 +239,7 @@ Public Function X_LP101(ByRef sAction As String, ByRef uLP101 As LP101Data) As B
   '
   Dim emLP101 As New EmbeddedProc
   '
+
   msTNID   = "X_LP101"
   sAction = Trim(UCase(sAction))
   X_LP101 = False
@@ -674,7 +675,7 @@ Public Function X_LP101(ByRef sAction As String, ByRef uLP101 As LP101Data) As B
       uLP101.sLMALPH =   Trim(DB.Extract(sCols,sRows,1,"LMALPH"))
       uLP101.sLMROUT =   Trim(DB.Extract(sCols,sRows,1,"LMROUT"))
       uLP101.sLMSTOP =   Trim(DB.Extract(sCols,sRows,1,"LMSTOP"))
-      uLP101.sLMZONe =   Trim(DB.Extract(sCols,sRows,1,"LMZON"))
+      uLP101.sLMZONE =   Trim(DB.Extract(sCols,sRows,1,"LMZON"))
       uLP101.sLMCNID =   Trim(DB.Extract(sCols,sRows,1,"LMCNID"))
       uLP101.nLMCARS =        DB.Extract(sCols,sRows,1,"LMCARS")
       uLP101.sLMRLNU =   Trim(DB.Extract(sCols,sRows,1,"LMPDAT"))
@@ -1740,10 +1741,15 @@ Public Function LP_MoveExecute(ByRef uLPoper As LPOper, ByRef uLP101 As LP101Dat
 
   Dim sPUOM       As String
   Dim x           As Integer
+  Dim oProcOpt As New JDEProcOpt
+
   '
   sDate = Format(Date,"YYYYMMDD")
   sTime = Format(Time,"HHMMSS")
   sUser = App.User
+
+  oProcOpt.ProgramId = "P4113"
+  oProcOpt.Version = App.GetValue("LPITVersion")
 
   msTNID = "LP_MoveExecute"
   LP_MoveExecute = False
@@ -1805,11 +1811,12 @@ Public Function LP_MoveExecute(ByRef uLPoper As LPOper, ByRef uLP101 As LP101Dat
     '
     ' check Proc.Opt.if Lots on Hold are allowed
     '
-    sAllowHold = GetProcOpt("P4113",App.GetValue("LPITVersion"),"3;3")
+'    sAllowHold = GetProcOpt("P4113",App.GetValue("LPITVersion"),"3;3")
+    sAllowHold = Trim(oProcOpt.Value("AllowHeldLots"))
     '
-    If gbPOError Then
-      Exit Function
-    End If
+'    If gbPOError Then
+'      Exit Function
+'    End If
     '
     Call GetItemQty(stmMCU,sITM,sLOTN,stmLOCN,sAllowHold,nOnHand,nAvail,sHold)
 
@@ -1818,7 +1825,8 @@ Public Function LP_MoveExecute(ByRef uLPoper As LPOper, ByRef uLP101 As LP101Dat
       Exit Function
     End If
     '
-    Select Case GetProcOpt("P4113",App.GetValue("LPITVersion"),"3;4")
+'    Select Case GetProcOpt("P4113",App.GetValue("LPITVersion"),"3;4")
+    Select Case Trim(oProcOpt.Value("LotGroup"))
       Case ""   'Disallow neg.qty available
         If nAvail < 0 Then
           nMaxQty = 0
@@ -1881,9 +1889,11 @@ Public Function LP_MoveExecute(ByRef uLPoper As LPOper, ByRef uLP101 As LP101Dat
 
     i = i +1
   Loop
+
   '
   ' run multi line macro
   '
+
   If (Trim(sValCache) <> "") Then
     emProc.Clear
     emProc.Name = "TIMIT0200"
@@ -1896,7 +1906,8 @@ Public Function LP_MoveExecute(ByRef uLPoper As LPOper, ByRef uLP101 As LP101Dat
     emProc.Param("tmTOMCU")    = stmNMCU
     emProc.Param("tmTOLOCN")   = stmNLOCN
     emProc.Param("tmTOLOTS")   = stmTOLOTS
-    emProc.Param("tmDCTO")     = GetProcOpt("P4113",App.GetValue("LPITVersion"),"1;1")
+'    emProc.Param("tmDCTO")     = GetProcOpt("P4113", App.GetValue("LPITVersion"),"1;1")
+    emProc.Param("tmDCTO")     = Trim(oProcOpt.Value("Documenttype"))
     emProc.Param("tmDRKY")     = " "
     emProc.Param("tmTDSC")     = Trim(uLP101.sLMLPID) & " | " & sTranDesc
     emProc.Param("tmZVERSION") = App.GetValue("LPITVersion")
@@ -2126,7 +2137,7 @@ Public Function LP_AttachDetach(ByRef uLPoper As LPOper, ByRef uLP102 As LP102Da
     ' Attach / Dettach LP parent
    '
     ' update weight / volume for PALP
-    If Not LP_MoveVolWeight(uLPoper.sLPID, uLPoper.sPALP, uLPoper.bIsPlate, nPWeig, sWUOM, nPCube, sVUOM) Then Exit Function
+    If Not LP_MoveVolWeight(uLPoper.sLPID, uLPoper.sPalp, uLPoper.bIsPlate, nPWeig, sWUOM, nPCube, sVUOM) Then Exit Function
     '
     uLP101.sLMLPID = uLPoper.sLPID
     If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
@@ -2140,7 +2151,7 @@ Public Function LP_AttachDetach(ByRef uLPoper As LPOper, ByRef uLP102 As LP102Da
        uLP101.sLMLOCN = uLPoper.sTLOCN
        If Not X_LP101("C", uLP101) Then Exit Function
     Else
-      uLP101.sLMPALP = uLPoper.sPALP
+      uLP101.sLMPALP = uLPoper.sPalp
       uLP101.sLMLOCN = uLPoper.sTLOCN
       If Not X_LP101("C", uLP101) Then Exit Function
     End If
@@ -2166,12 +2177,17 @@ Public Function LP_AttachDetach(ByRef uLPoper As LPOper, ByRef uLP102 As LP102Da
   Else 'If it is an Item
     '
     'Inquire existing LPID
-    uLP101.sLMLPID = uLPoper.sPALP
+    uLP101.sLMLPID = uLPoper.sPalp
     If Not X_LP101("I", uLP101) Then
       LP_MsgBox(GetMsg(104))
       Exit Function
     End If
     '
+
+    Dim oProcOpt As New JDEProcOpt
+    oProcOpt.ProgramId = "P4113"
+    oProcOpt.Version = App.GetValue("LPITVersion")
+
     ' run IT only if Location and / or Plant is different
     If FormatLocnDisplay((uLPoper.sFLOCN),uLPoper.sFMCU) <> FormatLocnDisplay(uLPoper.sTLOCN,uLPoper.sFMCU) And uLP102.nLDUORG <> 0 Or _
       uLPoper.sFMCU <> uLPoper.sTMCU And uLP102.nLDUORG <> 0 Then
@@ -2195,7 +2211,8 @@ Public Function LP_AttachDetach(ByRef uLPoper As LPOper, ByRef uLP102 As LP102Da
       End If
       emProc.Param("tmUOM")      = uLP102.sLDUOM
       emProc.Param("tmLOTN")     = uLP102.sLDLOTN
-      emProc.Param("tmDCTO")     = GetProcOpt("P4113",App.GetValue("LPITVersion"),"1;1")
+'      emProc.Param("tmDCTO")     = GetProcOpt("P4113",App.GetValue("LPITVersion"),"1;1")
+      emProc.Param("tmDCTO")     = Trim(oProcOpt.Value("Documenttype"))
       emProc.Param("tmDRKY")     = " "
       emProc.Param("tmMCU")      = uLPoper.sFMCU              ' From MCU
       emProc.Param("tmLOCN")     = uLPoper.sFLOCN             ' From Location

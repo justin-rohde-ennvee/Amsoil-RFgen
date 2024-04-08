@@ -180,19 +180,15 @@ Private Sub Form_Load()
  ' msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
 
   ' Get processing options
-  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
+'  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+'  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
 
   moProcOpt.ProgramId = msPgm
   moProcOpt.Version = msVersion
 
   msDOCTYPE = moProcOpt.Value("Documenttype")
-  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
+'  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
 
-  If gbPOError Then
-    App.ExitForm
-    Exit Sub
-  End If
   '
   ' Default location if required from Menu
   '
@@ -222,17 +218,6 @@ Private Sub Form_Load()
 '  Else
 '    msSchema = Trim(DB.Extract(sCols, sRows, 1, "DRDL01"))
 '  End If
-
-  Dim sLPID As String
-  sLPID = Trim(App.GetValue("LPID"))
-
-  If sLPID <> "" Then
-    sSql = "select LMMCU from F55101 where LMLPID = '" & sLPID & "'"
-    DB.Execute(sSql, sCols, sRows)
-
-    If DB.Count(sRows) > 0 Then txtMCU.Text = DB.Extract(sCols, sRows, 1, "LMMCU")
-    txtLPID.Text = sLPID
-  End If
 End Sub
 
 Private Sub Form_LostFocus()

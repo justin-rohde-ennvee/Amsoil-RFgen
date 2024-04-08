@@ -1,4 +1,4 @@
-﻿<Record FileDesc="Manage Carton" FileVersion="5.0.8.0" Desc="Manage Carton" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtLPID&vm;lblDSC1&vm;lblCarrier&vm;lblTrackingNumber&vm;lblCost&vm;txtPickPrinter&vm;txtPackPrinter&vm;btnPrintIDLabel&vm;btnPrintContentsLabel&vm;btnPrintShippingLabel&vm;btnVoid&vm;btnResolveErrors" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="Manage Carton" FileVersion="5.0.8.0" Desc="Manage Carton" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtLPID&vm;lblDSC1&vm;lblCarrier&vm;lblTrackingNumber&vm;lblCost&vm;txtPickPrinter&vm;txtPackPrinter&vm;btnPrintIDLabel&vm;btnPrintContentsLabel&vm;btnPrintShippingLabel&vm;btnVoid" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtLPID" />
 <SchemaParam Linked="0" Attr="2" Name="lblDSC1" />
@@ -11,10 +11,9 @@
 <SchemaParam Linked="0" Attr="9" Name="btnPrintContentsLabel" />
 <SchemaParam Linked="0" Attr="10" Name="btnPrintShippingLabel" />
 <SchemaParam Linked="0" Attr="11" Name="btnVoid" />
-<SchemaParam Linked="0" Attr="12" Name="btnResolveErrors" />
 </Schema>
 <Displays>
-<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+<Display Name="Mobile" Type="1" Width="320" Height="480" Locale="1033" />
 </Displays>
 <Form Type="0" Attr="0" LinkMode="1">
 <Controls>
@@ -22,11 +21,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="28" Width="81" Height="22" AnchorRight="150" AnchorBottom="270" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Carton ID" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="111" Top="28" Width="120" Height="22" AnchorRight="9" AnchorBottom="270" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="22" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="22" Width="80" Height="22" AnchorRight="159" AnchorBottom="276" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="191" Top="28" Width="120" Height="22" AnchorRight="9" AnchorBottom="430" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -35,18 +30,12 @@
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="49" Width="65" Height="22" AnchorRight="166" AnchorBottom="249" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblDSC1" />
 </Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="135" Top="65" Width="49" Height="22" AnchorRight="56" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
-</Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblCarrier" Attr="3">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="69" Width="89" Height="22" AnchorRight="142" AnchorBottom="229" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblCarrier" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="85" Width="49" Height="22" AnchorRight="182" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
 </Layout>
 </Layouts>
 </Control>
@@ -55,9 +44,6 @@
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="89" Width="145" Height="22" AnchorRight="86" AnchorBottom="209" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblTrackingNumber" />
 </Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="135" Top="65" Width="49" Height="22" AnchorRight="56" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
-</Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblCost" Attr="5">
@@ -65,94 +51,57 @@
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="109" Width="65" Height="22" AnchorRight="166" AnchorBottom="189" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblCost" />
 </Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="135" Top="65" Width="49" Height="22" AnchorRight="56" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
-</Layout>
 </Layouts>
 </Control>
 <Control Type="1" FieldId="txtPickPrinter" Attr="6" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="140" Width="145" Height="22" AnchorRight="86" AnchorBottom="158" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Carton ID Printer" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="190" Top="140" Width="40" Height="22" AnchorRight="10" AnchorBottom="158" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="88" Width="80" Height="22" AnchorRight="159" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="269" Top="140" Width="40" Height="22" AnchorRight="11" AnchorBottom="318" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="1" FieldId="txtPackPrinter" Attr="7" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="199" Width="105" Height="22" AnchorRight="126" AnchorBottom="99" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Pack Printer" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="190" Top="199" Width="40" Height="22" AnchorRight="10" AnchorBottom="99" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="88" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="88" Width="80" Height="22" AnchorRight="159" AnchorBottom="210" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="232" Width="105" Height="22" AnchorRight="206" AnchorBottom="226" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Pack Printer" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="269" Top="232" Width="40" Height="22" AnchorRight="11" AnchorBottom="226" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnPrintIDLabel" Attr="8">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Print ID Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="165" Width="220" Height="22" AnchorRight="10" AnchorBottom="133" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="80" Height="44" AnchorRight="232" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Reprint ID Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="165" Width="300" Height="33" AnchorRight="10" AnchorBottom="282" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnPrintContentsLabel" Attr="9">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Print Contents Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="223" Width="220" Height="22" AnchorRight="10" AnchorBottom="75" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="80" Height="44" AnchorRight="232" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Reprint Contents Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="256" Width="300" Height="33" AnchorRight="10" AnchorBottom="191" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnPrintShippingLabel" Attr="10">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Print Shipping Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="248" Width="220" Height="22" AnchorRight="10" AnchorBottom="50" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="44" Width="80" Height="44" AnchorRight="232" AnchorBottom="232" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Reprint Shipping Label" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="298" Width="300" Height="33" AnchorRight="10" AnchorBottom="149" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="9" FieldId="btnVoid" Attr="11">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Void Shipment" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="284" Width="220" Height="22" AnchorRight="10" AnchorBottom="14" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="70" Top="194" Width="80" Height="44" AnchorRight="162" AnchorBottom="82" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-</Layouts>
-</Control>
-<Control Type="9" FieldId="btnResolveErrors" Attr="12">
-<Layouts>
-<Layout PageNo="1" Visible="0" ZOrder="0" Caption="Resolve Carton Errors" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="254" Width="220" Height="22" AnchorRight="10" AnchorBottom="44" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="70" Top="194" Width="80" Height="44" AnchorRight="162" AnchorBottom="82" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="372" Width="300" Height="33" AnchorRight="10" AnchorBottom="75" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 </Controls>
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
-<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Manage Carton" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
-<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-16" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="320" FormHeight="480" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Manage Carton" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="480" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Form>
@@ -173,6 +122,8 @@ Public Sub btnPrintIDLabel_Click()
   txtPickPrinter_OnEnter(txtPickPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
+  App.Balloon("Printing carton ID label...", -1)
+
   sLPID = App.GetValue("tmLPID")
   sPSN = PickSlipNumberForCarton(sLPID)
   GetCartonSequence(sLPID, sPSN, nSequence, nCount)
@@ -186,8 +137,13 @@ Public Sub btnPrintIDLabel_Click()
     txtPickPrinter.text, _
     sErrMsg _
   ) Then
+    App.Balloon("", 0)
     App.MsgBox("Failed to print ID label: " & sErrMsg)
+    Exit Sub
   End If
+
+  Wait(1)
+  App.Balloon("", 0)
 End Sub
 
 Public Sub btnPrintContentsLabel_Click()
@@ -199,48 +155,39 @@ Public Sub btnPrintContentsLabel_Click()
   txtPackPrinter_OnEnter(txtPackPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
+  App.Balloon("Printing contents label...", -1)
+
   If Not PrintCartonContentsLabel( _
     App.GetValue("tmLPID"), _
     txtPackPrinter.text, _
     sErrMsg _
   ) Then
+    App.Balloon("", 0)
     App.MsgBox("Failed to print contents label: " & sErrMsg)
+    Exit Sub
   End If
+
+  Wait(1)
+  App.Balloon("", 0)
 End Sub
 
 Public Sub btnPrintShippingLabel_Click()
   On Error Resume Next
-
-'  Dim sCarrier As String
-'  Dim sTrackingNumber As String
   Dim sErrMsg As String
-'  Dim sImageBytes As String
-  Dim bCancel As BookmarkEnum
+  Dim bCancel As Boolean
 
   txtPackPrinter_OnEnter(txtPackPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
-'  sCarrier = App.GetValue("tmDL02")
-'  sTrackingNumber = App.GetValue("tmDL01")
+  App.Balloon("Reprinting shipping label...", -1)
 
-'  App.Balloon("Fetching label...", -1)
-
-'  Select Case sCarrier
-'  Case "UPS"
-'    If UPS_BASE_URL = SYS.EnvironmentProperty("UPSBaseURL_TEST") Then sTrackingNumber = UPS_TEST_TRACKING_NUMBER_LABEL_SUCCESS
-'    sImageBytes = UPS_RecoverLabel(sTrackingNumber, sErrMsg)
-'  Case "FedEx"
-'    App.MsgBox("FedEx reprint not yet implemented.")
-'    sImageBytes = FedEx_RecoverLabel(sTrackingNumber, sErrMsg)
-'  End Select
-
-'  If sImageBytes = "" Then
-'    App.MsgBox(sErrMsg)
-'    App.Balloon("", 0)
-'  End If
-
-  App.Balloon("Reprinting shipping label...", 1)
-
+'  UPS_RecoverLabel(App.GetValue("tmDL01"), sErrMsg)
+  If Not UPS_RestoreLabel(App.GetValue("tmLPID"), sErrMsg) Then
+    App.Balloon("", 0)
+    App.MsgBox(sErrMsg)
+    Exit Sub
+  End If
+  
   If Not UPS_PrintLabel(App.GetValue("tmLPID"), Val(txtPackPrinter.text), sErrMsg) Then
     App.Balloon("", 0)
     App.MsgBox(sErrMsg)
@@ -248,7 +195,6 @@ Public Sub btnPrintShippingLabel_Click()
   End If
 
   Wait(1)
-
   App.Balloon("", 0)
 End Sub
 
@@ -268,7 +214,6 @@ Public Sub Form_Load()
   btnPrintContentsLabel.Visible = False
   btnPrintShippingLabel.Visible = False
   btnVoid.Visible = False
-'  btnResolveErrors.Visible = False
 
   nPickPrinter = Val(App.UserProperty("CartonPrinter"))
   If nPickPrinter > 0 Then txtPickPrinter.text = CStr(nPickPrinter)
@@ -318,7 +263,6 @@ Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   txtPackPrinter.Visible = True
   btnPrintIDLabel.Visible = True
   btnPrintContentsLabel.Visible = True
-'  btnResolveErrors.Visible = True
 
   If sCarrier = "" Then
     lblCarrier.Caption = ""
@@ -329,7 +273,7 @@ Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Else
     lblCarrier.Caption = "Carrier: " & sCarrier
     lblTrackingNumber.Caption = "Tracking: " & sTrackingNumber
-    lblCost.Caption = "Cost: $" & nCost
+    lblCost.Caption = "Cost: $" & Format(nCost, "#0.00")
     btnVoid.Visible = True
     btnPrintShippingLabel.Visible = True
   End If
@@ -343,13 +287,13 @@ Public Sub btnVoid_Click()
   Dim sTrackingNumber As String
   Dim bSuccess As Boolean
   Dim sErrMsg As String
+  Dim nErrNo As Long
 
   App.Balloon("Voiding shipment...", -1)
 
   sLPID = App.GetValue("tmLPID")
   sCarrier = App.GetValue("tmDL02")
   sTrackingNumber = App.GetValue("tmDL01")
-
 
   Select Case sCarrier
   Case "UPS"
@@ -365,11 +309,10 @@ Public Sub btnVoid_Click()
     Exit Sub
   End If
 
-  DB.Execute("delete from F554602 where CFCNID = '" & sLPID & "'")
+  nErrNo = DB.Execute("delete from F554602 where CFCNID = '" & sLPID & "'")
+  If nErrNo <> 0 Then App.MsgBox("Failed to remove shipment record from F554602: " & nErrNo)
 
-  If Not UpdatePackageInformation(sLPID, "", 0, sErrMsg) Then
-    App.MsgBox(sErrMsg)
-  End If
+  If Not UpdatePackageInformation(sLPID, "", 0, sErrMsg) Then App.MsgBox(sErrMsg)
 
   App.Balloon("", 0)
   App.MsgBox("Shipment voided.")
@@ -400,4 +343,21 @@ Public Sub txtPickPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
 
   App.UserProperty("CartonPrinter") = Rsp
 End Sub
+
+Public Function UPS_RestoreLabel(ByVal sLPID As String, sErrMsg As String) As Boolean
+  On Error GoTo OnError
+
+  Dim sSrc As String
+  Dim sDst As String
+
+  sSrc = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".gif"
+  sDst = SYS.EnvironmentProperty("LPSImagesFolder") & "UPS.gif"
+
+  FileCopy(sSrc, sDst)
+
+  UPS_RestoreLabel = True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = Err.Description
+End Function
 </Code>

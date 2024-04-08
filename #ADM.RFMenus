@@ -17,5 +17,4 @@
 <MenuItem Id="-" Desc="-" />
 <MenuItem Id="FIMIT0101" Desc="IM - Performance Test Inv.Transfer" Options="-Pgm=P4113 -Vers=ZJDE0001" />
 <MenuItem Id="FSYDP0100" Desc="SYS - Set Up Fiscal Date Pattern" />
-<MenuItem Id="TEST_SORT" Desc="Test Sort" />
 </Record>

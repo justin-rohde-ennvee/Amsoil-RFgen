@@ -193,6 +193,13 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     GoTo ExitE1
   End If
 
+  Dim oProcOpt As New JDEProcOpt
+  oProcOpt.ProgramId = tmPGM
+  oProcOpt.Version = tmZVERSION
+
+  Dim sR42565Version As String
+  sR42565Version = oProcOpt.Value("R42565Vers")
+
   '-------------------'
   ' ShipConfirmEndDoc '
   '-------------------'
@@ -205,7 +212,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emShipConfirmEndDoc.Param("ErrorCondition")     = " "
   emShipConfirmEndDoc.Param("UserId")             = emGetAuditInfo.Param("UserName")
 '  emShipConfirmEndDoc.Param("UserId")             = tmUSER
-  emShipConfirmEndDoc.Param("R42565Version")      = GetProcOpt(tmPGM,tmZVERSION, "8;2")
+  emShipConfirmEndDoc.Param("R42565Version")      = sR42565Version 'GetProcOpt(tmPGM,tmZVERSION, "8;2")
   emShipConfirmEndDoc.Param("TRANSyncEndDoc")     = " "
   emShipConfirmEndDoc.Param("mTRANJobsNumber")    = 0
   emShipConfirmEndDoc.Param("P4205Version")       = tmZVERSION

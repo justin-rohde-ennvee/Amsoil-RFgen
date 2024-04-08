@@ -1,4 +1,4 @@
-﻿<Record FileDesc="RFGen - User Login" FileVersion="5.0.8.0" Desc="RFGen - User Login" Group="RFGEN-BAK" LinkTo="Login Request" LinkType="6" LinkMode="0" PromptList="imgLogo&vm;User&vm;Password&vm;lbltxtEnv&vm;lblEnv&vm;lblPwd&vm;txtNewPwd&vm;txtConfPwd&vm;lbltxtVers&vm;lblVers" ImageList="RFLogin&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="RFGen - User Login" FileVersion="5.0.8.0" Desc="RFGen - User Login" Group="RFGEN" LinkTo="Login Request" LinkType="6" LinkMode="0" PromptList="imgLogo&vm;User&vm;Password&vm;lbltxtEnv&vm;lblEnv&vm;lblPwd&vm;txtNewPwd&vm;txtConfPwd&vm;lbltxtVers&vm;lblVers" ImageList="RFLogin">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="imgLogo" />
 <SchemaParam Linked="0" Attr="2" Name="User" />
@@ -14,88 +14,88 @@
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
 </Displays>
-<Form Type="0" FieldId="Form" Attr="0" LinkMode="0">
+<Form FieldId="Form" Attr="0" LinkMode="0" Pages="1">
 <Controls>
 <Control Type="6" FieldId="imgLogo" Attr="1" ImageId="RFLogin" Style="2">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="0" Height="22" AnchorRight="247" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="0" Width="247" Height="330" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="0" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="198" Width="0" Height="22" AnchorRight="247" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" BackFill="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="0" Width="247" Height="330" AnchorRight="0" AnchorBottom="0" BackColor1="000001" BackColor2="000001" ForeColor="000000" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="User" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="User" Attr="2" KeyField="0" MaskInput="0" Required="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="57" Height="22" AnchorRight="144" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Login:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="154" Width="87" Height="22" AnchorRight="40" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="48" Top="154" Width="55" Height="22" AnchorRight="144" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Login:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="154" Width="87" Height="22" AnchorRight="40" AnchorBottom="154" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="Password" Attr="3" KeyField="0" MaskInput="1" Required="0" SipMode="0">
+<Control Type="1" FieldId="Password" Attr="3" KeyField="0" MaskInput="1" Required="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="176" Width="81" Height="22" AnchorRight="144" AnchorBottom="132" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Password:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="176" Width="87" Height="22" AnchorRight="40" AnchorBottom="132" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="176" Width="79" Height="22" AnchorRight="144" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Password:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="176" Width="87" Height="22" AnchorRight="40" AnchorBottom="132" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lbltxtEnv" Attr="4">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="88" Width="81" Height="22" AnchorRight="152" AnchorBottom="220" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="Connect.:" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="88" Width="79" Height="22" AnchorRight="152" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Connect.:" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblEnv" Attr="5">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="96" Top="88" Width="97" Height="22" AnchorRight="56" AnchorBottom="220" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="Environment" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="96" Top="88" Width="95" Height="22" AnchorRight="56" AnchorBottom="220" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Environment" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblPwd" Attr="6">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="169" Height="22" AnchorRight="48" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="ff" Caption="F2 - Change Password" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="198" Width="167" Height="22" AnchorRight="48" AnchorBottom="110" BackColor1="000001" BackColor2="000001" ForeColor="0000FF" Caption="F2 - Change Password" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtNewPwd" Attr="7" KeyField="0" MaskInput="1" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtNewPwd" Attr="7" KeyField="0" MaskInput="1" Required="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="220" Width="89" Height="22" AnchorRight="136" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" Caption="New Passw." />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="87" Height="22" AnchorRight="40" AnchorBottom="88" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="220" Width="87" Height="22" AnchorRight="136" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="New Passw." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="220" Width="87" Height="22" AnchorRight="40" AnchorBottom="88" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtConfPwd" Attr="8" KeyField="0" MaskInput="1" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtConfPwd" Attr="8" KeyField="0" MaskInput="1" Required="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="242" Width="89" Height="22" AnchorRight="136" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Conf Passw" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="242" Width="87" Height="22" AnchorRight="40" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="24" Top="242" Width="87" Height="22" AnchorRight="136" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" Caption="Conf Passw" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="120" Top="242" Width="87" Height="22" AnchorRight="40" AnchorBottom="66" BackColor1="000001" BackColor2="000001" ForeColor="000001" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lbltxtVers" Attr="9">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="66" Width="81" Height="22" AnchorRight="152" AnchorBottom="242" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="JDE Vers:" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="0" MultiLine="0" Left="16" Top="66" Width="79" Height="22" AnchorRight="152" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="JDE Vers:" />
 </Layout>
 </Layouts>
 </Control>
 <Control Type="10" FieldId="lblVers" Attr="10">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="96" Top="66" Width="65" Height="22" AnchorRight="88" AnchorBottom="242" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="Version" />
+<Layout PageNo="1" Visible="1">
+<Label Anchor="3" AutoSize="1" BorderStyle="5" BackFill="0" FontSize="0" FontStyle="2" MultiLine="0" Left="96" Top="66" Width="63" Height="22" AnchorRight="88" AnchorBottom="242" BackColor1="000001" BackColor2="000001" ForeColor="00FFFF" Caption="Version" />
 </Layout>
 </Layouts>
 </Control>
 </Controls>
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="247" FormHeight="330" Scrollbars="0">
-<Label Align="1" Anchor="0" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="247" Height="22" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="0" AutoSize="6" BorderStyle="3" DropShadow="1" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="247" Height="330" AnchorRight="0" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout Visible="1" FormWidth="247" FormHeight="330" Scrollbars="0">
+<Label Align="1" AutoSize="2" FontSize="0" FontStyle="0" Width="0" Height="22" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
+<Field AutoSize="6" BorderStyle="3" DropShadow="1" FontSize="0" FontStyle="0" BackColor1="000001" BackColor2="000001" ForeColor="000001" />
 </Layout>
 </Layouts>
 </Form>
@@ -357,9 +357,13 @@ Private Sub Password_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef
     gsPassword = Rsp  ' save in global to pass over to Transaction macro
     Rsp = ""          ' set Password to blank, so you dont have to maintain it twice in JDE and RFgen
   End If
-  '
-  Cancel = False
 
+  If IsUserLoggedIn(msUID) Then
+    App.MsgBox("User is already logged in on another device.")
+    Exit Sub
+  End If
+
+  Cancel = False
 End Sub
 
 Private Sub txtConfPwd_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -563,5 +567,36 @@ Public Function SetWorldPwd() As Boolean
 
   If SetWorldPwd Then App.UserProperty("PwdUpd") =  sDate ' update RFgen user profile
 
+End Function
+
+Private Function LoggedInUsers() As Scripting.Dictionary
+  Dim oUsers As New Scripting.Dictionary
+  Dim sUserList As String
+  Dim sUser As String
+  Dim i As Long
+
+  sUserList = SYS.UserList(True)
+
+  For i=1 To DCount(Ext(sUserList,i), Chr(2))
+    sUser = Ext(sUserList, i, 3)
+    If sUser <> "" Then oUsers.Add(UCase(sUser), "")
+  Next
+
+  Set LoggedInUsers = oUsers
+End Function
+
+Private Function IsUserLoggedIn(ByVal sCheckUser As String) As Boolean
+  Dim oUsers As Scripting.Dictionary
+  Set oUsers = LoggedInUsers()
+  Dim sUser As String
+
+  sCheckUser = UCase(sCheckUser)
+
+  For Each sUser In oUsers.Keys
+    If sUser = sCheckUser Then
+      IsUserLoggedIn = True
+      Exit Function
+    End If
+  Next
 End Function
 </Code>

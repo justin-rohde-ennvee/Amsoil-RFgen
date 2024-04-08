@@ -1,0 +1,33 @@
+﻿<Record FileDesc="Warehouse User Menu BILL" FileVersion="5.0.8.0" Desc="Warehouse User Menu BILL" Heading="[Warehouse]">
+<MenuItem Id="-" Desc="-- LP Management --" />
+<MenuItem Id="FLPAI0100_AMS" Desc="1 Create / Attach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="2 Detach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FLPTL0100_AMS" Desc="3 Transfer LP Location" Options="-Pgm=P4113 -Vers=AMS0001" />
+<MenuItem Id="FIMIT0100_AMS" Desc="F Transfer Non-Lot" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Pick / Ship  --" />
+<MenuItem Id="FSOPC0200_AMS" Desc="4 ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />
+<MenuItem Id="FSOSC0100_AMS" Desc="5 ST Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0002" />
+<MenuItem Id="FLPUP0100_AMS" Desc="6 Unpick License Plate" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQL0100_AMS" Desc="7 LP - Inquiry by Location" />
+<MenuItem Id="FLPQI0100_AMS" Desc="8 LP - Inquiry" />
+<MenuItem Id="FIMQI0100" Desc="9 Item Location Inquiry" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Cycle Counts --" />
+<MenuItem Id="FLPCC0100_AMS" Desc="0 IM - Cycle Counts (by LP)" Options="-Pgm=P41240 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="FLPLB0100_AMS" Desc="A Label Reprint" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="--- System ---" />
+<MenuItem Id="FADRL010" Desc="B Record Lock Maintainence" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="--- SO - Sales Orders ---" />
+<MenuItem Id="FSOPC0201_AMS" Desc="C Sales Order Picking" Options="-Pgm=P4205 -Vers=RGN0003 -BOVers=RGN0004" />
+<MenuItem Id="FSOSC0101_AMS" Desc="D Sales Order Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0005" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="--- System ---" />
+<MenuItem Id="FLPAS0100_AMS" Desc="E LP Adjust Status" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
+</Record>

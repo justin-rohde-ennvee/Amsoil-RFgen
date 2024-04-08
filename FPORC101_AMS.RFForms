@@ -93,7 +93,7 @@ Option Explicit
 
 Private Const cForceLOTN    = False     ' True = force User to confirm same Lot Number
 Private Const cForceLOCN    = False     ' True = force User to confirm same Location
-Private Const cTNId         = "FSOPC0100"     
+Private Const cTNId         = "FSOPC0100"
 Private msPgm               As String
 Private msVersion           As String
 Private msStatusF           As String
@@ -129,6 +129,7 @@ Private Sub Form_Load()
   '
   Dim sHeader As String
   Dim sStatus As String
+
   '
   ' Initialize the RFGen recordset with extra fields
   App.SetValue("tmCO",      "")
@@ -222,7 +223,6 @@ Private Sub Form_Load()
     App.ExitForm
     Exit Sub
   End If
-
 End Sub
 
 Private Sub Form_LostFocus()
@@ -286,7 +286,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Dim uLP101 As LP101Data       ' create LP101 Structure
   Dim uLP102 As LP102Data       ' create LP102 Structure
 
-
+  Dim iCnt As Long
 
   'Aggregate a List.Data of AN8's that we are receiving from:
   sSQL = "select PDAN8 from  F4311" & _
@@ -312,13 +312,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   sSQL = "select * from  F4311" & _
          " where PDMCU = '%tmMCU' and PDDOCO = %tmDOCO  and PDDCTO = '%tmDCTO'" & _
          " and PDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and PDMCU = '%tmMCU'"
-  '
-'  nLNID = Val(App.GetValue("tmLNID"))
-'
-'  If (nLNID <> 0) Then
-'    sSQL = sSQL & " and SDLNID = " & ConvDecimalsToSQL("LNID", nLNID)
-'  End If
-  '
+
   DB.Execute(sSQL,sCols,sRows)
 
   If (Len(sRows) = 0) Then
@@ -334,8 +328,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
     emProc.Name       = "TPOIR0100"
     emProc.DataSource = gsDataSource
-'    emProc.Param("tmCO") = App.GetValue("tmCO")
-'    emProc.Param("tmMCU") = App.GetValue("tmMCU")
     emProc.Param("tmCO") = DB.Extract(sCols, sRows, x, "PDKCOO")
     emProc.Param("tmMCU") = DB.Extract(sCols, sRows, x, "PDMCU")
     emProc.Param("tmLITM") = Trim(DB.Extract(sCols, sRows, x, "PDLITM"))
@@ -361,8 +353,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
     emProc.Param("tmPGM") = msPgm
     emProc.Param("tmIVI") = Trim(DB.Extract(sCols, sRows, x, "PDLNTY"))
 
-    '
-    If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+    Call TranLog(cTNId, "1", emProc.Name, "", emProc)
 
     If gbQueueProcessing Then
       If gbQLoadBal Then emProc.QueueName = RFQBalance("", 0)
@@ -430,7 +421,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
          " and LMRDCTO = '" & Trim(App.GetValue("tmRDCTO")) & "' and LMRNXTR = '620'"
   DB.Execute(sSQL, sCols, sRows)
 
-
 'Update F55101 set LMMCU = F4311.PDMCU, LMLOCN = [locn_input], LMRDOCO = F4311.PDDOCO, LMRDCTO = F4311.PDDCTO,
 'LMRNXTR = ‘ ‘ WHERE LMMCU = F4311.PDAN8 AND LMRDOCO = F4311.PDRORN AND LMRDCTO = F4311.PDRCTO AND LMRNXTR = ‘620’.
 
@@ -451,8 +441,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
       Exit Sub
     End If
   Next
-
-
 End Sub
 
 Private Sub Form_Unload()
@@ -527,7 +515,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   If (Len(Rsp)=0) Then Exit Sub
 
   Cancel = True
-  
+
   ' Numeric?
   If Not IsNumeric(Rsp) Then
     App.MsgBox GetMsg(276)
@@ -797,6 +785,6 @@ Private Sub txtAccept_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRe
   iRow = txtAccept.Label.Top
   '
   Screen.Print 0, iRow, "Processing...", False, True, True
-  
+
 End Sub
 </Code>

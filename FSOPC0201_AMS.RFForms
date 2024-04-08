@@ -170,7 +170,7 @@
 
 Option Explicit
 
-Private Const cTNId         = "FSOPC0200"
+Private Const cTNId         = "FSOPC0201"
 Private Const cForceLOTN    = False     ' True = force User to confirm same Lot Number
 Private Const cForceLOCN    = False     ' True = force User to confirm same Location
 Private Const cF00095       = False     ' True = run record lock in F00095
@@ -228,8 +228,6 @@ Private Sub Form_Load()
   Dim vArray  As Variant
   '
   Call SetDisplay()
-
-  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
   '
   ' Initialize the RFGen recordset with extra fields
   App.SetValue("tmCO",      "")
@@ -525,7 +523,7 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   '
   Dim sMCU     As String
   Dim sCompany As String
-  Dim sSQL     As String
+  Dim sSql     As String
   Dim sRows    As String
   Dim sCols    As String
 
@@ -537,8 +535,8 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   App.SetValue("tmCO",   sCompany)
   App.SetValue("tmMCU",  sMCU)
 
-  sSQL = "select DRKY from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='" & Trim(sMCU) & "'"
-  DB.Execute(sSQL, sCols, sRows)
+  sSql = "select DRKY from F0005 where DRSY = '55' and DRRT = 'FI' and LTRIM(RTRIM(DRKY)) ='" & Trim(sMCU) & "'"
+  DB.Execute(sSql, sCols, sRows)
 
   If DB.Count(sRows) = 0 Then
     mbCheckOldestLots = False
@@ -565,10 +563,12 @@ End Sub
 Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
   '
-  Dim sSQL  As String
+  Dim sSql  As String
   Dim sCols As String
   Dim sRows As String
   Dim bSalesOrder As Boolean
+
+  Dim nTick As Long
   '
   If (Len(Rsp)=0) Then Exit Sub
 
@@ -582,19 +582,19 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   mbPickList = False
 
-  sSQL = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
+  sSql = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDDOCO = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K' " & _
          " order by SDDOCO, SDDCTO "
   '
-  DB.Execute(sSQL, sCols, sRows)
+  DB.Execute(sSql, sCols, sRows)
   If Not (Len(sRows) = 0) Then
     bSalesOrder = True
   Else
-    sSQL = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
+    sSql = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDURAB = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K' " & _
          " order by SDDOCO, SDDCTO "
     '
-    DB.Execute(sSQL, sCols, sRows)
+    DB.Execute(sSql, sCols, sRows)
 
     If Not (Len(sRows) = 0) Then
       mbPickList = True
@@ -623,10 +623,10 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   '
   App.SetValue("tmDOCO", Rsp)
 
-  sSQL = "Select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM from  F4211 " & _
+  sSql = "Select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM from  F4211 " & _
        " where SDMCU = '" & App.GetValue("tmMCU") & "' and ( SDDOCO = " & App.GetValue("tmDOCO") & " or SDURAB = " & App.GetValue("tmDOCO") & ") " & _
        " and SDSOQS <> 0 and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDCOMM <> 'K' group by SDLITM, SDUOM order by SDLITM"
-  DB.Execute(sSQL, sCols, sRows)
+  DB.Execute(sSql, sCols, sRows)
   lblItemDesc.Caption = "Open SO Lines: " & DB.Count(sRows)
   '
   Cancel = False
@@ -655,20 +655,22 @@ End Sub
 Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
   '
-  Dim sSQL  As String
+  Dim sSql  As String
   Dim sCols As String
   Dim sRows As String
   Dim sHold As String
+
+  Dim nTick As Long
   '
   If (Len(Rsp)=0) Then Exit Sub
   Cancel = True
   '
   Rsp = UCase(Rsp)
   '
-  sSQL = "select count(*) from  F4211" & _
+  sSql = "select count(*) from  F4211" & _
          " where SDDCTO = '" & Rsp & "' and SDDOCO = %tmDOCO and SDMCU = '%tmMCU' and SDCOMM <> 'K'"
   '
-  DB.Execute(sSQL, sCols, sRows)
+  DB.Execute(sSql, sCols, sRows)
 
   If (Val(sRows) = 0) Then
     App.MsgBox GetMsg(197)
@@ -676,10 +678,10 @@ Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   End If
 
   ' check if SO is on Hold
-  sSQL = "select SHHOLD from  F4201" & _
+  sSql = "select SHHOLD from  F4201" & _
          " where SHDCTO = '" & Rsp & "' and SHDOCO = %tmDOCO and SHMCU = '%tmMCU'"
   '
-  DB.Execute(sSQL, sCols, sRows)
+  DB.Execute(sSql, sCols, sRows)
 
   sHold = DB.Extract(sCols,sRows,1,1)
 
@@ -772,7 +774,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim nType    As Long
   Dim iCnt     As Long
   Dim vArray   As Variant
-  Dim sSQL     As String
+  Dim sSql     As String
   Dim sCols    As String
   Dim sRows    As String
   Dim sSQL2    As String
@@ -827,6 +829,9 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   Dim nCartonMax As Long
 
+  Dim nTick As Long
+
+
   Cancel = True
   '
   If (Len(Rsp) = 0) Then Exit Sub
@@ -845,7 +850,6 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   txtLOTN.DisplayOnly = False
   '
   Rsp = Trim(UCase(Rsp))
-
   '
   ' Validate Item Master / get Item Branch
   If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, mbHasLots, mbSerialized, False, True) Then
@@ -857,17 +861,17 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
 
     ' Get First SO Line
-    sSQL = "select * from  F4211 left join F41002 on SDITM = UMITM" & _
+    sSql = "select * from  F4211 left join F41002 on SDITM = UMITM" & _
            " where (SDUOM = UMUM and UMRUM = '" & sUOM & "') and ( SDDOCO = %tmDOCO or SDURAB = %tmDOCO ) and SDLITM = '" & Rsp & "' and SDSOQS <> 0 " & _
            " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K' order by UMCONV DESC"
-    DB.Execute(sSQL,sCols,sRows)
+    DB.Execute(sSql,sCols,sRows)
 
     If (DB.Count(sRows) = 0) Then
-      sSQL = "select * from  F4211" & _
+      sSql = "select * from  F4211" & _
              " where ( SDDOCO = %tmDOCO or SDURAB = %tmDOCO ) and SDLITM = '" & Rsp & "' and SDSOQS <> 0 " & _
              " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K'"
       '
-      DB.Execute(sSQL,sCols,sRows)
+      DB.Execute(sSql,sCols,sRows)
     End If
 
     App.SetValue("tmFirstDOCO", Trim(DB.Extract(sCols, sRows, 1, "SDDOCO")))
@@ -875,6 +879,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     App.SetValue("tmDCTO", DB.Extract(sCols, sRows, 1, "SDDCTO"))
     sDCTO = App.GetValue("tmDCTO")
+
 
     If (Len(sRows) = 0) Then
       App.MsgBox(GetMsg(101))
@@ -903,6 +908,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
       mnTotalPick = nAddToTotalPick + mnTotalPick
     Next
+
 
     sSQL2 = "select * from  F4211" & _
              " where ( SDDOCO = %tmDOCO or SDURAB = %tmDOCO ) and SDLITM = '" & Rsp & "' and SDSOQS <> 0 and SDUOM = '" & sUOM & "'" & _
@@ -999,14 +1005,15 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     'Check if it is a license plate - if it is, find the LITM and process.
 
     sLPID = Trim(Rsp)
-    sSQL = "select * from F55101 where LMLPID = '" & sLPID & "' and LMMCU = '" & App.GetValue("tmMCU") & "'"
-    DB.Execute(sSQL, sCols, sRows)
+    sSql = "select * from F55101 where LMLPID = '" & sLPID & "' and LMMCU = '" & App.GetValue("tmMCU") & "'"
+    DB.Execute(sSql, sCols, sRows)
 
     If (DB.Count(sRows) = 0) Then
       App.MsgBox("LP or Item # Is Not Valid or LP Is Not In Correct Branch For Picking")
       Cancel = True
       Exit Sub
     End If
+
 
 
     PlateStart:
@@ -1039,14 +1046,14 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
       'sSQL = "select LDLITM, LMLOCN, LDLOTN, sum(LDUORG-LDSOQS) as QtyAvail from F55102 inner join F55101 on LDLPID = LMLPID where LMLPID = '" & sLPID & "'" & " or LMPALP = '" & sLPID & "' group by LDLITM, LMLOCN, LDLOTN order by LDLITM"
 
-      sSQL = "with TEST as (Select LDLITM, LMLOCN, LDLOTN, LDUORG, LDSOQS from F55101 inner Join F55102 On LMLPID = LDLPID" & _
+      sSql = "with TEST as (Select LDLITM, LMLOCN, LDLOTN, LDUORG, LDSOQS from F55101 inner Join F55102 On LMLPID = LDLPID" & _
                 " where LMPALP = '" & sLPID & "'" & _
                 " union All" & _
                 " Select LDLITM, LMLOCN, LDLOTN, LDUORG, LDSOQS from F55101 inner Join F55102 On LMLPID = LDLPID" & _
                 " where LDLPID = '" & sLPID & "')" & _
                 " Select LDLITM, LMLOCN, LDLOTN, sum(LDUORG-LDSOQS) as QtyAvail from TEST" & _
                 " group by LDLITM, LMLOCN, LDLOTN order by LDLITM"
-      DB.Execute(sSQL, sCols, sRows)
+      DB.Execute(sSql, sCols, sRows)
 
       If (DB.Count(sRows) = 0) Then
         App.MsgBox("Nothing is on this pallet.")
@@ -1070,6 +1077,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
           Exit Sub
         End If
       Next
+
 
       'Verify that there is enough qty needed on sales order / consolidated pick for entire pallet.
 
@@ -1146,6 +1154,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
         End If
 
       Next
+
 
 
     If Not mbCheckOldestLots Then GoTo SKIPLOTCHECK
@@ -1827,6 +1836,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
     Next
 
+
+
     SKIPCASEVALIDATION:
     SKIPLOTCHECK:
 
@@ -1848,11 +1859,11 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
           '      DB.Execute(sSQL, sCols, sRows)
         App.SetValue("tmLOCN", Trim(DB.Extract(sCols, sRows, a, "LMLOCN")))
         App.SetValue("tmDspLOCN", Trim(DB.Extract(sCols, sRows, a, "LMLOCN")))
-        txtLOCN.Text = Trim(DB.Extract(sCols, sRows, a, "LMLOCN"))
+        txtLOCN.text = Trim(DB.Extract(sCols, sRows, a, "LMLOCN"))
         txtLOCN.DisplayOnly = True
 
         App.SetValue("tmLOTN", Trim(DB.Extract(sCols, sRows, a, "LDLOTN")))
-        txtLOTN.Text = Trim(DB.Extract(sCols, sRows, a, "LDLOTN"))
+        txtLOTN.text = Trim(DB.Extract(sCols, sRows, a, "LDLOTN"))
         txtLOTN.DisplayOnly = True
 
         App.SetValue("tmQtyAvail", Val(DB.Extract(sCols, sRows, a, "QtyAvail")))
@@ -2164,10 +2175,10 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
       UpdateLP:
       'sSQL = "select * from F55101 where LMPALP = '" & sLPID & "' or LMLPID = '" & sLPID & "'"
-      sSQL = "select * from F55101 where LMPALP = '" & sLPID & "'" & _
+      sSql = "select * from F55101 where LMPALP = '" & sLPID & "'" & _
              " UNION ALL" & _
              " select * from F55101 where LMLPID = '" & sLPID & "'"
-      DB.Execute(sSQL, sCols, sRows)
+      DB.Execute(sSql, sCols, sRows)
 
       For y=1 To DB.Count(sRows)
         Call LP101_Reset(uLP101)
@@ -2219,10 +2230,10 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       'Screen.Bell(1)
       Screen.Bell(0)
 
-      sSQL = "Select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM from  F4211 " & _
+      sSql = "Select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM from  F4211 " & _
        " where SDMCU = '" & App.GetValue("tmMCU") & "' and ( SDDOCO = " & App.GetValue("tmDOCO") & " or SDURAB = " & App.GetValue("tmDOCO") & ") " & _
        " and SDSOQS <> 0 and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDCOMM <> 'K' group by SDLITM, SDUOM order by SDLITM"
-      DB.Execute(sSQL, sCols, sRows)
+      DB.Execute(sSql, sCols, sRows)
       lblItemDesc.Caption = "Open SO Lines: " & DB.Count(sRows)
 
       mbIsLP = False
@@ -2587,6 +2598,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     DB.Execute(sSqlLP, sColsLP, sRowsLP)
 
+
     sLocn = Trim(DB.Extract(sColsLP, sRowsLP, 1, "LMLOCN"))
 
     For x = 1 To DB.Count(sRowsLP)
@@ -2639,6 +2651,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                      " and LIMCU = '%tmMCU'" & _
                      " order by LILOTN, Count desc"
             DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
 
             If DB.Count(sRowsInv) = 0 Then
               GoTo OLDEST_ON_PALLET7
@@ -2733,6 +2746,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
         If getOldestLotINV(App.GetValue("tmMCU"), sLITM, sLOTN,sQty -1, sLotFilterLP) Then 'minus one because in query > sqty
           For i = 1 To UBound(sOlderLots)
 
+
            sSqlInv = "With CTE As(" & _
                          " Select LMLOCN, LDLOTN, LMMCU, LDLITM, SUM(LDUORG) As LDUORG from" & Chr(10) & _
                          " (Select LMLOCN, LDLOTN, LMMCU, LDLITM, LDUORG from F55102 inner Join F55101 On LDLPID = LMLPID" & _
@@ -2759,6 +2773,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
                      " and LIMCU = '%tmMCU'" & _
                      " order by LILOTN, Count desc"
             DB.Execute(sSqlInv, sColsInv, sRowsInv)
+
 
             If DB.Count(sRowsInv) = 0 Then
               GoTo OLDEST_ON_PALLET8
@@ -2865,6 +2880,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
     Next
 
+
+
     SKIPCASEVALIDATION2:
     SKIPLOTCHECK2:
 
@@ -2872,8 +2889,8 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     'If it's a Pallet type
 
 
-    sSQL = "select LDLITM, LMLOCN, LDLOTN, (LDUORG-LDSOQS) as QtyAvail from F55102 inner join F55101 on LDLPID = LMLPID where LDLPID = '" & sLPID & "'
-    DB.Execute(sSQL, sCols, sRows)
+    sSql = "select LDLITM, LMLOCN, LDLOTN, (LDUORG-LDSOQS) as QtyAvail from F55102 inner join F55101 on LDLPID = LMLPID where LDLPID = '" & sLPID & "'
+    DB.Execute(sSql, sCols, sRows)
 
     If (Val(DB.Extract(sCols, sRows, 1, "QtyAvail")) <= 0) Then
       App.MsgBox("No Quantity Remains On LP")
@@ -2885,11 +2902,11 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     App.SetValue("tmLOCN", Trim(DB.Extract(sCols, sRows, 1, "LMLOCN")))
     App.SetValue("tmDspLOCN", Trim(DB.Extract(sCols, sRows, 1, "LMLOCN")))
-    txtLOCN.Text = Trim(DB.Extract(sCols, sRows, 1, "LMLOCN"))
+    txtLOCN.text = Trim(DB.Extract(sCols, sRows, 1, "LMLOCN"))
     txtLOCN.DisplayOnly = True
 
     App.SetValue("tmLOTN", Trim(DB.Extract(sCols, sRows, 1, "LDLOTN")))
-    txtLOTN.Text = Trim(DB.Extract(sCols, sRows, 1, "LDLOTN"))
+    txtLOTN.text = Trim(DB.Extract(sCols, sRows, 1, "LDLOTN"))
     txtLOTN.DisplayOnly = True
 
     App.SetValue("tmLPID", Rsp)
@@ -2905,17 +2922,17 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     sVerifyPrimaryUOM = Trim(DB.Extract(sColsVerifyUOM, sRowsVerifyUOM, 1, "IMUOM1"))
 
     ' Get First SO Line
-    sSQL = "select * from  F4211 left join F41002 on SDITM = UMITM" & _
+    sSql = "select * from  F4211 left join F41002 on SDITM = UMITM" & _
            " where (SDUOM = UMUM and UMRUM = '" & sVerifyPrimaryUOM & "') and ( SDDOCO = %tmDOCO or SDURAB = %tmDOCO ) and SDLITM = '" & Rsp & "' and SDSOQS <> 0 " & _
            " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K' order by UMCONV DESC"
-    DB.Execute(sSQL,sCols,sRows)
+    DB.Execute(sSql,sCols,sRows)
 
     If (DB.Count(sRows) = 0) Then
-      sSQL = "select *  from  F4211" & _
+      sSql = "select *  from  F4211" & _
              " where ( SDDOCO = %tmDOCO or SDURAB = %tmDOCO ) and SDLITM = '" & Rsp & "' and SDSOQS <> 0 and SDUOM = '" & sVerifyPrimaryUOM & "'" & _
              " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDCOMM <> 'K' and SDMCU = '%tmMCU'"
       '
-      DB.Execute(sSQL,sCols,sRows)
+      DB.Execute(sSql,sCols,sRows)
     End If
 
     If (Len(sRows) = 0) Then
@@ -3000,6 +3017,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
       mnMaxQty = nAddToTotalPick
     Next
+
 
 
 
@@ -3159,7 +3177,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     Next iCnt
 
     '
-    If (Trim(txtLOTN.Text) <> "") Then
+    If (Trim(txtLOTN.text) <> "") Then
       txtLOTN.Visible = True
     Else
       txtLOTN.Visible = False
@@ -3224,7 +3242,6 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   msCurrentLITM = Rsp
   '
   Cancel=False
-
 End Sub
 
 Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -3241,12 +3258,17 @@ Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
 
   Dim iDecLNID As Integer
   Dim iDecSOQS As Integer
-  Dim sSQL     As String
+  Dim sSql     As String
   Dim sLike    As String
   Dim sValue   As String
   Dim oList    As New SearchList
 
-  sSQL = _
+  Dim nTick As Long
+  Dim nTick2 As Long
+  Dim nTick3 As Long
+
+
+  sSql = _
     " select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM" & _
     " from F4211 " & _
     " where SDMCU = '" & sMCU & "'" & _
@@ -3265,10 +3287,12 @@ Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   oList.SetColumn(1, "Item", -1, CenterLeft, True)
   oList.SetColumn(2, "Qty", -1, CenterRight, True, iDecSOQS)
   oList.SetColumn(3, "UOM", -1, CenterLeft, True)
-  oList.SQL = sSQL
+  oList.SQL = sSql
 
   sValue = oList.ShowList
+
   Rsp = Trim(LField(sValue, Chr(3), 1))
+
 End Sub
 
 Private Sub txtLOTN_OnBackup(ByRef Cancel As Boolean)
@@ -3281,11 +3305,14 @@ End Sub
 Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
   '
-  Dim sSQL    As String
+  Dim sSql    As String
   Dim sCols   As String
   Dim sRows   As String
   Dim iCnt    As Integer
   Dim vArray  As Variant
+
+  Dim nTick As Long
+
   '
   If (Len(Rsp)=0) Then Exit Sub
 
@@ -3345,10 +3372,10 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
     Next iCnt
   ' Default Qty to 1 if item is serialized
-    txtQTY.Text = "1"
+    txtQTY.text = "1"
     txtQTY.DisplayOnly = True
   Else
-    txtQTY.Text = ""
+    txtQTY.text = ""
     txtQTY.DisplayOnly = False
   End If
   '
@@ -3567,9 +3594,9 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     If (Len(sRows) = 0) Then
       'error, clear all prompts after LOCN, set focus to LOCN'
       App.MsgBox(GetMsg(74))
-      txtLOCN.Text = ""
-      txtLOTN.Text = ""
-      txtQTY.Text = ""
+      txtLOCN.text = ""
+      txtLOTN.text = ""
+      txtQTY.text = ""
       App.SetValue("tmLOCN","")
       App.SetValue("tmLOTN","")
       App.SetFocus("txtLOCN")
@@ -3587,8 +3614,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
       If (Val(sRows) = 0) Then
         App.MsgBox(GetMsg(78))
-          txtLOTN.Text = ""
-          txtQTY.Text = ""
+          txtLOTN.text = ""
+          txtQTY.text = ""
           App.SetValue("tmLOTN","")
           App.SetFocus("txtLOTN")
         Exit Sub
@@ -3602,8 +3629,8 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
       If (Len(sRows) = 0) Then
         App.MsgBox(GetMsg(75))
-          txtLOTN.Text = ""
-          txtQTY.Text = ""
+          txtLOTN.text = ""
+          txtQTY.text = ""
           App.SetValue("tmLOTN","")
           App.SetFocus("txtLOTN")
         Exit Sub
@@ -3892,10 +3919,10 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   lblFKey.Visible = True
 
-  txtLITM.Text = ""
-  txtLOCN.Text = ""
-  txtLOTN.Text = ""
-  txtQTY.Text = ""
+  txtLITM.text = ""
+  txtLOCN.text = ""
+  txtLOTN.text = ""
+  txtQTY.text = ""
   txtLOCN.Visible = False
   txtLOCN.DisplayOnly = False
   txtLOTN.Visible = False
@@ -4119,7 +4146,7 @@ Public Function ExecuteTM(ByVal bBackOrder As Boolean) As Boolean
 
   For iCnt = 1 To iLblMax
     lstScanned.List.Index = iCnt
-    vArray = Split(lstScanned.Text,"|")
+    vArray = Split(lstScanned.text,"|")
     '                  Company                    Plant                Order Number            Doctype            Line Number        Lot Number         Location
     sKey = App.GetValue("tmCO") & ";" & App.GetValue("tmMCU") & ";" & Trim(vArray(0)) & ";" & Trim(vArray(1)) & ";" &  vArray(2) & ";" &  vArray(8) & ";" &  vArray(5) & ";"
     iFnd = Locate(sKey, msValCache,1)
@@ -4178,7 +4205,7 @@ Public Function ExecuteTM(ByVal bBackOrder As Boolean) As Boolean
   ' Speed status update kit line if all components have been picked
   For iCnt = 1 To iLblMax
     lstScanned.List.Index = iCnt
-    vArray = Split(lstScanned.Text,"|")
+    vArray = Split(lstScanned.text,"|")
 
     sMCU = App.GetValue("tmMCU")
     sDOCO = Trim(vArray(0))
@@ -4280,12 +4307,12 @@ Public Function ExecuteTM(ByVal bBackOrder As Boolean) As Boolean
     lblItemDesc.Caption = ""
     lblLPID = ""
     lblFKey.Visible = True
-    txtLITM.Text = ""
-    txtLOCN.Text = ""
-    txtLOTN.Text = ""
-    txtQTY.Text = ""
-    txtDOCO.Text = ""
-    txtDCTO.Text = ""
+    txtLITM.text = ""
+    txtLOCN.text = ""
+    txtLOTN.text = ""
+    txtQTY.text = ""
+    txtDOCO.text = ""
+    txtDCTO.text = ""
     txtLITM.Visible = False
     txtLOCN.Visible = False
     txtLOCN.DisplayOnly = False
@@ -4331,7 +4358,7 @@ Public Sub BuildListBox
   Dim iCnt    As Integer
   Dim vArray  As Variant
   Dim sKey    As String
-  
+
   lstScanned.List.Clear
 
   For iCnt = 1 To mnCnt
@@ -4413,51 +4440,40 @@ Private Function getOldestLotINV(ByVal sMCU As String, ByVal sITEM As String, By
   sBeginLOT = Mid(sLOTN, 1, nPeriodPos - 1)
   sEndLOT = Mid(sLOTN, nPeriodPos + 1, Len(sLOTN))
 
-    sSqlItem = "select IMITM from F4101 where IMLITM = '" & sITEM & "'"
-    DB.Execute(sSqlItem, sColsItem, sRowsItem)
-    If DB.Count(sRowsItem) > 0 Then
-      sITM = Trim(DB.Extract(sColsItem, sRowsItem, 1, "IMITM"))
+  sSqlItem = "select IMITM from F4101 where IMLITM = '" & sITEM & "'"
+  DB.Execute(sSqlItem, sColsItem, sRowsItem)
+  If DB.Count(sRowsItem) > 0 Then
+    sITM = Trim(DB.Extract(sColsItem, sRowsItem, 1, "IMITM"))
+  End If
 
-    End If
+  sSqlItem = _
+    " select DISTINCT LILOTN," & _
+    " (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, 1, charindex('.', LILOTN)-1) as INT) else 0 end) as BeginLOT," & _
+    " (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, charindex('.', LILOTN)+1, LEN(LILOTN)) as INT) else 0 end) as EndLOT" & _
+    " FROM F41021 WHERE LIMCU = '" & sMCU & "'" & _
+    " and LIITM = " & sITM & _
+    " and (LIPQOH -LIPCOM -LIHCOM) > " & iCnt & _
+    " and LILOTN like '%.%%'" & _
+    " And (Case when IsNumeric(LILOTN) = 1 Then 1 Else 0 End) = 1" & _
+    " And  (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, 1, charindex('.', LILOTN)-1) as INT) else 0 end) <= " & sBeginLOT & _
+    " And (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, charindex('.', LILOTN)+1, LEN(LILOTN)) as INT) else 0 end) < " & sEndLOT & _
+    sNotIn & _
+    " order by BeginLOT, EndLOT"
 
-'      sSqlItem = "With CTE As (Select LILOTN As OrigProductNumber,CAST(LILOTN As VARCHAR(100))" & _
-'                 " As LILOTN FROM F41021 WHERE LIMCU = '" & sMCU & "' and LIITM = " & _
-'                   sITM & " and (LIPQOH -LIPCOM -LIHCOM) > " & iCnt   & sNotIn & _
-'                 " UNION All Select OrigProductNumber,CAST(STUFF(LILOTN, PATINDEX('%[^0-9]%',LILOTN), 1, '')" & _
-'                 " AS VARCHAR(100) ) AS LILOTN FROM CTE WHERE PATINDEX('%[^0-9]%', LILOTN) > 0)" & _
-'                 " SELECT distinct * FROM CTE" & _
-'                 " WHERE PATINDEX('%[^0-9]%', LILOTN) = 0" & _
-'                 " And cast(LILOTN As BIGINT) > 0 and cast(LILOTN As BIGINT) < " & sLOTN & " order by LILOTN"
+  DB.Execute(sSqlItem, sColsItem, sRowsItem)
 
-      sSqlItem = "Select DISTINCT LILOTN," & _
-                 " (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, 1, charindex('.', LILOTN)-1) as INT) else 0 end) as BeginLOT," & _
-                 " (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, charindex('.', LILOTN)+1, LEN(LILOTN)) as INT) else 0 end) as EndLOT" & _
-                 " FROM F41021 WHERE LIMCU = '" & sMCU & "'" & _
-                 " and LIITM = " & sITM & _
-                 " and (LIPQOH -LIPCOM -LIHCOM) > " & iCnt & _
-                 " and LILOTN like '%.%%'" & _
-                 " And (Case when IsNumeric(LILOTN) = 1 Then 1 Else 0 End) = 1" & _
-                 " And  (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, 1, charindex('.', LILOTN)-1) as INT) else 0 end) <= " & sBeginLOT & _
-                 " And (Case when IsNumeric(LILOTN) = 1 Then CAST(substring(LILOTN, charindex('.', LILOTN)+1, LEN(LILOTN)) as INT) else 0 end) < " & sEndLOT & _
-                  sNotIn & _
-                 " order by BeginLOT, EndLOT"
+  If(DB.Count(sRowsItem)) = 0 Then
+    getOldestLotINV = False
+    Exit Function
+  End If
 
-      DB.Execute(sSqlItem, sColsItem, sRowsItem)
+  ReDim sOlderLots(DB.Count(sRowsItem),2)
 
-      If(DB.Count(sRowsItem)) = 0 Then
-        getOldestLotINV = False
-        Exit Function
-      End If
+  For i = 1 To DB.Count(sRowsItem)
+    sOlderLots(i, 1) = Trim(DB.Extract(sColsItem,sRowsItem, i,"LILOTN"))
+  Next
 
-
-      ReDim sOlderLots(DB.Count(sRowsItem),2)
-
-      For i = 1 To DB.Count(sRowsItem)
-        sOlderLots(i, 1) = Trim(DB.Extract(sColsItem,sRowsItem, i,"LILOTN"))
-      Next
-
-      getOldestLotINV = True
-
+  getOldestLotINV = True
 End Function
 
 Public Function Search_F41021_LOTN_LOCAL(ByRef Rsp As String, ByVal sFindLOTN As String, ByVal sMCU As String, ByVal vITM As Variant, Optional ByRef sLocn As String, Optional ByRef bAvail As Boolean) As Boolean

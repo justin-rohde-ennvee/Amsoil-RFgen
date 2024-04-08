@@ -1,4 +1,4 @@
-﻿<Record FileDesc="LP Work Order Timed Auto Completion" FileVersion="5.0.8.0" Desc="LP Work Order Timed Auto Completion" MacroType="2" />
+﻿<Record FileDesc="LP Work Order Timed Auto Completion" FileVersion="5.0.8.0" Desc="LP Work Order Timed Auto Completion" Group="AMS" MacroType="2" />
 <Code>
 ' -------------------------------------------------------------------------------
 ' | (C)opyright 2003-2011 The DataMAX Software Group, Inc., All Rights Reserved.|
@@ -116,8 +116,6 @@ Private Function Transaction() As Boolean
   Dim sAPI                As String
 
   Dim bProcessed          As Boolean
-
-  LogText("TLPAC0100_AMS", "Transaction", "Memory/start (KB): " & GetMemUsage())
 
   msPgm = "P31123"
   msVersion = "RGN0001"
@@ -341,11 +339,11 @@ Private Function Transaction() As Boolean
     sCaseLOTN = Trim(tmLOTN)
 
 
-    If nPalletMax = 1 Then
-      PrintCaseLabel(nPrinterNumber, sCaseFormat, sCaseLPID, sCaseLITM, sCaseLOTN, 2, Trim(sAPI))
-    Else
+'    If nPalletMax = 1 Then
+'      PrintCaseLabel(nPrinterNumber, sCaseFormat, sCaseLPID, sCaseLITM, sCaseLOTN, 2, Trim(sAPI))
+'    Else
       PrintCaseLabel(nPrinterNumber, sCaseFormat, sCaseLPID, sCaseLITM, sCaseLOTN, 1, Trim(sAPI))
-    End If
+'    End If
 
 
     If (nCount = nPalletMax) Then
@@ -367,7 +365,7 @@ Private Function Transaction() As Boolean
 
       DB.Execute(sSqlCompletion)
     End If
-    
+
     DeleteRec:
     skip_execute:
   Next i
@@ -379,7 +377,5 @@ Private Function Transaction() As Boolean
     App.LogError("Timed Transaction", sErrMsg)
     Transaction = False
   End If
-
-  LogText("TLPAC0101_AMS", "Transaction", "Memory/end   (KB): " & GetMemUsage())
 End Function
 </Code>

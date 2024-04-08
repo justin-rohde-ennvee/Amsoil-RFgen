@@ -1857,7 +1857,7 @@ Public Function Search_F4611_LITM(ByRef Rsp As String, ByVal sMCU As String, ByV
        & " where R2MCU = '" & sMCU & "' and R2PSTB = '" & vStatus & "' and R2TYFL = '" & vTYFL & "' and R2PHAS = '" & sPhase & "' "
   '
   ' if doco, dcto is specified
-  If ((nDOCO <> 0) and (nDOCO <> ""))Then sWhere = " and R2DOCO = " & nDOCO & " and R2DCTO = '" & sDCTO & "' "
+  If ((nDOCO <> 0) And (nDOCO <> ""))Then sWhere = " and R2DOCO = " & nDOCO & " and R2DCTO = '" & sDCTO & "' "
   If Len(Trim(sWhere)) > 0 Then sSql = sSql & sWhere
 
   If vTYFL = "1" Then
@@ -2722,7 +2722,7 @@ Public Function GetProcOpt(ByRef sPgm As String, ByRef sVers As String, ByRef sS
         DB.Execute (sSql,sCols,sRows)
 
         If Len(sRows) = 0 Then
-          App.MsgBox GetMsg(165) & sPgm & "/" & sVers
+                    App.MsgBox GetMsg(165) & sPgm & "/" & sVers
           gbPOError = True
           Exit Function
         End If
@@ -3648,10 +3648,10 @@ Public Function CrtDDCache(ByVal sDTAI As String)
   Dim iDecCnt As Integer
   Dim nDecMult As Currency
   Dim nErrNo As Long
-  Dim bDidRetry As Boolean
+  Dim bDidRetry1 As Boolean
+  Dim bDidRetry2 As Boolean
 
-  LogText("RFgen.bas", "CrtDDCache", "Test message")
-  '
+    '
   sDTAI = Trim(UCase(sDTAI))
   '
   ' lookup in data dictionary
@@ -3667,16 +3667,10 @@ Retry1:
   '
   nErrNo = DB.Execute(sSql, sCols, sRows)
 
-  If nErrNo <> 0 Then
-    LogText("RFgen.bas", "CrtDDCache", "DB.Execute error on first query (retry = " & bDidRetry & ") = " & nErrNo)
-  End If
-
   If Len(sRows) = 0 Then
-    LogText("RFgen.bas", "CrtDDCache", "No rows returned by first query (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
-
     ' Retry at most once
-    If Not bDidRetry Then
-      bDidRetry = True
+    If Not bDidRetry1 Then
+      bDidRetry1 = True
       GoTo Retry1
     End If
   End If
@@ -3695,16 +3689,10 @@ Retry2:
     '
     nErrNo = DB.Execute(sSql, sCols, sRows)
 
-    If nErrNo <> 0 Then
-      LogText("RFgen.bas", "CrtDDCache", "DB.Execute error on second query, (retry = " & bDidRetry & ") = " & nErrNo)
-    End If
-
     If Len(sRows) = 0 Then
-      LogText("RFgen.bas", "CrtDDCache", "No rows returned by second query, (retry = " & bDidRetry & "); sCols = '" & sCols & "'")
-
       ' Retry at most once
-      If Not bDidRetry Then
-        bDidRetry = True
+      If Not bDidRetry2 Then
+        bDidRetry2 = True
         GoTo Retry2
       End If
     End If

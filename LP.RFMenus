@@ -3,11 +3,11 @@
 <MenuItem Id="FLPAI0100_AMS" Desc="1-Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPDI0100_AMS" Desc="2-Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPTL0100_AMS" Desc="3-Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
-<MenuItem Id="FLPDI0100" Desc="Detach Robb Remove" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Work Order Auto Completion --" />
 <MenuItem Id="FLPTC0100_AMS" Desc="4-Line Processing" Options="-Pgm=P31114 -Vers=RGN0001" />
 <MenuItem Id="SQLTESTER" Desc="5-SQL Tester" />
-<MenuItem Id="FLPTL0100_AMS" Desc="3-Transfer LP Location No FIFO" Options="-Pgm=P4113 -Vers=RGN0001 -FIFO=FALSE" />
+<MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Work Order Manual Completion --" />
 <MenuItem Id="FLPTC0100M_AMS" Desc="6-Line Processing (Manual) " Options="-Pgm=P31114 -Vers=RGN0001" />
 <MenuItem Id="-" />
@@ -27,7 +27,7 @@
 <MenuItem Id="FLPQI0100_AMS" Desc="E-LP - Inquiry" />
 <MenuItem Id="FIMQI0100" Desc="F-Item Location Inquiry" />
 <MenuItem Id="FLPQI0300_AMS" Desc="G-LP - History Inquiry" />
-<MenuItem Id="FIMQI0101_AMS" Desc="Y-Item Inquiry" />
+<MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Cycle Counts --" />
 <MenuItem Id="FIMCC0100" Desc="H-IM - Cycle Counts (by Item)" Options="-Pgm=P41240 -Vers=ZJDE0001" />
 <MenuItem Id="-" />

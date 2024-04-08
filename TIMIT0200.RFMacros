@@ -178,11 +178,19 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   vInvJobn = 0
   vDocNbr  = 0
   '
-  sAllowQtyOverAvailable         = GetProcOpt(tmPGM,tmZVERSION,"3;4")
-  sDefaultFromPrimaryLocation    = GetProcOpt(tmPGM,tmZVERSION,"1;2")
-  sAllowHeldLot                  = GetProcOpt(tmPGM,tmZVERSION,"3;3")
-  sPODefaultLotStatus            = GetProcOpt(tmPGM,tmZVERSION,"3;5")
 
+  Dim oProcOpt As New JDEProcOpt
+  oProcOpt.ProgramId = tmPGM
+  oProcOpt.Version = tmZVERSION
+
+  sAllowQtyOverAvailable         = oProcOpt.Value("LotGroup")' GetProcOpt(tmPGM,tmZVERSION,"3;4")
+  sDefaultFromPrimaryLocation    = oProcOpt.Value("DefaultFROMPrimLocation") 'GetProcOpt(tmPGM,tmZVERSION,"1;2")
+  sAllowHeldLot                  = oProcOpt.Value("AllowHeldLots") 'GetProcOpt(tmPGM,tmZVERSION,"3;3")
+  sPODefaultLotStatus            = oProcOpt.Value("AllowOverQtyAvailable") 'GetProcOpt(tmPGM,tmZVERSION,"3;5")
+
+  Dim sSummaryMode As String
+  sSummaryMode = oProcOpt.Value("SummaryMode")
+  
   For iCnt = 1 To tmCnt
     If Val(Ext(tmValCache,6, iCnt)) <> 0 Then
       sLITM = Ext(tmValCache,2, iCnt)
@@ -246,7 +254,8 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       emF4113FSEditLine.Param("WMSLineNumber")                  = 0
       emF4113FSEditLine.Param("AgreementSearchMethod")          = " "
       emF4113FSEditLine.Param("MultipleAgreementFound")         = " "
-      s0911Vers = GetProcOpt(tmPGM,tmZVERSION,"2;2")
+'      s0911Vers = GetProcOpt(tmPGM,tmZVERSION,"2;2")
+      s0911Vers = oProcOpt.Value("JournalEntriesVersion")
       If Len(s0911Vers) > 0 Then
        emF4113FSEditLine.Param("GLMBFVersion")                  = s0911Vers
       Else
@@ -369,7 +378,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emF4113FSEndDoc.Param("F0911JobNumber")               = emF4113FSEditLine.Param("F0911JobNumber")
   emF4113FSEndDoc.Param("BatchNumber")                  = emF4113FSEditLine.Param("BatchNumber")
   emF4113FSEndDoc.Param("BatchStatus")                  = " "
-  emF4113FSEndDoc.Param("SummarizeGL")                  = GetProcOpt(tmPGM,tmZVERSION,"3;2")
+  emF4113FSEndDoc.Param("SummarizeGL")                  = sSummaryMode 'GetProcOpt(tmPGM,tmZVERSION,"3;2")
   emF4113FSEndDoc.Param("InvJobNumber")                 = emF4113FSEditLine.Param("InvJobNumber")
   '
   If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSEndDoc.Name, "", emF4113FSEndDoc)

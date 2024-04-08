@@ -22,7 +22,7 @@
 ' NOTES:
 '
 ' MODIFICATION HISTORY:
-'
+'      WLG01 8/26/2013 KMD:  Jim Wagner added code to adjust the multiloc parent order quantity and multiloc ship variance to resolve the partial backorder problem.
 
 Option Explicit
 
@@ -85,6 +85,8 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   Dim emShipConfirmEndDoc   As New EmbeddedProc
   Dim emNothing             As New EmbeddedProc
 
+  Dim sText As String
+
   '----------------'
   ' Initialization '
   '----------------'
@@ -138,6 +140,20 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     nShip = CLng(Ext(tmValCache,14, iCnt))    'Ship To
     nCarr = CLng(Ext(tmValCache,15, iCnt))    'Carrier
 
+    sText = "sLITM: " & sLITM & _
+      ", nITM: " & nITM & _
+      ", sLOCN: " & sLOCN & _
+      ", nQty: " & nQty & _
+      ", sUOM: " & sUOM & _
+      ", sLOTN: " & sLOTN & _
+      ", sCOMM: " & sCOMM & _
+      ", nSOBK: " & nSOBK & _
+      ", nSOCN: " & nSOCN & _
+      ", nSOQS: " & nSOQS & _
+      ", sLNTY: " & sLNTY & _
+      ", nLNID: " & nLNID & _
+      ", nShip: " & nShip & _
+      ", nCarr: " & nCarr
 
     ' Get the shipment number
     nLine = ConvDecimalsToSQL("LNID", nLNID)
@@ -149,11 +165,27 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     nExCost = ConvDecimalsFromSQL("ECST", DB.Extract(sCols, sRows, 1, "SDECST"))
     nExPrice = ConvDecimalsFromSQL("AEXP", DB.Extract(sCols, sRows, 1, "SDAEXP"))
 
-
     ' Get default information for this item
     GetItemInfo(tmMCU, sLITM, cTNId, nITM, sAITM, sUOM, sUOM2, nQty, nQty2)
+
+    sText = "tmMCU: " & tmMCU & _
+      ", sLITM: " & sLITM & _
+      ", cTNId: " & cTNId & _
+      ", nITM: " & nITM & _
+      ", sAITM: " & sAITM & _
+      ", sUOM: " & sUOM & _
+      ", sUOM2: " & sUOM2 & _
+      ", nQty: " & nQty & _
+      ", nQty2: " & nQty2
+
     sUOMCheck = sUOM
     Validate_Item(tmMCU, sLITM, CStr(nITM), sLITM,sAITM, sDsc1, sUOMCheck, nType, bHasLot, bSerialized, False, True)
+
+    sText = "sDSC1: " & sDsc1 & _
+      ", sUOMCheck: " & sUOMCheck & _
+      ", nType: " & nType & _
+      ", bHasLot: " & bHasLot & _
+      ", nType: " & nType
 
     nMLSQSV = 0
     nMLSOQ  = 0
@@ -168,7 +200,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     emF42UI05EditLine.Param("OrderCompany")                   = tmCO
     emF42UI05EditLine.Param("LineNumber")                     = nLNID
     emF42UI05EditLine.Param("BranchPlant")                    = tmMCU
-    emF42UI05EditLine.Param("EnteredShipQuantity")            = nSOQS    'Full Line Qty
+    emF42UI05EditLine.Param("EnteredShipQuantity")            = nSOQS + nSOBK + nSOCN 'Full Line Qty
     emF42UI05EditLine.Param("EnteredBackorderQuantity")       = nSOBK
     emF42UI05EditLine.Param("EnteredCancelQuantity")          = nSOCN
     emF42UI05EditLine.Param("EnteredLineType")                = sLNTY
@@ -180,7 +212,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     emF42UI05EditLine.Param("UserId")                         = tmUSER
     emF42UI05EditLine.Param("Version")                        = tmVERSION
     emF42UI05EditLine.Param("ActionCode")                     = "C"
-    emF42UI05EditLine.Param("ModeProcessing")                 = "2"
+    emF42UI05EditLine.Param("ModeProcessing")                 = "1"
     emF42UI05EditLine.Param("BULK_TransactionTime")           = 0
     emF42UI05EditLine.Param("Original_CompanyKeyOrderNo")     = tmCO
     emF42UI05EditLine.Param("Original_OrderType2")            = tmDCTO
@@ -198,7 +230,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     emF42UI05EditLine.Param("CheckSellByDate")                = "0"
     emF42UI05EditLine.Param("CheckBestBeforeDate")            = "0"
 
-'    emF42UI05EditLine.Param("UnitsSecondaryQtyOr") = nQty2
+    emF42UI05EditLine.Param("UnitsSecondaryQtyOr") = nQty2
 
     ' Added
 '    emF42UI05EditLine.Param("ExtendedCost")            = CStr(nExCost)
@@ -210,25 +242,37 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emF42UI05EditLine.Name, "", emF42UI05EditLine, tmUSER, TM.QueueName, TM.SeqNo)
       GoTo ExitE1
     End If
-    If emF42UI05EditLine.Param("ErrorConditions") = "2" Then
-      sErrDesc = "emF42UI05EditLine  C/2 - Function returned Error condition 2"
-      GoTo ExitE1
-    End If
+'    If emF42UI05EditLine.Param("ErrorConditions") = "2" Then
+'      sErrDesc = "emF42UI05EditLine  C/2 - Function returned Error condition 2"
+'      GoTo ExitE1
+'    End If
     nJobNo = emF42UI05EditLine.Param("JobnumberA")
     ' find total qty. confirmed
     nQtyTot = 0
+    Dim nMultiCount As Long
+    nMultiCount = 0
     For iCnt2 = 1 To tmCnt
       If CCur(Ext(tmValCache,13, iCnt2)) = nLNID Then     'Line Number
         nQtyTot  = nQtyTot + CCur(Ext(tmValCache,05, iCnt2))    'Picked Qty.
+        nMultiCount = nMultiCount + 1
       End If
     Next iCnt2
-    nMLSQSV = (nQtyTot -nSOQS )
-    If nMLSQSV = 0 Then
-      nMLSOQ = nQty
+    nMLSQSV = (nQtyTot - (nSOQS) )
+
+    If nMultiCount > 1 Then
+      nMLSOQ = ((nQty + nSOBK + nSOCN) - nMLSQSV)
+
     Else
-'      nMLSOQ = (nSOQS -nQtyTot +1)
-      nMLSOQ = (nSOQS + nSOBK - nQtyTot + nQty)
+      nMLSOQ = (nQtyTot + nSOBK + nSOCN) - nMLSQSV
     End If
+
+'    If nMLSQSV = 0 Then
+''      nMLSOQ = nQty
+'      nMLSOQ = nSOQS + nSOBK + nSOCN
+'    Else
+''      nMLSOQ = (nSOQS -nQtyTot +1)
+'      nMLSOQ = nSOBK + nSOCN + nQty
+'    End If
     If sLOCN = "" Then
       sLOCN = " "
     End If
@@ -241,7 +285,6 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
 
     emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = nMLSQSV
     emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = nMLSOQ
-
 
     emF42UI05EditLine.Param("TRAN_ShipmentNumber")            = sSHPN
     If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF42UI05EditLine.Name, "", emF42UI05EditLine)
@@ -261,7 +304,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
         sLOCN = Ext(tmValCache,04, iCnt)          'Location
         nQty  = CCur(Ext(tmValCache,05, iCnt))    'Picked Qty.
         sLOTN = Ext(tmValCache,07, iCnt)          'Lot - / Serial number
-        'S/1
+       'S/1
         emF42UI05EditLine.Param("LineNumber")                     = Val(emF42UI05EditLine.Param("LineNumber")) + .001
         emF42UI05EditLine.Param("Location")                       = sLOCN
         emF42UI05EditLine.Param("Lot")                            = sLOTN
@@ -271,6 +314,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
         emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = 0 'nMLSQSV
         emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = 0 'nMLSOQ
         emF42UI05EditLine.Param("EnteredBackorderQuantity")       = 0 '(ADDED)
+        emF42UI05EditLine.Param("EnteredCancelQuantity")          = 0 '(ADDED KMD 8/26/2013)
 '        emF42UI05EditLine.Param("MultiLocQtyShipVariance")        = 0
 '        emF42UI05EditLine.Param("MultiLocParentOrderQuantity")    = 0
         If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF42UI05EditLine.Name, "", emF42UI05EditLine)

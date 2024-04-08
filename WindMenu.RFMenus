@@ -1,0 +1,9 @@
+﻿<Record FileDesc="Wind Users" FileVersion="5.0.8.0" Desc="Wind Users" Heading="[Distribution Center]">
+<MenuItem Id="FSOPC0201_AMS" Desc="1 Sales Order Picking" Options="-Pgm=P4205 -Vers=RGN0003 -BOVers=RGN0004" />
+<MenuItem Id="FSOSC0101_AMS" Desc="2 Sales Order Ship Confirm" Options="-Pgm=P4205 -Vers=RGN0005" />
+<MenuItem Id="FLPTL0100_AMS" Desc="3 Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="4 Detach Item" Options="-Pgm=P4113 -Vers=ZJDE0001" />
+<MenuItem Id="FPORC101_AMS" Desc="5 OT Receiving" Options="-Pgm=P4312 -Vers=RGN0001" />
+<MenuItem Id="FLPQI0100_AMS" Desc="6 LP - Inquiry" />
+<MenuItem Id="FLPQI0300_AMS" Desc="7 LP - History Inquiry" />
+</Record>

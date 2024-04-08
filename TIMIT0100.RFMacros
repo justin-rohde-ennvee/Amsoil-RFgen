@@ -134,6 +134,22 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     GoTo ExitE1
   End If
 
+  Dim oProcOpt As New JDEProcOpt
+  oProcOpt.ProgramId = tmPGM
+  oProcOpt.Version = tmZVERSION
+
+  Dim sDefaultFromPrimaryLocation As String
+  sDefaultFromPrimaryLocation = oProcOpt.Value("DefaultFROMPrimLocation")
+
+  Dim sAllowHold As String
+  sAllowHold = oProcOpt.Value("AllowHeldLots")
+
+  Dim sAllowOverQtyAvailable As String
+  sAllowOverQtyAvailable = oProcOpt.Value("AllowOverQtyAvailable")
+
+  Dim sSummaryMode As String
+  sSummaryMode = oProcOpt.Value("SummaryMode")
+
   '-----------------'
   ' F4113FSEditLine '
   '-----------------'
@@ -146,9 +162,9 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emF4113FSEditLine.Param("LineAction")                     = 0
   emF4113FSEditLine.Param("RecordWritten")                  = " "
   emF4113FSEditLine.Param("F0911JobNumber")                 = 0
-  emF4113FSEditLine.Param("AllowQtyOverAvailable")          = GetProcOpt(tmPGM,tmZVERSION,"3;5")
-  emF4113FSEditLine.Param("DefaultFromPrimaryLocation")     = GetProcOpt(tmPGM,tmZVERSION,"1;2")
-  emF4113FSEditLine.Param("AllowHeldLot")                   = GetProcOpt(tmPGM,tmZVERSION,"3;3")
+  emF4113FSEditLine.Param("AllowQtyOverAvailable")          = sAllowOverQtyAvailable 'GetProcOpt(tmPGM,tmZVERSION,"3;5")
+  emF4113FSEditLine.Param("DefaultFromPrimaryLocation")     = sDefaultFromPrimaryLocation 'GetProcOpt(tmPGM,tmZVERSION,"1;2")
+  emF4113FSEditLine.Param("AllowHeldLot")                   = sAllowHold 'GetProcOpt(tmPGM,tmZVERSION,"3;3")
   emF4113FSEditLine.Param("DocumentNumber")                 = "0"
   emF4113FSEditLine.Param("GLDate")                         = emF4113FSBeginDoc.Param("GLDate")
   emF4113FSEditLine.Param("TransactionDate")                = emF4113FSBeginDoc.Param("TransactionDate")
@@ -184,7 +200,8 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emF4113FSEditLine.Param("WMSLineNumber")                  = 0
   emF4113FSEditLine.Param("AgreementSearchMethod")          = " "
   emF4113FSEditLine.Param("MultipleAgreementFound")         = " "
-  s0911Vers = GetProcOpt(tmPGM,tmZVERSION,"2;2")
+'  s0911Vers = GetProcOpt(tmPGM,tmZVERSION,"2;2")
+  s0911Vers = oProcOpt.Value("JournalEntriesVersion")
   If Len(s0911Vers) > 0 Then
    emF4113FSEditLine.Param("GLMBFVersion")                  = s0911Vers
   Else
@@ -194,7 +211,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emF4113FSEditLine.Param("SecondaryUOM")                   = sUOM2
   emF4113FSEditLine.Param("ToLotStatusCode")                = tmTOLOTS
   emF4113FSEditLine.Param("LastJELine")                     = " "
-  emF4113FSEditLine.Param("PODefaultLotStatus")             = GetProcOpt(tmPGM,tmZVERSION,"3;5")
+  emF4113FSEditLine.Param("PODefaultLotStatus")             = sAllowOverQtyAvailable 'GetProcOpt(tmPGM,tmZVERSION,"3;5")
   '
   If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSEditLine.Name, "", emF4113FSEditLine)
 
@@ -303,7 +320,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emF4113FSEndDoc.Param("F0911JobNumber")               = emF4113FSEditLine.Param("F0911JobNumber")
   emF4113FSEndDoc.Param("BatchNumber")                  = emF4113FSEditLine.Param("BatchNumber")
   emF4113FSEndDoc.Param("BatchStatus")                  = " "
-  emF4113FSEndDoc.Param("SummarizeGL")                  = GetProcOpt(tmPGM,tmZVERSION,"3;2")
+  emF4113FSEndDoc.Param("SummarizeGL")                  = sSummaryMode 'GetProcOpt(tmPGM,tmZVERSION,"3;2")
   emF4113FSEndDoc.Param("InvJobNumber")                 = emF4113FSEditLine.Param("InvJobNumber")
   '
   If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emF4113FSEndDoc.Name, "", emF4113FSEndDoc)

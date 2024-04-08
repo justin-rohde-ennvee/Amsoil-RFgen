@@ -1,4 +1,4 @@
-﻿<Record FileDesc="LP Work Order Timed Auto Completion" FileVersion="5.0.8.0" Desc="LP Work Order Timed Auto Completion" MacroType="2" />
+﻿<Record FileDesc="LP Work Order Timed Auto Completion" FileVersion="5.0.8.0" Desc="LP Work Order Timed Auto Completion" Group="AMS" MacroType="2" />
 <Code>
 ' -------------------------------------------------------------------------------
 ' | (C)opyright 2003-2011 The DataMAX Software Group, Inc., All Rights Reserved.|
@@ -73,8 +73,6 @@ Private Function Transaction() As Boolean
   Dim sSqlOPSQ  As String
   Dim sColsOPSQ As String
   Dim sRowsOPSQ As String
-
-  LogText("TLPAC0101_AMS", "Transaction", "Memory/start (KB): " & GetMemUsage())
 
   sTime = Format(Time, "nn:ss")
   sTimes = Split(sTime, ":")
@@ -209,7 +207,5 @@ Private Function Transaction() As Boolean
     App.LogError("Timed Transaction", sErrMsg)
     Transaction = False
   End If
-
-  LogText("TLPAC0101_AMS", "Transaction", "Memory/end   (KB): " & GetMemUsage())
 End Function
 </Code>

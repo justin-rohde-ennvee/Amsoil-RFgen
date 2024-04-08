@@ -165,49 +165,49 @@ Private Sub Form_Load()
   moProcOpt.ProgramId = msPgm
   moProcOpt.Version = msVersion
 
-  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-  Debug.Print("msStatusF old: " & msStatusF)
+'  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+'  Debug.Print("msStatusF old: " & msStatusF)
 
   msStatusF = moProcOpt.Value("StatusNextFrom")
-  Debug.Print("msStatusF new: " & msStatusF)
+'  Debug.Print("msStatusF new: " & msStatusF)
 
-  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
-  Debug.Print("msStatusT old: " & msStatusT)
+'  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+'  Debug.Print("msStatusT old: " & msStatusT)
 
   msStatusT = moProcOpt.Value("StatusNextThru")
-  Debug.Print("msStatusT new: " & msStatusT)
+'  Debug.Print("msStatusT new: " & msStatusT)
 
-  mbAddFr = True
-  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
-  Debug.Print("mbAddFr old: " & mbAddFr)
+'  mbAddFr = True
+'  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+'  Debug.Print("mbAddFr old: " & mbAddFr)
 
   mbAddFr = True
   If moProcOpt.Value("AllowAddLineEntry") <> "1" Then mbAddFr = False
   Debug.Print("mbAddFr new: " & mbAddFr)
 
-  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
-  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
+'  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
+'  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
 
   msCheckAvailability = moProcOpt.Value("CheckAvailability")
-  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
+'  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
 
-  msPreventNegativeShip = GetProcOpt(msPgm,msVersion,"4;2")
-  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
+'  msPreventNegativeShip = GetProcOpt(msPgm,msVersion,"4;2")
+'  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
 
   msPreventNegativeShip = moProcOpt.Value("PreventNegativeShip")
-  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
+'  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
 
-  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
-  Debug.Print("msPreventOvership old: " & msPreventOvership)
+'  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
+'  Debug.Print("msPreventOvership old: " & msPreventOvership)
 
   msPreventOvership = moProcOpt.Value("PreventOvership")
-  Debug.Print("msPreventOvership new: " & msPreventOvership)
+'  Debug.Print("msPreventOvership new: " & msPreventOvership)
 
-  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
-  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
+'  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
+'  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
 
   msBOorCANRemains = moProcOpt.Value("BOorCANRemains")
-  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
+'  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
 
   msRelInv = True
 

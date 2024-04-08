@@ -51,7 +51,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtBatch" Attr="4" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtBatch" Attr="4" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="8" Top="110" Width="73" Height="22" AnchorRight="419" AnchorBottom="468" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Batch #:" />
@@ -214,6 +214,7 @@ Private currentLitms() As String ' holds the current LITM's
 Private doneItems()    As String
 Private doneLitms()    As String
 Private bPartsValidated As Boolean
+Private moProcOpt As New JDEProcOpt
 
 Private Sub btnChange_Click()
   On Error Resume Next
@@ -432,7 +433,15 @@ Private Sub Form_Load()
 
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
-  mnStatusT = CCur(GetProcOpt(msPgm,msVersion,"3;4"))
+
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
+'  mnStatusT = CCur(GetProcOpt(msPgm,msVersion,"3;4"))
+'  Debug.Print("mnStatus T old: " & mnStatusT)
+
+  mnStatusT = CCur(moProcOpt.Value("StatusLimit"))
+'  Debug.Print("mnStatus T new: " & mnStatusT)
 
   If Trim(GetUserInfo("DefaultWCU")) <> "" Then
     txtWC.Defaults = Trim(GetUserInfo("DefaultWCU"))
@@ -565,7 +574,10 @@ Private Sub txtBatch_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef
   sSqlWO = "select * from F4801 where WADOCO = " & App.GetValue("tmDOCO")
   DB.Execute(sSqlWO, sColsWO, sRowsWO)
 
-  lblLITM.Caption = Trim(DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
+  Dim sLITM As String
+  sLITM = Trim(DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
+
+  lblLITM.Caption = sLITM
   lblWOQty.Caption = ConvDecimalsFromSQL("UORG", Trim(DB.Extract(sColsWO, sRowsWO, 1, "WAUORG"))) + Val(Trim(DB.Extract(sCols, sRows, 1, "WCCNT")))
   lblOpenQty.Caption = ConvDecimalsFromSQL("UORG", Trim(DB.Extract(sColsWO, sRowsWO, 1, "WASOQS")))
   lblCurrentPL.Caption = Trim(DB.Extract(sCols, sRows, 1, "WCLOT1"))
@@ -601,7 +613,8 @@ Private Sub txtBatch_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef
   DB.Execute(sSql, sCols, sRows)
   lblBLITM.Caption = DB.Extract(sCols, sRows, 1, "IOLITM")
 
-  sSQLAPI = "Select IBSRP8 from F4102 where iblitm = '" & Trim(DB.Extract(sCols, sRows, 1, "IOLITM")) & "' and ibmcu = '" & App.GetValue("tmMCU") & "'"
+  'sSQLAPI = "Select IBSRP8 from F4102 where iblitm = '" & Trim(DB.Extract(sCols, sRows, 1, "IOLITM")) & "' and ibmcu = '" & App.GetValue("tmMCU") & "'"
+  sSQLAPI = "Select IBSRP8 from F4102 where iblitm = '" & sLITM & "' and ibmcu = '" & App.GetValue("tmMCU") & "'"
 
   DB.Execute(sSQLAPI, sColsAPI, sRowsAPI)
 
