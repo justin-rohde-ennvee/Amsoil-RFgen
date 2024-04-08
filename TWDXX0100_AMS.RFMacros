@@ -110,7 +110,7 @@ Private Function Transaction(ByRef tmPlants As Variant) As Boolean
 
   ' Process Putaways (TYFL = 1)
   If mbPut Then
-    DB.Execute("delete from RFgenCustom.WDJOBS where R2TYFL = '1'")
+    DB.Execute("delete from WDJOBS where R2TYFL = '1'")
     If Not Putaway Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       bSuccess = False
@@ -120,7 +120,7 @@ Private Function Transaction(ByRef tmPlants As Variant) As Boolean
 
   ' Process Picks (TYFL = 2)
   If mbPick Then
-    DB.Execute("delete from RFgenCustom.WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322')")
+    DB.Execute("delete from WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322')")
     If Not Pick Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       bSuccess = False
@@ -130,7 +130,7 @@ Private Function Transaction(ByRef tmPlants As Variant) As Boolean
 
   ' Process Replenishments (TYFL = 3)
   If mbRepl Then
-    DB.Execute("delete from RFgenCustom.WDJOBS where R2TYFL = '3'")
+    DB.Execute("delete from WDJOBS where R2TYFL = '3'")
     If Not Replenish Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       bSuccess = False
@@ -367,7 +367,7 @@ Private Function Putaway As Boolean
         nSGSQ = nSGSQ + 1
 
         sSql = _
-          " insert into RFgenCustom.WDJOBS" & _
+          " insert into WDJOBS" & _
           " (R2TYFL, R2SGBT, R2SGSQ, R2MCU, R2ITM, R2LITM, R2UOM1, R2TQTY, R2FLOC," & _
           " R2FLOT, R2TLOC, R2TLOT, R2DSC1, R2DSC2, R2RCDJ, R2TRDJ, R2DRQJ," & _
           " R2USER, R2PID, R2UPMJ, R2TDAY, R2PSTB, R2DOCO, R2DCTO, R2LNID, R2LPID, R2PRITY)" & _
@@ -556,7 +556,7 @@ Private Function Putaway As Boolean
           End If
 
           ' Create putaway request
-          sSql = "select count(*) from RFgenCustom.WDJOBS" & _
+          sSql = "select count(*) from WDJOBS" & _
                  " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
                  " and R2FLOT = '" & sFLOT & "' and R2FLOC = '" & sFLOC & "' and R2TLOT = '" & sTLOT & "'" & _
                  " and R2TLOC = '" & sTLOC & "' and R2NLIN = " & sNLIN & " and R2DOCO = " & sDOCO & _
@@ -568,7 +568,7 @@ Private Function Putaway As Boolean
 
             nSGSQ = nSGSQ + 1
 
-            sSql = "insert into RFgenCustom.WDJOBS" & _
+            sSql = "insert into WDJOBS" & _
                    " (R2TYFL" & _
                    ",R2SGBT" & _
                    ",R2SGSQ" & _
@@ -799,7 +799,7 @@ Private Function Replenish As Boolean
     '
     ' Check if there is a replenishment in WDJOBS already
     '
-    sSql = "select sum(R2TQTY) from RFgenCustom.WDJOBS" & _
+    sSql = "select sum(R2TQTY) from WDJOBS" & _
            " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
            " and R2TLOC = '" & sTLOC & "' and R2PSTB in ('320','321')"
     DB.Execute(sSql, sColsJB, sRowsJB)
@@ -879,7 +879,7 @@ Private Function Replenish As Boolean
         nSGSQ = nSGSQ + 1
 
         sSql = _
-          " insert into RFgenCustom.WDJOBS" & _
+          " insert into WDJOBS" & _
           " (R2TYFL, R2SGBT, R2SGSQ, R2MCU, R2ITM, R2LITM, R2UOM1, R2TQTY, R2FLOC," & _
           " R2FLOT, R2TLOC, R2TLOT, R2DSC1, R2DSC2, R2RCDJ, R2TRDJ, R2DRQJ, R2URRF," & _
           " R2USER, R2PID, R2UPMJ, R2TDAY, R2PRITY, R2PSTB, R2LPID)" & _
@@ -978,6 +978,7 @@ Private Function Pick As Boolean
 
   Dim sRQBT As String
   Dim sRQSQ As String
+  Dim sSGSQ As String
   Dim sPRIO As String
 
   msSOStatusF  = SYS.GetProperty("WD", "StatusF")
@@ -995,7 +996,7 @@ Private Function Pick As Boolean
   Else
     ' Fetch demand joined with carton suggestions
     sSql = _
-      " select SDDOCO, SDDCTO, SDLNID, SDLITM, SDUORG, SDSOQS, SDUOM, SDDRQJ, SDMCU, SDLNTY, R2RQBT, R2RQSQ, R2PRIO, R2TQL1, R2UML1" & _
+      " select SDDOCO, SDDCTO, SDLNID, SDLITM, SDUORG, SDSOQS, SDUOM, SDDRQJ, SDMCU, SDLNTY, R2RQBT, R2RQSQ, R2SGSQ, R2PRIO, R2TQL1, R2UML1" & _
       " from F4611" & _
       " inner join F4211 on R2MCU = SDMCU and R2DOCO = SDDOCO and R2DCTO = SDDCTO and R2LNID = SDLNID" & _
       " where SDMCU in(" & msMCU & ")" & _
@@ -1010,9 +1011,12 @@ Private Function Pick As Boolean
   For iCnt = 1 To iRowCnt
     sRQBT = Trim(DB.Extract(sCols, sRows, iCnt, "R2RQBT"))
     sRQSQ = Trim(DB.Extract(sCols, sRows, iCnt, "R2RQSQ"))
+    sSGSQ = Trim(DB.Extract(sCols, sRows, iCnt, "R2SGSQ"))
 
-    If PickJobExists(sRQBT, sRQSQ) Then
-      Debug.Print("Skipping batch: " & sRQBT & ", seq: " & sRQSQ & " with existing pick job.")
+    LogText("WD", "Pick", "Demand RQBT: " & sRQBT & ", RQSQ: " & sRQSQ & ", SGSQ: " & sSGSQ)
+
+    If PickJobExists(sRQBT, sSGSQ) Then
+      LogText("WD", "Pick", "Skipping due to existing pick job.")
       GoTo NextDemandItem
     End If
 
@@ -1055,7 +1059,7 @@ Private Function Pick As Boolean
 
     ' Find locations to pick from
     Do While nQtyOpenEA > 0 ' nQtyOpen > 0
-      Debug.Print("Demand: " & Trim(sMCU) & "|" & sLITM & "|" & nQtyOpenEA)
+      LogText("WD", "Pick", "Demand item: " & sLITM & ", Qty open: " & nQtyOpenEA)
 
       sSql = _
         " select LILOCN, LILOTN, LIPQOH" & _
@@ -1069,7 +1073,10 @@ Private Function Pick As Boolean
       ' TODO: if case qty is ordered, then skip to next full case
       ' TODO: if qty < open qty and UOM = EA, still want to look for open case with some qty
 
-      If sSKLocn <> "" Then sSql = sSql & " and LILOCN not in(" & sSKLocn & ")"
+      If sSKLocn <> "" Then
+        sSql = sSql & " and LILOCN not in(" & sSKLocn & ")"
+        LogText("WD", "Pick", "Excluding location(s): " & sSKLocn)
+      End If
 
       sSql = sSql & _
         " order by" & _
@@ -1079,7 +1086,7 @@ Private Function Pick As Boolean
       DB.Execute(sSql, sColsInv, sRowsInv)
 
       If Len(sRowsInv) = 0 Then
-        Debug.Print("Supply: none")
+        LogText("WD", "Pick", "Supply: no qty found")
         Exit Do
       End If
 
@@ -1099,7 +1106,7 @@ Private Function Pick As Boolean
         nFQTY = nFQTYEA / nConvFact
       End If
 
-      Debug.Print("Supply: " & Trim(sMCU) & "|" & sLITM & "|" & Trim(sFLOT) & "|" & Trim(sFLOC) & "|" & nPQOH & "->" & nFQTY)
+      LogText("WD", "Pick", "Supply Lot: " & Trim(sFLOT) & ", Locn: " & Trim(sFLOC) & ", Qty: " & nPQOH & "->" & nFQTY)
 
       ' In case database is Oracle
       If mbOracleLP Then
@@ -1110,16 +1117,18 @@ Private Function Pick As Boolean
       End If
 
       ' Create pick request
-      sSql = "select count(*) from RFgenCustom.WDJOBS" & _
-             " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
-             " and R2FLOT = '" & sFLOT & "' and R2FLOC = '" & sFLOC & "' and R2TLOT = '" & sTLOT & "'" & _
-             " and R2TLOC = '" & sTLOC & "' and R2PSTB = '320'"
-      DB.Execute(sSql, sColsJB, sRowsJB)
+'      sSql = "select count(*) from WDJOBS" & _
+'             " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
+'             " and R2FLOT = '" & sFLOT & "' and R2FLOC = '" & sFLOC & "' and R2TLOT = '" & sTLOT & "'" & _
+'             " and R2TLOC = '" & sTLOC & "' and R2PSTB = '320'"
+'      DB.Execute(sSql, sColsJB, sRowsJB)
+
+' FIXED: Put sSGSQ into R2NLIN and will use that for duplicate check
 
       If Val(sRowsJB) = 0 Then
-        sSql = "insert into RFgenCustom.WDJOBS" & _
+        sSql = "insert into WDJOBS" & _
                " (R2TYFL, R2SGBT, R2SGSQ, R2MCU, R2ITM, R2LITM, R2UOM1, R2TQTY, R2FLOC," & _
-               " R2FLOT, R2TLOC, R2TLOT, R2DSC1, R2DSC2, R2RCDJ, R2TRDJ, R2DRQJ," & _
+               " R2FLOT, R2TLOC, R2TLOT, R2DSC1, R2DSC2, R2RCDJ, R2TRDJ, R2DRQJ, R2NLIN," & _
                " R2USER, R2PID, R2UPMJ, R2TDAY, R2PSTB, R2DOCO, R2DCTO, R2LNID, R2PRITY)" & _
                " values(" & _
                "'" & sTYFL & "'" & "," & _
@@ -1139,6 +1148,7 @@ Private Function Pick As Boolean
                      sRCDJ       & "," & _
                      sTRDJ       & "," & _
                      sDRQJ       & "," & _
+                     sSGSQ       & "," & _
                "'" & sUser & "'" & "," & _
                "'" & sPID  & "'" & "," & _
                      sUPMJ       & "," & _
@@ -1193,7 +1203,7 @@ Private Sub Notifications
   sUserList = SYS.UserList(True)
   '
   ' Check for open requests
-  sSql = "select count(*) from RFgenCustom.WDJOBS" & _
+  sSql = "select count(*) from WDJOBS" & _
          " where R2PSTB = '" & cPSTB & "'"
   DB.Execute(sSql, sCols, sRows)
 
@@ -1216,18 +1226,18 @@ Private Sub Notifications
   End If
 End Sub
 
-Private Function PickJobExists(ByVal sRQBT As String, ByVal sRQSQ As String) As Boolean
+Private Function PickJobExists(ByVal sSGBT As String, ByVal sSGSQ As String) As Boolean
   Dim sSql As String
   Dim sCols As String
   Dim sRows As String
 
   sSql = _
     " select count(*)" & _
-    " from RFgenCustom.WDJOBS" & _
+    " from WDJOBS" & _
     " where R2TYFL = '2'" & _
     " and R2PSTB in ('321', '322')" & _
-    " and R2SGBT = " & sRQBT & _
-    " and R2SGSQ = " & sRQSQ
+    " and R2SGBT = " & sSGBT & _
+    " and R2NLIN = " & sSGSQ
   DB.Execute(sSql, sCols, sRows)
 
   PickJobExists = Val(sRows) > 0

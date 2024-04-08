@@ -50,8 +50,8 @@
 <Control Type="3" FieldId="lbxLOCN" Attr="5" Sorted="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="6" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="0" HeadVisible="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="0" Height="22" AnchorRight="375" AnchorBottom="144" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="7" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="240" Height="154" AnchorRight="0" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="154" Width="0" Height="22" AnchorRight="240" AnchorBottom="144" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="7" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="240" Height="154" AnchorRight="15" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />

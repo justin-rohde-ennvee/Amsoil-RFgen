@@ -6,7 +6,6 @@
 <MenuItem Id="FLPLB0100_AMS" Desc="4-Label Reprint" />
 <MenuItem Id="FIMIT0100_AMS" Desc="5-Transfer Non-Lot" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FLPTL0100_AMS" Desc="J-Transfer LP Location No FIFO" Options="-Pgm=P4113 -Vers=RGN0001 -FIFO=FALSE" />
-<MenuItem Id="AMS_MGR_TEST" Desc="TESTING MENU" />
 <MenuItem Id="-" />
 <MenuItem Id="-" Desc="--ST Pick/Ship--" />
 <MenuItem Id="FSOPC0200_AMS" Desc="6-ST Picking" Options="-Pgm=P4205 -Vers=RGN0001" />

@@ -85,6 +85,8 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   Dim emShipConfirmEndDoc   As New EmbeddedProc
   Dim emNothing             As New EmbeddedProc
 
+  Dim sText As String
+
   '----------------'
   ' Initialization '
   '----------------'
@@ -138,6 +140,20 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     nShip = CLng(Ext(tmValCache,14, iCnt))    'Ship To
     nCarr = CLng(Ext(tmValCache,15, iCnt))    'Carrier
 
+    sText = "sLITM: " & sLITM & _
+      ", nITM: " & nITM & _
+      ", sLOCN: " & sLOCN & _
+      ", nQty: " & nQty & _
+      ", sUOM: " & sUOM & _
+      ", sLOTN: " & sLOTN & _
+      ", sCOMM: " & sCOMM & _
+      ", nSOBK: " & nSOBK & _
+      ", nSOCN: " & nSOCN & _
+      ", nSOQS: " & nSOQS & _
+      ", sLNTY: " & sLNTY & _
+      ", nLNID: " & nLNID & _
+      ", nShip: " & nShip & _
+      ", nCarr: " & nCarr
 
     ' Get the shipment number
     nLine = ConvDecimalsToSQL("LNID", nLNID)
@@ -149,11 +165,27 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     nExCost = ConvDecimalsFromSQL("ECST", DB.Extract(sCols, sRows, 1, "SDECST"))
     nExPrice = ConvDecimalsFromSQL("AEXP", DB.Extract(sCols, sRows, 1, "SDAEXP"))
 
-
     ' Get default information for this item
     GetItemInfo(tmMCU, sLITM, cTNId, nITM, sAITM, sUOM, sUOM2, nQty, nQty2)
+
+    sText = "tmMCU: " & tmMCU & _
+      ", sLITM: " & sLITM & _
+      ", cTNId: " & cTNId & _
+      ", nITM: " & nITM & _
+      ", sAITM: " & sAITM & _
+      ", sUOM: " & sUOM & _
+      ", sUOM2: " & sUOM2 & _
+      ", nQty: " & nQty & _
+      ", nQty2: " & nQty2
+
     sUOMCheck = sUOM
     Validate_Item(tmMCU, sLITM, CStr(nITM), sLITM,sAITM, sDsc1, sUOMCheck, nType, bHasLot, bSerialized, False, True)
+
+    sText = "sDSC1: " & sDsc1 & _
+      ", sUOMCheck: " & sUOMCheck & _
+      ", nType: " & nType & _
+      ", bHasLot: " & bHasLot & _
+      ", nType: " & nType
 
     nMLSQSV = 0
     nMLSOQ  = 0
@@ -272,7 +304,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
         sLOCN = Ext(tmValCache,04, iCnt)          'Location
         nQty  = CCur(Ext(tmValCache,05, iCnt))    'Picked Qty.
         sLOTN = Ext(tmValCache,07, iCnt)          'Lot - / Serial number
-        'S/1
+       'S/1
         emF42UI05EditLine.Param("LineNumber")                     = Val(emF42UI05EditLine.Param("LineNumber")) + .001
         emF42UI05EditLine.Param("Location")                       = sLOCN
         emF42UI05EditLine.Param("Lot")                            = sLOTN
@@ -300,13 +332,6 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
     End If
   Next iCnt
 
-  Dim oProcOpt As New JDEProcOpt
-  oProcOpt.ProgramId = tmPGM
-  oProcOpt.Version = tmVERSION
-
-  Dim sR42565Version As String
-  sR42565Version = oProcOpt.Value("R42565Vers")
-
   '-------------------'
   ' ShipConfirmEndDoc '
   '-------------------'
@@ -318,7 +343,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emShipConfirmEndDoc.Param("ComputerId")         = emGetAuditInfo.Param("Workstation_UserId")
   emShipConfirmEndDoc.Param("ErrorCondition")     = " "
   emShipConfirmEndDoc.Param("UserId")             = emGetAuditInfo.Param("UserName")
-  emShipConfirmEndDoc.Param("R42565Version")      = sR42565Version 'GetProcOpt(tmPGM,tmVERSION, "8;2")
+  emShipConfirmEndDoc.Param("R42565Version")      = GetProcOpt(tmPGM,tmVERSION, "8;2")
   emShipConfirmEndDoc.Param("TRANSyncEndDoc")     = " "
   emShipConfirmEndDoc.Param("mTRANJobsNumber")    = 0
   emShipConfirmEndDoc.Param("P4205Version")       = tmVERSION

@@ -190,23 +190,23 @@ Private Sub Form_Load()
   moProcOpt.ProgramId = msPgm
   moProcOpt.Version = msVersion
 
-  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-  Debug.Print("msStatusF old: " & msStatusF)
+'  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
+'  Debug.Print("msStatusF old: " & msStatusF)
 
   msStatusF = moProcOpt.Value("StatusNextFrom")
-  Debug.Print("msStatusF new: " & msStatusF)
+'  Debug.Print("msStatusF new: " & msStatusF)
 
-  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
-  Debug.Print("msStatusT old: " & msStatusT)
+'  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
+'  Debug.Print("msStatusT old: " & msStatusT)
 
   msStatusT = moProcOpt.Value("StatusNextThru")
-  Debug.Print("msStatusT new: " & msStatusT)
+'  Debug.Print("msStatusT new: " & msStatusT)
 
-  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
-  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
+'  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
+'  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
 
   msCheckAvailability = moProcOpt.Value("CheckAvailability")
-  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
+'  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
 
   msPreventNegativeShip = " " 'GetProcOpt(msPgm,msVersion,"4;2")
 '  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
@@ -214,29 +214,29 @@ Private Sub Form_Load()
 '  msPreventNegativeShip = moProcOpt.Value("PreventNegativeShip")
 '  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
 
-  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
-  Debug.Print("msPreventOvership old: " & msPreventOvership)
+'  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
+'  Debug.Print("msPreventOvership old: " & msPreventOvership)
 
   msPreventOvership = moProcOpt.Value("PreventOvership")
-  Debug.Print("msPreventOvership new: " & msPreventOvership)
+'  Debug.Print("msPreventOvership new: " & msPreventOvership)
 
-  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
-  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
+'  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
+'  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
 
   msBOorCANRemains = moProcOpt.Value("BOorCANRemains")
-  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
+'  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
 
   msRelInv = True
 '  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
 '  If moProcOpt.Value("AllowReliefofInventory") = "1" Then msRelInv = False
 
-  mbAddFr = True
-  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
-  Debug.Print("mbAddFr old: " & mbAddFr)
+'  mbAddFr = True
+'  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
+'  Debug.Print("mbAddFr old: " & mbAddFr)
 
   mbAddFr = True
   If moProcOpt.Value("AllowAddLineEntry") <> "1" Then mbAddFr = False
-  Debug.Print("mbAddFr new: " & mbAddFr)
+'  Debug.Print("mbAddFr new: " & mbAddFr)
 
   btnExecute.Visible = False
 End Sub
@@ -301,8 +301,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Dim uLP101 As LP101Data       ' create LP101 Structure
   Dim uLP102 As LP102Data       ' create LP102 Structure
 
-  LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") Start function.")
-
   iRow = txtAccept.Label.Top
   '
   Screen.Print 0, iRow, "Processing...", False, True, True
@@ -340,9 +338,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 ' Build Datastructure from Listbox (List.Sorted by Line)
   msValCache = ""                 ' clear datastructure
   mnCnt      = 0                  ' reset counter
-
-
-  LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") Start processing.")
 
   For x = 1 To DB.Count(sRows)
     'lstScanned.List.Index = iCnt
@@ -510,7 +505,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
       End If
     End If
 
-    LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") End processing.")
 
     '
   ' Offline inventory
@@ -547,7 +541,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   txtDCTO.Visible = False
 
 
-  LogText("FSOSC0101_AMS", "Form_OnUpdate", "(" & Device.Platform & ") End function.")
 End Sub
 
 Private Sub Form_Unload()
@@ -663,7 +656,6 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   If (Len(sRows) <> 0) Then
     vRsp = App.MsgBox("Items were backordered during picking.  Reprint pack slip in JD Edwards.")
-    LogText("FSOSC0101_AMS", "txtDOCO_OnEnter",  "(" & Device.Platform & ") Reprint message acknowledged with response: " & vRsp)
   End If
 
   '

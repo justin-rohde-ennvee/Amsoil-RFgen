@@ -158,8 +158,7 @@
 ' NOTES:
 '
 ' MODIFICATION HISTORY:
-' Wagner 6/15/17: Updated to point to AMS version of Super Backflush transaction.
-'                 Removed requirement of having completions blind execution to load.
+'
 
 Option Explicit
 
@@ -270,11 +269,11 @@ Private Sub Form_Load()
   End If
   '
   ' make sure PO is set to blind execution
-'  If GetProcOpt(msPgm,msZVERSION,"2;1") <> "1" Or GetProcOpt(msPgm,msZVERSION,"2;2") <> "1" Or GetProcOpt(msPgm,msZVERSION,"2;3") <> "1" Then
-'    App.MsgBox(GetMsg(249) & msPgm & "/" & msZVERSION)
-'    App.ExitForm
-'    Exit Sub
-'  End If
+  If GetProcOpt(msPgm,msZVERSION,"2;1") <> "1" Or GetProcOpt(msPgm,msZVERSION,"2;2") <> "1" Or GetProcOpt(msPgm,msZVERSION,"2;3") <> "1" Then
+    App.MsgBox(GetMsg(249) & msPgm & "/" & msZVERSION)
+    App.ExitForm
+    Exit Sub
+  End If
 
   If mnEmployeeNo > 0 Then txtEMPL.Text = mnEmployeeNo
 
@@ -326,7 +325,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
     Exit Sub
   End If
   '
-  emProc.Name                    = "TWOSB0100_AMS"
+  emProc.Name                    = "TWOSB0100"
   emProc.DataSource              = gsDataSource
   emProc.Param("tmCO")           = App.GetValue("tmCO")
   emProc.Param("tmMCU")          = App.GetValue("tmMCU")
@@ -348,7 +347,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   emProc.Param("tmZCOMPLETIONS") = msZCOMPLETIONS
   emProc.Param("tmZISSUES")      = msZISSUES
   emProc.Param("tmSHIFT")        = App.GetValue("tmShift")
-'  emProc.Param("tmPGM")          = msPgm
+  emProc.Param("tmPGM")          = msPgm
   '
   If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)     
 
@@ -633,7 +632,7 @@ Private Sub txtOPSQ_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   ' Display this operation's qty and UOM
   sSQL = "select WLQMTO, WLUOM, WLOPSQ, WLBFPF, WLUORG" & _
          " from  F3112" & _
-         " where WLDOCO = %tmDOCO and WLDCTO = '%tmDCTO' and WLOPSQ = " & nThisOper & _
+         " where WLDOCO = %tmDOCO and WLDCTO = '%tmDCTO' and WLOPSQ < " & nThisOper & _
          " and WLPPRF <> 'C'" & _
          " order by WLOPSQ DESC"
 

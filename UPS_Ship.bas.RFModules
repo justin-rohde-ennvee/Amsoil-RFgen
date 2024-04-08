@@ -88,9 +88,9 @@ Private Function UPS_SendShippingRequest( _
 End Function
 
 Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictionary) As ShipmentResponse
-  Dim oShipmentResults As New Scripting.Dictionary
   Dim tShipmentResponse As ShipmentResponse
-
+  Dim oShipmentResults As New Scripting.Dictionary
+  
   If Not oResponse.Exists("ShipmentResponse") Then
     tShipmentResponse.sErrMsg = "Missing response element: ShipmentResponse"
     Return tShipmentResponse
@@ -98,9 +98,15 @@ Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictiona
 
   Set oShipmentResults = oResponse("ShipmentResponse")("ShipmentResults")
 
-  tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")(0)("TrackingNumber")
+  If TypeName(oShipmentResults("PackageResults")) = "IDictionary" Then
+    tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")("TrackingNumber")
+    tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")("ShippingLabel")("GraphicImage")
+  Else
+    tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")(0)("TrackingNumber")
+    tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")(0)("ShippingLabel")("GraphicImage")
+  End If
+
   tShipmentResponse.nCost = CCur(oShipmentResults("NegotiatedRateCharges")("TotalCharge")("MonetaryValue"))
-  tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")(0)("ShippingLabel")("GraphicImage")
 
   Return tShipmentResponse
 End Function
@@ -218,7 +224,7 @@ Private Function UPS_ShipmentRequestJson( _
   sBody = Replace(sBody, "$FROM_STATE", fromAddressInfo.sState)
   sBody = Replace(sBody, "$FROM_ZIP", fromAddressInfo.sZip)
 
-  sBody = Replace(sBody, "$SHIP_TO_NAME", toAddressInfo.sName)
+  sBody = Replace(sBody, "$SHIP_TO_NAME", Trim(Left(toAddressInfo.sName, 35)))
   sBody = Replace(sBody, "$TO_ADDRESS_1", toAddressInfo.sLine1)
   sBody = Replace(sBody, "$TO_ADDRESS_2", toAddressInfo.sLine2)
   sBody = Replace(sBody, "$TO_ADDRESS_3", toAddressInfo.sLine3)

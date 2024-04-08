@@ -6,7 +6,7 @@
 <SchemaParam Linked="0" Attr="4" Name="lbxPicks" />
 </Schema>
 <Displays>
-<Display Name="(Default)" Type="1" Width="240" Height="320" Locale="1033" />
+<Display Name="(Default)" Type="1" Width="320" Height="480" Locale="1033" />
 </Displays>
 <Form Type="0" Attr="0" LinkMode="0">
 <Controls>
@@ -14,7 +14,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="8" Width="41" Height="22" AnchorRight="190" AnchorBottom="290" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Wave" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="134" Top="8" Width="100" Height="22" AnchorRight="6" AnchorBottom="290" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="214" Top="8" Width="100" Height="22" AnchorRight="6" AnchorBottom="450" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="45" Top="25" Width="65" Height="22" AnchorRight="130" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -26,7 +26,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="31" Width="65" Height="22" AnchorRight="166" AnchorBottom="267" BackColor1="1" BackColor2="1" ForeColor="1" Caption="User ID" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="134" Top="33" Width="100" Height="22" AnchorRight="6" AnchorBottom="265" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="214" Top="33" Width="100" Height="22" AnchorRight="6" AnchorBottom="425" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -37,7 +37,7 @@
 <Control Type="10" FieldId="txtAccept" Attr="3">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="60" Width="153" Height="22" AnchorRight="182" AnchorBottom="238" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="55" Width="153" Height="22" AnchorRight="158" AnchorBottom="403" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="59" Top="71" Width="49" Height="22" AnchorRight="132" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
@@ -48,7 +48,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="11" Top="103" Width="49" Height="22" AnchorRight="164" AnchorBottom="195" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Picks" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="125" Width="221" Height="173" AnchorRight="9" AnchorBottom="22" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="88" Width="301" Height="382" AnchorRight="9" AnchorBottom="10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
@@ -66,9 +66,9 @@
 </Control>
 </Controls>
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
-<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="320" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="320" FormHeight="480" Scrollbars="0">
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="480" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
 <Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="240" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
@@ -104,9 +104,7 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
     " update WDJOBS" & _
     " set R2URRF = '" & App.GetValue("tmURRF") & "'" & _
     " where R2TRIP = " & App.GetValue("tmTRIP")
-  DB.UseDataSource("RFgenCustom")
   nErrNo = DB.Execute(sSQL)
-  DB.UseDataSource(0)
 
   If nErrNo <> 0 Then
     App.MsgBox("Error updating pick wave user ID: " & nErrNo)
@@ -161,9 +159,7 @@ Public Sub txtTRIP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     " and R2TYFL = '2'" & _
     " and R2TRIP = " & Rsp & _
     " order by R2PSTB desc, R2SGSQ, R2SGBT"
-  DB.UseDataSource("RFgenCustom")
   DB.Execute(sSQL, sCols, sRows)
-  DB.UseDataSource(0)
 
   If DB.Count(sRows) = 0 Then
     App.MsgBox("Invalid wave.")
@@ -212,9 +208,7 @@ Public Sub txtTRIP_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   oList.ShowEmptyList = True
   oList.SQL = sSQL
 
-  DB.UseDataSource("RFgenCustom")
   Rsp = oList.ShowList
-  DB.UseDataSource(0)
 
   Cancel = Rsp = ""
 End Sub

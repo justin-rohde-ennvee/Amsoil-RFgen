@@ -142,7 +142,7 @@ Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sRows As String
 
   sSQL = _
-    " select WAMCU, WAUORG, WAITM, I0Z55LBOR" & _
+    " select WAMMCU, WAUORG, WAITM, I0Z55LBOR" & _
     " from F4801" & _
     " left join F554101C on I0ITM = WAITM" & _
     " where WADOCO = " & Rsp
@@ -154,7 +154,7 @@ Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     Exit Sub
   End If
 
-  App.SetValue("tmMCU", DB.Extract(sCols, sRows, 1, "WAMCU"))
+  App.SetValue("tmMCU", DB.Extract(sCols, sRows, 1, "WAMMCU"))
   App.SetValue("tmDOCO", Val(Rsp))
   App.SetValue("tmITM", DB.Extract(sCols, sRows, 1, "WAITM"))
   App.SetValue("tmLBOR", Trim(DB.Extract(sCols, sRows, 1, "I0Z55LBOR")))

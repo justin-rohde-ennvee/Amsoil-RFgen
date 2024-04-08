@@ -216,6 +216,7 @@ Private Const cStatusF  = 40            ' WO Status from, optional
 Private msPgm        As String
 Private msVersion    As String
 Private mnStatusT    As Currency
+Private moProcOpt As New JDEProcOpt
 
 Private Sub btnChange_Click()
   On Error Resume Next
@@ -246,7 +247,6 @@ Private Sub btnChange_Click()
   Dim emProc As New EmbeddedProc
 
   Dim vRsp  As Variant
-
 
 'STUFF TO LOOK UP / CROSS REFERENCE FROM WORKCENTER DATABASE:
     sWCU = FixRight(Trim(App.GetValue("tmWC")), 12)
@@ -467,9 +467,13 @@ Private Sub Form_Load()
 
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
-  mnStatusT = CCur(GetProcOpt(msPgm,msVersion,"3;4"))
 
-   SYS.DisableTimeout(True)
+  moProcOpt.ProgramId = msPgm
+  moProcOpt.Version = msVersion
+
+  mnStatusT = CCur(moProcOpt.Value("StatusLimit"))
+
+  SYS.DisableTimeout(True)
 
   If Trim(GetUserInfo("DefaultWCU")) <> "" Then
     txtWC.Defaults = Trim(GetUserInfo("DefaultWCU"))
@@ -560,7 +564,10 @@ Private Sub txtBatch_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef
   sSqlWO = "select * from F4801 where WADOCO = " & App.GetValue("tmDOCO")
   DB.Execute(sSqlWO, sColsWO, sRowsWO)
 
-  lblLITM.Caption = Trim(DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
+  Dim sLITM As String
+  sLITM = Trim(DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
+
+  lblLITM.Caption = sLITM
   lblWOQty.Caption = ConvDecimalsFromSQL("UORG", Trim(DB.Extract(sColsWO, sRowsWO, 1, "WAUORG"))) + Val(Trim(DB.Extract(sCols, sRows, 1, "WCCNT")))
   lblOpenQty.Caption = ConvDecimalsFromSQL("UORG", Trim(DB.Extract(sColsWO, sRowsWO, 1, "WASOQS")))
   lblCurrentPL.Caption = Trim(DB.Extract(sCols, sRows, 1, "WCLOT1"))
@@ -596,8 +603,8 @@ Private Sub txtBatch_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef
   DB.Execute(sSql, sCols, sRows)
   lblBLITM.Caption = Trim(DB.Extract(sCols, sRows, 1, "IOLITM"))
 
-  sSQLAPI = "Select IBSRP8 from F4102 where iblitm = '" & Trim(DB.Extract(sCols, sRows, 1, "IOLITM")) & "' and ibmcu = '" & App.GetValue("tmMCU") & "'"
-
+  'sSQLAPI = "Select IBSRP8 from F4102 where iblitm = '" & Trim(DB.Extract(sCols, sRows, 1, "IOLITM")) & "' and ibmcu = '" & App.GetValue("tmMCU") & "'"
+  sSQLAPI = "Select IBSRP8 from F4102 where iblitm = '" & sLITM & "' and ibmcu = '" & App.GetValue("tmMCU") & "'"
   DB.Execute(sSQLAPI, sColsAPI, sRowsAPI)
 
   If (Trim(DB.Extract(sColsAPI, sRowsAPI, 1, "IBSRP8")) <> "") Then

@@ -1,4 +1,4 @@
-﻿<Record FileDesc="Directed Pick" FileVersion="5.0.8.0" Desc="Directed Pick" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtCategory&vm;btnPrintCartonLabels&vm;txtCart&vm;txtPrinter&vm;lblCartDesc&vm;lblLocn&vm;lblItem&vm;lblLot&vm;lblQty&vm;lblConfUOM&vm;lblBox&vm;lblSep&vm;txtConfItemLP&vm;btnPicks&vm;btnNextPick&vm;txtConfLot&vm;txtConfLocation&vm;txtConfQty&vm;txtConfBox&vm;txtAccept&vm;btnBack&vm;lbxWave" ImageList="0&vm;0&vm;printer&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;list&vm;drop&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="X41.bas">
+﻿<Record FileDesc="Directed Pick" FileVersion="5.0.8.0" Desc="Directed Pick" Group="AMS-WD-BAK" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtCategory&vm;btnPrintCartonLabels&vm;txtCart&vm;txtPrinter&vm;lblCartDesc&vm;lblLocn&vm;lblItem&vm;lblLot&vm;lblQty&vm;lblConfUOM&vm;lblBox&vm;lblSep&vm;txtConfItemLP&vm;btnPicks&vm;btnNextPick&vm;txtConfLot&vm;txtConfLocation&vm;txtConfQty&vm;txtConfBox&vm;txtAccept&vm;btnBack&vm;lbxWave" ImageList="0&vm;0&vm;printer&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;list&vm;drop&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="X41.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="txtCategory" />
@@ -384,16 +384,10 @@ Public Sub btnPrintCartonLabels_Click()
   txtPrinter_OnEnter(txtPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
+  App.Balloon("Printing labels...", -1)
+
   If Val(App.GetValue("tmTRIP")) = 0 Then
-    BuildWave(mnLength * mnWidth, mnLevelCount)
-
-    If lbxWave.List.Count = 0 Then
-      App.MsgBox("No picks available.")
-      Exit Sub
-    End If
-
     ' Assign the next wave
-    App.Balloon("Assigning wave...", -1)
 
     sSQL = "select max(R2TRIP) from WDJOBS"
     DB.Execute(sSQL, sCols, sRows)
@@ -425,10 +419,7 @@ Public Sub btnPrintCartonLabels_Click()
 
       lbxWave.List.Cell(i, 7).Value = sLPID
     Next
-    Wait(1)
   End If
-
-  App.Balloon("Printing labels...", -1)
 
   For i=1 To lbxWave.List.Count
     sEQTY = lbxWave.List.Cell(i, 6)
@@ -455,7 +446,6 @@ Public Sub btnPrintCartonLabels_Click()
   End_i:
   Next
 
-  Wait(1)
   App.Balloon("", 0)
 
   Call txtCart_OnEnter(App.GetValue("tmCart"), bCancel, "")
@@ -499,9 +489,6 @@ Private Sub Form_Load()
   Dim sHeader As String
   Dim nPrinter As Integer
   Dim sDisplay As String
-  Dim sSQL As String
-  Dim sCols As String
-  Dim sRows As String
 
   sDisplay = App.GetValue("Display")
   If sDisplay <> "" Then
@@ -517,9 +504,6 @@ Private Sub Form_Load()
   lblBox.Caption = ""
   lblConfUOM.Caption = ""
   lblCartDesc.Caption = ""
-  btnPrintCartonLabels.Visible = False
-  btnPicks.Visible = False
-  btnNextPick.Visible = False
 
   txtAccept.Visible   = False
 
@@ -561,8 +545,6 @@ Private Sub Form_Load()
   lbxWave.Visible = False
 
   mnPickOffset = 0
-
-  msLastCartID = Trim(App.UserProperty("Cart"))
 End Sub
 
 Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
@@ -573,21 +555,12 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   Dim sCols As String
   Dim sRows As String
   Dim nQTY As String
-  Dim nDOCO As Long
   Dim nLNID As Currency
   Dim nNextLNID As Currency
   Dim trackingRecord As F554603Record
   Dim bSplit As Boolean
 
   Cancel = True
-
-  nDOCO = App.GetValue("tmDOCO")
-  nLNID = App.GetValue("tmLNID")
-
-  If JobWasPicked(nDOCO, nLNID) Then
-    App.MsgBox("Error: this line has already been picked.")
-    Exit Sub
-  End If
 
   App.Balloon("Processing JDE Pick...", -1)
 
@@ -596,8 +569,10 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
     Exit Sub
   End If
 
-  App.Balloon("Advancing pick status...", -1)
+  ' Find the next JDE line
+  nLNID = App.GetValue("tmLNID")
 
+  App.Balloon("Advancing pick status...", -1)
   If Not AdvanceJobStatus(bSplit, sErrMsg) Then
     App.MsgBox(sErrMsg)
     Exit Sub
@@ -605,7 +580,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
   If Val(App.GetValue("tmQTY")) > 0 Then
     App.Balloon("Adding item to carton...", -1)
-
     If Not AddItemToCarton(sErrMsg) Then
       App.MsgBox(sErrMsg)
       Exit Sub
@@ -613,7 +587,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
     If App.GetValue("tmLPID") <> "" Then
       App.Balloon("Detaching items...", -1)
-
       If Not DetachItems(sErrMsg) Then
         App.MsgBox(sErrMsg)
         Exit Sub
@@ -714,9 +687,9 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   lblCartDesc.Caption = sDL01 & " " & sDL02
 
+  BuildWave(mnLength * mnWidth, mnLevelCount)
 
   If Val(App.GetValue("tmTRIP")) <> 0 Then
-    BuildWave(mnLength * mnWidth, mnLevelCount)
     If Not SelectNextPick() Then
       App.MsgBox("Pick complete!")
       ReleasePick()
@@ -726,19 +699,18 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     End If
   End If
 
+  If lbxWave.List.Count = 0 Then
+    App.MsgBox("No picks available.")
+    Exit Sub
+  End If
+
   App.SetValue("tmCart", Rsp)
   App.UserProperty("Cart") = Rsp
 
-  btnPrintCartonLabels.Visible = True
-
   If Val(App.GetValue("tmTRIP")) = 0 Then
     btnPrintCartonLabels.Caption = "Print Labels"
-    btnPicks.Visible = False
-    btnNextPick.Visible = False
   Else
     btnPrintCartonLabels.Caption = "Reprint Labels"
-    btnPicks.Visible = True
-    btnNextPick.Visible = True
   End If
 End Sub
 
@@ -748,7 +720,7 @@ Public Sub txtCart_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   Dim sSQL As String
   Dim oList As New SearchList
 
-  sSQL = _
+  sSql = _
     " select DRKY, DRDL01, DRDL02" & _
     " from F0005" & _
     " where DRSY = '55'" & _
@@ -1186,120 +1158,120 @@ Public Sub BuildWave(ByVal nCartArea As Long, ByVal nLevelCount As Long)
     " order by case when R2PRITY = 0 then 1 else 0 end, R2SGBT, R2SGSQ"
   DB.Execute(sSQL, sCols, sRows)
 
-  ' TODO account for individual shelves instead of total area
-  nAreaRemaining = nCartArea * nLevelCount
+'  For iLevelNumber = 1 To nLevelCount
+    nAreaRemaining = nCartArea * nLevelCount
 
-  For i=1 To DB.Count(sRows)
-    ' Fetch carton suggestion for this batch & sequence
-    nRQBT = DB.Extract(sCols, sRows, i, "R2SGBT")
-    nRQSQ = DB.Extract(sCols, sRows, i, "R2SGSQ")
-    sKey = nRQBT & "|" & nRQSQ
+    For i=1 To DB.Count(sRows)
+      ' Fetch carton suggestion for this batch & sequence
+      nRQBT = DB.Extract(sCols, sRows, i, "R2SGBT")
+      nRQSQ = DB.Extract(sCols, sRows, i, "R2SGSQ")
+      sKey = nRQBT & "|" & nRQSQ
 
-    sPRITY = DB.Extract(sCols, sRows, i, "R2PRITY")
+      sPRITY = DB.Extract(sCols, sRows, i, "R2PRITY")
 
-    ' Skip if excluded due to ERROR box on batch
-    If oErrorBatches.Exists(nRQBT) Then GoTo End_i
+      ' Skip if excluded due to ERROR box on batch
+      If oErrorBatches.Exists(nRQBT) Then GoTo End_i
 
-    sSQL = _
-      " select max(IDEQTY) IDEQTY, max(IDGWID) IDGWID, max(IDGDEP) IDGDEP, max(R2URCD) R2URCD" & _
-      " from F4611" & _
-      " inner join F46091 on R2EQTY = IDEQTY and R2MCU = IDMCU" & _
-      " where R2RQBT = " & nRQBT & _
-      " and R2RQSQ = " & nRQSQ
-    DB.Execute(sSQL, sColsCarton, sRowsCarton)
+      sSQL = _
+        " select max(IDEQTY) IDEQTY, max(IDGWID) IDGWID, max(IDGDEP) IDGDEP, max(R2URCD) R2URCD" & _
+        " from F4611" & _
+        " inner join F46091 on R2EQTY = IDEQTY and R2MCU = IDMCU" & _
+        " where R2RQBT = " & nRQBT & _
+        " and R2RQSQ = " & nRQSQ
+      DB.Execute(sSQL, sColsCarton, sRowsCarton)
 
-    If DB.Count(sRowsCarton) = 0 Then GoTo End_i
+      If DB.Count(sRowsCarton) = 0 Then GoTo End_i
 
-    sEQTY = Trim(DB.Extract(sColsCarton, sRowsCarton, 1, "IDEQTY"))
-    If sEQTY = "" Then GoTo End_i
-    If sEQTY = "ERROR" Then
-      ' No container suggestions from this batch can be considered if ERROR type
-      oErrorBatches.Add(nRQBT, 1)
-      GoTo End_i
-    End If
-
-    nWidth = ConvDecimalsFromSQL("GWID", DB.Extract(sColsCarton, sRowsCarton, 1, "IDGWID"))
-    nDepth = ConvDecimalsFromSQL("GDEP", DB.Extract(sColsCarton, sRowsCarton, 1, "IDGDEP"))
-    nArea = nWidth * nDepth
-    sURCD = Trim(DB.Extract(sColsCarton, sRowsCarton, 1, "R2URCD"))
-
-    ' Determine if the current wave still has capacity for these containers
-    If nArea > nAreaRemaining Then GoTo End_i
-
-    ' Select all suggestion lines for this container (batch and sequence)
-    sSQL = _
-      " select *" & _
-      " from WDJOBS" & _
-      " where R2TYFL = '2'" & _
-      " and R2SGBT = " & nRQBT & _
-      " and R2SGSQ = " & nRQSQ & _
-      " order by R2FLOC, R2FLOT, R2DOCO, R2LNID"
-    DB.Execute(sSQL, sColsPick, sRowsPick)
-
-    ' Ensure all suggested locations in this batch/sequence are pickable
-    For j=1 To DB.Count(sRowsPick)
-      Dim sKZON As String
-      Dim sColsPickable
-      Dim sRowsPickable
-      sFLOC = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOC"))
-      sSQL = "select LMKZON from F4100 where LMMCU = '%tmMCU' and LMLOCN = '" & sFLOC & "'"
-      DB.Execute(sSQL, sColsPickable, sRowsPickable)
-      sKZON = Trim(DB.Extract(sColsPickable, sRowsPickable, 1, 1))
-      If sKZON <> "PICK" Then GoTo End_i
-    Next
-
-    For j=1 To DB.Count(sRowsPick)
-      ' Find the corresponding pick suggestion line
-      nPickQty = DB.Extract(sColsPick, sRowsPick, j, "R2TQTY")
-      sPickUOM = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2UOM1"))
-      nITM = DB.Extract(sColsPick, sRowsPick, j, "R2ITM")
-      sLITM = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2LITM"))
-      sFLOC = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOC"))
-      If sFLOC = "" Then sFLOC = " "
-      sFLOT = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOT"))
-      sLPID = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2LPID"))
-      nDOCO = DB.Extract(sColsPick, sRowsPick, j, "R2DOCO")
-      sDCTO = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2DCTO"))
-      nLNID = ConvDecimalsFromSQL("LNID", DB.Extract(sColsPick, sRowsPick, j, "R2LNID"))
-      sPSTB = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2PSTB"))
-
-      ' Check category filter
-      If App.GetValue("tmURCD") <> "*" Then
-        ' Skip if the current record is not the filtered category
-        If sURCD <> App.GetValue("tmURCD") Then GoTo End_j
-
-        ' Skip if the order has picks in multiple categories
-        If Not IsSingleCategoryOrder(App.GetValue("tmMCU"), nDOCO, sURCD) Then GoTo End_j
+      sEQTY = Trim(DB.Extract(sColsCarton, sRowsCarton, 1, "IDEQTY"))
+      If sEQTY = "" Then GoTo End_i
+      If sEQTY = "ERROR" Then
+        ' No container suggestions from this batch can be considered if ERROR type
+        oErrorBatches.Add(nRQBT, 1)
+        GoTo End_i
       End If
 
-      sDisplayQty = nPickQty & " " & sPickUOM
+      nWidth = ConvDecimalsFromSQL("GWID", DB.Extract(sColsCarton, sRowsCarton, 1, "IDGWID"))
+      nDepth = ConvDecimalsFromSQL("GDEP", DB.Extract(sColsCarton, sRowsCarton, 1, "IDGDEP"))
+      nArea = nWidth * nDepth
+      sURCD = Trim(DB.Extract(sColsCarton, sRowsCarton, 1, "R2URCD"))
 
-      lbxWave.List.AddItem( _
-        "", _
-        sFLOC, _
-        sLITM, _
-        sFLOT, _
-        nPickQty, _
-        sPickUOM, _
-        sEQTY, _
-        sLPID, _
-        j & "/" & DB.Count(sRowsPick) & " (" & iLevelNumber & ")", _
-        nRQBT, _
-        nRQSQ, _
-        nTRIP, _
-        sPSTB, _
-        nDOCO, _
-        sDCTO, _
-        nLNID, _
-        sPRITY _
-      )
-      End_j:
-    Next j
+      ' Determine if the current wave still has capacity for these containers
+      If nArea > nAreaRemaining Then GoTo End_i
 
-    ' Reduce available cart/shelf area
-    nAreaRemaining = nAreaRemaining - nArea
-    End_i:
-  Next i
+      ' Select all suggestion lines for this container (batch and sequence)
+      sSQL = _
+        " select *" & _
+        " from WDJOBS" & _
+        " where R2TYFL = '2'" & _
+        " and R2SGBT = " & nRQBT & _
+        " and R2SGSQ = " & nRQSQ & _
+        " order by R2FLOC, R2FLOT, R2DOCO, R2LNID"
+      DB.Execute(sSQL, sColsPick, sRowsPick)
+
+      ' Ensure all suggested locations in this batch/sequence are pickable
+      For j=1 To DB.Count(sRowsPick)
+        Dim sKZON As String
+        Dim sColsPickable
+        Dim sRowsPickable
+        sFLOC = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOC"))
+        sSQL = "select LMKZON from F4100 where LMMCU = '%tmMCU' and LMLOCN = '" & sFLOC & "'"
+        DB.Execute(sSQL, sColsPickable, sRowsPickable)
+        sKZON = Trim(DB.Extract(sColsPickable, sRowsPickable, 1, 1))
+        If sKZON <> "PICK" Then GoTo End_i
+      Next
+
+      For j=1 To DB.Count(sRowsPick)
+        ' Find the corresponding pick suggestion line
+        nPickQty = DB.Extract(sColsPick, sRowsPick, j, "R2TQTY")
+        sPickUOM = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2UOM1"))
+        nITM = DB.Extract(sColsPick, sRowsPick, j, "R2ITM")
+        sLITM = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2LITM"))
+        sFLOC = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOC"))
+        If sFLOC = "" Then sFLOC = " "
+        sFLOT = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOT"))
+        sLPID = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2LPID"))
+        nDOCO = DB.Extract(sColsPick, sRowsPick, j, "R2DOCO")
+        sDCTO = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2DCTO"))
+        nLNID = ConvDecimalsFromSQL("LNID", DB.Extract(sColsPick, sRowsPick, j, "R2LNID"))
+        sPSTB = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2PSTB"))
+
+        ' Check category filter
+        If App.GetValue("tmURCD") <> "*" Then
+          ' Skip if the current record is not the filtered category
+          If sURCD <> App.GetValue("tmURCD") Then GoTo End_j
+
+          ' Skip if the order has picks in multiple categories
+          If Not IsSingleCategoryOrder(App.GetValue("tmMCU"), nDOCO, sURCD) Then GoTo End_j
+        End If
+
+        sDisplayQty = nPickQty & " " & sPickUOM
+
+        lbxWave.List.AddItem( _
+          "", _
+          sFLOC, _
+          sLITM, _
+          sFLOT, _
+          nPickQty, _
+          sPickUOM, _
+          sEQTY, _
+          sLPID, _
+          j & "/" & DB.Count(sRowsPick) & " (" & iLevelNumber & ")", _
+          nRQBT, _
+          nRQSQ, _
+          nTRIP, _
+          sPSTB, _
+          nDOCO, _
+          sDCTO, _
+          nLNID, _
+          sPRITY _
+        )
+        End_j:
+      Next j
+
+      ' Reduce available cart/shelf area
+      nAreaRemaining = nAreaRemaining - nArea
+      End_i:
+    Next i
 End Sub
 
 Private Function Min(ByVal nValue1 As Currency, ByVal nValue2 As Currency) As Currency
@@ -1328,12 +1300,10 @@ Private Function SelectNextPick() As Boolean
   Dim sLPID As String
   Dim sErrMsg As String
   Dim trackingRecord As F554603Record
-  Dim nDOCO As Long
-  Dim nLNID As Currency
 
   If mnPickOffset >= lbxWave.List.Count Then mnPickOffset = 0
 
-  For i = (1 + mnPickOffset) To lbxWave.List.Count
+  For i=(1+mnPickOffset) To lbxWave.List.Count
     sPSTB = lbxWave.List.Cell(i, 12).value
     If sPSTB = "321" Then
       bHasPick = True
@@ -1344,26 +1314,23 @@ Private Function SelectNextPick() As Boolean
 
   If Not bHasPick Then Exit Function
 
-  nDOCO = lbxWave.List.Cell(nIndex, 13).Value
-  nLNID = lbxWave.List.Cell(nIndex, 15).Value
-
-  sFLOC = lbxWave.List.Cell(nIndex, 1).Value
+  sFLOC = lbxWave.List.Cell(nIndex, 1).value
   App.SetValue("tmFLOCN", sFLOC)
   lblLocn.Caption = "Locn: " & sFLOC
 
-  sLITM = lbxWave.List.Cell(nIndex, 2).Value
+  sLITM = lbxWave.List.Cell(nIndex, 2).value
   App.SetValue("tmLITM", sLITM)
   lblItem.Caption = "Item: " & sLITM
 
-  sFLOT = lbxWave.List.Cell(nIndex, 3).Value
+  sFLOT = lbxWave.List.Cell(nIndex, 3).value
   App.SetValue("tmLOTN", sFLOT)
   lblLot.Caption = "Lot: " & sFLOT
 
-  sUOM = lbxWave.List.Cell(nIndex, 5).Value
+  sUOM = lbxWave.List.Cell(nIndex, 5).value
   App.SetValue("tmUOM", sUOM)
   lblConfUOM.Caption = sUOM
 
-  nPickQty = lbxWave.List.Cell(nIndex, 4).Value
+  nPickQty = lbxWave.List.Cell(nIndex, 4).value
   If sUOM = "CA" Then
     mnMaxQty = 1
   Else
@@ -1372,26 +1339,26 @@ Private Function SelectNextPick() As Boolean
 
   lblQty.Caption = "Qty: " & nPickQty & " " & sUOM
 
-  sCartonType = lbxWave.List.Cell(nIndex, 6).Value
+  sCartonType = lbxWave.List.Cell(nIndex, 6).value
   App.SetValue("tmCartonType", sCartonType)
 
-  sCartonID = lbxWave.List.Cell(nIndex, 7).Value
+  sCartonID = lbxWave.List.Cell(nIndex, 7).value
   App.SetValue("tmCartonID", sCartonID)
 
   lblBox.Caption = "Carton: " & sCartonID & " (" & sCartonType & ")"
 
-  App.SetValue("tmSGBT", lbxWave.List.Cell(nIndex, 9).Value)
+  App.SetValue("tmSGBT", lbxWave.List.Cell(nIndex, 9).value)
   App.SetValue("tmSGSQ", lbxWave.List.Cell(nIndex, 10).Value)
   App.SetValue("tmTRIP", lbxWave.List.Cell(nIndex, 11).Value)
-  App.SetValue("tmDOCO", lbxWave.List.Cell(nIndex, 13).Value)
-  App.SetValue("tmDCTO", lbxWave.List.Cell(nIndex, 14).Value)
-  App.SetValue("tmLNID", lbxWave.List.Cell(nIndex, 15).Value)
+  App.SetValue("tmDOCO", lbxWave.List.Cell(nIndex, 13).value)
+  App.SetValue("tmDCTO", lbxWave.List.Cell(nIndex, 14).value)
+  App.SetValue("tmLNID", lbxWave.List.Cell(nIndex, 15).value)
 
   SelectNextPick = True
 
   trackingRecord.sMCU = App.GetValue("tmMCU")
   trackingRecord.sWAVE = App.GetValue("tmTRIP")
-  trackingRecord.nPSN = App.GetValue("tmSGBT")
+  trackingRecord.nPSN = App.GetValue("tmDOCO")
   trackingRecord.sCartID = App.GetValue("tmCart")
   trackingRecord.sLPID = sCartonID
   trackingRecord.sTYFL = "2"
@@ -1404,10 +1371,6 @@ Private Function SelectNextPick() As Boolean
     App.MsgBox(sErrMsg)
   End If
 
-  If JobWasPicked(nDOCO, nLNID) Then
-    App.MsgBox("Warning: this line has already been picked.")
-    Exit Function
-  End If
 End Function
 
 Private Function AssignWave( _
@@ -1610,21 +1573,21 @@ Private Function AdvanceJobStatus(ByVal bSplit As Boolean, sErrMsg As String) As
       sErrMsg = "Failed to update status of fully picked job."
       Exit Function
     End If
-  End If
 
-  If bSplit Then
-    ' Increment line # on any open jobs that have the same original SO# and line
-    sSQL = _
-      " update WDJOBS" & _
-      " set R2LNID = R2LNID + 100" & _
-      " where R2DOCO = %tmDOCO" & _
-      " and R2LNID = " & nLineNoSQL & _
-      " and R2PSTB < '322'"
-    nErrNo = DB.Execute(sSQL)
+    If bSplit Then
+      ' Increment line # on any open jobs that have the same original SO# and line
+      sSQL = _
+        " update WDJOBS" & _
+        " set R2LNID = R2LNID + 100" & _
+        " where R2DOCO = %tmDOCO" & _
+        " and R2LNID = " & nLineNoSQL & _
+        " and R2PSTB < '322'"
+      nErrNo = DB.Execute(sSQL)
 
-    If nErrNo <> 0 Then
-      sErrMsg = "Failed to increment lines remaining on jobs for " & App.GetValue("tmDOCO") & "/" & App.GetValue("tmLNID")
-      Exit Function
+      If nErrNo <> 0 Then
+        sErrMsg = "Failed to increment lines remaining on jobs for " & App.GetValue("tmDOCO") & "/" & App.GetValue("tmLNID")
+        Exit Function
+      End If
     End If
   End If
 
@@ -1904,20 +1867,4 @@ Public Sub txtPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRe
 
   App.UserProperty("CartonPrinter") = Rsp
 End Sub
-
-Private Function JobWasPicked(ByVal nDOCO As Long, ByVal nLNID As Currency) As Boolean
-  Dim sSQL As String
-  Dim sCols As String
-  Dim sRows As String
-
-  sSQL = _
-    " select count(*)" & _
-    " from F4211" & _
-    " where SDDOCO = " & nDOCO & _
-    " and SDLNID = " & ConvDecimalsToSQL("LNID", nLNID) & _
-    " and SDNXTR > '545'"
-  DB.Execute(sSQL, sCols, sRows)
-
-  JobWasPicked = Val(sRows) > 0
-End Function
 </Code>

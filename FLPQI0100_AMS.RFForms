@@ -109,10 +109,10 @@
 Option Explicit
 
 Private mnMaxQty     As Currency
-'Private gsLPSource   As String
 Private msDefLOCN    As String
 Private mbSerialized As Boolean
 Private mbIsPlate    As Boolean
+Private mbScan As Boolean
 
 Private Sub Form_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
@@ -127,19 +127,16 @@ End Sub
 
 Private Sub Form_Load()
   On Error Resume Next
-  '
+
   Call SetDisplay()
-  '
+
   gsLPSource = SYS.GetProperty("LP", "SOURCE")
 
-  'App.SetOption ShowHorizontalScrollBar, True   ' todo - upgrade: App.SetOption removed
-  'App.SetOption ShowVerticalScrollBar, True   ' todo - upgrade: App.SetOption removed
-  '
   If (Len(gsLPSource)=0) Then
     App.MsgBox GetMsg(107)
     App.ExitForm
   End If
-  '
+
   lblLPDesc.Caption = ""
   lblLPDesc.Label.BackColor1 = cFieldDefaultBC
   lblLPDesc.Label.ForeColor = cFieldDefaultFC
@@ -232,6 +229,12 @@ Private Sub Form_Unload()
   gsMCU = ""
 End Sub
 
+Public Sub txtLPID_OnScan(ByRef ScanData As String)
+  On Error Resume Next
+
+  mbScan = True
+End Sub
+
 Private Sub txtMCU_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
   On Error Resume Next
   '
@@ -299,10 +302,11 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sPalp    As String
   Dim sType    As String
   Dim sDsp     As String
-  
+
   '
   Rsp = UCase(Trim(Rsp))
-  '
+  mbScan = False
+
   If (Len(Rsp)=0) Then
     Rsp = gsInquiryLPID
     If (Len(Rsp)=0) Then
@@ -336,11 +340,13 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   lstInquiry.List.AddItem sDsp, sDsp          'add header to listbox
 
   Call BuildList(Rsp, sOpt)
+
   lstInquiry.List.AddItem " ","End of data"
 '  lstInquiry.Autosize()
 
   sSQL = "select LMTYPE from F55101 where LMLPID = '" & Trim(Rsp) & "' and LMRNXTR <> '620'"
   DB.Execute(sSQL, sCols, sRows)
+
   sType = Trim(DB.Extract(sCols,sRows,1,"LMTYPE"))
   If sType = "L" Then
     sSQL = "select LMLPID from F55101 inner join F55102 on LMLPID = LDLPID where LMPALP = '" & Trim(Rsp) & "' and LMRNXTR <> '620' and LDUORG <> 0"
@@ -349,11 +355,10 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Else
     sSQL = "select sum(LDUORG) as Qty from F55102 where LDLPID = '" & Trim(Rsp) & "' and LDRNXTR <> '620'"
     DB.Execute(sSQL, sCols, sRows)
-    lblUnits.Caption = "Quantity (EA) on LP: " & Trim(DB.Extract(sCols,sRows,1,"Qty"))
 
+    lblUnits.Caption = "Quantity (EA) on LP: " & Trim(DB.Extract(sCols,sRows,1,"Qty"))
   End If
 
-  '
   Cancel = False
 End Sub
 
@@ -362,13 +367,6 @@ Private Sub txtLPID_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   '
   Cancel = Not Search_LP101(Rsp, App.GetValue("tmMCU"))
 End Sub
-
-'Private Sub txtHidden_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-'  On Error Resume Next
-'  '
-'  Stop
-'  App.SetFocus("txtLPID")
-'End Sub
 
 Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
   On Error Resume Next
@@ -398,52 +396,37 @@ Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
   Dim iCnt1   As Long
   Dim iCnt2   As Long
 
+  Dim nTick As Long
+
   sSQL = "select * from F55101 where LMLPID = '" & sPalp & "' and" & _
         " LMMCU = '%tmMCU' and LMRNXTR <> '620' order by LMLPID DESC"
   DB.Execute(sSQL,sCols,sRows)
 
   For iCnt = 1 To DB.Count(sRows)
     sLPID = DB.Extract(sCols,sRows,iCnt,"LMLPID")
-'    '
-'    sDsp =              FixLeft(sOpt & DB.Extract(sCols,sRows,iCnt,"LMLPID"),giLenLP + Len(sOpt)," ")     ' write parent header
-'    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMDSC1"),30," ")
-'    sDsp = sDsp & "|" & FixLeft(DB.Extract(sCols,sRows,iCnt,"LMTYPE"),2," ")
-'    lstInquiry.List.AddItem sDsp, sDsp          'add line to listbox
     '
     'get details from F55102
     '
+
     sSql1 = "select * from F55102 where LDLPID = '" & sLPID & "' and LDRNXTR <> '620' order by LDLPID DESC, LDLNID"
     DB.Execute(sSql1,sCols1,sRows1)
-    '
+
     For iCnt1 = 1 To DB.Count(sRows1)
       sItem = DB.Extract(sCols1,sRows1,iCnt1,"LDLITM")
-'      sLOTN = DB.Extract(sCols1,sRows1,iCnt1,"LDLOTN")
-'      If Trim(sLOTN) <> "" Then
-'        GetLotInfo(App.GetValue("tmMCU"),sItem,sLOTN,Trim(sLOTS),sLotDesc,sXPDT)
-'      End If
 
-        sDsp =              FixLeft(Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID")),giLenLP," ")
-        sDsp = sDsp & " " & FixRight(Trim(DB.Extract(sCols1,sRows1,iCnt1,"LDLITM")),8," ")
-
-'        sDsp = sDsp & " " & FixLeft(Trim(sLOTN),15," ")
-
-        sDsp = sDsp & " " & FixRight(Trim(DB.Extract(sCols1,sRows1,iCnt1,"LDUORG")),5," ")
-
-'        sDsp = sDsp & " " & FixLeft(DB.Extract(sCols1,sRows1,iCnt1,"LDUOM"),2," ")
-'        sDsp = sDsp & ":" & FixLeft(sLOTS,1," ")
-'        sDsp = sDsp & ":" & FixLeft(sXPDT,10," ")
-
-'      If Trim(sLOTS) <> "" Then
-'        sLotStatus = sLotStatus & sLOTS & " " & Trim(sLotDesc) & ","
-'      End If
+      sDsp =              FixLeft(Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID")),giLenLP," ")
+      sDsp = sDsp & " " & FixRight(Trim(DB.Extract(sCols1,sRows1,iCnt1,"LDLITM")),8," ")
+      sDsp = sDsp & " " & FixRight(Trim(DB.Extract(sCols1,sRows1,iCnt1,"LDUORG")),5," ")
 
       lstInquiry.List.AddItem sDsp, sDsp          'add line to listbox
     Next iCnt1
+
     '                                                  ' get all childs
+
     sSql2 = "select * from F55101 where LMPALP = '" & sPalp & "' and" & _
             " LMMCU = '%tmMCU' and LMRNXTR <> '620' order by LMLPID DESC"
     DB.Execute(sSql2,sCols2,sRows2)
-    '
+
     If DB.Count(sRows2) > 0 Then
       If Len(sOpt) = 0 Then
         sOpt = ">"
@@ -454,8 +437,9 @@ Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
     '
     For iCnt2 = 1 To DB.Count(sRows2)
       s2PALP = Trim(DB.Extract(sCols2,sRows2,iCnt2,"LMLPID"))
+
       BuildList(s2PALP, sOpt)
-      '
+
       If Len(sOpt) > 1 Then
         sOpt = Right(sOpt,Len(sOpt) -1)
       End If
@@ -463,6 +447,6 @@ Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
   Next iCnt
   '
   lblLOTS.Caption = sLotStatus
-  '
+
 End Function
 </Code>

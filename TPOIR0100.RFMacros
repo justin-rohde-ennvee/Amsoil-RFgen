@@ -254,7 +254,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   emF4312EditLine.Param("UnitCostReceived")           = Format(tmCOST, sformat) & "||" & CStr(iDecCnt)
   GetDecimals("FRRC",iDecCnt, nDecMult, sformat)
 
-  'NOTE: tmFUC actually represents the PDFRRC from the F4311 line - not the PDFUC. 
+  'NOTE: tmFUC actually represents the PDFRRC from the F4311 line - not the PDFUC.
 
   emF4312EditLine.Param("ForeignUnitCostReceived")    = Format(tmFUC, sformat) & "||" & CStr(iDecCnt)
   nTAMT = tmCOST * tmQTY

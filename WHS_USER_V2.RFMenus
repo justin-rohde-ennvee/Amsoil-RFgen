@@ -1,0 +1,15 @@
+﻿<Record FileDesc="Warehouse User version 2" FileVersion="5.0.8.0" Desc="Warehouse User version 2" Heading="[Warehouse_V2]">
+<MenuItem Id="-" Desc="-- Warehousing --" />
+<MenuItem Id="FLPAI0100_AMS" Desc="1-Create / Attach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPDI0100_AMS" Desc="2-Detach Item" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPTL0100_AMS" Desc="3-Transfer LP Location" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="FLPLB0100_AMS" Desc="4-Label Reprint" />
+<MenuItem Id="FIMIT0100_AMS" Desc="5-Transfer Non-Lot" Options="-Pgm=P4113 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="-- Inquiries --" />
+<MenuItem Id="FLPQL0100_AMS" Desc="C-LP - Inquiry by Location" />
+<MenuItem Id="FLPQI0100_AMS" Desc="D-LP - Inquiry" />
+<MenuItem Id="FIMQI0100" Desc="E-Item Location Inquiry" />
+<MenuItem Id="-" />
+<MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
+</Record>
