@@ -98,7 +98,7 @@ Public Class VbsJson
                     End Select
                 Next
                 buf.Add buf.Count, """"
-            Case vbArray + vbVariant
+            Case vbArray + vbVariant, vbArray + vbString, vbArray + vbObject
                 g = True
                 buf.Add buf.Count, "["
                 For Each i In obj
@@ -110,7 +110,7 @@ Public Class VbsJson
                 If TypeName(obj) = "IDictionary" Then
                     g = True
                     buf.Add buf.Count, "{"
-                    For Each i In obj.Items
+                    For Each i In obj.Keys
                         If g Then g = False Else buf.Add buf.Count, ","
                         buf.Add buf.Count, """" & i & """" & ":" & Encode(obj(i))
                     Next

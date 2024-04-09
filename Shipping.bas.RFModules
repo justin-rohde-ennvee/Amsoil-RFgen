@@ -24,6 +24,7 @@ Public Function PrintCartonIDLabel( _
   ByVal nDOCO As String, _
   ByVal nSequence As Long, _
   ByVal nCount As Long, _
+  ByVal nWave As Long, _
   ByVal nPrinterNumber As Long, _
   sErrMsg As String _
 ) As Boolean
@@ -53,6 +54,7 @@ Public Function PrintCartonIDLabel( _
   Print #1, "CARTON_NAME," & sEQTY
   Print #1, "NUMBER_COUNT," & nSequence & "/" & nCount
   Print #1, "USER," & sUser
+  Print #1, "WAVE," & IIf(nWave > 0, FixRight(CStr(nWave), 12), "")
   Print #1, "*PRINTLABEL"
 
   Close #1
@@ -130,7 +132,7 @@ Public Function PrintCartonContentsLabel( _
 ) As Boolean
   On Error GoTo OnError
 
-  Const cMaxLinesPerLabel = 14
+  Const cMaxLinesPerLabel = 12
 
   Dim sSrc As String
   Dim sDst As String
@@ -143,6 +145,7 @@ Public Function PrintCartonContentsLabel( _
   Dim tLineItem As CartonContentsLineItem
   Dim nBoxNumber As Long
   Dim nBoxCount As Long
+  Dim sFormat As String
 
   sJobName = "CONTENTS_" & sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
   sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
@@ -152,19 +155,24 @@ Public Function PrintCartonContentsLabel( _
   nLabelCount = ((tContents.nRecordCount-1) / cMaxLinesPerLabel) + 1
   GetCartonNumberAndCount(sLPID, nBoxNumber, nBoxCount)
 
+  If tContents.bContainsLQItem Then
+    sFormat = "CONTENTS_LQ.lwl"
+  Else
+    sFormat = "CONTENTS.lwl"
+  End If
+
   Open sSrc For Output As #1
 
-  Print #1, "*Format," & "CONTENTS.lwl"
+  Print #1, "*Format," & sFormat
   Print #1, "*JOBNAME," & sJobName
   Print #1, "*QUANTITY," & 1
   Print #1, "*PRINTERNUMBER," & nPrinterNumber
   Print #1, "ORDER_NUMBER," & tContents.nDOCO
   Print #1, "CARTON_ID," & sLPID
-  Print #1, "LQ," & IIf(tContents.bContainsLQItem, "LQ Label Required", "")
   Print #1, "BOX_NUMBER_COUNT, Box " & nBoxNumber & "/" & nBoxCount
 
   If tContents.nRecordCount = 0 Then
-    Print #1, "ITEM_1" & "No items."
+    Print #1, "ITEM_1" & ", No items."
     GoTo Flush
   End If
 
