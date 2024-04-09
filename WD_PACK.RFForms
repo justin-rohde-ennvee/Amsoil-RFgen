@@ -408,8 +408,6 @@ Private Function ShipEligibleItems(sErrMsg As String) As Boolean
     If Val(FetchFirstResult(sSQL)) = 0 Then GoTo Done
   Next
 
-  If App.MsgBox("Pick #" & nPSN & " is complete. Ship confirm?", vbYesNo) = vbNo Then GoTo Done
-
   ' Ship confirm eligible records
   sSQL = _
     " select SDDOCO, SDLNID" & _

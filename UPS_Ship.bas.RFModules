@@ -4,7 +4,7 @@ Option Explicit
 '#Language "WWB-COM"
 
 Public Function UPS_CreateShipment( _
-  ByVal nAN8 As Long, _
+  ByVal nMCU As Long, _
   ByVal nSHAN As Long, _
   ByVal nWeight As Currency, _
   ByVal sAccount As String, _
@@ -12,8 +12,8 @@ Public Function UPS_CreateShipment( _
   ByVal nDOCO As Long, _
   ByVal sLPID As String _
 ) As ShipmentResponse
-  Dim fromAddressInfo As AddressInfo
-  Dim toAddressInfo As AddressInfo
+  Dim fromAddress As AddressInfo
+  Dim toAddress As AddressInfo
   Dim sBody As String
   Dim sToken As String
   Dim bSuccess As Boolean
@@ -37,9 +37,9 @@ Public Function UPS_CreateShipment( _
 
   App.Balloon("Sending shipping request...", -1)
 
-  fromAddressInfo = GetAddressInfo(nAN8)
-  toAddressInfo = GetAddressInfo(nSHAN)
-  sBody = UPS_ShipmentRequestJson(fromAddressInfo, toAddressInfo, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID)
+  fromAddress = GetAddressInfo(nMCU)
+  toAddress = GetAddressInfo(nSHAN)
+  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID)
   bSuccess = UPS_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
 
   App.Balloon("", 0)
@@ -50,7 +50,10 @@ Public Function UPS_CreateShipment( _
     If Not UPS_ParseResponseError(oResponseJson, sCode, sMessage) Then tShipmentResponse.sErrMsg = "HTTP status code: " & sResponseStatus
     tShipmentResponse.sErrMsg = "(" & sCode & ") " & sMessage
     If sCode = "120202" Then
-      tShipmentResponse.sErrMsg &= vbNewLine & toAddressInfo.sLine1
+      tShipmentResponse.sErrMsg &= ( _
+        vbNewLine & toAddress.sLine1 & _
+        vbNewLine & toAddress.sLine2 & _
+        vbNewLine & toAddress.sLine3)
     End If
     Return tShipmentResponse
   End If
@@ -111,133 +114,118 @@ Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictiona
   Return tShipmentResponse
 End Function
 
-Private Function UPS_ShipmentRequestJson( _
-  ByVal fromAddressInfo As AddressInfo, _
-  ByVal toAddressInfo As AddressInfo, _
+Private Function UPS_CreateShipmentRequestJson( _
+  ByVal fromAddress As AddressInfo, _
+  ByVal toAddress As AddressInfo, _
   ByVal nWeight As Currency, _
   ByVal sAccount As String, _
   ByVal sDesc As String, _
   ByVal sReference1 As String, _
   ByVal sReference2 As String _
 ) As String
-  Dim sBody As String
+  Dim vbsJson As New vbsJson
+  Dim oDoc As New Scripting.Dictionary
 
-  sBody = _
-    "{" & _
-    "    ""ShipmentRequest"":" & _
-    "    {" & _
-    "        ""Request"":" & _
-    "        {" & _
-    "            ""RequestOption"":""validate""" & _
-    "        }," & _
-    "        ""Shipment"":" & _
-    "        {" & _
-    "            ""ShipmentRatingOptions"":" & _
-    "            {" & _
-    "                ""NegotiatedRatesIndicator"": ""X""" & _
-    "            }," & _
-    "            ""Shipper"":" & _
-    "            {" & _
-    "                ""Name"": ""$SHIPPER_NAME""," & _
-    "                ""ShipperNumber"": ""$SHIPPER_NUMBER""," & _
-    "                ""Address"":" & _
-    "                {" & _
-    "                    ""AddressLine"": [""$FROM_ADDRESS_1"", ""$FROM_ADDRESS_2"", ""$FROM_ADDRESS_3""]," & _
-    "                    ""City"": ""$FROM_CITY""," & _
-    "                    ""StateProvinceCode"": ""$FROM_STATE""," & _
-    "                    ""PostalCode"": ""$FROM_ZIP""," & _
-    "                    ""CountryCode"": ""US""" & _
-    "                }" & _
-    "            }," & _
-    "            ""ShipTo"":" & _
-    "            {" & _
-    "                ""Name"": ""$SHIP_TO_NAME""," & _
-    "                ""Address"":" & _
-    "                {" & _
-    "                    ""AddressLine"": [""$TO_ADDRESS_1"", ""$TO_ADDRESS_2"", ""$TO_ADDRESS_3""]," & _
-    "                    ""City"": ""$TO_CITY""," & _
-    "                    ""StateProvinceCode"": ""$TO_STATE""," & _
-    "                    ""PostalCode"": ""$TO_ZIP""," & _
-    "                    ""CountryCode"": ""US""" & _
-    "                }" & _
-    "            }," & _
-    "            ""PaymentInformation"":" & _
-    "            {" & _
-    "                ""ShipmentCharge"":" & _
-    "                {" & _
-    "                    ""Type"": ""01""," & _
-    "                    ""BillShipper"":" & _
-    "                    {" & _
-    "                        ""AccountNumber"": ""$ACCOUNT_NUMBER""" & _
-    "                    }" &  _
-    "                }" & _
-    "            }," & _
-    "            ""Service"":" & _
-    "            {" & _
-    "                ""Code"": ""03""," & _
-    "                ""Description"": ""Ground""" & _
-    "            }," & _
-    "            ""Package"": [" & _
-    "            {" & _
-    "                ""Description"": ""$DESCRIPTION""," & _
-    "                ""Packaging"":" & _
-    "                {" & _
-    "                    ""Code"": ""02""" & _
-    "                }," & _
-    "                ""PackageWeight"":" & _
-    "                {" & _
-    "                    ""UnitOfMeasurement"":" & _
-    "                    {" & _
-    "                        ""Code"": ""LBS""" & _
-    "                    }," & _
-    "                    ""Weight"": ""$WEIGHT""" & _
-    "                }," & _
-    "                ""PackageServiceOptions"": """"," & _
-    "                ""ReferenceNumber"":" & _
-    "                [" & _
-    "                  { ""Value"": ""$REFERENCE_1"" }," & _
-    "                  { ""Value"": ""$REFERENCE_2"" }" & _
-    "                ]" & _
-    "            }]" & _
-    "        }," & _
-    "        ""LabelSpecification"":" & _
-    "        {" & _
-    "            ""LabelImageFormat"":" & _
-    "            {" & _
-    "                ""Code"": ""GIF""" & _
-    "            }," & _
-    "            ""LabelStockSize"":" & _
-    "            {" & _
-    "                ""Height"": ""6""," & _
-    "                ""Width"": ""4""" & _
-    "            }" & _
-    "        }" & _
-    "    }" & _
-    "}"
+  Dim oShipmentRequest As New Scripting.Dictionary
+  Dim oRequest As New Scripting.Dictionary
+  oRequest.Add("RequestOption", "validate")
+  oShipmentRequest.Add("Request", oRequest)
 
-  sBody = Replace(sBody, "$SHIPPER_NAME", fromAddressInfo.sName)
-  sBody = Replace(sBody, "$SHIPPER_NUMBER", sAccount)
-  sBody = Replace(sBody, "$FROM_ADDRESS_1", fromAddressInfo.sLine1)
-  sBody = Replace(sBody, "$FROM_ADDRESS_2", fromAddressInfo.sLine2)
-  sBody = Replace(sBody, "$FROM_ADDRESS_3", fromAddressInfo.sLine3)
-  sBody = Replace(sBody, "$FROM_CITY", fromAddressInfo.sCity)
-  sBody = Replace(sBody, "$FROM_STATE", fromAddressInfo.sState)
-  sBody = Replace(sBody, "$FROM_ZIP", fromAddressInfo.sZip)
+  Dim oShipment As New Scripting.Dictionary
+  Dim oShipmentRatingOptions As New Scripting.Dictionary
+  oShipmentRatingOptions.Add("NegotiatedRatesIndicator", "X")
+  oShipment.Add("ShipmentRatingOptions", oShipmentRatingOptions)
 
-  sBody = Replace(sBody, "$SHIP_TO_NAME", Trim(Left(toAddressInfo.sName, 35)))
-  sBody = Replace(sBody, "$TO_ADDRESS_1", toAddressInfo.sLine1)
-  sBody = Replace(sBody, "$TO_ADDRESS_2", toAddressInfo.sLine2)
-  sBody = Replace(sBody, "$TO_ADDRESS_3", toAddressInfo.sLine3)
-  sBody = Replace(sBody, "$TO_CITY", toAddressInfo.sCity)
-  sBody = Replace(sBody, "$TO_STATE", toAddressInfo.sState)
-  sBody = Replace(sBody, "$TO_ZIP", toAddressInfo.sZip)
+  Dim oShipper As New Scripting.Dictionary
+  oShipper.Add("Name", fromAddress.sName)
+  oShipper.Add("ShipperNumber", sAccount)
 
-  sBody = Replace(sBody, "$WEIGHT", CStr(nWeight))
-  sBody = Replace(sBody, "$ACCOUNT_NUMBER", sAccount)
-  sBody = Replace(sBody, "$DESCRIPTION", sDesc)
-  sBody = Replace(sBody, "$REFERENCE_1", sReference1)
-  sBody = Replace(sBody, "$REFERENCE_2", sReference2)
+  Dim oShipperAddress As New Scripting.Dictionary
+  Dim aShipperAddressLine(0 To 2) As String
+  aShipperAddressLine(0) = fromAddress.sLine1
+  aShipperAddressLine(1) = fromAddress.sLine2
+  aShipperAddressLine(2) = fromAddress.sLine3
+  oShipperAddress.Add("AddressLine", aShipperAddressLine)
+  oShipperAddress.Add("City", fromAddress.sCity)
+  oShipperAddress.Add("StateProvinceCode", fromAddress.sState)
+  oShipperAddress.Add("PostalCode", fromAddress.sZip)
+  oShipperAddress.Add("CountryCode", "US")
+  oShipper.Add("Address", oShipperAddress)
+  oShipment.Add("Shipper", oShipper)
 
-  Return sBody
+  Dim oShipTo As New Scripting.Dictionary
+  oShipTo.Add("Name", Trim(Left(toAddress.sName, 35)))
+
+  Dim oShipToAddress As New Scripting.Dictionary
+  Dim aShipToAddressLine(0 To 2) As String
+  aShipToAddressLine(0) = toAddress.sLine1
+  aShipToAddressLine(1) = toAddress.sLine2
+  aShipToAddressLine(2) = toAddress.sLine3
+  oShipToAddress.Add("AddressLine", aShipToAddressLine)
+  oShipToAddress.Add("City", toAddress.sCity)
+  oShipToAddress.Add("StateProvinceCode", toAddress.sState)
+  oShipToAddress.Add("PostalCode", toAddress.sZip)
+  oShipToAddress.Add("CountryCode", "US")
+  oShipTo.Add("Address", oShipToAddress)
+  oShipment.Add("ShipTo", oShipTo)
+
+  Dim oPaymentInformation As New Scripting.Dictionary
+  Dim oShipmentCharge As New Scripting.Dictionary
+  oShipmentCharge.Add("Type", "01")
+
+  Dim oBillShipper As New Scripting.Dictionary
+  oBillShipper.Add("AccountNumber", sAccount)
+  oShipmentCharge.Add("BillShipper", oBillShipper)
+  oPaymentInformation.Add("ShipmentCharge", oShipmentCharge)
+  oShipment.Add("PaymentInformation", oPaymentInformation)
+
+  Dim oService As New Scripting.Dictionary
+  oService.Add("Code", "03")
+  oService.Add("Description", "Ground")
+  oShipment.Add("Service", oService)
+
+  Dim aPackage(0 To 0) As Scripting.Dictionary
+  Dim oPackage1 As New Scripting.Dictionary
+  oPackage1.Add("Description", sDesc)
+
+  Dim oPackaging As New Scripting.Dictionary
+  oPackaging.Add("Code", "02")
+  oPackage1.Add("Packaging", oPackaging)
+
+  Dim oPackageWeight As New Scripting.Dictionary
+  Dim oUnitOfMeasurement As New Scripting.Dictionary
+  oUnitOfMeasurement.Add("Code", "LBS")
+  oPackageWeight.Add("UnitOfMeasurement", oUnitOfMeasurement)
+  oPackageWeight.Add("Weight", CStr(nWeight))
+
+  oPackage1.Add("PackageWeight", oPackageWeight)
+  oPackage1.Add("PackageServiceOptions", "") ' TODO remove since empty?
+
+  Dim aReferenceNumber(0 To 1) As Scripting.Dictionary
+  Dim oReferenceNumber1 As New Scripting.Dictionary
+  oReferenceNumber1.Add("Value", sReference1)
+  Set aReferenceNumber(0) = oReferenceNumber1
+
+  Dim oReferenceNumber2 As New Scripting.Dictionary
+  oReferenceNumber2.Add("Value", sReference2)
+  Set aReferenceNumber(1) = oReferenceNumber2
+  oPackage1.Add("ReferenceNumber", aReferenceNumber)
+  Set aPackage(0) = oPackage1
+  oShipment.Add("Package", aPackage)
+  oShipmentRequest.Add("Shipment", oShipment)
+
+  Dim oLabelSpecification As New Scripting.Dictionary
+  Dim oLabelImageFormat As New Scripting.Dictionary
+  oLabelImageFormat.Add("Code", "GIF")
+  oLabelSpecification.Add("LabelImageFormat", oLabelImageFormat)
+
+  Dim oLabelStockSize As New Scripting.Dictionary
+  oLabelStockSize.Add("Height", "6")
+  oLabelStockSize.Add("Width", "4")
+  oLabelSpecification.Add("LabelStockSize", oLabelStockSize)
+  oShipmentRequest.Add("LabelSpecification", oLabelSpecification)
+  oDoc.Add("ShipmentRequest", oShipmentRequest)
+
+  Return vbsJson.Encode(oDoc)
 End Function
 </Code>

@@ -1,9 +1,11 @@
-﻿<Record FileDesc="Manage Pick Wave" FileVersion="5.0.8.0" Desc="Manage Pick Wave" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtTRIP&vm;txtURRF&vm;txtAccept&vm;lbxPicks" ImageList="0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0">
+﻿<Record FileDesc="Manage Pick Wave" FileVersion="5.0.8.0" Desc="Manage Pick Wave" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtTRIP&vm;lbxPicks&vm;txtURRF&vm;btnUpdate&vm;btnRelease&vm;btnRemove" ImageList="0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtTRIP" />
-<SchemaParam Linked="0" Attr="2" Name="txtURRF" />
-<SchemaParam Linked="0" Attr="3" Name="txtAccept" />
-<SchemaParam Linked="0" Attr="4" Name="lbxPicks" />
+<SchemaParam Linked="0" Attr="2" Name="lbxPicks" />
+<SchemaParam Linked="0" Attr="3" Name="txtURRF" />
+<SchemaParam Linked="0" Attr="4" Name="btnUpdate" />
+<SchemaParam Linked="0" Attr="5" Name="btnRelease" />
+<SchemaParam Linked="0" Attr="6" Name="btnRemove" />
 </Schema>
 <Displays>
 <Display Name="(Default)" Type="1" Width="320" Height="480" Locale="1033" />
@@ -13,8 +15,8 @@
 <Control Type="1" FieldId="txtTRIP" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="8" Width="41" Height="22" AnchorRight="190" AnchorBottom="290" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Wave" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="214" Top="8" Width="100" Height="22" AnchorRight="6" AnchorBottom="450" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="8" Width="41" Height="22" AnchorRight="269" AnchorBottom="450" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Wave" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="209" Top="8" Width="100" Height="22" AnchorRight="11" AnchorBottom="450" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="45" Top="25" Width="65" Height="22" AnchorRight="130" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -22,33 +24,11 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtURRF" Attr="2" KeyField="0" MaskInput="0" Required="0" SipMode="0">
-<Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="31" Width="65" Height="22" AnchorRight="166" AnchorBottom="267" BackColor1="1" BackColor2="1" ForeColor="1" Caption="User ID" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="214" Top="33" Width="100" Height="22" AnchorRight="6" AnchorBottom="425" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="264" Width="80" Height="22" AnchorRight="159" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
-</Layout>
-</Layouts>
-</Control>
-<Control Type="10" FieldId="txtAccept" Attr="3">
-<Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="55" Width="153" Height="22" AnchorRight="158" AnchorBottom="403" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Enter to Accept..." />
-</Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="59" Top="71" Width="49" Height="22" AnchorRight="132" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
-</Layout>
-</Layouts>
-</Control>
-<Control Type="3" FieldId="lbxPicks" Attr="4" Sorted="0">
+<Control Type="3" FieldId="lbxPicks" Attr="2" Sorted="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="11" Top="103" Width="49" Height="22" AnchorRight="164" AnchorBottom="195" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Picks" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="88" Width="301" Height="382" AnchorRight="9" AnchorBottom="10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="38" Width="300" Height="272" AnchorRight="11" AnchorBottom="170" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
@@ -64,10 +44,52 @@
 </Layout>
 </Layouts>
 </Control>
+<Control Type="1" FieldId="txtURRF" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="317" Width="65" Height="22" AnchorRight="245" AnchorBottom="141" BackColor1="1" BackColor2="1" ForeColor="1" Caption="User ID" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="209" Top="317" Width="100" Height="22" AnchorRight="11" AnchorBottom="141" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="73" Top="264" Width="80" Height="22" AnchorRight="159" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnUpdate" Attr="4">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Update User" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="348" Width="300" Height="33" AnchorRight="10" AnchorBottom="99" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="320" Width="80" Height="44" AnchorRight="294" AnchorBottom="116" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnRelease" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Release Wave" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="392" Width="300" Height="33" AnchorRight="10" AnchorBottom="55" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="364" Width="80" Height="44" AnchorRight="294" AnchorBottom="72" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnRemove" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Delete Selected Pick" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="436" Width="300" Height="33" AnchorRight="10" AnchorBottom="11" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="408" Width="80" Height="44" AnchorRight="294" AnchorBottom="28" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
 </Controls>
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="320" FormHeight="480" Scrollbars="0">
-<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Label Align="1" Anchor="3" AutoSize="2" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="22" AnchorRight="0" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" />
 <Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="0" Width="320" Height="480" AnchorRight="-122" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" ImageAlign="0" FormWidth="240" FormHeight="320" Scrollbars="0">
@@ -80,23 +102,127 @@
 <Code>
 Option Explicit
 
+Public Sub btnRelease_Click()
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+  Dim i As Long
+
+  For i = 1 To lbxPicks.List.Count
+    If lbxPicks.List.Cell(i, 1).value = "322" Then
+      App.MsgBox("Cannot release wave with picked jobs.")
+      Exit Sub
+    End If
+  Next
+
+  App.Balloon("Releasing wave...", -1)
+
+  sSQL = _
+    " update WDJOBS" & _
+    " set R2URRF = ' '" & _
+    " ,   R2TRIP = 0" & _
+    " ,   R2PSTB = '320'" & _
+    " ,   R2DSC2 = ' '" & _
+    " ,   R2URCD = ' '" & _
+    " where R2URRF = '" & txtURRF.text & "'" & _
+    " and R2PSTB in ('321')"
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    App.MsgBox("Error releasing pick wave: " & nErrNo)
+    App.Balloon("", 0)
+    Exit Sub
+  End If
+
+  App.Balloon("Wave released.", 1)
+  Refresh()
+End Sub
+
+Public Sub btnRemove_Click()
+  On Error Resume Next
+
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nErrNo As Long
+  Dim nIndex As Long
+  Dim sStatus As String
+
+  nIndex = lbxPicks.List.Index
+  If nIndex <= 0 Then
+    App.MsgBox("No pick selected.")
+    Exit Sub
+  End If
+
+  sStatus = lbxPicks.List.Cell(1, 1).value
+  If sStatus = "322" Then
+    App.MsgBox("Cannot delete completed pick job.")
+    Exit Sub
+  End If
+
+  App.Balloon("Deleting pick job...", -1)
+
+  sSQL = _
+    " delete" & _
+    " from WDJOBS" & _
+    " where R2SGBT = " & ConvDecimalsToSQL("SGBT", lbxPicks.List.Cell(nIndex, 6).value) & _
+    " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 7).value) & _
+    " and R2NLIN = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 8).value)
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    App.MsgBox("Error removing pick job from wave: " & nErrNo)
+    App.Balloon("", 0)
+    Exit Sub
+  End If
+
+  App.Balloon("Pick job deleted.", 1)
+  txtTRIP_OnEnter(txtTRIP.text, False, "")
+End Sub
+
 Public Sub Form_Load()
   On Error Resume Next
 
-  lbxPicks.List.SetColumn(1, "Done", -1, CenterLeft, True)
+  lbxPicks.List.SetColumn(1, "Sts", -1, CenterLeft, True)
   lbxPicks.List.SetColumn(2, "Item", -1, CenterLeft, True)
   lbxPicks.List.SetColumn(3, "Qty", -1, CenterRight, True)
-  lbxPicks.List.SetColumn(4, "SO", -1, CenterRight, True)
+  lbxPicks.List.SetColumn(4, "SO", -1, CenterLeft, True)
   lbxPicks.List.SetColumn(5, "Ln", -1, CenterRight, True)
-  lbxPicks.List.SetColumn(6, "Batch", -1, CenterRight, True)
-  lbxPicks.List.SetColumn(7, "Seq", -1, CenterRight, True)
+  lbxPicks.List.SetColumn(6, "PSN", -1, CenterLeft, True)
+  lbxPicks.List.SetColumn(7, "Box", -1, CenterLeft, True)
+  lbxPicks.List.SetColumn(8, "#", -1, CenterRight, True)
 End Sub
 
 Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
   On Error Resume Next
 
+  Cancel = True
+End Sub
+
+Public Sub btnUpdate_Click()
+  On Error Resume Next
+
   Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
   Dim nErrNo As Long
+  Dim bCancel As Boolean
+
+  Call txtURRF_OnEnter(txtURRF.text, bCancel, "")
+  If bCancel Then Exit Sub
+
+  sSQL = "select distinct R2TRIP from WDJOBS where R2URRF = '%tmURRF'"
+  DB.Execute(sSQL, sCols, sRows)
+  
+  If DB.Count(sRows) > 0 Then
+    App.MsgBox("User " & App.GetValue("tmURRF") & " is already assigned to wave " & DB.Extract(sCols, sRows, 1, 1))
+    Exit Sub
+  End If
 
   App.Balloon("Updating wave...", -1)
 
@@ -112,36 +238,14 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
     Exit Sub
   End If
 
-  txtTRIP.text = ""
-  App.SetValue("tmTRIP", "")
-
-  txtURRF.text = ""
-  App.SetValue("tmURRF", "")
-
-  Wait(1)
-
-  lbxPicks.List.Clear
-
-  App.Balloon("", 0)
-  App.SetFocus(txtTRIP.FieldId)
-End Sub
-
-Public Sub txtAccept_GotFocus(ByRef Rsp As String, ByRef AllowChange As Boolean)
-  On Error Resume Next
-
-  txtAccept.Caption = "Enter to Accept..."
-End Sub
-
-Public Sub txtAccept_LostFocus()
-  On Error Resume Next
-
-  txtAccept.Caption = ""
+  App.Balloon("User ID updated.", 1)
+  txtTRIP_OnEnter(txtTRIP.text, False, "")
 End Sub
 
 Public Sub txtTRIP_OnBackup(ByRef Cancel As Boolean)
   On Error Resume Next
 
-  lbxPicks.List.Clear
+  Refresh()
 End Sub
 
 Public Sub txtTRIP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -151,14 +255,15 @@ Public Sub txtTRIP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sCols As String
   Dim sRows As String
   Dim i As Long
+  Dim sPSTB As String
+  Dim bReleaseEnabled As Boolean
 
   sSQL = _
-    " select R2URRF, case when R2PSTB = '322' then 'Y' else 'N' end as PICKED, R2LITM, R2TQTY, R2DOCO, R2LNID, R2SGBT, R2SGSQ" & _
+    " select R2URRF, R2PSTB, R2LITM, R2TQTY, R2DOCO, R2LNID, R2SGBT, R2SGSQ, R2NLIN" & _
     " from WDJOBS" & _
-    " where R2PSTB between '321' and '322'" & _
-    " and R2TYFL = '2'" & _
+    " where R2TYFL = '2'" & _
     " and R2TRIP = " & Rsp & _
-    " order by R2PSTB desc, R2SGSQ, R2SGBT"
+    " order by R2SGSQ, R2SGBT"
   DB.Execute(sSQL, sCols, sRows)
 
   If DB.Count(sRows) = 0 Then
@@ -171,20 +276,29 @@ Public Sub txtTRIP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   lbxPicks.List.Clear
 
+  bReleaseEnabled = True
+
   For i=1 To DB.Count(sRows)
+    sPSTB = DB.Extract(sCols, sRows, i, "R2PSTB")
+    If sPSTB >= "322" Then bReleaseEnabled = False
+
     lbxPicks.List.AddItem( "", _
-      DB.Extract(sCols, sRows, i, "PICKED"), _
+      sPSTB, _
       DB.Extract(sCols, sRows, i, "R2LITM"), _
       DB.Extract(sCols, sRows, i, "R2TQTY"), _
       DB.Extract(sCols, sRows, i, "R2DOCO"), _
-      DB.Extract(sCols, sRows, i, "R2LNID"), _
+      ConvDecimalsFromSQL("LNID", DB.Extract(sCols, sRows, i, "R2LNID")), _
       DB.Extract(sCols, sRows, i, "R2SGBT"), _
-      DB.Extract(sCols, sRows, i, "R2SGSQ") _
+      ConvDecimalsFromSQL("SGSQ", DB.Extract(sCols, sRows, i, "R2SGSQ")), _
+      ConvDecimalsFromSQL("SGSQ", DB.Extract(sCols, sRows, i, "R2NLIN")) _
     )
   Next
 
   txtURRF.text = UCase(Trim(DB.Extract(sCols, sRows, 1, "R2URRF")))
   App.SetFocus(txtURRF.FieldId, True)
+
+  btnRelease.Visible = bReleaseEnabled
+  btnRemove.Visible = DB.Count(sRows) > 0
 End Sub
 
 Public Sub txtTRIP_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -196,15 +310,13 @@ Public Sub txtTRIP_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   sSQL = _
     " select R2TRIP, R2URRF" & _
     " from WDJOBS" & _
-    " where R2TRIP > 0" & _
+    " where (R2TRIP is not null and R2TRIP <> 0)" & _
     " and R2TYFL = '2'" & _
     " and R2PSTB = '321'" & _
     " group by R2TRIP, R2URRF"
 
   oList.SetColumn(1, "Wave", -1)
   oList.SetColumn(2, "User", -1)
-'  oList.SetColumn(3, "PSN", -1)
-'  oList.SetColumn(4, "SO#", -1)
   oList.ShowEmptyList = True
   oList.SQL = sSQL
 
@@ -225,5 +337,17 @@ Public Sub txtURRF_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   End If
 
   App.SetValue("tmURRF", Rsp)
+End Sub
+
+Private Sub Refresh()
+  txtTRIP.text = ""
+  App.SetValue("tmTRIP", "")
+
+  lbxPicks.List.Clear
+
+  txtURRF.text = ""
+  App.SetValue("tmURRF", "")
+
+  App.SetFocus(txtTRIP.FieldId)
 End Sub
 </Code>

@@ -1,5 +1,8 @@
 ﻿<Record FileDesc="WD - Warehouse Director" FileVersion="5.0.8.0" Desc="WD - Warehouse Director" Depends="WM.bas">
 <Param Name="tmPlants" />
+<Param Name="tmRepl" />
+<Param Name="tmPick" />
+<Param Name="tmPut" />
 </Record>
 <Code>
 ' -------------------------------------------------------------------------------
@@ -53,7 +56,7 @@ Private mbOracleLP  As Boolean   ' LP DB is Oracle?
 
 Private msErrDesc As String
 
-Private Function Transaction(ByRef tmPlants As Variant) As Boolean
+Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant, ByRef tmPick As Variant, ByRef tmPut As Variant) As Boolean
   On Error Resume Next
 
   Dim bSuccess As Boolean
@@ -72,9 +75,13 @@ Private Function Transaction(ByRef tmPlants As Variant) As Boolean
 
   msChk = Trim(SYS.GetProperty("WD", "Boxes"))
 
-  mbPut  = Ext(msChk, 1) = "1"   ' Check for putaway true/false (TYFL = 1)
-  mbPick = Ext(msChk, 6) = "1"   ' Check for picks true/false (TYFL = 2)
-  mbRepl = Ext(msChk, 9) = "1"   ' Check for replenishments true/false (TYFL = 3)
+'  mbPut  = Ext(msChk, 1) = "1"   ' Check for putaway true/false (TYFL = 1)
+'  mbPick = Ext(msChk, 6) = "1"   ' Check for picks true/false (TYFL = 2)
+'  mbRepl = Ext(msChk, 9) = "1"   ' Check for replenishments true/false (TYFL = 3)
+
+  mbPut  = tmPut = "1"
+  mbPick = tmPick = "1"
+  mbRepl = tmRepl = "1"
 
   If Len(SYS.GetProperty("WD", "PrioPut")) > 0 Then
     sPrioPut  = SYS.GetProperty("WD", "PrioPut")

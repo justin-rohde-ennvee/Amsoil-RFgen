@@ -447,6 +447,7 @@ Public Sub btnPrintCartonLabels_Click()
       nDOCO, _
       nSGSQ, _
       1, _
+      nTRIP, _
       App.UserProperty("CartonPrinter"), _
       sErrMsg _
     ) Then
@@ -950,6 +951,32 @@ Private Sub txtConfItemLP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
   Else
     ' Case was scanned
     sSQL = _
+      " select count(*)" & _
+      " from F55101" & _
+      " where LMLPID = '" & Rsp & "'" & _
+      " and LMMCU = '%tmMCU'" & _
+      " and left(LMLPID, 1) <> 'C'"
+    DB.Execute(sSQL, sCols, sRows)
+
+    If Val(sRows) = 0 Then
+      App.MsgBox("Invalid entry: case not found.")
+      Exit Sub
+    End If
+
+    sSQL = _
+      " select (LDUORG-LDSOQS) as QtyAvail" & _
+      " from F55102" & _
+      " inner join F55101 on LDLPID = LMLPID" & _
+      " where LDLPID = '" & Rsp & "'"
+    DB.Execute(sSQL, sCols, sRows)
+
+    If (Val(DB.Extract(sCols, sRows, 1, "QtyAvail")) <= 0) Then
+      App.MsgBox("No quantity remains On LP")
+      Cancel = True
+      Exit Sub
+    End If
+
+    sSQL = _
       " select IMITM, LDLITM, LDLOTN, LMLOCN, LDUORG, LDUOM" & _
       " from F55102" & _
       " inner join F55101 on LDLPID = LMLPID" & _
@@ -963,7 +990,7 @@ Private Sub txtConfItemLP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
       App.MsgBox("Invalid entry: item or case not found.")
       Exit Sub
     End If
-
+    
     ' Fetch related values
     sITM = DB.Extract(sCols, sRows, 1, "IMITM")
     sLITM = Trim(DB.Extract(sCols, sRows, 1, "LDLITM"))
@@ -1330,6 +1357,7 @@ Private Function SelectNextPick() As Boolean
   Dim trackingRecord As F554603Record
   Dim nDOCO As Long
   Dim nLNID As Currency
+  Dim sDescription As String
 
   If mnPickOffset >= lbxWave.List.Count Then mnPickOffset = 0
 
@@ -1353,7 +1381,8 @@ Private Function SelectNextPick() As Boolean
 
   sLITM = lbxWave.List.Cell(nIndex, 2).Value
   App.SetValue("tmLITM", sLITM)
-  lblItem.Caption = "Item: " & sLITM
+  sDescription = Trim(FetchFirstResult("select IMDSC1 from F4101 where IMLITM = '%tmLITM'"))
+  lblItem.Caption = "Item: " & sLITM & " - " & sDescription
 
   sFLOT = lbxWave.List.Cell(nIndex, 3).Value
   App.SetValue("tmLOTN", sFLOT)
@@ -1383,9 +1412,9 @@ Private Function SelectNextPick() As Boolean
   App.SetValue("tmSGBT", lbxWave.List.Cell(nIndex, 9).Value)
   App.SetValue("tmSGSQ", lbxWave.List.Cell(nIndex, 10).Value)
   App.SetValue("tmTRIP", lbxWave.List.Cell(nIndex, 11).Value)
-  App.SetValue("tmDOCO", lbxWave.List.Cell(nIndex, 13).Value)
+  App.SetValue("tmDOCO", nDOCO)
   App.SetValue("tmDCTO", lbxWave.List.Cell(nIndex, 14).Value)
-  App.SetValue("tmLNID", lbxWave.List.Cell(nIndex, 15).Value)
+  App.SetValue("tmLNID", nLNID)
 
   SelectNextPick = True
 

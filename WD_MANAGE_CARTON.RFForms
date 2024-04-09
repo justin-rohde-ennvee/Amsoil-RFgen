@@ -118,6 +118,10 @@ Public Sub btnPrintIDLabel_Click()
   Dim nCount As Long
   Dim sErrMsg As String
   Dim bCancel As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nWave As Long
 
   txtPickPrinter_OnEnter(txtPickPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
@@ -128,12 +132,17 @@ Public Sub btnPrintIDLabel_Click()
   sPSN = PickSlipNumberForCarton(sLPID)
   GetCartonSequence(sLPID, sPSN, nSequence, nCount)
 
+  sSQL = "select R2TRIP from WDJOBS where R2LPID = '%tmLPID'"
+  DB.Execute(sSQL, sCols, sRows)
+  nWave = Val(DB.Extract(sCols, sRows, 1, "R2TRIP"))
+
   If Not PrintCartonIDLabel( _
     sLPID, _
     App.GetValue("tmEQTY"), _
     App.GetValue("tmDOCO"), _
     nSequence, _
     nCount, _
+    nWave, _
     txtPickPrinter.text, _
     sErrMsg _
   ) Then
