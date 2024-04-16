@@ -318,6 +318,9 @@
 Option Explicit
 '
 Private Const cTNId   = "FWHCI0100"
+Private Const cMaxAssignWaitCount = 10
+Private Const cAssignWaitSeconds = 1
+
 Private mbHasLot      As Boolean
 Private msStatus      As String
 Private msVersion     As String
@@ -380,11 +383,37 @@ Public Sub btnPrintCartonLabels_Click()
   Dim nSGSQ As String
   Dim nSeqCount As String
   Dim oPrinted As New Scripting.Dictionary
+  Dim sUserId As String
 
   txtPrinter_OnEnter(txtPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
   If Val(App.GetValue("tmTRIP")) = 0 Then
+
+    i = 0
+    Do
+      sUserId = SYS.GetProperty("WaveAssign", Trim(App.GetValue("tmMCU")))
+      If sUserId = "" Then Exit Do
+
+      App.Balloon("Waiting for wave assignment " & i, -1)
+
+      If i = cMaxAssignWaitCount Then
+        App.Balloon("", 0)
+        App.MsgBox("Wave assignment locked by " & UCase(sUserId) & ". Please try again in a moment.")
+        Exit Sub
+      End If
+
+      Wait cAssignWaitSeconds
+      i += 1
+    Loop
+
+    App.Balloon("", 0)
+
+    SYS.SetProperty("WaveAssign", Trim(App.GetValue("tmMCU")), UCase(Trim(App.User)))
+
+    ' Assign the next wave
+    App.Balloon("Assigning wave...", -1)
+
     BuildWave(mnLength * mnWidth, mnLevelCount)
 
     If lbxWave.List.Count = 0 Then
@@ -392,14 +421,9 @@ Public Sub btnPrintCartonLabels_Click()
       Exit Sub
     End If
 
-    ' Assign the next wave
-    App.Balloon("Assigning wave...", -1)
-
     sSQL = "select max(R2TRIP) from WDJOBS"
     DB.Execute(sSQL, sCols, sRows)
-
     nTRIP = Val(sRows) + 1
-
     App.SetValue("tmTRIP", nTRIP)
 
     For i=1 To lbxWave.List.Count
@@ -425,8 +449,10 @@ Public Sub btnPrintCartonLabels_Click()
 
       lbxWave.List.Cell(i, 7).Value = sLPID
     Next
-    Wait(1)
   End If
+
+
+  SYS.SetProperty("WaveAssign", Trim(App.GetValue("tmMCU")), "")
 
   App.Balloon("Printing labels...", -1)
 
@@ -714,8 +740,7 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   mnLevelCount = Val(sSPHD)
 
   lblCartDesc.Caption = sDL01 & " " & sDL02
-
-
+  
   If Val(App.GetValue("tmTRIP")) <> 0 Then
     BuildWave(mnLength * mnWidth, mnLevelCount)
     If Not SelectNextPick() Then
@@ -1726,39 +1751,6 @@ Private Function ExecuteJDEPick(bSplit As Boolean, sErrMsg As String) As Boolean
   ExecuteJDEPick = True
 End Function
 
-Private Sub ResetPickState()
-  Dim sSQL As String
-  Dim sCols As String
-  Dim sRows As String
-  Dim sLPID As String
-  Dim i As Long
-
-  App.Balloon("Resetting pick state...", -1)
-
-  ' Reset pick suggestions
-  sSQL = _
-    " update WDJOBS" & _
-    " set R2PSTB = '320'" & _
-    ",    R2LPID = ' '" & _
-    ",    R2URRF = ' '" & _
-    ",    R2TRIP = 0," & _
-    "     R2DSC2 = ' '" & _
-    " where R2TYFL = '2'"
-  DB.Execute(sSQL)
-
-  ' Delete LPs with waves assigned
-  sSQL = "select LMLPID from F55101 where LMMCU = '%tmMCU' and LMURRF like 'WAVE-%%'"
-  DB.Execute(sSQL, sCols, sRows)
-
-  For i=1 To DB.Count(sRows)
-    sLPID = Trim(DB.Extract(sCols, sRows, i, "LMLPID"))
-    DB.Execute("delete from F55101 where LMLPID = '" & sLPID & "'")
-    DB.Execute("delete from F55102 where LDLPID = '" & sLPID & "'")
-  Next
-
-  App.Balloon("", 0)
-End Sub
-
 Function DetachItems(sErrMsg As String) As Boolean
   Dim sSQL As String
   Dim sCols As String
@@ -1949,4 +1941,57 @@ Private Function JobWasPicked(ByVal nDOCO As Long, ByVal nLNID As Currency) As B
 
   JobWasPicked = Val(sRows) > 0
 End Function
+
+Private Function IsAssignmentLocked(sUserId As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = "select R2URRF from WDJOBS where R2MCU = '%tmMCU' and R2TRIP = -1"
+  DB.Execute(sSQL, sCols, sRows)
+  sUserId = Trim(DB.Extract(sCols, sRows, 1, 1))
+  IsAssignmentLocked = DB.Count(sRows) > 0
+End Function
+
+Private Function FinishAssignment(ByVal nTRIP As Long, sErrMsg As String) As Boolean
+  Dim sSQL As String
+  Dim nErrNo As Long
+
+  sSQL = "update WDJOBS set R2TRIP = " & nTRIP & " where R2MCU = '%tmMCU' and R2TRIP = -1"
+  nErrNo = DB.Execute(sSQL)
+  If nErrNo <> 0 Then sErrMsg = CStr(nErrNo)
+  FinishAssignment = nErrNo = 0
+End Function
+
+Private Sub ReleasePick()
+  Dim sSQL As String
+
+  ' Release any suggestions that have not been picked
+  sSQL = _
+    " update WDJOBS" & _
+    " set R2URRF = ' '" & _
+    " ,   R2TRIP = 0" & _
+    " ,   R2PSTB = '320'" & _
+    " ,   R2DSC2 = ' '" & _
+    " ,   R2URCD = ' '" & _
+    " where R2URRF = '" & UCase(Trim(App.User)) & "'" & _
+    " and R2PSTB in ('321')"
+  DB.Execute(sSQL)
+
+  sSQL = _
+    " update WDJOBS" & _
+    " set R2URRF = ' '" & _
+    " where R2URRF = '" & UCase(Trim(App.User)) & "'" & _
+    " and R2PSTB in ('322')"
+  DB.Execute(sSQL)
+
+  lblItem.Caption = ""
+  lblLot.Caption = ""
+  lblLocn.Caption = ""
+  lblQty.Caption = ""
+  lblBox.Caption = ""
+  lblConfUOM.Caption = ""
+
+  App.SetValue("tmTRIP", 0)
+End Sub
 </Code>
