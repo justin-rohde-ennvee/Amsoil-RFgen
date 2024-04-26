@@ -237,18 +237,52 @@ Public Sub GetCartonNumberAndCount(ByVal sLPID As String, nNumber As Long, nCoun
   nCount = DB.Count(sRows)
 End Sub
 
-Public Function ItemWeight(ByVal sLITM As String, ByVal sUOM As String) As Currency
+Public Function ItemWeight(ByVal sMCU As String, ByVal sLITM As String, ByVal sUOM As String) As Currency
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
   Dim sITM As String
   Dim nQty As Currency
 
-  ' Fetch short item for conversion
+  ' Fetch short item
   sSQL = "select IMITM from F4101 where IMLITM = '" & sLITM & "'"
   DB.Execute(sSQL, sCols, sRows)
-  sITM = DB.Extract(sCols, sRows, 1, 1)
+  sITM = DB.Extract(sCols, sRows, 1, "IMITM")
 
+  ' Determine if this is a literature item
+  sSQL = _
+    " select count(*)" & _
+    " from F4101" & _
+    " inner join F41002 um " & _
+    "   on um.UMITM = IMITM" & _
+    "   and um.UMUM = IMUOM1" & _
+    " inner join F41002 umweight " & _
+    "   on umweight.UMITM = um.UMITM" & _
+    "   and umweight.UMUM = CASE WHEN um.UMRUM = 'LB' THEN um.UMUM ELSE um.UMRUM END" & _
+    "   and umweight.UMRUM = 'LB' " & _
+    " where IMITM = " & sITM & _
+    " and IMSRP4 = 'G07'" & _
+    " and ROUND((umweight.UMCONV * .0000001) * (um.UMCNV1 * .0000001), 4) <= .0001"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) > 0 Then
+    ' Take weight from WH table, if exists
+    sSQL = _
+      " select IQGWEI" & _
+      " from F46011" & _
+      " where IQMCU = '" & sMCU & "'" & _
+      " and IQITM = " & sITM
+    DB.Execute(sSQL, sCols, sRows)
+
+    If DB.Count(sRows) > 0 Then
+      ItemWeight = ConvDecimalsFromSQL("GWEI", DB.Extract(sCols, sRows, 1, "IQGWEI"))
+      Exit Function
+    Else
+      ' TODO Error/Warning?
+    End If
+  End If
+
+  ' Take weight from standard conversion tables
   nQty = 1
 
   If sUOM <> "EA" Then
@@ -269,17 +303,23 @@ Public Function PackageWeight(ByVal sLPID As String) As Currency
   Dim sLITM As String
   Dim nQty As Currency
   Dim sUOM As String
+  Dim sMCU As String
   Dim nItemWeight As Currency
 
-  sSQL = "select LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & sLPID & "'"
+  sSQL = _
+    " select LMMCU, LDLITM, LDUORG, LDUOM" & _
+    " from F55102" & _
+    " inner join F55101 on LMLPID = LDLPID" & _
+    " where LDLPID = '" & sLPID & "'"
   DB.Execute(sSQL, sCols, sRows)
 
   For i=1 To DB.Count(sRows)
     sLITM = Trim(DB.Extract(sCols, sRows, i, "LDLITM"))
     nQty = Val(DB.Extract(sCols, sRows, i, "LDUORG"))
     sUOM = Trim(DB.Extract(sCols, sRows, i, "LDUOM"))
+    sMCU = DB.Extract(sCols, sRows, i, "LMMCU")
 
-    nItemWeight = ItemWeight(sLITM, sUOM) * nQty
+    nItemWeight = ItemWeight(sMCU, sLITM, sUOM) * nQty
     PackageWeight += nItemWeight
   Next
 End Function

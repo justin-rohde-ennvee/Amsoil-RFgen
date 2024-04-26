@@ -1008,7 +1008,7 @@ Private Sub ListItemsInCarton(ByVal sLPID As String)
     sNXTR_JDE = Trim(DB.Extract(sCols, sRows, i, "SDNXTR"))
     sPSN = Trim(DB.Extract(sCols, sRows, i, "SDPSN"))
 
-    nBulkItemWeight = ItemWeight(sLITM, sUOM) * nQty
+    nBulkItemWeight = ItemWeight(App.GetValue("tmMCU"), sLITM, sUOM) * nQty
 
     lbxDoco.List.AddItem("", sLITM, sLOTN, nQty, sUOM, nBulkItemWeight, nDOCO, nRLLN, sNXTR, sNXTR_JDE, sPSN)
     nPackageWeight += nBulkItemWeight
