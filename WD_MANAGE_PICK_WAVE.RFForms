@@ -121,9 +121,11 @@ Public Sub btnRelease_Click()
   Dim sRows As String
   Dim nErrNo As Long
   Dim i As Long
+  Dim sStatus As String
 
   For i = 1 To lbxPicks.List.Count
-    If lbxPicks.List.Cell(i, 1).value = "322" Then
+    sStatus = lbxPicks.List.Cell(i, 1).value
+    If sStatus >= "322" Then
       App.MsgBox("Cannot release wave with picked jobs.")
       Exit Sub
     End If
@@ -171,7 +173,7 @@ Public Sub btnRemove_Click()
   End If
 
   sStatus = lbxPicks.List.Cell(1, 1).value
-  If sStatus = "322" Then
+  If sStatus >= "322" Then
     App.MsgBox("Cannot delete completed pick job.")
     Exit Sub
   End If
@@ -331,12 +333,11 @@ Public Sub txtTRIP_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   Dim oList As New SearchList
 
   sSQL = _
-    " select R2TRIP, R2URRF" & _
+    " select distinct R2TRIP, R2URRF" & _
     " from WDJOBS" & _
     " where (R2TRIP is not null and R2TRIP <> 0)" & _
     " and R2TYFL = '2'" & _
-    " and R2PSTB = '321'" & _
-    " group by R2TRIP, R2URRF"
+    " and R2PSTB in ('321', '322')"
 
   oList.SetColumn(1, "Wave", -1)
   oList.SetColumn(2, "User", -1)

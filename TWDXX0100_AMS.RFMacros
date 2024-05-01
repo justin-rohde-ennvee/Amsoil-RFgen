@@ -127,7 +127,7 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
 
   ' Process Picks (TYFL = 2)
   If mbPick Then
-    DB.Execute("delete from WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322')")
+    DB.Execute("delete from WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322', '323')")
     If Not Pick Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       bSuccess = False
@@ -1113,7 +1113,7 @@ Private Function Pick As Boolean
         nFQTY = nFQTYEA / nConvFact
       End If
 
-      LogText("WD", "Pick", "Supply Lot: " & Trim(sFLOT) & ", Locn: " & Trim(sFLOC) & ", Qty: " & nPQOH & "->" & nFQTY)
+      LogText("WD", "Pick", "Supply Lot: " & Trim(sFLOT) & ", Locn: " & Trim(sFLOC) & ", Qty: " & nPQOH & "->" & nFQTYEA)
 
       ' In case database is Oracle
       If mbOracleLP Then
@@ -1242,7 +1242,7 @@ Private Function PickJobExists(ByVal sSGBT As String, ByVal sSGSQ As String) As 
     " select count(*)" & _
     " from WDJOBS" & _
     " where R2TYFL = '2'" & _
-    " and R2PSTB in ('321', '322')" & _
+    " and R2PSTB in ('321', '322', '323')" & _
     " and R2SGBT = " & sSGBT & _
     " and R2NLIN = " & sSGSQ
   DB.Execute(sSql, sCols, sRows)
