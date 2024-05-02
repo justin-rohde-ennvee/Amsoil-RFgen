@@ -1258,7 +1258,7 @@ Public Sub BuildWave()
       sBoxType = Trim(DB.Extract(sCols2, sRows2, 1, "R2EQTY"))
 
       ' Check for existing carton ID on this batch and sequence
-      sSQL = "select max(R2LPID) from WDJOBS where R2SGBT = " & nRQBT & " and R2SGSQ = " & nRQBT
+      sSQL = "select max(R2LPID) from WDJOBS where R2SGBT = " & nRQBT & " and R2SGSQ = " & nRQSQ
       DB.Execute(sSQL, sCols2, sRows2)
 
       sLPID = Trim(DB.Extract(sCols2, sRows2, 1, 1))
