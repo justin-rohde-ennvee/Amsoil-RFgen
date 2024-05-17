@@ -369,6 +369,7 @@ Private Function ShipEligibleItems(sErrMsg As String) As Boolean
   Dim sCols As String
   Dim sRows As String
   Dim i As Long
+  Dim j As Long
   Dim nDOCO As Long
   Dim nLNID As Currency
   Dim nErrNo As Long
@@ -439,18 +440,26 @@ Private Function ShipEligibleItems(sErrMsg As String) As Boolean
     sNXTR = Trim(FetchFirstResult(sSQL))
 
     ' Update status in LP detail
-    sSQL = _
-      " update F55102" & _
-      " set LDRNXTR = '" & sNXTR & "'" & _
-      " where LDRDOCO = " & nDOCO & _
-      " and LDRLLN = " & ConvDecimalsToSQL("LNID", nLNID)
-    nErrNo = DB.Execute(sSQL)
+    For j=1 To 3
+      sSQL = _
+        " update F55102" & _
+        " set LDRNXTR = '620'" & _
+        " where LDRDOCO = " & nDOCO & _
+        " and LDRLLN = " & ConvDecimalsToSQL("LNID", nLNID)
+      nErrNo = DB.Execute(sSQL)
 
-    If nErrNo <> 0 Then
-      App.Balloon("", 0)
-      sErrMsg = "Error updating LP detail: " & nErrNo
-      Exit Function
-    End If
+      If nErrNo = 0 Then Exit For
+
+      If j=3 Then
+        App.Balloon("", 0)
+        sErrMsg = "Error updating LP detail: " & nErrNo
+        LogText("WD_PACK", "ShipEligibleItems", sSQL, , nErrNo)
+        Exit Function
+      Else
+        Wait 1
+      End If
+    Next j
+
     End_i:
   Next i
 
@@ -1063,7 +1072,7 @@ Private Function AddTrackingToJDE( _
       " and CFPSN = '" & sPSN & "'" & _
       " and CFCNID = '%tmLPID'"
     If Val(FetchFirstResult(sSQL)) > 0 Then
-      ' TODO Warninig/error?
+      ' TODO Warning/error?
       GoTo End_i
     End If
 

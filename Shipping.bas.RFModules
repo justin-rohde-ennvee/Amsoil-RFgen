@@ -24,7 +24,7 @@ Public Function PrintCartonIDLabel( _
   ByVal nDOCO As String, _
   ByVal nSequence As Long, _
   ByVal nCount As Long, _
-  ByVal nWave As Long, _
+  ByVal sWave As String, _
   ByVal nPrinterNumber As Long, _
   sErrMsg As String _
 ) As Boolean
@@ -54,7 +54,7 @@ Public Function PrintCartonIDLabel( _
   Print #1, "CARTON_NAME," & sEQTY
   Print #1, "NUMBER_COUNT," & nSequence & "/" & nCount
   Print #1, "USER," & sUser
-  Print #1, "WAVE," & IIf(nWave > 0, FixRight(CStr(nWave), 12), "")
+  Print #1, "WAVE," & FixRight(sWave, 12)
   Print #1, "*PRINTLABEL"
 
   Close #1

@@ -284,6 +284,7 @@
 ' MODIFICATION HISTORY:
 '
 Option Explicit
+
 '
 Private Const cTNId   = "FWHCI0100"
 Private Const cMaxAssignWaitCount = 10
@@ -347,14 +348,19 @@ Public Sub btnPrintCartonLabels_Click()
   Dim sEQTY As String
   Dim nDOCO As String
   Dim nSGSQ As Currency
+  Dim sWave As String
   Dim nSeqCount As String
   Dim sUserId As String
   Dim sPrinter As String
+  Dim bReprint As Boolean
 
   txtPrinter_OnEnter(txtPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
+  bReprint = True
+
   If Val(App.GetValue("tmTRIP")) = 0 Then
+    bReprint = False
     i = 0
 
     Do
@@ -412,8 +418,9 @@ Public Sub btnPrintCartonLabels_Click()
     sLPID = Trim(DB.Extract(sCols, sRows, i, "R2LPID"))
     nSGSQ = ConvDecimalsFromSQL("SGSQ", DB.Extract(sCols, sRows, i, "R2SGSQ"))
     nDOCO = DB.Extract(sCols, sRows, i, "R2DOCO")
+    sWave = App.GetValue("tmTRIP") : If bReprint Then sWave &= "*"
 
-    If Not PrintCartonIDLabel(sLPID, sEQTY, nDOCO, nSGSQ, 1, App.GetValue("tmTRIP"), sPrinter, sErrMsg) Then
+    If Not PrintCartonIDLabel(sLPID, sEQTY, nDOCO, nSGSQ, 1, sWave, sPrinter, sErrMsg) Then
       App.MsgBox("Failed to print ID label: " & sErrMsg)
     End If
   End_i:
@@ -679,10 +686,16 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
       DB.Execute(sSQL, sCols, sRows)
       If Val(sRows) > 0 Then
         If App.MsgBox("Some picks did not complete. Retry?", vbRetryCancel) = vbCancel Then Exit Sub
+
+        App.Balloon("Confirming picks...", -1)
+
         If Not ExecuteJDEPicks(sErrMsg) Then
+          App.Balloon("", 0)
           App.MsgBox(sErrMsg)
           Exit Sub
         End If
+
+        App.Balloon("", 0)
 
         Call txtCart_OnEnter(Rsp, Cancel, ErrMsg)
         Exit Sub
@@ -807,15 +820,19 @@ Public Sub txtConfLot_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRe
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
+  Dim vRsp As Variant
 
   Rsp = Trim(Rsp)
+  Cancel = True
 
   ' Is this a valid lot for this location?
-  If Rsp <> App.GetValue("tmLOTN") Then
-    App.MsgBox("Item not in pickable location.")
-    Cancel = True
-    Exit Sub
+  If Trim(Rsp) <> Trim(App.GetValue("tmFLOT")) Then
+    vRsp = App.MsgBox("Scanned lot is different from suggestion.", vbCustom, 2, "[Proceed][Stop]", "Warning")
+    If vRsp = "Stop" Then Exit Sub
   End If
+
+  App.SetValue("tmLOTN", Rsp)
+  Cancel = False
 End Sub
 
 Private Sub txtMCU_OnBackup(ByRef Cancel As Boolean)
@@ -1076,7 +1093,7 @@ Private Sub txtConfLocation_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean
   sMCU = App.GetValue("tmMCU")
   Call Validate_Locn(Rsp, sMCU, sLocnJDE)
 
-  If Trim(Rsp) <> Trim(App.GetValue("tmFLOCN")) Then
+  If Trim(Rsp) <> Trim(App.GetValue("tmFLOC")) Then
     vRsp = App.MsgBox("Scanned location is different from suggestion.", vbCustom, 2, "[Proceed][Stop]", "Warning")
     If vRsp = "Stop" Then Exit Sub
   End If
@@ -1253,7 +1270,7 @@ Public Sub BuildWave()
       End If
 
       ' Get box type name
-      sSQL = "select R2EQTY from F4611 where R2SGBT = " & nRQBT & " and R2SGSQ = " & nRQSQ
+      sSQL = "select R2EQTY from F4611 where R2RQBT = " & nRQBT & " and R2RQSQ = " & nRQSQ
       DB.Execute(sSQL, sCols2, sRows2)
       sBoxType = Trim(DB.Extract(sCols2, sRows2, 1, "R2EQTY"))
 
@@ -1339,13 +1356,13 @@ Private Function SelectNextPick() As Boolean
 
   If Not bHasPick Then Exit Function
 
-  App.SetValue("tmFLOCN", job.sFLOC)
+  App.SetValue("tmFLOC", job.sFLOC)
   lblLocn.Caption = "Locn: " & job.sFLOC
 
   App.SetValue("tmLITM", job.sLITM)
   lblItem.Caption = "Item: " & job.sLITM & " - " & job.sDSC1
 
-  App.SetValue("tmLOTN", job.sFLOT)
+  App.SetValue("tmFLOT", job.sFLOT)
   lblLot.Caption = "Lot: " & job.sFLOT
 
   App.SetValue("tmUOM", job.sUOM1)
@@ -1481,10 +1498,12 @@ Private Function AdvanceJobStatus( _
   nSuggestedQty = DB.Extract(sCols, sRows, 1, "R2TQTY")
   nPickedQty = Val(App.GetValue("tmQTY"))
 
-  ' Update current suggestion with picked quantity and status
+  ' Update current suggestion
   sSQL = _
     " update WDJOBS" & _
     " set R2PSTB = '" & sToStatus & "'" & _
+    ",    R2FLOC = '%tmLOCN'" & _
+    ",    R2FLOT = '%tmLOTN'" & _
     ",    R2TQTY = " & nPickedQty & _
     " where R2SGBT = %tmSGBT" & _
     " and R2SGSQ = %tmSGSQ" & _
@@ -1511,7 +1530,7 @@ Private Function AdvanceJobStatus( _
       "   R2URAB,R2URRF,R2USER,R2PID,R2UPMJ,R2TDAY)" & _
       " select top 1" & _
       "   R2TYFL,R2SGBT,R2SGSQ,R2PTSK,R2TRIP,'%PSTB%',R2PRITY,R2MCU,R2ITM,R2LITM,R2UOM1," & _
-      "   %TQTY%,R2FLOC,R2FLOT,R2LOTS,R2TLOC,R2TLOT,R2DSC1,R2DSC2,R2DOCO,R2DCTO,R2LNID," & _
+      "   %TQTY%,'%tmLOCN','%tmLOTN',R2LOTS,R2TLOC,R2TLOT,R2DSC1,R2DSC2,R2DOCO,R2DCTO,R2LNID," & _
       "   R2NLIN,R2RCDJ,R2TRDJ,R2DRQJ,R2PZON,R2KZON,R2ZONR,R2LPID,R2URCD,R2URDT,R2URAT," & _
       "   R2URAB,R2URRF,R2USER,R2PID,R2UPMJ,R2TDAY" & _
       " from WDJOBS" & _
