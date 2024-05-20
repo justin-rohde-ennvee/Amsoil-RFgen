@@ -124,7 +124,7 @@ Public Sub btnRelease_Click()
   Dim sStatus As String
 
   For i = 1 To lbxPicks.List.Count
-    sStatus = lbxPicks.List.Cell(i, 1).value
+    sStatus = lbxPicks.List.Cell(i, 1).Value
     If sStatus >= "322" Then
       App.MsgBox("Cannot release wave with picked jobs.")
       Exit Sub
@@ -172,7 +172,7 @@ Public Sub btnRemove_Click()
     Exit Sub
   End If
 
-  sStatus = lbxPicks.List.Cell(1, 1).value
+  sStatus = lbxPicks.List.Cell(nIndex, 1).Value
   If sStatus >= "322" Then
     App.MsgBox("Cannot delete completed pick job.")
     Exit Sub
@@ -183,9 +183,9 @@ Public Sub btnRemove_Click()
   sSQL = _
     " delete" & _
     " from WDJOBS" & _
-    " where R2SGBT = " & ConvDecimalsToSQL("SGBT", lbxPicks.List.Cell(nIndex, 6).value) & _
-    " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 7).value) & _
-    " and R2NLIN = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 8).value)
+    " where R2SGBT = " & ConvDecimalsToSQL("SGBT", lbxPicks.List.Cell(nIndex, 6).Value) & _
+    " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 7).Value) & _
+    " and R2NLIN = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 8).Value)
   nErrNo = DB.Execute(sSQL)
 
   If nErrNo <> 0 Then
