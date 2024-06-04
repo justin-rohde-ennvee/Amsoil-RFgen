@@ -1,8 +1,9 @@
 ﻿<Record FileDesc="WD - Warehouse Director" FileVersion="5.0.8.0" Desc="WD - Warehouse Director" Depends="WM.bas">
-<Param Name="tmPlants" />
+<Param Name="tmPlant" />
 <Param Name="tmRepl" />
 <Param Name="tmPick" />
 <Param Name="tmPut" />
+<Param Name="tmERRTEXT" />
 </Record>
 <Code>
 ' -------------------------------------------------------------------------------
@@ -56,13 +57,14 @@ Private mbOracleLP  As Boolean   ' LP DB is Oracle?
 
 Private msErrDesc As String
 
-Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant, ByRef tmPick As Variant, ByRef tmPut As Variant) As Boolean
+Private Function Transaction(ByRef tmPlant As Variant, ByRef tmRepl As Variant, ByRef tmPick As Variant, ByRef tmPut As Variant, ByRef tmERRTEXT As Variant) As Boolean
   On Error Resume Next
 
   Dim bSuccess As Boolean
   Dim vArray  As Variant
   Dim iCnt As Integer
   Dim sMCU As String
+  Dim sUserId As String
 
   gbLPSilent = True
 
@@ -74,10 +76,6 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
   mbOracleLP  = (vArray(10) = "Oracle")
 
   msChk = Trim(SYS.GetProperty("WD", "Boxes"))
-
-'  mbPut  = Ext(msChk, 1) = "1"   ' Check for putaway true/false (TYFL = 1)
-'  mbPick = Ext(msChk, 6) = "1"   ' Check for picks true/false (TYFL = 2)
-'  mbRepl = Ext(msChk, 9) = "1"   ' Check for replenishments true/false (TYFL = 3)
 
   mbPut  = tmPut = "1"
   mbPick = tmPick = "1"
@@ -101,18 +99,20 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
     sPrioRepl  = "5"
   End If
 
-  ' Format branches for SQL where-in clause
-'  vArray = Split(SYS.GetProperty("WD", "MCU"), ";")
-  vArray = Split(tmPlants, ",")
+  ' Skip execution if locked
+  sUserId = SYS.GetProperty("WD", tmPlant)
+  If sUserId <> "" Then
+    tmERRTEXT = "Process is already running for plant " & tmPlant & " (" & sUserId & ")"
+    Debug.Print(tmERRTEXT)
+    GoTo ExitMe
+  End If
 
-  For iCnt = 0 To UBound(vArray)
-    sMCU = Trim(vArray(iCnt))
-    If sMCU <> "" Then
-      msMCU &= "'" & FixRight(sMCU, 12) & "',"
-    End If
-  Next
+  SYS.SetProperty("WD", tmPlant, App.User)
+  Debug.Print("Running WD for plant " & tmPlant & " (" & sUserId & ")")
 
-  msMCU = Left(msMCU, Len(msMCU) - 1)  ' cut off last ","
+  ' Format branch for SQL
+  msMCU &= "'" & FixRight(tmPlant, 12) & "'"
+
   mnSGBT = WDNN()
 
   ' Process Putaways (TYFL = 1)
@@ -120,7 +120,6 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
     DB.Execute("delete from WDJOBS where R2TYFL = '1'")
     If Not Putaway Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
-      bSuccess = False
       GoTo ExitMe
     End If
   End If
@@ -130,7 +129,6 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
     DB.Execute("delete from WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322', '323')")
     If Not Pick Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
-      bSuccess = False
       GoTo ExitMe
     End If
   End If
@@ -140,7 +138,6 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
     DB.Execute("delete from WDJOBS where R2TYFL = '3'")
     If Not Replenish Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
-      bSuccess = False
       GoTo ExitMe
     End If
   End If
@@ -148,7 +145,7 @@ Private Function Transaction(ByRef tmPlants As Variant, ByRef tmRepl As Variant,
   bSuccess = True
 
 ExitMe:
-  If Not bSuccess Then App.LogError(cTNID, GetMsg(221))
+  SYS.SetProperty("WD", tmPlant, "")
   Transaction = bSuccess
   gbLPSilent = False
 End Function

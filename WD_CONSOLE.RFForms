@@ -1,10 +1,11 @@
-﻿<Record FileDesc="WD - Warehouse Director Console" FileVersion="5.0.8.0" Desc="WD - Warehouse Director Console" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtMCU&vm;btnPut&vm;btnPick&vm;btnRepl&vm;btnInquire" ImageList="0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="WD - Warehouse Director Console" FileVersion="5.0.8.0" Desc="WD - Warehouse Director Console" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtMCU&vm;btnPut&vm;btnPick&vm;btnRepl&vm;btnRemoveLock&vm;btnInquire" ImageList="0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="btnPut" />
 <SchemaParam Linked="0" Attr="3" Name="btnPick" />
 <SchemaParam Linked="0" Attr="4" Name="btnRepl" />
-<SchemaParam Linked="0" Attr="5" Name="btnInquire" />
+<SchemaParam Linked="0" Attr="5" Name="btnRemoveLock" />
+<SchemaParam Linked="0" Attr="6" Name="btnInquire" />
 </Schema>
 <Displays>
 <Display Name="(Default)" Type="1" Width="1920" Height="7040" Locale="1033" />
@@ -14,7 +15,7 @@
 <Control Type="1" FieldId="txtMCU" Attr="1" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="33" Width="65" Height="22" AnchorRight="245" AnchorBottom="425" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plants:" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="33" Width="57" Height="22" AnchorRight="245" AnchorBottom="425" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
 <Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="190" Top="33" Width="119" Height="22" AnchorRight="11" AnchorBottom="425" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
@@ -40,7 +41,14 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnInquire" Attr="5">
+<Control Type="9" FieldId="btnRemoveLock" Attr="5">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Remove Lock" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="341" Width="300" Height="33" AnchorRight="10" AnchorBottom="106" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnInquire" Attr="6">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Inquire" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="242" Width="300" Height="33" AnchorRight="10" AnchorBottom="205" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -98,6 +106,20 @@ Private Sub btnPick_Click()
   Process("", "1", "")
 End Sub
 
+Public Sub btnRemoveLock_Click()
+  On Error Resume Next
+
+  Dim sMCU As String
+  sMCU = Trim(App.GetValue("tmMCU"))
+  If sMCU = "" Then
+    App.MsgBox("No plant specified.")
+    Exit Sub
+  End If
+
+  SYS.SetProperty("WD", sMCU, "")
+  App.MsgBox("Lock removed for plant " & sMCU)
+End Sub
+
 Private Sub btnRepl_Click()
   On Error Resume Next
 
@@ -119,28 +141,14 @@ End Sub
 
 Private Sub Form_Load()
   On Error Resume Next
-  '
-  Dim vArray    As Variant
-  Dim vArray2   As Variant
-  Dim iCnt      As Integer
-  Dim sMCU      As String
-  '
+
   Call SetDisplay()
 
   msStatusF = App.GetValue("StsFr")
   msStatusT = App.GetValue("StsTo")
   msDisplay = App.GetValue("Display")
 
-  vArray = Split(SYS.GetProperty("WD", "MCU"),";")
-
-  For iCnt = 0 To UBound(vArray)
-    vArray2 = Split(vArray(iCnt),"|")
-    sMCU = sMCU & Trim(vArray2(0)) & ","
-  Next iCnt
-
-  sMCU = Left(sMCU,Len(sMCU) -1)     ' cut last ","
-  '
-  txtMCU.Defaults = sMCU
+  txtMCU.Defaults = GetDefaultMCU()
 End Sub
 
 Private Sub Form_LostFocus()
@@ -166,10 +174,20 @@ Private Sub Process(ByVal sPut As String, ByVal sPick As String, ByVal sRepl As 
   On Error Resume Next
 
   Dim emProc As New EmbeddedProc
+  Dim sUserID As String
+  Dim sMCU As String
 
-  emProc.Name       = "TWDXX0100_AMS"
+  sMCU = App.GetValue("tmMCU")
+
+  sUserID = SYS.GetProperty("WD", sMCU)
+  If sUserID <> "" Then
+    App.MsgBox("Process is already running for plant " & Trim(sMCU) & " (" & sUserID & ")")
+    Exit Sub
+  End If
+
+  emProc.Name = "TWDXX0100_AMS"
   emProc.DataSource = gsDataSource
-  emProc.Param("tmPlants") = txtMCU.text
+  emProc.Param("tmPlant") = sMCU
   emProc.Param("tmPut") = sPut
   emProc.Param("tmPick") = sPick
   emProc.Param("tmRepl") = sRepl
@@ -179,7 +197,7 @@ Private Sub Process(ByVal sPut As String, ByVal sPick As String, ByVal sRepl As 
   App.Balloon("Processing...", -1)
 
   If Not emProc.Execute Then
-    App.MsgBox GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
+    App.MsgBox(emProc.Param("tmERRTEXT"))
     If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
     App.Balloon("", 0)
     Exit Sub
@@ -194,23 +212,13 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sMCU     As String
   Dim sCompany As String
   Dim sValue   As String
-  Dim iCnt     As Integer
-  Dim vArray   As Variant
-  '
+
   If (Len(Rsp)=0) Then Exit Sub
-  '
+
   Cancel = True
 
-  vArray = Split(Rsp, ",")
-  sValue = "'"
-
-  For iCnt = 0 To UBound(vArray)
-    If Not Validate_BranchPlant(vArray(iCnt), sMCU, sCompany) Then Exit Sub
-    sValue = sValue & sMCU & "','"
-  Next
-
-  sValue = Left(sValue, Len(sValue) - 2)
-  App.SetValue("tmMCU", sValue)
+  If Not Validate_BranchPlant(Rsp, sMCU, sCompany) Then Exit Sub
+  App.SetValue("tmMCU", sMCU)
 
   Cancel = False
 End Sub

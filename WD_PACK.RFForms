@@ -304,9 +304,16 @@ Public Sub btnCreateShipment_Click()
     Exit Sub
   End If
 
+  App.Balloon("Issuing inventory...", -1)
+  If Not IssueCarton(sLPID, sErrMsg) Then
+    LogText("WD_PICK", "ExecuteJDEPicks", "Failed to issue inventory for carton " & sLPID & ": " & sErrMsg)
+  End If
+
   App.Balloon("Refreshing statuses...", -1)
+
   DB.Execute("update F55101 set LMRNXTR = '620' where LMLPID = '%tmLPID'")
   Wait(1)
+
   App.Balloon("", 0)
 
   lblLPDesc.Caption = ""
@@ -327,27 +334,6 @@ Public Sub btnMoveItems_Click()
   On Error Resume Next
 
   App.CallForm("WD_BOX_MOVE -LPID=" & App.GetValue("tmLPID"), True)
-End Sub
-
-Public Sub btnResetPack_Click()
-  On Error Resume Next
-
-  DB.Execute("update F55101 set LMRNXTR = '" & cStatusShipConfirm & "', LMVR01 = ' ', LMVR02 = ' ' where LMLPID = '%tmLPID'")
-  DB.Execute("update F55102 set LDRNXTR = '" & cStatusShipConfirm & "' where LDLPID = '%tmLPID'")
-
-  txtLPID_OnEnter(txtLPID.text, False, "")
-End Sub
-
-Public Sub btnShipEligible_Click()
-  On Error Resume Next
-
-  Dim sErrMsg As String
-
-  If Not ShipEligibleItems(sErrMsg) Then
-    App.MsgBox(sErrMsg)
-  End If
-
-  txtLPID_OnEnter(txtLPID.text, False, "")
 End Sub
 
 Public Sub btnSwapBox_Click()
@@ -454,7 +440,6 @@ Private Function ShipEligibleItems(sErrMsg As String) As Boolean
         App.Balloon("", 0)
         sErrMsg = "Error updating LP detail: " & nErrNo
         LogText("WD_PACK", "ShipEligibleItems", sSQL, , nErrNo)
-        Exit Function
       Else
         Wait 1
       End If
@@ -1108,7 +1093,7 @@ Private Function AddTrackingToJDE( _
 
     If nErrNo <> 0 Then
       sErrMsg = "Failed to insert tracking info: " & nErrNo
-      Exit Function
+      LogText("WD_PACK", "AddTrackingToJDE", sErrMsg & sSQL)
     End If
   End_i:
   Next i
@@ -1168,10 +1153,71 @@ Private Function InsertTracking( _
 
   If nErrNo <> 0 Then
     sErrMsg = "Failed to insert tracking (" & nErrNo & ")"
-    Exit Function
+    LogText("WD_PACK", "InsertTracking", sErrMsg & " " & sSQL)
   End If
 
 Done:
   InsertTracking = True
+End Function
+
+Function IssueCarton(ByVal sLPID As String, sErrMsg As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sMCU As String
+  Dim nSGBT As Long
+  Dim nSGSQ As Long
+  Dim sEQTY As String
+  Dim nITM As Long
+  Dim sLITM As String
+
+  sSQL = _
+    " select R2MCU, R2SGBT, R2SGSQ, IDEQTY, IDITM, IMLITM" & _
+    " from WDJOBS" & _
+    " inner join F55101 on LMLPID = R2LPID" & _
+    " inner join F46091 on IDMCU = R2MCU and IDEQTY = LMDSC1" & _
+    " inner join F4101 on IMITM = IDITM" & _
+    " where R2LPID = '" & sLPID & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  nITM = DB.Extract(sCols, sRows, 1, "IDITM")
+  If nITM = 0 Then GoTo Done
+
+  sMCU = DB.Extract(sCols, sRows, 1, "R2MCU")
+  nSGBT = DB.Extract(sCols, sRows, 1, "R2SGBT")
+  nSGSQ = DB.Extract(sCols, sRows, 1, "R2SGSQ")
+  sEQTY = Trim(DB.Extract(sCols, sRows, 1, "IDEQTY"))
+  sLITM = Trim(DB.Extract(sCols, sRows, 1, "IMLITM"))
+
+  Dim emProc As New EmbeddedProc
+
+  emProc.Name       = "TIMII0100_AMS"
+  emProc.DataSource = gsDataSource
+
+  emProc.Param("tmCO")       = App.GetValue("tmCO")
+  emProc.Param("tmMCU")      = sMCU
+  emProc.Param("tmLITM")     = sLITM
+  emProc.Param("tmQTY")      = 1
+  emProc.Param("tmUOM")      = "EA" 'App.GetValue("tmUOM")
+'  emProc.Param("tmLOCN")     = App.GetValue("tmLOCN")
+'  emProc.Param("tmLOTN")     = App.GetValue("tmLOTN")
+  emProc.Param("tmDCTO")     = "II" 'msDOCTYPE
+'  emProc.Param("tmAOBJ")     = App.GetValue("tmAOBJ")
+'  emProc.Param("tmASUB")     = App.GetValue("tmASUB")
+'  emProc.Param("tmDRKY")     = App.GetValue("tmDRKY")
+  emProc.Param("tmTDSC")     = nSGBT & "-" & nSGSQ & "-" & sEQTY
+  emProc.Param("tmZVERSION") = "RGN0001"
+  emProc.Param("tmPGM")      = "P4112"
+  emProc.Param("tmUser")     = UCase(App.User)
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  If Not emProc.Execute Then
+    sErrMsg = emProc.Param("tmERRTEXT")
+    Exit Function
+  End If
+
+Done:
+  IssueCarton = True
 End Function
 </Code>

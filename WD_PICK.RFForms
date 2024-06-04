@@ -816,19 +816,52 @@ End Sub
 
 Public Sub txtConfLot_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
-  Dim sOldestLot As String
+
+  Dim sSuggestedLot As String
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
   Dim vRsp As Variant
 
   Rsp = Trim(Rsp)
+
+  sSuggestedLot = Trim(App.GetValue("tmFLOT"))
+  If sSuggestedLot = "" Then Exit Sub
+
   Cancel = True
 
   ' Is this a valid lot for this location?
-  If Trim(Rsp) <> Trim(App.GetValue("tmFLOT")) Then
+  If Trim(Rsp) <> sSuggestedLot Then
     vRsp = App.MsgBox("Scanned lot is different from suggestion.", vbCustom, 2, "[Proceed][Stop]", "Warning")
     If vRsp = "Stop" Then Exit Sub
+  End If
+
+  ' Validate lot
+  sSQL = _
+    " select count(*)" & _
+    " from F4108" & _
+    " where IOLOTN = '" & Rsp & "'" & _
+    " and IOLITM = '%tmLITM'" & _
+    " and IOMCU = '%tmMCU'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Val(sRows) = 0) Then
+    App.MsgBox(GetMsg(78))
+    Exit Sub
+  End If
+
+  ' Validate item location
+  sSQL = _
+    " select LIPQOH" & _
+    " from F41021" & _
+    " where LIMCU = '%tmMCU'" & _
+    " and LIITM = %tmITM" & _
+    " and LILOTN = '" & Rsp & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(75))
+    Exit Sub
   End If
 
   App.SetValue("tmLOTN", Rsp)
@@ -929,7 +962,7 @@ Private Sub txtConfItemLP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
   Rsp = UCase(Trim(Rsp))
   Cancel = True
 
-  If Validate_Item(App.GetValue("tmMCU"), Rsp,,,,,,, bHasLots,,, True) Then
+  If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, , , , , , bHasLots, , , True) Then
     ' Item was scanned
     sLITM = Rsp
     bIsItem = True
@@ -1053,6 +1086,9 @@ Private Sub txtConfItemLP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
 
   Cancel = False
 
+  App.SetValue("tmLITM", sLITM)
+  App.SetValue("tmITM", sITM)
+
   If bIsItem Then
     App.SetValue("tmLPID", "")
 
@@ -1087,6 +1123,7 @@ Private Sub txtConfLocation_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean
   Dim sLocnJDE  As String
   Dim sMCU      As String
   Dim vRsp      As Variant
+  Dim sLOTN As String
   
   Cancel = True
 
@@ -1097,6 +1134,25 @@ Private Sub txtConfLocation_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean
     vRsp = App.MsgBox("Scanned location is different from suggestion.", vbCustom, 2, "[Proceed][Stop]", "Warning")
     If vRsp = "Stop" Then Exit Sub
   End If
+
+  sLOTN = Trim(App.GetValue("tmLOTN"))
+
+  ' Validate it
+  sSQL = _
+    " select LIPQOH" & _
+    " from F41021" & _
+    " where LILOCN = '" & Rsp & "'" & _
+    " and LIMCU = '%tmMCU'" & _
+    " and LIITM = %tmITM"
+  If sLOTN <> "" Then sSQL &= " and LILOTN = '" & sLOTN & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If (Len(sRows) = 0) Then
+    App.MsgBox(GetMsg(74))
+    Exit Sub
+  End If
+
+  mnMaxQty = ConvDecimalsFromSQL("PQOH", DB.Extract(sCols, sRows, 1, "LIPQOH"))
 
   App.SetValue("tmLOCN", Rsp)
   Cancel = False
