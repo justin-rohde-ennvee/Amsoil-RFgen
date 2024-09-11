@@ -147,6 +147,20 @@ Public Function PrintCartonContentsLabel( _
   Dim nBoxCount As Long
   Dim sFormat As String
 
+  ' Temporary: print name & address
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nSHAN As Long
+  Dim toAddress As AddressInfo
+
+  sSQL = "select SDSHAN from F55102 inner join F4211 on SDDOCO = LDRDOCO where LDLPID = '" & sLPID & "'"
+  DB.Execute(sSQL, sCols, sRows)
+  nSHAN = Val(DB.Extract(sCols, sRows, 1, "SDSHAN"))
+  toAddress = GetAddressInfo(nSHAN)
+
+  ' End temp
+
   sJobName = "CONTENTS_" & sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
   sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
   sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
@@ -170,6 +184,16 @@ Public Function PrintCartonContentsLabel( _
   Print #1, "ORDER_NUMBER," & tContents.nDOCO
   Print #1, "CARTON_ID," & sLPID
   Print #1, "BOX_NUMBER_COUNT, Box " & nBoxNumber & "/" & nBoxCount
+
+  ' Temp: add name & address to label
+  Print #1, "NAME," & toAddress.sName
+  Print #1, "ADDRESS," & Trim(toAddress.sLine1) & " " & _
+                         Trim(toAddress.sLine2) & " " & _
+                         Trim(toAddress.sLine3) & " " & _
+                         Trim(toAddress.sCity) & " " & _
+                         Trim(toAddress.sState) & " " & _
+                         Trim(toAddress.sZip)
+  ' End temp
 
   If tContents.nRecordCount = 0 Then
     Print #1, "ITEM_1" & ", No items."
@@ -261,7 +285,7 @@ Public Function ItemWeight(ByVal sMCU As String, ByVal sLITM As String, ByVal sU
     "   and umweight.UMUM = CASE WHEN um.UMRUM = 'LB' THEN um.UMUM ELSE um.UMRUM END" & _
     "   and umweight.UMRUM = 'LB' " & _
     " where IMITM = " & sITM & _
-    " and IMSRP4 = 'G07'" & _
+    " and IMSRP4 in ('G07', 'G32', 'OAI')" & _
     " and ROUND((umweight.UMCONV * .0000001) * (um.UMCNV1 * .0000001), 4) <= .0001"
   DB.Execute(sSQL, sCols, sRows)
 
@@ -271,7 +295,8 @@ Public Function ItemWeight(ByVal sMCU As String, ByVal sLITM As String, ByVal sU
       " select IQGWEI" & _
       " from F46011" & _
       " where IQMCU = '" & sMCU & "'" & _
-      " and IQITM = " & sITM
+      " and IQITM = " & sITM & _
+      " and IQUOM = 'EA'"
     DB.Execute(sSQL, sCols, sRows)
 
     If DB.Count(sRows) > 0 Then
@@ -339,6 +364,21 @@ Public Function PickSlipNumberForCarton(ByVal sLPID As String)
     " where LMLPID = '" & sLPID & "'"
 
   PickSlipNumberForCarton = FetchFirstResult(sSQL)
+
+  If PickSlipNumberForCarton = "" Then
+    sSQL = _
+      " select distinct SDPSN" & _
+      " from F55101" & _
+      " inner join F55102" & _
+      "   on LDLPID = LMLPID" & _
+      " left join F42119" & _
+      "   on SDMCU = LMMCU" & _
+      "   and SDDOCO = LDRDOCO" & _
+      "   and SDLNID = LDRLLN" & _
+      " where LMLPID = '" & sLPID & "'"
+
+    PickSlipNumberForCarton = FetchFirstResult(sSQL)
+  End If
 End Function
 
 Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, nSequenceNumber As Long, nCartonCount As Long) As Boolean
@@ -358,6 +398,21 @@ Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, n
   DB.Execute(sSQL, sCols, sRows)
 
   nCartonCount = DB.Count(sRows)
+
+  If nCartonCount = 0 Then
+    sSQL = _
+      " select LMLPID" & _
+      " from F55101" & _
+      " inner join F55102 on LDLPID = LMLPID" & _
+      " left join F42119 on SDMCU = LMMCU and SDDOCO = LDRDOCO and SDLNID = LDRLLN" & _
+      " where SDPSN = " & sPSN & _
+      " group by LMLPID" & _
+      " order by LMLPID"
+    DB.Execute(sSQL, sCols, sRows)
+
+    nCartonCount = DB.Count(sRows)
+  End If
+
   GetCartonSequence = nCartonCount > 0
 
   For i=1 To nCartonCount
@@ -393,7 +448,12 @@ Public Function GetSelectedCarrierForPSN(ByVal sPSN As String) As String
     " select CFDL02" & _
     " from F554602" & _
     " where CFPSN = " & sPSN & _
-    " and CFCNID <> ' '"
+    " and CFCNID <> ' '" & _
+    " order by case CFDL02" & _
+    "   when 'UPS' then 1" & _
+    "   when 'FedEx' then 2" & _
+    "   else 3" & _
+    " end"
   DB.Execute(sSQL, sCols, sRows)
 
   GetSelectedCarrierForPSN = Trim(DB.Extract(sCols, sRows, 1, "CFDL02"))
