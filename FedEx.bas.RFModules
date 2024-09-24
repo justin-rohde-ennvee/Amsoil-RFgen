@@ -4,6 +4,7 @@ Option Explicit
 '#Language "WWB-COM"
 
 Public Const FEDEX_BASE_URL As String = SYS.EnvironmentProperty("FedExBaseURL")
+Public Const FEDEX_ACCOUNT_NUMBER As String = SYS.EnvironmentProperty("FedExAccountNumber")
 
 Public Function FedEx_ParseResponseError( _
   ByVal oResponse As Scripting.Dictionary, _

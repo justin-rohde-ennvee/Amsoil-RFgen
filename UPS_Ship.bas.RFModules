@@ -78,6 +78,8 @@ Private Function UPS_SendShippingRequest( _
   Dim oHttp As New XMLHTTP60
   Const sBaseURL As String = SYS.EnvironmentProperty("UPSBaseURL")
 
+  LogText("UPS_Ship", "UPS_SendShippingRequest", "Request: " & vbNewLine & sRequestBody)
+
   oHttp.open("POST", UPS_BASE_URL & "/api/shipments/v1/ship")
   oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
   oHttp.setRequestHeader("Content-Type", "application/json")
@@ -86,6 +88,8 @@ Private Function UPS_SendShippingRequest( _
 
   sResponseStatus = CStr(oHttp.status)
   sResponseText = oHttp.responseText
+
+  LogText("UPS_Ship", "UPS_SendShippingRequest", "Response: " & vbNewLine & sResponseText)
 
   Return oHttp.status = 200
 End Function
@@ -102,11 +106,19 @@ Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictiona
   Set oShipmentResults = oResponse("ShipmentResponse")("ShipmentResults")
 
   If TypeName(oShipmentResults("PackageResults")) = "IDictionary" Then
+    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsing from dict...")
+
     tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")("TrackingNumber")
     tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")("ShippingLabel")("GraphicImage")
+
+    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsed from dict. Tracking: " & tShipmentResponse.sTrackingNumber)
   Else
+    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsing from array...")
+
     tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")(0)("TrackingNumber")
     tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")(0)("ShippingLabel")("GraphicImage")
+
+    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsed from array. Tracking: " & tShipmentResponse.sTrackingNumber)
   End If
 
   tShipmentResponse.nCost = CCur(oShipmentResults("NegotiatedRateCharges")("TotalCharge")("MonetaryValue"))

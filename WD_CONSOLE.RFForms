@@ -110,14 +110,15 @@ Public Sub btnRemoveLock_Click()
   On Error Resume Next
 
   Dim sMCU As String
-  sMCU = Trim(App.GetValue("tmMCU"))
-  If sMCU = "" Then
+  sMCU = App.GetValue("tmMCU")
+  If Trim(sMCU) = "" Then
     App.MsgBox("No plant specified.")
     Exit Sub
   End If
 
   SYS.SetProperty("WD", sMCU, "")
-  App.MsgBox("Lock removed for plant " & sMCU)
+  SYS.SetProperty("WD", Trim(sMCU), "")
+  App.MsgBox("Lock removed for plant: " & Trim(sMCU))
 End Sub
 
 Private Sub btnRepl_Click()

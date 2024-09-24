@@ -3,7 +3,6 @@
 Option Explicit
 '#Language "WWB-COM"
 
-'Public Const UPS_BASE_URL As String = SYS.EnvironmentProperty("UPSBaseURL_TEST")
 Public Const UPS_BASE_URL As String = SYS.EnvironmentProperty("UPSBaseURL")
 
 Public Function UPS_ParseResponseError( _

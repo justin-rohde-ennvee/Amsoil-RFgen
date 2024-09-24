@@ -9,8 +9,8 @@ Public Function FedEx_CreateShipment( _
   ByVal nWeight As Currency, _
   ByVal sAccount As String _
 ) As ShipmentResponse
-  Dim fromAddressInfo As AddressInfo
-  Dim toAddressInfo As AddressInfo
+  Dim fromAddress As AddressInfo
+  Dim toAddress As AddressInfo
   Dim sBody As String
   Dim sToken As String
   Dim bSuccess As Boolean
@@ -20,11 +20,6 @@ Public Function FedEx_CreateShipment( _
   Dim oResponseJson As Scripting.Dictionary
   Dim jsonParser As New VbsJson
   Dim tShipmentResponse As ShipmentResponse
-
-  ' Create the request body
-  fromAddressInfo = GetAddressInfo(nAN8)
-  toAddressInfo = GetAddressInfo(nSHAN)
-  sBody = Fedex_ShipmentRequestJson(fromAddressInfo, toAddressInfo, nWeight, sAccount)
 
   ' Generate bearer token for request
   App.Balloon("Authorizing...", 1)
@@ -36,6 +31,9 @@ Public Function FedEx_CreateShipment( _
 
   App.Balloon("Sending shipping request...", -1)
 
+  fromAddress = GetAddressInfo(nAN8)
+  toAddress = GetAddressInfo(nSHAN)
+  sBody = FedEx_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount)
   bSuccess = FedEx_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
 
   App.Balloon("", 0)
@@ -81,6 +79,7 @@ End Function
 Private Function FedEx_ParseShipmentResponse(ByVal oResponse As Scripting.Dictionary) As ShipmentResponse
   Dim oShipmentResults As New Scripting.Dictionary
   Dim tShipmentResponse As ShipmentResponse
+  Dim sEncodedLabel As String
 
   If Not oResponse.Exists("output") Then
     tShipmentResponse.sErrMsg = "Missing response component: output"
@@ -91,99 +90,92 @@ Private Function FedEx_ParseShipmentResponse(ByVal oResponse As Scripting.Dictio
 
   tShipmentResponse.sTrackingNumber = oShipmentResults("masterTrackingNumber")
   tShipmentResponse.nCost = CCur(oShipmentResults("completedShipmentDetail")("shipmentRating")("shipmentRateDetails")(0)("totalNetCharge"))
-  tShipmentResponse.sLabelImageBytes = oShipmentResults("pieceResponses")(0)("packageDocuments")(0)("encodedLabel")
+  tShipmentResponse.sLabelImageBytes = DecodeBase64(oShipmentResults("pieceResponses")(0)("packageDocuments")(0)("encodedLabel"))
 
   Return tShipmentResponse
 End Function
 
-Private Function Fedex_ShipmentRequestJson( _
-  ByVal fromAddressInfo As AddressInfo, _
-  ByVal toAddressInfo As AddressInfo, _
+Private Function FedEx_CreateShipmentRequestJson( _
+  ByVal fromAddress As AddressInfo, _
+  ByVal toAddress As AddressInfo, _
   ByVal nWeight As Currency, _
   ByVal sAccount As String _
 ) As String
-  Dim sBody As String
+  Dim oDoc As New Scripting.Dictionary
+  Dim vbsJson As New vbsJson
 
-  sBody = _
-    "{" & _
-    "  ""labelResponseOptions"": ""LABEL""," & _
-    "  ""requestedShipment"": {" & _
-    "    ""shipper"": {" & _
-    "      ""contact"": {" & _
-    "        ""companyName"": ""$FROM_NAME""," & _
-    "        ""phoneNumber"": ""$FROM_PHONE""" & _
-    "      }," & _
-    "      ""address"": {" & _
-    "        ""streetLines"": [" & _
-    "          ""$FROM_ADDRESS""" & _
-    "        ]," & _
-    "        ""city"": ""$FROM_CITY""," & _
-    "        ""stateOrProvinceCode"": ""$FROM_STATE""," & _
-    "        ""postalCode"": ""$FROM_ZIP""," & _
-    "        ""countryCode"": ""US""" & _
-    "      }" & _
-    "    }," & _
-    "    ""recipients"": [" & _
-    "      {" & _
-    "        ""contact"": {" & _
-    "          ""companyName"": ""$TO_NAME""," & _
-    "          ""phoneNumber"": ""$TO_PHONE""" & _
-    "        }," & _
-    "        ""address"": {" & _
-    "          ""streetLines"": [" & _
-    "            ""$TO_ADDRESS""" & _
-    "          ]," & _
-    "          ""city"": ""$TO_CITY""," & _
-    "          ""stateOrProvinceCode"": ""$TO_STATE""," & _
-    "          ""postalCode"": ""$TO_ZIP""," & _
-    "          ""countryCode"": ""US""" & _
-    "        }" & _
-    "      }" & _
-    "    ]," & _
-    "    ""shipDatestamp"": ""$SHIP_DATE""," & _
-    "    ""serviceType"": ""FEDEX_GROUND""," & _
-    "    ""packagingType"": ""YOUR_PACKAGING""," & _
-    "    ""pickupType"": ""USE_SCHEDULED_PICKUP""," & _
-    "    ""blockInsightVisibility"": false," & _
-    "    ""shippingChargesPayment"": {" & _
-    "      ""paymentType"": ""SENDER""" & _
-    "    }," & _
-    "    ""labelSpecification"": {" & _
-    "      ""imageType"": ""PNG""," & _
-    "      ""labelStockType"": ""PAPER_4X6""" & _
-    "    }," & _
-    "    ""requestedPackageLineItems"": [" & _
-    "      {" & _
-    "        ""weight"": {" & _
-    "           ""units"": ""LB""," & _
-    "           ""value"": $WEIGHT" & _
-    "        }" & _
-    "      }" & _
-    "    ]" & _
-    "  }," & _
-    "  ""accountNumber"": {" & _
-    "    ""value"": ""$ACCOUNT_NUMBER""" & _
-    "  }" & _
-    "}"
+  oDoc.Add("labelResponseOptions", "LABEL")
 
-  sBody = Replace(sBody, "$FROM_NAME", fromAddressInfo.sName)
-  sBody = Replace(sBody, "$FROM_ADDRESS", fromAddressInfo.sLine1 & " " & fromAddressInfo.sLine2 & " " & fromAddressInfo.sLine3 & " " & fromAddressInfo.sLine4)
-  sBody = Replace(sBody, "$FROM_CITY", fromAddressInfo.sCity)
-  sBody = Replace(sBody, "$FROM_STATE", fromAddressInfo.sState)
-  sBody = Replace(sBody, "$FROM_ZIP", fromAddressInfo.sZip)
-  sBody = Replace(sBody, "$FROM_PHONE", fromAddressInfo.sPhone)
+  Dim oRequestedShipment As New Scripting.Dictionary
+  Dim oShipper As New Scripting.Dictionary
+  Dim oShipperContact As New Scripting.Dictionary
+  oShipperContact.Add("companyName", fromAddress.sName)
+  oShipperContact.Add("phoneNumber", fromAddress.sPhone)
+  oShipper.Add("contact", oShipperContact)
 
-  sBody = Replace(sBody, "$TO_NAME", toAddressInfo.sName)
-  sBody = Replace(sBody, "$TO_ADDRESS", toAddressInfo.sLine1 & " " & toAddressInfo.sLine2 & " " & toAddressInfo.sLine3 & " " & toAddressInfo.sLine4)
-  sBody = Replace(sBody, "$TO_CITY", toAddressInfo.sCity)
-  sBody = Replace(sBody, "$TO_STATE", toAddressInfo.sState)
-  sBody = Replace(sBody, "$TO_ZIP", toAddressInfo.sZip)
-  sBody = Replace(sBody, "$TO_PHONE", toAddressInfo.sPhone)
+  Dim oShipperAddress As New Scripting.Dictionary
+  Dim aFromStreetLines(0 To 2) As String
+  aFromStreetLines(0) = fromAddress.sLine1
+  aFromStreetLines(1) = fromAddress.sLine2
+  aFromStreetLines(2) = fromAddress.sLine3
+  oShipperAddress.Add("streetLines", aFromStreetLines)
+  oShipperAddress.Add("city", fromAddress.sCity)
+  oShipperAddress.Add("stateOrProvinceCode", fromAddress.sState)
+  oShipperAddress.Add("postalCode", fromAddress.sZip)
+  oShipperAddress.Add("countryCode", "US")
+  oShipper.Add("address", oShipperAddress)
+  oRequestedShipment.Add("shipper", oShipper)
 
-  sBody = Replace(sBody, "$SHIP_DATE", Format(Date, "yyyy-MM-dd"))
-  sBody = Replace(sBody, "$WEIGHT", CStr(nWeight))
-  sBody = Replace(sBody, "$ACCOUNT_NUMBER", sAccount)
+  Dim aRecipients (0 To 0) As Scripting.Dictionary
+  Dim oRecipient As New Scripting.Dictionary
+  Dim oRecipientContact As New Scripting.Dictionary
+  oRecipientContact.Add("companyName", toAddress.sName)
+  oRecipientContact.Add("phoneNumber", toAddress.sPhone)
+  oRecipient.Add("contact", oRecipientContact)
 
-  Return sBody
+  Dim oShipToAddress As New Scripting.Dictionary
+  Dim aToStreetLines(0 To 2) As String
+  aToStreetLines(0) = toAddress.sLine1
+  aToStreetLines(1) = toAddress.sLine2
+  aToStreetLines(2) = toAddress.sLine3
+  oShipToAddress.Add("streetLines", aToStreetLines)
+  oShipToAddress.Add("city", toAddress.sCity)
+  oShipToAddress.Add("stateOrProvinceCode", toAddress.sState)
+  oShipToAddress.Add("postalCode", toAddress.sZip)
+  oShipToAddress.Add("countryCode", "US")
+  oRecipient.Add("address", oShipToAddress)
+  Set aRecipients(0) = oRecipient
+  oRequestedShipment.Add("recipients", aRecipients)
+
+  oRequestedShipment.Add("shipDatestamp", Format(Date, "yyyy-MM-dd"))
+  oRequestedShipment.Add("serviceType", "FEDEX_GROUND")
+  oRequestedShipment.Add("packagingType", "YOUR_PACKAGING")
+  oRequestedShipment.Add("pickupType", "USE_SCHEDULED_PICKUP")
+  oRequestedShipment.Add("blockInsightVisibility", "false")
+
+  Dim oShippingChargesPayment As New Scripting.Dictionary
+  oShippingChargesPayment.Add("paymentType", "SENDER")
+  oRequestedShipment.Add("shippingChargesPayment", oShippingChargesPayment)
+
+  Dim oLabelSpecification As New Scripting.Dictionary
+  oLabelSpecification.Add("imageType", "ZPLII")
+  oLabelSpecification.Add("labelStockType", "STOCK_4X6")
+  oRequestedShipment.Add("labelSpecification", oLabelSpecification)
+
+  Dim aRequestedPackageLineItems(0 To 0) As Scripting.Dictionary
+  Dim oRequestedPackageLineItem As New Scripting.Dictionary
+  Dim oWeight As New Scripting.Dictionary
+  oWeight.Add("units", "LB")
+  oWeight.Add("value", CStr(nWeight))
+  oRequestedPackageLineItem.Add("weight", oWeight)
+  Set aRequestedPackageLineItems(0) = oRequestedPackageLineItem
+  oRequestedShipment.Add("requestedPackageLineItems", aRequestedPackageLineItems)
+  oDoc.Add("requestedShipment", oRequestedShipment)
+
+  Dim oAccountNumber As New Scripting.Dictionary
+  oAccountNumber.Add("value", sAccount)
+  oDoc.Add("accountNumber", oAccountNumber)
+
+  Return vbsJson.Encode(oDoc)
 End Function
 </Code>

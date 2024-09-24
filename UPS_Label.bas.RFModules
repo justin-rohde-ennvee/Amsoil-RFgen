@@ -5,6 +5,23 @@ Option Explicit
 
 Public Const UPS_TEST_TRACKING_NUMBER_LABEL_SUCCESS = "1Z12345E8791315509"
 
+Public Function UPS_RestoreLabel(ByVal sLPID As String, sErrMsg As String) As Boolean
+  On Error GoTo OnError
+
+  Dim sSrc As String
+  Dim sDst As String
+
+  sSrc = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".gif"
+  sDst = SYS.EnvironmentProperty("LPSImagesFolder") & "UPS.gif"
+
+  FileCopy(sSrc, sDst)
+
+  Return True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = Err.Description
+End Function
+
 Private Function WriteImage(ByVal sBytes As String, ByVal sFilename As String, sErrMsg As String) As Boolean
   On Error GoTo OnError
 
@@ -54,11 +71,11 @@ Public Function UPS_PrintLabel( _
 
   Open sSrc For Output As #1
 
-  Print #1, "*Format," & "UPS.lwl"
+  Print #1, "*Format," & "UPS_Dynamic.lwl"
   Print #1, "*JOBNAME," & sJobName
   Print #1, "*QUANTITY," & 1
   Print #1, "*PRINTERNUMBER," & nPrinterNumber
-'  Print #1, "image_name, " & sLPID & ".gif"
+  Print #1, "IMAGE_NAME," & sLPID & ".gif"
   Print #1, "*PRINTLABEL"
 
   Close #1
@@ -76,9 +93,6 @@ Public Function UPS_SaveLabel(ByVal sLPID As String, ByVal sImageBytes As String
   Dim sImageFile As String
 
   sImageFile = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".gif"
-  WriteImage(sImageBytes, sImageFile, sErrMsg)
-
-  sImageFile = SYS.EnvironmentProperty("LPSImagesFolder") & "UPS.gif"
   If Not WriteImage(sImageBytes, sImageFile, sErrMsg) Then Exit Function
 
   Return sErrMsg = ""

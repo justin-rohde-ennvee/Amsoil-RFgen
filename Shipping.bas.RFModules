@@ -381,12 +381,24 @@ Public Function PickSlipNumberForCarton(ByVal sLPID As String)
   End If
 End Function
 
-Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, nSequenceNumber As Long, nCartonCount As Long) As Boolean
+Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, nSequenceNumber As Long, nCartonCount As Long, sErrMsg) As Boolean
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
   Dim i As Long
 
+  ' Get carton count from cartonization
+  sSQL = "select distinct R2RQSQ from F4611 where R2RQBT = " & sPSN
+  DB.Execute(sSQL, sCols, sRows)
+
+  nCartonCount = DB.Count(sRows)
+
+  If nCartonCount = 0 Then
+    sErrMsg = "Unable to determine carton count for pick slip #" & sPSN
+    Return False
+  End If
+
+  ' Get sequence # of this individual box
   sSQL = _
     " select LMLPID" & _
     " from F55101" & _
@@ -397,9 +409,8 @@ Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, n
     " order by LMLPID"
   DB.Execute(sSQL, sCols, sRows)
 
-  nCartonCount = DB.Count(sRows)
-
-  If nCartonCount = 0 Then
+  If DB.Count(sRows) = 0 Then
+    ' Use history instead
     sSQL = _
       " select LMLPID" & _
       " from F55101" & _
@@ -409,18 +420,17 @@ Public Function GetCartonSequence(ByVal sLPID As String, ByVal sPSN As String, n
       " group by LMLPID" & _
       " order by LMLPID"
     DB.Execute(sSQL, sCols, sRows)
-
-    nCartonCount = DB.Count(sRows)
   End If
 
-  GetCartonSequence = nCartonCount > 0
-
-  For i=1 To nCartonCount
+  For i=1 To DB.Count(sRows)
     If sLPID = Trim(DB.Extract(sCols, sRows, i, "LMLPID")) Then
       nSequenceNumber = i
-      Exit Function
+      Return True
     End If
   Next
+
+  sErrMsg = "Unable to determine sequence # for carton ID: " & sLPID
+  Return False
 End Function
 
 Public Function HasCarrierForPSN(ByVal sPSN As String, ByVal sCarrierName As String) As Boolean
@@ -521,5 +531,192 @@ Public Function UpdatePackageInformation( _
   End If
 
   UpdatePackageInformation = True
+End Function
+
+Private Function WriteImage(ByVal sBytes As String, ByVal sFilename As String, sErrMsg As String) As Boolean
+  On Error GoTo OnError
+
+  Dim xml As New MSXML2.DOMDocument60
+  Dim node As IXMLDOMElement
+  Dim outStream As New ADODB.Stream
+
+  WriteImage = False
+
+  Set node = xml.createElement("base64")
+  node.dataType = "bin.base64"
+  node.text = sBytes
+
+  outStream.Type = adTypeBinary
+  outStream.open
+  outStream.Write(node.nodeTypedValue)
+  outStream.SaveToFile(sFilename, adSaveCreateOverWrite)
+  outStream.Close
+
+  WriteImage = True
+
+OnError:
+  ' clean up
+  If Not outStream Is Nothing Then
+    If outStream.State = adStateOpen Then outStream.Close
+  End If
+  Set outStream = Nothing
+
+  If Err.Number <> 0 Then sErrMsg = "Unable to save label image: (" & Err.Number & ") " & Err.Description
+End Function
+
+Public Function SaveShippingLabel( _
+  ByVal sCarrier As String, _
+  ByVal sLPID As String, _
+  ByVal sExtension As String, _
+  ByVal sImageBytes As String, _
+  sErrMsg As String _
+) As Boolean
+  On Error GoTo OnError
+
+  Dim sImageFile As String
+
+  sImageFile = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & "." & sExtension
+  If Not WriteImage(sImageBytes, sImageFile, sErrMsg) Then Exit Function
+
+  Return True
+OnError:
+  If Err.Number <> 0 Then sErrMsg = Err.Description
+End Function
+
+Public Function WriteZPL( _
+  ByVal sLPID As String, _
+  ByVal nPrinterNumber As Long, _
+  ByVal sZPL As String, _
+  sErrMsg As String _
+) As Boolean
+  On Error GoTo OnError
+
+  Dim sJobName As String
+  Dim sFilename As String
+  Dim sSrc As String
+  Dim sDst As String
+
+  sJobName = sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
+
+  Open sSrc For Output As #1
+  Print #1, "*Format,Fedex.lwl"
+  Print #1, "*JOBNAME," & sJobName
+  Print #1, "*QUANTITY,1"
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+  Print #1, "ptfield_zpl," & sZPL
+  Print #1, "*PRINTLABEL"
+  Close #1
+
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
+  Return True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = Err.Description
+End Function
+
+Public Function PrintZPL( _
+  ByVal sLPID As String, _
+  ByVal sZPL As String, _
+  ByVal sPrinterName As String, _
+  sErrMsg As String _
+) As Boolean
+  On Error GoTo OnError
+
+  Dim objShell As Object
+  Dim sSrc As String
+  Dim sBat As String
+
+  Set objShell = CreateObject("Shell.Application")
+  sSrc = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".zpl"
+  sBat = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".bat"
+
+  Open sSrc For Output As #1
+'  Print #1, "~JA"
+  Print #1, sZPL
+  Close #1
+
+  Open sBat For Output As #1
+  Print #1, "net use lpt1 /delete"
+  Print #1, "net use lpt1 \\localhost\" & sPrinterName
+  Print #1, "copy " & sSrc & " lpt1"
+  Close #1
+
+  objShell.ShellExecute(sBat)
+  Set objShell = Nothing
+  PrintZPL = True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = "(" & Err.Number & ") " & Err.Description
+End Function
+
+Public Function ReprintZPL( _
+  ByVal sLPID As String, _
+  ByVal sPrinterName As String, _
+  sErrMsg As String _
+) As Boolean
+  On Error GoTo OnError
+
+  Dim objShell As Object
+  Dim sSrc As String
+  Dim sBat As String
+
+  Set objShell = CreateObject("Shell.Application")
+  sSrc = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".zpl"
+  sBat = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".bat"
+
+  Open sBat For Output As #1
+  Print #1, "net use lpt1 /delete"
+  Print #1, "net use lpt1 \\localhost\" & sPrinterName
+  Print #1, "copy " & sSrc & " lpt1"
+  Close #1
+
+  objShell.ShellExecute(sBat)
+  Set objShell = Nothing
+  ReprintZPL = True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = "(" & Err.Number & ") " & Err.Description
+End Function
+
+
+Public Function PrintShippingLabel( _
+  ByVal sCarrier As String, _
+  ByVal sLPID As String, _
+  ByVal nPrinterNumber As Long, _
+  sErrMsg As String _
+) As Boolean
+  Dim sJobName As String
+  Dim sUser As String
+  Dim sSrc As String
+  Dim sDst As String
+
+  On Error GoTo OnError
+
+  sJobName = sCarrier & "_" & sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
+  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
+  sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
+
+  Open sSrc For Output As #1
+
+  Print #1, "*Format," & sCarrier & "_Dynamic.lwl"
+  Print #1, "*JOBNAME," & sJobName
+  Print #1, "*QUANTITY," & 1
+  Print #1, "*PRINTERNUMBER," & nPrinterNumber
+  Print #1, "IMAGE_NAME," & sLPID & ".gif"
+  Print #1, "*PRINTLABEL"
+
+  Close #1
+
+  FileCopy(sSrc, sDst)
+  Kill(sSrc)
+
+  Return True
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = Err.Description
 End Function
 </Code>

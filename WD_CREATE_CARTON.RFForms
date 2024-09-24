@@ -88,7 +88,7 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
   gsLPID = CreateNewCarton(sEQTY)
 
   If App.MsgBox("Print label?", vbYesNo) = vbYes Then
-    If Not PrintCartonIDLabel(gsLPID, sEQTY, "0", 0, 0, 59, sErrMsg) Then
+    If Not PrintCartonIDLabel(gsLPID, sEQTY, "0", 0, 0, "", App.UserProperty("CartonPrinter"), sErrMsg) Then
       App.MsgBox(sErrMsg)
     End If
   End If

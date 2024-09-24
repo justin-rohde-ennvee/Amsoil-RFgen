@@ -121,7 +121,7 @@ Public Sub btnPrintIDLabel_Click()
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
-  Dim nWave As Long
+  Dim sWave As String
 
   txtPickPrinter_OnEnter(txtPickPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
@@ -130,11 +130,15 @@ Public Sub btnPrintIDLabel_Click()
 
   sLPID = App.GetValue("tmLPID")
   sPSN = PickSlipNumberForCarton(sLPID)
-  GetCartonSequence(sLPID, sPSN, nSequence, nCount)
+
+  If Not GetCartonSequence(sLPID, sPSN, nSequence, nCount, sErrMsg) Then
+    App.MsgBox(sErrMsg)
+    Exit Sub
+  End If
 
   sSQL = "select R2TRIP from WDJOBS where R2LPID = '%tmLPID'"
   DB.Execute(sSQL, sCols, sRows)
-  nWave = Val(DB.Extract(sCols, sRows, 1, "R2TRIP"))
+  sWave = CStr(DB.Extract(sCols, sRows, 1, "R2TRIP"))
 
   If Not PrintCartonIDLabel( _
     sLPID, _
@@ -142,7 +146,7 @@ Public Sub btnPrintIDLabel_Click()
     App.GetValue("tmDOCO"), _
     nSequence, _
     nCount, _
-    nWave, _
+    sWave, _
     txtPickPrinter.text, _
     sErrMsg _
   ) Then
@@ -184,24 +188,42 @@ Public Sub btnPrintShippingLabel_Click()
   On Error Resume Next
   Dim sErrMsg As String
   Dim bCancel As Boolean
+  Dim sLPID As String
+  Dim sCarrier As String
+  Dim sTrackingNumber As String
+  Dim sImageBytes As String
 
   txtPackPrinter_OnEnter(txtPackPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
 
   App.Balloon("Reprinting shipping label...", -1)
 
-'  UPS_RecoverLabel(App.GetValue("tmDL01"), sErrMsg)
-  If Not UPS_RestoreLabel(App.GetValue("tmLPID"), sErrMsg) Then
-    App.Balloon("", 0)
-    App.MsgBox(sErrMsg)
-    Exit Sub
-  End If
-  
-  If Not UPS_PrintLabel(App.GetValue("tmLPID"), Val(txtPackPrinter.text), sErrMsg) Then
-    App.Balloon("", 0)
-    App.MsgBox(sErrMsg)
-    Exit Sub
-  End If
+  sLPID = App.GetValue("tmLPID")
+  sTrackingNumber = App.GetValue("tmDL01")
+  sCarrier = App.GetValue("tmDL02")
+
+  Select Case sCarrier
+  Case "UPS"
+    sImageBytes = UPS_RecoverLabel(sTrackingNumber, sErrMsg)
+
+    If Not UPS_RestoreLabel(sLPID, sErrMsg) Then
+      App.Balloon("", 0)
+      App.MsgBox(sErrMsg)
+      Exit Sub
+    End If
+
+    If Not UPS_PrintLabel(App.GetValue("tmLPID"), Val(txtPackPrinter.text), sErrMsg) Then
+      App.Balloon("", 0)
+      App.MsgBox(sErrMsg)
+      Exit Sub
+    End If
+  Case "FedEx"
+    If Not ReprintZPL(App.GetValue("tmLPID"), Val(txtPackPrinter.text) & "-ZPL", sErrMsg) Then
+      App.Balloon("", 0)
+      App.MsgBox(sErrMsg)
+      Exit Sub
+    End If
+  End Select
 
   Wait(1)
   App.Balloon("", 0)
@@ -246,6 +268,7 @@ Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sCarrier As String
   Dim sTrackingNumber As String
   Dim nCost As Currency
+  Dim sAccountNumber As String
 
   Rsp = UCase(Trim(Rsp))
 
@@ -256,17 +279,19 @@ Public Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     Exit Sub
   End If
 
-  sSQL = "select CFDL01, CFDL02, CFECST from F554602 where CFCNID = '" & Rsp & "'"
+  sSQL = "select CFDL01, CFDL02, CFECST, CF55CARS from F554602 where CFCNID = '" & Rsp & "'"
   DB.Execute(sSQL, sCols, sRows)
 
   sCarrier = Trim(DB.Extract(sCols, sRows, 1, "CFDL02"))
   sTrackingNumber = Trim(DB.Extract(sCols, sRows, 1, "CFDL01"))
   nCost = ConvDecimalsFromSQL("ECST", DB.Extract(sCols, sRows, 1, "CFECST"))
+  sAccountNumber = DB.Extract(sCols, sRows, 1, "CF55CARS")
 
   App.SetValue("tmLPID", Rsp)
   App.SetValue("tmDL02", sCarrier)
   App.SetValue("tmDL01", sTrackingNumber)
   App.SetValue("tmCost", nCost)
+  App.SetValue("tm55CARS", sAccountNumber)
 
   txtPickPrinter.Visible = True
   txtPackPrinter.Visible = True
@@ -297,25 +322,26 @@ Public Sub btnVoid_Click()
   Dim bSuccess As Boolean
   Dim sErrMsg As String
   Dim nErrNo As Long
+  Dim sAccountNumber As String
 
   App.Balloon("Voiding shipment...", -1)
 
   sLPID = App.GetValue("tmLPID")
   sCarrier = App.GetValue("tmDL02")
   sTrackingNumber = App.GetValue("tmDL01")
+  sAccountNumber = App.GetValue("tm55CARS")
 
   Select Case sCarrier
   Case "UPS"
-    If UPS_BASE_URL = SYS.EnvironmentProperty("UPSBaseURL_TEST") Then sTrackingNumber = UPS_TEST_TRACKING_NUMBER_VOID_SUCCESS
+    If SYS.EnvironmentProperty("Environment") = "TEST" Then sTrackingNumber = UPS_TEST_TRACKING_NUMBER_VOID_SUCCESS
     bSuccess = UPS_VoidShipment(sTrackingNumber, sErrMsg)
   Case "FedEx"
-    bSuccess = FedEx_VoidShipment(sTrackingNumber, sErrMsg)
+    bSuccess = FedEx_VoidShipment(sTrackingNumber, sAccountNumber, sErrMsg)
   End Select
 
   If Not bSuccess Then
-    App.MsgBox("Failed to void shipment: " & sErrMsg)
     App.Balloon("", 0)
-    Exit Sub
+    If App.MsgBox("Failed to void shipment: " & sErrMsg, vbCustom, , "[Stop][Ignore]") = "Stop" Then Exit Sub
   End If
 
   nErrNo = DB.Execute("delete from F554602 where CFCNID = '" & sLPID & "'")
@@ -352,21 +378,4 @@ Public Sub txtPickPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
 
   App.UserProperty("CartonPrinter") = Rsp
 End Sub
-
-Public Function UPS_RestoreLabel(ByVal sLPID As String, sErrMsg As String) As Boolean
-  On Error GoTo OnError
-
-  Dim sSrc As String
-  Dim sDst As String
-
-  sSrc = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".gif"
-  sDst = SYS.EnvironmentProperty("LPSImagesFolder") & "UPS.gif"
-
-  FileCopy(sSrc, sDst)
-
-  UPS_RestoreLabel = True
-
-OnError:
-  If Err.Number <> 0 Then sErrMsg = Err.Description
-End Function
 </Code>

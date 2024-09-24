@@ -15,9 +15,10 @@ Public Function FedEx_GetToken(sToken As String, sErrMsg As String) As Boolean
 
   sClientID = SYS.EnvironmentProperty("FedExClientID")
   sClientSecret = SYS.EnvironmentProperty("FedExClientSecret")
-  sBody = "grant_type=client_credentials" & _
-    "&client_id=l784809b707ab84254a3f354c9e86de3bc" & _
-    "&client_secret=d9e62fb93361482ca66a7c4dd0b28e29"
+  sBody = _
+    "grant_type=client_credentials" & _
+    "&client_id=" & sClientID & _
+    "&client_secret=" & sClientSecret
 
   oHttp.open("POST", FEDEX_BASE_URL & "/oauth/token")
   oHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")

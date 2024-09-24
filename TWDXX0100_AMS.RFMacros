@@ -102,7 +102,7 @@ Private Function Transaction(ByRef tmPlant As Variant, ByRef tmRepl As Variant, 
   ' Skip execution if locked
   sUserId = SYS.GetProperty("WD", tmPlant)
   If sUserId <> "" Then
-    tmERRTEXT = "Process is already running for plant " & tmPlant & " (" & sUserId & ")"
+    tmERRTEXT = "Process is already running for plant " & Trim(tmPlant) & " (" & sUserId & ")"
     Debug.Print(tmERRTEXT)
     GoTo ExitMe
   End If
@@ -117,7 +117,7 @@ Private Function Transaction(ByRef tmPlant As Variant, ByRef tmRepl As Variant, 
 
   ' Process Putaways (TYFL = 1)
   If mbPut Then
-    DB.Execute("delete from WDJOBS where R2TYFL = '1'")
+    DB.Execute("delete from WDJOBS where R2TYFL = '1' and R2MCU in (" & msMCU & ")")
     If Not Putaway Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       GoTo ExitMe
@@ -126,7 +126,7 @@ Private Function Transaction(ByRef tmPlant As Variant, ByRef tmRepl As Variant, 
 
   ' Process Picks (TYFL = 2)
   If mbPick Then
-    DB.Execute("delete from WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322', '323')")
+    DB.Execute("delete from WDJOBS where R2TYFL = '2' and R2PSTB not in ('321', '322', '323') and R2MCU in (" & msMCU & ")")
     If Not Pick Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       GoTo ExitMe
@@ -135,7 +135,7 @@ Private Function Transaction(ByRef tmPlant As Variant, ByRef tmRepl As Variant, 
 
   ' Process Replenishments (TYFL = 3)
   If mbRepl Then
-    DB.Execute("delete from WDJOBS where R2TYFL = '3'")
+    DB.Execute("delete from WDJOBS where R2TYFL = '3' and R2MCU in (" & msMCU & ")")
     If Not Replenish Then
       App.LogError(cTNID, GetMsg(221) & msErrDesc)
       GoTo ExitMe
@@ -1016,8 +1016,9 @@ Private Function Pick As Boolean
     sRQBT = Trim(DB.Extract(sCols, sRows, iCnt, "R2RQBT"))
     sRQSQ = Trim(DB.Extract(sCols, sRows, iCnt, "R2RQSQ"))
     sSGSQ = Trim(DB.Extract(sCols, sRows, iCnt, "R2SGSQ"))
+    sLITM = Trim(DB.Extract(sCols, sRows, iCnt, "SDLITM"))
 
-    LogText("WD", "Pick", "Demand RQBT: " & sRQBT & ", RQSQ: " & sRQSQ & ", SGSQ: " & sSGSQ)
+    LogText("WD", "Pick", "Demand RQBT: " & sRQBT & ", RQSQ: " & sRQSQ & ", SGSQ: " & sSGSQ & ", LITM: " & sLITM)
 
     If PickJobExists(sRQBT, sSGSQ) Then
       LogText("WD", "Pick", "Skipping due to existing pick job.")
@@ -1029,7 +1030,6 @@ Private Function Pick As Boolean
     sDCTO = DB.Extract(sCols, sRows, iCnt, "SDDCTO")
     sLNID = DB.Extract(sCols, sRows, iCnt, "SDLNID")
     sITM = DB.Extract(sCols, sRows, iCnt, "SDITM")
-    sLITM = Trim(DB.Extract(sCols, sRows, iCnt, "SDLITM"))
     sRCDJ = ConvDatetoJDE(Format(Date, "mm/dd/yy"))
     sTRDJ = "0"
     sDRQJ = DB.Extract(sCols, sRows, iCnt, "SDDRQJ")
@@ -1063,7 +1063,7 @@ Private Function Pick As Boolean
 
     ' Find locations to pick from
     Do While nQtyOpenEA > 0 ' nQtyOpen > 0
-      LogText("WD", "Pick", "Demand item: " & sLITM & ", Qty open: " & nQtyOpenEA)
+      LogText("WD", "Pick", "Demand qty open: " & nQtyOpenEA)
 
       sSql = _
         " select LILOCN, LILOTN, LIPQOH" & _

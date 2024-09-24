@@ -19,9 +19,7 @@ Public Function UPS_VoidShipment(ByVal sTrackingNumber As String, sErrMsg As Str
   Set oResponseJson = jsonParser.Decode(sResponseText)
   If Not UPS_ParseVoidResponse(oResponseJson, sCode, sDescription, sErrMsg) Then Exit Function
 
-  If sCode = "1" Then
-    Return True
-  End If
+  If sCode = "1" Then Return True
 
   sErrMsg = sDescription
   Return False

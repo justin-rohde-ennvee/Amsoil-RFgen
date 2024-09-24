@@ -3,8 +3,116 @@
 Option Explicit
 '#Language "WWB-COM"
 
-Public Function FedEx_VoidShipment(ByVal sLPID As String, sErrMsg As String) As Boolean
-  sErrMsg = "Not yet implemented."
+Public Function FedEx_VoidShipment(ByVal sTrackingNumber As String, ByVal sAccountNumber As String, sErrMsg As String) As Boolean
+  Dim sToken As String
+  Dim sResponseText As String
+  Dim bVoidSuccess As Boolean
+
+  If Not FedEx_GetToken(sToken, sErrMsg) Then Exit Function
+  If Not FedEx_SendVoidRequest(sToken, sTrackingNumber, sAccountNumber, sResponseText, sErrMsg) Then Exit Function
+  If Not FedEx_ParseVoidResponse(sResponseText, bVoidSuccess, sErrMsg) Then Exit Function
+
+  Return bVoidSuccess
+End Function
+
+Private Function FedEx_ParseHttpError( _
+  ByVal sResponseText As String, _
+  sErrMsg As String _
+) As Boolean
+  Dim jsonParser As New vbsJson
+  Dim oResponse As Scripting.Dictionary
+  Dim oErrors As Scripting.Dictionary
+
+  Set oResponse = jsonParser.Decode(sResponseText)
+
+  If oResponse.Exists("errors") Then
+    If TypeName(oResponse("errors")) = "IDictionary" Then
+      sErrMsg = oResponse("errors")("message")
+    Else
+      sErrMsg = oResponse("errors")(0)("message")
+    End If
+
+    Return True
+  End If
+
   Return False
+End Function
+
+Private Function FedEx_SendVoidRequest( _
+  ByVal sToken As String, _
+  ByVal sTrackingNumber As String, _
+  ByVal sAccountNumber As String, _
+  sResponseText As String, _
+  sErrMsg As String _
+) As Boolean
+  Dim sURL As String
+  Dim oHttp As New XMLHTTP60
+  Dim sBody As String
+
+  sURL = FEDEX_BASE_URL & "/ship/v1/shipments/cancel"
+  sBody = FedEx_CreateVoidJson(sTrackingNumber, sAccountNumber)
+
+  oHttp.open("PUT", sURL, False)
+  oHttp.setRequestHeader("Content-Type", "application/json")
+  oHttp.setRequestHeader("X-locale", "en_US")
+  oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
+  oHttp.Send(sBody)
+
+  If oHttp.status <> 200 Then
+    If FedEx_ParseHttpError(oHttp.responseText, sErrMsg) Then Return False
+
+    sErrMsg = "(" & oHttp.status & ") " & oHttp.statusText
+    Return False
+  End If
+
+  sResponseText = oHttp.responseText
+  Return True
+End Function
+
+Private Function FedEx_ParseVoidResponse( _
+  ByVal sResponseText As String, _
+  bVoidSuccess As Boolean, _
+  sErrMsg As String _
+) As Boolean
+  Dim jsonParser As New vbsJson
+  Dim oResponse As Scripting.Dictionary
+  Dim oOutput As Scripting.Dictionary
+  Dim oAlert As Scripting.Dictionary
+
+  Set oResponse = jsonParser.Decode(sResponseText)
+
+  If Not oResponse.Exists("output") Then
+    sErrMsg = "Missing response element: output"
+    Return False
+  End If
+
+  Set oOutput = oResponse("output")
+  bVoidSuccess = oOutput.Item("cancelledShipment")
+
+  If Not bVoidSuccess Then
+    If oOutput.Exists("alerts") Then
+      Set oAlert = oOutput.Item("alerts")(0)
+      sErrMsg = "(" & oAlert.Item("code") & ") " & oAlert.Item("message")
+    End If
+  End If
+
+  Return bVoidSuccess
+End Function
+
+Private Function FedEx_CreateVoidJson(ByVal sTrackingNumber As String, ByVal sAccountNumber As String) As String
+  Dim sBody As String
+  Dim oDoc As New Scripting.Dictionary
+  Dim vbsJson As New vbsJson
+
+  Dim oAccountNumber As New Scripting.Dictionary
+  oAccountNumber.Add("value", sAccountNumber)
+  oDoc.Add("accountNumber", oAccountNumber)
+
+  oDoc.Add("emailShipment", "false")
+  oDoc.Add("senderCountryCode", "US")
+  oDoc.Add("deletionControl", "DELETE_ALL_PACKAGES")
+  oDoc.Add("trackingNumber", sTrackingNumber)
+
+  Return vbsJson.Encode(oDoc)
 End Function
 </Code>

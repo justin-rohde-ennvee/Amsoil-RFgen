@@ -72,4 +72,32 @@ Public Function str_to_base64(sSource)
     str_to_base64 = btoa(str_to_utf8(sSource))
 End Function
 
+Public Function DecodeBase64(ByVal sBase64 As String) As String
+  On Error GoTo OnError
+
+  Dim xml As New MSXML2.DOMDocument60
+  Dim node As IXMLDOMElement
+  Dim outStream As New ADODB.Stream
+
+  Set node = xml.createElement("base64")
+  node.dataType = "bin.base64"
+  node.text = sBase64
+
+  With outStream
+    .Type = adTypeBinary
+    .open
+    .Write(node.nodeTypedValue)
+    .Position = 0
+    .Type = adTypeText
+    .Charset = "utf-8"
+  End With
+  
+  DecodeBase64 = outStream.ReadText
+
+  outStream.Close
+  Exit Function
+
+OnError:
+  Debug.Print(Err.Number & " - " & Err.Description)
+End Function
 </Code>
