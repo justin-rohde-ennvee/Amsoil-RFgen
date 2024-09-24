@@ -1042,6 +1042,17 @@ Private Sub ListItemsInCarton(ByVal sLPID As String)
     " and SDMCU = '%tmMCU'"
   DB.Execute(sSQL, sCols, sRows)
 
+  If DB.Count(sRows) = 0 Then
+    sSQL = _
+    " select *" & _
+    " from F55102" & _
+    " inner join F55101 on LMLPID = LDLPID" & _
+    " left join F42119 on SDMCU = LMMCU and SDDOCO = LDRDOCO and SDLNID = LDRLLN" & _
+    " where LMLPID = '" & sLPID & "'" & _
+    " and SDMCU = '%tmMCU'"
+    DB.Execute(sSQL, sCols, sRows)
+  End If
+
   App.SetValue("tmLPID", sLPID)
   lblLPDesc.Caption = Trim(DB.Extract(sCols, sRows, 1, "LMDSC1"))
 
