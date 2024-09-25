@@ -1074,8 +1074,8 @@ Private Function Pick As Boolean
         " and LILOTS in(' ', '')" & _
         " and LIPQOH >= " & ConvDecimalsToSQL("PQOH", nQtyOpenEA)
 
-      ' TODO: if case qty is ordered, then skip to next full case
-      ' TODO: if qty < open qty and UOM = EA, still want to look for open case with some qty
+      ' Future: if case qty is ordered, then skip to next full case?
+      ' Future: if qty < open qty and UOM = EA, still want to look for open case with some qty?
 
       If sSKLocn <> "" Then
         sSql = sSql & " and LILOCN not in(" & sSKLocn & ")"
@@ -1120,15 +1120,6 @@ Private Function Pick As Boolean
         If Len(Trim(sTLOC)) = 0 Then sTLOC = " "
       End If
 
-      ' Create pick request
-'      sSql = "select count(*) from WDJOBS" & _
-'             " where R2TYFL = '" & sTYFL & "' and R2MCU = '" & sMCU & "' and R2ITM = " & sITM & _
-'             " and R2FLOT = '" & sFLOT & "' and R2FLOC = '" & sFLOC & "' and R2TLOT = '" & sTLOT & "'" & _
-'             " and R2TLOC = '" & sTLOC & "' and R2PSTB = '320'"
-'      DB.Execute(sSql, sColsJB, sRowsJB)
-
-' FIXED: Put sSGSQ into R2NLIN and will use that for duplicate check
-
       If Val(sRowsJB) = 0 Then
         sSql = "insert into WDJOBS" & _
                " (R2TYFL, R2SGBT, R2SGSQ, R2MCU, R2ITM, R2LITM, R2UOM1, R2TQTY, R2FLOC," & _
@@ -1164,6 +1155,8 @@ Private Function Pick As Boolean
                "'" & sPRIO & "')"
         nErrNo = DB.Execute(sSql)
 
+        LogText("WD", "Pick", "WDJOBS insert: (" & nErrNo & ") " & sSql)
+
         If nErrNo <> 0 Then
           App.LogError(cTNID, GetMsg(45))
           Exit Function
@@ -1176,7 +1169,7 @@ Private Function Pick As Boolean
       If iFind = 0 Then
         If Len(sSKLocn) > 0 Then sSKLocn = sSKLocn & ","
         sSKLocn = sSKLocn & "'" & sFLOC & "',"
-        sSKLocn = Left(sSKLocn, Len(sSKLocn) -1)     ' cut last ","
+        sSKLocn = Left(sSKLocn, Len(sSKLocn) -1)
       End If
 
       nQtyOpenEA = nQtyOpenEA - nFQTYEA

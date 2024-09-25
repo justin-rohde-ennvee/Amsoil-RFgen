@@ -540,10 +540,14 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
   App.Balloon("Processing...", -1)
 
+  DumpWave(App.GetValue("tmTRIP"))
+
   If Not AdvanceJobStatus("321", "322", bSplit, sErrMsg) Then
     App.MsgBox(sErrMsg)
     Exit Sub
   End If
+
+  DumpWave(App.GetValue("tmTRIP"))
 
   If Val(App.GetValue("tmQTY")) > 0 Then
     App.Balloon("Adding item to carton...", -1)
@@ -2183,4 +2187,61 @@ Private Function NextNumber(ByVal sSystemCode As Long, ByVal nIndex As Long) As 
 
   NextNumber = emX0010GetNextNumber.Param("NextNumber001")
 End Function
+
+Private Sub DumpWave(ByVal sWave As String)
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sDump As String
+  Dim i As Long
+
+  sSQL = "select * from WDJOBS where R2TRIP = " & sWave
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i = 1 To DB.Count(sRows)
+    sDump &= _
+      vbNewLine & _
+      DB.Extract(sCols, sRows, i, "R2TYFL") & "," & _
+      DB.Extract(sCols, sRows, i, "R2SGBT") & "," & _
+      DB.Extract(sCols, sRows, i, "R2SGSQ") & "," & _
+      DB.Extract(sCols, sRows, i, "R2PTSK") & "," & _
+      DB.Extract(sCols, sRows, i, "R2TRIP") & "," & _
+      DB.Extract(sCols, sRows, i, "R2PSTB") & "," & _
+      DB.Extract(sCols, sRows, i, "R2PRITY") & "," & _
+      DB.Extract(sCols, sRows, i, "R2MCU") & "," & _
+      DB.Extract(sCols, sRows, i, "R2ITM") & "," & _
+      DB.Extract(sCols, sRows, i, "R2LITM") & "," & _
+      DB.Extract(sCols, sRows, i, "R2UOM1") & "," & _
+      DB.Extract(sCols, sRows, i, "R2TQTY") & "," & _
+      DB.Extract(sCols, sRows, i, "R2FLOC") & "," & _
+      DB.Extract(sCols, sRows, i, "R2FLOT") & "," & _
+      DB.Extract(sCols, sRows, i, "R2LOTS") & "," & _
+      DB.Extract(sCols, sRows, i, "R2TLOC") & "," & _
+      DB.Extract(sCols, sRows, i, "R2TLOT") & "," & _
+      DB.Extract(sCols, sRows, i, "R2DSC1") & "," & _
+      DB.Extract(sCols, sRows, i, "R2DSC2") & "," & _
+      DB.Extract(sCols, sRows, i, "R2DOCO") & "," & _
+      DB.Extract(sCols, sRows, i, "R2DCTO") & "," & _
+      DB.Extract(sCols, sRows, i, "R2LNID") & "," & _
+      DB.Extract(sCols, sRows, i, "R2NLIN") & "," & _
+      DB.Extract(sCols, sRows, i, "R2RCDJ") & "," & _
+      DB.Extract(sCols, sRows, i, "R2TRDJ") & "," & _
+      DB.Extract(sCols, sRows, i, "R2DRQJ") & "," & _
+      DB.Extract(sCols, sRows, i, "R2PZON") & "," & _
+      DB.Extract(sCols, sRows, i, "R2KZON") & "," & _
+      DB.Extract(sCols, sRows, i, "R2ZONR") & "," & _
+      DB.Extract(sCols, sRows, i, "R2LPID") & "," & _
+      DB.Extract(sCols, sRows, i, "R2URCD") & "," & _
+      DB.Extract(sCols, sRows, i, "R2URDT") & "," & _
+      DB.Extract(sCols, sRows, i, "R2URAT") & "," & _
+      DB.Extract(sCols, sRows, i, "R2URAB") & "," & _
+      DB.Extract(sCols, sRows, i, "R2URRF") & "," & _
+      DB.Extract(sCols, sRows, i, "R2USER") & "," & _
+      DB.Extract(sCols, sRows, i, "R2PID") & "," & _
+      DB.Extract(sCols, sRows, i, "R2UPMJ") & "," & _
+      DB.Extract(sCols, sRows, i, "R2TDAY") & ","
+  Next
+
+  LogText("WD_PICK", "DumpWave", sDump)
+End Sub
 </Code>
