@@ -190,53 +190,20 @@ Private Sub Form_Load()
   moProcOpt.ProgramId = msPgm
   moProcOpt.Version = msVersion
 
-'  msStatusF = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-'  Debug.Print("msStatusF old: " & msStatusF)
-
   msStatusF = moProcOpt.Value("StatusNextFrom")
-'  Debug.Print("msStatusF new: " & msStatusF)
-
-'  msStatusT = GetProcOpt(msPgm,msVersion,"1;2")
-'  Debug.Print("msStatusT old: " & msStatusT)
-
   msStatusT = moProcOpt.Value("StatusNextThru")
-'  Debug.Print("msStatusT new: " & msStatusT)
-
-'  msCheckAvailability = GetProcOpt(msPgm,msVersion,"4;1")
-'  Debug.Print("msCheckAvailability old: " & msCheckAvailability)
-
   msCheckAvailability = moProcOpt.Value("CheckAvailability")
-'  Debug.Print("msCheckAvailability new: " & msCheckAvailability)
-
-  msPreventNegativeShip = " " 'GetProcOpt(msPgm,msVersion,"4;2")
-'  Debug.Print("msPreventNegativeShip old: " & msPreventNegativeShip)
-'
-'  msPreventNegativeShip = moProcOpt.Value("PreventNegativeShip")
-'  Debug.Print("msPreventNegativeShip new: " & msPreventNegativeShip)
-
-'  msPreventOvership = GetProcOpt(msPgm,msVersion,"4;3")
-'  Debug.Print("msPreventOvership old: " & msPreventOvership)
-
+  msPreventNegativeShip = " "
   msPreventOvership = moProcOpt.Value("PreventOvership")
-'  Debug.Print("msPreventOvership new: " & msPreventOvership)
-
-'  msBOorCANRemains = GetProcOpt(msPgm,msVersion,"5;3")
-'  Debug.Print("msBOorCANRemains old: " & msBOorCANRemains)
-
   msBOorCANRemains = moProcOpt.Value("BOorCANRemains")
-'  Debug.Print("msBOorCANRemains new: " & msBOorCANRemains)
 
   msRelInv = True
-'  If GetProcOpt(msPgm,msVersion,"5;4") = "1" Then msRelInv = False
-'  If moProcOpt.Value("AllowReliefofInventory") = "1" Then msRelInv = False
-
-'  mbAddFr = True
-'  If GetProcOpt(msPgm,msVersion,"3;1") <> "1" Then mbAddFr = False
-'  Debug.Print("mbAddFr old: " & mbAddFr)
 
   mbAddFr = True
-  If moProcOpt.Value("AllowAddLineEntry") <> "1" Then mbAddFr = False
-'  Debug.Print("mbAddFr new: " & mbAddFr)
+  If moProcOpt.value("AllowAddLineEntry") <> "1" Then mbAddFr = False
+
+  Dim sR42565Version As String
+  sR42565Version = moProcOpt.value("R42565Vers")
 
   btnExecute.Visible = False
 End Sub
@@ -311,29 +278,12 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   sSQL = "select * from  F4211" & _
          " where SDDOCO = %tmDOCO  and SDDCTO = '%tmDCTO' and SDSOQS <> 0 " & _
          " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU'"
-  '
-'  nLNID = Val(App.GetValue("tmLNID"))
-'
-'  If (nLNID <> 0) Then
-'    sSQL = sSQL & " and SDLNID = " & ConvDecimalsToSQL("LNID", nLNID)
-'  End If
-  '
   DB.Execute(sSQL,sCols,sRows)
 
   If (Len(sRows) = 0) Then
     App.MsgBox(GetMsg(101))
     Exit Sub
   End If
-  '
-  '************************************************
-  'WLG03 START - CODE TO SET RECORD RESERVATION
-  '************************************************
-  ' Proceed JDE Record Lock
-  'msResKey = Trim(App.GetValue("tmDOCO")) & Trim(App.GetValue("tmDCTO")) & Trim(App.GetValue("tmCO"))
-  'F00095ReserveObject("F4211",msResKey,msAppl,msResKeySav)
-  '************************************************
-  'WLG03 END
-  '************************************************
 
 ' Build Datastructure from Listbox (List.Sorted by Line)
   msValCache = ""                 ' clear datastructure
@@ -505,8 +455,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
       End If
     End If
 
-
-    '
   ' Offline inventory
     If gbOfflineEnabled And msRelInv Then
       If Not WriteOI(App.GetValue("tmCO"),App.GetValue("tmMCU"),App.GetValue("tmLITM"),App.GetValue("tmITM"),"",App.GetValue("SelUOM"),"-" & CStr(App.GetValue("tmQTY")),App.GetValue("tmDOCO"),App.GetValue("tmDCTO"),App.GetValue("SelLNID"),emProc.QueueName,emProc.QueueSeqNo, App.GetValue("tmLOCN"),App.GetValue("tmLOTN")," ") Then
@@ -539,8 +487,6 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   txtDCTO.List.Clear
   txtDOCO.Visible = False
   txtDCTO.Visible = False
-
-
 End Sub
 
 Private Sub Form_Unload()
@@ -615,6 +561,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   '
   sSQL = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDDOCO = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' " & _
+         " and SDDCTO <> 'ST'" & _
          " order by SDDOCO, SDDCTO "
   '
   DB.Execute(sSQL, sCols, sRows)
@@ -627,7 +574,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   ' If Ordernumber is unique default DocType
   If (DB.Count(sRows) = 1) Then
-    txtDCTO.Text = DB.Extract(sCols,sRows,1,"SDDCTO")
+    txtDCTO.text = DB.Extract(sCols,sRows,1,"SDDCTO")
   End If
 
 'Select count(*) from F4211 where SDDOCO = [order_input] And sdnxtr < processing Option status And sdnxtr <> ‘540’ And sdlnty = “S”
@@ -636,6 +583,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   sSQL = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDDOCO = " & Rsp & " and SDNXTR < '" & msStatusF & "' and SDMCU = '%tmMCU' " & _
          " and SDNXTR <> '540' and SDLNTY = 'S'" & _
+         " and SDDCTO <> 'ST'" & _
          " order by SDDOCO, SDDCTO "
   '
   DB.Execute(sSQL, sCols, sRows)
@@ -648,6 +596,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   sSQL = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDDOCO = " & Rsp & " and SDNXTR <= '540' and SDLTTR = '904' and SDMCU = '%tmMCU' " & _
+         " and SDDCTO <> 'ST'" & _
          " order by SDDOCO, SDDCTO "
 
   DB.Execute(sSQL, sCols, sRows)
@@ -675,8 +624,8 @@ Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   '
   sMCU = App.GetValue("tmMCU")
   '
-  Cancel = Not Search_F4211_DOCO(Rsp, sMCU, msStatusF, msStatusT, sDocType)
-  If Not Cancel Then txtDCTO.Text = sDocType
+  Cancel = Not Search_F4211_DOCO(Rsp, sMCU, msStatusF, msStatusT, "", "ST")
+  If Not Cancel Then txtDCTO.text = sDocType
 End Sub
 
 Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
@@ -1020,7 +969,6 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   '
   ' Exceeds Order Qty?
-'  If GetProcOpt(msPgm,msVersion,"4;3") = "1" Then
   If msPreventOvership = "1" Then
     If (nQty > mnMaxQty) Then
       App.MsgBox(GetMsg(36))
@@ -1033,7 +981,6 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   '
   ' Exceeds QOH?
-'  If GetProcOpt(msPgm,msVersion,"4;2") = "1" Then
   If msPreventNegativeShip = "1" Then
     If (nQty > nOnHand)  Then
       App.MsgBox(GetMsg(35))
@@ -1043,7 +990,6 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
   '
   ' Exceeds Avail?
-'  If GetProcOpt(msPgm,msVersion,"4;1") = "1" Then
   If msCheckAvailability = "1" Then
     If App.GetValue("SelCOMM") <> "C" And  App.GetValue("SelCOMM") <> "H" Then  'hardcommitted before, so ignore (SDCOMM)
       If (nQty > nAvail)  Then
@@ -1056,7 +1002,6 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   '
   ' Splitlines allowed when remaining rest?
   If nQty < mnMaxQty  Then
-'    If GetProcOpt(msPgm,msVersion,"5;3") = "1" Then
     If msBOorCANRemains = "1" Then
       vRsp = App.MsgBox(GetMsg(191), vbYesNo, vbNo)
       If vRsp = vbNo Then Exit Sub

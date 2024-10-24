@@ -1211,7 +1211,7 @@ End Function
 '
 ' Search Sales Orders by DCCO
 '
-Public Function Search_F4211_DOCO(ByRef Rsp As String, ByVal sMCU As String, ByVal vStatusF As Variant, ByVal vStatusT As Variant, ByRef sDocType As String) As Boolean
+Public Function Search_F4211_DOCO(ByRef Rsp As String, ByVal sMCU As String, ByVal vStatusF As Variant, ByVal vStatusT As Variant, Optional ByRef sDocType As String = "", Optional ByRef sExcludeDocType As String = "") As Boolean
   On Error Resume Next
   '
   Dim sSql   As String
@@ -1220,9 +1220,13 @@ Public Function Search_F4211_DOCO(ByRef Rsp As String, ByVal sMCU As String, ByV
   '
   sSql = "select SDDOCO, SDDCTO, ABALPH, SDVR01 from  F4211" & _
          " inner join  F0101 on SDAN8 = ABAN8" & _
-         " where SDNXTR between '" & vStatusF & "' and '" & vStatusT & "' and SDMCU = '" & sMCU & "'" & _
-         " group by SDDOCO, SDDCTO, ABALPH,SDVR01" & _
-         " order by SDDOCO, SDDCTO "
+         " where SDNXTR between '" & vStatusF & "' and '" & vStatusT & "' and SDMCU = '" & sMCU & "'"
+
+  If sDocType <> "" Then sSql &= " and SDDCTO = '" & sDocType & "'"
+  If sExcludeDocType <> "" Then sSql &= " and SDDCTO <> '" & sExcludeDocType & "'"
+
+  sSql &= " group by SDDOCO, SDDCTO, ABALPH, SDVR01" & _
+          " order by SDDOCO, SDDCTO "
   '
   oList.MaxRows = giMaxSearchRows
   oList.ShowEmptyList = True

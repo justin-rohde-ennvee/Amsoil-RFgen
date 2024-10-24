@@ -277,7 +277,7 @@ Private Sub Form_Load()
   msStatusF = moProcOpt.Value("StatusNextFrom")
   msStatusT = moProcOpt.Value("StatusNextThru")
   msCheckAvailability = moProcOpt.Value("CheckAvailability")
-  msPreventNegativeShip = "1" 'moProcOpt.Value("PreventNegativeShip")
+  msPreventNegativeShip = "1"
   msRelInv = True
 
   mbAddFr = True
@@ -567,8 +567,6 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sCols As String
   Dim sRows As String
   Dim bSalesOrder As Boolean
-
-  Dim nTick As Long
   '
   If (Len(Rsp)=0) Then Exit Sub
 
@@ -584,6 +582,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   sSql = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDDOCO = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K' " & _
+         " and SDDCTO <> 'ST'" & _
          " order by SDDOCO, SDDCTO "
   '
   DB.Execute(sSql, sCols, sRows)
@@ -592,6 +591,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Else
     sSql = "select DISTINCT SDDOCO, SDDCTO from  F4211" & _
          " where SDURAB = " & Rsp & " and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDMCU = '%tmMCU' and SDCOMM <> 'K' " & _
+         " and SDDCTO <> 'ST'" & _
          " order by SDDOCO, SDDCTO "
     '
     DB.Execute(sSql, sCols, sRows)
@@ -611,7 +611,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   ' If Ordernumber is unique default DocType
   If (bSalesOrder) Then
     txtDCTO.Visible = True
-    txtDCTO.Text = DB.Extract(sCols,sRows,1,"SDDCTO")
+    txtDCTO.text = DB.Extract(sCols,sRows,1,"SDDCTO")
     txtDCTO.DisplayOnly = True
   End If
 
@@ -625,7 +625,9 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   sSql = "Select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM from  F4211 " & _
        " where SDMCU = '" & App.GetValue("tmMCU") & "' and ( SDDOCO = " & App.GetValue("tmDOCO") & " or SDURAB = " & App.GetValue("tmDOCO") & ") " & _
-       " and SDSOQS <> 0 and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDCOMM <> 'K' group by SDLITM, SDUOM order by SDLITM"
+       " and SDSOQS <> 0 and SDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and SDCOMM <> 'K'" & _
+       " and SDDCTO <> 'ST'" & _
+       " group by SDLITM, SDUOM order by SDLITM"
   DB.Execute(sSql, sCols, sRows)
   lblItemDesc.Caption = "Open SO Lines: " & DB.Count(sRows)
   '
@@ -641,8 +643,8 @@ Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   '
   sMCU = App.GetValue("tmMCU")
   '
-  Cancel = Not Search_F4211_DOCO(Rsp, sMCU, msStatusF, msStatusT, sDocType)
-  If Not Cancel Then txtDCTO.Text = sDocType
+  Cancel = Not Search_F4211_DOCO(Rsp, sMCU, msStatusF, msStatusT, "", "ST")
+  If Not Cancel Then txtDCTO.text = sDocType
 End Sub
 
 Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
@@ -659,8 +661,6 @@ Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sCols As String
   Dim sRows As String
   Dim sHold As String
-
-  Dim nTick As Long
   '
   If (Len(Rsp)=0) Then Exit Sub
   Cancel = True
@@ -702,7 +702,7 @@ Private Sub txtDCTO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     msResKey = Trim(App.GetValue("tmDOCO")) & Trim(App.GetValue("tmDCTO")) & Trim(App.GetValue("tmCO"))
     '
     If Not F00095ReserveObject("F4211",msResKey,msAppl,msResKeySav) Then
-      txtDOCO.Text = ""
+      txtDOCO.text = ""
       App.SetFocus("txtDOCO")
       Exit Sub
     End If
@@ -829,9 +829,6 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
   Dim nCartonMax As Long
 
-  Dim nTick As Long
-
-
   Cancel = True
   '
   If (Len(Rsp) = 0) Then Exit Sub
@@ -850,6 +847,7 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   txtLOTN.DisplayOnly = False
   '
   Rsp = Trim(UCase(Rsp))
+
   '
   ' Validate Item Master / get Item Branch
   If Validate_Item(App.GetValue("tmMCU"), Rsp, sITM, sLITM, sAITM, sDSC1, sUOM, nType, mbHasLots, mbSerialized, False, True) Then
@@ -880,7 +878,6 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     App.SetValue("tmDCTO", DB.Extract(sCols, sRows, 1, "SDDCTO"))
     sDCTO = App.GetValue("tmDCTO")
 
-
     If (Len(sRows) = 0) Then
       App.MsgBox(GetMsg(101))
       Exit Sub
@@ -908,7 +905,6 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       End If
       mnTotalPick = nAddToTotalPick + mnTotalPick
     Next
-
 
     sSQL2 = "select * from  F4211" & _
              " where ( SDDOCO = %tmDOCO or SDURAB = %tmDOCO ) and SDLITM = '" & Rsp & "' and SDSOQS <> 0 and SDUOM = '" & sUOM & "'" & _
@@ -1013,7 +1009,6 @@ Private Sub txtLITM_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       Cancel = True
       Exit Sub
     End If
-
 
 
     PlateStart:
@@ -3263,11 +3258,6 @@ Private Sub txtLITM_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   Dim sValue   As String
   Dim oList    As New SearchList
 
-  Dim nTick As Long
-  Dim nTick2 As Long
-  Dim nTick3 As Long
-
-
   sSql = _
     " select SDLITM, sum(SDSOQS) as SDSOQS, SDUOM" & _
     " from F4211 " & _
@@ -3310,9 +3300,6 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sRows   As String
   Dim iCnt    As Integer
   Dim vArray  As Variant
-
-  Dim nTick As Long
-
   '
   If (Len(Rsp)=0) Then Exit Sub
 

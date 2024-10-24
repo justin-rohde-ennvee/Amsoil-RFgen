@@ -524,6 +524,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   '
   sSQL = "select DISTINCT PDDOCO, PDDCTO, PDRORN from  F4311" & _
          " where PDDOCO = " & Rsp & " and PDNXTR between '" & msStatusF & "' and '" & msStatusT & "' and PDMCU = '%tmMCU' " & _
+         " and PDDCTO = 'OT'" & _
          " order by PDDOCO, PDDCTO "
   '
   DB.Execute(sSQL, sCols, sRows)
@@ -546,7 +547,7 @@ Private Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   '
   ' If Ordernumber is unique default DocType
   If (DB.Count(sRows) = 1) Then
-    txtDCTO.Text = DB.Extract(sCols,sRows,1,"PDDCTO")
+    txtDCTO.text = DB.Extract(sCols,sRows,1,"PDDCTO")
   End If
   '
   App.SetValue("tmDOCO", Rsp)
@@ -565,7 +566,7 @@ Private Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   sMCU = App.GetValue("tmMCU")
   '
   Cancel = Not Search_F4311_DOCO(Rsp, sMCU, msStatusF, msStatusT, "OT")
-  If Not Cancel Then txtDCTO.Text = sDocType
+  If Not Cancel Then txtDCTO.text = sDocType
 End Sub
 
 Private Sub txtDCTO_OnBackup(ByRef Cancel As Boolean)
