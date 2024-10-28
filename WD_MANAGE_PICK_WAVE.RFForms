@@ -1,4 +1,4 @@
-﻿<Record FileDesc="Manage Pick Wave" FileVersion="5.0.8.0" Desc="Manage Pick Wave" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtTRIP&vm;lbxPicks&vm;txtURRF&vm;btnUpdate&vm;btnRelease&vm;btnRemove&vm;btnUnlock" ImageList="0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="Manage Pick Wave" FileVersion="5.0.8.0" Desc="Manage Pick Wave" Group="AMS-WD" LinkTo="No Links" LinkType="0" PromptList="txtTRIP&vm;lbxPicks&vm;txtURRF&vm;btnUpdate&vm;btnRelease&vm;btnRemove&vm;btnUnlock&vm;btnClose" ImageList="0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtTRIP" />
 <SchemaParam Linked="0" Attr="2" Name="lbxPicks" />
@@ -7,6 +7,7 @@
 <SchemaParam Linked="0" Attr="5" Name="btnRelease" />
 <SchemaParam Linked="0" Attr="6" Name="btnRemove" />
 <SchemaParam Linked="0" Attr="7" Name="btnUnlock" />
+<SchemaParam Linked="0" Attr="8" Name="btnClose" />
 </Schema>
 <Displays>
 <Display Name="(Default)" Type="1" Width="320" Height="480" Locale="1033" />
@@ -29,7 +30,7 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="11" Top="103" Width="49" Height="22" AnchorRight="164" AnchorBottom="195" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Picks" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="38" Width="300" Height="228" AnchorRight="11" AnchorBottom="214" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="0" Left="9" Top="38" Width="300" Height="206" AnchorRight="11" AnchorBottom="236" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
@@ -48,8 +49,8 @@
 <Control Type="1" FieldId="txtURRF" Attr="3" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="273" Width="65" Height="22" AnchorRight="245" AnchorBottom="185" BackColor1="1" BackColor2="1" ForeColor="1" Caption="User ID" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="209" Top="273" Width="100" Height="22" AnchorRight="11" AnchorBottom="185" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="251" Width="65" Height="22" AnchorRight="245" AnchorBottom="207" BackColor1="1" BackColor2="1" ForeColor="1" Caption="User ID" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="209" Top="251" Width="100" Height="22" AnchorRight="11" AnchorBottom="207" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="264" Width="65" Height="22" AnchorRight="175" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -60,7 +61,7 @@
 <Control Type="9" FieldId="btnUpdate" Attr="4">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Update User" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="304" Width="300" Height="33" AnchorRight="10" AnchorBottom="143" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="282" Width="300" Height="33" AnchorRight="10" AnchorBottom="165" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="320" Width="80" Height="44" AnchorRight="294" AnchorBottom="116" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -70,7 +71,7 @@
 <Control Type="9" FieldId="btnRelease" Attr="5">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Release Wave" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="348" Width="300" Height="33" AnchorRight="10" AnchorBottom="99" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="321" Width="300" Height="33" AnchorRight="10" AnchorBottom="126" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="364" Width="80" Height="44" AnchorRight="294" AnchorBottom="72" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -80,7 +81,7 @@
 <Control Type="9" FieldId="btnRemove" Attr="6">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Delete Selected Pick" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="392" Width="300" Height="33" AnchorRight="10" AnchorBottom="55" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="360" Width="300" Height="33" AnchorRight="10" AnchorBottom="87" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="408" Width="80" Height="44" AnchorRight="294" AnchorBottom="28" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -90,7 +91,17 @@
 <Control Type="9" FieldId="btnUnlock" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Unlock Wave Assignment" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="436" Width="300" Height="33" AnchorRight="10" AnchorBottom="11" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="399" Width="300" Height="33" AnchorRight="10" AnchorBottom="48" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="408" Width="80" Height="44" AnchorRight="294" AnchorBottom="28" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="9" FieldId="btnClose" Attr="8">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Close Wave" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="438" Width="300" Height="33" AnchorRight="10" AnchorBottom="9" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="18" Top="408" Width="80" Height="44" AnchorRight="294" AnchorBottom="28" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -113,6 +124,33 @@
 <Code>
 Option Explicit
 
+Public Sub btnClose_Click()
+  On Error Resume Next
+
+  Dim sSQL As String
+  Dim nErrNo As Long
+
+  If App.MsgBox("Close wave " & txtTRIP.text & "?", vbYesNo) = vbNo Then Exit Sub
+
+  App.Balloon("Closing wave...", -1)
+
+  sSQL = _
+    " update WDJOBS" & _
+    " set R2URRF = ' '" & _
+    " ,   R2PSTB = '323'" & _
+    " where R2TRIP = " & txtTRIP.text
+  nErrNo = DB.Execute(sSQL)
+
+  If nErrNo <> 0 Then
+    App.MsgBox("Error closing wave: " & nErrNo)
+    App.Balloon("", 0)
+    Exit Sub
+  End If
+
+  App.Balloon("Wave closed.", 1)
+  Refresh()
+End Sub
+
 Public Sub btnRelease_Click()
   On Error Resume Next
 
@@ -124,7 +162,7 @@ Public Sub btnRelease_Click()
   Dim sStatus As String
 
   For i = 1 To lbxPicks.List.Count
-    sStatus = lbxPicks.List.Cell(i, 1).Value
+    sStatus = lbxPicks.List.Cell(i, 1).value
     If sStatus >= "322" Then
       App.MsgBox("Cannot release wave with picked jobs.")
       Exit Sub
@@ -157,8 +195,6 @@ End Sub
 Public Sub btnRemove_Click()
   On Error Resume Next
 
-  On Error Resume Next
-
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
@@ -172,7 +208,7 @@ Public Sub btnRemove_Click()
     Exit Sub
   End If
 
-  sStatus = lbxPicks.List.Cell(nIndex, 1).Value
+  sStatus = lbxPicks.List.Cell(nIndex, 1).value
   If sStatus >= "322" Then
     App.MsgBox("Cannot delete completed pick job.")
     Exit Sub
@@ -183,9 +219,9 @@ Public Sub btnRemove_Click()
   sSQL = _
     " delete" & _
     " from WDJOBS" & _
-    " where R2SGBT = " & ConvDecimalsToSQL("SGBT", lbxPicks.List.Cell(nIndex, 6).Value) & _
-    " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 7).Value) & _
-    " and R2NLIN = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 8).Value)
+    " where R2SGBT = " & ConvDecimalsToSQL("SGBT", lbxPicks.List.Cell(nIndex, 6).value) & _
+    " and R2SGSQ = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 7).value) & _
+    " and R2NLIN = " & ConvDecimalsToSQL("SGSQ", lbxPicks.List.Cell(nIndex, 8).value)
   nErrNo = DB.Execute(sSQL)
 
   If nErrNo <> 0 Then
