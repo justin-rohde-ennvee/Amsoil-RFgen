@@ -1,4 +1,4 @@
-﻿<Record FileDesc="RFGen - User Login" FileVersion="5.0.8.0" Desc="RFGen - User Login" Group="RFGEN-BAK" LinkTo="Login Request" LinkType="6" LinkMode="0" PromptList="imgLogo&vm;User&vm;Password&vm;lbltxtEnv&vm;lblEnv&vm;lblPwd&vm;txtNewPwd&vm;txtConfPwd&vm;lbltxtVers&vm;lblVers" ImageList="RFLogin&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="RFGen - User Login" FileVersion="5.0.8.0" Desc="RFGen - User Login" Group="RFGEN" LinkTo="Login Request" LinkType="6" LinkMode="0" PromptList="imgLogo&vm;User&vm;Password&vm;lbltxtEnv&vm;lblEnv&vm;lblPwd&vm;txtNewPwd&vm;txtConfPwd&vm;lbltxtVers&vm;lblVers" ImageList="RFLogin&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="imgLogo" />
 <SchemaParam Linked="0" Attr="2" Name="User" />
@@ -357,9 +357,14 @@ Private Sub Password_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef
     gsPassword = Rsp  ' save in global to pass over to Transaction macro
     Rsp = ""          ' set Password to blank, so you dont have to maintain it twice in JDE and RFgen
   End If
-  '
-  Cancel = False
 
+  If IsUserLoggedIn(msUID) Then
+    If App.MsgBox("User is already logged in on another device.", vbCustom, , "[Stop][Ignore]") = "Stop" Then
+      Exit Sub
+    End If
+  End If
+
+  Cancel = False
 End Sub
 
 Private Sub txtConfPwd_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -563,5 +568,51 @@ Public Function SetWorldPwd() As Boolean
 
   If SetWorldPwd Then App.UserProperty("PwdUpd") =  sDate ' update RFgen user profile
 
+End Function
+
+Private Function LoggedInUsers() As Scripting.Dictionary
+  On Error GoTo ExitMe
+
+  Dim oUsers As New Scripting.Dictionary
+  Dim sUserList As String
+  Dim sUserArray() As String
+  Dim sUser As String
+  Dim i As Long
+
+  sUserArray = Split(SYS.UserList(True), Chr(4))
+
+  If UBound(sUserArray) >= 0 Then
+    sUserList = sUserArray(0)
+    For i=1 To DCount(sUserList, Chr(1))
+      sUser = UCase(Ext(sUserList, i, 3))
+      If sUser <> "" And Not oUsers.Exists(sUser) Then oUsers.Add(sUser, "")
+    Next
+  End If
+
+  ExitMe:
+  Set LoggedInUsers = oUsers
+End Function
+
+Private Function IsUserLoggedIn(ByVal sCheckUser As String) As Boolean
+  Dim oUsers As Scripting.Dictionary
+  Dim sUser As String
+  Dim sLoggedInUsers As String
+
+  Set oUsers = LoggedInUsers()
+
+  sCheckUser = UCase(sCheckUser)
+  LogText("RFLogin", "IsUerLoggedIn", "Checking login for '" & sCheckUser & "'")
+
+  For Each sUser In oUsers.Keys
+    sLoggedInUsers &= "[" & sUser & "] "
+  Next
+  LogText("RFLogin", "IsUerLoggedIn", "All users: " & sLoggedInUsers)
+
+  For Each sUser In oUsers.Keys
+    If sUser = sCheckUser Then
+      IsUserLoggedIn = True
+      Exit Function
+    End If
+  Next
 End Function
 </Code>
