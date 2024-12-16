@@ -635,14 +635,13 @@ Public Function PrintZPL( _
   sBat = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".bat"
 
   Open sSrc For Output As #1
-'  Print #1, "~JA"
   Print #1, sZPL
   Close #1
 
   Open sBat For Output As #1
   Print #1, "net use lpt1 /delete"
   Print #1, "net use lpt1 \\localhost\" & sPrinterName
-  Print #1, "copy " & sSrc & " lpt1"
+  Print #1, "copy """ & sSrc & """ lpt1"
   Close #1
 
   objShell.ShellExecute(sBat)
