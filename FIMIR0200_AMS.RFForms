@@ -134,11 +134,21 @@ Private Type Order
 End Type
 
 Private Const company = "00002"
-Private Const branch = "          41"
+Private branch As String
 Private lineItems() As LineItem
 Private theOrder As Order
 
 Public Sub Form_Load()
+  Dim sBranch As String
+  
+  sBranch = App.GetValue("Branch")
+  If sBranch = "" Then
+    App.MsgBox("Error: missing menu parameter 'Branch'.")
+    Exit Sub
+  End If
+
+  branch = FixRight(sBranch, 12)
+
   txtAccept.Caption = ""
 
   lbxItems.List.SetColumn(1, "Lot", -1)
@@ -835,31 +845,6 @@ Private Function ReclassItem(ByVal theLineItem As LineItem, ByVal theOrder As Or
   emProc.Param("tmPGM")      = sPgm
   emProc.Param("tmExpDtVal") = "" ' TODO?
   emProc.Param("tmUser")     = App.User
-
-  Debug.Print("tmCO: " & emProc.Param("tmCO"))
-  Debug.Print("tmMCU: " & emProc.Param("tmMCU"))
-  Debug.Print("tmLITM: " & emProc.Param("tmLITM"))
-  Debug.Print("tmQTY: " & emProc.Param("tmQTY"))
-  Debug.Print("tmUOM: " & emProc.Param("tmUOM"))
-  Debug.Print("tmLOCN: " & emProc.Param("tmLOCN"))
-  Debug.Print("tmLOTN: " & emProc.Param("tmLOTN"))
-  Debug.Print("tmTOCO: " & emProc.Param("tmTOCO"))
-  Debug.Print("tmTOMCU: " & emProc.Param("tmTOMCU"))
-  Debug.Print("tmTOLITM: " & emProc.Param("tmTOLITM"))
-  Debug.Print("tmTODSC1: " & emProc.Param("tmTODSC1"))
-  Debug.Print("tmTOLOCN: " & emProc.Param("tmTOLOCN"))
-  Debug.Print("tmTOLOTN: " & emProc.Param("tmTOLOTN"))
-  Debug.Print("tmTOQTY: " & emProc.Param("tmTOQTY"))
-  Debug.Print("tmTOUOM: " & emProc.Param("tmTOUOM"))
-  Debug.Print("tmMMEJ: " & emProc.Param("tmMMEJ"))
-  Debug.Print("tmLOTS: " & emProc.Param("tmLOTS"))
-  Debug.Print("tmDCTO: " & emProc.Param("tmDCTO"))
-  Debug.Print("tmDRKY: " & emProc.Param("tmDRKY"))
-  Debug.Print("tmTDSC: " & emProc.Param("tmTDSC"))
-  Debug.Print("tmZVERSION: " & emProc.Param("tmZVERSION"))
-  Debug.Print("tmPGM: " & emProc.Param("tmPGM"))
-  Debug.Print("tmExpDtVal: " & emProc.Param("tmExpDtVal"))
-  Debug.Print("tmUser: " & emProc.Param("tmUser"))
 
   If Not emProc.Execute Then
     errorMessage = GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
