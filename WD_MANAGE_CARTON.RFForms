@@ -329,13 +329,14 @@ Public Sub btnVoid_Click()
   sLPID = App.GetValue("tmLPID")
   sCarrier = App.GetValue("tmDL02")
   sTrackingNumber = App.GetValue("tmDL01")
-  sAccountNumber = App.GetValue("tm55CARS")
+  sAccountNumber = Trim(App.GetValue("tm55CARS"))
 
   Select Case sCarrier
   Case "UPS"
     If SYS.EnvironmentProperty("Environment") = "TEST" Then sTrackingNumber = UPS_TEST_TRACKING_NUMBER_VOID_SUCCESS
     bSuccess = UPS_VoidShipment(sTrackingNumber, sErrMsg)
   Case "FedEx"
+    If SYS.EnvironmentProperty("Environment") = "TEST" Then sAccountNumber = FEDEX_ACCOUNT_NUMBER
     bSuccess = FedEx_VoidShipment(sTrackingNumber, sAccountNumber, sErrMsg)
   End Select
 

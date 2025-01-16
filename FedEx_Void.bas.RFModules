@@ -48,6 +48,8 @@ Private Function FedEx_SendVoidRequest( _
   Dim sURL As String
   Dim oHttp As New XMLHTTP60
   Dim sBody As String
+  Dim oResponseJson As Scripting.Dictionary
+  Dim jsonParser As New VbsJson
 
   sURL = FEDEX_BASE_URL & "/ship/v1/shipments/cancel"
   sBody = FedEx_CreateVoidJson(sTrackingNumber, sAccountNumber)
@@ -59,9 +61,10 @@ Private Function FedEx_SendVoidRequest( _
   oHttp.Send(sBody)
 
   If oHttp.status <> 200 Then
-    If FedEx_ParseHttpError(oHttp.responseText, sErrMsg) Then Return False
-
-    sErrMsg = "(" & oHttp.status & ") " & oHttp.statusText
+    Set oResponseJson = jsonParser.Decode(oHttp.responseText)
+    If Not FedEx_ParseResponseError(oResponseJson, sErrMsg) Then
+      sErrMsg = "HTTP error " & oHttp.status
+    End If
     Return False
   End If
 

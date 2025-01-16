@@ -245,9 +245,13 @@ Public Function GetAddressInfo(ByVal nAN8 As Long) As AddressInfo
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
+  Dim sAR1 As String
+  Dim sPH1 As String
+  Dim sALKY As String
   Dim sAreaCode As String
   Dim sPhoneNumber As String
 
+  ' Mailing name
   sSQL = _
     " select WWMLNM" & _
     " from F0111" & _
@@ -256,17 +260,31 @@ Public Function GetAddressInfo(ByVal nAN8 As Long) As AddressInfo
   DB.Execute(sSQL, sCols, sRows)
   addressResult.sName = Trim(DB.Extract(sCols, sRows, 1, "WWMLNM"))
 
-  sSQL = _
-    " select WPAR1, WPPH1" & _
-    " from F0115" & _
-    " where WPAN8 = " & nAN8 & _
-    " and WPRCK7 = 1"
-  DB.Execute(sSQL, sCols, sRows)
+  ' Phone #
+  sSQL = "select ABALKY from F0101 where ABAN8 = " & nAN8
+  sALKY = Trim(FetchFirstResult(sSQL))
 
-  sAreaCode = Format(Val(DB.Extract(sCols, sRows, 1, "WPAR1")), "000")
-  sPhoneNumber = Trim(Replace(DB.Extract(sCols, sRows, 1, "WPPH1"), "-", ""))
-  addressResult.sPhone = sAreaCode & sPhoneNumber
+  If Len(sALKY) > 0 Then
+    ' Use long address first
+    addressResult.sPhone = sALKY
+  Else
+    ' Default to phone book table if no long address
+    sSQL = _
+      " select WPAR1, WPPH1" & _
+      " from F0115" & _
+      " where WPAN8 = " & nAN8 & _
+      " and WPRCK7 = 1"
+    DB.Execute(sSQL, sCols, sRows)
 
+    sAR1 = Trim(DB.Extract(sCols, sRows, 1, "WPAR1"))
+    sPH1 = Trim(DB.Extract(sCols, sRows, 1, "WPPH1"))
+
+    sAreaCode = Format(Val(sAR1), "000")
+    sPhoneNumber = Format(Val(Replace(sPH1, "-", "")), "0000000")
+    addressResult.sPhone = sAreaCode & sPhoneNumber
+  End If
+
+  ' Physical address
   sSQL = _
     " select ALADD1, ALADD2, ALADD3, ALADD4, ALCTY1, ALADDS, ALADDZ" & _
     " from F0116" & _

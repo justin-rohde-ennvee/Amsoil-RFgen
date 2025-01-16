@@ -583,41 +583,6 @@ OnError:
   If Err.Number <> 0 Then sErrMsg = Err.Description
 End Function
 
-Public Function WriteZPL( _
-  ByVal sLPID As String, _
-  ByVal nPrinterNumber As Long, _
-  ByVal sZPL As String, _
-  sErrMsg As String _
-) As Boolean
-  On Error GoTo OnError
-
-  Dim sJobName As String
-  Dim sFilename As String
-  Dim sSrc As String
-  Dim sDst As String
-
-  sJobName = sLPID & "_" & Format(Time, "hhnnss") & "_" & UCase(Trim(App.User))
-  sSrc = SYS.EnvironmentProperty("LPSStagingFolder") & sJobName & ".pas"
-  sDst = SYS.EnvironmentProperty("LPSDropFolder") & sJobName & ".pas"
-
-  Open sSrc For Output As #1
-  Print #1, "*Format,Fedex.lwl"
-  Print #1, "*JOBNAME," & sJobName
-  Print #1, "*QUANTITY,1"
-  Print #1, "*PRINTERNUMBER," & nPrinterNumber
-  Print #1, "ptfield_zpl," & sZPL
-  Print #1, "*PRINTLABEL"
-  Close #1
-
-  FileCopy(sSrc, sDst)
-  Kill(sSrc)
-
-  Return True
-
-OnError:
-  If Err.Number <> 0 Then sErrMsg = Err.Description
-End Function
-
 Public Function PrintZPL( _
   ByVal sLPID As String, _
   ByVal sZPL As String, _
@@ -634,6 +599,9 @@ Public Function PrintZPL( _
   sSrc = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".zpl"
   sBat = SYS.EnvironmentProperty("LPSImagesFolder") & "Shipping\" & sLPID & ".bat"
 
+  ' Prefix with command to clear the buffer
+  sZPL = "^XA^MCY^XZ" & sZPL
+  
   Open sSrc For Output As #1
   Print #1, sZPL
   Close #1

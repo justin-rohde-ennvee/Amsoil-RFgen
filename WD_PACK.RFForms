@@ -227,7 +227,7 @@ Public Sub btnCreateShipment_Click()
   App.Balloon("Creating shipment...", -1)
 
   ' Fetch from and to address numbers and package weight
-  nDOCO = Val(lbxDoco.List.Cell(1, 6).value)
+  nDOCO = Val(lbxDoco.List.Cell(1, 6).Value)
   sLPID = App.GetValue("tmLPID")
   sSQL = "select SDAN8, SDSHAN from F4211 where SDDOCO = " & nDOCO
   DB.Execute(sSQL, sCols, sRows)
@@ -252,11 +252,8 @@ Public Sub btnCreateShipment_Click()
   Case "UPS"
     tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID)
   Case "FedEx"
-    If SYS.EnvironmentProperty("Environment") = "TEST" Then
-      tShipmentResponse = FedEx_CreateShipment(nAN8, nSHAN, nWeight, FEDEX_ACCOUNT_NUMBER)
-    Else
-      tShipmentResponse = FedEx_CreateShipment(nAN8, nSHAN, nWeight, sAccount)
-    End If
+    If SYS.EnvironmentProperty("Environment") = "TEST" Then sAccount = FEDEX_ACCOUNT_NUMBER
+    tShipmentResponse = FedEx_CreateShipment(nAN8, nSHAN, nWeight, sAccount)
   End Select
 
   If tShipmentResponse.sErrMsg <> "" Then

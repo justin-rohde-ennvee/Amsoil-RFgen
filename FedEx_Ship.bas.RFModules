@@ -82,7 +82,7 @@ Private Function FedEx_ParseShipmentResponse(ByVal oResponse As Scripting.Dictio
   Dim sEncodedLabel As String
 
   If Not oResponse.Exists("output") Then
-    tShipmentResponse.sErrMsg = "Missing response component: output"
+    tShipmentResponse.sErrMsg = "Missing response element: 'output'"
     Return tShipmentResponse
   End If
 
