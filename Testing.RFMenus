@@ -6,4 +6,5 @@
 <MenuItem Id="FIMIA0100" Desc="Adjustments" Options="-Pgm=P4114 -Vers=AMS0001" />
 <MenuItem Id="FIMIR0100" Desc="Reclassifications" Options="-Pgm=P4116 -Vers=AMS0002" />
 <MenuItem Id="FLBPR0100_AMS" Desc="Label Print" />
+<MenuItem Id="FLPTL0101_AMS" Desc="Production LP Transfer" Options="-Pgm=P4113 -Vers=RGN0001" />
 </Record>
