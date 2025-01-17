@@ -246,59 +246,58 @@ Private Sub btnChange_Click()
 
   Dim vRsp  As Variant
 
-
-'STUFF TO LOOK UP / CROSS REFERENCE FROM WORKCENTER DATABASE:
-    sWCU = FixRight(Trim(App.GetValue("tmWC")), 12)
-    sSql2 = "select * from WC_SQL where WCWCU = '" & sWCU & "'"
-    DB.Execute(sSql2, sCols2, sRows2)
-
-
-    If (DB.Count(sRows2) = 0) Then
-      App.MsgBox("No Information For The Current Work Center Is Available.  Contact the IT Manager")
-      Exit Sub
-    End If
-
-    ' GET THE CURRENT COUNT OFF OF THE WC_SQL
-
-    nCount = Val(DB.Extract(sCols2, sRows2, 1, "WCCNT"))
-
-    App.SetValue("tmCO", "00002")
-    App.SetValue("tmDOCO", Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO")))
-    App.SetValue("tmDCTO", Trim(DB.Extract(sCols2, sRows2, 1, "WCDCTO")))
-    App.SetValue("tmPALP", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOT1")))
-
-    sSqlWO = "select * from F4801 where WADOCO = " & App.GetValue("tmDOCO") & " and WADCTO = '" & App.GetValue("tmDCTO") & "'"
-    DB.Execute(sSqlWO, sColsWO, sRowsWO)
-
-    App.SetValue("tmLITM", DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
-    App.SetValue("tmITM", DB.Extract(sColsWO, sRowsWO, 1, "WAITM"))
-    App.SetValue("tmLNID", DB.Extract(sColsWO, sRowsWO, 1, "WALNID"))
-    App.SetValue("tmLOTN", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOTN")) & "." & Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO")))
-    App.SetValue("tmTOLOTS", "")
-    App.SetValue("tmXPDT", "")
+  'STUFF TO LOOK UP / CROSS REFERENCE FROM WORKCENTER DATABASE:
+  sWCU = FixRight(Trim(App.GetValue("tmWC")), 12)
+  sSql2 = "select * from WC_SQL where WCWCU = '" & sWCU & "'"
+  DB.Execute(sSql2, sCols2, sRows2)
 
 
-    App.SetValue("tmSCRAP", "0")
-    App.SetValue("tmUOM", DB.Extract(sColsWO, sRowsWO, 1, "WAUOM"))
-    App.SetValue("tmDRKY","")
-    App.SetValue("tmDRKYDESC", "")
-    App.SetValue("tmUSER", DB.Extract(sCols2, sRows2, 1, "WCUSER"))
-    App.SetValue("tmLOT1", "")
-    App.SetValue("tmPALP", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOT1")))
+  If (DB.Count(sRows2) = 0) Then
+    App.MsgBox("No Information For The Current Work Center Is Available.  Contact the IT Manager")
+    Exit Sub
+  End If
 
-    sSqlXref = "select * from F5548001 where Z5WCU = '" & sWCU & "'"
-    DB.Execute(sSqlXref, sColsXref, sRowsXref)
+  ' GET THE CURRENT COUNT OFF OF THE WC_SQL
+  
+  nCount = Val(DB.Extract(sCols2, sRows2, 1, "WCCNT"))
 
-    sProdLocn = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5LOCN"))
-    App.SetValue("tmLOCN", Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5LOCN")))
+  App.SetValue("tmCO", "00002")
+  App.SetValue("tmDOCO", Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO")))
+  App.SetValue("tmDCTO", Trim(DB.Extract(sCols2, sRows2, 1, "WCDCTO")))
+  App.SetValue("tmPALP", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOT1")))
 
-    App.SetValue("tmMCU", FixRight(Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5MCU")),12))
+  sSqlWO = "select * from F4801 where WADOCO = " & App.GetValue("tmDOCO") & " and WADCTO = '" & App.GetValue("tmDCTO") & "'"
+  DB.Execute(sSqlWO, sColsWO, sRowsWO)
 
-    sCasePrinter = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55PDN"))
-    sPalletPrinter = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55PDN1"))
+  App.SetValue("tmLITM", DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
+  App.SetValue("tmITM", DB.Extract(sColsWO, sRowsWO, 1, "WAITM"))
+  App.SetValue("tmLNID", DB.Extract(sColsWO, sRowsWO, 1, "WALNID"))
+  App.SetValue("tmLOTN", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOTN")) & "." & Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO")))
+  App.SetValue("tmTOLOTS", "")
+  App.SetValue("tmXPDT", "")
 
-    sCaseFormat = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55FN01"))
-    sPalletFormat = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55FN02"))
+
+  App.SetValue("tmSCRAP", "0")
+  App.SetValue("tmUOM", DB.Extract(sColsWO, sRowsWO, 1, "WAUOM"))
+  App.SetValue("tmDRKY","")
+  App.SetValue("tmDRKYDESC", "")
+  App.SetValue("tmUSER", DB.Extract(sCols2, sRows2, 1, "WCUSER"))
+  App.SetValue("tmLOT1", "")
+  App.SetValue("tmPALP", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOT1")))
+
+  sSqlXref = "select * from F5548001 where Z5WCU = '" & sWCU & "'"
+  DB.Execute(sSqlXref, sColsXref, sRowsXref)
+
+  sProdLocn = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5LOCN"))
+  App.SetValue("tmLOCN", Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5LOCN")))
+
+  App.SetValue("tmMCU", FixRight(Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5MCU")),12))
+
+  sCasePrinter = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55PDN"))
+  sPalletPrinter = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55PDN1"))
+
+  sCaseFormat = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55FN01"))
+  sPalletFormat = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55FN02"))
 
   If nCount > 0 Then
     vRsp = App.MsgBox("Partial Quantity exists on the current pallet.  Complete this quantity and end the work order?",,,"[Continue] [Cancel]")
@@ -348,8 +347,9 @@ Private Sub btnChange_Click()
       ' EXECUTE PALLET PRINT HERE
       Dim nPrinterNumber As Integer
       nPrinterNumber = Val(sPalletPrinter)
+      If nPrinterNumber = 66 Then sPalletFormat &= "_300dpi"
+      LogText("FLPTC0100M_AMS", "btnChange_Click", sPalletFormat)
       PrintPalletLabel(nPrinterNumber, sPalletFormat, App.GetValue("tmPALP"), 1)
-
     End If
   End If
 

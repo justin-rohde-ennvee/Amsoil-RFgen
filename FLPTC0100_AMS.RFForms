@@ -349,8 +349,9 @@ Private Sub btnChange_Click()
       ' EXECUTE PALLET PRINT HERE
       Dim nPrinterNumber As Integer
       nPrinterNumber = Val(sPalletPrinter)
+      If nPrinterNumber = 66 Then sPalletFormat &= "_300dpi"
+      LogText("FLPTC0100_AMS", "btnChange_Click", sPalletFormat)
       PrintPalletLabel(nPrinterNumber, sPalletFormat, App.GetValue("tmPALP"), 1)
-
     End If
   End If
 

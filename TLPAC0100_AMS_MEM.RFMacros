@@ -342,6 +342,7 @@ Private Function Transaction() As Boolean
 '    If nPalletMax = 1 Then
 '      PrintCaseLabel(nPrinterNumber, sCaseFormat, sCaseLPID, sCaseLITM, sCaseLOTN, 2, Trim(sAPI))
 '    Else
+      If nPrinterNumber = 67 Then sCaseFormat &= "_300dpi"
       PrintCaseLabel(nPrinterNumber, sCaseFormat, sCaseLPID, sCaseLITM, sCaseLOTN, 1, Trim(sAPI))
 '    End If
 
@@ -354,6 +355,7 @@ Private Function Transaction() As Boolean
       If nPalletMax <> 1 Then
         Dim nPalletPrinterNumber As Integer
         nPalletPrinterNumber = Val(sPalletPrinter)
+        If nPalletPrinterNumber = 66 Then sPalletFormat &= "_300dpi"
         PrintPalletLabel(nPalletPrinterNumber, sPalletFormat, App.GetValue("tmPALP"), 1)
       End If
 
