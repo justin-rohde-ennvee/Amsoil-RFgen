@@ -253,7 +253,7 @@ Public Sub btnCreateShipment_Click()
     tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID)
   Case "FedEx"
     If SYS.EnvironmentProperty("Environment") = "TEST" Then sAccount = FEDEX_ACCOUNT_NUMBER
-    tShipmentResponse = FedEx_CreateShipment(nAN8, nSHAN, nWeight, sAccount)
+    tShipmentResponse = FedEx_CreateShipment(nMCU, nSHAN, nWeight, sAccount)
   End Select
 
   If tShipmentResponse.sErrMsg <> "" Then

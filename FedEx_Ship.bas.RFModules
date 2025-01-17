@@ -4,7 +4,7 @@ Option Explicit
 '#Language "WWB-COM"
 
 Public Function FedEx_CreateShipment( _
-  ByVal nAN8 As Long, _
+  ByVal nMCU As Long, _
   ByVal nSHAN As Long, _
   ByVal nWeight As Currency, _
   ByVal sAccount As String _
@@ -21,7 +21,8 @@ Public Function FedEx_CreateShipment( _
   Dim jsonParser As New VbsJson
   Dim tShipmentResponse As ShipmentResponse
 
-  ' Generate bearer token for request
+  On Error GoTo OnError
+
   App.Balloon("Authorizing...", 1)
 
   If Not FedEx_GetToken(sToken, sErrMsg) Then
@@ -31,7 +32,7 @@ Public Function FedEx_CreateShipment( _
 
   App.Balloon("Sending shipping request...", -1)
 
-  fromAddress = GetAddressInfo(nAN8)
+  fromAddress = GetAddressInfo(nMCU)
   toAddress = GetAddressInfo(nSHAN)
   sBody = FedEx_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount)
   bSuccess = FedEx_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
@@ -53,6 +54,8 @@ Public Function FedEx_CreateShipment( _
     Return tShipmentResponse
   End If
 
+OnError:
+  If Err.Number <> 0 Then tShipmentResponse.sErrMsg = "(" & Err.Number & ") " & Err.Description
   Return tShipmentResponse
 End Function
 
