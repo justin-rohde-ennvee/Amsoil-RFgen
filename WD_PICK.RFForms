@@ -583,7 +583,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   trackingRecord.nEndDateJDE = ConvDatetoJDE(CStr(Now))
   trackingRecord.nEndTime = CLng(Format(Now, "hhnnss"))
 
-  If Not WriteTrackingRecord(trackingRecord, sErrMsg) Then App.MsgBox(sErrMsg)
+  WriteTrackingRecord(trackingRecord, sErrMsg)
 
   App.Balloon("", 0)
 
@@ -1154,7 +1154,12 @@ Private Sub txtConfItemLP_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, 
   If sLOCN = "" Then sLOCN = " "
   If Not bIsItem Then
     txtConfLocation.text = sLOCN
+    Call txtConfQty_OnEnter(txtConfQty.text, Cancel, ErrMsg)
+    If Cancel Then Exit Sub
+    Call txtConfLocation_OnEnter(txtConfLocation.text, Cancel, ErrMsg)
+    If Cancel Then Exit Sub
   End If
+
 
   LogText("WD_PICK", "txtConfItemLP_OnEnter", "Qty field populated: " & txtConfQty.text)
   LogText("WD_PICK", "txtConfItemLP_OnEnter", "Locn field populated: " & txtConfLocation.text)
@@ -1548,9 +1553,7 @@ Private Function SelectNextPick() As Boolean
   trackingRecord.sUOM = job.sUOM1
   trackingRecord.nStartDateJDE = ConvDatetoJDE(CStr(Now))
 
-  If Not WriteTrackingRecord(trackingRecord, sErrMsg) Then
-    App.MsgBox(sErrMsg)
-  End If
+  WriteTrackingRecord(trackingRecord, sErrMsg)
 
   If JobWasPicked(job.nDOCO, job.nLNID) Then
     App.MsgBox("Warning: this line has already been picked.")
@@ -1674,6 +1677,8 @@ Private Function AdvanceJobStatus( _
     " and R2PSTB = '" & sFromStatus & "'"
   nErrNo = DB.Execute(sSQL)
 
+  LogText("WD_PICK", "AdvanceJobStatus", "Updating current suggestion: (" & nErrNo & ") " & sSQL)
+
   If nErrNo <> 0 Then
     sErrMsg = "Failed to update job qty/status."
     Exit Function
@@ -1706,6 +1711,8 @@ Private Function AdvanceJobStatus( _
     sSQL = Replace(sSQL, "%LOTN%", sLOTN)
     nErrNo = DB.Execute(sSQL)
 
+    LogText("WD_PICK", "AdvanceJobStatus", "Creating new job for remainder: (" & nErrNo & ") " & sSQL)
+
     If nErrNo <> 0 Then
       sErrMsg = "Failed to split pick suggestion."
       Exit Function
@@ -1714,6 +1721,120 @@ Private Function AdvanceJobStatus( _
 
   AdvanceJobStatus = True
 End Function
+
+Private Function UpdateCartonizationLines(sErrMsg As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sCols2 As String
+  Dim sRows2 As String
+  Dim i As Long
+  Dim nRQBT As Long
+  Dim nRQSQ As Long
+  Dim nSGSQ As Long
+  Dim nOldLNID As Currency
+  Dim nNewLNID As Currency
+  Dim nErrNo As Long
+
+  sSQL = _
+    " select R2SGBT, R2SGSQ, R2NLIN, R2DOCO, R2LNID" & _
+    " from WDJOBS" & _
+    " where R2TRIP = %tmTRIP" & _
+    " group by R2SGBT, R2SGSQ, R2NLIN, R2DOCO, R2LNID"
+  DB.Execute(sSQL, sCols, sRows)
+
+  For i=1 To DB.Count(sRows)
+    nRQBT = DB.Extract(sCols, sRows, i, "R2SGBT")
+    nRQSQ = DB.Extract(sCols, sRows, i, "R2SGSQ")
+    nSGSQ = DB.Extract(sCols, sRows, i, "R2NLIN")
+    nNewLNID = DB.Extract(sCols, sRows, i, "R2LNID")
+
+    sSQL = _
+      " select R2LNID" & _
+      " from F4611" & _
+      " where R2RQBT = " & nRQBT & _
+      " and R2RQSQ = " & nRQSQ & _
+      " and R2SGSQ = " & nSGSQ
+    DB.Execute(sSQL, sCols2, sRows2)
+    nOldLNID = DB.Extract(sCols2, sRows2, 1, "R2LNID")
+
+    If nOldLNID < nNewLNID Then
+      sSQL = _
+        " update F4611" & _
+        " set R2LNID = " & nNewLNID & _
+        " where R2RQBT = " & nRQBT & _
+        " and R2RQSQ = " & nRQSQ & _
+        " and R2SGSQ = " & nSGSQ
+      nErrNo = DB.Execute(sSQL)
+
+      If nErrNo <> 0 Then
+        sErrMsg = "Failed to update cartonization: SQL error #" & nErrNo
+        Exit Function
+      End If
+    End If
+  Next
+
+  UpdateCartonizationLines = True
+End Function
+
+'Private Function SplitCartonizationLine( _
+'  ByVal nRQBT As Long, _
+'  ByVal nRQSQ As Long, _
+'  ByVal nSGSQ As Long, _
+'  ByVal sMCU As String, _
+'  ByVal nDOCO As Long, _
+'  ByVal nLNID As Currency, _
+'  ByVal nRemainder As Currency, _
+'  sErrMsg As String _
+') As Boolean
+'  Dim sSQL As String
+'  Dim nErrNo As Long
+'
+'  sSQL = _
+'  " insert into F4611(R2TYFL, R2OCDE, R2RQBT, R2RQSQ, R2SGBT, R2SGSQ, R2PWAV, R2PTSK, R2TRIP, R2MCU, R2KCOO, R2DOCO, R2DCTO, R2LNID, R2NLIN, " & _
+'  "       R2SFXO, R2CLID, R2ITM, R2LITM, R2AITM, R2UML1, R2TQL1, R2EQL1, R2UML2, R2QPL2, R2TQL2, R2EQL2, R2UML3, R2QPL3, R2TQL3, " & _
+'  "       R2EQL3, R2UML4, R2QPL4, R2TQL4, R2EQL4, R2CPNB, R2UML5, R2QPL5, R2TQL5, R2EQL5, R2UOM1, R2TQTY, R2CUBE, R2VUMD, R2WEIT, " & _
+'  "       R2UWUM, R2LDFS, R2FLOC, R2FLOT, R2STNF, R2LDTS, R2TLOC, R2TLOT, R2STNT, R2LOTP, R2LOTG, R2MERG, R2EQTY, R2CRMT, R2BACK, " & _
+'  "       R2APTS, R2COMM, R2ITCM, R2DSC1, R2DSC2, R2INMG, R2VR01, R2PALC, R2MORD, R2RLIT, R2KTLN, R2CPNT, R2RKIT, R2KTP, R2KTBL, " & _
+'  "       R2PTPH, R2ZIP, R2SRP1, R2SRP2, R2SRP3, R2SRP4, R2SRP5, R2PRP6, R2PRP7, R2PRP8, R2PRP9, R2MPUT, R2PUTP, R2SEQ, R2RCDJ, " & _
+'  "       R2TRDJ, R2DRQJ, R2PDDJ, R2PACK, R2RPCK, R2EKEY, R2CODR, R2PSTB, R2RESX, R2PZON, R2KZON, R2ZONR, R2AISL, R2BIN, R2LA03, " & _
+'  "       R2LA04, R2LA05, R2LA06, R2LA07, R2LA08, R2LA09, R2LA10, R2WSQP, R2WSQQ, R2WSQR, R2MMTH, R2AN8, R2SHAN, R2LNTY, R2PRIO, " & _
+'  "       R2CARS, R2ROUT, R2STOP, R2ZON, R2CTNF, R2VSUG, R2PHAS, R2RSBT, R2RSSQ, R2IUSE, R2TREX, R2DTCR, R2TMCR, R2DTPT, R2TMPT, " & _
+'  "       R2TRPR, R2URCD, R2URDT, R2URAT, R2URAB, R2URRF, R2RCDS, R2USER, R2PID, R2JOBN, R2UPMJ, R2TDAY, R2UKID, R2CKID, R2VR03, " & _
+'  "       R2SHPN, R2LDNM, R2VMCU, R2PLPNU, R2LPNUF, R2LPNUT, R2PSJOBNO, R2JOBSQ, R2DELBATCH)" & _
+'  " select R2TYFL, R2OCDE, R2RQBT, R2RQSQ, R2SGBT, R2SGSQ, R2PWAV, R2PTSK, R2TRIP, R2MCU, R2KCOO, R2DOCO, R2DCTO, R2LNID + 100, R2NLIN, " & _
+'  "       R2SFXO, R2CLID, R2ITM, R2LITM, R2AITM, R2UML1, $TQL1, R2EQL1, R2UML2, R2QPL2, R2TQL2, R2EQL2, R2UML3, R2QPL3, R2TQL3, " & _
+'  "       R2EQL3, R2UML4, R2QPL4, R2TQL4, R2EQL4, R2CPNB, R2UML5, R2QPL5, R2TQL5, R2EQL5, R2UOM1, R2TQTY, R2CUBE, R2VUMD, R2WEIT, " & _
+'  "       R2UWUM, R2LDFS, R2FLOC, R2FLOT, R2STNF, R2LDTS, R2TLOC, R2TLOT, R2STNT, R2LOTP, R2LOTG, R2MERG, R2EQTY, R2CRMT, R2BACK, " & _
+'  "       R2APTS, R2COMM, R2ITCM, R2DSC1, R2DSC2, R2INMG, R2VR01, R2PALC, R2MORD, R2RLIT, R2KTLN, R2CPNT, R2RKIT, R2KTP, R2KTBL, " & _
+'  "       R2PTPH, R2ZIP, R2SRP1, R2SRP2, R2SRP3, R2SRP4, R2SRP5, R2PRP6, R2PRP7, R2PRP8, R2PRP9, R2MPUT, R2PUTP, R2SEQ, R2RCDJ, " & _
+'  "       R2TRDJ, R2DRQJ, R2PDDJ, R2PACK, R2RPCK, R2EKEY, R2CODR, R2PSTB, R2RESX, R2PZON, R2KZON, R2ZONR, R2AISL, R2BIN, R2LA03, " & _
+'  "       R2LA04, R2LA05, R2LA06, R2LA07, R2LA08, R2LA09, R2LA10, R2WSQP, R2WSQQ, R2WSQR, R2MMTH, R2AN8, R2SHAN, R2LNTY, R2PRIO, " & _
+'  "       R2CARS, R2ROUT, R2STOP, R2ZON, R2CTNF, R2VSUG, R2PHAS, R2RSBT, R2RSSQ, R2IUSE, R2TREX, R2DTCR, R2TMCR, R2DTPT, R2TMPT, " & _
+'  "       R2TRPR, R2URCD, R2URDT, R2URAT, R2URAB, R2URRF, R2RCDS, R2USER, R2PID, R2JOBN, R2UPMJ, R2TDAY, R2UKID, R2CKID, R2VR03, " & _
+'  "       R2SHPN, R2LDNM, R2VMCU, R2PLPNU, R2LPNUF, R2LPNUT, R2PSJOBNO, R2JOBSQ, R2DELBATCH " & _
+'  " from F4611" & _
+'  " where R2RQBT = " & nRQBT & _
+'  " and R2RQSQ = " & nRQSQ & _
+'  " and R2SGSQ = " & nSGSQ & _
+'  " and R2MCU = '" & sMCU & "'" & _
+'  " and R2DOCO = " & nDOCO & _
+'  " and R2LNID = " & ConvDecimalsToSQL("LNID", nLNID)
+'
+'  sSQL = Replace(sSQL, "$TQL1", CStr(ConvDecimalsToSQL("TQL1", nRemainder)))
+'  nErrNo = DB.Execute(sSQL)
+'
+'  sSQL = _
+'    " update F4611" & _
+'    " set R2TQL1 = R2TQL1 - " & ConvDecimalsToSQL("TQL1", nRemainder) & _
+'    " where R2RQBT = " & nRQBT & _
+'    " and R2RQSQ = " & nRQSQ & _
+'    " and R2SGSQ = " & nSGSQ & _
+'    " and R2MCU = '" & sMCU & "'" & _
+'    " and R2DOCO = " & nDOCO & _
+'    " and R2LNID = " & ConvDecimalsToSQL("LNID", nLNID)
+'  nErrNo = DB.Execute(sSQL)
+'End Function
 
 Private Function ExecuteJDEPicks(sErrMsg As String) As Boolean
   Dim sSQL As String
@@ -1786,6 +1907,19 @@ Private Function ExecuteJDEPicks(sErrMsg As String) As Boolean
 
       If nErrNo <> 0 Then
         sErrMsg = "Failed to increment lines remaining on jobs for " & App.GetValue("tmDOCO") & "/" & App.GetValue("tmLNID")
+        Exit Function
+      End If
+
+      ' Increment line # on any other open cartonization records that have the same original SO# and line
+      sSQL = _
+        " update F4611" & _
+        " set R2LNID = R2LNID + 100" & _
+        " where R2DOCO = " & nDOCO & _
+        " and R2LNID = " & ConvDecimalsToSQL("LNID", nLNID)
+      nErrNo = DB.Execute(sSQL)
+
+      If nErrNo <> 0 Then
+        sErrMsg = "Failed to increment lines remaining on cartonization records for " & App.GetValue("tmDOCO") & "/" & App.GetValue("tmLNID")
         Exit Function
       End If
 

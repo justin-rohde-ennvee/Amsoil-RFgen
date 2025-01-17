@@ -59,7 +59,6 @@ Public Function UPS_PrintLabel( _
   sErrMsg As String _
 ) As Boolean
   Dim sJobName As String
-  Dim sUser As String
   Dim sSrc As String
   Dim sDst As String
 

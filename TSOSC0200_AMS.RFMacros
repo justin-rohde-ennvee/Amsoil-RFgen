@@ -1,4 +1,4 @@
-﻿<Record FileDesc="SO - Ship Confirm (Multiple Lines)" FileVersion="5.0.8.0" Desc="SO - Ship Confirm (Multiple Lines)">
+﻿<Record FileDesc="SO - Ship Confirm (Multiple Lines)" FileVersion="5.0.8.0" Desc="SO - Ship Confirm (Multiple Lines)" Group="AMS">
 <Param Name="tmCO" />
 <Param Name="tmMCU" />
 <Param Name="tmDOCO" />

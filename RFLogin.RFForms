@@ -235,6 +235,8 @@ Private Sub User_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef Err
   '
   If Len(Rsp) = 0 Then Exit Sub
   '
+  Rsp = UCase(Rsp)
+
   msUID = Trim(UCase(Rsp))
   '
   If  msUID = "ADM" Then

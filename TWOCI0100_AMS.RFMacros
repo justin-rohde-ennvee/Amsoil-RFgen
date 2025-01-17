@@ -1,4 +1,4 @@
-﻿<Record FileDesc="WO - Component Issues" FileVersion="5.0.8.0" Desc="WO - Component Issues">
+﻿<Record FileDesc="WO - Component Issues" FileVersion="5.0.8.0" Desc="WO - Component Issues" Group="AMS">
 <Param Name="tmCO" />
 <Param Name="tmMCU" />
 <Param Name="tmDOCO" />
