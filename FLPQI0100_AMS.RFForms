@@ -54,7 +54,7 @@
 </Control>
 <Control Type="3" FieldId="lstInquiry" Attr="6" Sorted="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="0" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="0" HeadBackColor2="0" HeadBackFill="0" HeadForeColor="0" HeadPadding="0" HeadVisible="0">
+<Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="6" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="0" HeadVisible="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="132" Width="0" Height="22" AnchorRight="247" AnchorBottom="166" BackColor1="1" BackColor2="1" ForeColor="1" />
 <Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="0" Top="132" Width="239" Height="154" AnchorRight="8" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="1" />
 <Columns>
@@ -165,6 +165,9 @@ Private Sub Form_Load()
     txtMCU.Text = gsMCU
   End If
 
+  lstInquiry.List.SetColumn(1, "LPID", -1)
+  lstInquiry.List.SetColumn(2, "ITEM", -1)
+  lstInquiry.List.SetColumn(3, "QTY", -1)
 
   Dim sOpt     As String
   Dim sDsp     As String
@@ -193,12 +196,6 @@ Private Sub Form_Load()
     lblStatus.Caption = LP_GetStatus(uLP101.sLMPSTB)
 
     lstInquiry.List.Clear
-    sDsp =              FixLeft("LPID",giLenLP," ")   'Create Header
-    sDsp = sDsp & " " & FixRight("ITEM",8," ")
-'    sDsp = sDsp & " " & FixLeft("LOTN",15," ")
-    sDsp = sDsp & " " & FixRight("QTY",5," ")
-
-    lstInquiry.List.AddItem sDsp, sDsp          'add header to listbox
 
     Call BuildList(Trim(gsInquiryLPID), sOpt)
     lstInquiry.List.AddItem " ","End of data"
@@ -332,12 +329,6 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   lblStatus.Caption = LP_GetStatus(uLP101.sLMPSTB)
 
   lstInquiry.List.Clear
-  sDsp =              FixLeft("LPID",giLenLP," ")   'Create Header
-  sDsp = sDsp & " " & FixRight("ITEM",8," ")
-'  sDsp = sDsp & " " & FixLeft("LOTN",15," ")
-  sDsp = sDsp & " " & FixRight("QTY",5," ")
-
-  lstInquiry.List.AddItem sDsp, sDsp          'add header to listbox
 
   Call BuildList(Rsp, sOpt)
 
@@ -396,8 +387,6 @@ Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
   Dim iCnt1   As Long
   Dim iCnt2   As Long
 
-  Dim nTick As Long
-
   sSQL = "select * from F55101 where LMLPID = '" & sPalp & "' and" & _
         " LMMCU = '%tmMCU' and LMRNXTR <> '620' order by LMLPID DESC"
   DB.Execute(sSQL,sCols,sRows)
@@ -414,11 +403,11 @@ Public Function BuildList(ByRef sPalp As String, ByRef sOpt As String)
     For iCnt1 = 1 To DB.Count(sRows1)
       sItem = DB.Extract(sCols1,sRows1,iCnt1,"LDLITM")
 
-      sDsp =              FixLeft(Trim(DB.Extract(sCols,sRows,iCnt,"LMLPID")),giLenLP," ")
-      sDsp = sDsp & " " & FixRight(Trim(DB.Extract(sCols1,sRows1,iCnt1,"LDLITM")),8," ")
-      sDsp = sDsp & " " & FixRight(Trim(DB.Extract(sCols1,sRows1,iCnt1,"LDUORG")),5," ")
-
-      lstInquiry.List.AddItem sDsp, sDsp          'add line to listbox
+      lstInquiry.List.AddItem( "", _
+        Trim(DB.Extract(sCols, sRows, iCnt, "LMLPID")), _
+        Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDLITM")), _
+        Trim(DB.Extract(sCols1, sRows1, iCnt1, "LDUORG")) _
+      )
     Next iCnt1
 
     '                                                  ' get all childs

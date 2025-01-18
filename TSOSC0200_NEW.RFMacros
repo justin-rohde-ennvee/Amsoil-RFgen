@@ -266,16 +266,10 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       nMLSOQ = (nQtyTot + nSOBK + nSOCN) - nMLSQSV
     End If
 
-'    If nMLSQSV = 0 Then
-''      nMLSOQ = nQty
-'      nMLSOQ = nSOQS + nSOBK + nSOCN
-'    Else
-''      nMLSOQ = (nSOQS -nQtyTot +1)
-'      nMLSOQ = nSOBK + nSOCN + nQty
-'    End If
     If sLOCN = "" Then
       sLOCN = " "
     End If
+
     'P/1
     emF42UI05EditLine.Param("Location")                       = sLOCN
     emF42UI05EditLine.Param("Lot")                            = sLOTN
@@ -297,6 +291,7 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
       sErrDesc = "emF42UI05EditLine  P/1 - Function returned Error condition 2"
       GoTo ExitE1
     End If
+    
     ' Check if next items belongs to same SO line
     If iCnt < tmCnt Then
       Do While CCur(Ext(tmValCache,13, iCnt +1))  = nLNID  'same Line Number in next element?

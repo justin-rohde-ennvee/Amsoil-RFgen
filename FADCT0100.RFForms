@@ -1,4 +1,4 @@
-﻿<Record FileDesc="ADM - Create RFgen Worktables" FileVersion="5.0.8.0" Desc="ADM - Create RFgen Worktables" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtConnection&vm;lblConnector&vm;cmdCreate&vm;lstTables&vm;chkPO&vm;lblSep2&vm;chkLog&vm;chkOffline&vm;chkLP&vm;chkWM&vm;chkQLoadBal&vm;chkWOTime&vm;chkTxn&vm;lblSep1&vm;chkPFP&vm;lblProgress&vm;chkRFUP" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
+﻿<Record FileDesc="ADM - Create RFgen Worktables" FileVersion="5.0.8.0" Desc="ADM - Create RFgen Worktables" Group="ADM" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtConnection&vm;lblConnector&vm;cmdCreate&vm;lstTables&vm;chkPO&vm;lblSep2&vm;chkLog&vm;chkOffline&vm;chkLP&vm;chkMfgWO&vm;chkWM&vm;chkQLoadBal&vm;chkWOTime&vm;chkTxn&vm;lblSep1&vm;chkPFP&vm;lblProgress&vm;chkRFUP" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtConnection" />
 <SchemaParam Linked="0" Attr="2" Name="lblConnector" />
@@ -9,14 +9,15 @@
 <SchemaParam Linked="0" Attr="7" Name="chkLog" />
 <SchemaParam Linked="0" Attr="8" Name="chkOffline" />
 <SchemaParam Linked="0" Attr="9" Name="chkLP" />
-<SchemaParam Linked="0" Attr="10" Name="chkWM" />
-<SchemaParam Linked="0" Attr="11" Name="chkQLoadBal" />
-<SchemaParam Linked="0" Attr="12" Name="chkWOTime" />
-<SchemaParam Linked="0" Attr="13" Name="chkTxn" />
-<SchemaParam Linked="0" Attr="14" Name="lblSep1" />
-<SchemaParam Linked="0" Attr="15" Name="chkPFP" />
-<SchemaParam Linked="0" Attr="16" Name="lblProgress" />
-<SchemaParam Linked="0" Attr="17" Name="chkRFUP" />
+<SchemaParam Linked="0" Attr="10" Name="chkMfgWO" />
+<SchemaParam Linked="0" Attr="11" Name="chkWM" />
+<SchemaParam Linked="0" Attr="12" Name="chkQLoadBal" />
+<SchemaParam Linked="0" Attr="13" Name="chkWOTime" />
+<SchemaParam Linked="0" Attr="14" Name="chkTxn" />
+<SchemaParam Linked="0" Attr="15" Name="lblSep1" />
+<SchemaParam Linked="0" Attr="16" Name="chkPFP" />
+<SchemaParam Linked="0" Attr="17" Name="lblProgress" />
+<SchemaParam Linked="0" Attr="18" Name="chkRFUP" />
 </Schema>
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="1920" Height="7040" Locale="1033" />
@@ -48,16 +49,16 @@
 <Control Type="3" FieldId="lstTables" Attr="4" Sorted="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="281" Top="22" Width="113" Height="22" AnchorRight="229" AnchorBottom="594" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Table details" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="271" Top="52" Width="293" Height="572" AnchorRight="11" AnchorBottom="14" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="279" Top="22" Width="121" Height="22" AnchorRight="231" AnchorBottom="594" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Table overview" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="279" Top="50" Width="256" Height="550" AnchorRight="40" AnchorBottom="38" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
 </Columns>
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="331" Top="129" Width="65" Height="22" AnchorRight="179" AnchorBottom="616" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="331" Top="151" Width="243" Height="220" AnchorRight="236" AnchorBottom="267" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="279" Top="39" Width="65" Height="22" AnchorRight="231" AnchorBottom="616" BackColor1="1" BackColor2="1" ForeColor="1" Caption="ListBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="279" Top="61" Width="256" Height="220" AnchorRight="288" AnchorBottom="357" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
@@ -104,7 +105,15 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="7" FieldId="chkWM" Attr="10" Check="0" CanFocus="1">
+<Control Type="7" FieldId="chkMfgWO" Attr="10" Check="0" CanFocus="1">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="297" Width="113" Height="22" AnchorRight="366" AnchorBottom="319" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Mfg WO Tables" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="297" Width="22" Height="22" AnchorRight="553" AnchorBottom="319" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="7" FieldId="chkWM" Attr="11" Check="0" CanFocus="1">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="418" Width="153" Height="22" AnchorRight="392" AnchorBottom="198" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Warehouse Director" />
@@ -112,7 +121,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="7" FieldId="chkQLoadBal" Attr="11" Check="0" CanFocus="1">
+<Control Type="7" FieldId="chkQLoadBal" Attr="12" Check="0" CanFocus="1">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="374" Width="169" Height="22" AnchorRight="376" AnchorBottom="242" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Queue Load Balancing" />
@@ -120,7 +129,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="7" FieldId="chkWOTime" Attr="12" Check="0" CanFocus="1">
+<Control Type="7" FieldId="chkWOTime" Attr="13" Check="0" CanFocus="1">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="462" Width="201" Height="22" AnchorRight="344" AnchorBottom="154" BackColor1="1" BackColor2="1" ForeColor="1" Caption="WO Time Entry Start/Stop" />
@@ -128,7 +137,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="7" FieldId="chkTxn" Attr="13" Check="0" CanFocus="1">
+<Control Type="7" FieldId="chkTxn" Attr="14" Check="0" CanFocus="1">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="220" Width="193" Height="22" AnchorRight="352" AnchorBottom="396" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Is this the Txn server?" />
@@ -136,14 +145,14 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblSep1" Attr="14">
+<Control Type="10" FieldId="lblSep1" Attr="15">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="0" Top="44" Width="257" Height="22" AnchorRight="320" AnchorBottom="572" BackColor1="1" BackColor2="1" ForeColor="ff" Caption="---------- Required -----------" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="7" FieldId="chkPFP" Attr="15" Check="0" CanFocus="1">
+<Control Type="7" FieldId="chkPFP" Attr="16" Check="0" CanFocus="1">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="506" Width="225" Height="22" AnchorRight="320" AnchorBottom="110" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Pay For Performance (Voice)" />
@@ -151,14 +160,14 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblProgress" Attr="16">
+<Control Type="10" FieldId="lblProgress" Attr="17">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="616" Width="97" Height="22" AnchorRight="480" AnchorBottom="0" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblProgress" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="7" FieldId="chkRFUP" Attr="17" Check="0" CanFocus="1">
+<Control Type="7" FieldId="chkRFUP" Attr="18" Check="0" CanFocus="1">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="32" Top="550" Width="161" Height="22" AnchorRight="384" AnchorBottom="66" BackColor1="1" BackColor2="1" ForeColor="1" Caption="RFgen User Profiles" />
@@ -214,6 +223,8 @@ Private mbPFP      As Boolean
 '
 Private mbRFUP001  As Boolean
 
+Private mbF55103 As Boolean
+
 Private Sub Form_Load()
   On Error Resume Next
   '
@@ -251,6 +262,7 @@ Private Sub cmdCreate_Click()
   If chkLog.Checked      Then Call CreateLogTables
   If chkOffline.Checked  Then Call CreateOffline
   If chkLP.Checked       Then Call CreateLP
+  If chkMfgWO.Checked    Then Call CreateMfgWO
   If chkQLoadBal.Checked Then Call CreateQLoadBal
   If chkWM.Checked       Then Call CreateWD
   If chkWOTime.Checked   Then Call CreateWO
@@ -265,6 +277,7 @@ Private Sub cmdCreate_Click()
   Call ValidateLogTables
   Call ValidateOITables
   Call ValidateLPTables
+  Call ValidateMfgWOTables
   Call ValidateQLoadBal
   Call ValidateWMTables
   Call ValidateWOTables
@@ -572,40 +585,19 @@ Public Sub CreateWD
   Dim sPriKey2 As String
   Dim sNumber  As String
   Dim sFloat   As String
-  '
-  Select Case msDBType
-    Case "SQL Server"
-      sChar   = "NCHAR"
-      sNumber = "NUMERIC"
-      sFloat  = "FLOAT"
-      sVChar  = "NVARCHAR"
-      '
-    Case "DB2"
-      sChar   = "CHAR"
-      sNumber = "NUMERIC"
-      sFloat  = "NUMERIC(15,4)"
-      sVChar  = "CHAR"
-      '
-    Case "Oracle"
-      sChar   = "CHAR"
-      sNumber = "NUMBER"
-      sVChar  = "VARCHAR2"
-      sFloat  = "NUMBER"
-      '
-    Case "Access"
-      sChar   = "CHAR"
-      sNumber = "NUMERIC"
-      sFloat  = "FLOAT"
-  End Select
+
+  sChar   = "NCHAR"
+  sNumber = "NUMERIC"
+  sFloat  = "FLOAT"
+  sVChar  = "NVARCHAR"
+
   '
   ' Assure that file exists
   '
   If Not mbRFWM Then
-'    DB.Execute "drop table WDJOBS"
-'    DB.Execute "drop table WDNN"
     DoEvents
     '
-    sSQL = "create table JDE_DEVELOPMENT.TESTDTA.WDJOBS (" _
+    sSQL = "create table WDJOBS (" _
         & "R2TYFL %char%(1) , " _
         & "R2SGBT %float% NOT NULL, " _
         & "R2SGSQ %float% NOT NULL, " _
@@ -660,7 +652,7 @@ Public Sub CreateWD
     DB.Execute sSQL
     DoEvents
     '
-     sSQL = "create table JDE_DEVELOPMENT.TESTDTA.WDNN (" _
+     sSQL = "create table WDNN (" _
         & "R2SGBT %float% NOT NULL)
     '
     sSQL = Replace(sSQL, "%char%",    sChar)
@@ -1518,6 +1510,85 @@ Public Sub CreateLP
     App.MsgBox("You need to setup AS400 Journaling for F55101, -H, F55102, -H and RFLog!")
   End If
   '
+End Sub
+
+Public Sub CreateMfgWO
+  On Error Resume Next
+  '
+  Dim sSQL     As String
+  Dim sChar    As String
+  Dim sPriKey1 As String
+  Dim sPriKey2 As String
+  Dim sNumber  As String
+  Dim sFloat   As String
+  '
+  Select Case msDBType
+    Case "SQL Server"
+      sChar    = "NCHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+    Case "DB2"
+      sChar = "CHAR"
+      sPriKey2 = ", PRIMARY KEY (%key%)"
+      sNumber  = "NUMERIC"
+      sFloat   = "NUMERIC(15,2)"
+    Case "Oracle"
+      sChar    = "CHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMBER"
+      sFloat   = "NUMBER"
+    Case "Access"
+      sChar    = "CHAR"
+      sPriKey1 = " PRIMARY KEY"
+      sNumber  = "NUMERIC"
+      sFloat   = "FLOAT"
+  End Select
+  '
+  ' Assure that LP002 exists
+  '
+  If Not mbF55103 Then
+    DoEvents
+
+    sSQL = _
+      "create table F55103 (" & _
+      "  LTLPID %char%(20) NOT NULL %prikey1%," & _
+      "  LTPALP %char%(50)," & _
+      "  LTDOCO %number%(8)," & _
+      "  LTLOCN %char%(20)," & _
+      "  LTLOTN %char%(30)," & _
+      "  LTLBLM %char%(1)," & _
+      "  LTSTS %char%(1)" & _
+      ")"
+
+    sSQL = Replace(sSQL, "%char%",    sChar)
+    sSQL = Replace(sSQL, "%prikey1%", sPriKey1)
+    sSQL = Replace(sSQL, "%number%",  sNumber)
+    sSQL = Replace(sSQL, "%key%",     "LMLPID")
+    '
+    DB.Execute sSQL
+    DoEvents
+    '
+    ' Generate Indexes
+    DB.Execute "create index F55101L1 ON F55101 (LMLPID)"
+    DB.Execute "create index F55101L2 ON F55101 (LMPALP)"
+  End If
+
+  Call ValidateMfgWOTables
+End Sub
+
+Private Sub ValidateMfgWOTables()
+  On Error Resume Next
+  '
+  Dim sSQL   As String
+  Dim nErrNo As Currency
+
+  lblProgress.Caption = "Validate F55103"
+  Screen.Refresh
+  '
+  sSQL = "select LTLPID, LTPALP, LTDOCO, LTLOCN, LTLOTN, LTUORG, LTLBLM, LTSTS from F55103"
+  nErrNo = DB.Execute(sSQL)
+  mbF55103 = (nErrNo=0)
 End Sub
 
 Private Sub ValidateLPTables()

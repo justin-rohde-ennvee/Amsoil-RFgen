@@ -11,7 +11,8 @@
 '#Language "WWB-COM"
 
 Option Explicit
-Global gbProcessing           As Boolean
+Global gbProcessing As Boolean
+
 Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal sFromUOM As String, ByVal sToUOM As String) As Boolean
   On Error Resume Next
   '
@@ -24,27 +25,26 @@ Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal s
   '
   ' Convert directly?
   '
-  sSql = "Select 1,UMCONV as CFact from F41002 " & _
-         " where UMITM = " & sITM & " And UMRUM = '" & sToUOM & "' and UMUM = '" & sFromUOM & "' "
-'         " union all " & _
-'         " select 2,UCCONV as CFact from F41003 " & _
-'         " where UCRUM = '" & sFromUOM & "' and UCUM = '" & sToUOM & "' " & _
-'         " Order by 1"
-  '
-  DB.Execute(sSql,sCols,sRows)
-  '
+  sSql = _
+    " select 1, UMCONV as CFact" & _
+    " from F41002 " & _
+    " where UMITM = " & sITM & _
+    " and UMRUM = '" & sToUOM & "'" & _
+    " and UMUM = '" & sFromUOM & "'"
+  DB.Execute(sSql, sCols, sRows)
+
   If (Len(sRows) <> 0) Then
     nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
     nQty = (nQty * nFact)
     GoTo UOMDone
   Else
-    sSql = "Select 1,UMCONV as CFact from F41002 " & _
-           " where UMITM = " & sITM & " And UMRUM = '" & sFromUOM & "' and UMUM = '" & sToUOM & "' "
-'           " union all " & _
-'           " select 2,UCCONV as CFact from F41003 " & _
-'           " where UCRUM = '" & sToUOM & "' and UCUM = '" & sFromUOM & "' " & _
-'           " Order by 1"
-    DB.Execute(sSql,sCols,sRows)
+    sSql = _
+      " select 1, UMCONV as CFact" & _
+      " from F41002" & _
+      " where UMITM = " & sITM & _
+      " and UMRUM = '" & sFromUOM & "'" & _
+      " and UMUM = '" & sToUOM & "'"
+    DB.Execute(sSql, sCols, sRows)
 
     If (Len(sRows) <> 0) Then
       nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
@@ -52,85 +52,99 @@ Public Function ConvUOMAMS(ByVal sITM As String, ByRef nQty As Currency, ByVal s
       GoTo UOMDone
     End If
   End If
+
   '
   ' Retrieve base UOM
   '
-  sSql = "select IMUOM1 from  F4101 where IMITM = " & sITM
+  sSql = "select IMUOM1 from F4101 where IMITM = " & sITM
   DB.Execute(sSql,sCols,sRows)
-  '
+
   If (Len(sRows) = 0) Then
     App.MsgBox(GetMsg(67))
     Exit Function
   End If
   '
   sStdUOM = DB.Extract(sCols, sRows, 1, "IMUOM1")
+
   '
   ' Convert to primary?
   '
   If (sFromUOM <> sStdUOM) Then
-    sSql = "Select 1,UMCONV as CFact from  F41002" & _
-           " where UMITM = " & sITM & " And UMUM = '" & sFromUOM & "' and UMRUM = '" & sStdUOM & "' " & _
-           " union all " & _
-           " select 2,UCCONV as CFact from  F41003" & _
-           " where UCUM = '" & sFromUOM & "' and UCRUM = '" & sStdUOM & "' " & _
-           " Order by 1"
-    DB.Execute(sSql,sCols,sRows)
-    '
+    sSql = _
+      " select 1, UMCONV as CFact" & _
+      " from F41002" & _
+      " where UMITM = " & sITM & _
+      " and UMUM = '" & sFromUOM & "'" & _
+      " and UMRUM = '" & sStdUOM & "'" & _
+      " union all" & _
+      " select 2, UCCONV as CFact" & _
+      " from F41003" & _
+      " where UCUM = '" & sFromUOM & "'" & _
+      " and UCRUM = '" & sStdUOM & "'" & _
+      " order by 1"
+    DB.Execute(sSql, sCols, sRows)
+
     If (Len(sRows) <> 0) Then
       nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
       nQty = (nQty * nFact)
     Else
-      sSql = "Select 1,UMCONV as CFact from  F41002" & _
-             " where UMITM = " & sITM & " And UMRUM = '" & sFromUOM & "' and UMUM = '" & sStdUOM & "' " & _
-             " union all " & _
-             " select 2,UCCONV as CFact from  F41003" & _
-             " where UCRUM = '" & sFromUOM & "' and UCUM = '" & sStdUOM & "' " & _
-             " Order by 1"
-      DB.Execute(sSql,sCols,sRows)
+      sSql = _
+        " select 1, UMCONV as CFact" & _
+        " from F41002" & _
+        " where UMITM = " & sITM & _
+        " and UMRUM = '" & sFromUOM & "'" & _
+        " and UMUM = '" & sStdUOM & "'" & _
+        " union all" & _
+        " select 2, UCCONV as CFact from  F41003" & _
+        " where UCRUM = '" & sFromUOM & "'" & _
+        " and UCUM = '" & sStdUOM & "'" & _
+        " order by 1"
+      DB.Execute(sSql, sCols, sRows)
 
       If (Len(sRows) = 0) Then
         App.MsgBox GetMsg(220) & sFromUOM & " -> " & sStdUOM
         Exit Function
       End If
-      '
+
       nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
       nQty = (nQty / nFact)
     End If
   End If
+
   '
   ' Convert to requested?
   '
   If (sToUOM <> sStdUOM) Then
-    sSql = "Select 1,UMCONV as CFact from  F41002" & _
-           " where UMITM = " & sITM & " And UMUM = '" & sStdUOM & "' and UMRUM = '" & sToUOM & "' "
-'           " union all " & _
-'           " select 2,UCCONV as CFact from  F41003" & _
-'           " where UCUM = '" & sStdUOM & "' and UCRUM = '" & sToUOM & "' " & _
-'           " Order by 1"
-    DB.Execute(sSql,sCols,sRows)
-    '
+    sSql = _
+      " select 1, UMCONV as CFact" & _
+      " from F41002" & _
+      " where UMITM = " & sITM & _
+      " and UMUM = '" & sStdUOM & "'" & _
+      " and UMRUM = '" & sToUOM & "'"
+    DB.Execute(sSql, sCols, sRows)
+
     If (Len(sRows) <> 0) Then
       nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
       nQty = (nQty * nFact)
     Else
-      sSql = "Select 1,UMCONV as CFact from  F41002" & _
-             " where UMITM = " & sITM & " And UMRUM = '" & sStdUOM & "' and UMUM = '" & sToUOM & "' "
-'             " union all " & _
-'             " select 2,UCCONV as CFact from  F41003" & _
-'             " where UCRUM = '" & sStdUOM & "' and UCUM = '" & sToUOM & "' " & _
-'             " Order by 1"
-      DB.Execute(sSql,sCols,sRows)
+      sSql = _
+        " select 1, UMCONV as CFact" & _
+        " from F41002" & _
+        " where UMITM = " & sITM & _
+        " and UMRUM = '" & sStdUOM & "'" & _
+        " and UMUM = '" & sToUOM & "'"
+      DB.Execute(sSql, sCols, sRows)
 
       If (Len(sRows) = 0) Then
         App.MsgBox GetMsg(220) & sStdUOM & " -> " & sToUOM
         Exit Function
       End If
-      '
+
       nFact = CCur(DB.Extract(sCols, sRows, 1, "CFact")) / 10000000
       nQty = (nQty / nFact)
     End If
   End If
-  '
+
 UOMDone:
   ConvUOMAMS = True
 End Function
@@ -334,10 +348,10 @@ Public Function CreateNewCarton(ByVal sBoxType As String) As String
 
   uLP101.sLMMCU = App.GetValue("tmMCU")
   uLP101.sLMLPID = sLPID
-  uLP101.sLMDSC1 = sBoxType ' "Created " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS")
+  uLP101.sLMDSC1 = sBoxType
   uLP101.sLMRNXTR = "545"
   uLP101.sLMTYPE = "P"
-  uLP101.sLMPALP = "" 'App.GetValue("tmTRIP")
+  uLP101.sLMPALP = ""
   uLP101.sLMUSER = UCase(App.User)
   uLP101.sLMURRF = "WAVE-" & App.GetValue("tmTRIP")
 

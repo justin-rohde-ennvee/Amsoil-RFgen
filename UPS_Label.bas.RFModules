@@ -117,7 +117,7 @@ Public Function UPS_RecoverLabel(ByVal sTrackingNumber As String, sErrMsg As Str
 
   App.Balloon("Sending shipping request...", -1)
 
-  sBody = UPS_LabelRecoveryJson(sTrackingNumber)
+  sBody = UPS_CreateLabelRecoveryJson(sTrackingNumber)
   bSuccess = UPS_SendLabelRecoveryRequest(sToken, sBody, sResponseStatus, sResponseText)
 
   App.Balloon("", 0)
@@ -170,7 +170,7 @@ Private Function UPS_ParseLabelRecoveryResponse( _
   sErrMsg As String _
 ) As Boolean
   If Not oResponse.Exists("LabelRecoveryResponse") Then
-    sErrMsg = "Missing response component: LabelRecoveryResponse"
+    sErrMsg = "Missing response element: 'LabelRecoveryResponse'"
     Return False
   End If
 
@@ -180,33 +180,36 @@ Private Function UPS_ParseLabelRecoveryResponse( _
   Return True
 End Function
 
-Private Function UPS_LabelRecoveryJson(ByVal sTrackingNumber As String) As String
-  Dim sBody As String
+Private Function UPS_CreateLabelRecoveryJson(ByVal sTrackingNumber As String) As String
+  Dim vbsJson As New vbsJson
+  Dim oDoc As New Scripting.Dictionary
 
-  sBody = _
-    "{" & _
-    "  LabelRecoveryRequest: {" & _
-    "    LabelSpecification: {" & _
-    "      HTTPUserAgent: 'Mozilla/4.5'," & _
-    "      LabelImageFormat: {" & _
-    "        Code: 'ZPL'," & _
-    "        LabelStockSize: {" & _
-    "          Height: '6'," & _
-    "          Width: '4'" & _
-    "        }" & _
-    "      }" & _
-    "    }," & _
-    "    Request: {" & _
-    "      RequestOption: 'Non_Validate'," & _
-    "      SubVersion: '1903'," & _
-    "      TransactionReference: { CustomerContext: '' }" & _
-    "    }," & _
-    "    TrackingNumber: '$TRACKING_NUMBER'" & _
-    "  }" & _
-    "}"
+  Dim oLabelRecoveryRequest As New Scripting.Dictionary
+  Dim oLabelSpecification As New Scripting.Dictionary
+  oLabelSpecification.Add("HTTPUserAgent", "Mozilla/4.5")
 
-  sBody = Replace(sBody, "$TRACKING_NUMBER", sTrackingNumber)
+  Dim oLabelImageFormat As New Scripting.Dictionary
+  oLabelImageFormat.Add("Code", "ZPL")
 
-  Return sBody
+  Dim oLabelStockSize As New Scripting.Dictionary
+  oLabelStockSize.Add("Height", "6")
+  oLabelStockSize.Add("Width", "4")
+  oLabelImageFormat.Add("LabelStockSize", oLabelStockSize)
+  oLabelSpecification.Add("LabelImageFormat", oLabelImageFormat)
+  oLabelRecoveryRequest.Add("LabelSpecification", oLabelSpecification)
+
+  Dim oRequest As New Scripting.Dictionary
+  oRequest.Add("RequestOption", "Non_Validate")
+  oRequest.Add("SubVersion", "1903")
+
+  Dim oTransactionReference As New Scripting.Dictionary
+  oTransactionReference.Add("CustomerContext", "")
+  oRequest.Add("TransactionReference", oTransactionReference)
+  oLabelRecoveryRequest.Add("Request", oRequest)
+
+  oLabelRecoveryRequest.Add("TrackingNumber", sTrackingNumber)
+
+  oDoc.Add("LabelRecoveryRequest", oLabelRecoveryRequest)
+  Return vbsJson.Encode(oDoc)
 End Function
 </Code>

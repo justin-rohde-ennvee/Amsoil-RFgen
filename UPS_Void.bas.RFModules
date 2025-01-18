@@ -60,13 +60,13 @@ Private Function UPS_ParseVoidResponse( _
   Dim oCharges As New Scripting.Dictionary
 
   If Not oResponse.Exists("VoidShipmentResponse") Then
-    sErrMsg = "Missing response component: VoidShipmentResponse"
+    sErrMsg = "Missing response element: 'VoidShipmentResponse'"
     Return False
   End If
 
   Set oVoidShipmentResponse = oResponse("VoidShipmentResponse")
   If Not oVoidShipmentResponse.Exists("SummaryResult") Then
-    sErrMsg = "Missing response component: SummaryResult"
+    sErrMsg = "Missing response element: 'SummaryResult'"
     Return False
   End If
 

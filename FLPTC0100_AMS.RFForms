@@ -248,7 +248,7 @@ Private Sub btnChange_Click()
 
   Dim vRsp  As Variant
 
-'STUFF TO LOOK UP / CROSS REFERENCE FROM WORKCENTER DATABASE:
+  'STUFF TO LOOK UP / CROSS REFERENCE FROM WORKCENTER DATABASE:
     sWCU = FixRight(Trim(App.GetValue("tmWC")), 12)
     sSql2 = "select * from WC_SQL where WCWCU = '" & sWCU & "'"
     DB.Execute(sSql2, sCols2, sRows2)

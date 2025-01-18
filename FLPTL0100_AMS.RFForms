@@ -175,19 +175,11 @@ Private Sub Form_Load()
   ' Get Proc.Opt. Version from Menu
   msPgm     = App.GetValue("Pgm")
   msVersion = App.GetValue("Vers")
-  '
-  ' get DocType from Proc.Opt.
- ' msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-
-  ' Get processing options
-'  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-'  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
 
   moProcOpt.ProgramId = msPgm
   moProcOpt.Version = msVersion
 
   msDOCTYPE = moProcOpt.Value("Documenttype")
-'  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
 
   '
   ' Default location if required from Menu
@@ -409,7 +401,7 @@ End Sub
 
 Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
-  '
+
   Dim sSql    As String
   Dim sSql2   As String
   Dim sCols   As String
@@ -428,66 +420,61 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim sDirectItems As String
   Dim nPos As Long
   Dim sFirstItem As String
+  Dim uLP101 As LP101Data
+  Dim sItemKey As String
 
-  Dim uLP101    As LP101Data       ' create LP101 Structure
-  '
   Rsp = UCase(Trim(Rsp))
   Cancel = True
   If (Len(Rsp)=0) Then Exit Sub
-  '
+
   Call LP101_Reset(uLP101)      ' init LP101 Structure
-  '
+
   uLP101.sLMLPID = Rsp
   If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
     App.MsgBox(GetMsg(104))
     Cancel = True
     Exit Sub
   End If
+
   If (Trim(uLP101.sLMMCU) <> Trim(App.GetValue("tmMCU"))) Then
     App.MsgBox("The Entered License Plate Is Not In The Selected Branch Plant")
     Cancel = True
     Exit Sub
   End If
+
   If (Val(Trim(uLP101.sLMRNXTR)) = 999) Then
       App.MsgBox("Cannot Transfer: Inventory on this License Plate does not exist in JDE.")
       Cancel = True
       Exit Sub
   End If
+
   If (Val(Trim(uLP101.sLMRNXTR)) >= 545) Then
       App.MsgBox("Can not transfer a picked license plate")
       Cancel = True
       Exit Sub
   End If
+
   sOwner = uLP101.sLMPALP
-  '
+
   If (Len(uLP101.sLMPALP)>0) Then
     App.MsgBox(GetMsg(13) & sOwner)
     Exit Sub
   End If
-  '
+
   lblLPDesc.Caption = uLP101.sLMDSC1
   lblLPLocn.Caption = uLP101.sLMLOCN
-  '
+
   App.SetValue("tmLPID",  Rsp)
   App.SetValue("tmTYPE",  uLP101.sLMTYPE)
   App.SetValue("tmMCU",  uLP101.slmMCU)          ' Parent MCU
   App.SetValue("tmLOCN", uLP101.sLMLOCN)         ' Parent Location
-  '
 
-  '
   sMCU = App.GetValue("tmMCU")
   sLocn = uLP101.sLMLOCN
-  '
-'  lblLPDesc.Caption = uLP101.sLMDSC1
+
   lblLPLocn.Caption = FormatLocnDisplay(sLocn, sMCU)
 
-
-
-
-  '
-
-'  Calculate and Display inventory info about the Pallet
-
+  ' Calculate and Display inventory info about the Pallet
   sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
   DB.Execute(sSql2, sCols2, sRows2)
   If (DB.Count(sRows2) > 0 ) Then
@@ -495,38 +482,35 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   End If
 
   For x = 1 To DB.Count(sRows2)
-    If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
-      sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+    sItemKey = DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+    If Not (InStr(sItemList, sItemKey) > 0) Then
+      sItemList = sItemList & sItemKey & "***"
       nNumItems = nNumItems + 1
     End If
-
   Next x
 
-'    sSQL = "select CIMCU, ABALPH from  F41001" & _
-'         " inner join  F0101 on CIAN8 = ABAN8 order by CIMCU"
-
-  '
-
-
-  sSql = "select LMLPID from F55101 where LMPALP = '" & Rsp & "'"
+  sSql = _
+    " select LMLPID" & _
+    " from F55101" & _
+    " inner join F55102 on LDLPID = LMLPID" & _
+    " where LMPALP = '" & Rsp & "'"
 
   DB.Execute(sSql, sCols, sRows)
   nTotalUnits = DB.Count(sRows)
+
   For y = 1 To DB.Count(sRows)
     sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & DB.Extract(sCols, sRows, y, "LMLPID") & "' group by LDLITM"
     DB.Execute(sSql2, sCols2, sRows2)
 
     For x = 1 To DB.Count(sRows2)
-      If Not (InStr(sItemList, DB.Extract(sCols2,sRows2,x,"LDLITM")&"***") > 0) Then
-        sItemList = sItemList & DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+      sItemKey = DB.Extract(sCols2, sRows2, x, "LDLITM") & "***"
+      If Not (InStr(sItemList, sItemKey) > 0) Then
+        sItemList = sItemList & sItemKey
         nNumItems = nNumItems + 1
       End If
     Next x
   Next y
 
-'  App.MsgBox(sItemList & " " & nNumItems)
-
-  '
   If nNumItems > 1 Then
     lblLPDesc.Caption = nNumItems & " Items"
     lblLPQty.Caption = nTotalUnits & " Total Units " & sDirectItems
@@ -535,7 +519,7 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     sFirstItem = Trim(Mid(sItemList, 1, nPos))
     sSql = "select  LDLITM, LDUORG, LDUOM from F55102 where LDLPID = '" & Rsp & "' "
     DB.Execute(sSql, sCols, sRows)
-    lblLPDesc.Caption = sFirstItem '& " " & DB.Extract(sCols,sRows,1,"LDUORG") & " " & DB.Extract(sCols,sRows,1,"LDUOM")
+    lblLPDesc.Caption = sFirstItem
     lblLPQty.Caption = nTotalUnits & " Total Units " & sDirectItems
   End If
 

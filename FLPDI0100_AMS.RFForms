@@ -263,39 +263,13 @@ Private Sub Form_Load()
     Exit Sub
   End If
 
-  ' Get processing options
-'  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-'  Debug.Print("msDOCTYPE old: " & msDOCTYPE)
-
   moProcOpt.ProgramId = msPgm
   moProcOpt.Version = msVersion
 
   msDOCTYPE = moProcOpt.Value("Documenttype")
-'  Debug.Print("msDOCTYPE new: " & msDOCTYPE)
-
-'  msDefaultFromPrimaryLocation = GetProcOpt(msPgm,msVersion,"1;2")
-'  Debug.Print("msDefaultFromPrimaryLocation old: " & msDefaultFromPrimaryLocation)
-'
-'  msDefaultFromPrimaryLocation = moProcOpt.Value("DefaultFROMPrimLocation")
-'  Debug.Print("msDefaultFromPrimaryLocation new: " & msDefaultFromPrimaryLocation)
-
-'  msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
-'  Debug.Print("msAllowHold old: " & msAllowHold)
-
   msAllowHold = moProcOpt.Value("AllowHeldLots")
-'  Debug.Print("msAllowHold new: " & msAllowHold)
-
-'  msLotGroup = GetProcOpt(msPgm,msVersion,"3;4")
-'  Debug.Print("msLotGroup old: " & msLotGroup)
-
   msLotGroup = trim(moProcOpt.Value("LotGroup"))
-'  Debug.Print("msLotGroup new: " & msLotGroup)
-
-'  msAllowOverQtyAvailable = GetProcOpt(msPgm,msVersion,"3;5")
-'  Debug.Print("msAllowOverQtyAvailable old: " & msAllowOverQtyAvailable)
-
   msAllowOverQtyAvailable = moProcOpt.Value("AllowOverQtyAvailable")
-'  Debug.Print("msAllowOverQtyAvailable new: " & msAllowOverQtyAvailable)
 End Sub
 
 Private Sub Form_LostFocus()
@@ -324,7 +298,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   '
   If gbCommitCtl Then DB.BeginTrans(gsLPSource)
   '
-  Dim sSql As String
+  Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
 
@@ -396,8 +370,8 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
     '
   Else 'If it isn't a plate
-    sSql = "select * from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & App.GetValue("tmPALP") & "' and LDLITM = '" & App.GetValue("tmLITM") & "' and LDLOTN = '" & App.GetValue("tmLOTN") & "'"
-    DB.Execute(sSql, sCols, sRows)
+    sSQL = "select * from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & App.GetValue("tmPALP") & "' and LDLITM = '" & App.GetValue("tmLITM") & "' and LDLOTN = '" & App.GetValue("tmLOTN") & "'"
+    DB.Execute(sSQL, sCols, sRows)
     App.SetValue("tmLNID", DB.Extract(sCols,sRows,1,"LDLNID"))
     '
     uLP101.sLMLPID    = App.GetValue("tmPALP")    ' Parent LP
@@ -506,7 +480,6 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Cancel = True
   Rsp = Trim(UCase(Rsp))
   '
-
   If (txtLOTN.DisplayOnly = True) Then
     Cancel = False
     Exit Sub
@@ -525,7 +498,6 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     App.SetValue("tmLPQty", nLQty)
 
     ' check Proc.Opt.if Lots on Hold are allowed
-    'msAllowHold = GetProcOpt(msPgm,msVersion,"3;3")
     msAllowHold = moProcOpt.Value("AllowHeldLots")
 
     If gbPOError Then
@@ -542,7 +514,6 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     End If
 
     ' check Proc.Opt.to default ToLots
-    'If GetProcOpt(msPgm,msVersion,"3;5") <> "1" Then
     If msAllowOverQtyAvailable <> "1" Then
       App.SetValue("tmLOTS", sHold)  ' 09/15/05 RBR
     End If
@@ -553,7 +524,7 @@ Private Sub txtLOTN_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     ' show adjustable Qty. regarding Proc.Opt.
 
-    Select Case msLotGroup 'GetProcOpt(msPgm,msVersion,"3;4")
+    Select Case msLotGroup
       Case ""   'Disallow neg.qty available
         If nAvail < 0 Then
           mnMaxQty = 0
@@ -757,7 +728,8 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     lblLPDesc.Caption = sFirstItem '& " " & DB.Extract(sCols,sRows,1,"LDUORG") & " " & DB.Extract(sCols,sRows,1,"LDUOM")
     lblNumUnits.Caption = nTotalUnits & " Total Units " & sDirectItems
   End If
-'End of calculate and display LP summary info.
+
+  ' End of calculate and display LP summary info.
 
 '  lblLPDesc.Caption = uLP101.sLMDSC1
   lblLPLocn.Caption = uLP101.sLMLOCN

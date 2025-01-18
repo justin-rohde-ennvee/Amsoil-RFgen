@@ -167,32 +167,6 @@ Private Sub Form_Load()
   lblLPLOTN.Label.ForeColor = cFieldDefaultFC
 
   txtQty.Visible = False
-  '
-'  txtAccept.Visible = False
-
-  ' Get Proc.Opt. Version from Menu
-'  msPgm     = App.GetValue("Pgm")
-'  msVersion = App.GetValue("Vers")
-  '
-  ' get DocType from Proc.Opt.
-'  msDOCTYPE = GetProcOpt(msPgm,msVersion,"1;1",sHeader)
-
-'  If gbPOError Then
-'    App.ExitForm
-'    Exit Sub
-'  End If
-  '
-  ' Default location if required from Menu
-  '
-'  sLocn = Trim(UCase(App.GetValue("From")))
-'  If sLocn <> "NONE" And sLocn <> "" Then
-'    msLocn = sLocn
-'  End If
-'  sLocn = Trim(UCase(App.GetValue("To")))
-'  If sLocn <> "NONE" And sLocn <> "" Then
-'    msToLocn = sLocn
-'  End If
-  '
 End Sub
 
 Private Sub Form_LostFocus()
@@ -463,13 +437,13 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   Dim nAvail As Long
 
   Dim uLP101    As LP101Data       ' create LP101 Structure
-  '
+
   Rsp = UCase(Trim(Rsp))
   Cancel = True
   If (Len(Rsp)=0) Then Exit Sub
-  '
+
   Call LP101_Reset(uLP101)      ' init LP101 Structure
-  '
+
   uLP101.sLMLPID = Rsp
   If Not X_LP101("I",uLP101) Then   ' Inquiry on LP101
     App.MsgBox(GetMsg(104))
@@ -506,29 +480,31 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     sLOTN = Trim(DB.Extract(sColsDetail,sRowsDetail, 1,"LDLOTN"))
     lblLPLOTN.Caption = "Lot: " & sLOTN
   End If
-  '
+
   lblLPLocn.Caption = "Locn: " & uLP101.sLMLOCN
 
-  '
   App.SetValue("tmLPID",  Rsp)
   App.SetValue("tmTYPE",  uLP101.sLMTYPE)
   App.SetValue("tmMCU",  uLP101.slmMCU)          ' Parent MCU
   App.SetValue("tmLOCN", uLP101.sLMLOCN)         ' Parent Location
   App.SetValue("tmSTYPE", uLP101.sLMRDCTO)
-  '
 
-  '
   sMCU = App.GetValue("tmMCU")
   sLocn = uLP101.sLMLOCN
-  '
+
   lblLPLocn.Caption = "Locn: " & FormatLocnDisplay(sLocn, sMCU)
-  '
 
   ' If it is a pallet "L" type - check to make sure inventory exists in JDE to transfer.
 
   If uLP101.sLMRDCTO = "ST" Then
     bInventoryExists = True
-    sSqlInv = " select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) as RFGQTY from F55101 inner join F55102 on LMLPID = LDLPID where LMLPID = '" & Rsp & "' or LMPALP = '" & Rsp & "' group by LDLITM, LMLOCN, LDLOTN"
+    sSqlInv = _
+      " select LDLITM, LMLOCN, LDLOTN, sum(LDUORG) as RFGQTY" & _
+      " from F55101" & _
+      " inner join F55102 on LMLPID = LDLPID" & _
+      " where LMLPID = '" & Rsp & "'" & _
+      " or LMPALP = '" & Rsp & "'" & _
+      " group by LDLITM, LMLOCN, LDLOTN"
 
     DB.Execute(sSqlInv, sColsInv, sRowsInv)
 
@@ -536,10 +512,14 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       sSqlItem = "select IMITM from F4101 where IMLITM = '" & Trim(DB.Extract(sColsInv,sRowsInv,x,"LDLITM")) & "'"
       DB.Execute(sSqlItem, sColsItem, sRowsItem)
 
-      sSqlJDEInv = "select sum(LIPQOH) as JDEQTY from F41021 where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
-                  " and LILOCN = '" & Trim(DB.Extract(sColsInv, sRowsInv, x, "LMLOCN")) & "' and " & _
-                  "LILOTN = '" & Trim(DB.Extract(sColsInv, sRowsInv, x, "LDLOTN")) & "'"
+      sSqlJDEInv = _
+        " select sum(LIPQOH) as JDEQTY" & _
+        " from F41021" & _
+        " where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
+        " and LILOCN = '" & Trim(DB.Extract(sColsInv, sRowsInv, x, "LMLOCN")) & "'" & _
+        " and LILOTN = '" & Trim(DB.Extract(sColsInv, sRowsInv, x, "LDLOTN")) & "'"
       DB.Execute(sSqlJDEInv, sColsJDEInv, sRowsJDEInv)
+
       If Val(DB.Extract(sColsInv, sRowsInv, x, "RFGQTY")) > Val(DB.Extract(sColsJDEInv, sRowsJDEInv, 1, "JDEQTY")) Then
         bInventoryExists = False
       End If
@@ -552,24 +532,39 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     End If
   Else 'If it is a sales order type
 
-    sSQL = "Select LMLPID from F55101 where LMPALP = '" & Trim(uLP101.sLMLPID) & "' or LMLPID = '" & Trim(uLP101.sLMLPID) & "'"
+    sSQL = _
+      " select LMLPID" & _
+      " from F55101" & _
+      " where LMPALP = '" & Trim(uLP101.sLMLPID) & "'" & _
+      " or LMLPID = '" & Trim(uLP101.sLMLPID) & "'"
     DB.Execute(sSQL, sCols, sRows)
     For x = 1 To DB.Count(sRows)
 
       ' Get all LNID's from the Pallet if there were items directly on it.
 
-      sSqlLNID = "select distinct LDLPID, LDLNID from F55102H where LDLPID = '" & Trim(DB.Extract(sCols, sRows, x, "LMLPID")) & "' and LDRDCTO like 'S%%'
+      sSqlLNID = _
+        " select distinct LDLPID, LDLNID" & _
+        " from F55102H" & _
+        " where LDLPID = '" & Trim(DB.Extract(sCols, sRows, x, "LMLPID")) & "'" & _
+        " and (LDRDCTO like 'S%%' or LDRDCTO = 'WO')"
       DB.Execute(sSqlLNID, sColsLNID, sRowsLNID)
 
       For y = 1 To DB.Count(sRowsLNID)
 
 
-        sSql102 = "Select * from F55102H where LDLPID = '" & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID")) & "' and LDLNID = " & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID")) & " and LDRDCTO like 'S%%' order by LDDATE DESC, LDTIME DESC"
+        sSql102 = _
+          " select *" & _
+          " from F55102H" & _
+          " where LDLPID = '" & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLPID")) & "'" & _
+          " and LDLNID = " & Trim(DB.Extract(sColsLNID, sRowsLNID, y, "LDLNID")) & _
+          " and (LDRDCTO like 'S%%')" & _
+          " order by LDDATE DESC, LDTIME DESC"
         DB.Execute(sSql102, sCols102, sRows102)
+
         sQtyList = ""
         nNumUniques = 0
         sKey = Trim(DB.Extract(sCols102, sRows102, 1, "LDLITM")) & ";" & Trim(DB.Extract(sCols102, sRows102, 1, "LDLOTN")) & ";"
-  '
+
         iFnd = Locate(sKey, sQtyList,1)
         '
         If (iFnd <> 0) Then     'add qty
@@ -590,9 +585,12 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
       sSqlItem = "select IMITM from F4101 where IMLITM = '" & Ext(sQtyList, 2, x) & "'"
       DB.Execute(sSqlItem, sColsItem, sRowsItem)
 
-      sSqlJDEInv = "select sum(LIPQOH) as JDEQTY from F41021 where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
-                  " and LILOCN = '" & App.GetValue("tmLOCN") & "' and " & _
-                  "LILOTN = '" & Ext(sQtyList, 3, x) & "'"
+      sSqlJDEInv = _
+        " select sum(LIPQOH) as JDEQTY" & _
+        " from F41021" & _
+        " where LIITM = " & Val(DB.Extract(sColsItem, sRowsItem, 1, "IMITM")) & _
+        " and LILOCN = '" & App.GetValue("tmLOCN") & "'" & _
+        " and LILOTN = '" & Ext(sQtyList, 3, x) & "'"
       DB.Execute(sSqlJDEInv, sColsJDEInv, sRowsJDEInv)
 
       nAvail = Val(DB.Extract(sColsJDEInv, sRowsJDEInv, 1, "JDEQTY"))
@@ -605,17 +603,20 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
 
     Next
 
-    sSQL = "select * from F55101 inner join F55102 on LDLPID = LMLPID where LDLPID = '" & Trim(Rsp) & "' or LMPALP = '" & Trim(Rsp) & "'"
-
+    sSQL = _
+      " select *" & _
+      " from F55101" & _
+      " inner join F55102 on LDLPID = LMLPID" & _
+      " where LDLPID = '" & Trim(Rsp) & "'" & _
+      " or LMPALP = '" & Trim(Rsp) & "'"
     DB.Execute(sSQL, sCols, sRows)
+
     If DB.Count(sRows) > 0 Then
       App.MsgBox("This Pallet Has Already Been Unpicked or Was Never Fully Picked.")
       Cancel = True
       Exit Sub
     End If
-
   End If
-
 
   '  Calculate and Display inventory info about the Pallet
   sSql2 = "select LDLITM, sum(LDUORG) as EachSum from F55102 where LDLPID = '" & Rsp & "' group by LDLITM"
