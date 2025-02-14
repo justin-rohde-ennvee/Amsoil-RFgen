@@ -1,0 +1,192 @@
+﻿<Record FileDesc="UPS Address Validation" FileVersion="5.0.8.0" Desc="UPS Address Validation" Group="UPS" />
+<Code>
+Option Explicit
+'#Language "WWB-COM"
+
+Public Function UPS_ValidateAddress( _
+  inAddress As AddressInfo, _
+  outAddress As AddressInfo, _
+  bValid As Boolean, _
+  bAmbiguous As Boolean, _
+  bNoCandidates As Boolean, _
+  sErrMsg As String _
+) As Boolean
+  Dim sBody As String
+  Dim sToken As String
+  Dim bSuccess As Boolean
+  Dim sResponseStatus As String
+  Dim sResponseText As String
+  Dim oResponseJson As Scripting.Dictionary
+  Dim jsonParser As New VbsJson
+  Dim sCode As String
+  Dim sMessage As String
+
+  On Error GoTo OnError
+
+  App.Balloon("Authorizing...", 1)
+
+  If Not UPS_GetToken(sToken, sErrMsg) Then Return False
+
+  App.Balloon("Sending shipping request...", -1)
+
+  sBody = UPS_CreateAddressValidationRequestJson(inAddress)
+  bSuccess = UPS_SendAddressValidationRequest(sToken, sBody, sResponseStatus, sResponseText)
+
+  App.Balloon("", 0)
+
+  Debug.Print(sBody)
+  Debug.Print(sResponseText)
+
+  Set oResponseJson = jsonParser.Decode(sResponseText)
+  If Not bSuccess Then
+    If UPS_ParseResponseError(oResponseJson, sCode, sMessage) Then
+      sErrMsg = "(" & sCode & ") " & sMessage
+    Else
+      sErrMsg = "HTTP status code: " & sResponseStatus
+    End If
+
+    Return False
+  End If
+
+  If Not UPS_ParseAddressValidationResponse(oResponseJson, outAddress, bValid, bAmbiguous, bNoCandidates, sErrMsg) Then Return False
+
+OnError:
+  If Err.Number <> 0 Then sErrMsg = "(" & Err.Number & ") " & Err.Description
+  Return True
+End Function
+
+Private Function UPS_SendAddressValidationRequest( _
+  ByVal sToken As String, _
+  ByVal sRequestBody As String, _
+  sResponseStatus As String, _
+  sResponseText As String _
+) As Boolean
+  Dim oHttp As New XMLHTTP60
+  Const sBaseURL As String = SYS.EnvironmentProperty("UPSBaseURL")
+
+  oHttp.open("POST", UPS_BASE_URL & "/api/addressvalidation/v2/1")
+  oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
+  oHttp.setRequestHeader("Content-Type", "application/json")
+  oHttp.setRequestHeader("Accept", "application/json")
+  oHttp.Send(sRequestBody)
+
+  sResponseStatus = CStr(oHttp.status)
+  sResponseText = oHttp.responseText
+
+  Return oHttp.status = 200
+End Function
+
+Private Function UPS_ParseAddressValidationResponse( _
+  ByVal oAPIResponse As Scripting.Dictionary, _
+  address As AddressInfo, _
+  bValid As Boolean, _
+  bAmbiguous As Boolean, _
+  bNoCandidates As Boolean, _
+  sErrMsg As String _
+) As Boolean
+  If Not oAPIResponse.Exists("XAVResponse") Then
+    sErrMsg = "Missing response element: 'XAVResponse'"
+    Return False
+  End If
+
+  Dim oXAVResponse As Scripting.Dictionary
+  Set oXAVResponse = oAPIResponse("XAVResponse")
+
+  bValid = oXAVResponse.Exists("ValidAddressIndicator")
+  bAmbiguous = oXAVResponse.Exists("AmbiguousAddressIndicator")
+  bNoCandidates = oXAVResponse.Exists("NoCandidatesIndicator")
+
+  If Not oXAVResponse.Exists("Response") Then
+    sErrMsg = "Missing response element: 'Response'"
+    Return False
+  End If
+
+  Dim oResponse As Scripting.Dictionary
+  Set oResponse = oXAVResponse("Response")
+
+  If Not oResponse.Exists("ResponseStatus") Then
+    sErrMsg = "Missing response element: 'ResponseStatus'"
+    Return False
+  End If
+
+  Dim oResponseStatus As Scripting.Dictionary
+  Set oResponseStatus = oResponse("ResponseStatus")
+
+  ' Verify success response
+  If oResponseStatus("Code") <> "1" Then
+    sErrMsg = "Response status: " & oResponseStatus("Code") & " " & oResponseStatus("Description")
+    Return False
+  End If
+
+  ' Check for alerts
+  ' TODO: Should these be displayed? Allow user to bypass?
+  If oResponse.Exists("Alert") Then
+    Dim aAlerts() As Scripting.Dictionary
+    aAlerts = oResponse("Alert")
+
+    If UBound(aAlerts) >= 0 Then
+      sErrMsg = aAlerts(0)("Code") & " " & aAlerts(0)("Description")
+      Return False
+    End If
+  End If
+
+  ' Parse the returned address
+  If oXAVResponse.Exists("Candidate") Then
+    Dim aCandidates() As Variant
+    aCandidates() = oXAVResponse("Candidate")
+
+    If UBound(aCandidates) >= 0 Then
+      Dim oCandidate As Scripting.Dictionary
+      Set oCandidate = aCandidates(0)
+
+      If oCandidate.Exists("AddressKeyFormat") Then
+        Dim oAddressKeyFormat As Scripting.Dictionary
+        Set oAddressKeyFormat = oCandidate("AddressKeyFormat")
+
+        Dim aAddressLines() As Variant
+        aAddressLines() = oAddressKeyFormat("AddressLine")
+        If UBound(aAddressLines) >= 0 Then address.sLine1 = aAddressLines(0)
+        If UBound(aAddressLines) >= 1 Then address.sLine2 = aAddressLines(1)
+        If UBound(aAddressLines) >= 2 Then address.sLine3 = aAddressLines(2)
+        address.sCity = oAddressKeyFormat("PoliticalDivision2")
+        address.sState = oAddressKeyFormat("PoliticalDivision1")
+        If oAddressKeyFormat.Exists("PostcodePrimaryLow") Then address.sZip = oAddressKeyFormat("PostcodePrimaryLow")
+        If oAddressKeyFormat.Exists("PostcodeExtendedLow") Then address.sZip &= "-" & oAddressKeyFormat("PostcodeExtendedLow")
+      End If
+    End If
+  End If
+
+  Return True
+End Function
+
+Private Function UPS_CreateAddressValidationRequestJson(ByVal address As AddressInfo) As String
+  Dim vbsJson As New vbsJson
+  Dim oDoc As New Scripting.Dictionary
+
+  Dim oAddressKeyFormat As New Scripting.Dictionary
+  oAddressKeyFormat.Add("ConsigneeName", address.sName)
+
+  Dim aAddressLine(0 To 2) As String
+  aAddressLine(0) = UCase(address.sLine1)
+  aAddressLine(1) = UCase(address.sLine2)
+  aAddressLine(2) = UCase(address.sLine3)
+  oAddressKeyFormat.Add("AddressLine", aAddressLine)
+
+  oAddressKeyFormat.Add("PoliticalDivision2", UCase(address.sCity))
+  oAddressKeyFormat.Add("PoliticalDivision1", UCase(address.sState))
+
+  Dim arrZip() As String
+  arrZip = Split(address.sZip, "-")
+  If UBound(arrZip) >= 0 Then oAddressKeyFormat.Add("PostcodePrimaryLow", arrZip(0))
+  If UBound(arrZip) >= 1 Then oAddressKeyFormat.Add("PostcodeExtendedLow", arrZip(1))
+
+  oAddressKeyFormat.Add("CountryCode", "US")
+
+  Dim oXAVRequest As New Scripting.Dictionary
+  oXAVRequest.Add("AddressKeyFormat", oAddressKeyFormat)
+
+  oDoc.Add("XAVRequest", oXAVRequest)
+
+  Return vbsJson.Encode(oDoc)
+End Function
+</Code>

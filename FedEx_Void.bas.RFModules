@@ -80,7 +80,6 @@ Private Function FedEx_ParseVoidResponse( _
   Dim jsonParser As New vbsJson
   Dim oResponse As Scripting.Dictionary
   Dim oOutput As Scripting.Dictionary
-  Dim oAlert As Scripting.Dictionary
 
   Set oResponse = jsonParser.Decode(sResponseText)
 
@@ -93,10 +92,7 @@ Private Function FedEx_ParseVoidResponse( _
   bVoidSuccess = oOutput.Item("cancelledShipment")
 
   If Not bVoidSuccess Then
-    If oOutput.Exists("alerts") Then
-      Set oAlert = oOutput.Item("alerts")(0)
-      sErrMsg = "(" & oAlert.Item("code") & ") " & oAlert.Item("message")
-    End If
+    If oOutput.Exists("message") Then sErrMsg = oOutput("message")
   End If
 
   Return bVoidSuccess

@@ -598,17 +598,9 @@ End Function
 Private Function IsUserLoggedIn(ByVal sCheckUser As String) As Boolean
   Dim oUsers As Scripting.Dictionary
   Dim sUser As String
-  Dim sLoggedInUsers As String
 
   Set oUsers = LoggedInUsers()
-
   sCheckUser = UCase(sCheckUser)
-  LogText("RFLogin", "IsUerLoggedIn", "Checking login for '" & sCheckUser & "'")
-
-  For Each sUser In oUsers.Keys
-    sLoggedInUsers &= "[" & sUser & "] "
-  Next
-  LogText("RFLogin", "IsUerLoggedIn", "All users: " & sLoggedInUsers)
 
   For Each sUser In oUsers.Keys
     If sUser = sCheckUser Then

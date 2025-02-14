@@ -2,7 +2,7 @@
 <Code>
 Option Explicit
 
-Private Const cLogPath = "D:\RFgen\Log"
+Private Const cLogPath = SYS.EnvironmentProperty("LogFileDirectory")
 
 ' Structure to be filled by "GetSystemTime" kernel function
 Private Type SYSTEMTIME
@@ -70,7 +70,7 @@ Public Function LogText( _
 
   nTickCount = GetTickCount64
 
-  Open cLogPath & "-" & Format(Date, "yyyyMMdd") & ".txt" For Append As #1
+  Open cLogPath & "\Log-" & Format(Date, "yyyyMMdd") & ".txt" For Append As #1
   Print #1, DateAndTimeFormatted() & vbTab & _
     nTickCount & vbTab & _
     UCase(Trim(App.User)) & vbTab & _

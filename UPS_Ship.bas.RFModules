@@ -10,7 +10,8 @@ Public Function UPS_CreateShipment( _
   ByVal sAccount As String, _
   ByVal sDesc As String, _
   ByVal nDOCO As Long, _
-  ByVal sLPID As String _
+  ByVal sLPID As String, _
+  Optional ByVal bMailInnovations As Boolean = False _
 ) As ShipmentResponse
   Dim fromAddress As AddressInfo
   Dim toAddress As AddressInfo
@@ -39,7 +40,7 @@ Public Function UPS_CreateShipment( _
 
   fromAddress = GetAddressInfo(nMCU)
   toAddress = GetAddressInfo(nSHAN)
-  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID)
+  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID, bMailInnovations)
   bSuccess = UPS_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
 
   App.Balloon("", 0)
@@ -78,7 +79,7 @@ Private Function UPS_SendShippingRequest( _
   Dim oHttp As New XMLHTTP60
   Const sBaseURL As String = SYS.EnvironmentProperty("UPSBaseURL")
 
-  LogText("UPS_Ship", "UPS_SendShippingRequest", "Request: " & vbNewLine & sRequestBody)
+  LogText("UPS_Ship", "UPS_SendShippingRequest", "Request: " & sRequestBody)
 
   oHttp.open("POST", UPS_BASE_URL & "/api/shipments/v1/ship")
   oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
@@ -89,7 +90,7 @@ Private Function UPS_SendShippingRequest( _
   sResponseStatus = CStr(oHttp.status)
   sResponseText = oHttp.responseText
 
-  LogText("UPS_Ship", "UPS_SendShippingRequest", "Response: " & vbNewLine & sResponseText)
+  LogText("UPS_Ship", "UPS_SendShippingRequest", "Response: " & sResponseText)
 
   Return oHttp.status = 200
 End Function
@@ -106,19 +107,11 @@ Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictiona
   Set oShipmentResults = oResponse("ShipmentResponse")("ShipmentResults")
 
   If TypeName(oShipmentResults("PackageResults")) = "IDictionary" Then
-    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsing from dict...")
-
     tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")("TrackingNumber")
     tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")("ShippingLabel")("GraphicImage")
-
-    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsed from dict. Tracking: " & tShipmentResponse.sTrackingNumber)
   Else
-    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsing from array...")
-
     tShipmentResponse.sTrackingNumber = oShipmentResults("PackageResults")(0)("TrackingNumber")
     tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")(0)("ShippingLabel")("GraphicImage")
-
-    LogText("UPS_Ship", "UPS_ParseShipmentResponse", "Parsed from array. Tracking: " & tShipmentResponse.sTrackingNumber)
   End If
 
   tShipmentResponse.nCost = CCur(oShipmentResults("NegotiatedRateCharges")("TotalCharge")("MonetaryValue"))
@@ -133,7 +126,8 @@ Private Function UPS_CreateShipmentRequestJson( _
   ByVal sAccount As String, _
   ByVal sDesc As String, _
   ByVal sReference1 As String, _
-  ByVal sReference2 As String _
+  ByVal sReference2 As String, _
+  Optional ByVal bMailInnovations As Boolean _
 ) As String
   Dim vbsJson As New vbsJson
   Dim oDoc As New Scripting.Dictionary
@@ -144,6 +138,9 @@ Private Function UPS_CreateShipmentRequestJson( _
   oShipmentRequest.Add("Request", oRequest)
 
   Dim oShipment As New Scripting.Dictionary
+  oShipment.Add("USPSEndorsement", "5")
+  oShipment.Add("PackageID", sReference2)
+
   Dim oShipmentRatingOptions As New Scripting.Dictionary
   oShipmentRatingOptions.Add("NegotiatedRatesIndicator", "X")
   oShipment.Add("ShipmentRatingOptions", oShipmentRatingOptions)
@@ -192,8 +189,13 @@ Private Function UPS_CreateShipmentRequestJson( _
   oShipment.Add("PaymentInformation", oPaymentInformation)
 
   Dim oService As New Scripting.Dictionary
-  oService.Add("Code", "03")
-  oService.Add("Description", "Ground")
+  If bMailInnovations Then
+    oService.Add("Code", "M4")
+    oService.Add("Description", "UPS Expedited Mail Innovations")
+  Else
+    oService.Add("Code", "03")
+    oService.Add("Description", "Ground")
+  End If
   oShipment.Add("Service", oService)
 
   Dim aPackage(0 To 0) As Scripting.Dictionary
@@ -201,7 +203,15 @@ Private Function UPS_CreateShipmentRequestJson( _
   oPackage1.Add("Description", sDesc)
 
   Dim oPackaging As New Scripting.Dictionary
-  oPackaging.Add("Code", "02")
+  If bMailInnovations Then
+    oPackaging.Add("Code", "66")
+    oPackaging.Add("Description", "BPM Flat")
+  Else
+    oPackaging.Add("Code", "02")
+    oPackaging.Add("Description", "Customer Supplied Package")
+
+  End If
+
   oPackage1.Add("Packaging", oPackaging)
 
   Dim oPackageWeight As New Scripting.Dictionary
@@ -211,7 +221,7 @@ Private Function UPS_CreateShipmentRequestJson( _
   oPackageWeight.Add("Weight", CStr(nWeight))
 
   oPackage1.Add("PackageWeight", oPackageWeight)
-  oPackage1.Add("PackageServiceOptions", "") ' TODO remove since empty?
+  oPackage1.Add("PackageServiceOptions", "")
 
   Dim aReferenceNumber(0 To 1) As Scripting.Dictionary
   Dim oReferenceNumber1 As New Scripting.Dictionary

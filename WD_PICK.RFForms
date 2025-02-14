@@ -1,26 +1,27 @@
-﻿<Record FileDesc="Directed Pick" FileVersion="5.0.8.0" Desc="Directed Pick" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtCategory&vm;btnPrintCartonLabels&vm;txtCart&vm;txtPrinter&vm;lblCartDesc&vm;lblLocn&vm;lblItem&vm;lblLot&vm;lblQty&vm;lblConfUOM&vm;lblBox&vm;lblSep&vm;txtConfItemLP&vm;btnPicks&vm;btnNextPick&vm;txtConfLot&vm;txtConfLocation&vm;txtConfQty&vm;txtConfBox&vm;txtAccept" ImageList="0&vm;0&vm;printer&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;list&vm;drop&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="X41.bas">
+﻿<Record FileDesc="Directed Pick" FileVersion="5.0.8.0" Desc="Directed Pick" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtCategory&vm;chkExclude&vm;txtCart&vm;btnPrint&vm;txtPrinter&vm;lblCartDesc&vm;lblLocn&vm;lblItem&vm;lblLot&vm;lblQty&vm;lblConfUOM&vm;lblBox&vm;lblSep&vm;txtConfItemLP&vm;btnPicks&vm;btnNextPick&vm;txtConfLot&vm;txtConfLocation&vm;txtConfQty&vm;txtConfBox&vm;txtAccept" ImageList="0&vm;0&vm;0&vm;0&vm;printer&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;list&vm;drop&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="X41.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="txtCategory" />
-<SchemaParam Linked="0" Attr="3" Name="btnPrintCartonLabels" />
+<SchemaParam Linked="0" Attr="3" Name="chkExclude" />
 <SchemaParam Linked="0" Attr="4" Name="txtCart" />
-<SchemaParam Linked="0" Attr="5" Name="txtPrinter" />
-<SchemaParam Linked="0" Attr="6" Name="lblCartDesc" />
-<SchemaParam Linked="0" Attr="7" Name="lblLocn" />
-<SchemaParam Linked="0" Attr="8" Name="lblItem" />
-<SchemaParam Linked="0" Attr="9" Name="lblLot" />
-<SchemaParam Linked="0" Attr="10" Name="lblQty" />
-<SchemaParam Linked="0" Attr="11" Name="lblConfUOM" />
-<SchemaParam Linked="0" Attr="12" Name="lblBox" />
-<SchemaParam Linked="0" Attr="13" Name="lblSep" />
-<SchemaParam Linked="0" Attr="14" Name="txtConfItemLP" />
-<SchemaParam Linked="0" Attr="15" Name="btnPicks" />
-<SchemaParam Linked="0" Attr="16" Name="btnNextPick" />
-<SchemaParam Linked="0" Attr="17" Name="txtConfLot" />
-<SchemaParam Linked="0" Attr="18" Name="txtConfLocation" />
-<SchemaParam Linked="0" Attr="19" Name="txtConfQty" />
-<SchemaParam Linked="0" Attr="20" Name="txtConfBox" />
-<SchemaParam Linked="0" Attr="21" Name="txtAccept" />
+<SchemaParam Linked="0" Attr="5" Name="btnPrint" />
+<SchemaParam Linked="0" Attr="6" Name="txtPrinter" />
+<SchemaParam Linked="0" Attr="7" Name="lblCartDesc" />
+<SchemaParam Linked="0" Attr="8" Name="lblLocn" />
+<SchemaParam Linked="0" Attr="9" Name="lblItem" />
+<SchemaParam Linked="0" Attr="10" Name="lblLot" />
+<SchemaParam Linked="0" Attr="11" Name="lblQty" />
+<SchemaParam Linked="0" Attr="12" Name="lblConfUOM" />
+<SchemaParam Linked="0" Attr="13" Name="lblBox" />
+<SchemaParam Linked="0" Attr="14" Name="lblSep" />
+<SchemaParam Linked="0" Attr="15" Name="txtConfItemLP" />
+<SchemaParam Linked="0" Attr="16" Name="btnPicks" />
+<SchemaParam Linked="0" Attr="17" Name="btnNextPick" />
+<SchemaParam Linked="0" Attr="18" Name="txtConfLot" />
+<SchemaParam Linked="0" Attr="19" Name="txtConfLocation" />
+<SchemaParam Linked="0" Attr="20" Name="txtConfQty" />
+<SchemaParam Linked="0" Attr="21" Name="txtConfBox" />
+<SchemaParam Linked="0" Attr="22" Name="txtAccept" />
 </Schema>
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="320" Height="480" Locale="1033" />
@@ -36,7 +37,7 @@
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="29" Width="57" Height="22" AnchorRight="253" AnchorBottom="429" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Plant:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="29" Width="120" Height="22" AnchorRight="8" AnchorBottom="429" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="172" Top="29" Width="140" Height="22" AnchorRight="8" AnchorBottom="429" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -44,21 +45,27 @@
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="43" Width="81" Height="22" AnchorRight="732" AnchorBottom="735" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Category:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="44" Width="60" Height="22" AnchorRight="12" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="108" Top="44" Width="60" Height="22" AnchorRight="232" AnchorBottom="434" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="50" Width="81" Height="22" AnchorRight="229" AnchorBottom="408" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Category:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="252" Top="51" Width="60" Height="22" AnchorRight="8" AnchorBottom="407" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="172" Top="51" Width="50" Height="22" AnchorRight="98" AnchorBottom="407" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnPrintCartonLabels" Attr="3" ImageId="printer">
+<Control Type="7" FieldId="chkExclude" Attr="3" Check="0" CanFocus="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Print Labels" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="231" Top="44" Width="130" Height="22" AnchorRight="139" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="191" Top="44" Width="49" Height="22" AnchorRight="160" AnchorBottom="434" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Excl." />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="168" Top="46" Width="18" Height="18" AnchorRight="214" AnchorBottom="436" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
-<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Reprint Carton Labels" Style="0" ImageHeight="14" ImageWidth="16" MarginBottom="0" MarginLeft="0" MarginRight="0" MarginTop="0">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="122" Width="190" Height="33" AnchorRight="120" AnchorBottom="325" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="254" Top="51" Width="65" Height="22" AnchorRight="1" AnchorBottom="407" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Exclude" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="231" Top="52" Width="20" Height="20" AnchorRight="69" AnchorBottom="408" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="127" Top="54" Width="73" Height="22" AnchorRight="238" AnchorBottom="424" BackColor1="1" BackColor2="1" ForeColor="1" Caption="CheckBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="89" Top="54" Width="22" Height="22" AnchorRight="289" AnchorBottom="424" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
@@ -70,11 +77,21 @@
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="73" Width="49" Height="22" AnchorRight="261" AnchorBottom="385" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Cart:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="192" Top="73" Width="120" Height="22" AnchorRight="8" AnchorBottom="385" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="172" Top="73" Width="140" Height="22" AnchorRight="8" AnchorBottom="385" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtPrinter" Attr="5" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="9" FieldId="btnPrint" Attr="5" ImageId="printer">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Print Labels" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="231" Top="44" Width="130" Height="22" AnchorRight="139" AnchorBottom="254" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0" Caption="Reprint Carton Labels" Style="0" ImageHeight="14" ImageWidth="16" MarginBottom="0" MarginLeft="0" MarginRight="0" MarginTop="0">
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="1" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="122" Width="190" Height="33" AnchorRight="120" AnchorBottom="325" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="1" FieldId="txtPrinter" Attr="6" Defaults="@LAST" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="231" Top="67" Width="65" Height="22" AnchorRight="204" AnchorBottom="231" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Printer" />
@@ -86,7 +103,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblCartDesc" Attr="6">
+<Control Type="10" FieldId="lblCartDesc" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="2" Top="88" Width="97" Height="22" AnchorRight="701" AnchorBottom="690" BackColor1="1" BackColor2="1" ForeColor="1" Caption="lblCartDesc" />
@@ -96,7 +113,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblLocn" Attr="7">
+<Control Type="10" FieldId="lblLocn" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="3" Top="103" Width="65" Height="22" AnchorRight="172" AnchorBottom="195" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLocn" />
@@ -106,7 +123,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblItem" Attr="8">
+<Control Type="10" FieldId="lblItem" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="3" Top="118" Width="65" Height="22" AnchorRight="172" AnchorBottom="180" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblItem" />
@@ -116,7 +133,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblLot" Attr="9">
+<Control Type="10" FieldId="lblLot" Attr="10">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="3" Top="133" Width="57" Height="22" AnchorRight="180" AnchorBottom="165" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblLot" />
@@ -126,7 +143,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblQty" Attr="10">
+<Control Type="10" FieldId="lblQty" Attr="11">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="3" Top="149" Width="57" Height="22" AnchorRight="180" AnchorBottom="149" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblQty" />
@@ -136,7 +153,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblConfUOM" Attr="11">
+<Control Type="10" FieldId="lblConfUOM" Attr="12">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="128" Top="264" Width="89" Height="22" AnchorRight="23" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblConfUOM" />
@@ -146,7 +163,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblBox" Attr="12">
+<Control Type="10" FieldId="lblBox" Attr="13">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="2" MultiLine="0" Left="3" Top="165" Width="57" Height="22" AnchorRight="180" AnchorBottom="133" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblBox" />
@@ -156,7 +173,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblSep" Attr="13">
+<Control Type="10" FieldId="lblSep" Attr="14">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="0" Top="179" Width="241" Height="22" AnchorRight="-1" AnchorBottom="119" BackColor1="1" BackColor2="1" ForeColor="1" Caption="---------- Confirm ----------" />
@@ -166,7 +183,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtConfItemLP" Attr="14" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtConfItemLP" Attr="15" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="198" Width="73" Height="22" AnchorRight="164" AnchorBottom="100" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Item/LP:" />
@@ -178,7 +195,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnPicks" Attr="15" ImageId="list">
+<Control Type="9" FieldId="btnPicks" Attr="16" ImageId="list">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Show Picks" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="233" Top="198" Width="110" Height="22" AnchorRight="157" AnchorBottom="100" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -188,7 +205,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnNextPick" Attr="16" ImageId="drop">
+<Control Type="9" FieldId="btnNextPick" Attr="17" ImageId="drop">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Next Pick" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="233" Top="220" Width="110" Height="22" AnchorRight="157" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
@@ -198,7 +215,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtConfLot" Attr="17" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtConfLot" Attr="18" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="220" Width="41" Height="22" AnchorRight="196" AnchorBottom="78" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Lot:" />
@@ -210,7 +227,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtConfLocation" Attr="18" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtConfLocation" Attr="19" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="242" Width="49" Height="22" AnchorRight="188" AnchorBottom="56" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Locn:" />
@@ -222,7 +239,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtConfQty" Attr="19" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtConfQty" Attr="20" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="264" Width="41" Height="22" AnchorRight="196" AnchorBottom="34" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Qty:" />
@@ -234,7 +251,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtConfBox" Attr="20" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtConfBox" Attr="21" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="286" Width="65" Height="22" AnchorRight="172" AnchorBottom="12" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Carton:" />
@@ -246,7 +263,7 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtAccept" Attr="21" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtAccept" Attr="22" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="3" Top="308" Width="201" Height="22" AnchorRight="196" AnchorBottom="20" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Press enter to accept..." />
@@ -335,7 +352,7 @@ Public Sub btnPicks_Click()
   oList.ShowList
 End Sub
 
-Public Sub btnPrintCartonLabels_Click()
+Public Sub btnPrint_Click()
   On Error Resume Next
   Dim bCancel As Boolean
   Dim sErrMsg As String
@@ -393,8 +410,9 @@ Public Sub btnPrintCartonLabels_Click()
 
     SYS.SetProperty("WaveAssign", Trim(App.GetValue("tmMCU")), "")
 
-    If Not SelectNextPick() Then
+    If Not HasNextPick() Then
       App.MsgBox("No picks available.")
+      App.SetValue("tmTRIP", 0)
       Exit Sub
     End If
   End If
@@ -487,7 +505,7 @@ Private Sub Form_Load()
   lblBox.Caption = ""
   lblConfUOM.Caption = ""
   lblCartDesc.Caption = ""
-  btnPrintCartonLabels.Visible = False
+  btnPrint.Visible = False
   btnPicks.Visible = False
   btnNextPick.Visible = False
 
@@ -500,7 +518,7 @@ Private Sub Form_Load()
   ' get Status From from Proc.Opt. and Header
   moProcOpt.ProgramId = msPgm
   moProcOpt.version = msVersion
-  msStatus = moProcOpt.Value("StatusNextFrom")
+  msStatus = moProcOpt.value("StatusNextFrom")
 
   nPrinter = Val(App.UserProperty("CartonPrinter"))
   If nPrinter > 0 Then txtPrinter.text = CStr(nPrinter)
@@ -573,7 +591,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
   trackingRecord.sMCU = App.GetValue("tmMCU")
   trackingRecord.sWAVE = App.GetValue("tmTRIP")
-  trackingRecord.nPSN = App.GetValue("tmDOCO")
+  trackingRecord.nPSN = App.GetValue("tmSGBT")
   trackingRecord.sCartID = App.GetValue("tmCart")
   trackingRecord.sLPID = App.GetValue("tmCartonID")
   trackingRecord.sTYFL = "2"
@@ -683,6 +701,8 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   DB.Execute(sSQL, sCols, sRows)
   App.SetValue("tmTRIP", DB.Extract(sCols, sRows, 1, "R2TRIP"))
 
+  LogText("WD_PICK", "txtCart_OnEnter", App.GetValue("tmTRIP"))
+
   If Val(App.GetValue("tmTRIP")) <> 0 Then
     If Not SelectNextPick() Then
       sSQL = "select count(*) from WDJOBS where R2TRIP = %tmTRIP and R2PSTB = '322'"
@@ -715,14 +735,14 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   App.SetValue("tmCart", Rsp)
   App.UserProperty("Cart") = Rsp
 
-  btnPrintCartonLabels.Visible = True
+  btnPrint.Visible = True
 
   If Val(App.GetValue("tmTRIP")) = 0 Then
-    btnPrintCartonLabels.Caption = "Print Labels"
+    btnPrint.Caption = "Print Labels"
     btnPicks.Visible = False
     btnNextPick.Visible = False
   Else
-    btnPrintCartonLabels.Caption = "Reprint Labels"
+    btnPrint.Caption = "Reprint Labels"
     btnPicks.Visible = True
     btnNextPick.Visible = True
   End If
@@ -910,11 +930,14 @@ Private Sub txtMCU_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   ' Restrict category filter entry to only branch 31
   If Trim(App.GetValue("tmMCU")) = "31" Then
     txtCategory.Visible = True
+    chkExclude.Visible = True
     txtCategory.DisplayOnly = False
   Else
     txtCategory.text = "*"
     App.SetValue("tmURCD", "*")
     txtCategory.Visible = False
+    chkExclude.Checked = False
+    chkExclude.Visible = False
     txtCategory.DisplayOnly = True
   End If
 
@@ -1280,45 +1303,32 @@ Public Sub BuildWave()
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
-  Dim sCols2 As String
-  Dim sRows2 As String
-  Dim sColsCarton As String
-  Dim sRowsCarton As String
   Dim sColsPick As String
   Dim sRowsPick As String
   Dim i As Long
   Dim j As Long
+  Dim sMCU As String
   Dim nDOCO As Long
   Dim sDCTO As String
   Dim nLNID As Currency
   Dim nITM As Long
   Dim sLITM As String
-  Dim nRQBT As Long
-  Dim nRQSQ As Long
-  Dim nNLIN As Long
+  Dim nBatch As Long
+  Dim nSequence As Long
+  Dim nLine As Long
   Dim nAreaRemaining As Long
-  Dim nWidth As Long
-  Dim nDepth As Long
   Dim nArea As Long
   Dim nWave As Long
   Dim nPickQty As Currency
-  Dim sPickUOM As String
   Dim sFLOC As String
-  Dim sFLOT As String
   Dim sEQTY As String
-  Dim sColsSeq As String
-  Dim sRowsSeq As String
-  Dim sDisplayQty As String
   Dim sPSTB As String
-  Dim sLPID As String
-  Dim iLevelNumber As Long
-  Dim sMinPSTB As String
   Dim sURCD As String
   Dim oErrorBatches As New Scripting.Dictionary
-  Dim oUsedLines As New Scripting.Dictionary
-  Dim sKey As String
-  Dim nErrNo As Long
-  Dim sBoxType As String
+  Dim sErrMsg As String
+
+  sMCU = App.GetValue("tmMCU")
+  sURCD = App.GetValue("tmURCD")
 
   ' Fetch open suggestions
   sSQL = _
@@ -1327,129 +1337,175 @@ Public Sub BuildWave()
     " where (R2TRIP = 0 or R2TRIP is null)" & _
     " and R2TYFL = '2'" & _
     " and R2PSTB = '320'" & _
-    " and R2MCU = '%tmMCU'" & _
+    " and R2MCU = '" & sMCU & "'" & _
     " group by R2PRITY, R2SGBT, R2SGSQ" & _
     " order by case when R2PRITY = 0 then 1 else 0 end, R2SGBT, R2SGSQ"
   DB.Execute(sSQL, sCols, sRows)
 
-  ' TODO account for individual shelves instead of total area
+  ' Calculate approximate area available (not intended to be precisely arranged).
   nAreaRemaining = mnLength * mnWidth * mnLevelCount
 
   For i=1 To DB.Count(sRows)
     ' Fetch carton suggestion for this batch & sequence
-    nRQBT = DB.Extract(sCols, sRows, i, "R2SGBT")
-    nRQSQ = DB.Extract(sCols, sRows, i, "R2SGSQ")
-    sKey = nRQBT & "|" & nRQSQ
+    nBatch = DB.Extract(sCols, sRows, i, "R2SGBT")
+    nSequence = DB.Extract(sCols, sRows, i, "R2SGSQ")
 
     ' Skip if excluded due to ERROR box on batch
-    If oErrorBatches.Exists(nRQBT) Then GoTo End_i
+    If oErrorBatches.Exists(nBatch) Then GoTo NextBatch
 
-    sSQL = _
-      " select max(IDEQTY) IDEQTY, max(IDGWID) IDGWID, max(IDGDEP) IDGDEP, max(R2URCD) R2URCD" & _
-      " from F4611" & _
-      " inner join F46091 on R2EQTY = IDEQTY and R2MCU = IDMCU" & _
-      " where R2RQBT = " & nRQBT & _
-      " and R2RQSQ = " & nRQSQ
-    DB.Execute(sSQL, sColsCarton, sRowsCarton)
+    ' Skip if no carton info exists
+    If Not GetCartonInfo(nBatch, nSequence, sEQTY, nArea) Then GoTo NextBatch
 
-    If DB.Count(sRowsCarton) = 0 Then GoTo End_i
-
-    sEQTY = Trim(DB.Extract(sColsCarton, sRowsCarton, 1, "IDEQTY"))
-    If sEQTY = "" Then GoTo End_i
+    ' Record batch # and skip if ERROR type container
     If sEQTY = "ERROR" Then
-      ' No container suggestions from this batch can be considered if ERROR type
-      oErrorBatches.Add(nRQBT, 1)
-      GoTo End_i
+      oErrorBatches.Add(nBatch, 1)
+      GoTo NextBatch
     End If
 
-    nWidth = ConvDecimalsFromSQL("GWID", DB.Extract(sColsCarton, sRowsCarton, 1, "IDGWID"))
-    nDepth = ConvDecimalsFromSQL("GDEP", DB.Extract(sColsCarton, sRowsCarton, 1, "IDGDEP"))
-    nArea = nWidth * nDepth
-    sURCD = Trim(DB.Extract(sColsCarton, sRowsCarton, 1, "R2URCD"))
-
     ' Determine if the current wave still has capacity for these containers
-    If nArea > nAreaRemaining Then GoTo End_i
+    If nArea > nAreaRemaining Then GoTo NextBatch
 
     ' Select all suggestion lines for this container (batch and sequence)
     sSQL = _
       " select *" & _
       " from WDJOBS" & _
       " where R2TYFL = '2'" & _
-      " and R2SGBT = " & nRQBT & _
-      " and R2SGSQ = " & nRQSQ & _
+      " and R2SGBT = " & nBatch & _
+      " and R2SGSQ = " & nSequence & _
       " order by R2FLOC, R2FLOT, R2DOCO, R2LNID"
     DB.Execute(sSQL, sColsPick, sRowsPick)
 
     ' Ensure all suggested locations in this batch/sequence are pickable
     For j=1 To DB.Count(sRowsPick)
-      Dim sKZON As String
-      Dim sColsPickable
-      Dim sRowsPickable
       sFLOC = Trim(DB.Extract(sColsPick, sRowsPick, j, "R2FLOC"))
-      sSQL = "select LMKZON from F4100 where LMMCU = '%tmMCU' and LMLOCN = '" & sFLOC & "'"
-      DB.Execute(sSQL, sColsPickable, sRowsPickable)
-      sKZON = Trim(DB.Extract(sColsPickable, sRowsPickable, 1, 1))
-      If sKZON <> "PICK" Then GoTo End_i
+      If Not IsPickableLocation(sMCU, sFLOC) Then GoTo NextBatch
     Next
 
-    ' Assign each line in this container
+    ' Check each line in this container
     For j=1 To DB.Count(sRowsPick)
-      nNLIN = DB.Extract(sColsPick, sRowsPick, j, "R2NLIN")
+      nLine = DB.Extract(sColsPick, sRowsPick, j, "R2NLIN")
       nDOCO = DB.Extract(sColsPick, sRowsPick, j, "R2DOCO")
 
-      ' Check category filter
-      If App.GetValue("tmURCD") <> "*" Then
-        ' Filter out non-matching category
-        If sURCD <> App.GetValue("tmURCD") Then GoTo End_j
-
-        ' Skip if part of multi-category pick
-        If Not IsSingleCategoryOrder(App.GetValue("tmMCU"), nDOCO, sURCD) Then GoTo End_j
+      ' Apply category filter
+      If sURCD <> "*" Then
+        If IsSingleCategoryOrder(sMCU, nDOCO, sURCD) Then
+          If chkExclude.Checked Then GoTo NextBatch
+        Else
+          If Not chkExclude.Checked Then GoTo NextBatch
+        End If
       End If
 
-      ' Get box type name
-      sSQL = "select R2EQTY from F4611 where R2RQBT = " & nRQBT & " and R2RQSQ = " & nRQSQ
-      DB.Execute(sSQL, sCols2, sRows2)
-      sBoxType = Trim(DB.Extract(sCols2, sRows2, 1, "R2EQTY"))
-
-      ' Check for existing carton ID on this batch and sequence
-      sSQL = "select max(R2LPID) from WDJOBS where R2SGBT = " & nRQBT & " and R2SGSQ = " & nRQSQ
-      DB.Execute(sSQL, sCols2, sRows2)
-
-      sLPID = Trim(DB.Extract(sCols2, sRows2, 1, 1))
-      If sLPID = "" Then sLPID = CreateNewCarton(sBoxType)
-
-      ' Assign the job to this user
-      sSQL = _
-        " update WDJOBS" & _
-        " set R2PSTB = '321'" & _
-        " ,   R2TRIP = %tmTRIP" & _
-        " ,   R2URCD = '" & sURCD & "'" & _
-        " ,   R2URRF = '" & UCase(App.User) & "'" & _
-        " ,   R2LPID = '" & sLPID & "'" & _
-        " ,   R2DSC2 = '%tmCart'" & _
-        " where R2PSTB = '320'" & _
-        " and R2SGBT = " & nRQBT & _
-        " and R2SGSQ = " & nRQSQ & _
-        " and R2NLIN = " & nNLIN
-      nErrNo = DB.Execute(sSQL)
-
-      If nErrNo <> 0 Then
-        App.MsgBox("Failed to assign pick wave: " & nErrNo)
+      If Not AssignJob(App.GetValue("tmTRIP"), sURCD, UCase(App.User), App.GetValue("tmCart"), sEQTY, nBatch, nSequence, nLine, sErrMsg) Then
+        App.MsgBox(sErrMsg)
         Exit Sub
       End If
-
-      End_j:
     Next j
 
     ' Reduce available cart/shelf area
     nAreaRemaining = nAreaRemaining - nArea
-    End_i:
+
+    NextBatch:
   Next i
 End Sub
 
+Private Function AssignJob( _
+  ByVal nWave As Long, _
+  ByVal sURCD As String, _
+  ByVal sUser As String, _
+  ByVal sCart As String, _
+  ByVal sEQTY As String, _
+  ByVal nBatch As Long, _
+  ByVal nSequence As Long, _
+  ByVal nLine As Long, _
+  sErrMsg As String _
+) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sLPID As String
+  Dim nErrNo As Long
+
+ ' Check for existing carton ID on this batch and sequence
+  sSQL = "select max(R2LPID) from WDJOBS where R2SGBT = " & nBatch & " and R2SGSQ = " & nSequence
+  DB.Execute(sSQL, sCols, sRows)
+
+  sLPID = Trim(DB.Extract(sCols, sRows, 1, 1))
+  If sLPID = "" Then sLPID = CreateNewCarton(sEQTY)
+
+  ' Assign the job to this user
+  sSQL = _
+    " update WDJOBS" & _
+    " set R2PSTB = '321'" & _
+    " ,   R2TRIP = " & nWave & _
+    " ,   R2URCD = '" & sURCD & "'" & _
+    " ,   R2URRF = '" & sUser & "'" & _
+    " ,   R2LPID = '" & sLPID & "'" & _
+    " ,   R2DSC2 = '" & sCart & "'" & _
+    " where R2PSTB = '320'" & _
+    " and R2SGBT = " & nBatch & _
+    " and R2SGSQ = " & nSequence & _
+    " and R2NLIN = " & nLine
+  nErrNo = DB.Execute(sSQL)
+
+  AssignJob = nErrNo = 0
+  If Not AssignJob Then sErrMsg = "Failed to assign pick wave (" & nErrNo & ")"
+End Function
+
+Private Function GetCartonInfo( _
+  ByVal nBatch As Long, _
+  ByVal nSequence As Long, _
+  sEQTY As String, _
+  nArea As Long _
+) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nWidth As Long
+  Dim nDepth As Long
+
+  sSQL = _
+    " select max(IDEQTY) IDEQTY, max(IDGWID) IDGWID, max(IDGDEP) IDGDEP" & _
+    " from F4611" & _
+    " inner join F46091 on R2EQTY = IDEQTY and R2MCU = IDMCU" & _
+    " where R2RQBT = " & nBatch & _
+    " and R2RQSQ = " & nSequence
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then Exit Function
+
+  sEQTY = Trim(DB.Extract(sCols, sRows, 1, "IDEQTY"))
+  If sEQTY = "" Then Exit Function
+
+  nWidth = ConvDecimalsFromSQL("GWID", DB.Extract(sCols, sRows, 1, "IDGWID"))
+  nDepth = ConvDecimalsFromSQL("GDEP", DB.Extract(sCols, sRows, 1, "IDGDEP"))
+  nArea = nWidth * nDepth
+
+  GetCartonInfo = True
+End Function
+
+Private Function IsPickableLocation(ByVal sMCU As String, ByVal sLocation As String) As Boolean
+  Dim sKZON As String
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = "select LMKZON from F4100 where LMMCU = '" & sMCU & "' and LMLOCN = '" & sLocation & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  sKZON = Trim(DB.Extract(sCols, sRows, 1, 1))
+  IsPickableLocation = sKZON = "PICK"
+End Function
+Private Function HasNextPick() As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
+  sSQL = "select count(*) from WDJOBS where R2TRIP = %tmTRIP and R2PSTB = '321'"
+  HasNextPick = Val(FetchFirstResult(sSQL)) > 0
+End Function
+
 Private Function SelectNextPick() As Boolean
   Dim nPickQty As Currency
-  Dim sCartonID As String
   Dim sCartonType As String
   Dim sBox As String
   Dim sNumberOfBoxes As Long
@@ -1546,12 +1602,13 @@ Private Function SelectNextPick() As Boolean
   trackingRecord.sWAVE = App.GetValue("tmTRIP")
   trackingRecord.nPSN = App.GetValue("tmSGBT")
   trackingRecord.sCartID = App.GetValue("tmCart")
-  trackingRecord.sLPID = sCartonID
+  trackingRecord.sLPID = job.sLPID
   trackingRecord.sTYFL = "2"
   trackingRecord.sLITM = job.sLITM
   trackingRecord.nQty = nPickQty
   trackingRecord.sUOM = job.sUOM1
   trackingRecord.nStartDateJDE = ConvDatetoJDE(CStr(Now))
+  trackingRecord.nStartTime = CLng(Format(Now, "hhnnss"))
 
   WriteTrackingRecord(trackingRecord, sErrMsg)
 
@@ -2302,26 +2359,6 @@ Private Function GetPickJob(ByVal nSGBT As Long, ByVal nSGSQ As Long, nNLIN As L
   GetPickJob = job
 End Function
 
-Private Function NextNumber(ByVal sSystemCode As Long, ByVal nIndex As Long) As Long
-  Dim emX0010GetNextNumber As New EmbeddedProc
-
-  emX0010GetNextNumber.Name = "X0010GetNextNumber"
-  emX0010GetNextNumber.LogMode = LogNever
-  emX0010GetNextNumber.DebugLog = cJDELogPath
-
-  emX0010GetNextNumber.Param("SystemCode") = sSystemCode
-  emX0010GetNextNumber.Param("NextNumberingIndexNo") = nIndex
-
-  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
-
-  If Not emX0010GetNextNumber.Execute Then
-    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, App.User, TM.QueueName, TM.SeqNo)
-    Exit Function
-  End If
-
-  NextNumber = emX0010GetNextNumber.Param("NextNumber001")
-End Function
-
 Private Sub DumpWave(ByVal sWave As String)
   Dim sSQL As String
   Dim sCols As String
@@ -2333,8 +2370,7 @@ Private Sub DumpWave(ByVal sWave As String)
   DB.Execute(sSQL, sCols, sRows)
 
   For i = 1 To DB.Count(sRows)
-    sDump &= _
-      vbNewLine & _
+    LogText("WD_PICK", "DumpWave", _
       DB.Extract(sCols, sRows, i, "R2TYFL") & "," & _
       DB.Extract(sCols, sRows, i, "R2SGBT") & "," & _
       DB.Extract(sCols, sRows, i, "R2SGSQ") & "," & _
@@ -2373,9 +2409,28 @@ Private Sub DumpWave(ByVal sWave As String)
       DB.Extract(sCols, sRows, i, "R2USER") & "," & _
       DB.Extract(sCols, sRows, i, "R2PID") & "," & _
       DB.Extract(sCols, sRows, i, "R2UPMJ") & "," & _
-      DB.Extract(sCols, sRows, i, "R2TDAY") & ","
+      DB.Extract(sCols, sRows, i, "R2TDAY") & "," _
+    )
   Next
-
-  LogText("WD_PICK", "DumpWave", sDump)
 End Sub
+
+Private Function NextNumber(ByVal sSystemCode As Long, ByVal nIndex As Long) As Long
+  Dim emX0010GetNextNumber As New EmbeddedProc
+
+  emX0010GetNextNumber.Name = "X0010GetNextNumber"
+  emX0010GetNextNumber.LogMode = LogNever
+  emX0010GetNextNumber.DebugLog = cJDELogPath
+
+  emX0010GetNextNumber.Param("SystemCode") = sSystemCode
+  emX0010GetNextNumber.Param("NextNumberingIndexNo") = nIndex
+
+  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
+
+  If Not emX0010GetNextNumber.Execute Then
+    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, App.User, TM.QueueName, TM.SeqNo)
+    Exit Function
+  End If
+
+  NextNumber = emX0010GetNextNumber.Param("NextNumber001")
+End Function
 </Code>

@@ -14,7 +14,7 @@ Public Type F554603Record
   sUOM As String
   sRepack As String
   nStartDateJDE As Long
-  nAST As Long
+  nStartTime As Long
   nEndDateJDE As Long
   nEndTime As Long
 End Type
@@ -50,7 +50,7 @@ Public Function WriteTrackingRecord(ByVal trackingRecord As F554603Record, sErrM
   sSQL = Replace(sSQL, "$UOM", trackingRecord.sUOM)
   sSQL = Replace(sSQL, "$55REPACK", trackingRecord.sRepack)
   sSQL = Replace(sSQL, "$STRDTJ", CStr(trackingRecord.nStartDateJDE))
-  sSQL = Replace(sSQL, "$WWAST", CStr(trackingRecord.nAST))
+  sSQL = Replace(sSQL, "$WWAST", CStr(trackingRecord.nStartTime))
   sSQL = Replace(sSQL, "$ENDDTJ", CStr(trackingRecord.nEndDateJDE))
   sSQL = Replace(sSQL, "$TMEND", CStr(trackingRecord.nEndTime))
   sSQL = Replace(sSQL, "$USER", UCase(App.User))

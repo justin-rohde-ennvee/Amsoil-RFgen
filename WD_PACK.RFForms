@@ -44,9 +44,9 @@
 </Control>
 <Control Type="1" FieldId="txtDL02" Attr="4" KeyField="0" MaskInput="0" Required="1" SipMode="0">
 <Layouts>
-<Layout PageNo="1" Visible="1" ZOrder="0">
+<Layout PageNo="1" Visible="1" ZOrder="1">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="96" Width="73" Height="22" AnchorRight="237" AnchorBottom="362" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Carrier:" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="191" Top="96" Width="119" Height="22" AnchorRight="10" AnchorBottom="362" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="121" Top="96" Width="189" Height="22" AnchorRight="10" AnchorBottom="362" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="148" Top="92" Width="65" Height="22" AnchorRight="27" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -186,6 +186,7 @@ Private Const cStatusPickConfirm = "545" ' SO status after pick slip printed
 Private Const cStatusShipConfirm = "560" ' SO status after pack confirm & label created
 Private Const cTNId = "FLPPPC0200_AMS"
 Private Const cDefaultCarrier = "UPS"
+Private moCarriers As New Scripting.Dictionary
 
 Private msPgm       As String
 Private msVersion   As String     ' Pick Confirm
@@ -211,8 +212,12 @@ Public Sub btnCreateShipment_Click()
   Dim sLPID As String
   Dim nAN8 As Long
   Dim nSHAN As Long
+  Dim sMCU As String
   Dim nMCU As Long
   Dim nWeight As Currency
+  Dim nWidth As Currency
+  Dim nHeight As Currency
+  Dim nLength As Currency
   Dim sAccount As String
   Dim sCarrier As String
   Dim nSequence As Long
@@ -226,7 +231,6 @@ Public Sub btnCreateShipment_Click()
 
   App.Balloon("Creating shipment...", -1)
 
-  ' Fetch from and to address numbers and package weight
   nDOCO = Val(lbxDoco.List.Cell(1, 6).Value)
   sLPID = App.GetValue("tmLPID")
   sSQL = "select SDAN8, SDSHAN from F4211 where SDDOCO = " & nDOCO
@@ -237,7 +241,8 @@ Public Sub btnCreateShipment_Click()
   nAN8 = DB.Extract(sCols, sRows, 1, "SDAN8")
   nSHAN = DB.Extract(sCols, sRows, 1, "SDSHAN")
 
-  nMCU = Val(App.GetValue("tmMCU"))
+  sMCU = App.GetValue("tmMCU")
+  nMCU = Val(sMCU)
   nWeight = PackageWeight(App.GetValue("tmLPID"))
   sAccount = Trim(CStr(App.GetValue("tm55CARS")))
   sCarrier = App.GetValue("tmDL02")
@@ -251,6 +256,8 @@ Public Sub btnCreateShipment_Click()
   Select Case sCarrier
   Case "UPS"
     tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID)
+  Case "UPS Mail Innovations"
+    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID, True)
   Case "FedEx"
     If SYS.EnvironmentProperty("Environment") = "TEST" Then sAccount = FEDEX_ACCOUNT_NUMBER
     tShipmentResponse = FedEx_CreateShipment(nMCU, nSHAN, nWeight, sAccount)
@@ -287,7 +294,7 @@ Public Sub btnCreateShipment_Click()
   App.Balloon("Printing shipping label...", -1)
 
   Select Case sCarrier
-  Case "UPS"
+  Case "UPS", "UPS Mail Innovations"
     If Not UPS_SaveLabel(sLPID, tShipmentResponse.sLabelImageBytes, sErrMsg) Then
       App.Balloon("Printing shipping label...", 1)
       App.MsgBox("Failed to save label: " & sErrMsg)
@@ -307,9 +314,11 @@ Public Sub btnCreateShipment_Click()
   LogText("WD_PACK", "CreateShipment", "Printed label: " & sLPID & " User: " & App.User)
 
   App.Balloon("Saving tracking info...", -1)
+  If sCarrier = "UPS Mail Innovations" Then sCarrier = "UPS"
+
   If Not InsertTracking( _
     App.GetValue("tmPSN"), _
-    App.GetValue("tmDL02"), _
+    sCarrier, _
     sLPID, _
     tShipmentResponse.nCost, _
     tShipmentResponse.sTrackingNumber, _
@@ -348,10 +357,49 @@ Public Sub btnCreateShipment_Click()
 
   lbxDoco.List.Clear
   txtDL02.text = ""
+  txtDL02.Visible = False
   txtLPID.text = ""
   Call txtLPID_OnBackup(False)
   App.SetFocus(txtLPID.FieldId)
 End Sub
+
+Private Function GetContainerDimensions( _
+  ByVal sMCU As String, _
+  ByVal sLPID As String, _
+  nWidth As Currency, _
+  nLength As Currency, _
+  nHeight As Currency, _
+  sErrMsg As String _
+) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sEQTY As String
+
+  sEQTY = Trim(FetchFirstResult("select LMDSC1 from F55101 where LMLPID = '" & sLPID & "'"))
+  If sEQTY = "" Then
+    sErrMsg = "Container type not found for carton '" & sLPID & "'"
+    Exit Function
+  End If
+
+  sSQL = _
+    " select IDGWID, IDGDEP, IDGHET" & _
+    " from F46091" & _
+    " where IDEQTY = '" & sEQTY & "'" & _
+    " and IDMCU = '" & sMCU & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then
+    sErrMsg = "No dimension information found for '" & sEQTY & "' in branch '" & Trim(sMCU) & "'"
+    Exit Function
+  End If
+
+  nWidth = ConvDecimalsFromSQL("GWID", DB.Extract(sCols, sRows, 1, "IDGWID"))
+  nLength = ConvDecimalsFromSQL("GDEP", DB.Extract(sCols, sRows, 1, "IDGDEP"))
+  nHeight = ConvDecimalsFromSQL("GHET", DB.Extract(sCols, sRows, 1, "IDGHET"))
+
+  GetContainerDimensions = True
+End Function
 
 Public Sub btnMoveItems_Click()
   On Error Resume Next
@@ -453,7 +501,7 @@ Private Function ShipEligibleItems(sErrMsg As String) As Boolean
       sSQL = _
         " update F55102" & _
         " set LDRNXTR = '620'" & _
-        " where LDRDOCO = " & nDOCO & _
+        " where LDRDOCO = '" & nDOCO & "'" & _
         " and LDRLLN = " & ConvDecimalsToSQL("LNID", nLNID)
       nErrNo = DB.Execute(sSQL)
 
@@ -496,6 +544,8 @@ Function ExecuteJDEShipConfirm(ByVal nDOCO As Long, ByVal nLNID As Currency, sEr
     Exit Function
   End If
 
+  LogText("WD_PACK", "ExecuteJDEShipConfirm", "SQL: " & sSQL)
+
   emProc.Name                = "TSOSC0100"
   emProc.DataSource          = gsDataSource
   emProc.Param("tmCO")       = DB.Extract(sCols, sRows, 1, "SDCO")
@@ -517,6 +567,24 @@ Function ExecuteJDEShipConfirm(ByVal nDOCO As Long, ByVal nLNID As Currency, sEr
 
   If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
 
+  LogText("WD_PACK", "ExecuteJDEShipConfirm", _
+    "tmCO: " & emProc.Param("tmCO") & "; " & _
+    "tmMCU: " & emProc.Param("tmMCU") & "; " & _
+    "tmDOCO: " & emProc.Param("tmDOCO") & "; " & _
+    "tmDCTO: " & emProc.Param("tmDCTO") & "; " & _
+    "tmLITM: " & emProc.Param("tmLITM") & "; " & _
+    "tmLOTN: " & emProc.Param("tmLOTN") & "; " & _
+    "tmLOCN: " & emProc.Param("tmLOCN") & "; " & _
+    "tmQTY: " & emProc.Param("tmQTY") & "; " & _
+    "tmUOM: " & emProc.Param("tmUOM") & "; " & _
+    "tmLNID: " & emProc.Param("tmLNID") & "; " & _
+    "tmSHIPTO: " & emProc.Param("tmSHIPTO") & "; " & _
+    "tmCARRIER: " & emProc.Param("tmCARRIER") & "; " & _
+    "tmLNTY: " & emProc.Param("tmLNTY") & "; " & _
+    "tmUSER: " & emProc.Param("tmUSER") & "; " & _
+    "tmPGM: " & emProc.Param("tmPGM") & "; " & _
+    "tmZVERSION: " & emProc.Param("tmZVERSION") _
+  )
   If Not emProc.Execute Then
     sErrMsg = GetMsg(221) & vbCrLf & emProc.Param("tmERRTEXT")
     If Ext(gsLog,2) = "1" Then Call TranLog(cTNId, "2", emProc.Name, "", emProc)
@@ -670,17 +738,29 @@ Public Sub txtDL02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sDL01 As String
   Dim s55CARS As String
   Dim sCNID As String
+  Dim nCost As Currency
+  Dim sBaseCarrierName As String
+  Dim bMailInnovations As Boolean
+
+  Rsp = UCase(Trim(Rsp))
+  If Not moCarriers.Exists(Rsp) Then
+    App.MsgBox("Invalid carrier.")
+    Exit Sub
+  End If
+
+  Rsp = moCarriers(Rsp)
+  sBaseCarrierName = Split(Rsp)(0)
 
   sSQL = _
     " select CFDL01, CF55CARS, CFCNID" & _
     " from F554602" & _
     " where CFPSN = " & App.GetValue("tmPSN") & _
-    " and CFDL02 = '" & Rsp & "'" & _
+    " and CFDL02 = '" & sBaseCarrierName & "'" & _
     " order by case when CFCNID = ' ' then 2 else 1 end"
   DB.Execute(sSQL, sCols, sRows)
 
   If DB.Count(sRows) = 0 Then
-    App.MsgBox("Invalid carrier.")
+    App.MsgBox("Rate not found for carrier.")
     Cancel = True
     Exit Sub
   End If
@@ -693,16 +773,17 @@ Public Sub txtDL02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   App.SetValue("tm55CARS", s55CARS)
 
   sSQL = _
-    " select CFDL01, CF55CARS, CFCNID" & _
+    " select CFDL01, CF55CARS, CFCNID, CFECST" & _
     " from F554602" & _
     " where CFPSN = " & App.GetValue("tmPSN") & _
-    " and CFDL02 = '" & Rsp & "'" & _
+    " and CFDL02 = '" & sBaseCarrierName & "'" & _
     " and CFCNID = '%tmLPID'"
   DB.Execute(sSQL, sCols, sRows)
 
   If DB.Count(sRows) > 0 Then
     sDL01 = Trim(DB.Extract(sCols, sRows, 1, "CFDL01"))
     sCNID = Trim(DB.Extract(sCols, sRows, 1, "CFCNID"))
+    nCost = ConvDecimalsFromSQL("ECST", DB.Extract(sCols, sRows, 1, "CFECST"))
 
     App.SetValue("tmDL01", sDL01)
     App.SetValue("tmCNID", sCNID)
@@ -712,37 +793,46 @@ Public Sub txtDL02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     btnMoveItems.Visible = False
     btnSwapBox.Visible = False
     txtPrinter.Visible = False
+    lblCost.Caption = "Cost: $" & Format(nCost, "#0.00")
   Else
     lblTrackingNumber.Caption = ""
     btnCreateShipment.Visible = True
     btnMoveItems.Visible = True
     btnSwapBox.Visible = True
     txtPrinter.Visible = True
+    lblCost.Caption = ""
   End If
 End Sub
 
 Public Sub txtDL02_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   On Error Resume Next
 
+  Dim sValues As String
+  Dim sCarrier As String
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
   Dim oList As New SearchList
-  Dim sSelection As String
   Dim iCostDec As Integer
 
+  For Each sCarrier In moCarriers.Items
+    If Len(sValues) > 0 Then sValues &= ","
+    sValues &= "('" & sCarrier & "')"
+  Next
+
+  ' Find carriers
   sSQL = _
-    " select CFDL02, CFECST" & _
-    " from F554602" & _
-    " where CFPSN = %tmPSN" & _
-    " and CFCNID = ' '" & _
-    " and CFECST > 0" & _
-    " order by CFECST"
+    " select Name, CFECST, ' '" & _
+    " from ( values " & sValues & ") as Carriers(Name)" & _
+    " left join F554602" & _
+    "   on Name = CFDL02" & _
+    "   and CFPSN = %tmPSN" & _
+    "   and CFECST > 0"
 
   GetDecimals("ECST", iCostDec)
 
   oList.SetColumn(1, "Name", -1, TextLeft, True)
-  oList.SetColumn(2, "Price", -1, TextRight, True, iCostDec)
+  oList.SetColumn(2, "Cost", -1, TextRight, True, iCostDec)
   oList.SQL = sSQL
   Rsp = Trim(oList.ShowList)
 
@@ -793,6 +883,7 @@ Private Sub Form_Load()
   lblSequence.Caption = ""
   lblTrackingNumber.Caption = ""
   btnCreateShipment.Visible = False
+  txtDL02.Visible = False
 
   ' Get Proc.Opt. Version from Menu
   msPgm = App.GetValue("Pgm")
@@ -838,6 +929,11 @@ Private Sub Form_Load()
   lbxDoco.List.SetColumn(8, "LP Sts", -1)
   lbxDoco.List.SetColumn(9, "JDE Sts", -1)
   lbxDoco.List.SetColumn(10, "PSN", -1)
+
+  ' Add valid carriers and link them to their case-correct values
+  moCarriers.Add("UPS", "UPS")
+  moCarriers.Add("UPS MAIL INNOVATIONS", "UPS Mail Innovations")
+  moCarriers.Add("FEDEX", "FedEx")
 End Sub
 
 Public Sub txtPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -930,14 +1026,15 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     Exit Sub
   End If
 
-  sPSN = PickSlipNumberForCarton(Rsp)
-  If sPSN = "" Then
-    App.MsgBox("Unable to determine pick slip # for carton.")
+  If Not IsCartonFullyPicked(Rsp, sErrMsg) Then
+    App.MsgBox(sErrMsg)
     Exit Sub
   End If
 
-  If Not IsCartonFullyPicked(Rsp, sErrMsg) Then
-    App.MsgBox(sErrMsg)
+  ' We need the pick slip number to determine if related packages have already had a carrier chosen
+  sPSN = PickSlipNumberForCarton(Rsp)
+  If sPSN = "" Then
+    App.MsgBox("Unable to determine pick slip # for carton.")
     Exit Sub
   End If
 
@@ -946,9 +1043,11 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
   App.SetValue("tmPSN", sPSN)
   App.SetValue("tmLPID", Rsp)
 
+  ' Check for an existing carrier for this pick slip
   sCarrierName = GetSelectedCarrierForPSN(sPSN)
 
   If sCarrierName = "" Then
+    ' No carrier has been selected for any packages on this pick slip yet - check for a default:
     If HasCarrierForPSN(sPSN, cDefaultCarrier) Then
       sCarrierName = cDefaultCarrier
     Else
@@ -960,8 +1059,22 @@ Private Sub txtLPID_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef 
     bShipmentExists = True
   End If
 
-  txtDL02.text = sCarrierName
-  txtDL02.DisplayOnly = bShipmentExists
+  txtDL02.Visible = True
+
+  If bShipmentExists Then
+    ' Disallow carrier change if any shipment exists for this PSN
+    txtDL02.DisplayOnly = True
+    txtDL02.BackColor1 = &HA9A9A9
+    txtDL02.BackColor2 = &HA9A9A9
+    txtDL02.text = sCarrierName
+  Else
+    txtDL02.DisplayOnly = False
+    txtDL02.BackColor1 = 1
+    txtDL02.BackColor2 = 1
+    txtDL02.text = ""
+    txtDL02.Defaults = cDefaultCarrier
+    lblCost.Caption = ""
+  End If
 
   If Not GetCartonSequence(Rsp, sPSN, nSequenceNumber, nCartonCount, sErrMsg) Then
     App.MsgBox(sErrMsg)

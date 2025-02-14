@@ -248,7 +248,7 @@ Public Sub GetCartonNumberAndCount(ByVal sLPID As String, nNumber As Long, nCoun
 
   nDOCO = FetchFirstResult("select distinct LDRDOCO from F55102 where LDLPID = '" & sLPID & "'")
 
-  sSQL = "select distinct LDLPID from F55102 where LDRDOCO = " & nDOCO & " order by LDLPID"
+  sSQL = "select distinct LDLPID from F55102 where LDRDOCO = '" & nDOCO & "' order by LDLPID"
   DB.Execute(sSQL, sCols, sRows)
 
   For i=1 To DB.Count(sRows)
@@ -453,20 +453,23 @@ Public Function GetSelectedCarrierForPSN(ByVal sPSN As String) As String
   Dim sSQL As String
   Dim sCols As String
   Dim sRows As String
+  Dim sTrackingNumber As String
+  Dim sCarrierName As String
 
   sSQL = _
-    " select CFDL02" & _
+    " select CFDL01, CFDL02" & _
     " from F554602" & _
     " where CFPSN = " & sPSN & _
-    " and CFCNID <> ' '" & _
-    " order by case CFDL02" & _
-    "   when 'UPS' then 1" & _
-    "   when 'FedEx' then 2" & _
-    "   else 3" & _
-    " end"
+    " and CFCNID <> ' '"
   DB.Execute(sSQL, sCols, sRows)
 
-  GetSelectedCarrierForPSN = Trim(DB.Extract(sCols, sRows, 1, "CFDL02"))
+  sTrackingNumber = Trim(DB.Extract(sCols, sRows, 1, "CFDL01"))
+  sCarrierName = Trim(DB.Extract(sCols, sRows, 1, "CFDL02"))
+
+  ' TODO will Mail Innovations ever be taken directly from the table?
+  If sCarrierName = "UPS" And Left(sTrackingNumber, 2) <> "1Z" Then sCarrierName &= " Mail Innovations"
+
+  Return sCarrierName
 End Function
 
 Public Function SearchCarriersByPrice(ByVal Rsp As String, ByVal sPSN As String) As Boolean
@@ -489,7 +492,7 @@ Public Function SearchCarriersByPrice(ByVal Rsp As String, ByVal sPSN As String)
   oList.SQL = sSQL
   Rsp = oList.ShowList
 
-  SearchCarriersByPrice = Rsp <> ""
+  Return Rsp <> ""
 End Function
 
 Public Function ValidateCarton(ByVal sMCU As String, ByVal sLPID As String) As Boolean
@@ -500,13 +503,13 @@ Public Function ValidateCarton(ByVal sMCU As String, ByVal sLPID As String) As B
     " from F55101" & _
     " where LMLPID = '" & sLPID & "'" & _
     " and LMMCU = '" & sMCU & "'"
-  ValidateCarton = FetchFirstResult(sSQL) > 0
+  Return FetchFirstResult(sSQL) > 0
 End Function
 
 Public Function GetTrackingNumber(ByVal sLPID As String) As String
   Dim sSQL As String
   sSQL = "select CFDL01 from F554602 where CFCNID = '" & sLPID & "'"
-  GetTrackingNumber = Trim(FetchFirstResult(sSQL))
+  Return Trim(FetchFirstResult(sSQL))
 End Function
 
 Public Function UpdatePackageInformation( _
@@ -530,7 +533,7 @@ Public Function UpdatePackageInformation( _
     Exit Function
   End If
 
-  UpdatePackageInformation = True
+  Return True
 End Function
 
 Private Function WriteImage(ByVal sBytes As String, ByVal sFilename As String, sErrMsg As String) As Boolean
@@ -539,8 +542,6 @@ Private Function WriteImage(ByVal sBytes As String, ByVal sFilename As String, s
   Dim xml As New MSXML2.DOMDocument60
   Dim node As IXMLDOMElement
   Dim outStream As New ADODB.Stream
-
-  WriteImage = False
 
   Set node = xml.createElement("base64")
   node.dataType = "bin.base64"
@@ -552,10 +553,10 @@ Private Function WriteImage(ByVal sBytes As String, ByVal sFilename As String, s
   outStream.SaveToFile(sFilename, adSaveCreateOverWrite)
   outStream.Close
 
-  WriteImage = True
+  Return True
 
 OnError:
-  ' clean up
+  ' Clean up
   If Not outStream Is Nothing Then
     If outStream.State = adStateOpen Then outStream.Close
   End If
@@ -579,6 +580,7 @@ Public Function SaveShippingLabel( _
   If Not WriteImage(sImageBytes, sImageFile, sErrMsg) Then Exit Function
 
   Return True
+
 OnError:
   If Err.Number <> 0 Then sErrMsg = Err.Description
 End Function
@@ -614,7 +616,7 @@ Public Function PrintZPL( _
 
   objShell.ShellExecute(sBat)
   Set objShell = Nothing
-  PrintZPL = True
+  Return True
 
 OnError:
   If Err.Number <> 0 Then sErrMsg = "(" & Err.Number & ") " & Err.Description
@@ -643,7 +645,7 @@ Public Function ReprintZPL( _
 
   objShell.ShellExecute(sBat)
   Set objShell = Nothing
-  ReprintZPL = True
+  Return True
 
 OnError:
   If Err.Number <> 0 Then sErrMsg = "(" & Err.Number & ") " & Err.Description
