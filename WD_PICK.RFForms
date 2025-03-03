@@ -2413,24 +2413,4 @@ Private Sub DumpWave(ByVal sWave As String)
     )
   Next
 End Sub
-
-Private Function NextNumber(ByVal sSystemCode As Long, ByVal nIndex As Long) As Long
-  Dim emX0010GetNextNumber As New EmbeddedProc
-
-  emX0010GetNextNumber.Name = "X0010GetNextNumber"
-  emX0010GetNextNumber.LogMode = LogNever
-  emX0010GetNextNumber.DebugLog = cJDELogPath
-
-  emX0010GetNextNumber.Param("SystemCode") = sSystemCode
-  emX0010GetNextNumber.Param("NextNumberingIndexNo") = nIndex
-
-  If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emX0010GetNextNumber.Name, "", emX0010GetNextNumber)
-
-  If Not emX0010GetNextNumber.Execute Then
-    If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emX0010GetNextNumber.Name, "", emX0010GetNextNumber, App.User, TM.QueueName, TM.SeqNo)
-    Exit Function
-  End If
-
-  NextNumber = emX0010GetNextNumber.Param("NextNumber001")
-End Function
 </Code>
