@@ -329,6 +329,7 @@ Public Sub btnNextPick_Click()
   On Error Resume Next
 
   mnPickOffset += 1
+  LogText("WD_PICK", "btnNextPick_Click", "Calling SelectNextPick")
   SelectNextPick()
 End Sub
 
@@ -446,6 +447,7 @@ Public Sub btnPrint_Click()
   Wait(1)
   App.Balloon("", 0)
 
+  LogText("WD_PICK", "btnPrint_Click", "Calling txtCart_OnEnter")
   Call txtCart_OnEnter(App.GetValue("tmCart"), bCancel, "")
 End Sub
 
@@ -634,6 +636,7 @@ Private Sub Form_OnUpdate(ByRef Cancel As Boolean)
   End If
 
   Call txtCategory_OnEnter(txtCategory.text, False, "")
+  LogText("WD_PICK", "Form_OnUpdate", "Calling txtCart_OnEnter")
   Call txtCart_OnEnter(txtCart.text, False, "")
 End Sub
 
@@ -701,9 +704,10 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   DB.Execute(sSQL, sCols, sRows)
   App.SetValue("tmTRIP", DB.Extract(sCols, sRows, 1, "R2TRIP"))
 
-  LogText("WD_PICK", "txtCart_OnEnter", App.GetValue("tmTRIP"))
+  LogText("WD_PICK", "txtCart_OnEnter", "Wave #: " & App.GetValue("tmTRIP"))
 
   If Val(App.GetValue("tmTRIP")) <> 0 Then
+    LogText("WD_PICK", "txtCart_OnEnter", "Calling SelectNextPick")
     If Not SelectNextPick() Then
       sSQL = "select count(*) from WDJOBS where R2TRIP = %tmTRIP and R2PSTB = '322'"
       DB.Execute(sSQL, sCols, sRows)
@@ -720,6 +724,7 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
 
         App.Balloon("", 0)
 
+        LogText("WD_PICK", "txtCart_OnEnter", "Calling txtCart_OnEnter from retry block.")
         Call txtCart_OnEnter(Rsp, Cancel, ErrMsg)
         Exit Sub
       Else

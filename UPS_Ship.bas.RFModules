@@ -11,7 +11,8 @@ Public Function UPS_CreateShipment( _
   ByVal sDesc As String, _
   ByVal nDOCO As Long, _
   ByVal sLPID As String, _
-  Optional ByVal bMailInnovations As Boolean = False _
+  Optional ByVal bMailInnovations As Boolean = False, _
+  Optional ByVal sMailClass As String = "" _
 ) As ShipmentResponse
   Dim fromAddress As AddressInfo
   Dim toAddress As AddressInfo
@@ -40,7 +41,7 @@ Public Function UPS_CreateShipment( _
 
   fromAddress = GetAddressInfo(nMCU)
   toAddress = GetAddressInfo(nSHAN)
-  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID, bMailInnovations)
+  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID, bMailInnovations, sMailClass)
   bSuccess = UPS_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
 
   App.Balloon("", 0)
@@ -114,7 +115,12 @@ Private Function UPS_ParseShipmentResponse(ByVal oResponse As Scripting.Dictiona
     tShipmentResponse.sLabelImageBytes = oShipmentResults("PackageResults")(0)("ShippingLabel")("GraphicImage")
   End If
 
-  tShipmentResponse.nCost = CCur(oShipmentResults("NegotiatedRateCharges")("TotalCharge")("MonetaryValue"))
+  ' Trapping error if Negotiated Rate does not exist then use the standard rate  PD 02-25-2025
+  If Not oShipmentResults.Exists("NegotiatedRateCharges") Then
+      tShipmentResponse.nCost = CCur(oShipmentResults("ShipmentCharges")("TotalCharges")("MonetaryValue"))
+  Else
+      tShipmentResponse.nCost = CCur(oShipmentResults("NegotiatedRateCharges")("TotalCharge")("MonetaryValue"))
+  End If
 
   Return tShipmentResponse
 End Function
@@ -127,7 +133,8 @@ Private Function UPS_CreateShipmentRequestJson( _
   ByVal sDesc As String, _
   ByVal sReference1 As String, _
   ByVal sReference2 As String, _
-  Optional ByVal bMailInnovations As Boolean _
+  Optional ByVal bMailInnovations As Boolean, _
+  Optional ByVal sMailClass As String _
 ) As String
   Dim vbsJson As New vbsJson
   Dim oDoc As New Scripting.Dictionary
@@ -204,8 +211,10 @@ Private Function UPS_CreateShipmentRequestJson( _
 
   Dim oPackaging As New Scripting.Dictionary
   If bMailInnovations Then
-    oPackaging.Add("Code", "66")
-    oPackaging.Add("Description", "BPM Flat")
+    Dim sMailClassComponents() As String
+    sMailClassComponents = Split(sMailClass, "-")
+    oPackaging.Add("Code", Trim(sMailClassComponents(0)))
+    oPackaging.Add("Description", Trim(sMailClassComponents(1)))
   Else
     oPackaging.Add("Code", "02")
     oPackaging.Add("Description", "Customer Supplied Package")

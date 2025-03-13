@@ -1,0 +1,91 @@
+﻿<Record FileDesc="Periodic Maintenance" FileVersion="5.0.8.0" Desc="Periodic Maintenance" Group="AMS" MacroType="2">
+<Param Name="Dummy" />
+</Record>
+<Code>
+Option Explicit
+
+Public Function Transaction() As Boolean
+  On Error Resume Next
+
+  DeleteOldLogFiles()
+  DeleteOldLabelFiles()
+  RecordUserCount()
+End Function
+
+Private Sub DeleteOldLogFiles()
+
+  Dim nKeepLogFileDays As Long
+  Dim sLogFileDirectory As String
+
+  sLogFileDirectory = SYS.EnvironmentProperty("LogFileDirectory")
+  nKeepLogFileDays = Val(SYS.EnvironmentProperty("KeepLogFileDays"))
+
+  If nKeepLogFileDays > 0 And sLogFileDirectory <> "" Then
+    DeleteOldFiles(sLogFileDirectory, nKeepLogFileDays)
+  End If
+End Sub
+
+Private Sub DeleteOldLabelFiles()
+
+  Dim nKeepLabelFileDays As Long
+  Dim sLabelFileDirectory As String
+
+  sLabelFileDirectory = SYS.EnvironmentProperty("LabelFileDirectory")
+  nKeepLabelFileDays = Val(SYS.EnvironmentProperty("KeepLabelFileDays"))
+
+  If nKeepLabelFileDays > 0 And sLabelFileDirectory <> "" Then
+    DeleteOldFiles(sLabelFileDirectory, nKeepLabelFileDays)
+  End If
+End Sub
+
+Private Sub DeleteOldFiles(ByVal sDirectory As String, ByVal nDays As Long)
+  Dim oFSO As New FileSystemObject
+  Dim oFolder As Object
+  Dim oFile As Object
+  Dim dtCutoff As Date
+  Dim sFilePath As String
+
+  dtCutoff = DateAdd("d", -nDays, Now)
+
+  If oFSO.FolderExists(sDirectory) Then
+    Set oFolder = oFSO.GetFolder(sDirectory)
+
+    Dim nDeleteCount As Long
+
+    For Each oFile In oFolder.Files
+      If oFile.DateLastModified < dtCutoff Then
+        oFile.Delete
+        nDeleteCount += 1
+      End If
+    Next
+
+    LogText("TADPM0100_AMS", "DeleteOldFiles", "Deleted " & nDeleteCount & " old files from " & sDirectory)
+  End If
+
+  Set oFile = Nothing
+  Set oFolder = Nothing
+  Set oFSO = Nothing
+End Sub
+
+Private Sub RecordUserCount()
+  Dim sUserArray() As String
+  Dim sUserList As String
+  Dim sTimestamp As String
+  Dim nCount As String
+  Dim sSQL As String
+
+  sUserArray = Split(SYS.UserList(True), Chr(4))
+
+  If UBound(sUserArray) >= 0 Then
+    sTimestamp = Format(Now, "yyyy-MM-ddTHH:nn:ss")
+    sUserList = sUserArray(0)
+    nCount = DCount(sUserList, Chr(1))
+
+    sSQL = "insert into RFgenCustom.UserCount(Timestamp, Count) values('$timestamp', $count)"
+    sSQL = Replace(sSQL, "$timestamp", sTimestamp)
+    sSQL = Replace(sSQL, "$count", CStr(nCount))
+
+    DB.Execute(sSQL)
+  End If
+End Sub
+</Code>

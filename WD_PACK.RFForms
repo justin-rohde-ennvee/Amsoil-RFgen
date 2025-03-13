@@ -1,18 +1,19 @@
-﻿<Record FileDesc="Pack/Ship Carton" FileVersion="5.0.8.0" Desc="Pack/Ship Carton" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;txtDL02&vm;lblSequence&vm;lblTrackingNumber&vm;lblWeight&vm;lblCost&vm;btnCreateShipment&vm;txtPrinter&vm;btnSwapBox&vm;btnMoveItems&vm;lbxDoco" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
+﻿<Record FileDesc="Pack/Ship Carton" FileVersion="5.0.8.0" Desc="Pack/Ship Carton" Group="AMS-WD" LinkTo="No Links" LinkType="0" LinkMode="0" PromptList="txtMCU&vm;txtLPID&vm;lblLPDesc&vm;txtDL02&vm;txtMailClass&vm;lblSequence&vm;lblTrackingNumber&vm;lblWeight&vm;lblCost&vm;btnCreateShipment&vm;txtPrinter&vm;btnSwapBox&vm;btnMoveItems&vm;lbxDoco" ImageList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" AuthTableList="0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0&vm;0" Depends="JDE.bas">
 <Schema>
 <SchemaParam Linked="0" Attr="1" Name="txtMCU" />
 <SchemaParam Linked="0" Attr="2" Name="txtLPID" />
 <SchemaParam Linked="0" Attr="3" Name="lblLPDesc" />
 <SchemaParam Linked="0" Attr="4" Name="txtDL02" />
-<SchemaParam Linked="0" Attr="5" Name="lblSequence" />
-<SchemaParam Linked="0" Attr="6" Name="lblTrackingNumber" />
-<SchemaParam Linked="0" Attr="7" Name="lblWeight" />
-<SchemaParam Linked="0" Attr="8" Name="lblCost" />
-<SchemaParam Linked="0" Attr="9" Name="btnCreateShipment" />
-<SchemaParam Linked="0" Attr="10" Name="txtPrinter" />
-<SchemaParam Linked="0" Attr="11" Name="btnSwapBox" />
-<SchemaParam Linked="0" Attr="12" Name="btnMoveItems" />
-<SchemaParam Linked="0" Attr="13" Name="lbxDoco" />
+<SchemaParam Linked="0" Attr="5" Name="txtMailClass" />
+<SchemaParam Linked="0" Attr="6" Name="lblSequence" />
+<SchemaParam Linked="0" Attr="7" Name="lblTrackingNumber" />
+<SchemaParam Linked="0" Attr="8" Name="lblWeight" />
+<SchemaParam Linked="0" Attr="9" Name="lblCost" />
+<SchemaParam Linked="0" Attr="10" Name="btnCreateShipment" />
+<SchemaParam Linked="0" Attr="11" Name="txtPrinter" />
+<SchemaParam Linked="0" Attr="12" Name="btnSwapBox" />
+<SchemaParam Linked="0" Attr="13" Name="btnMoveItems" />
+<SchemaParam Linked="0" Attr="14" Name="lbxDoco" />
 </Schema>
 <Displays>
 <Display Name="EnglishGUI" Type="1" Width="320" Height="480" Locale="1033" />
@@ -54,62 +55,74 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblSequence" Attr="5">
+<Control Type="1" FieldId="txtMailClass" Attr="5" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="118" Width="97" Height="22" AnchorRight="213" AnchorBottom="340" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblSequence" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="11" Top="118" Width="97" Height="22" AnchorRight="212" AnchorBottom="340" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Mail Class:" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="3" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="121" Top="118" Width="189" Height="22" AnchorRight="10" AnchorBottom="340" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="211" Top="127" Width="65" Height="22" AnchorRight="44" AnchorBottom="458" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="284" Top="127" Width="35" Height="22" AnchorRight="28" AnchorBottom="331" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+</Layout>
+</Layouts>
+</Control>
+<Control Type="10" FieldId="lblSequence" Attr="6">
+<Layouts>
+<Layout PageNo="1" Visible="1" ZOrder="0">
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="140" Width="97" Height="22" AnchorRight="213" AnchorBottom="318" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblSequence" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblTrackingNumber" Attr="6">
+<Control Type="10" FieldId="lblTrackingNumber" Attr="7">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="136" Width="145" Height="22" AnchorRight="165" AnchorBottom="322" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblTrackingNumber" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="158" Width="145" Height="22" AnchorRight="165" AnchorBottom="300" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblTrackingNumber" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblWeight" Attr="7">
+<Control Type="10" FieldId="lblWeight" Attr="8">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="2" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="228" Top="118" Width="81" Height="22" AnchorRight="11" AnchorBottom="340" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblWeight" />
+<Label Align="2" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="228" Top="140" Width="81" Height="22" AnchorRight="11" AnchorBottom="318" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblWeight" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="10" FieldId="lblCost" Attr="8">
+<Control Type="10" FieldId="lblCost" Attr="9">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="155" Width="65" Height="22" AnchorRight="245" AnchorBottom="303" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblCost" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="177" Width="65" Height="22" AnchorRight="245" AnchorBottom="281" BackColor1="1" BackColor2="1" ForeColor="ffff" Caption="lblCost" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="672" Top="82" Width="49" Height="22" AnchorRight="134" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Label" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnCreateShipment" Attr="9">
+<Control Type="9" FieldId="btnCreateShipment" Attr="10">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Create Shipment
 " Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="206" Width="300" Height="33" AnchorRight="10" AnchorBottom="241" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="228" Width="300" Height="33" AnchorRight="10" AnchorBottom="219" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="684" Top="36" Width="80" Height="44" AnchorRight="163" AnchorBottom="240" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="1" FieldId="txtPrinter" Attr="10" KeyField="0" MaskInput="0" Required="0" SipMode="0">
+<Control Type="1" FieldId="txtPrinter" Attr="11" KeyField="0" MaskInput="0" Required="0" SipMode="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="179" Width="65" Height="22" AnchorRight="245" AnchorBottom="279" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Printer" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="270" Top="179" Width="40" Height="22" AnchorRight="10" AnchorBottom="279" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="201" Width="65" Height="22" AnchorRight="245" AnchorBottom="257" BackColor1="1" BackColor2="1" ForeColor="1" Caption="Printer" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="270" Top="201" Width="40" Height="22" AnchorRight="10" AnchorBottom="257" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0">
 <Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="34" Top="179" Width="65" Height="22" AnchorRight="141" AnchorBottom="298" BackColor1="1" BackColor2="1" ForeColor="1" Caption="TextBox" />
@@ -117,31 +130,31 @@
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnSwapBox" Attr="11">
+<Control Type="9" FieldId="btnSwapBox" Attr="12">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Swap Box" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="246" Width="145" Height="33" AnchorRight="165" AnchorBottom="201" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="10" Top="268" Width="145" Height="33" AnchorRight="165" AnchorBottom="179" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="684" Top="36" Width="80" Height="44" AnchorRight="163" AnchorBottom="240" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="9" FieldId="btnMoveItems" Attr="12">
+<Control Type="9" FieldId="btnMoveItems" Attr="13">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Move Items" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
-<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="165" Top="246" Width="145" Height="33" AnchorRight="10" AnchorBottom="201" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="165" Top="268" Width="145" Height="33" AnchorRight="10" AnchorBottom="179" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 <Layout PageNo="1" Visible="1" ZOrder="0" Caption="Button" Style="0" ImageHeight="16" ImageWidth="16" MarginBottom="3" MarginLeft="3" MarginRight="3" MarginTop="3">
 <Field Align="1" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="1" Left="684" Top="36" Width="80" Height="44" AnchorRight="163" AnchorBottom="240" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 </Layout>
 </Layouts>
 </Control>
-<Control Type="3" FieldId="lbxDoco" Attr="13" Sorted="0">
+<Control Type="3" FieldId="lbxDoco" Attr="14" Sorted="0">
 <Layouts>
 <Layout PageNo="1" Visible="1" ZOrder="0" RowSelector="1" Scrollbars="0" ExtendCol="-1" GridLines="0" GridColor="1" AltColor="1" HeadBackColor1="1" HeadBackColor2="1" HeadBackFill="0" HeadForeColor="1" HeadPadding="-1" HeadVisible="1">
-<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="244" Top="141" Width="65" Height="22" AnchorRight="11" AnchorBottom="317" BackColor1="1" BackColor2="1" ForeColor="1" />
-<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="284" Width="300" Height="186" AnchorRight="10" AnchorBottom="10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
+<Label Align="0" Anchor="3" AutoSize="1" BorderStyle="5" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="244" Top="163" Width="65" Height="22" AnchorRight="11" AnchorBottom="295" BackColor1="1" BackColor2="1" ForeColor="1" />
+<Field Align="0" Anchor="3" AutoSize="0" BorderStyle="0" DropShadow="0" BackFill="0" Theme="0" FontSize="0" FontStyle="0" MultiLine="0" Left="10" Top="306" Width="300" Height="164" AnchorRight="10" AnchorBottom="10" BackColor1="1" BackColor2="1" ForeColor="1" DisplayOnly="0" />
 <Columns>
 <Column Caption="1" />
 <Column Align="0" Width="-1" AutoSize="1" TrimSpaces="0" Decimals="0" BackFill="0" BackColor1="1" BackColor2="1" ForeColor="1" Style="0" DisplayOnly="0" Visible="1" ImageHeight="16" ImageWidth="16" PadBottom="2" PadLeft="2" PadRight="2" PadTop="2" FontStyle="0" FontSize="0" />
@@ -231,7 +244,7 @@ Public Sub btnCreateShipment_Click()
 
   App.Balloon("Creating shipment...", -1)
 
-  nDOCO = Val(lbxDoco.List.Cell(1, 6).Value)
+  nDOCO = Val(lbxDoco.List.Cell(1, 6).value)
   sLPID = App.GetValue("tmLPID")
   sSQL = "select SDAN8, SDSHAN from F4211 where SDDOCO = " & nDOCO
   DB.Execute(sSQL, sCols, sRows)
@@ -249,6 +262,7 @@ Public Sub btnCreateShipment_Click()
 
   If Not GetCartonSequence(sLPID, App.GetValue("tmPSN"), nSequence, nCount, sErrMsg) Then
     App.MsgBox(sErrMsg)
+    App.Balloon("", 0)
     Exit Sub
   End If
 
@@ -257,7 +271,12 @@ Public Sub btnCreateShipment_Click()
   Case "UPS"
     tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID)
   Case "UPS Mail Innovations"
-    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID, True)
+    If txtMailClass.text = "" Then
+      App.Balloon("", 0)
+      App.MsgBox("Please select a mail class.")
+      Exit Sub
+    End If
+    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID, True, txtMailClass.text)
   Case "FedEx"
     If SYS.EnvironmentProperty("Environment") = "TEST" Then sAccount = FEDEX_ACCOUNT_NUMBER
     tShipmentResponse = FedEx_CreateShipment(nMCU, nSHAN, nWeight, sAccount)
@@ -359,6 +378,7 @@ Public Sub btnCreateShipment_Click()
   txtDL02.text = ""
   txtDL02.Visible = False
   txtLPID.text = ""
+  txtMailClass.Visible = False
   Call txtLPID_OnBackup(False)
   App.SetFocus(txtLPID.FieldId)
 End Sub
@@ -740,7 +760,6 @@ Public Sub txtDL02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sCNID As String
   Dim nCost As Currency
   Dim sBaseCarrierName As String
-  Dim bMailInnovations As Boolean
 
   Rsp = UCase(Trim(Rsp))
   If Not moCarriers.Exists(Rsp) Then
@@ -801,6 +820,12 @@ Public Sub txtDL02_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     btnSwapBox.Visible = True
     txtPrinter.Visible = True
     lblCost.Caption = ""
+
+    If Rsp = "UPS Mail Innovations" Then
+      txtMailClass.Visible = True
+    Else
+      txtMailClass.Visible = False
+    End If
   End If
 End Sub
 
@@ -836,6 +861,28 @@ Public Sub txtDL02_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   oList.SQL = sSQL
   Rsp = Trim(oList.ShowList)
 
+  Cancel = Rsp = ""
+End Sub
+
+Public Sub txtMailClass_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
+  On Error Resume Next
+
+  Dim oList As New SearchList
+
+  oList.SetColumn(1, "Code", -1)
+  oList.SetColumn(2, "Mail Class", -1)
+
+  oList.AddItem("62 - Irregulars", "62 - Irregulars")
+  oList.AddItem("63 - Parcel Post", "63 - Parcel Post")
+  oList.AddItem("64 - BPM Parcel", "64 - BPM Parcel")
+  oList.AddItem("65 - Media Mail", "65 - Media Mail")
+  oList.AddItem("66 - BPM Flat", "66 - BPM Flat")
+  oList.AddItem("67 - Standard Flat", "67 - Standard Flat")
+
+  oList.ShowEmptyList = True
+  oList.ReturnAllRows = True
+
+  Rsp = oList.ShowList
   Cancel = Rsp = ""
 End Sub
 
@@ -934,6 +981,7 @@ Private Sub Form_Load()
   moCarriers.Add("UPS", "UPS")
   moCarriers.Add("UPS MAIL INNOVATIONS", "UPS Mail Innovations")
   moCarriers.Add("FEDEX", "FedEx")
+  txtMailClass.Visible = False
 End Sub
 
 Public Sub txtPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
@@ -1333,5 +1381,66 @@ Private Function InsertTracking( _
 
 Done:
   InsertTracking = True
+End Function
+
+Function IssueCarton(ByVal sLPID As String, sErrMsg As String) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sMCU As String
+  Dim nSGBT As Long
+  Dim nSGSQ As Long
+  Dim sEQTY As String
+  Dim nITM As Long
+  Dim sLITM As String
+
+  sSQL = _
+    " select R2MCU, R2SGBT, R2SGSQ, IDEQTY, IDITM, IMLITM" & _
+    " from WDJOBS" & _
+    " inner join F55101 on LMLPID = R2LPID" & _
+    " inner join F46091 on IDMCU = R2MCU and IDEQTY = LMDSC1" & _
+    " inner join F4101 on IMITM = IDITM" & _
+    " where R2LPID = '" & sLPID & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  nITM = DB.Extract(sCols, sRows, 1, "IDITM")
+  If nITM = 0 Then GoTo Done
+
+  sMCU = DB.Extract(sCols, sRows, 1, "R2MCU")
+  nSGBT = DB.Extract(sCols, sRows, 1, "R2SGBT")
+  nSGSQ = DB.Extract(sCols, sRows, 1, "R2SGSQ")
+  sEQTY = Trim(DB.Extract(sCols, sRows, 1, "IDEQTY"))
+  sLITM = Trim(DB.Extract(sCols, sRows, 1, "IMLITM"))
+
+  Dim emProc As New EmbeddedProc
+
+  emProc.Name       = "TIMII0100_AMS"
+  emProc.DataSource = gsDataSource
+
+  emProc.Param("tmCO")       = App.GetValue("tmCO")
+  emProc.Param("tmMCU")      = sMCU
+  emProc.Param("tmLITM")     = sLITM
+  emProc.Param("tmQTY")      = 1
+  emProc.Param("tmUOM")      = "EA" 'App.GetValue("tmUOM")
+'  emProc.Param("tmLOCN")     = App.GetValue("tmLOCN")
+'  emProc.Param("tmLOTN")     = App.GetValue("tmLOTN")
+  emProc.Param("tmDCTO")     = "II" 'msDOCTYPE
+'  emProc.Param("tmAOBJ")     = App.GetValue("tmAOBJ")
+'  emProc.Param("tmASUB")     = App.GetValue("tmASUB")
+'  emProc.Param("tmDRKY")     = App.GetValue("tmDRKY")
+  emProc.Param("tmTDSC")     = nSGBT & "-" & nSGSQ & "-" & sEQTY
+  emProc.Param("tmZVERSION") = "RGN0001"
+  emProc.Param("tmPGM")      = "P4112"
+  emProc.Param("tmUser")     = UCase(App.User)
+  '
+  If Ext(gsLog,1) = "1" Then Call TranLog(cTNId, "1", emProc.Name, "", emProc)
+
+  If Not emProc.Execute Then
+    sErrMsg = emProc.Param("tmERRTEXT")
+    Exit Function
+  End If
+
+Done:
+  IssueCarton = True
 End Function
 </Code>

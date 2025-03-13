@@ -62,7 +62,6 @@ Private Function UPS_SendAddressValidationRequest( _
   sResponseText As String _
 ) As Boolean
   Dim oHttp As New XMLHTTP60
-  Const sBaseURL As String = SYS.EnvironmentProperty("UPSBaseURL")
 
   oHttp.open("POST", UPS_BASE_URL & "/api/addressvalidation/v2/1")
   oHttp.setRequestHeader("Authorization", "Bearer " & sToken)
