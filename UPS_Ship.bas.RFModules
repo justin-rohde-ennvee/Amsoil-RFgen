@@ -12,7 +12,8 @@ Public Function UPS_CreateShipment( _
   ByVal nDOCO As Long, _
   ByVal sLPID As String, _
   Optional ByVal bMailInnovations As Boolean = False, _
-  Optional ByVal sMailClass As String = "" _
+  Optional ByVal sMailClass As String = "", _
+  Optional ByVal tDimensions As Dimensions _
 ) As ShipmentResponse
   Dim fromAddress As AddressInfo
   Dim toAddress As AddressInfo
@@ -41,7 +42,7 @@ Public Function UPS_CreateShipment( _
 
   fromAddress = GetAddressInfo(nMCU)
   toAddress = GetAddressInfo(nSHAN)
-  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID, bMailInnovations, sMailClass)
+  sBody = UPS_CreateShipmentRequestJson(fromAddress, toAddress, nWeight, sAccount, sDesc, CStr(nDOCO), sLPID, bMailInnovations, sMailClass, tDimensions)
   bSuccess = UPS_SendShippingRequest(sToken, sBody, sResponseStatus, sResponseText)
 
   App.Balloon("", 0)
@@ -134,128 +135,176 @@ Private Function UPS_CreateShipmentRequestJson( _
   ByVal sReference1 As String, _
   ByVal sReference2 As String, _
   Optional ByVal bMailInnovations As Boolean, _
-  Optional ByVal sMailClass As String _
+  Optional ByVal sMailClass As String, _
+  Optional ByVal tDimensions As Dimensions _
 ) As String
   Dim vbsJson As New vbsJson
   Dim oDoc As New Scripting.Dictionary
 
-  Dim oShipmentRequest As New Scripting.Dictionary
-  Dim oRequest As New Scripting.Dictionary
-  oRequest.Add("RequestOption", "validate")
-  oShipmentRequest.Add("Request", oRequest)
+  Dim sMailClassComponents() As String
+  Dim sMailClassCode As String
+  Dim sMailClassDescription As String
+  Dim sWeightUOM As String
+  sWeightUOM = "LBS"
 
-  Dim oShipment As New Scripting.Dictionary
-  oShipment.Add("USPSEndorsement", "5")
-  oShipment.Add("PackageID", sReference2)
-
-  Dim oShipmentRatingOptions As New Scripting.Dictionary
-  oShipmentRatingOptions.Add("NegotiatedRatesIndicator", "X")
-  oShipment.Add("ShipmentRatingOptions", oShipmentRatingOptions)
-
-  Dim oShipper As New Scripting.Dictionary
-  oShipper.Add("Name", fromAddress.sName)
-  oShipper.Add("ShipperNumber", sAccount)
-
-  Dim oShipperAddress As New Scripting.Dictionary
-  Dim aShipperAddressLine(0 To 2) As String
-  aShipperAddressLine(0) = fromAddress.sLine1
-  aShipperAddressLine(1) = fromAddress.sLine2
-  aShipperAddressLine(2) = fromAddress.sLine3
-  oShipperAddress.Add("AddressLine", aShipperAddressLine)
-  oShipperAddress.Add("City", fromAddress.sCity)
-  oShipperAddress.Add("StateProvinceCode", fromAddress.sState)
-  oShipperAddress.Add("PostalCode", fromAddress.sZip)
-  oShipperAddress.Add("CountryCode", "US")
-  oShipper.Add("Address", oShipperAddress)
-  oShipment.Add("Shipper", oShipper)
-
-  Dim oShipTo As New Scripting.Dictionary
-  oShipTo.Add("Name", Trim(Left(toAddress.sName, 35)))
-
-  Dim oShipToAddress As New Scripting.Dictionary
-  Dim aShipToAddressLine(0 To 2) As String
-  aShipToAddressLine(0) = toAddress.sLine1
-  aShipToAddressLine(1) = toAddress.sLine2
-  aShipToAddressLine(2) = toAddress.sLine3
-  oShipToAddress.Add("AddressLine", aShipToAddressLine)
-  oShipToAddress.Add("City", toAddress.sCity)
-  oShipToAddress.Add("StateProvinceCode", toAddress.sState)
-  oShipToAddress.Add("PostalCode", toAddress.sZip)
-  oShipToAddress.Add("CountryCode", "US")
-  oShipTo.Add("Address", oShipToAddress)
-  oShipment.Add("ShipTo", oShipTo)
-
-  Dim oPaymentInformation As New Scripting.Dictionary
-  Dim oShipmentCharge As New Scripting.Dictionary
-  oShipmentCharge.Add("Type", "01")
-
-  Dim oBillShipper As New Scripting.Dictionary
-  oBillShipper.Add("AccountNumber", sAccount)
-  oShipmentCharge.Add("BillShipper", oBillShipper)
-  oPaymentInformation.Add("ShipmentCharge", oShipmentCharge)
-  oShipment.Add("PaymentInformation", oPaymentInformation)
-
-  Dim oService As New Scripting.Dictionary
   If bMailInnovations Then
-    oService.Add("Code", "M4")
-    oService.Add("Description", "UPS Expedited Mail Innovations")
-  Else
-    oService.Add("Code", "03")
-    oService.Add("Description", "Ground")
-  End If
-  oShipment.Add("Service", oService)
-
-  Dim aPackage(0 To 0) As Scripting.Dictionary
-  Dim oPackage1 As New Scripting.Dictionary
-  oPackage1.Add("Description", sDesc)
-
-  Dim oPackaging As New Scripting.Dictionary
-  If bMailInnovations Then
-    Dim sMailClassComponents() As String
     sMailClassComponents = Split(sMailClass, "-")
-    oPackaging.Add("Code", Trim(sMailClassComponents(0)))
-    oPackaging.Add("Description", Trim(sMailClassComponents(1)))
-  Else
-    oPackaging.Add("Code", "02")
-    oPackaging.Add("Description", "Customer Supplied Package")
+    sMailClassCode = Trim(sMailClassComponents(0))
+    sMailClassDescription = Trim(sMailClassComponents(1))
 
+    If InStr("61,62,67", sMailClassCode) > 0 Then
+      sWeightUOM = "OZS"
+      nWeight *= 16.0
+    End If
   End If
 
-  oPackage1.Add("Packaging", oPackaging)
+  With oDoc
+    .Add("ShipmentRequest", New Scripting.Dictionary)
+    With .Item("ShipmentRequest")
+      .Add("Request", New Scripting.Dictionary)
+      With .Item("Request")
+        .Add("RequestOption", "validate")
+      End With
 
-  Dim oPackageWeight As New Scripting.Dictionary
-  Dim oUnitOfMeasurement As New Scripting.Dictionary
-  oUnitOfMeasurement.Add("Code", "LBS")
-  oPackageWeight.Add("UnitOfMeasurement", oUnitOfMeasurement)
-  oPackageWeight.Add("Weight", CStr(nWeight))
+      .Add("Shipment", New Scripting.Dictionary)
+      With .Item("Shipment")
+        .Add("USPSEndorsement", "5")
+        .Add("PackageID", sReference2)
 
-  oPackage1.Add("PackageWeight", oPackageWeight)
-  oPackage1.Add("PackageServiceOptions", "")
+        .Add("ShipmentRatingOptions", New Scripting.Dictionary)
+        With .Item("ShipmentRatingOptions")
+          .Add("NegotiatedRatesIndicator", "X")
+        End With
 
-  Dim aReferenceNumber(0 To 1) As Scripting.Dictionary
-  Dim oReferenceNumber1 As New Scripting.Dictionary
-  oReferenceNumber1.Add("Value", sReference1)
-  Set aReferenceNumber(0) = oReferenceNumber1
+        .Add("Shipper", New Scripting.Dictionary)
+        With .Item("Shipper")
+          .Add("Name", fromAddress.sName)
+          .Add("ShipperNumber", sAccount)
 
-  Dim oReferenceNumber2 As New Scripting.Dictionary
-  oReferenceNumber2.Add("Value", sReference2)
-  Set aReferenceNumber(1) = oReferenceNumber2
-  oPackage1.Add("ReferenceNumber", aReferenceNumber)
-  Set aPackage(0) = oPackage1
-  oShipment.Add("Package", aPackage)
-  oShipmentRequest.Add("Shipment", oShipment)
+          .Add("Address", New Scripting.Dictionary)
+          With .Item("Address")
+            Dim aShipperAddressLine(0 To 2) As String
+            aShipperAddressLine(0) = fromAddress.sLine1
+            aShipperAddressLine(1) = fromAddress.sLine2
+            aShipperAddressLine(2) = fromAddress.sLine3
+            .Add("AddressLine", aShipperAddressLine)
+            .Add("City", fromAddress.sCity)
+            .Add("StateProvinceCode", fromAddress.sState)
+            .Add("PostalCode", fromAddress.sZip)
+            .Add("CountryCode", "US")
+          End With
+        End With
 
-  Dim oLabelSpecification As New Scripting.Dictionary
-  Dim oLabelImageFormat As New Scripting.Dictionary
-  oLabelImageFormat.Add("Code", "GIF")
-  oLabelSpecification.Add("LabelImageFormat", oLabelImageFormat)
+        .Add("ShipTo", New Scripting.Dictionary)
+        With .Item("ShipTo")
+          .Add("Name", Trim(Left(toAddress.sName, 35)))
 
-  Dim oLabelStockSize As New Scripting.Dictionary
-  oLabelStockSize.Add("Height", "6")
-  oLabelStockSize.Add("Width", "4")
-  oLabelSpecification.Add("LabelStockSize", oLabelStockSize)
-  oShipmentRequest.Add("LabelSpecification", oLabelSpecification)
-  oDoc.Add("ShipmentRequest", oShipmentRequest)
+          .Add("Address", New Scripting.Dictionary)
+          With .Item("Address")
+            Dim aShipToAddressLine(0 To 2) As String
+            aShipToAddressLine(0) = toAddress.sLine1
+            aShipToAddressLine(1) = toAddress.sLine2
+            aShipToAddressLine(2) = toAddress.sLine3
+            .Add("AddressLine", aShipToAddressLine)
+            .Add("City", toAddress.sCity)
+            .Add("StateProvinceCode", toAddress.sState)
+            .Add("PostalCode", toAddress.sZip)
+            .Add("CountryCode", "US")
+          End With
+        End With
+
+        .Add("PaymentInformation", New Scripting.Dictionary)
+        With .Item("PaymentInformation")
+          .Add("ShipmentCharge", New Scripting.Dictionary)
+          With .Item("ShipmentCharge")
+            .Add("Type", "01")
+            .Add("BillShipper", New Scripting.Dictionary)
+            With .Item("BillShipper")
+              .Add("AccountNumber", sAccount)
+            End With
+          End With
+        End With
+
+        .Add("Service", New Scripting.Dictionary)
+        With .Item("Service")
+          If bMailInnovations Then
+            .Add("Code", "M4")
+            .Add("Description", "UPS Expedited Mail Innovations")
+          Else
+            .Add("Code", "03")
+            .Add("Description", "Ground")
+          End If
+        End With
+
+        Dim aPackage(0 To 0) As Scripting.Dictionary
+        Set aPackage(0) = New Scripting.Dictionary
+        .Add("Package", aPackage)
+        With aPackage(0)
+          .Add("Description", sDesc)
+
+          If bMailInnovations Then
+            .Add("Dimensions", New Scripting.Dictionary)
+            With .Item("Dimensions")
+              .Add("UnitOfMeasurement", New Scripting.Dictionary)
+              With .Item("UnitOfMeasurement")
+                .Add("Code", "IN")
+                .Add("Description", "Inches")
+              End With
+              .Add("Length", tDimensions.nLength)
+              .Add("Width", tDimensions.nWidth)
+              .Add("Height", tDimensions.nHeight)
+            End With
+          End If
+          .Add("Packaging", New Scripting.Dictionary)
+          With .Item("Packaging")
+            If bMailInnovations Then
+              .Add("Code", sMailClassCode)
+              .Add("Description", sMailClassDescription)
+            Else
+              .Add("Code", "02")
+              .Add("Description", "Customer Supplied Package")
+            End If
+          End With
+
+          .Add("PackageWeight", New Scripting.Dictionary)
+          With .Item("PackageWeight")
+            .Add("UnitOfMeasurement", New Scripting.Dictionary)
+            With .Item("UnitOfMeasurement")
+              .Add("Code", sWeightUOM)
+            End With
+            .Add("Weight", CStr(nWeight))
+          End With
+
+          .Add("PackageServiceOptions", "")
+
+          Dim aReferenceNumber(0 To 1) As Scripting.Dictionary
+          Set aReferenceNumber(0) = New Scripting.Dictionary
+          With aReferenceNumber(0)
+            .Add("Value", sReference1)
+          End With
+          Set aReferenceNumber(1) = New Scripting.Dictionary
+          With aReferenceNumber(1)
+            .Add("Value", sReference2)
+          End With
+          .Add("ReferenceNumber", aReferenceNumber)
+        End With
+      End With
+
+      .Add("LabelSpecification", New Scripting.Dictionary)
+      With .Item("LabelSpecification")
+        .Add("LabelImageFormat", New Scripting.Dictionary)
+        With .Item("LabelImageFormat")
+          .Add("Code", "GIF")
+        End With
+
+        .Add("LabelStockSize", New Scripting.Dictionary)
+        With .Item("LabelStockSize")
+          .Add("Height", "6")
+          .Add("Width", "4")
+        End With
+      End With
+    End With
+  End With
 
   Return vbsJson.Encode(oDoc)
 End Function

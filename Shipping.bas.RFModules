@@ -18,6 +18,86 @@ Public Type ShipmentResponse
   sErrMsg As String
 End Type
 
+Public Type Dimensions
+  nLength As Currency
+  nWidth As Currency
+  nHeight As Currency
+End Type
+
+Public Function GetContainerCodeDimensions(ByVal sMCU As String, ByVal sEQTY As String, tDimensions As Dimensions) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim vDimensions() As Variant
+
+  sSQL = _
+    " select IDGWID, IDGDEP, IDGHET" & _
+    " from F46091" & _
+    " where IDMCU = '" & sMCU & "'" & _
+    " and IDEQTY = '" & sEQTY & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) = 0 Then Return False
+
+  vDimensions = Array( _
+    ConvDecimalsFromSQL("GWID", DB.Extract(sCols, sRows, 1, "IDGWID")), _
+    ConvDecimalsFromSQL("GDEP", DB.Extract(sCols, sRows, 1, "IDGDEP")), _
+    ConvDecimalsFromSQL("GHET", DB.Extract(sCols, sRows, 1, "IDGHET")) _
+  )
+
+  vDimensions = SortedArray(vDimensions)
+
+  ' Use longest dimension as length, others are arbitrary
+  tDimensions.nLength = vDimensions(2)
+  tDimensions.nWidth = vDimensions(1)
+  tDimensions.nHeight = vDimensions(0)
+
+  Return True
+End Function
+
+Public Function GetContainerDimensions( _
+  ByVal sMCU As String, _
+  ByVal sLPID As String, _
+  tDimensions As Dimensions, _
+  sErrMsg As String _
+) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim sEQTY As String
+
+  sEQTY = Trim(FetchFirstResult("select LMDSC1 from F55101 where LMLPID = '" & sLPID & "'"))
+  If sEQTY = "" Then
+    sErrMsg = "Container type not found for carton '" & sLPID & "'"
+    Return False
+  End If
+
+  If Not GetContainerCodeDimensions(sMCU, sEQTY, tDimensions) Then
+    sErrMsg = "No dimension information found for '" & sEQTY & "' in branch '" & Trim(sMCU) & "'"
+    Return False
+  End If
+
+  Return True
+End Function
+
+Public Function SortedArray(ByVal vArray() As Variant) As Variant
+  Dim i As Long
+  Dim j As Long
+  Dim temp As Variant
+
+  For i = UBound(vArray) To 1 Step -1
+    For j = 0 To i - 1
+      If vArray(j) > vArray(j + 1) Then
+        temp = vArray(j)
+        vArray(j) = vArray(j + 1)
+        vArray(j + 1) = temp
+      End If
+    Next j
+  Next i
+
+  SortedArray = vArray
+End Function
+
 Public Function PrintCartonIDLabel( _
   ByVal sLPID As String, _
   ByVal sEQTY As String, _

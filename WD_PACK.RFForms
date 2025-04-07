@@ -238,6 +238,7 @@ Public Sub btnCreateShipment_Click()
   Dim tShipmentResponse As ShipmentResponse
   Dim sDesc As String
   Dim bCancel As Boolean
+  Dim tDimensions As Dimensions
 
   txtPrinter_OnEnter(txtPrinter.text, bCancel, "")
   If bCancel Then Exit Sub
@@ -269,14 +270,19 @@ Public Sub btnCreateShipment_Click()
   ' Create shipment
   Select Case sCarrier
   Case "UPS"
-    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID)
+    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID, False, "", tDimensions)
   Case "UPS Mail Innovations"
     If txtMailClass.text = "" Then
       App.Balloon("", 0)
       App.MsgBox("Please select a mail class.")
       Exit Sub
     End If
-    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID, True, txtMailClass.text)
+
+    If Not GetContainerDimensions(sMCU, sLPID, tDimensions, sErrMsg) Then
+      App.MsgBox(sErrMsg)
+      Exit Sub
+    End If
+    tShipmentResponse = UPS_CreateShipment(nMCU, nSHAN, nWeight, sAccount, sDesc, nDOCO, sLPID, True, txtMailClass.text, tDimensions)
   Case "FedEx"
     If SYS.EnvironmentProperty("Environment") = "TEST" Then sAccount = FEDEX_ACCOUNT_NUMBER
     tShipmentResponse = FedEx_CreateShipment(nMCU, nSHAN, nWeight, sAccount)
@@ -382,44 +388,6 @@ Public Sub btnCreateShipment_Click()
   Call txtLPID_OnBackup(False)
   App.SetFocus(txtLPID.FieldId)
 End Sub
-
-Private Function GetContainerDimensions( _
-  ByVal sMCU As String, _
-  ByVal sLPID As String, _
-  nWidth As Currency, _
-  nLength As Currency, _
-  nHeight As Currency, _
-  sErrMsg As String _
-) As Boolean
-  Dim sSQL As String
-  Dim sCols As String
-  Dim sRows As String
-  Dim sEQTY As String
-
-  sEQTY = Trim(FetchFirstResult("select LMDSC1 from F55101 where LMLPID = '" & sLPID & "'"))
-  If sEQTY = "" Then
-    sErrMsg = "Container type not found for carton '" & sLPID & "'"
-    Exit Function
-  End If
-
-  sSQL = _
-    " select IDGWID, IDGDEP, IDGHET" & _
-    " from F46091" & _
-    " where IDEQTY = '" & sEQTY & "'" & _
-    " and IDMCU = '" & sMCU & "'"
-  DB.Execute(sSQL, sCols, sRows)
-
-  If DB.Count(sRows) = 0 Then
-    sErrMsg = "No dimension information found for '" & sEQTY & "' in branch '" & Trim(sMCU) & "'"
-    Exit Function
-  End If
-
-  nWidth = ConvDecimalsFromSQL("GWID", DB.Extract(sCols, sRows, 1, "IDGWID"))
-  nLength = ConvDecimalsFromSQL("GDEP", DB.Extract(sCols, sRows, 1, "IDGDEP"))
-  nHeight = ConvDecimalsFromSQL("GHET", DB.Extract(sCols, sRows, 1, "IDGHET"))
-
-  GetContainerDimensions = True
-End Function
 
 Public Sub btnMoveItems_Click()
   On Error Resume Next
