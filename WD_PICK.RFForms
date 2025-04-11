@@ -704,7 +704,7 @@ Public Sub txtCart_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   DB.Execute(sSQL, sCols, sRows)
   App.SetValue("tmTRIP", DB.Extract(sCols, sRows, 1, "R2TRIP"))
 
-  LogText("WD_PICK", "txtCart_OnEnter", "Wave #: " & App.GetValue("tmTRIP"))
+  LogText("WD_PICK", "txtCart_OnEnter", "Rsp: " & Rsp & ", Wave #: " & App.GetValue("tmTRIP"))
 
   If Val(App.GetValue("tmTRIP")) <> 0 Then
     LogText("WD_PICK", "txtCart_OnEnter", "Calling SelectNextPick")
@@ -1430,12 +1430,17 @@ Private Function AssignJob( _
   Dim sLPID As String
   Dim nErrNo As Long
 
- ' Check for existing carton ID on this batch and sequence
+  ' Check for existing carton ID on this batch and sequence
   sSQL = "select max(R2LPID) from WDJOBS where R2SGBT = " & nBatch & " and R2SGSQ = " & nSequence
   DB.Execute(sSQL, sCols, sRows)
 
   sLPID = Trim(DB.Extract(sCols, sRows, 1, 1))
-  If sLPID = "" Then sLPID = CreateNewCarton(sEQTY)
+  If sLPID = "" Then
+    sLPID = CreateNewCarton(sEQTY)
+    LogText("WD_PICK", "AssignJob", "Created carton: " & sLPID & " for batch: " & nBatch & ", sequence: " & nSequence)
+  Else
+    LogText("WD_PICK", "AssignJob", "Using existing carton: " & sLPID & " for batch: " & nBatch & ", sequence: " & nSequence)
+  End If
 
   ' Assign the job to this user
   sSQL = _
@@ -1453,7 +1458,12 @@ Private Function AssignJob( _
   nErrNo = DB.Execute(sSQL)
 
   AssignJob = nErrNo = 0
-  If Not AssignJob Then sErrMsg = "Failed to assign pick wave (" & nErrNo & ")"
+
+  If AssignJob Then
+    LogText("WD_PICK", "AssignJob", "Assigned job: " & sSQL)
+  Else
+    sErrMsg = "Failed to assign pick wave (" & nErrNo & ")"
+  End If
 End Function
 
 Private Function GetCartonInfo( _
