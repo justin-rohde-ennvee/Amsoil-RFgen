@@ -411,7 +411,12 @@ Private Function GetConversionFactor( _
   ByRef toUnitOfMeasure As String, _
   ByRef conversionFactor As Currency _
 ) As Boolean
-  ' TODO dictionary of checked conversions?
+  If fromUnitOfMeasure = toUnitOfMeasure Then
+    conversionFactor = 1
+    GetConversionFactor = True
+    Exit Function
+  End If
+
   Dim sql As String
   sql = "select UMCONV" & _
     " from F41002" & _
