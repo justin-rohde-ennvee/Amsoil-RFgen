@@ -73,7 +73,7 @@ Private Function Transaction() As Boolean
   Dim sSqlOPSQ  As String
   Dim sColsOPSQ As String
   Dim sRowsOPSQ As String
-
+  
   sTime = Format(Time, "nn:ss")
   sTimes = Split(sTime, ":")
   nMinutes = CLng(sTimes(0))

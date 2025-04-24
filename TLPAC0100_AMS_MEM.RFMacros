@@ -182,9 +182,13 @@ Private Function Transaction() As Boolean
     tmLITM = Trim(DB.Extract(sColsWO, sRowsWO, 1, "WALITM"))
     App.SetValue("tmITM", DB.Extract(sColsWO, sRowsWO, 1, "WAITM"))
     App.SetValue("tmLNID", DB.Extract(sColsWO, sRowsWO, 1, "WALNID"))
+    App.SetValue("tmMCU", DB.Extract(sColsWO, sRowsWO, 1, "WAMCU"))
+    tmMCU = DB.Extract(sColsWO, sRowsWO, 1, "WAMCU")
+
     sMfgLOTN = Trim(DB.Extract(sCols2, sRows2, 1, "WCLOTN")) & "." & Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO"))
     tmLOTN = sMfgLOTN
     tmTOLOTS = ""
+
 
     tmUOM = DB.Extract(sColsWO, sRowsWO, 1, "WAUOM")
     tmUser = DB.Extract(sCols2, sRows2, 1, "WCUSER")
@@ -200,7 +204,8 @@ Private Function Transaction() As Boolean
       sPrefix = "X"
       sErrMsg = sErrMsg & " PREFIX NOT IN XREF TABLE."
     End If
-    tmMCU = FixRight(Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5MCU")), 12)
+'    tmMCU = FixRight(Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5MCU")), 12)
+
     App.SetValue("tmMCU", FixRight(Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5MCU")), 12))
     sProdLocn = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5LOCN"))
     tmLOCN = Trim(DB.Extract(sColsXREF, sRowsXREF, 1, "Z5LOCN"))
