@@ -277,6 +277,7 @@ Private Sub btnChange_Click()
     App.SetValue("tmLOTN", Trim(DB.Extract(sCols2, sRows2, 1, "WCLOTN")) & "." & Trim(DB.Extract(sCols2, sRows2, 1, "WCDOCO")))
     App.SetValue("tmTOLOTS", "")
     App.SetValue("tmXPDT", "")
+    App.SetValue("tmMCU", DB.Extract(sColsWO, sRowsWO, 1, "WAMCU"))
 
 
     App.SetValue("tmSCRAP", "0")
@@ -293,7 +294,7 @@ Private Sub btnChange_Click()
     sProdLocn = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5LOCN"))
     App.SetValue("tmLOCN", Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5LOCN")))
 
-    App.SetValue("tmMCU", FixRight(Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5MCU")),12))
+'    App.SetValue("tmMCU", FixRight(Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5MCU")),12))
 
     sCasePrinter = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55PDN"))
     sPalletPrinter = Trim(DB.Extract(sColsXref, sRowsXref, 1, "Z5Z55PDN1"))
