@@ -955,8 +955,10 @@ End Sub
 Public Sub txtPrinter_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef ErrMsg As String)
   On Error Resume Next
 
-  If Val(Rsp) <= 0 Then
-    App.MsgBox("Invalid printer #")
+  Dim sErrMsg As String
+
+  If Not ValidatePrinterByBranch(App.GetValue("tmMCU"), Val(Rsp), sErrMsg) Then
+    App.MsgBox(sErrMsg)
     Cancel = True
     Exit Sub
   End If

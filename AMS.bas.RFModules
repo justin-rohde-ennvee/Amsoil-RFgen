@@ -444,4 +444,61 @@ Public Function NextNumber(ByVal sSystemCode As String, ByVal nIndex As Long) As
 
   NextNumber = emX0010GetNextNumber.Param("NextNumber001")
 End Function
+
+Public Function ValidatePrinterByBranch( _
+  ByVal sBranch As String, _
+  ByVal nPrinterNumber As Long, _
+  sErrMsg As String, _
+  Optional sDescription As String = "" _
+) As Boolean
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim bCanOverride As Boolean
+
+  ' Verify the printer number exists
+  sSQL = _
+    " select count(*)" & _
+    " from F0005" & _
+    " where DRSY = '55'" & _
+    " and DRRT = 'WP'" & _
+    " and ltrim(rtrim(DRKY)) = '" & nPrinterNumber & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If Val(sRows) = 0 Then
+    sErrMsg = "Invalid printer number."
+    Return False
+  End If
+
+  ' Verify the printer number is associated with this branch, or all branches (*)
+  sSQL = _
+    " select DRDL02" & _
+    " from F0005" & _
+    " where DRSY = '55'" & _
+    " and DRRT = 'WP'" & _
+    " and ltrim(rtrim(DRKY)) = '" & nPrinterNumber & "'" & _
+    " and DRDL01 in ('" & Trim(sBranch) & "', '*')"
+  DB.Execute(sSQL, sCols, sRows)
+
+  bCanOverride = UCase(Trim(App.UserProperty("PrinterOverride"))) = "Y"
+
+  If DB.Count(sRows) = 0 Then
+    If Not bCanOverride Then
+      ' User is restricted to this branch
+      sErrMsg = "Printer " & nPrinterNumber & " is invalid for branch " & Trim(sBranch)
+      Return False
+    End If
+  End If
+
+  If nPrinterNumber = 0 Then
+    If Not bCanOverride Then
+      ' User is not authorized to use the "Do not print" option
+      sErrMsg = "Printer " & nPrinterNumber & " is invalid for branch " & Trim(sBranch)
+      Return False
+    End If
+  End If
+
+  sDescription = Trim(DB.Extract(sCols, sRows, 1, "DRDL02"))
+  Return True
+End Function
 </Code>
