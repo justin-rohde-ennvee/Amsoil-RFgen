@@ -694,6 +694,39 @@ Private Sub txtHidden_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRe
 'WLG02 END
 '****************************************************************
 
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+  Dim nUORG As Currency
+  Dim nSOQS As Currency
+  Dim nAllowedOvercompletionQty As Currency
+  Dim nMaxQty As Currency
+  Dim sDL01 As String
+  Dim nPercentOvercompletionAllowed
+
+  sSQL = "select DRDL01 from F0005 where DRSY = '55' and DRRT = 'CT' and DRKY = '" & Trim(App.GetValue("tmMCU")) & "'"
+  DB.Execute(sSQL, sCols, sRows)
+
+  If DB.Count(sRows) > 0 Then
+    nPercentOvercompletionAllowed = Val(DB.Extract(sCols, sRows, 1, "DRDL01"))
+
+    sSQL = "select WAUORG, WASOQS from F4801 where WADOCO = %tmDOCO"
+    DB.Execute(sSQL, sCols, sRows)
+
+    nUORG = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, 1, "WAUORG"))
+    nSOQS = Val(lblOpenQty.Caption)' ConvDecimalsFromSQL("SOQS", DB.Extract(sCols, sRows, 1, "WASOQS"))
+
+    nAllowedOvercompletionQty = (nPercentOvercompletionAllowed / 100.0) * nUORG
+    nMaxQty = nUORG - nSOQS + nAllowedOvercompletionQty
+
+
+    If Val(Rsp) > nMaxQty Then
+      App.MsgBox("Error: Over-completion not allowed. Contact Supervisor.")
+      Cancel = True
+      Exit Sub
+    End If
+  End If
+
   App.SetValue("tmNUMREC", Rsp)
 End Sub
 

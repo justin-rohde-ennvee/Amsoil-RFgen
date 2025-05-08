@@ -30,5 +30,8 @@
 <MenuItem Id="-" />
 <MenuItem Id="-" Desc="-- Receiving --" />
 <MenuItem Id="FPORC101_AMS" Desc="E-OT Receiving" Options="-Pgm=P4312 -Vers=RGN0001" />
+<MenuItem Id="-" />
+<MenuItem Id="-" Desc="--NEW--" />
+<MenuItem Id="FLPTL0101_AMS" Desc="F Production LP Transfer" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>
