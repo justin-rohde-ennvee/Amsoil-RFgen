@@ -72,6 +72,7 @@
 </Form>
 </Record>
 <Code>
+'#Language "WWB-COM"
 Option Explicit
 
 Private Const cTNID = "FLBPR0100_AMS"
@@ -87,37 +88,28 @@ Public Sub Form_OnUpdate(ByRef Cancel As Boolean)
 
   Cancel = True
 
-  Dim emCreatecustomLabelWrapper As New EmbeddedProc
+  Dim nDOCO As Long
+  Dim sLabelType As String
+  Dim sPrinter As String
+  Dim sErrMsg As String
 
-  emCreatecustomLabelWrapper.Clear
-  emCreatecustomLabelWrapper.Name = "CreateCustomLabelWrapper"
-  emCreatecustomLabelWrapper.DataSource = "JDE"
+  App.Balloon("Creating Custom Label...", -1)
 
-  emCreatecustomLabelWrapper.Param("WorkOrderNumber_DOCO") = App.GetValue("tmDOCO")
-  emCreatecustomLabelWrapper.Param("LabelType_Z55LBTY") = "PL"
-  emCreatecustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
-  emCreatecustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = App.GetValue("tmPrinter")
-  emCreatecustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0 'App.GetValue("tmQTY")
-  emCreatecustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
-  emCreatecustomLabelWrapper.Param("FFCreate_YN") = " "
-  emCreatecustomLabelWrapper.Param("FFDataFormat_EV01") = " "
-  emCreatecustomLabelWrapper.Param("FFDelimiter_EV01") = " "
-  emCreatecustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
-  emCreatecustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
-  emCreatecustomLabelWrapper.Param("SuppressError_YN") = " "
-  emCreatecustomLabelWrapper.Param("LotNumber_LOTN") = " "
-  emCreatecustomLabelWrapper.Param("IssuedQuantity_TRQT") = App.GetValue("tmQTY")
+  LogText("FLBPR0100_AMS", "Form_OnUpdate", "Creating custom label...")
 
-  If Not emCreatecustomLabelWrapper.Execute Then
-    If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emCreatecustomLabelWrapper.Name, "", emCreatecustomLabelWrapper)
-    App.MsgBox("Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description)
-    Exit Sub
+  nDOCO = App.GetValue("tmDOCO")
+  sLabelType = GetCustomLabelType(nDOCO)
+  sPrinter = App.GetValue("tmPrinter")
+
+  If sLabelType <> "CS" Then
+    If Not PrintCustomLabel(nDOCO, sLabelType, "", 1, sPrinter, sErrMsg) Then
+      App.MsgBox(sErrMsg)
+      App.Balloon("", 0)
+      Exit Sub
+    End If
   End If
 
-  If emCreatecustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
-    App.MsgBox(emCreatecustomLabelWrapper.Param("ErrorMessage_Z55LBED"))
-    Exit Sub
-  End If
+  App.Balloon("", 0)
 
   Cancel = False
 End Sub
@@ -254,4 +246,68 @@ Private Sub txtQTY_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Cancel = False
   App.SetValue("tmQTY", nQty)
 End Sub
+
+
+Private Function GetCustomLabelType(ByVal nDOCO As Long) As String
+  Dim sSQL As String
+
+  sSQL = _
+    " select I0Z55CC37" & _
+    " from F554101C" & _
+    " inner join F4101 on IMITM = I0ITM" & _
+    " inner join F4801 on WAITM = IMITM" & _
+    " where WADOCO = " & nDOCO
+
+ Return Trim(FetchFirstResult(sSQL))
+End Function
+
+Private Function PrintCustomLabel( _
+  ByVal nDOCO As Long, _
+  ByVal sLabelType As String, _
+  ByVal sLOTN As String, _
+  ByVal nQty As Long, _
+  Optional ByVal sLabelPrinter As String = "", _
+  sErrMsg As String _
+) As Boolean
+  Dim i As Long
+  Dim emCreateCustomLabelWrapper As New EmbeddedProc
+
+  emCreateCustomLabelWrapper.Name = "CreateCustomLabelWrapper"
+  emCreateCustomLabelWrapper.DataSource = "JDE"
+
+  emCreateCustomLabelWrapper.Param("WorkOrderNumber_DOCO") = CStr(nDOCO)
+  emCreateCustomLabelWrapper.Param("LabelType_Z55LBTY") = sLabelType
+  emCreateCustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
+  emCreateCustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = sLabelPrinter '" "
+  emCreateCustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0
+  emCreateCustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
+  emCreateCustomLabelWrapper.Param("FFCreate_YN") = " "
+  emCreateCustomLabelWrapper.Param("FFDataFormat_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDelimiter_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
+  emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
+  emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = sLOTN
+  emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQty
+
+  For i=1 To emCreateCustomLabelWrapper.ParamCount
+    LogText("AMS", "PrintCustomLabel", emCreateCustomLabelWrapper.ParamName(i) & ": " & emCreateCustomLabelWrapper.Param(i))
+  Next
+
+  If Not emCreateCustomLabelWrapper.Execute Then
+    If Ext(gsLog,2) = "1" Then Call TranLog("PrintCustomLabel", "2", emCreateCustomLabelWrapper.Name, "", emCreateCustomLabelWrapper)
+    sErrMsg = "Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description
+    LogText("AMS", "PrintCustomLabel", sErrMsg)
+    Return False
+  End If
+
+  If emCreateCustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
+    sErrMsg = "CreateCustomLabelWrapper error: " & emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED")
+    LogText("AMS", "PrintCustomLabel", sErrMsg)
+    Return False
+  End If
+
+  LogText("AMS", "PrintCustomLabel", "emCreateCustomLabelWrapper succeeded.")
+  Return True
+End Function
 </Code>
