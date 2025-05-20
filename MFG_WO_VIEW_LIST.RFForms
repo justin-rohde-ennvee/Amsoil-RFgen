@@ -131,8 +131,6 @@ Option Explicit
 Private msDOCO As Long
 Private msPALP As String
 
-Private Const cMCU = "          85"
-
 Public Sub btnBack_Click()
   On Error Resume Next
 

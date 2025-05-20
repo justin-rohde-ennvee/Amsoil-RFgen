@@ -135,8 +135,6 @@ Private msDOCO As Long
 Private msTO As String
 Private mnScannedCount As Long
 
-Private Const cMCU = "          85"
-
 Public Sub btnBack_Click()
   On Error Resume Next
 

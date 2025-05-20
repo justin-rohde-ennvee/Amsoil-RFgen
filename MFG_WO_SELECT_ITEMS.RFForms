@@ -218,12 +218,14 @@
 </Form>
 </Record>
 <Code>
+'#Language "WWB-COM"
 Option Explicit
 
-Private mnDOCO As Long
-Private Const cMCU = "          85"
 Private Const cTNID = "MFG_WO"
+
+Private mnDOCO As Long
 Private mbDidIssue As Boolean
+Private msMCU As String
 
 Public Sub btnBack_Click()
   On Error Resume Next
@@ -279,12 +281,20 @@ End Sub
 Public Sub btnWorkWithLPs_Click()
   On Error Resume Next
 
-  App.CallForm("MFG_WO_WORK_WITH_LPS -DOCO=" & mnDOCO, True)
+  App.CallForm("MFG_WO_WORK_WITH_LPS -MCU=" & Trim(msMCU) & " -DOCO=" & mnDOCO, True)
 End Sub
 
 Public Sub Form_Load()
   On Error Resume Next
 
+  msMCU = Trim(App.GetValue("MCU"))
+  If msMCU = "" Then
+    App.MsgBox("Branch not specified!")
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msMCU = FixRight(msMCU, 12)
   mnDOCO = Val(App.GetValue("DOCO"))
 
   If mnDOCO = 0 Then
@@ -416,7 +426,10 @@ Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
 
   App.Balloon("Processing...", -1)
 
-  Dim sSQL, sCols, sRows As String
+  Dim sSQL As String
+  Dim sCols As String
+  Dim sRows As String
+
   sSQL = _
     " select LOTN, LOCN, QTY, LPID" & _
     " from RFgenCustom.ToBeIssued" & _
@@ -431,13 +444,19 @@ Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
   For i=1 To DB.Count(sRows)
     App.Balloon("Processing " & i & " / " & DB.Count(sRows), -1)
 
-    Dim sLPID, sLITM, sLOTN, sLOCN As String
+    Dim sLPID As String
+    Dim sLOTN As String
+    Dim sLOCN As String
     Dim nQTY As Currency
 
     sLPID = Trim(DB.Extract(sCols, sRows, i, "LPID"))
     sLOTN = Trim(DB.Extract(sCols, sRows, i, "LOTN"))
     sLOCN = Trim(DB.Extract(sCols, sRows, i, "LOCN"))
     nQTY = ConvDecimalsFromSQL("UORG", DB.Extract(sCols, sRows, i, "QTY"))
+
+    Dim sCols2 As String
+    Dim sRows2 As String
+    Dim sLITM As String
 
     sSQL = _
       " select WMDCTO, WMMCU, WMCMCU, WMOPSQ, WMUKID, WMCPIL," & _
@@ -446,9 +465,9 @@ Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
       " where WMDOCO = " & mnDOCO & _
       " and WMLOTN = '" & sLOTN & "'" & _
       " and WMLOCN = '" & sLOCN & "'"
-
-    Dim sCols2, sRows2 As String
     DB.Execute(sSQL, sCols2, sRows2)
+
+    sLITM = DB.Extract(sCols2, sRows2, 1, "WMCPIL")
 
     Dim oProcOpt As New JDEProcOpt
     oProcOpt.ProgramId = "P31113"
@@ -476,7 +495,7 @@ Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
     emProc.Param("tmOrgLOCN")    = DB.Extract(sCols2, sRows2, 1, "WMLOCN")
     emProc.Param("tmOrgUORG")    = ConvDecimalsFromSQL("UORG", DB.Extract(sCols2, sRows2, 1, "WMUORG"))
     emProc.Param("tmOrgDRQJ")    = DB.Extract(sCols2, sRows2, 1, "WMDRQJ")
-    emProc.Param("tmDOCTYPE")    = oProcOpt.Value("IssuesDCT") 'GetProcOpt("P31113", "AMS0001", "1;1")
+    emProc.Param("tmDOCTYPE")    = oProcOpt.value("IssuesDCT")
     emProc.Param("tmUSER")       = UCase(App.User)
     emProc.Param("tmPGM")        = "P31113"
     emProc.Param("tmZVERSION")   = "AMS0001"
@@ -498,44 +517,27 @@ Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
       " and LPID = '" & sLPID & "'"
     DB.Execute(sSQL)
 
-    If bLabel Then
-      emCreateCustomLabelWrapper.Clear
-      emCreateCustomLabelWrapper.Name = "CreateCustomLabelWrapper"
-      emCreateCustomLabelWrapper.DataSource = "JDE"
 
-      emCreateCustomLabelWrapper.Param("WorkOrderNumber_DOCO") = mnDOCO
-      emCreateCustomLabelWrapper.Param("LabelType_Z55LBTY") = "PL"
-      emCreateCustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
-      emCreateCustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = " "
-      emCreateCustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0
-      emCreateCustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
-      emCreateCustomLabelWrapper.Param("FFCreate_YN") = " "
-      emCreateCustomLabelWrapper.Param("FFDataFormat_EV01") = " "
-      emCreateCustomLabelWrapper.Param("FFDelimiter_EV01") = " "
-      emCreateCustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
-      emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
-      emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
-      emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = sLOTN
-      emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQTY
+    LogText("MFG_WO_SELECT_ITEMS", "IssueMaterial", "Creating custom label...")
 
-      If Not emCreateCustomLabelWrapper.Execute Then
-        If Ext(gsLog,2) = "1" Then Call TranLog(cTNID, "2", emCreateCustomLabelWrapper.Name, "", emCreateCustomLabelWrapper)
-        App.MsgBox("Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description)
-        GoTo Done
-      End If
+    Dim sLabelType As String
+    sLabelType = GetCustomLabelType(mnDOCO)
 
-      If emCreateCustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
-        App.MsgBox(emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED"))
-        GoTo Done
-      End If
-    Else
-      ' Mark as already labeled
+    If sLabelType = "CS" Then
+      ' Mark as already labeled but do not print a label
       sSQL = _
         " update RFgenCustom.ToBeIssued" & _
         " set LABEL_MATCH = 'Y'" & _
         " where DOCO = " & mnDOCO & _
         " and LPID = '" & sLPID & "'"
       DB.Execute(sSQL)
+    Else
+      Dim sErrMsg As String
+      If Not PrintCustomLabel(mnDOCO, sLabelType, sLOTN, nQty, sErrMsg) Then
+        App.MsgBox("sErrMsg")
+        App.Balloon("", 0)
+        Exit Sub
+      End If
     End If
   Next
 
@@ -544,4 +546,66 @@ Done:
   mbDidIssue = True
   Refresh()
 End Sub
+
+Private Function GetCustomLabelType(ByVal nDOCO As Long) As String
+  Dim sSQL As String
+
+  sSQL = _
+    " select I0Z55CC37" & _
+    " from F554101C" & _
+    " inner join F4101 on IMITM = I0ITM" & _
+    " inner join F4801 on WAITM = IMITM" & _
+    " where WADOCO = " & nDOCO
+
+ Return Trim(FetchFirstResult(sSQL))
+End Function
+
+Private Function PrintCustomLabel( _
+  ByVal nDOCO As Long, _
+  ByVal sLabelType As String, _
+  ByVal sLOTN As String, _
+  ByVal nQty As Long, _
+  sErrMsg As String _
+) As Boolean
+  Dim i As Long
+  Dim emCreateCustomLabelWrapper As New EmbeddedProc
+
+  emCreateCustomLabelWrapper.Name = "CreateCustomLabelWrapper"
+  emCreateCustomLabelWrapper.DataSource = "JDE"
+
+  emCreateCustomLabelWrapper.Param("WorkOrderNumber_DOCO") = CStr(nDOCO)
+  emCreateCustomLabelWrapper.Param("LabelType_Z55LBTY") = sLabelType
+  emCreateCustomLabelWrapper.Param("LabelName_Z55LBNM") = " "
+  emCreateCustomLabelWrapper.Param("LabelPrinterCode_Z55LBPC") = " "
+  emCreateCustomLabelWrapper.Param("NumberofLabels_Z55NLBL") = 0
+  emCreateCustomLabelWrapper.Param("LabelDirPath_Z55LBPN") = " "
+  emCreateCustomLabelWrapper.Param("FFCreate_YN") = " "
+  emCreateCustomLabelWrapper.Param("FFDataFormat_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDelimiter_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDelimiterReplacement_EV01") = " "
+  emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
+  emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
+  emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = sLOTN
+  emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQty
+
+  For i=1 To emCreateCustomLabelWrapper.ParamCount
+    LogText("AMS", "PrintCustomLabel", emCreateCustomLabelWrapper.ParamName(i) & ": " & emCreateCustomLabelWrapper.Param(i))
+  Next
+
+  If Not emCreateCustomLabelWrapper.Execute Then
+    If Ext(gsLog,2) = "1" Then Call TranLog("PrintCustomLabel", "2", emCreateCustomLabelWrapper.Name, "", emCreateCustomLabelWrapper)
+    sErrMsg = "Failed to execute emCreateCustomLabelWrapper: " & SysErr.Description
+    LogText("AMS", "PrintCustomLabel", sErrMsg)
+    Return False
+  End If
+
+  If emCreateCustomLabelWrapper.Param("ErrorFound_YN") = "Y" Then
+    sErrMsg = "CreateCustomLabelWrapper error: " & emCreateCustomLabelWrapper.Param("ErrorMessage_Z55LBED")
+    LogText("AMS", "PrintCustomLabel", sErrMsg)
+    Return False
+  End If
+
+  LogText("AMS", "PrintCustomLabel", "emCreateCustomLabelWrapper succeeded.")
+  Return True
+End Function
 </Code>

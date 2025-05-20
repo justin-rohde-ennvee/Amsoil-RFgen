@@ -119,7 +119,7 @@
 Option Explicit
 
 Private msDOCO As Long
-Private Const cMCU = "          85"
+Private msMCU As String
 
 Public Sub btnBack_Click()
   On Error Resume Next
@@ -134,12 +134,12 @@ Public Sub btnCreateNewLP_Click()
 
   Call LP101_Reset(uLP101)
 
-  uLP101.sLMMCU = cMCU
+  uLP101.sLMMCU = msMCU
   uLP101.sLMDSC1 = "Created " & Format(Date, "YYMMDD") & " " & Format(Time, "HH:NN:SS")
   uLP101.sLMRDOCO = CStr(msDOCO)
   uLP101.sLMTYPE = "P"
 
-  App.SetValue("tmMCU", cMCU)
+  App.SetValue("tmMCU", msMCU)
   If Not X_LP101("A", uLP101) Then
     App.MsgBox("Failed to create pallet.")
     Exit Sub
@@ -193,6 +193,15 @@ End Sub
 
 Public Sub Form_Load()
   On Error Resume Next
+
+  msMCU = Trim(App.GetValue("MCU"))
+  If msMCU = "" Then
+    App.MsgBox("Branch not specified!")
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msMCU = FixRight(msMCU, 12)
 
   msDOCO = Val(App.GetValue("DOCO"))
 

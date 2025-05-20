@@ -48,12 +48,22 @@
 <Code>
 Option Explicit
 
-Private Const cMMCU = "          85"
 Private Const cStatusFrom = "40"
 Private Const cStatusTo = "89"
 
+Private msMMCU As String
+
 Public Sub Form_Load()
   On Error Resume Next
+
+  msMMCU = Trim(App.GetValue("Branch"))
+  If msMMCU = "" Then
+    App.MsgBox("Error: menu option 'Branch' must be specified!")
+    App.ExitForm
+    Exit Sub
+  End If
+
+  msMMCU = FixRight(msMMCU, 12)
 
   txtAccept.Caption = ""
 End Sub
@@ -106,7 +116,7 @@ Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Dim sMMCU As String
   sMMCU = DB.Extract(sCols, sRows, 1, "WAMMCU")
 
-  If sMMCU <> cMMCU Then
+  If sMMCU <> msMMCU Then
     App.MsgBox("Work order is for incorrect B/P: " & sMMCU)
     Exit Sub
   End If
@@ -115,11 +125,11 @@ Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     " select count(*)" & _
     " from F3111" & _
     " where WMDOCO = " & Rsp & _
-    " and WMCMCU <> '" & cMMCU & "'"
+    " and WMCMCU <> '" & msMMCU & "'"
   DB.Execute(sSQL, sCols, sRows)
 
   If Val(sRows) > 0 Then
-    App.MsgBox("Invalid cost center on parts list; must be 85.")
+    App.MsgBox("Invalid cost center on parts list; must be " & Trim(msMMCU) & ".")
     Exit Sub
   End If
 
@@ -127,18 +137,18 @@ Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
     " select count(*)" & _
     " from F3111" & _
     " where WMDOCO = " & Rsp & _
-    " and WMMMCU <> '" & cMMCU & "'"
+    " and WMMMCU <> '" & msMMCU & "'"
   DB.Execute(sSQL, sCols, sRows)
 
   If Val(sRows) > 0 Then
-    App.MsgBox("Invalid B/P on parts list; must be 85.")
+    App.MsgBox("Invalid B/P on parts list; must be " & Trim(msMMCU) & ".")
     Exit Sub
   End If
 
   sSQL = _
     " select WASTRT" & _
     " from F4801" & _
-    " where WAMMCU = '" & cMMCU & "'" & _
+    " where WAMMCU = '" & msMMCU & "'" & _
     " and WADOCO = " & Rsp & _
     " and WASRST between '" & cStatusFrom & "' and '" & cStatusTo & "'"
   DB.Execute(sSQL, sCols, sRows)
@@ -157,7 +167,7 @@ Public Sub txtDOCO_OnEnter(ByRef Rsp As String, ByRef Cancel As Boolean, ByRef E
   Cancel = False
 
   App.SetValue("tmDOCO", Rsp)
-  App.CallForm("MFG_WO_PROCESS_STEPS -DOCO=" & Rsp, True)
+  App.CallForm("MFG_WO_PROCESS_STEPS -MCU=" & Trim(msMMCU) & " -DOCO=" & Rsp, True)
 End Sub
 
 Public Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
@@ -168,7 +178,7 @@ Public Sub txtDOCO_OnSearch(ByRef Rsp As String, ByRef Cancel As Boolean)
   sSQL = _
     " select WADOCO" & _
     " from F4801" & _
-    " where WAMMCU = '" & cMMCU & "'" & _
+    " where WAMMCU = '" & msMMCU & "'" & _
     " and WASRST between '" & cStatusFrom & "' and '" & cStatusTo & "'" & _
     " and WAUORG > WASOQS"
 
