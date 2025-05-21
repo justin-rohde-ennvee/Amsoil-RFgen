@@ -248,9 +248,9 @@ Private Function Transaction(ByRef tmCO As Variant, ByRef tmMCU As Variant, ByRe
   If Ext(gsLog,3) = "1" Then Call TranLog(cTNId, "3", emPostF4141EndDoc.Name, "", emPostF4141EndDoc)
   '
   If Not emPostF4141EndDoc.Execute Then
-    sErrDesc = "F4141PostEndDoc"
+'    sErrDesc = "F4141PostEndDoc"
     If Ext(gsLog,4) = "1" Then Call TranLog(cTNId, "4", emPostF4141EndDoc.Name, "", emPostF4141EndDoc, tmUSER, TM.QueueName, TM.SeqNo)
-    GoTo ExitE1
+'    GoTo ExitE1
   End If
   '
   bSuccess = True
