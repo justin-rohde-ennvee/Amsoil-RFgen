@@ -361,6 +361,18 @@ Public Sub btnCreateShipment_Click()
     )
   End If
 
+  Dim trackingRecord As F554603Record
+  trackingRecord.sMCU = App.GetValue("tmMCU")
+  trackingRecord.nPSN = App.GetValue("tmPSN")
+  trackingRecord.sLPID = sLPID
+  trackingRecord.sTYFL = "4"
+  trackingRecord.nQty = nWeight
+  trackingRecord.sUOM = "LB"
+  trackingRecord.nStartDateJDE = ConvDatetoJDE(CStr(Now))
+  trackingRecord.nStartTime = CLng(Format(Now, "hhnnss"))
+
+  WriteTrackingRecord(trackingRecord, sErrMsg)
+  
   App.Balloon("Executing JDE Ship Confirm...", -1)
   If Not ShipEligibleItems(sErrMsg) Then
     App.Balloon("", 0)
