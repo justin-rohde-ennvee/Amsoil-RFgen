@@ -16,5 +16,6 @@
 <MenuItem Id="FLPTL0101_AMS" Desc="E Production LP Transfer" Options="-Pgm=P4113 -Vers=RGN0001" />
 <MenuItem Id="FPORC101_AMS" Desc="F OT Receiving" Options="-Pgm=P4312 -Vers=RGN0001" />
 <MenuItem Id="FIMIR0200_AMS" Desc="G Reclass Finished Goods " Options="-Branch=53" />
+<MenuItem Id="FLPAS0100_AMS" Desc="H LP Adjust Status" />
 <MenuItem Id="_Logout" Desc="&lt;Logout&gt;" />
 </Record>
