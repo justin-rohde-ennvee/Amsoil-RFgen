@@ -533,8 +533,8 @@ Private Sub IssueMaterial(Optional ByVal bLabel As Boolean = True)
       DB.Execute(sSQL)
     Else
       Dim sErrMsg As String
-      If Not PrintCustomLabel(mnDOCO, sLabelType, sLOTN, nQty, sErrMsg) Then
-        App.MsgBox("sErrMsg")
+      If Not PrintCustomLabel(mnDOCO, sLabelType, sLOTN, nQTY, sErrMsg) Then
+        App.MsgBox(sErrMsg)
         App.Balloon("", 0)
         Exit Sub
       End If
@@ -564,7 +564,7 @@ Private Function PrintCustomLabel( _
   ByVal nDOCO As Long, _
   ByVal sLabelType As String, _
   ByVal sLOTN As String, _
-  ByVal nQty As Long, _
+  ByVal nQTY As Long, _
   sErrMsg As String _
 ) As Boolean
   Dim i As Long
@@ -586,7 +586,7 @@ Private Function PrintCustomLabel( _
   emCreateCustomLabelWrapper.Param("FFDirPath_Z55LBFD") = " "
   emCreateCustomLabelWrapper.Param("SuppressError_YN") = " "
   emCreateCustomLabelWrapper.Param("LotNumber_LOTN") = sLOTN
-  emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQty
+  emCreateCustomLabelWrapper.Param("IssuedQuantity_TRQT") = nQTY
 
   For i=1 To emCreateCustomLabelWrapper.ParamCount
     LogText("AMS", "PrintCustomLabel", emCreateCustomLabelWrapper.ParamName(i) & ": " & emCreateCustomLabelWrapper.Param(i))
